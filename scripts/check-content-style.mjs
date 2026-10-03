@@ -10,7 +10,8 @@ const publicDataFiles = [
   'docs/data/places.json',
   'docs/data/guide.json',
   'docs/data/prep.json',
-  'docs/data/transport.json'
+  'docs/data/transport.json',
+  'docs/data/hotels.json'
 ];
 
 const historyPatterns = [
@@ -20,7 +21,10 @@ const historyPatterns = [
   ['«beholdes»', /beholdes/i],
   ['«fjernes fra kortlisten»', /fjernes fra kortlisten/i],
   ['«vi har lagt»', /vi har lagt/i],
-  ['«nettopp»', /nettopp/i]
+  ['«nettopp»', /nettopp/i],
+  ['«lagt inn ennå»', /lagt inn ennå/i],
+  ['«ikke avklart»', /ikke avklart/i],
+  ['«ekstra kandidat»', /ekstra kandidat/i]
 ];
 
 for (const file of [...htmlFiles, ...publicDataFiles]) {
@@ -52,6 +56,9 @@ for (const file of htmlFiles) {
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 if (/Ikke kontrollert/i.test(app)) {
   errors.push('docs/assets/app.js: UI skal skjule uverifiserte felter, ikke vise «Ikke kontrollert»');
+}
+if (/Ingen konkret bestillingsanbefaling lagt inn ennå/i.test(app)) {
+  errors.push('docs/assets/app.js: UI inneholder research-placeholder for bestillingsforslag');
 }
 
 if (errors.length) {
