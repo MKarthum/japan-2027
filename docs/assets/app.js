@@ -77,7 +77,7 @@ const mapsButton = (name, area='Japan') => `<a class="button" href="https://www.
 const imageLicenseHtml=(img)=>img?.licenseUrl
   ? `<a href="${img.licenseUrl}" target="_blank" rel="license noopener">${img.license}</a>`
   : (img?.license||'');
-const imageCreditHtml=(img,cls='image-credit')=>{
+const imageCreditHtml=(img,cls='image-credit-overlay')=>{
   if(!img) return '';
   if(img.type==='ai'){
     return `<span class="${cls}">AI-generert illustrasjon</span>`;
@@ -85,7 +85,7 @@ const imageCreditHtml=(img,cls='image-credit')=>{
   return `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`;
 };
 const cardImageHtml=(img,alt,compact=false)=>img?.url
-  ? `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback" aria-hidden="true">${alt}</div><img src="${img.url}" alt="${img.alt||alt}" loading="lazy" onerror="this.remove()">${imageCreditHtml(img,'image-credit-mini')}</div>`
+  ? `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback" aria-hidden="true">${alt}</div><img src="${img.url}" alt="${img.alt||alt}" loading="lazy" onerror="this.remove()">${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</div>`
   : `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback">${alt}</div></div>`;
 
 function destinationTheme(trip, subject) {
@@ -135,7 +135,7 @@ async function renderHome() {
   const himeji=places.find(p=>p.id==='himeji');
   const hero=himeji?.image;
   if(hero){
-    document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="${hero.alt||'Himeji Castle'}"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div><div class="photo-credit">${imageCreditHtml(hero,'')}</div>`;
+    document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="${hero.alt||'Himeji Castle'}"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div>${imageCreditHtml(hero)}`;
   }
 
   const route = document.getElementById('route-cards');
@@ -207,7 +207,7 @@ async function renderRoute() {
     const img=p.image;
     const leg=nextLegByRouteId.get(x.id);
     return `<article class="route-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
-      ${img?`<div class="route-thumb-wrap"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`:''}
+      ${img?`<div class="route-thumb-wrap"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</div>`:''}
       <div class="route-item-main">
         <div class="route-item-top">
           <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
@@ -635,10 +635,13 @@ async function renderPlaces() {
           <div class="place-list-media">
             <div class="place-list-fallback" aria-hidden="true">${p.name}</div>
             ${p.image?.url?`<img src="${p.image.url}" alt="${p.image.alt||p.name}" loading="lazy" onerror="this.remove()">`:''}
-            ${p.image?imageCreditHtml(p.image,'image-credit-mini'):''}
+            <div class="place-image-taxonomy">
+              <span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span>
+              <span class="type-pill">${p.type}</span>
+            </div>
+            ${p.image?imageCreditHtml(p.image,'image-credit-overlay image-credit-mini'):''}
           </div>
           <div class="place-list-copy">
-            <div class="place-list-meta"><span style="color:${destinationColor(trip,p)}">${p.area}</span><span>${p.type}</span></div>
             <h3>${p.name}</h3>
             <strong>${p.simple}</strong>
             <p>${p.description}</p>
@@ -681,7 +684,7 @@ async function renderPlace() {
 
   const img=p.image;
   if(img?.url){
-    document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${img.alt||p.name}"><div class="photo-credit">${imageCreditHtml(img,'')}</div>`;
+    document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${img.alt||p.name}">${imageCreditHtml(img)}`;
   }
 
   document.getElementById('external-links').innerHTML = [...(p.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
@@ -845,7 +848,7 @@ async function renderRestaurant() {
   const img=document.getElementById('restaurant-image');
   if(x.image){
     img.hidden=false;
-    img.innerHTML=`<img src="${x.image.url}" alt="${x.image.alt||x.name}" loading="eager"><figcaption>${imageCreditHtml(x.image,'')}</figcaption>`;
+    img.innerHTML=`<img src="${x.image.url}" alt="${x.image.alt||x.name}" loading="eager">${imageCreditHtml(x.image)}`;
   } else {
     img.hidden=true;
   }
