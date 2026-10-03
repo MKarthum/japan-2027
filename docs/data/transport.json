@@ -161,6 +161,12 @@
           "elapsedMin": 21
         },
         {
+          "name": "Fukuyama",
+          "lng": 133.361429,
+          "lat": 34.489291,
+          "elapsedMin": 37
+        },
+        {
           "name": "Hiroshima",
           "lng": 132.475593,
           "lat": 34.397446,
@@ -222,5 +228,6 @@
       ],
       "source": "https://ekitan.com/en/planner/shinkansen/section/hiroshima/shin-osaka"
     }
-  ]
+  ],
+  "stationNote": "Kartet viser utvalgte stopp på representative forbindelser, ikke hver stasjon langs den fysiske jernbanelinjen. Tidene er ca.-tider fra starten av den aktuelle etappen."
 }
