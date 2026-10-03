@@ -98,10 +98,151 @@ async function renderRoute() {
   });
   map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-left');
 
-  map.on('load', ()=>{
-    // Localise ordinary map labels globally:
-    // Norwegian when available, then English, then romanised/Latin,
-    // and only then the local name as a final fallback.
+  const relationEndpoint = id => `https://openstreetmap.tools/public_transport_geojson/api/route/${id}`;
+  const station = {
+    shinjuku:[139.7006,35.6896],
+    tokyo:[139.7671,35.6812],
+    hakoneYumoto:[139.1040,35.2337],
+    odawara:[139.1553,35.2564],
+    kyoto:[135.7588,34.9858],
+    himeji:[134.6907,34.8274],
+    hiroshima:[132.4756,34.3974],
+    shinOsaka:[135.5002,34.7335]
+  };
+
+  const nearestIndex = (coords,target) => {
+    let best=0, bestD=Infinity;
+    for(let i=0;i<coords.length;i++){
+      const dx=coords[i][0]-target[0], dy=coords[i][1]-target[1];
+      const d=dx*dx+dy*dy;
+      if(d<bestD){bestD=d;best=i;}
+    }
+    return best;
+  };
+  const sliceLine = (coords,from,to) => {
+    const a=nearestIndex(coords,from), b=nearestIndex(coords,to);
+    return a<=b ? coords.slice(a,b+1) : coords.slice(b,a+1).reverse();
+  };
+  const append = (...parts) => {
+    const out=[];
+    for(const part of parts){
+      if(!part?.length) continue;
+      if(!out.length){out.push(...part);continue;}
+      const last=out[out.length-1], first=part[0];
+      if(Math.abs(last[0]-first[0])<0.002 && Math.abs(last[1]-first[1])<0.002) out.push(...part.slice(1));
+      else out.push(...part);
+    }
+    return out;
+  };
+  const fetchRelationLine = async (id) => {
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),12000);
+    try{
+      const r=await fetch(relationEndpoint(id),{signal:controller.signal,cache:'force-cache'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const payload=await r.json();
+      const feature=payload?.geojson?.features?.find(f=>f?.geometry?.type==='LineString');
+      if(!feature) throw new Error('Ingen LineString i rutedata');
+      return feature.geometry.coordinates;
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
+  const fallbackSegments = () => {
+    const r=trip.route;
+    return r.slice(0,-1).map((x,i)=>({
+      id:`fallback-${i}`,
+      name:`${x.name} → ${r[i+1].name}`,
+      mode:'Foreløpig forbindelse',
+      coords:[[x.lng,x.lat],[r[i+1].lng,r[i+1].lat]],
+      color:'#77828b',
+      offset:0,
+      dashed:true
+    }));
+  };
+
+  const loadActualSegments = async () => {
+    // Exact track geometry from OSM public-transport relations:
+    // Romancecar (Shinjuku–Hakone-Yumoto) and Nozomi (Tokyo–Hakata).
+    const [romancecar,nozomi]=await Promise.all([
+      fetchRelationLine(4243867),
+      fetchRelationLine(9802526)
+    ]);
+
+    const tokyoHakone=sliceLine(romancecar,station.shinjuku,station.hakoneYumoto);
+    const hakoneOdawara=sliceLine(romancecar,station.hakoneYumoto,station.odawara);
+    const odawaraKyoto=sliceLine(nozomi,station.odawara,station.kyoto);
+    const kyotoHimeji=sliceLine(nozomi,station.kyoto,station.himeji);
+    const himejiHiroshima=sliceLine(nozomi,station.himeji,station.hiroshima);
+    const hiroshimaShinOsaka=sliceLine(nozomi,station.hiroshima,station.shinOsaka);
+
+    return [
+      {id:'tokyo-hakone',name:'Tokyo → Hakone',mode:'Romancecar fra Shinjuku',coords:tokyoHakone,color:'#b43a30',offset:3},
+      {id:'hakone-kyoto',name:'Hakone → Kyoto',mode:'Lokaltog til Odawara + Shinkansen',coords:append(hakoneOdawara,odawaraKyoto),color:'#1f6f63',offset:3},
+      {id:'kyoto-himeji',name:'Kyoto → Himeji',mode:'Shinkansen',coords:kyotoHimeji,color:'#b98934',offset:3},
+      {id:'himeji-hiroshima',name:'Himeji → Hiroshima',mode:'Shinkansen',coords:himejiHiroshima,color:'#785aa6',offset:3},
+      {id:'hiroshima-osaka',name:'Hiroshima → Osaka',mode:'Shinkansen til Shin-Osaka',coords:hiroshimaShinOsaka,color:'#2f73c9',offset:3}
+    ];
+  };
+
+  const addSegment = (segment,index) => {
+    const sourceId=`journey-${index}`;
+    map.addSource(sourceId,{type:'geojson',data:{
+      type:'Feature',
+      properties:{name:segment.name,mode:segment.mode},
+      geometry:{type:'LineString',coordinates:segment.coords}
+    }});
+    map.addLayer({
+      id:`${sourceId}-casing`,
+      type:'line',source:sourceId,
+      layout:{'line-join':'round','line-cap':'round'},
+      paint:{
+        'line-color':'rgba(255,255,255,.92)',
+        'line-width':7,
+        'line-offset':segment.offset||0
+      }
+    });
+    map.addLayer({
+      id:`${sourceId}-line`,
+      type:'line',source:sourceId,
+      layout:{'line-join':'round','line-cap':'round'},
+      paint:{
+        'line-color':segment.color,
+        'line-width':4,
+        'line-opacity':.92,
+        'line-offset':segment.offset||0,
+        ...(segment.dashed?{'line-dasharray':[2,2]}:{})
+      }
+    });
+    map.addLayer({
+      id:`${sourceId}-arrows`,
+      type:'symbol',source:sourceId,
+      layout:{
+        'symbol-placement':'line',
+        'symbol-spacing':85,
+        'text-field':'›',
+        'text-size':18,
+        'text-rotate':0,
+        'text-rotation-alignment':'map',
+        'text-keep-upright':false,
+        'text-allow-overlap':true
+      },
+      paint:{'text-color':segment.color,'text-halo-color':'#fff','text-halo-width':1.2}
+    });
+    const popup = e => {
+      const p=e.features?.[0]?.properties||{};
+      new maplibregl.Popup({closeButton:false})
+        .setLngLat(e.lngLat)
+        .setHTML(`<strong>${p.name||segment.name}</strong><br>${p.mode||segment.mode}`)
+        .addTo(map);
+    };
+    map.on('click',`${sourceId}-line`,popup);
+    map.on('mouseenter',`${sourceId}-line`,()=>map.getCanvas().style.cursor='pointer');
+    map.on('mouseleave',`${sourceId}-line`,()=>map.getCanvas().style.cursor='');
+  };
+
+  map.on('load', async ()=>{
     const style = map.getStyle();
     const preferredName = [
       'coalesce',
@@ -112,37 +253,36 @@ async function renderRoute() {
       ['get','name']
     ];
     const usesNameField = (value) => {
-      if (typeof value === 'string') return /name(?::[a-z-]+|_[a-z]+)?|\{name/.test(value);
+      if (typeof value === 'string') return /name(?::[a-z-]+|_[a-z]+)?|\\{name/.test(value);
       if (!Array.isArray(value)) return false;
       return value.some(usesNameField);
     };
     for (const layer of (style.layers || [])) {
       const textField = layer?.layout?.['text-field'];
       if (layer.type === 'symbol' && textField && usesNameField(textField)) {
-        map.setLayoutProperty(layer.id, 'visibility', 'visible');
-        map.setLayoutProperty(layer.id, 'text-field', preferredName);
+        map.setLayoutProperty(layer.id,'visibility','visible');
+        map.setLayoutProperty(layer.id,'text-field',preferredName);
       }
     }
 
-    const coords = trip.route.map(x=>[x.lng,x.lat]);
-    map.addSource('journey-route', {
-      type:'geojson',
-      data:{
-        type:'Feature',
-        geometry:{type:'LineString',coordinates:coords},
-        properties:{}
-      }
-    });
-    map.addLayer({
-      id:'journey-route-line',
-      type:'line',
-      source:'journey-route',
-      layout:{'line-join':'round','line-cap':'round'},
-      paint:{'line-color':'#4f86e8','line-width':4,'line-opacity':0.78}
-    });
+    let segments;
+    let exact=true;
+    try{
+      segments=await loadActualSegments();
+    } catch(err) {
+      console.warn('Kunne ikke hente faktisk jernbanegeometri, bruker fallback',err);
+      segments=fallbackSegments();
+      exact=false;
+    }
+    segments.forEach(addSegment);
+
+    const legend=document.getElementById('route-legend');
+    if(legend){
+      legend.innerHTML = segments.map(s=>`<span class="route-legend-item"><i style="background:${s.color}"></i><strong>${s.name}</strong> · ${s.mode}</span>`).join('');
+      if(!exact) legend.insertAdjacentHTML('beforeend','<span class="route-warning">Kunne ikke hente sportrasé akkurat nå – viser midlertidig rette forbindelser.</span>');
+    }
 
     const bounds = new maplibregl.LngLatBounds();
-
     trip.route.forEach((x,i)=>{
       bounds.extend([x.lng,x.lat]);
       const el=document.createElement('div');
@@ -153,7 +293,6 @@ async function renderRoute() {
         .setPopup(new maplibregl.Popup({offset:22}).setHTML(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`))
         .addTo(map);
     });
-
     trip.dayTrips.forEach(x=>{
       bounds.extend([x.lng,x.lat]);
       const el=document.createElement('div');
@@ -164,7 +303,6 @@ async function renderRoute() {
         .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<strong>${x.name}</strong><br>Dagstur fra ${x.base}`))
         .addTo(map);
     });
-
     map.fitBounds(bounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:0});
   });
 
