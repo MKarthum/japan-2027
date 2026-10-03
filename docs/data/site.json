@@ -1,5 +1,5 @@
 {
-  "version": "0.13.0",
-  "released": "3. okt. 2026",
-  "note": "Canonical content refactor: places own maps, images and links; route/booking use ID references; place detail maps restored"
+  "version": "0.14.0",
+  "released": "4. okt. 2026",
+  "note": "Compact place list, restored release metadata, selected train-node semantics and live ECB NOK/JPY conversion with fallback"
 }
