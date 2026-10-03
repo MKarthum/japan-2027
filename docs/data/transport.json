@@ -1,0 +1,226 @@
+{
+  "asOf": "2026-10-03",
+  "currency": "JPY",
+  "fareBasis": "Planestimat med representative tog og reservert ordinært sete der relevant. Prisene må sjekkes på nytt for 2027.",
+  "childNote": "2V+2B betyr to voksenbilletter og to barnebilletter. Etter dagens JR-regler er child normalt 6–11 år; 12+ betaler normalt voksenpris.",
+  "legs": [
+    {
+      "id": "tokyo-hakone",
+      "fromRouteId": "tokyo",
+      "toRouteId": "hakone",
+      "from": "Shinjuku",
+      "to": "Hakone-Yumoto",
+      "service": "Odakyu Romancecar",
+      "durationMin": 80,
+      "fare": {
+        "adultYen": 2470,
+        "childYen": 1240,
+        "family2a2cYen": 7420
+      },
+      "stations": [
+        {
+          "name": "Shinjuku",
+          "lng": 139.699675,
+          "lat": 35.69118,
+          "elapsedMin": 0
+        },
+        {
+          "name": "Odawara",
+          "lng": 139.155772,
+          "lat": 35.256225,
+          "elapsedMin": 65
+        },
+        {
+          "name": "Hakone-Yumoto",
+          "lng": 139.103743,
+          "lat": 35.233555,
+          "elapsedMin": 80
+        }
+      ],
+      "source": "https://odakyu-global.com/passes/romancecar/"
+    },
+    {
+      "id": "hakone-kyoto",
+      "fromRouteId": "hakone",
+      "toRouteId": "kyoto",
+      "from": "Hakone-Yumoto",
+      "to": "Kyoto",
+      "service": "Hakone Tozan + Hikari via Odawara",
+      "durationMin": 155,
+      "fare": {
+        "adultYen": 12660,
+        "childYen": 6320,
+        "family2a2cYen": 37960
+      },
+      "stations": [
+        {
+          "name": "Hakone-Yumoto",
+          "lng": 139.103743,
+          "lat": 35.233555,
+          "elapsedMin": 0
+        },
+        {
+          "name": "Odawara",
+          "lng": 139.155772,
+          "lat": 35.256225,
+          "elapsedMin": 15,
+          "note": "Bytte til Shinkansen; estimatet videre inkluderer transfermargin."
+        },
+        {
+          "name": "Nagoya",
+          "lng": 136.881637,
+          "lat": 35.170694,
+          "elapsedMin": 97
+        },
+        {
+          "name": "Gifu-Hashima",
+          "lng": 136.68555556,
+          "lat": 35.31583333,
+          "elapsedMin": 112
+        },
+        {
+          "name": "Maibara",
+          "lng": 136.289992,
+          "lat": 35.314657,
+          "elapsedMin": 130
+        },
+        {
+          "name": "Kyoto",
+          "lng": 135.757748,
+          "lat": 34.985465,
+          "elapsedMin": 155
+        }
+      ],
+      "source": "https://ekitan.com/en/planner/shinkansen/section/odawara/kyoto"
+    },
+    {
+      "id": "kyoto-himeji",
+      "fromRouteId": "kyoto",
+      "toRouteId": "himeji",
+      "from": "Kyoto",
+      "to": "Himeji",
+      "service": "Hikari",
+      "durationMin": 43,
+      "fare": {
+        "adultYen": 5270,
+        "childYen": 2630,
+        "family2a2cYen": 15800
+      },
+      "stations": [
+        {
+          "name": "Kyoto",
+          "lng": 135.757748,
+          "lat": 34.985465,
+          "elapsedMin": 0
+        },
+        {
+          "name": "Shin-Osaka",
+          "lng": 135.501852,
+          "lat": 34.734136,
+          "elapsedMin": 14
+        },
+        {
+          "name": "Shin-Kobe",
+          "lng": 135.195758,
+          "lat": 34.706417,
+          "elapsedMin": 28
+        },
+        {
+          "name": "Himeji",
+          "lng": 134.690769,
+          "lat": 34.827659,
+          "elapsedMin": 43
+        }
+      ],
+      "source": "https://ekitan.com/en/planner/shinkansen/section/kyoto/himeji"
+    },
+    {
+      "id": "himeji-hiroshima",
+      "fromRouteId": "himeji",
+      "toRouteId": "hiroshima",
+      "from": "Himeji",
+      "to": "Hiroshima",
+      "service": "Hikari 731 som representativt eksempel",
+      "durationMin": 61,
+      "fare": {
+        "adultYen": 8440,
+        "childYen": 4210,
+        "family2a2cYen": 25300
+      },
+      "stations": [
+        {
+          "name": "Himeji",
+          "lng": 134.690769,
+          "lat": 34.827659,
+          "elapsedMin": 0
+        },
+        {
+          "name": "Okayama",
+          "lng": 133.918552,
+          "lat": 34.666572,
+          "elapsedMin": 21
+        },
+        {
+          "name": "Hiroshima",
+          "lng": 132.475593,
+          "lat": 34.397446,
+          "elapsedMin": 61
+        }
+      ],
+      "source": "https://ekitan.com/en/planner/shinkansen/section/himeji/hiroshima"
+    },
+    {
+      "id": "hiroshima-osaka",
+      "fromRouteId": "hiroshima",
+      "toRouteId": "osaka",
+      "from": "Hiroshima",
+      "to": "Osaka Station",
+      "service": "Nozomi til Shin-Osaka + JR til Osaka",
+      "durationMin": 90,
+      "fare": {
+        "adultYen": 11130,
+        "childYen": 5560,
+        "family2a2cYen": 33380
+      },
+      "stations": [
+        {
+          "name": "Hiroshima",
+          "lng": 132.475593,
+          "lat": 34.397446,
+          "elapsedMin": 0
+        },
+        {
+          "name": "Fukuyama",
+          "lng": 133.361429,
+          "lat": 34.489291,
+          "elapsedMin": 22
+        },
+        {
+          "name": "Okayama",
+          "lng": 133.918552,
+          "lat": 34.666572,
+          "elapsedMin": 39
+        },
+        {
+          "name": "Shin-Kobe",
+          "lng": 135.195758,
+          "lat": 34.706417,
+          "elapsedMin": 71
+        },
+        {
+          "name": "Shin-Osaka",
+          "lng": 135.501852,
+          "lat": 34.734136,
+          "elapsedMin": 85
+        },
+        {
+          "name": "Osaka Station",
+          "lng": 135.49322,
+          "lat": 34.70169,
+          "elapsedMin": 90
+        }
+      ],
+      "source": "https://ekitan.com/en/planner/shinkansen/section/hiroshima/shin-osaka"
+    }
+  ]
+}
