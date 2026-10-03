@@ -16,6 +16,7 @@ Hovednavigasjonen holdes bevisst liten:
 - Rute
 - Steder
 - Mat
+- Hotell
 - Før turen
 - Praktisk
 - Budsjett
@@ -43,12 +44,13 @@ Kilder og personvern ligger i bunnteksten.
 - Rute og booking lagrer referanser til steder, ikke kopier av stedets navn, koordinater eller lenker.
 - Startsiden skal være visuelt attraktiv og gi lyst til å utforske.
 - Detaljer skal ligge ett klikk ned, ikke fylle hovedoversikten.
+- Versjon og sist oppdatert er brukerrelevant metadata og skal alltid vises i bunnteksten.
 - Bruk offisielle lenker for billetter og praktisk informasjon der de finnes.
 - Restaurantprioriteringer betyr **planprioritet for denne turen**, ikke en objektiv rangering av restaurantkvalitet.
 - Bilder skal ha gjenbrukbar lisens og synlig kreditering.
 - Fakta som kan endre seg skal ha kilde og konkret kontroll-dato; offentlig tekst skal ikke bruke relative formuleringer som «dagens regel».
 - Ingen privat reiseinformasjon skal inn i repoet.
-- Alle priser vises i både NOK og JPY via en felles, datert planleggingskurs.
+- Alle priser vises i både NOK og JPY via én felles kursfunksjon. Ved sidelasting hentes siste ECB-referansekurs; `fx.json` er bare dokumentert fallback. Budsjett er primært i NOK.
 
 ## Oppdatere
 
