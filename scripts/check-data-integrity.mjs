@@ -25,6 +25,11 @@ uniqueIds(places, 'places.json');
 
 for (const item of food.filter(x => x.status === 'active')) {
   if (!validMap(item)) errors.push(`food.json: aktiv kandidat ${item.id} mangler gyldig map.lat/map.lng`);
+  if (!Array.isArray(item.orderRecommendations) || item.orderRecommendations.length === 0) errors.push(`food.json: ${item.id} mangler bestillingsforslag`);
+  if (!item.links?.googleMaps) errors.push(`food.json: ${item.id} mangler Google Maps-lenke`);
+  if (!item.ratings?.checked) errors.push(`food.json: ${item.id} mangler dato for ratingkontroll`);
+  if (!item.ratings?.tripadvisor?.url || !Number.isFinite(item.ratings?.tripadvisor?.score)) errors.push(`food.json: ${item.id} mangler verifisert Tripadvisor-rating`);
+  if (item.image && (!item.image.url || !item.image.source || !item.image.credit || !item.image.license)) errors.push(`food.json: ${item.id} har bilde uten full kreditering/lisens`);
 }
 for (const item of places.filter(x => x.map?.showOnRouteMap !== false && x.map)) {
   if (!validMap(item)) errors.push(`places.json: ${item.id} har ugyldig kartposisjon`);
@@ -42,11 +47,14 @@ const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) {
   errors.push('app.js mangler generisk restaurantdetalj eller direkte restaurantlenker');
 }
+if (!app.includes('restaurant-order') || !app.includes('restaurant-ratings')) {
+  errors.push('restaurantdetaljen mangler bestillingsforslag eller ratingvisning');
+}
 if (app.includes('map-pois.json') || app.includes('mapPois')) {
   errors.push('app.js refererer fortsatt til avledet map-pois-data');
 }
-if (!app.includes("json('data/food.json?v=0.10.1')") || !app.includes("json('data/places.json?v=0.10.1')")) {
-  errors.push('rutekartet henter ikke eksplisitt de kanoniske food/places-kildene');
+if (!app.includes("json('data/food.json')") || !app.includes("json('data/places.json')")) {
+  errors.push('appen henter ikke eksplisitt de kanoniske food/places-kildene');
 }
 
 if (errors.length) {
