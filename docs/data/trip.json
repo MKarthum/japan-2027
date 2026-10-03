@@ -1,0 +1,99 @@
+{
+  "title": "Japan 2027",
+  "subtitle": "Foreløpig plan for en ca. to ukers første Japan-tur",
+  "status": "Arbeidshypotese – ikke bestilt",
+  "window": "20. mars – 3. april 2027",
+  "budget": {
+    "targetNok": 165000,
+    "rangeNok": [140000, 190000],
+    "note": "Arbeidsbudsjett for reisen, ekskl. større shopping. Prisene skal oppdateres når fly og hotell faktisk vurderes."
+  },
+  "route": [
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "from": "2027-03-20",
+      "to": "2027-03-25",
+      "nights": 5,
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "label": "Moderne Japan",
+      "summary": "Storby, neonlys, spill, teknologi, gamle bydeler og en myk start på Japan."
+    },
+    {
+      "id": "hakone",
+      "name": "Hakone / Fuji",
+      "from": "2027-03-25",
+      "to": "2027-03-26",
+      "nights": 1,
+      "lat": 35.2324,
+      "lng": 139.1069,
+      "label": "Ryokan og onsen",
+      "summary": "Én roligere natt med tradisjonelt vertshus, varmt kildebad og mulig utsikt mot Fuji."
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto",
+      "from": "2027-03-26",
+      "to": "2027-03-30",
+      "nights": 4,
+      "lat": 35.0116,
+      "lng": 135.7681,
+      "label": "Det klassiske Japan",
+      "summary": "Templer, gamle gater, røde porter, hager og dagstur til Nara."
+    },
+    {
+      "id": "himeji",
+      "name": "Himeji",
+      "from": "2027-03-30",
+      "to": "2027-03-30",
+      "nights": 0,
+      "lat": 34.8394,
+      "lng": 134.6939,
+      "label": "LEGO-slottet på ekte",
+      "summary": "Stopp på vei vestover for å se det originale hvite samuraislottet."
+    },
+    {
+      "id": "hiroshima",
+      "name": "Hiroshima / Miyajima",
+      "from": "2027-03-30",
+      "to": "2027-04-01",
+      "nights": 2,
+      "lat": 34.3853,
+      "lng": 132.4553,
+      "label": "Historie og øyliv",
+      "summary": "Fredsminnesmerket og museum, kombinert med Miyajima og den store torii-porten."
+    },
+    {
+      "id": "osaka",
+      "name": "Osaka",
+      "from": "2027-04-01",
+      "to": "2027-04-03",
+      "nights": 2,
+      "lat": 34.6937,
+      "lng": 135.5023,
+      "label": "Mat og Nintendo",
+      "summary": "Dōtonbori, god mat og mulig heldag i Universal Studios / Super Nintendo World."
+    }
+  ],
+  "dayTrips": [
+    {
+      "id": "nara",
+      "name": "Nara",
+      "base": "Kyoto",
+      "suggestedDate": "2027-03-28",
+      "lat": 34.6851,
+      "lng": 135.8048,
+      "summary": "Dagstur med frittgående hjort, enorme templer og den store Buddhaen."
+    },
+    {
+      "id": "miyajima",
+      "name": "Miyajima",
+      "base": "Hiroshima",
+      "suggestedDate": "2027-03-31",
+      "lat": 34.2959,
+      "lng": 132.3198,
+      "summary": "Øy med natur, hjort og den ikoniske torii-porten ute i sjøen."
+    }
+  ]
+}
