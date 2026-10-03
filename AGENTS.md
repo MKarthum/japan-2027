@@ -38,3 +38,12 @@ Aldri legg inn navn på reisende, kontaktinformasjon, hjemmeadresse, skole/arbei
 - Bruk semantisk versjon (`0.x.y`) og oppdater `released`.
 - Når CSS eller JavaScript endres, oppdater også `?v=<versjon>` på asset-lenkene i alle `docs/*.html` for å unngå cache.
 - Oppgi forventet versjonsnummer til brukeren når du ber dem verifisere en ny publisering.
+
+
+## Valuta og priser
+
+- Alle bruker-synlige priser skal vises i **både NOK og JPY**.
+- Bruk felles formattering og kurs fra `docs/data/fx.json`; ikke hardkod separate omregninger i sider eller datasett.
+- Vis normalt kildens valuta først og den omregnede valutaen som «ca.».
+- Norske budsjettall vises NOK først, japanske priser/farer vises JPY først.
+- Kursen er et datert planleggingsøyeblikksbilde, ikke en garantert kort-/bankkurs. Oppdater `fx.json` når konkrete priser gjennomgås.
