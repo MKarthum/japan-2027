@@ -26,7 +26,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 - `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
 - `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.
 - `docs/data/prep.json`: forberedelser før turen.
-- `docs/data/fx.json`: felles planleggingskurs.
+- `docs/data/fx.json`: live valutakilde + lagret ECB-fallback. Alle omregninger skal gå gjennom den felles `loadFx()`-funksjonen.
 - `docs/data/sources.json`: felles kildeliste.
 
 HTML og JavaScript er visninger av disse dataene. Ikke kopier domeneinformasjon inn i en ny fil bare fordi en ny visning trenger den. `trip.json` skal referere til steder med ID og ikke duplisere navn eller koordinater som eies av `places.json`.
@@ -57,7 +57,7 @@ node scripts/check-content-style.mjs
 
 Alle tre skal passere. Hvis miljøet ikke kan kjøre Node, må tilsvarende validering gjøres eksplisitt før commit og begrensningen dokumenteres.
 
-Ved brukersynlige endringer bumpes `docs/data/site.json`, og CSS/JS-assetversjonen i alle `docs/*.html` skal samsvare med den versjonen.
+Ved brukersynlige endringer bumpes `docs/data/site.json`, og CSS/JS-assetversjonen i alle `docs/*.html` skal samsvare med den versjonen. Versjon og sist oppdatert skal være synlig i bunnteksten på alle sider.
 
 
 ## Bilder og medier
