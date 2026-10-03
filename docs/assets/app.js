@@ -1,5 +1,12 @@
 const fmtDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'short' }).format(new Date(`${iso}T12:00:00Z`));
-const fmtNok = (n) => new Intl.NumberFormat('nb-NO', { style:'currency', currency:'NOK', maximumFractionDigits:0 }).format(n);
+const fmtNok = (n) => new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n)) + ' kr';
+const fmtJpy = (n) => '¥' + new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n));
+const nokFromJpy = (jpy,fx) => jpy * fx.nokPerJpy;
+const jpyFromNok = (nok,fx) => nok / fx.nokPerJpy;
+const dualFromJpy = (jpy,fx) => `${fmtJpy(jpy)} · ca. ${fmtNok(nokFromJpy(jpy,fx))}`;
+const dualFromNok = (nok,fx) => `${fmtNok(nok)} · ca. ${fmtJpy(jpyFromNok(nok,fx))}`;
+const dualRangeFromNok = (range,fx) => `${fmtNok(range[0])}–${fmtNok(range[1])} · ca. ${fmtJpy(jpyFromNok(range[0],fx))}–${fmtJpy(jpyFromNok(range[1],fx))}`;
+const dualMoneyHtml = (primary,secondary) => `<span class="money-dual"><span>${primary}</span><small>ca. ${secondary}</small></span>`;
 
 async function json(path) {
   const r = await fetch(path);
@@ -22,10 +29,18 @@ function nav(active='') {
 
 function footer() {
   document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Offentlig planleggingsside. Ingen private booking- eller personopplysninger.</span><br><span id="site-version" class="small">Versjon …</span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a><a href="https://github.com/MKarthum/japan-2027">GitHub</a></div></div>`;
-  fetch('data/site.json', {cache:'no-store'})
-    .then(r=>r.ok?r.json():null)
-    .then(v=>{ if(v) document.getElementById('site-version').textContent = `Versjon ${v.version} · ${v.released}`; })
-    .catch(()=>{});
+  Promise.all([
+    fetch('data/site.json', {cache:'no-store'}).then(r=>r.ok?r.json():null),
+    fetch('data/fx.json', {cache:'no-store'}).then(r=>r.ok?r.json():null)
+  ]).then(([v,fx])=>{
+    if(v) document.getElementById('site-version').textContent = `Versjon ${v.version} · ${v.released}`;
+    if(fx){
+      const note=document.createElement('span');
+      note.className='small footer-fx';
+      note.textContent=`Valutakurs ${fx.asOf}: ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)}`;
+      document.getElementById('site-version')?.after(document.createElement('br'),note);
+    }
+  }).catch(()=>{});
 }
 
 const linkButton = (x) => `<a class="button ${x.kind==='ticket'?'primary':''}" href="${x.url}" target="_blank" rel="noopener">${x.label} ↗</a>`;
@@ -50,10 +65,10 @@ function priorityBadge(priority){
 
 async function renderHome() {
   nav('home'); footer();
-  const [trip,places,guide] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json')]);
+  const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),json('data/fx.json?v=0.8.0')]);
   document.getElementById('status').textContent = trip.status;
   document.getElementById('window').textContent = trip.window;
-  document.getElementById('budget').textContent = fmtNok(trip.budget.targetNok);
+  document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
 
   const hero = guide.images.himeji;
   document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="Himeji Castle med kirsebærblomstring"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div><div class="photo-credit">Foto: <a href="${hero.source}" target="_blank" rel="noopener">${hero.credit}</a> · ${hero.license}</div>`;
@@ -77,13 +92,14 @@ async function renderHome() {
 
 async function renderRoute() {
   nav('route'); footer();
-  const [trip,places,guide,routeGeometry,transport,mapPois]=await Promise.all([
+  const [trip,places,guide,routeGeometry,transport,mapPois,fx]=await Promise.all([
     json('data/trip.json'),
     json('data/places.json'),
     json('data/guide.json'),
-    json('data/route-geometry.json?v=0.7.0'),
-    json('data/transport.json?v=0.7.0'),
-    json('data/map-pois.json?v=0.7.0')
+    json('data/route-geometry.json?v=0.8.0'),
+    json('data/transport.json?v=0.8.0'),
+    json('data/map-pois.json?v=0.8.0'),
+    json('data/fx.json?v=0.8.0')
   ]);
 
   const formatMinutes = (mins) => {
@@ -91,15 +107,14 @@ async function renderRoute() {
     const h=Math.floor(mins/60), m=mins%60;
     return m ? `${h} t ${m} min` : `${h} t`;
   };
-  const formatYen = (n) => new Intl.NumberFormat('nb-NO').format(n) + ' ¥';
   const legById=new Map(transport.legs.map(x=>[x.id,x]));
   const nextLegByRouteId=new Map(transport.legs.map(x=>[x.fromRouteId,x]));
 
   const fareHtml=(leg) => `
     <div class="fare-grid">
-      <div><span>Voksen</span><strong>${formatYen(leg.fare.adultYen)}</strong></div>
-      <div><span>Barn</span><strong>${formatYen(leg.fare.childYen)}</strong></div>
-      <div class="family"><span>2 voksne + 2 barn</span><strong>${formatYen(leg.fare.family2a2cYen)}</strong></div>
+      <div><span>Voksen</span><strong>${dualFromJpy(leg.fare.adultYen,fx)}</strong></div>
+      <div><span>Barn</span><strong>${dualFromJpy(leg.fare.childYen,fx)}</strong></div>
+      <div class="family"><span>2 voksne + 2 barn</span><strong>${dualFromJpy(leg.fare.family2a2cYen,fx)}</strong></div>
     </div>`;
 
   const legHtml=(leg,{compact=false}={}) => `
@@ -123,7 +138,7 @@ async function renderRoute() {
   document.getElementById('route-list').innerHTML = trip.route.map(x=>{
     const p=places.find(p=>p.id===x.id)||x; const img=guide.images[areaImageKey(guide,p)];
     const leg=nextLegByRouteId.get(x.id);
-    return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div>${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${formatYen(leg.fare.family2a2cYen)} for 2V+2B</button>`:''}</div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
+    return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div>${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}</div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
   }).join('');
   document.getElementById('route-list').addEventListener('click',e=>{
     const btn=e.target.closest('[data-leg]');
@@ -135,7 +150,7 @@ async function renderRoute() {
   const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.family2a2cYen,0);
   const summary=document.getElementById('map-price-summary');
   if(summary){
-    summary.innerHTML=`<span>Etappene på kartet</span><strong>${formatYen(familyTotal)} for 2V+2B</strong><small>Voksen én vei summert: ${formatYen(adultTotal)} · Barn: ${formatYen(childTotal)} · ekskl. lokaltransport/dagsturer</small>`;
+    summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for 2V+2B</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
   }
 
   if (typeof maplibregl === 'undefined') {
@@ -316,7 +331,7 @@ async function renderRoute() {
     if(legend){
       legend.innerHTML=[...journeyMap.values()].map(s=>{
         const leg=legById.get(s.journeyId);
-        return `<button class="route-legend-item" type="button" data-leg="${s.journeyId}"><i style="background:${s.color}"></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${formatYen(leg.fare.family2a2cYen)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
+        return `<button class="route-legend-item" type="button" data-leg="${s.journeyId}"><i style="background:${s.color}"></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
       }).join('');
       legend.addEventListener('click',e=>{
         const btn=e.target.closest('[data-leg]');
@@ -445,10 +460,18 @@ async function renderPractical() {
 
 async function renderBudget() {
   nav('budget'); footer();
-  const trip = await json('data/trip.json');
-  document.getElementById('target').textContent = fmtNok(trip.budget.targetNok);
-  document.getElementById('range').textContent = `${fmtNok(trip.budget.rangeNok[0])}–${fmtNok(trip.budget.rangeNok[1])}`;
+  const [trip,fx] = await Promise.all([json('data/trip.json'),json('data/fx.json?v=0.8.0')]);
+  document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
+  document.getElementById('range').innerHTML = dualMoneyHtml(
+    `${fmtNok(trip.budget.rangeNok[0])}–${fmtNok(trip.budget.rangeNok[1])}`,
+    `${fmtJpy(jpyFromNok(trip.budget.rangeNok[0],fx))}–${fmtJpy(jpyFromNok(trip.budget.rangeNok[1],fx))}`
+  );
   document.getElementById('note').textContent = trip.budget.note;
+  document.getElementById('budget-rows').innerHTML = trip.budget.items.map(item=>`
+    <tr><td>${item.label}</td><td>${dualRangeFromNok(item.rangeNok,fx)}</td></tr>
+  `).join('');
+  document.getElementById('fx-note').textContent =
+    `Omregnet med planleggingskurs ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}). ${fx.displayNote}`;
 }
 
 async function renderSources() {
