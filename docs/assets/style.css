@@ -936,3 +936,122 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
     font-size:.45rem;padding:2px 3px;
   }
 }
+
+
+/* v0.14.1: consistent image labels and credits */
+/* One visual language for image metadata across the whole site. */
+.image-credit-overlay{
+  position:absolute;
+  left:7px;
+  bottom:7px;
+  z-index:5;
+  display:block;
+  max-width:calc(100% - 14px);
+  padding:3px 6px;
+  border-radius:7px;
+  background:rgba(16,22,28,.72);
+  color:rgba(255,255,255,.92);
+  font-size:.58rem;
+  line-height:1.25;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  opacity:.82;
+  backdrop-filter:blur(4px);
+}
+.image-credit-overlay a{
+  color:#fff;
+  text-decoration:none;
+}
+.image-credit-overlay:hover,
+.image-credit-overlay:focus-within{
+  opacity:1;
+}
+.image-credit-mini{
+  font-size:.54rem;
+  padding:2px 5px;
+}
+
+/* Destination/type belong to the image, not to a separate text row. */
+.place-image-taxonomy{
+  position:absolute;
+  top:8px;
+  left:8px;
+  right:8px;
+  z-index:4;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:6px;
+  pointer-events:none;
+}
+.place-image-taxonomy .area-pill,
+.place-image-taxonomy .type-pill{
+  padding:5px 7px;
+  font-size:.62rem;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+.place-list-media{
+  position:relative;
+}
+.place-list-copy h3{
+  margin-top:2px;
+}
+
+/* Credits never consume a separate row below the picture. */
+.hero-photo,
+.detail-photo,
+.restaurant-detail-image,
+.visual-card-media,
+.route-thumb-wrap,
+.place-list-media{
+  position:relative;
+}
+.restaurant-detail-image .image-credit-overlay,
+.detail-photo .image-credit-overlay,
+.hero-photo .image-credit-overlay{
+  left:9px;
+  bottom:9px;
+  max-width:calc(100% - 18px);
+  font-size:.62rem;
+}
+.hero-photo .photo-overlay{
+  bottom:46px;
+}
+.restaurant-detail-image figcaption,
+.photo-credit{
+  display:none!important;
+}
+
+@media(max-width:620px){
+  .place-image-taxonomy{
+    top:6px;
+    left:6px;
+    right:6px;
+  }
+  .place-image-taxonomy .area-pill{
+    padding:4px 6px;
+    font-size:.56rem;
+  }
+  .place-image-taxonomy .type-pill{
+    display:none;
+  }
+  .image-credit-overlay{
+    left:5px;
+    bottom:5px;
+    max-width:calc(100% - 10px);
+    font-size:.5rem;
+    padding:2px 4px;
+  }
+  .restaurant-detail-image .image-credit-overlay,
+  .detail-photo .image-credit-overlay,
+  .hero-photo .image-credit-overlay{
+    left:6px;
+    bottom:6px;
+    max-width:calc(100% - 12px);
+    font-size:.54rem;
+  }
+  .hero-photo .photo-overlay{
+    bottom:38px;
+  }
+}
