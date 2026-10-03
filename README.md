@@ -25,21 +25,22 @@ Kilder og personvern ligger i bunnteksten.
 ## Datamodell
 
 - `docs/data/trip.json` – rute, planleggingsdatoer, budsjett og destinasjonstemaer/farger
-- `docs/data/places.json` – kanoniske steder, forklaringer og kartposisjon
+- `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon og eksterne lenker
 - `docs/data/food.json` – kanonisk restaurant-/matliste med prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – hotellkandidater per base med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
-- `docs/data/guide.json` – bilder, eksterne lenker, bookingradar, transport, ordbok, etikette og mediekoblinger
+- `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
 - `docs/data/sources.json` – kilder
 
 `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for hotellalternativer. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
 
 ## Prinsipper
 
-- Bilder: bruk bare medier med dokumentert gjenbruksrett og synlig kreditering; foretrekk Wikimedia Commons/CC0/public domain/egne bilder, og ikke anta at Google/Booking/Tripadvisor/offisielle nettsider kan kopieres.
+- Bilder: `licensed` brukes for medier med dokumentert gjenbruksrett og synlig kreditering; `ai` brukes bare som tydelig merket illustrasjon lagret lokalt. Ikke anta at Google/Booking/Tripadvisor/offisielle nettsider kan kopieres.
 - Destinasjonsfargen i `trip.json` gjenbrukes på rutelinjer, destinasjonskort, steder, opplevelser og mat i samme område.
-- Ingen avledet `map-pois.json`: rutekartet bygges direkte fra `places.json` og `food.json`, slik at detaljendringer slår gjennom overalt.
+- Ingen avledet `map-pois.json`: rutekartet bygges direkte fra masterdataene.
+- Rute og booking lagrer referanser til steder, ikke kopier av stedets navn, koordinater eller lenker.
 - Startsiden skal være visuelt attraktiv og gi lyst til å utforske.
 - Detaljer skal ligge ett klikk ned, ikke fylle hovedoversikten.
 - Bruk offisielle lenker for billetter og praktisk informasjon der de finnes.
