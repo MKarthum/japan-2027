@@ -98,5 +98,15 @@
     "title": "MapLibre GL JS",
     "url": "https://maplibre.org/",
     "use": "Åpen kartmotor brukt til å vise rutekartet."
+  },
+  {
+    "title": "OSM Public Transport → GeoJSON",
+    "url": "https://openstreetmap.tools/public_transport_geojson/docs",
+    "use": "Henter faktisk jernbanegeometri fra OpenStreetMap-relasjoner til rutekartet."
+  },
+  {
+    "title": "Wikidata – Nozomi",
+    "url": "https://www.wikidata.org/wiki/Q1193603",
+    "use": "Dokumenterer OSM-relasjonen brukt for Tōkaidō/Sanyō Shinkansen-geometrien."
   }
 ]
