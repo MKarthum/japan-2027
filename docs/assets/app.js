@@ -770,7 +770,7 @@ async function renderRestaurant() {
   const orderRecs=x.orderRecommendations||[];
   orderEl.innerHTML=orderRecs.length
     ? orderRecs.map((r,i)=>`<article class="order-card"><span>${i+1}</span><div><h3>${r.title}</h3><p>${r.why}</p></div></article>`).join('')
-    : '<p class="small">Ingen konkret bestillingsanbefaling lagt inn ennå.</p>';
+    : '<p class="small">Ingen særskilt bestillingsanbefaling.</p>';
 
   const links=[
     x.links?.googleMaps?`<a class="button primary" href="${x.links.googleMaps}" target="_blank" rel="noopener">Google Maps ↗</a>`:'',
