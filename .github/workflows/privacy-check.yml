@@ -1,11 +1,11 @@
-name: Public content check
+name: Public content checks
 on:
   push:
   pull_request:
 permissions:
   contents: read
 jobs:
-  privacy:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -13,3 +13,5 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/check-public-content.mjs
+      - run: node scripts/check-data-integrity.mjs
+      - run: node scripts/check-content-style.mjs
