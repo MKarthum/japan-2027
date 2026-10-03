@@ -158,5 +158,10 @@
     "title": "Wikidata",
     "url": "https://www.wikidata.org/",
     "use": "Koordinatkontroll for offentlige severdigheter der offisielle sider ikke oppgir kartkoordinater."
+  },
+  {
+    "title": "Norges Bank – exchange rates",
+    "url": "https://www.norges-bank.no/en/topics/statistics/exchange_rates/",
+    "use": "Referanse for valutakurser og senere oppdatering av NOK/JPY-planleggingskurs."
   }
 ]
