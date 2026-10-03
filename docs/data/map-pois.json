@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "note": "Public planning POIs only. Hotels stay empty until public hotel candidates are deliberately added.",
+  "version": "1.1",
+  "note": "Public planning POIs only. Food markers are a selected geographic subset; the complete curated restaurant list is on food.html. Hotels stay empty until public hotel candidates are deliberately added.",
   "pois": [
     {
       "id": "shibuya",
@@ -154,7 +154,7 @@
       "lat": 35.659435,
       "lng": 139.697921,
       "href": "food.html",
-      "priority": "Må prøve",
+      "priority": "Valgfri",
       "detail": "Sushi"
     },
     {
@@ -209,7 +209,7 @@
       "lat": 34.833654,
       "lng": 134.691913,
       "href": "food.html",
-      "priority": "Sterk kandidat",
+      "priority": "Valgfri",
       "detail": "Udon"
     },
     {
@@ -220,7 +220,7 @@
       "lat": 34.393964,
       "lng": 132.454854,
       "href": "food.html",
-      "priority": "Må prøve",
+      "priority": "Sterk kandidat",
       "detail": "Hiroshima-okonomiyaki"
     },
     {
@@ -255,17 +255,6 @@
       "href": "food.html",
       "priority": "Må prøve",
       "detail": "Takoyaki"
-    },
-    {
-      "id": "food-chibo",
-      "category": "food",
-      "name": "CHIBO Dōtonbori",
-      "area": "Osaka",
-      "lat": 34.668725,
-      "lng": 135.504203,
-      "href": "food.html",
-      "priority": "Valgfri",
-      "detail": "Okonomiyaki"
     }
   ]
 }
