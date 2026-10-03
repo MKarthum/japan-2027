@@ -727,3 +727,30 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .hotel-base-head{align-items:flex-start}
   .hotel-procon{grid-template-columns:1fr}
 }
+
+
+/* v0.12.1: image attribution + audit polish */
+.visual-card-media,.route-thumb-wrap{position:relative;overflow:hidden}
+.visual-card-media.compact img{height:150px}
+.image-credit-mini{
+  position:absolute;left:7px;bottom:7px;z-index:2;
+  max-width:calc(100% - 14px);padding:3px 6px;border-radius:7px;
+  background:rgba(16,22,28,.72);color:rgba(255,255,255,.9);
+  font-size:.58rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  opacity:.78
+}
+.image-credit-mini a{color:#fff;text-decoration:none}
+.visual-card:hover .image-credit-mini,.place-media:hover .image-credit-mini,.route-thumb-wrap:hover .image-credit-mini{opacity:1}
+.route-thumb-wrap{width:100px;border-radius:12px}
+.route-thumb-wrap .route-thumb{width:100%;height:100%;min-height:96px}
+.route-thumb-wrap .image-credit-mini{left:4px;right:4px;bottom:4px;max-width:none;font-size:.5rem;padding:2px 4px}
+.photo-credit a,.restaurant-detail-image figcaption a{color:#fff}
+@media(max-width:900px){
+  .route-thumb-wrap{width:88px}
+  .route-thumb-wrap .route-thumb{min-height:92px}
+}
+@media(max-width:620px){
+  .route-thumb-wrap{width:72px}
+  .route-thumb-wrap .route-thumb{min-height:88px}
+  .image-credit-mini{font-size:.54rem}
+}
