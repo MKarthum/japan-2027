@@ -1,5 +1,5 @@
 {
-  "version": "0.12.1",
+  "version": "0.13.0",
   "released": "3. okt. 2026",
-  "note": "Quality pass: representative place imagery, explicit image licensing/credits, stronger data validation and UI cleanup"
+  "note": "Canonical content refactor: places own maps, images and links; route/booking use ID references; place detail maps restored"
 }
