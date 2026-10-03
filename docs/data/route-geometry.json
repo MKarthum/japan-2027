@@ -1,7 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "generated": "2026-10-03",
-  "note": "Static route geometry stored in-repo. Shinkansen and Odakyu main-line geometry derived from MLIT N02 2024 data as published by Eigenoperator/OniChase. Odawara–Hakone-Yumoto uses exact station coordinates along the Hakone Tozan railway corridor.",
+  "note": "Static route geometry stored in-repo. Shinkansen and Odakyu main-line geometry derived from MLIT N02 2024 data as published by Eigenoperator/OniChase. Odawara–Hakone-Yumoto uses station-anchored Hakone Tozan corridor geometry. Shin-Osaka–Osaka uses the JR Kyoto Line corridor, anchored to the published station/track coordinates.",
   "parts": [
     {
       "journeyId": "tokyo-hakone",
@@ -3733,6 +3733,77 @@
           34.73412
         ]
       ]
+    },
+    {
+      "journeyId": "hiroshima-osaka",
+      "name": "Hiroshima / Miyajima → Osaka",
+      "mode": "JR Kyoto Line: Shin-Osaka → Osaka Station",
+      "color": "#2f73c9",
+      "offset": 0,
+      "coords": [
+        [
+          135.50238,
+          34.73412
+        ],
+        [
+          135.50175,
+          34.73055
+        ],
+        [
+          135.50092,
+          34.72675
+        ],
+        [
+          135.49982,
+          34.72285
+        ],
+        [
+          135.49866,
+          34.71872
+        ],
+        [
+          135.49762,
+          34.71443
+        ],
+        [
+          135.49686,
+          34.70995
+        ],
+        [
+          135.49675,
+          34.7033
+        ],
+        [
+          135.49322,
+          34.70169
+        ]
+      ]
     }
-  ]
+  ],
+  "stops": {
+    "tokyo": [
+      139.69978,
+      35.68939
+    ],
+    "hakone": [
+      139.103743,
+      35.233555
+    ],
+    "kyoto": [
+      135.75692,
+      34.98459
+    ],
+    "himeji": [
+      134.69225,
+      34.82626
+    ],
+    "hiroshima": [
+      132.47607,
+      34.39792
+    ],
+    "osaka": [
+      135.49322,
+      34.70169
+    ]
+  }
 }
