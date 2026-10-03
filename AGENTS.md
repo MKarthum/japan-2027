@@ -30,3 +30,11 @@ Siden skal gjøre planleggingen lettere og samtidig være interessant nok til at
 ## Forbudt innhold
 
 Aldri legg inn navn på reisende, kontaktinformasjon, hjemmeadresse, skole/arbeidssted, bookingreferanser, eksakte flydetaljer, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som knytter en offentlig reiseplan til konkrete privatpersoner.
+
+
+## Versjonering
+
+- Hver bruker-synlige publisering skal bumpe `docs/data/site.json`.
+- Bruk semantisk versjon (`0.x.y`) og oppdater `released`.
+- Når CSS eller JavaScript endres, oppdater også `?v=<versjon>` på asset-lenkene i alle `docs/*.html` for å unngå cache.
+- Oppgi forventet versjonsnummer til brukeren når du ber dem verifisere en ny publisering.
