@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0",
-  "released": "3. okt. 2026 kl. 20:05",
-  "note": "All displayed prices use both NOK and JPY with a dated planning exchange rate"
+  "version": "0.9.0",
+  "released": "3. okt. 2026 kl. 20:24",
+  "note": "Unique image per place while preserving area and place type visually"
 }
