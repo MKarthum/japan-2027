@@ -81,7 +81,7 @@ async function renderRoute() {
     json('data/trip.json'),
     json('data/places.json'),
     json('data/guide.json'),
-    json('data/route-geometry.json')
+    json('data/route-geometry.json?v=0.6.2')
   ]);
 
   document.getElementById('window').textContent = trip.window;
@@ -207,8 +207,9 @@ async function renderRoute() {
       const el=document.createElement('div');
       el.className='map-stop';
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${x.name}</span>`;
+      const anchor=routeGeometry.stops?.[x.id] || [x.lng,x.lat];
       new maplibregl.Marker({element:el,anchor:'center'})
-        .setLngLat([x.lng,x.lat])
+        .setLngLat(anchor)
         .setPopup(new maplibregl.Popup({offset:22}).setHTML(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`))
         .addTo(map);
     });
