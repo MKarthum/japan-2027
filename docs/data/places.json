@@ -18,7 +18,33 @@
       "Spill Mario Kart – Tokyo Blur",
       "Lær historien om Hachikō"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20-%20Sunset%20Skyline.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_-_Sunset_Skyline.jpg",
+      "credit": "Fred Cherrygarden",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Tokyo"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/kanto/tokyo/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Tokyo",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 35.681236,
+      "lng": 139.767125,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "shibuya",
@@ -41,7 +67,28 @@
       "lat": 35.65949,
       "lng": 139.70054,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Shibuya%20Scramble%20Crossing%202018-10-09.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg",
+      "credit": "Benh LIEU SONG",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "alt": "Shibuya"
+    },
+    "links": [
+      {
+        "label": "GO TOKYO",
+        "url": "https://www.gotokyo.org/en/destinations/western-tokyo/shibuya/index.html",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Shibuya",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "asakusa",
@@ -62,7 +109,28 @@
       "lat": 35.714444,
       "lng": 139.796667,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Senso-ji.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Senso-ji.jpg",
+      "credit": "Felix Filnkössl",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Asakusa"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Asakusa",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "hakone",
@@ -80,7 +148,33 @@
     "prep": [
       "Lær hva onsen og ryokan er før turen"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Mount%20Fuji%20from%20Lake%20Ashi.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:View_of_Mount_Fuji_from_Lake_Ashi.jpg",
+      "credit": "Quercus acuta",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Hakone"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/kanto/kanagawa/hakone-and-around/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Hakone",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 35.250825,
+      "lng": 139.04843,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "kyoto",
@@ -101,7 +195,33 @@
       "Spill AC Shadows i Kyoto-området",
       "Se etter torii-porter og pagoder"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yasaka%20Pagode.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Yasaka_Pagode.jpg",
+      "credit": "Piet Parkiet",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "alt": "Kyoto"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/kansai/kyoto/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Kyoto",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 34.985849,
+      "lng": 135.758766,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "gion",
@@ -117,7 +237,33 @@
       "Higashiyama i nærheten"
     ],
     "prep": [],
-    "acShadows": true
+    "acShadows": true,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Street%20in%20Gion%2C%20Kyoto%2C%202024.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Street_in_Gion,_Kyoto,_2024.jpg",
+      "credit": "Smiley.toerist",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Gion"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/kansai/kyoto/gion-and-higashiyama/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Gion",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 35.0037,
+      "lng": 135.7756,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "fushimi-inari",
@@ -140,7 +286,28 @@
       "lat": 34.96754,
       "lng": 135.77944,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fushimi%20Inari%20Shrine%2C%20Kyoto%20City%3B%20November%202013%20%2807%29.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Fushimi_Inari_Shrine,_Kyoto_City;_November_2013_(07).jpg",
+      "credit": "chee.hong",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "alt": "Fushimi Inari"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://inari.jp/en/",
+        "kind": "official"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Fushimi_Inari-taisha",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "kiyomizu-dera",
@@ -163,7 +330,28 @@
       "lat": 34.994831,
       "lng": 135.785003,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kiyomizu%20dera%20in%20Kyoto.JPG?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Kiyomizu_dera_in_Kyoto.JPG",
+      "credit": "Vinodmp",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Kiyomizu-dera"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://www.kiyomizudera.or.jp/en/",
+        "kind": "official"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Kiyomizu-dera",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "kinkakuji",
@@ -185,7 +373,28 @@
       "lat": 35.03959,
       "lng": 135.72951,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinkaku-ji%2C%20Ky%C5%8Dto.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Kinkaku-ji,_Ky%C5%8Dto.jpg",
+      "credit": "Renate Hano",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Kinkaku-ji"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://www.shokoku-ji.jp/en/kinkakuji/",
+        "kind": "official"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Kinkaku-ji",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "arashiyama",
@@ -208,7 +417,28 @@
       "lat": 35.01701,
       "lng": 135.67169,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arashiyama%20Bamboo%20Grove.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Arashiyama_Bamboo_Grove.jpg",
+      "credit": "Mitchwandrew",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "alt": "Arashiyama"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/spot/1142/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Arashiyama",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "nara",
@@ -227,7 +457,33 @@
     "prep": [
       "Finn Nara/Yamato-området i AC Shadows"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nara%20deer%20lounging%20at%20Todaiji.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Nara_deer_lounging_at_Todaiji.jpg",
+      "credit": "Photos of Japan",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Nara"
+    },
+    "links": [
+      {
+        "label": "Visit Nara",
+        "url": "https://www.visitnara.jp/",
+        "kind": "official"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Nara_(city)",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 34.685047,
+      "lng": 135.804835,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "todaiji",
@@ -249,7 +505,28 @@
       "lat": 34.689167,
       "lng": 135.839722,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/T%C5%8Ddai-ji%20Daibutsuden.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Daibutsuden.jpg",
+      "credit": "Cun Cun",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Tōdai-ji"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://www.todaiji.or.jp/en/",
+        "kind": "official"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/T%C5%8Ddai-ji",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "himeji",
@@ -274,7 +551,28 @@
       "lat": 34.83933,
       "lng": 134.69402,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Himeji%20Castle%20with%20cherry%20blossoms%20from%20SouthWest.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Himeji_Castle_with_cherry_blossoms_from_SouthWest.jpg",
+      "credit": "Seattleite7",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Himeji Castle"
+    },
+    "links": [
+      {
+        "label": "Offisiell side / billetter",
+        "url": "https://www.himejicastle.jp/en/",
+        "kind": "ticket"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Himeji_Castle",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "osaka",
@@ -293,7 +591,33 @@
       "Spill Mario",
       "Spill AC Shadows rundt Osaka Castle"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20skyline%20from%20Osaka%20Castle%20(001)%202023-07-07.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Osaka_skyline_from_Osaka_Castle_(001)_2023-07-07.jpg",
+      "credit": "LMP 2001",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Osaka"
+    },
+    "links": [
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/kansai/osaka/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Osaka",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 34.6687,
+      "lng": 135.5006,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "dotonbori",
@@ -317,7 +641,23 @@
       "lat": 34.6687,
       "lng": 135.50409,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dotonbori%2C%20Osaka%2C%20at%20night%2C%20November%202016.jpg?width=1200",
+      "source": "https://commons.wikimedia.org/wiki/File:Dotonbori,_Osaka,_at_night,_November_2016.jpg",
+      "credit": "Martin Falbisoner",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Dōtonbori"
+    },
+    "links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/D%C5%8Dtonbori",
+        "kind": "wiki"
+      }
+    ]
   },
   {
     "id": "hiroshima",
@@ -335,7 +675,38 @@
     "prep": [
       "Forbered konteksten før museumsbesøket"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atomic%20Bomb%20Dome%20Hiroshima.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Atomic_Bomb_Dome_Hiroshima.jpg",
+      "credit": "SRP1998",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Hiroshima"
+    },
+    "links": [
+      {
+        "label": "Peace Memorial Museum",
+        "url": "https://hpmmuseum.jp/?lang=eng",
+        "kind": "official"
+      },
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/destinations/chugoku/hiroshima/",
+        "kind": "info"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Hiroshima",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 34.395483,
+      "lng": 132.453592,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "miyajima",
@@ -354,7 +725,33 @@
     "prep": [
       "Lær forskjellen mellom tempel og shinto-helligdom"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20Gate.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Itsukushima_Gate.jpg",
+      "credit": "JordyMeow",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Miyajima"
+    },
+    "links": [
+      {
+        "label": "Itsukushima – offisiell",
+        "url": "https://www.itsukushimajinja.jp/en/index.html",
+        "kind": "official"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Itsukushima",
+        "kind": "wiki"
+      }
+    ],
+    "map": {
+      "lat": 34.2985,
+      "lng": 132.3198,
+      "showOnRouteMap": false
+    }
   },
   {
     "id": "nintendo-museum",
@@ -378,7 +775,28 @@
       "lat": 34.89261,
       "lng": 135.78405,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nintendo%20Museum%20Entrance.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Nintendo_Museum_Entrance.jpg",
+      "credit": "Nagomijirap",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Nintendo Museum"
+    },
+    "links": [
+      {
+        "label": "Billetter",
+        "url": "https://museum.nintendo.com/en/index.html",
+        "kind": "ticket"
+      },
+      {
+        "label": "Slik fungerer trekningen",
+        "url": "https://museum.nintendo.com/en/guide/visit-flow/index.html",
+        "kind": "info"
+      }
+    ]
   },
   {
     "id": "ghibli-museum",
@@ -402,7 +820,28 @@
       "lat": 35.69623,
       "lng": 139.57045,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghibli%20Museum.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Ghibli_Museum.jpg",
+      "credit": "Douglas Paul Perkins",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "alt": "Ghibli Museum"
+    },
+    "links": [
+      {
+        "label": "Billetter",
+        "url": "https://www.ghibli-museum.jp/en/tickets/",
+        "kind": "ticket"
+      },
+      {
+        "label": "Offisiell side",
+        "url": "https://www.ghibli-museum.jp/en/",
+        "kind": "official"
+      }
+    ]
   },
   {
     "id": "teamlab",
@@ -425,7 +864,23 @@
       "lat": 35.66185,
       "lng": 139.741842,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/TeamLab%20Borderless%20Azabudai%20Hills.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:TeamLab_Borderless_Azabudai_Hills.jpg",
+      "credit": "DannyWithLove",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "teamLab Borderless"
+    },
+    "links": [
+      {
+        "label": "Billetter / offisiell",
+        "url": "https://www.teamlab.art/e/tokyo/",
+        "kind": "ticket"
+      }
+    ]
   },
   {
     "id": "usj",
@@ -449,7 +904,28 @@
       "lat": 34.6647,
       "lng": 135.433,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Super%20Nintendo%20World%20(Universal%20Studios%20Japan).png?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Super_Nintendo_World_(Universal_Studios_Japan).png",
+      "credit": "Basil the Bat Lord",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Universal Studios Japan / Super Nintendo World"
+    },
+    "links": [
+      {
+        "label": "Billetter / offisiell",
+        "url": "https://www.usj.co.jp/web/en/us",
+        "kind": "ticket"
+      },
+      {
+        "label": "Super Nintendo World",
+        "url": "https://www.usj.co.jp/web/en/us/areas/super-nintendo-world",
+        "kind": "info"
+      }
+    ]
   },
   {
     "id": "peace-memorial-museum",
@@ -472,7 +948,28 @@
       "lat": 34.391472,
       "lng": 132.453056,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hiroshima%20Peace%20Memorial%20Museum%2C%20August%206%2C%202026.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Hiroshima_Peace_Memorial_Museum,_August_6,_2026.jpg",
+      "credit": "かるちる",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Hiroshima Peace Memorial Museum"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://hpmmuseum.jp/?lang=eng",
+        "kind": "official"
+      },
+      {
+        "label": "Travel Japan",
+        "url": "https://www.japan.travel/en/spot/893/",
+        "kind": "info"
+      }
+    ]
   },
   {
     "id": "itsukushima-shrine",
@@ -495,7 +992,23 @@
       "lat": 34.295806,
       "lng": 132.320111,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20%28Miyajima%20Hiroshima%29%20hdsr%20Main%20hall%20S5%2002.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Itsukushima_(Miyajima_Hiroshima)_hdsr_Main_hall_S5_02.jpg",
+      "credit": "Hyppolyte de Saint-Rambert",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "alt": "Itsukushima Shrine"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://www.itsukushimajinja.jp/en/index.html",
+        "kind": "official"
+      }
+    ]
   },
   {
     "id": "osaka-castle",
@@ -518,6 +1031,22 @@
       "lat": 34.68737,
       "lng": 135.52586,
       "showOnRouteMap": true
-    }
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20Castle%20Keep%20Tower%20and%20garden.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Osaka_Castle_Keep_Tower_and_garden.jpg",
+      "credit": "Christophe95",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Osaka Castle"
+    },
+    "links": [
+      {
+        "label": "Offisiell side",
+        "url": "https://www.osakacastle.net/english/",
+        "kind": "official"
+      }
+    ]
   }
 ]
