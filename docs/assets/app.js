@@ -21,7 +21,11 @@ function nav(active='') {
 }
 
 function footer() {
-  document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Offentlig planleggingsside. Ingen private booking- eller personopplysninger.</span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a><a href="https://github.com/MKarthum/japan-2027">GitHub</a></div></div>`;
+  document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Offentlig planleggingsside. Ingen private booking- eller personopplysninger.</span><br><span id="site-version" class="small">Versjon …</span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a><a href="https://github.com/MKarthum/japan-2027">GitHub</a></div></div>`;
+  fetch('data/site.json', {cache:'no-store'})
+    .then(r=>r.ok?r.json():null)
+    .then(v=>{ if(v) document.getElementById('site-version').textContent = `Versjon ${v.version} · ${v.released}`; })
+    .catch(()=>{});
 }
 
 const linkButton = (x) => `<a class="button ${x.kind==='ticket'?'primary':''}" href="${x.url}" target="_blank" rel="noopener">${x.label} ↗</a>`;
