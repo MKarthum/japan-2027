@@ -3,48 +3,38 @@
   "bookingRadar": [
     {
       "priority": "Viktig",
-      "title": "Nintendo Museum",
-      "area": "Kyoto / Uji",
       "when": "Trekning åpner tre måneder før besøket",
       "why": "Billetter selges på forhånd for bestemt dato og tid. Trekning først; ledige restbilletter kan komme senere.",
-      "url": "https://museum.nintendo.com/en/guide/visit-flow/index.html",
-      "checked": "2026-10-03"
+      "checked": "2026-10-03",
+      "placeId": "nintendo-museum"
     },
     {
       "priority": "Viktig",
-      "title": "Ghibli Museum",
-      "area": "Tokyo / Mitaka",
       "when": "Billetter legges normalt ut den 10. i måneden før besøket kl. 10:00 JST",
       "why": "Kun forhåndsreservasjon. Salgsvinduet bør legges inn i kalenderen dersom museet blir en del av planen.",
-      "url": "https://www.ghibli-museum.jp/en/tickets/",
-      "checked": "2026-10-03"
+      "checked": "2026-10-03",
+      "placeId": "ghibli-museum"
     },
     {
       "priority": "Viktig",
-      "title": "Universal Studios Japan",
-      "area": "Osaka",
       "when": "Når billetter for planlagt besøksdato åpner for salg",
       "why": "Studio Pass må kjøpes, og Super Nintendo World kan i tillegg kreve tidsbestemt områdeinngang.",
-      "url": "https://www.usj.co.jp/web/en/us",
-      "checked": "2026-10-03"
+      "checked": "2026-10-03",
+      "placeId": "usj"
     },
     {
       "priority": "Bør bestilles",
-      "title": "teamLab Borderless",
-      "area": "Tokyo",
       "when": "Når billetter for planlagt besøksdato er tilgjengelige",
       "why": "Billetter er dato-/tidsbestemte og kan bli utsolgt.",
-      "url": "https://www.teamlab.art/e/tokyo/",
-      "checked": "2026-10-03"
+      "checked": "2026-10-03",
+      "placeId": "teamlab"
     },
     {
       "priority": "Kan bestilles",
-      "title": "Himeji Castle",
-      "area": "Himeji",
       "when": "Digitale tidsbilletter åpner normalt 90 dager før",
       "why": "Tidsbillett er særlig nyttig i sakura-perioden når besøket kan være travelt.",
-      "url": "https://www.himejicastle.jp/en/",
-      "checked": "2026-10-03"
+      "checked": "2026-10-03",
+      "placeId": "himeji"
     }
   ],
   "transport": [
