@@ -412,3 +412,235 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .food-index-price{text-align:left}
   .food-index-arrow{grid-column:2;grid-row:1/5;align-self:center}
 }
+
+
+/* v0.11.1: destination color system + route readability */
+.destination-themed{--area-color:#5f6b73}
+.visual-card.destination-themed{
+  border-top:4px solid var(--area-color);
+}
+.visual-card.destination-themed .meta,
+.destination-themed .eyebrow,
+.destination-themed .kicker{
+  color:var(--area-color);
+}
+.place-card.destination-themed{
+  border-top-color:var(--area-color);
+}
+.area-pill{
+  background:var(--area-color);
+}
+.filters .destination-filter{
+  color:var(--area-color);
+  border-color:color-mix(in srgb,var(--area-color) 38%,#d8d2c8);
+  background:color-mix(in srgb,var(--area-color) 7%,#fff);
+}
+.filters .destination-filter:hover{
+  border-color:var(--area-color);
+}
+.filters .destination-filter.active{
+  color:#fff;
+  background:var(--area-color);
+  border-color:var(--area-color);
+}
+.detail-hero{
+  border-top:4px solid var(--area-color,#5f6b73);
+  padding-top:18px;
+}
+.restaurant-detail-hero{
+  border-top:4px solid var(--area-color,#5f6b73);
+  padding-top:18px;
+}
+.restaurant-detail-copy .eyebrow,
+#restaurant-area{
+  color:var(--area-color);
+}
+.food-role{
+  background:color-mix(in srgb,var(--area-color,#216D61) 11%,#fff);
+  color:var(--area-color,#216D61);
+}
+.food-area-head h2{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.food-area-head h2::before{
+  content:"";
+  width:10px;
+  height:10px;
+  flex:0 0 auto;
+  border-radius:50%;
+  background:var(--area-color);
+}
+.food-index-row{
+  border-left:4px solid var(--area-color,#5f6b73);
+}
+.food-index-row:hover{
+  border-left-color:var(--area-color,#5f6b73);
+}
+.restaurant-alt.destination-themed,
+.mini-card.destination-themed{
+  border-top:3px solid var(--area-color);
+}
+.restaurant-alt.destination-themed span{
+  color:var(--area-color);
+}
+.order-card>span{
+  background:var(--area-color,var(--accent));
+}
+
+/* Route cards: one broad text column instead of several narrow columns. */
+.route-list{
+  gap:14px;
+}
+.route-item{
+  grid-template-columns:100px minmax(0,1fr);
+  gap:17px;
+  align-items:stretch;
+  padding:14px 16px 14px 13px;
+  border-left:5px solid var(--area-color,#5f6b73);
+}
+.route-thumb{
+  width:100px;
+  height:100%;
+  min-height:96px;
+  object-fit:cover;
+  border-radius:12px;
+}
+.route-item-main{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.route-item-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:16px;
+  margin-bottom:3px;
+}
+.route-item .date{
+  grid-column:auto;
+  color:var(--muted);
+  font-size:.82rem;
+  font-weight:700;
+}
+.route-item .nights{
+  grid-column:auto;
+  grid-row:auto;
+  color:var(--area-color);
+  font-size:.78rem;
+  font-weight:850;
+  white-space:nowrap;
+}
+.route-item-title{
+  display:inline-block;
+  width:max-content;
+  max-width:100%;
+  font-size:1.12rem;
+  line-height:1.2;
+  margin:1px 0 4px;
+}
+.route-item-copy{
+  min-width:0;
+  max-width:920px;
+}
+.route-item-copy>span{
+  display:block;
+  color:var(--area-color);
+  font-size:.7rem;
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:.065em;
+  margin-bottom:2px;
+}
+.route-item-copy p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.48;
+  max-width:none;
+}
+.route-inline-info{
+  color:var(--area-color);
+  padding-top:7px;
+}
+
+/* Map: destination is expressed by color; category by marker shape/symbol. */
+.map-pin{
+  background:var(--area-color,#B6473D);
+  border-color:#fff;
+}
+.map-stop.daytrip .map-pin{
+  background:var(--area-color,#5f6b73);
+  border-color:#fff;
+}
+.map-place-label{
+  border-color:color-mix(in srgb,var(--area-color,#5f6b73) 35%,#ddd);
+}
+.map-poi-dot.experience,
+.map-poi-dot.food{
+  background:var(--area-color,#5f6b73);
+  color:#fff;
+}
+.map-poi-dot.experience{
+  border-radius:50%;
+}
+.map-poi-dot.food{
+  border-radius:7px;
+}
+.map-popup.destination-themed .meta{
+  color:var(--area-color);
+}
+.route-legend-item.destination-themed{
+  border-left:4px solid var(--area-color);
+}
+.route-legend-item.destination-themed i{
+  background:var(--area-color);
+}
+.route-legend-item.destination-themed:hover{
+  border-left-color:var(--area-color);
+}
+
+@media(max-width:900px){
+  .route-item{
+    grid-template-columns:88px minmax(0,1fr);
+  }
+  .route-thumb{
+    width:88px;
+    min-height:92px;
+  }
+  .route-item .date,
+  .route-item .nights{
+    grid-column:auto;
+    grid-row:auto;
+  }
+}
+@media(max-width:620px){
+  .route-item{
+    grid-template-columns:72px minmax(0,1fr);
+    gap:12px;
+    padding:11px 12px 11px 9px;
+  }
+  .route-thumb{
+    width:72px;
+    min-height:88px;
+  }
+  .route-item-top{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:1px;
+    margin-bottom:4px;
+  }
+  .route-item .date,
+  .route-item .nights{
+    grid-column:auto;
+    grid-row:auto;
+  }
+  .route-item-title{
+    font-size:1.03rem;
+  }
+  .route-item-copy p{
+    font-size:.84rem;
+  }
+}
