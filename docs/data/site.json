@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
-  "released": "3. okt. 2026 kl. 14:50",
-  "note": "Map fix and visible release version"
+  "version": "0.6.0",
+  "released": "3. okt. 2026 kl. 18:13",
+  "note": "Actual rail geometry with overlap handling"
 }
