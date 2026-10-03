@@ -7,8 +7,17 @@
     "simple": "Fremtidens Japan",
     "description": "Enorm storby der moderne Japan, popkultur og gamle bydeler lever side om side. Dette er stedet for neonlys, tog, teknologi, spill og den første store kulturkontrasten.",
     "why": "Gir den sterkeste kontrasten til Kyoto og gjør det lett å forstå hvor mange forskjellige Japan som finnes.",
-    "highlights": ["Shibuya", "Asakusa og Sensō-ji", "Akihabara", "teamLab"],
-    "prep": ["Se Your Name", "Spill Mario Kart – Tokyo Blur", "Lær historien om Hachikō"],
+    "highlights": [
+      "Shibuya",
+      "Asakusa og Sensō-ji",
+      "Akihabara",
+      "teamLab"
+    ],
+    "prep": [
+      "Se Your Name",
+      "Spill Mario Kart – Tokyo Blur",
+      "Lær historien om Hachikō"
+    ],
     "acShadows": false
   },
   {
@@ -19,8 +28,14 @@
     "simple": "Neonlys og verdens mest kjente fotgjengerkryss",
     "description": "En travel bydel kjent for Shibuya Crossing, høyhus, butikker, skjermer og Hachikō-statuen.",
     "why": "Et av de mest gjenkjennelige bildene av moderne Tokyo.",
-    "highlights": ["Shibuya Crossing", "Hachikō", "Utsikt over krysset"],
-    "prep": ["Se klipp eller filmer fra Shibuya før avreise"],
+    "highlights": [
+      "Shibuya Crossing",
+      "Hachikō",
+      "Utsikt over krysset"
+    ],
+    "prep": [
+      "Se klipp eller filmer fra Shibuya før avreise"
+    ],
     "acShadows": false
   },
   {
@@ -31,7 +46,11 @@
     "simple": "Gammelt Tokyo",
     "description": "Tradisjonell bydel rundt Sensō-ji med porter, handelsgate og tydelig eldre preg enn resten av storbyen.",
     "why": "Gir klassisk Japan uten å forlate Tokyo.",
-    "highlights": ["Sensō-ji", "Kaminarimon-porten", "Nakamise-gaten"],
+    "highlights": [
+      "Sensō-ji",
+      "Kaminarimon-porten",
+      "Nakamise-gaten"
+    ],
     "prep": [],
     "acShadows": false
   },
@@ -43,8 +62,14 @@
     "simple": "Fjellpause mellom storbyene",
     "description": "Ferieområde kjent for varme kilder, ryokan og utsikt mot Fuji når været er godt.",
     "why": "Gir én bevisst rolig natt og en tradisjonell opplevelse midt i en ellers aktiv tur.",
-    "highlights": ["Ryokan", "Onsen", "Mulig Fuji-utsikt"],
-    "prep": ["Lær hva onsen og ryokan er før turen"],
+    "highlights": [
+      "Ryokan",
+      "Onsen",
+      "Mulig Fuji-utsikt"
+    ],
+    "prep": [
+      "Lær hva onsen og ryokan er før turen"
+    ],
     "acShadows": false
   },
   {
@@ -55,8 +80,17 @@
     "simple": "Det klassiske Japan",
     "description": "Tidligere keiserby med templer, hager, tradisjonelle trehus og flere av motivene man forbinder med historisk Japan.",
     "why": "Dette er hovedbasen for det gamle Japan og stedet der Assassin’s Creed Shadows gir mest gjenkjennelse.",
-    "highlights": ["Gion", "Fushimi Inari", "Kiyomizu-dera", "Kinkaku-ji", "Arashiyama"],
-    "prep": ["Spill AC Shadows i Kyoto-området", "Se etter torii-porter og pagoder"],
+    "highlights": [
+      "Gion",
+      "Fushimi Inari",
+      "Kiyomizu-dera",
+      "Kinkaku-ji",
+      "Arashiyama"
+    ],
+    "prep": [
+      "Spill AC Shadows i Kyoto-området",
+      "Se etter torii-porter og pagoder"
+    ],
     "acShadows": true
   },
   {
@@ -67,7 +101,11 @@
     "simple": "Gamle trehus og tradisjonelle gater",
     "description": "Historisk bydel med machiya-trehus og Kyotos geiko- og maiko-kultur.",
     "why": "Gir følelsen av gammelt Kyoto uten at man trenger å forstå tempelnavnene først.",
-    "highlights": ["Tradisjonelle gater", "Kveldstur", "Higashiyama i nærheten"],
+    "highlights": [
+      "Tradisjonelle gater",
+      "Kveldstur",
+      "Higashiyama i nærheten"
+    ],
     "prep": [],
     "acShadows": true
   },
@@ -79,8 +117,14 @@
     "simple": "Tusenvis av røde porter opp fjellsiden",
     "description": "En shinto-helligdom med lange rekker av torii-porter som danner tunneler oppover fjellet.",
     "why": "Et av de mest ikoniske og lett gjenkjennelige Japan-motivene.",
-    "highlights": ["Torii-portene", "Skogsstiene", "Tidlig morgen for mindre folk"],
-    "prep": ["Lær ordet torii"],
+    "highlights": [
+      "Torii-portene",
+      "Skogsstiene",
+      "Tidlig morgen for mindre folk"
+    ],
+    "prep": [
+      "Lær ordet torii"
+    ],
     "acShadows": true
   },
   {
@@ -91,8 +135,14 @@
     "simple": "Tempel med stor treterrasse over byen",
     "description": "Berømt tempel i åssiden øst i Kyoto med utsikt og stor treplattform.",
     "why": "Et tydelig visuelt landemerke som også finnes i Assassin’s Creed Shadows.",
-    "highlights": ["Treplattformen", "Utsikt over Kyoto", "Gamle gater nedenfor"],
-    "prep": ["Finn stedet i AC Shadows"],
+    "highlights": [
+      "Treplattformen",
+      "Utsikt over Kyoto",
+      "Gamle gater nedenfor"
+    ],
+    "prep": [
+      "Finn stedet i AC Shadows"
+    ],
     "acShadows": true
   },
   {
@@ -103,8 +153,13 @@
     "simple": "Gullpaviljongen",
     "description": "En gullkledd tempelbygning ved en dam, et av Kyotos mest kjente motiver.",
     "why": "Veldig lett å kjenne igjen på bilder og i spill.",
-    "highlights": ["Gullpaviljongen", "Hagen og dammen"],
-    "prep": ["Finn stedet i AC Shadows"],
+    "highlights": [
+      "Gullpaviljongen",
+      "Hagen og dammen"
+    ],
+    "prep": [
+      "Finn stedet i AC Shadows"
+    ],
     "acShadows": true
   },
   {
@@ -115,8 +170,14 @@
     "simple": "Bambus og roligere Kyoto",
     "description": "Område vest i Kyoto kjent for bambusskog, elv, fjell og Tenryū-ji-tempelet.",
     "why": "Gir en annen side av Kyoto enn de travle tempelområdene i øst.",
-    "highlights": ["Bambusskogen", "Tenryū-ji", "Elveområdet"],
-    "prep": ["Se området i AC Shadows"],
+    "highlights": [
+      "Bambusskogen",
+      "Tenryū-ji",
+      "Elveområdet"
+    ],
+    "prep": [
+      "Se området i AC Shadows"
+    ],
     "acShadows": true
   },
   {
@@ -127,8 +188,15 @@
     "simple": "Hjort, gammel hovedstad og enorm Buddha",
     "description": "Kompakt historisk område sør for Kyoto der frittgående hjort beveger seg mellom store tempelområder.",
     "why": "Veldig enkel dagstur og sannsynligvis en av de mest barnevennlige historiske opplevelsene.",
-    "highlights": ["Nara Park", "Tōdai-ji", "Kasuga Taisha", "Kōfuku-ji"],
-    "prep": ["Finn Nara/Yamato-området i AC Shadows"],
+    "highlights": [
+      "Nara Park",
+      "Tōdai-ji",
+      "Kasuga Taisha",
+      "Kōfuku-ji"
+    ],
+    "prep": [
+      "Finn Nara/Yamato-området i AC Shadows"
+    ],
     "acShadows": true
   },
   {
@@ -139,8 +207,13 @@
     "simple": "Det enorme tempelet med kjempe-Buddhaen",
     "description": "Stort buddhistisk tempel i Nara med en monumental Buddha-statue og imponerende trearkitektur.",
     "why": "Gir Nara-dagen et tydelig mål utover hjortene.",
-    "highlights": ["Den store Buddhaen", "Den enorme tempelhallen"],
-    "prep": ["Finn stedet i AC Shadows"],
+    "highlights": [
+      "Den store Buddhaen",
+      "Den enorme tempelhallen"
+    ],
+    "prep": [
+      "Finn stedet i AC Shadows"
+    ],
     "acShadows": true
   },
   {
@@ -151,8 +224,16 @@
     "simple": "LEGO-slottet på ekte",
     "description": "Det ikoniske hvite slottet er et bevart japansk festningsanlegg og et svært tydelig fysisk bindeledd mellom LEGO, spill og den virkelige reisen.",
     "why": "LEGO Himeji + Himeji i AC Shadows + det ekte slottet gir den sterkeste gjenkjennelseseffekten på turen.",
-    "highlights": ["Hovedtårnet", "Forsvarsverk og porter", "Kirsebærtrær i sesong"],
-    "prep": ["Bygg LEGO Himeji", "Finn slottet i AC Shadows", "Ta spill-screenshot og gjenskap bildet på reisen"],
+    "highlights": [
+      "Hovedtårnet",
+      "Forsvarsverk og porter",
+      "Kirsebærtrær i sesong"
+    ],
+    "prep": [
+      "Bygg LEGO Himeji",
+      "Finn slottet i AC Shadows",
+      "Ta spill-screenshot og gjenskap bildet på reisen"
+    ],
     "acShadows": true
   },
   {
@@ -163,8 +244,15 @@
     "simple": "Mat, neonlys og Nintendo",
     "description": "Livlig storby vest for Kyoto med sterk matkultur, Dōtonbori og Universal Studios Japan.",
     "why": "Avslutter turen med lav terskel, god mat og en mulig stor fornøyelsesparkdag.",
-    "highlights": ["Dōtonbori", "Super Nintendo World", "Osaka Castle"],
-    "prep": ["Spill Mario", "Spill AC Shadows rundt Osaka Castle"],
+    "highlights": [
+      "Dōtonbori",
+      "Super Nintendo World",
+      "Osaka Castle"
+    ],
+    "prep": [
+      "Spill Mario",
+      "Spill AC Shadows rundt Osaka Castle"
+    ],
     "acShadows": true
   },
   {
@@ -175,8 +263,15 @@
     "simple": "Neonlys møter matmarked",
     "description": "Travelt restaurant- og underholdningsområde rundt kanalen med store lysreklamer og masse gatemat.",
     "why": "En enkel og umiddelbar kveld uten behov for mye historisk forkunnskap.",
-    "highlights": ["Glico-skiltet", "Takoyaki", "Okonomiyaki", "Kveldsliv"],
-    "prep": ["Prøv okonomiyaki hjemme før turen"],
+    "highlights": [
+      "Glico-skiltet",
+      "Takoyaki",
+      "Okonomiyaki",
+      "Kveldsliv"
+    ],
+    "prep": [
+      "Prøv okonomiyaki hjemme før turen"
+    ],
     "acShadows": false
   },
   {
@@ -187,8 +282,14 @@
     "simple": "Den alvorlige historiedagen",
     "description": "Byen gir en viktig historisk dimensjon gjennom Peace Memorial Park, Atomic Bomb Dome og museet.",
     "why": "Gir reisen historisk tyngde og et annet perspektiv på moderne Japan.",
-    "highlights": ["Peace Memorial Park", "Atomic Bomb Dome", "Peace Memorial Museum"],
-    "prep": ["Forbered konteksten før museumsbesøket"],
+    "highlights": [
+      "Peace Memorial Park",
+      "Atomic Bomb Dome",
+      "Peace Memorial Museum"
+    ],
+    "prep": [
+      "Forbered konteksten før museumsbesøket"
+    ],
     "acShadows": false
   },
   {
@@ -199,8 +300,90 @@
     "simple": "Øya med den røde porten i sjøen",
     "description": "Øy utenfor Hiroshima kjent for Itsukushima-helligdommen, den store torii-porten, natur og hjort.",
     "why": "En lysere og svært visuell kontrast til Hiroshima-dagen.",
-    "highlights": ["Itsukushima", "Torii-porten", "Hjort", "Natur"],
-    "prep": ["Lær forskjellen mellom tempel og shinto-helligdom"],
+    "highlights": [
+      "Itsukushima",
+      "Torii-porten",
+      "Hjort",
+      "Natur"
+    ],
+    "prep": [
+      "Lær forskjellen mellom tempel og shinto-helligdom"
+    ],
+    "acShadows": false
+  },
+  {
+    "id": "nintendo-museum",
+    "name": "Nintendo Museum",
+    "area": "Kyoto",
+    "type": "museum",
+    "simple": "Fra hanafuda til Switch",
+    "description": "Nintendo-museet i Uji, like sør for Kyoto, viser selskapets historie fra spillekort til moderne spill og har interaktive opplevelser.",
+    "why": "Dette er kanskje den sterkeste koblingen mellom familiens spillinteresse og et konkret Japan-stopp. Uji ligger naturlig mellom Kyoto og Nara.",
+    "highlights": [
+      "Nintendo-historie",
+      "Interaktive opplevelser",
+      "Uji som mulig halvdag"
+    ],
+    "prep": [
+      "Spill noen Nintendo-klassikere",
+      "Legg inn billettrekningen tre måneder før ønsket dato"
+    ],
+    "acShadows": false
+  },
+  {
+    "id": "ghibli-museum",
+    "name": "Ghibli Museum",
+    "area": "Tokyo",
+    "type": "museum",
+    "simple": "Hvis Ghibli-filmene treffer",
+    "description": "Lite og detaljrikt museum i Mitaka viet Studio Ghiblis animasjon og univers.",
+    "why": "Ikke obligatorisk nå, men blir et opplagt tillegg dersom Totoro, Chihiro eller Kiki blir en viktig del av oppladningen.",
+    "highlights": [
+      "Original animasjonskunst",
+      "Ghibli-univers",
+      "Mitaka-utflukt"
+    ],
+    "prep": [
+      "Se 2–3 Ghibli-filmer før vi bestemmer oss",
+      "Billetter må kjøpes på forhånd"
+    ],
+    "acShadows": false
+  },
+  {
+    "id": "teamlab",
+    "name": "teamLab Borderless",
+    "area": "Tokyo",
+    "type": "opplevelse",
+    "simple": "Digital kunst man går inn i",
+    "description": "Stort interaktivt digitalt kunstmuseum i Azabudai Hills der rom, lys og projeksjoner flyter sammen.",
+    "why": "Gir en moderne, svært visuell Tokyo-opplevelse som ikke krever språk eller historisk forkunnskap.",
+    "highlights": [
+      "Interaktive rom",
+      "Lys og projeksjoner",
+      "God regnværsaktivitet"
+    ],
+    "prep": [
+      "Se noen få bilder – men ikke spoil hele opplevelsen"
+    ],
+    "acShadows": false
+  },
+  {
+    "id": "usj",
+    "name": "Universal Studios Japan / Super Nintendo World",
+    "area": "Osaka",
+    "type": "fornøyelsespark",
+    "simple": "Mario-verdenen på ekte",
+    "description": "Stor fornøyelsespark i Osaka. Super Nintendo World gjør Mario-spillene til et fysisk miljø med attraksjoner og interaktive elementer.",
+    "why": "Kan bli en hel familiedag og er en svært sterk payoff på Mario-oppladningen hjemme.",
+    "highlights": [
+      "Super Nintendo World",
+      "Mario Kart",
+      "Power-Up Band-aktiviteter"
+    ],
+    "prep": [
+      "Spill Mario Kart og andre Mario-spill",
+      "Bestem om en hel USJ-dag er verdt tiden på en to ukers tur"
+    ],
     "acShadows": false
   }
 ]
