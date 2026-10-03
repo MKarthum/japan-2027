@@ -92,13 +92,13 @@ async function renderHome() {
 
 async function renderRoute() {
   nav('route'); footer();
-  const [trip,places,guide,routeGeometry,transport,mapPois,fx]=await Promise.all([
+  const [trip,places,guide,routeGeometry,transport,food,fx]=await Promise.all([
     json('data/trip.json'),
-    json('data/places.json'),
+    json('data/places.json?v=0.10.1'),
     json('data/guide.json'),
     json('data/route-geometry.json?v=0.8.0'),
     json('data/transport.json?v=0.8.0'),
-    json('data/map-pois.json?v=0.8.0'),
+    json('data/food.json?v=0.10.1'),
     json('data/fx.json?v=0.8.0')
   ]);
 
@@ -284,8 +284,10 @@ async function renderRoute() {
     map.on('mouseleave',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='');
   };
 
-  const markerGroups={stations:[],experience:[],food:[],hotel:[]};
-  const layerState={stations:true,experience:true,food:false,hotel:false};
+  const markerGroups={stations:[],experience:[],food:[]};
+  const layerState={stations:true,experience:true,food:false};
+  const mappablePlaces=places.filter(p=>p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
+  const mappableFood=food.filter(x=>x.status==='active' && x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
 
   const setMarkerVisibility=(category,on)=>{
     layerState[category]=on;
@@ -322,27 +324,54 @@ async function renderRoute() {
 
   const categoryMeta={
     experience:{label:'Opplevelser',symbol:'★'},
-    food:{label:'Mat',symbol:'●'},
-    hotel:{label:'Hotell',symbol:'■'}
+    food:{label:'Mat',symbol:'●'}
+  };
+
+  const familyFoodPrice=(x)=>{
+    if(!Array.isArray(x.familyEstimateYen)) return '';
+    const [lo,hi]=x.familyEstimateYen;
+    return lo===hi ? dualFromJpy(lo,fx) : `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
   };
 
   const addPoiMarkers=()=>{
-    for(const poi of mapPois.pois){
-      const meta=categoryMeta[poi.category]||categoryMeta.experience;
+    for(const p of mappablePlaces){
       const el=document.createElement('button');
       el.type='button';
-      el.className=`map-poi-dot ${poi.category}`;
-      el.textContent=meta.symbol;
-      el.setAttribute('aria-label',poi.name);
-      const extra=poi.category==='food'
-        ? `<p><strong>${poi.detail||'Restaurant'}</strong>${poi.priority?` · ${poi.priority}`:''}</p>`
-        : '';
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'290px'}).setHTML(`
-        <div class="map-popup"><div class="meta">${meta.label} · ${poi.area||''}</div><h3>${poi.name}</h3>${extra}<a href="${poi.href||'#'}">Se mer →</a></div>`);
-      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([poi.lng,poi.lat]).setPopup(popup);
-      if(!markerGroups[poi.category]) markerGroups[poi.category]=[];
-      markerGroups[poi.category].push(marker);
-      if(layerState[poi.category]) marker.addTo(map);
+      el.className='map-poi-dot experience';
+      el.textContent=categoryMeta.experience.symbol;
+      el.setAttribute('aria-label',p.name);
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'310px'}).setHTML(`
+        <div class="map-popup">
+          <div class="meta">${p.type} · ${p.area}</div>
+          <h3>${p.name}</h3>
+          <p><strong>${p.simple}</strong></p>
+          <p class="small">${p.why}</p>
+          <a href="place.html?id=${encodeURIComponent(p.id)}">Se stedet →</a>
+        </div>`);
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
+      markerGroups.experience.push(marker);
+      if(layerState.experience) marker.addTo(map);
+    }
+
+    for(const x of mappableFood){
+      const el=document.createElement('button');
+      el.type='button';
+      el.className='map-poi-dot food';
+      el.textContent=categoryMeta.food.symbol;
+      el.setAttribute('aria-label',x.name);
+      const family=familyFoodPrice(x);
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'330px'}).setHTML(`
+        <div class="map-popup">
+          <div class="meta">${x.role} · ${x.area}</div>
+          <h3>${x.name}</h3>
+          <p><strong>${x.dish}</strong> · ${x.priority}</p>
+          <p class="small">${x.why}</p>
+          ${family?`<p class="map-food-price"><span>2 voksne + 2 barn</span><strong>${family}</strong></p>`:''}
+          <a href="food.html#food-${encodeURIComponent(x.id)}">Se restaurantkortet →</a>
+        </div>`);
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
+      markerGroups.food.push(marker);
+      if(layerState.food) marker.addTo(map);
     }
   };
 
@@ -351,16 +380,14 @@ async function renderRoute() {
     if(!toolbar) return;
     const counts={
       stations:new Set(transport.legs.flatMap(l=>l.stations.map(s=>s.name))).size,
-      experience:mapPois.pois.filter(p=>p.category==='experience').length,
-      food:mapPois.pois.filter(p=>p.category==='food').length,
-      hotel:mapPois.pois.filter(p=>p.category==='hotel').length
+      experience:mappablePlaces.length,
+      food:mappableFood.length
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
       <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Stasjoner <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
-      <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false" ${counts.hotel?'':'disabled'}>Hotell <b>${counts.hotel}</b></button>
       <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>
       <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
     toolbar.addEventListener('click',e=>{
@@ -528,7 +555,7 @@ async function renderFood() {
     const nok=lo===hi?nokLo:`${nokLo}–${nokHi}`;
     return `<strong>${yen}</strong><small>ca. ${nok}</small>`;
   };
-  const card=(x)=>`<article class="food-card">
+  const card=(x)=>`<article class="food-card" id="food-${x.id}">
     <div class="food-card-head">
       <span class="food-role">${x.role}</span>
       ${priorityBadge(x.priority)}
