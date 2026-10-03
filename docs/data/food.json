@@ -381,7 +381,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4.4,
+        "count": 966,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Kikunoi+Honten+Kyoto"
+      },
       "tripadvisor": {
         "score": 4.3,
         "count": 316,
@@ -492,7 +497,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4.3,
+        "count": 1914,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Omen+Ginkakuji+Kyoto"
+      },
       "tripadvisor": {
         "score": 4.4,
         "count": 330,
@@ -545,7 +555,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4.4,
+        "count": 1329,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta"
+      },
       "tripadvisor": {
         "score": 4.4,
         "count": 838,
@@ -598,7 +613,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4.2,
+        "count": 1098,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Hiraso+Nara+Kakinoha+Sushi"
+      },
       "tripadvisor": {
         "score": 4,
         "count": 109,
@@ -760,7 +780,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4,
+        "count": 2935,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Micchan+Sohonten+Hatchobori+Hiroshima"
+      },
       "tripadvisor": {
         "score": 4.1,
         "count": 329,
@@ -865,7 +890,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4.2,
+        "count": 4113,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Anagomeshi+Ueno+Miyajimaguchi"
+      },
       "tripadvisor": {
         "score": 4.3,
         "count": 508,
@@ -1028,7 +1058,12 @@
     },
     "ratings": {
       "checked": "2026-10-03",
-      "google": null,
+      "google": {
+        "score": 4.3,
+        "count": 4376,
+        "sourceNote": "Google-score gjengitt av Wanderlog",
+        "url": "https://www.google.com/maps/search/?api=1&query=Takoyaki+Wanaka+Sennichimae+Honten+Osaka"
+      },
       "tripadvisor": {
         "score": 4.2,
         "count": 325,
