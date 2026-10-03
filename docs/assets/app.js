@@ -9,7 +9,7 @@ const dualRangeFromNok = (range,fx) => `${fmtNok(range[0])}–${fmtNok(range[1])
 const dualMoneyHtml = (primary,secondary) => `<span class="money-dual"><span>${primary}</span><small>ca. ${secondary}</small></span>`;
 
 async function json(path) {
-  const r = await fetch(path);
+  const r = await fetch(path, {cache:'no-store'});
   if (!r.ok) throw new Error(`Kunne ikke hente ${path}`);
   return r.json();
 }
