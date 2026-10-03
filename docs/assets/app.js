@@ -90,12 +90,28 @@ async function renderRoute() {
   map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-left');
 
   map.on('load', ()=>{
-    // Keep the geography, roads and land/water styling, but remove all
-    // provider text labels. Our route labels below are the only place names.
+    // Localise ordinary map labels globally:
+    // Norwegian when available, then English, then romanised/Latin,
+    // and only then the local name as a final fallback.
     const style = map.getStyle();
+    const preferredName = [
+      'coalesce',
+      ['get','name:nb'],
+      ['get','name:en'],
+      ['get','name_en'],
+      ['get','name:latin'],
+      ['get','name']
+    ];
+    const usesNameField = (value) => {
+      if (typeof value === 'string') return /name(?::[a-z-]+|_[a-z]+)?|\{name/.test(value);
+      if (!Array.isArray(value)) return false;
+      return value.some(usesNameField);
+    };
     for (const layer of (style.layers || [])) {
-      if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
-        map.setLayoutProperty(layer.id, 'visibility', 'none');
+      const textField = layer?.layout?.['text-field'];
+      if (layer.type === 'symbol' && textField && usesNameField(textField)) {
+        map.setLayoutProperty(layer.id, 'visibility', 'visible');
+        map.setLayoutProperty(layer.id, 'text-field', preferredName);
       }
     }
 
