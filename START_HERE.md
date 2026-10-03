@@ -19,17 +19,17 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 ## Kanoniske dataeiere
 
 - `docs/data/trip.json`: reisevindu, hovedrute, budsjett og destinasjonstemaer/farger. Destinasjonsfargen er én felles identitet for rute, steder, opplevelser og mat.
-- `docs/data/places.json`: steder, forklaringer og kartposisjoner.
+- `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon og eksterne lenker.
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag.
 - `docs/data/hotels.json`: hotellkandidater, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
 - `docs/data/transport.json`: intercity-etapper, tider, priser og stasjoner.
 - `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
-- `docs/data/guide.json`: praktiske råd, bookingradar, bilder for steder, ord og mediekoblinger.
+- `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.
 - `docs/data/prep.json`: forberedelser før turen.
 - `docs/data/fx.json`: felles planleggingskurs.
 - `docs/data/sources.json`: felles kildeliste.
 
-HTML og JavaScript er visninger av disse dataene. Ikke kopier domeneinformasjon inn i en ny fil bare fordi en ny visning trenger den.
+HTML og JavaScript er visninger av disse dataene. Ikke kopier domeneinformasjon inn i en ny fil bare fordi en ny visning trenger den. `trip.json` skal referere til steder med ID og ikke duplisere navn eller koordinater som eies av `places.json`.
 
 ## Innholdskontrakt
 
@@ -67,7 +67,7 @@ Dette er en offentlig side. Bruk bare bilder med dokumentert gjenbruksrett:
 - foretrekk Wikimedia Commons-bilder med eksplisitt fri lisens, CC0/public domain eller prosjektets egne bilder;
 - ikke kopier bilder fra Google Maps, Booking.com, Tripadvisor, Instagram, hotell-/restaurantnettsteder eller andre nettsider bare fordi de er offentlig synlige;
 - «offisiell nettside» betyr ikke automatisk at bildet kan gjenbrukes;
-- hvert bilde skal ha kilde, kreditering, lisens og lisenslenke i dataene, og krediteringen skal vises i UI-et der bildet brukes;
+- lisensierte bilder bruker `image.type: "licensed"` og skal ha kilde, kreditering, lisens og lisenslenke; AI-illustrasjoner bruker `image.type: "ai"`, lagres lokalt og merkes tydelig som AI-generert i UI-et;
 - hvert sted skal som hovedregel ha et eget, representativt bilde. Ikke gjenbruk et områdebilde på et konkret museum/slott/helligdom bare som fallback.
 
 Dersom gjenbruksretten er uklar, skal bildet ikke brukes.
