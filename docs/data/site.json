@@ -1,5 +1,5 @@
 {
-  "version": "0.10.1",
+  "version": "0.10.2",
   "released": "3. okt. 2026",
-  "note": "Route map now derives restaurants and attractions directly from canonical food and place detail data"
+  "note": "Food is now a compact index with one generic restaurant detail view backed by canonical food.json data"
 }
