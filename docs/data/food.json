@@ -20,7 +20,12 @@
     "website": "https://www.kyubey.jp/en/shoplist/ginza/",
     "source": "https://www.kyubey.jp/en/shoplist/ginza/",
     "sourceLabel": "Offisiell meny",
-    "note": "Dette er et av stedene vi velger for restauranten i seg selv. Lunsj gir klart bedre kost/nytte enn middag."
+    "note": "Dette er et av stedene vi velger for restauranten i seg selv. Lunsj gir klart bedre kost/nytte enn middag.",
+    "map": {
+      "lng": 139.761224,
+      "lat": 35.668633,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "uobei-shibuya",
@@ -43,7 +48,12 @@
     "website": "https://www.uobei.info/",
     "source": "https://www.uobei.info/",
     "sourceLabel": "Uobei – offisiell side",
-    "note": "Nedgradert fra «må prøve»: konseptet er morsomt, men høyhastighets levering er ikke unikt nok til å gjøre dette til et destinasjonsmåltid."
+    "note": "Nedgradert fra «må prøve»: konseptet er morsomt, men høyhastighets levering er ikke unikt nok til å gjøre dette til et destinasjonsmåltid.",
+    "map": {
+      "lng": 139.697921,
+      "lat": 35.659435,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "tsujihan-nihonbashi",
@@ -66,7 +76,12 @@
     "website": "https://www.tsujihan-jp.com/",
     "source": "https://www.tsujihan-jp.com/",
     "sourceLabel": "Offisiell meny",
-    "note": "Sterk kandidat når vi vil bruke pengene på et annet stort måltid samme dag."
+    "note": "Sterk kandidat når vi vil bruke pengene på et annet stort måltid samme dag.",
+    "map": {
+      "lng": 139.771577,
+      "lat": 35.680717,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "gyukatsu-motomura-akihabara",
@@ -89,7 +104,12 @@
     "website": "https://www.gyukatsu-motomura.com/?stt_lang=en",
     "source": "https://www.gyukatsu-motomura.com/?stt_lang=en",
     "sourceLabel": "Offisiell side",
-    "note": "Beholdes fordi det gir variasjon fra sjømat og nudler."
+    "note": "Beholdes fordi det gir variasjon fra sjømat og nudler.",
+    "map": {
+      "lng": 139.77162,
+      "lat": 35.69773,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "maisen-aoyama",
@@ -112,7 +132,12 @@
     "website": "https://mai-sen.com/restaurant/aoyama/",
     "source": "https://mai-sen.com/restaurant/aoyama/",
     "sourceLabel": "Offisiell restaurantmeny",
-    "note": "Tonkatsu Narikura er bevisst ikke valgt som familiekandidat fordi barn under 12 ikke tillates etter dagens regler."
+    "note": "Tonkatsu Narikura er bevisst ikke valgt som familiekandidat fordi barn under 12 ikke tillates etter dagens regler.",
+    "map": {
+      "lng": 139.71153,
+      "lat": 35.66797,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "rokurinsha-tokyo-station",
@@ -135,7 +160,12 @@
     "website": "https://rokurinsha.com/en/menu/",
     "source": "https://rokurinsha.com/en/menu/",
     "sourceLabel": "Offisiell meny",
-    "note": "Bra eksempel på et måltid som både er matopplevelse og løser logistikk."
+    "note": "Bra eksempel på et måltid som både er matopplevelse og løser logistikk.",
+    "map": {
+      "lng": 139.76795,
+      "lat": 35.6804,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "kikunoi-honten",
@@ -158,7 +188,12 @@
     "website": "https://kikunoi.jp/restaurant/",
     "source": "https://kikunoi.jp/restaurant/",
     "sourceLabel": "Kikunoi – offisiell meny",
-    "note": "Splurge-valg. Dette konkurrerer om budsjettet med Kyubey; vi trenger ikke nødvendigvis gjøre begge."
+    "note": "Splurge-valg. Dette konkurrerer om budsjettet med Kyubey; vi trenger ikke nødvendigvis gjøre begge.",
+    "map": {
+      "lng": 135.7820562,
+      "lat": 35.0014754,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "muge-kikunoi",
@@ -181,7 +216,12 @@
     "website": "https://kikunoi.jp/restaurant/muge",
     "source": "https://kikunoi.jp/en/",
     "sourceLabel": "Kikunoi – offisiell informasjon",
-    "note": "Et reelt alternativ til Honten, ikke noe vi trenger i tillegg til Honten."
+    "note": "Et reelt alternativ til Honten, ikke noe vi trenger i tillegg til Honten.",
+    "map": {
+      "lng": 135.780686,
+      "lat": 35.001862,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "omen-ginkakuji",
@@ -204,7 +244,12 @@
     "website": "https://omen.co.jp/pages/shops",
     "source": "https://omen.co.jp/pages/menus",
     "sourceLabel": "Offisiell meny – sep. 2026",
-    "note": "Beholdes fordi både stedet og plasseringen gir mening."
+    "note": "Beholdes fordi både stedet og plasseringen gir mening.",
+    "map": {
+      "lng": 135.7950625,
+      "lat": 35.0263125,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "katsukura-porta",
@@ -227,7 +272,12 @@
     "website": "https://www.katsukura.jp/shops/porta/",
     "source": "https://www.katsukura.jp/shops/porta/",
     "sourceLabel": "Offisiell filialside",
-    "note": "Dette er akkurat typen backup vi bør ha noen få av – men ikke fylle listen med."
+    "note": "Dette er akkurat typen backup vi bør ha noen få av – men ikke fylle listen med.",
+    "map": {
+      "lng": 135.758682,
+      "lat": 34.985855,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "hiraso-nara",
@@ -250,7 +300,12 @@
     "website": "https://hiraso.jp/shop/shop-nara/",
     "source": "https://hiraso.jp/shop/shop-nara/nara-menu/",
     "sourceLabel": "Offisiell meny – prisendret sep. 2026",
-    "note": "Ny kandidat og et bedre eksempel på hvorfor matlisten bør følge stedene vi faktisk besøker."
+    "note": "Ny kandidat og et bedre eksempel på hvorfor matlisten bør følge stedene vi faktisk besøker.",
+    "map": {
+      "lng": 135.830463,
+      "lat": 34.680106,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "tamagoya-himeji",
@@ -273,7 +328,12 @@
     "website": "https://tamagoya-funclub.com/",
     "source": "https://tamagoya-funclub.com/menu/",
     "sourceLabel": "Offisiell meny",
-    "note": "Ny hovedkandidat i Himeji."
+    "note": "Ny hovedkandidat i Himeji.",
+    "map": {
+      "lng": 134.692557,
+      "lat": 34.8375909,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "menme-himeji",
@@ -295,7 +355,12 @@
     "maps": "https://www.google.com/maps/search/?api=1&query=Sanuki+Udon+Menme+Himeji",
     "source": "https://tabelog.com/en/hyogo/A2805/A280501/28005755/",
     "sourceLabel": "Tabelog – gjeldende butikkinfo",
-    "note": "Nedgradert fra sterk kandidat til backup."
+    "note": "Nedgradert fra sterk kandidat til backup.",
+    "map": {
+      "lng": 134.691913,
+      "lat": 34.833654,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "micchan-hatchobori",
@@ -318,7 +383,12 @@
     "website": "https://www.okonomi.co.jp/",
     "source": "https://tabelog.com/en/hiroshima/A3401/A340108/34000256/dtlmenu/",
     "sourceLabel": "Offisiell Tabelog-meny – apr. 2026",
-    "note": "Ny hovedkandidat for Hiroshima-okonomiyaki."
+    "note": "Ny hovedkandidat for Hiroshima-okonomiyaki.",
+    "map": {
+      "lng": 132.463036,
+      "lat": 34.396106,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "nagataya-hiroshima",
@@ -340,7 +410,12 @@
     "maps": "https://www.google.com/maps/search/?api=1&query=Nagataya+Hiroshima",
     "source": "https://tabelog.com/hiroshima/A3401/A340116/34010875/dtlmenu/",
     "sourceLabel": "Gjeldende meny – apr. 2026",
-    "note": "Nedgradert fra «må prøve» fordi retten er målet; Micchan er den sterkere restaurantfortellingen."
+    "note": "Nedgradert fra «må prøve» fordi retten er målet; Micchan er den sterkere restaurantfortellingen.",
+    "map": {
+      "lng": 132.454854,
+      "lat": 34.393964,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "anagomeshi-ueno",
@@ -363,7 +438,12 @@
     "website": "https://www.anagomeshi.com/",
     "source": "https://www.anagomeshi.com/syokudo.html",
     "sourceLabel": "Offisiell meny",
-    "note": "Beholdes som et av de mest overbevisende «må prøve»-valgene."
+    "note": "Beholdes som et av de mest overbevisende «må prøve»-valgene.",
+    "map": {
+      "lng": 132.303515,
+      "lat": 34.311507,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "kakiya-miyajima",
@@ -386,7 +466,12 @@
     "website": "https://www.kaki-ya.jp/",
     "source": "https://www.kaki-ya.jp/foof",
     "sourceLabel": "Offisiell meny",
-    "note": "Ny kandidat som gjør Miyajima-dagen gastronomisk tydeligere."
+    "note": "Ny kandidat som gjør Miyajima-dagen gastronomisk tydeligere.",
+    "map": {
+      "lng": 132.3217038,
+      "lat": 34.2985395,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "ajinoya-honten",
@@ -409,7 +494,12 @@
     "website": "https://ajinoya-okonomiyaki.com/en/",
     "source": "https://ajinoya-okonomiyaki.com/en/menu/setMenu.php",
     "sourceLabel": "Offisiell 4-personers meny",
-    "note": "Beholdes som hovedvalg. CHIBO fjernes fra kortlisten fordi det blir redundant."
+    "note": "Beholdes som hovedvalg. CHIBO fjernes fra kortlisten fordi det blir redundant.",
+    "map": {
+      "lng": 135.500954,
+      "lat": 34.668052,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "wanaka-sennichimae",
@@ -432,7 +522,12 @@
     "website": "https://takoyaki-wanaka.com/en/",
     "source": "https://takoyaki-wanaka.com/en/",
     "sourceLabel": "Offisiell side / meny",
-    "note": "Beholdes, men tydelig merket som snack – ikke middag."
+    "note": "Beholdes, men tydelig merket som snack – ikke middag.",
+    "map": {
+      "lng": 135.50123,
+      "lat": 34.66628,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "kushikatsu-daruma-dotonbori",
@@ -455,7 +550,12 @@
     "website": "https://www.kushikatu-daruma.com/location/doutonbori",
     "source": "https://www.kushikatu-daruma.com/location/doutonbori",
     "sourceLabel": "Offisiell filialside",
-    "note": "Ny kandidat og et godt eksempel på «kjent, men fortsatt praktisk»."
+    "note": "Ny kandidat og et godt eksempel på «kjent, men fortsatt praktisk».",
+    "map": {
+      "lng": 135.502638,
+      "lat": 34.6688351,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "endo-sushi-market",
@@ -478,7 +578,12 @@
     "website": "https://www.endo-sushi.com/",
     "source": "https://tabelog.com/en/osaka/A2701/A270108/27002698/",
     "sourceLabel": "Tabelog – offisiell butikkinfo / 2026-prisnivå",
-    "note": "Ny kandidat. Velg denne eller Kyubey hvis vi ikke vil bruke både tid og budsjett på to større sushimåltider."
+    "note": "Ny kandidat. Velg denne eller Kyubey hvis vi ikke vil bruke både tid og budsjett på to større sushimåltider.",
+    "map": {
+      "lng": 135.47938,
+      "lat": 34.68441,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "harijyu-dotonbori",
@@ -501,7 +606,12 @@
     "website": "https://www.harijyu.co.jp/shop-info/category/doutonbori/",
     "source": "https://www.harijyu.co.jp/shop-info/category/doutonbori/",
     "sourceLabel": "Offisiell meny – inkluderer 2027-relevant prisendring",
-    "note": "Ny kandidat. Første etasje har også rimeligere grill/curry hvis vi vil oppleve stedet uten full sukiyaki."
+    "note": "Ny kandidat. Første etasje har også rimeligere grill/curry hvis vi vil oppleve stedet uten full sukiyaki.",
+    "map": {
+      "lng": 135.500654,
+      "lat": 34.668694,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "tsuta-watch",
