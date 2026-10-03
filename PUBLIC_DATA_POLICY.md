@@ -23,3 +23,7 @@ Det er tillatt å vise **foreløpige planleggingsdatoer** og en foreslått reise
 Spør alltid: «Ville jeg vært komfortabel med at en tilfeldig person fant dette via Google?» Hvis svaret ikke er et klart ja, skal innholdet ikke inn i repoet.
 
 Den automatiske kontrollen i `scripts/check-public-content.mjs` er kun et ekstra sikkerhetsnett. Den erstatter ikke manuell vurdering.
+
+## AI og automatisering
+
+De samme reglene gjelder for AI-generert innhold. En agent skal aldri hente private reisedetaljer fra samtaler, minne, e-post eller andre kilder og skrive dem til dette offentlige repoet. Bare informasjon som er nødvendig for den offentlige planleggingsopplevelsen skal publiseres.
