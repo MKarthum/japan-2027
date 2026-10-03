@@ -24,9 +24,10 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Datamodell
 
-- `docs/data/trip.json` – rute, foreløpige datoer og arbeidsbudsjett
+- `docs/data/trip.json` – rute, planleggingsdatoer, budsjett og destinasjonstemaer/farger
 - `docs/data/places.json` – kanoniske steder, forklaringer og kartposisjon
 - `docs/data/food.json` – kanonisk restaurant-/matliste med prioritet, pris og kartposisjon
+- `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
 - `docs/data/guide.json` – bilder, eksterne lenker, bookingradar, transport, ordbok, etikette og mediekoblinger
 - `docs/data/sources.json` – kilder
@@ -35,6 +36,7 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Prinsipper
 
+- Destinasjonsfargen i `trip.json` gjenbrukes på rutelinjer, destinasjonskort, steder, opplevelser og mat i samme område.
 - Ingen avledet `map-pois.json`: rutekartet bygges direkte fra `places.json` og `food.json`, slik at detaljendringer slår gjennom overalt.
 - Startsiden skal være visuelt attraktiv og gi lyst til å utforske.
 - Detaljer skal ligge ett klikk ned, ikke fylle hovedoversikten.
