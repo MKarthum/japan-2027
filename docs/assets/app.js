@@ -367,7 +367,7 @@ async function renderRoute() {
           <p><strong>${x.dish}</strong> · ${x.priority}</p>
           <p class="small">${x.why}</p>
           ${family?`<p class="map-food-price"><span>2 voksne + 2 barn</span><strong>${family}</strong></p>`:''}
-          <a href="food.html#food-${encodeURIComponent(x.id)}">Se restaurantkortet →</a>
+          <a href="restaurant.html?id=${encodeURIComponent(x.id)}">Se restaurantdetaljer →</a>
         </div>`);
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.food.push(marker);
@@ -520,8 +520,8 @@ async function renderPlace() {
   document.getElementById('ac').innerHTML = p.acShadows ? '<span class="badge accent">Finnes / er relevant i Assassin’s Creed Shadows</span>' : '';
   if(img) document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${p.name}"><div class="photo-credit">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${img.license}</div>`;
   document.getElementById('external-links').innerHTML = [...(extra.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
-  const related=food.filter(x=>x.area===p.area || (p.area==='Hiroshima'&&x.area==='Miyajima')).slice(0,3);
-  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<article class="mini-card">${priorityBadge(x.priority)}<h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p><a href="${x.maps}" target="_blank" rel="noopener">Google Maps ↗</a></article>`).join('') : '<p class="small">Ingen restaurantkandidater lagt inn her ennå.</p>';
+  const related=food.filter(x=>x.status==='active' && (x.area===p.area || (p.area==='Hiroshima'&&x.area==='Miyajima'))).slice(0,4);
+  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen restaurantkandidater lagt inn her ennå.</p>';
 }
 
 async function renderPrep() {
@@ -533,77 +533,114 @@ async function renderPrep() {
 
 async function renderFood() {
   nav('food'); footer();
-  const [food,fx]=await Promise.all([json('data/food.json?v=0.10.0'),json('data/fx.json')]);
+  const [food,fx]=await Promise.all([json('data/food.json?v=0.10.2'),json('data/fx.json')]);
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
-  const areas=['Alle',...new Set(active.map(x=>x.area))];
+  const areaOrder=['Tokyo','Kyoto','Nara','Himeji','Hiroshima','Miyajima','Osaka'];
+  const areas=['Alle',...areaOrder.filter(a=>active.some(x=>x.area===a))];
   const filters=document.getElementById('food-filters');
-  const grid=document.getElementById('food-grid');
+  const list=document.getElementById('food-list');
   const order={'Må prøve':0,'Sterk kandidat':1,'Valgfri':2,'Følg med':3};
-  const priceClassText={
-    '¥':'lavt familieforbruk',
-    '¥¥':'middels familieforbruk',
-    '¥¥¥':'dyrt måltid',
-    '¥¥¥¥':'stort splurge-måltid'
-  };
+
   const familyPrice=(x)=>{
-    if(!x.familyEstimateYen) return '<strong>Pris oppdateres senere</strong>';
+    if(!Array.isArray(x.familyEstimateYen)) return 'Pris kommer';
     const [lo,hi]=x.familyEstimateYen;
     const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
     const nokLo=fmtNok(nokFromJpy(lo,fx));
     const nokHi=fmtNok(nokFromJpy(hi,fx));
     const nok=lo===hi?nokLo:`${nokLo}–${nokHi}`;
-    return `<strong>${yen}</strong><small>ca. ${nok}</small>`;
+    return `${yen}<small>ca. ${nok}</small>`;
   };
-  const card=(x)=>`<article class="food-card" id="food-${x.id}">
-    <div class="food-card-head">
-      <span class="food-role">${x.role}</span>
-      ${priorityBadge(x.priority)}
+
+  const row=(x)=>`<a class="food-index-row" href="restaurant.html?id=${encodeURIComponent(x.id)}">
+    <div class="food-index-main">
+      <div class="food-index-badges">${priorityBadge(x.priority)}<span class="food-role">${x.role}</span></div>
+      <h3>${x.name}</h3>
+      <span class="food-index-dish">${x.dish}</span>
     </div>
-    <div class="meta">${x.area}</div>
-    <h3>${x.name}</h3>
-    <div class="kicker">${x.dish}</div>
-    <p>${x.why}</p>
-    <div class="food-context">
-      <div><span>Passer med</span><strong>${x.fit}</strong></div>
-      <div><span>Prisnivå</span><strong class="food-price-class" title="${priceClassText[x.priceClass]||''}">${x.priceClass}</strong></div>
-      <div class="food-family-price"><span>2 voksne + 2 barn</span>${familyPrice(x)}</div>
-    </div>
-    <details class="food-details">
-      <summary>Pris og planlegging</summary>
-      <p><strong>Prisgrunnlag:</strong> ${x.priceBasis}</p>
-      <p><strong>Praktisk:</strong> ${x.booking}</p>
-      ${x.note?`<p>${x.note}</p>`:''}
-    </details>
-    <div class="button-row">
-      <a class="button" href="${x.maps}" target="_blank" rel="noopener">Google Maps ↗</a>
-      ${x.website?`<a class="button" href="${x.website}" target="_blank" rel="noopener">Nettside ↗</a>`:''}
-      ${x.source?`<a class="button food-source" href="${x.source}" target="_blank" rel="noopener">${x.sourceLabel||'Priskilde'} ↗</a>`:''}
-    </div>
-  </article>`;
+    <div class="food-index-fit"><span>Passer med</span><strong>${x.fit}</strong></div>
+    <div class="food-index-price"><span>${x.priceClass}</span><strong>${familyPrice(x)}</strong></div>
+    <span class="food-index-arrow" aria-hidden="true">→</span>
+  </a>`;
+
   const draw=(area='Alle')=>{
-    grid.innerHTML=active
-      .filter(x=>area==='Alle'||x.area===area)
-      .sort((a,b)=>(order[a.priority]??9)-(order[b.priority]??9))
-      .map(card).join('');
+    const visible=active.filter(x=>area==='Alle'||x.area===area);
+    const groups=area==='Alle'?areaOrder.filter(a=>visible.some(x=>x.area===a)):[area];
+    list.innerHTML=groups.map(group=>{
+      const items=visible.filter(x=>x.area===group).sort((a,b)=>(order[a.priority]??9)-(order[b.priority]??9));
+      return `<section class="food-area-group"><div class="food-area-head"><h2>${group}</h2><span>${items.length} ${items.length===1?'sted':'steder'}</span></div><div class="food-index-list">${items.map(row).join('')}</div></section>`;
+    }).join('');
   };
+
   filters.innerHTML=areas.map((a,i)=>`<button class="${i===0?'active':''}" data-area="${a}">${a}</button>`).join('');
   filters.addEventListener('click',e=>{
-    if(e.target.tagName!=='BUTTON')return;
+    if(e.target.tagName!=='BUTTON') return;
     [...filters.children].forEach(b=>b.classList.remove('active'));
     e.target.classList.add('active');
     draw(e.target.dataset.area);
   });
+
   const destinations=active.filter(x=>x.role==='Destinasjonsmåltid').length;
   const summary=document.getElementById('food-summary');
-  if(summary) summary.innerHTML=`<strong>${active.length} kuraterte kandidater</strong><span>${destinations} destinasjonsmåltider · ${areas.length-1} områder · prisestimat for 2 voksne + 2 barn</span>`;
+  if(summary) summary.innerHTML=`<strong>${active.length} kuraterte kandidater</strong><span>${destinations} destinasjonsmåltider · detaljene ligger ett klikk ned</span>`;
+
   const watchlist=document.getElementById('food-watchlist');
   if(watchlist){
-    watchlist.innerHTML=watch.length?watch.map(x=>`<article class="food-watch-card"><div><span class="food-role">${x.role}</span><h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p><p class="small">${x.booking}</p></div><div class="button-row"><a class="button" href="${x.source}" target="_blank" rel="noopener">${x.sourceLabel} ↗</a></div></article>`).join(''):'';
+    watchlist.innerHTML=watch.length?watch.map(x=>`<a class="food-watch-card" href="restaurant.html?id=${encodeURIComponent(x.id)}"><div><span class="food-role">${x.role}</span><h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p></div><span class="food-index-arrow" aria-hidden="true">→</span></a>`).join(''):'';
   }
   const fxNote=document.getElementById('food-fx-note');
-  if(fxNote) fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}). Drikke er normalt ikke inkludert.`;
+  if(fxNote) fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}).`;
   draw();
+}
+
+async function renderRestaurant() {
+  nav('food'); footer();
+  const [food,fx]=await Promise.all([json('data/food.json?v=0.10.2'),json('data/fx.json')]);
+  const id=new URLSearchParams(location.search).get('id');
+  const x=food.find(item=>item.id===id);
+  if(!x){
+    document.title='Restaurant ikke funnet · Japan 2027';
+    document.querySelector('main').innerHTML='<div class="eyebrow">Mat</div><h1>Restaurant ikke funnet</h1><p class="lede">Denne restaurant-ID-en finnes ikke i den kuraterte listen.</p><p><a href="food.html">← Tilbake til matoversikten</a></p>';
+    return;
+  }
+
+  document.title=`${x.name} · Japan 2027`;
+  document.getElementById('restaurant-area').textContent=`${x.area} · ${x.role}`;
+  document.getElementById('restaurant-name').textContent=x.name;
+  document.getElementById('restaurant-dish').textContent=x.dish;
+  document.getElementById('restaurant-priority').innerHTML=priorityBadge(x.priority);
+  document.getElementById('restaurant-why').textContent=x.why;
+  document.getElementById('restaurant-fit').textContent=x.fit;
+  document.getElementById('restaurant-price-class').textContent=x.priceClass;
+
+  const price=document.getElementById('restaurant-family-price');
+  if(Array.isArray(x.familyEstimateYen)){
+    const [lo,hi]=x.familyEstimateYen;
+    const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
+    const nokLo=fmtNok(nokFromJpy(lo,fx));
+    const nokHi=fmtNok(nokFromJpy(hi,fx));
+    const nok=lo===hi?nokLo:`${nokLo}–${nokHi}`;
+    price.innerHTML=`<strong>${yen}</strong><small>ca. ${nok}</small>`;
+  } else {
+    price.innerHTML='<strong>Ikke avklart</strong>';
+  }
+
+  document.getElementById('restaurant-price-basis').textContent=x.priceBasis||'';
+  document.getElementById('restaurant-booking').textContent=x.booking||'';
+  document.getElementById('restaurant-note').textContent=x.note||'';
+  document.getElementById('restaurant-fx-note').textContent=`NOK-estimatet bruker planleggingskurs ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}).`;
+
+  const links=[
+    x.maps?`<a class="button primary" href="${x.maps}" target="_blank" rel="noopener">Google Maps ↗</a>`:'',
+    x.website?`<a class="button" href="${x.website}" target="_blank" rel="noopener">Nettside ↗</a>`:'',
+    x.source?`<a class="button" href="${x.source}" target="_blank" rel="noopener">${x.sourceLabel||'Kilde'} ↗</a>`:''
+  ].filter(Boolean);
+  document.getElementById('restaurant-links').innerHTML=links.join('');
+
+  const alternatives=food.filter(item=>item.status==='active'&&item.id!==x.id&&item.area===x.area).slice(0,4);
+  document.getElementById('restaurant-alternatives').innerHTML=alternatives.length
+    ? alternatives.map(item=>`<a class="restaurant-alt" href="restaurant.html?id=${encodeURIComponent(item.id)}"><span>${item.role}</span><strong>${item.name}</strong><small>${item.dish}</small></a>`).join('')
+    : '<p class="small">Ingen andre aktive kandidater i dette området akkurat nå.</p>';
 }
 
 async function renderPractical() {
