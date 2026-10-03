@@ -234,3 +234,20 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .stat .money-dual>small{font-size:.95rem;margin-top:3px}
 .footer-fx{opacity:.9}
 .fx-note{margin-top:12px}
+
+/* v0.9: individual place identity + persistent category labels */
+.place-media{position:relative;overflow:hidden}
+.place-media img{width:100%;height:215px;object-fit:cover}
+.place-taxonomy{
+  position:absolute;left:12px;right:12px;top:12px;
+  display:flex;justify-content:space-between;gap:8px;pointer-events:none
+}
+.area-pill,.type-pill{
+  display:inline-flex;align-items:center;
+  padding:6px 9px;border-radius:999px;
+  font-size:.72rem;font-weight:850;letter-spacing:.055em;text-transform:uppercase;
+  backdrop-filter:blur(8px);box-shadow:0 3px 12px rgba(0,0,0,.18)
+}
+.area-pill{background:rgba(180,58,48,.92);color:#fff}
+.type-pill{background:rgba(255,253,248,.93);color:var(--ink);border:1px solid rgba(255,255,255,.75)}
+.place-card .visual-card-body{padding-top:17px}
