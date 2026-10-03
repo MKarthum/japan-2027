@@ -25,9 +25,12 @@ uniqueIds(places, 'places.json');
 
 for (const item of food.filter(x => x.status === 'active')) {
   if (!validMap(item)) errors.push(`food.json: aktiv kandidat ${item.id} mangler gyldig map.lat/map.lng`);
+  if (!item.factsChecked) errors.push(`food.json: ${item.id} mangler factsChecked`);
   if (!Array.isArray(item.orderRecommendations) || item.orderRecommendations.length === 0) errors.push(`food.json: ${item.id} mangler bestillingsforslag`);
   if (!item.links?.googleMaps) errors.push(`food.json: ${item.id} mangler Google Maps-lenke`);
+  if (!item.links?.menu) errors.push(`food.json: ${item.id} mangler menylenke`);
   if (!item.ratings?.checked) errors.push(`food.json: ${item.id} mangler dato for ratingkontroll`);
+  if (!item.ratings?.google?.url || !Number.isFinite(item.ratings?.google?.score)) errors.push(`food.json: ${item.id} mangler verifisert Google-rating`);
   if (!item.ratings?.tripadvisor?.url || !Number.isFinite(item.ratings?.tripadvisor?.score)) errors.push(`food.json: ${item.id} mangler verifisert Tripadvisor-rating`);
   if (item.image && (!item.image.url || !item.image.source || !item.image.credit || !item.image.license)) errors.push(`food.json: ${item.id} har bilde uten full kreditering/lisens`);
 }
@@ -54,7 +57,7 @@ if (app.includes('map-pois.json') || app.includes('mapPois')) {
   errors.push('app.js refererer fortsatt til avledet map-pois-data');
 }
 if (!app.includes("json('data/food.json')") || !app.includes("json('data/places.json')")) {
-  errors.push('appen henter ikke eksplisitt de kanoniske food/places-kildene');
+  errors.push('appen henter ikke eksplisitt food.json og places.json');
 }
 
 if (errors.length) {
