@@ -322,3 +322,52 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .food-context{grid-template-columns:1fr 1fr}
   .food-watch-card{flex-direction:column;align-items:stretch}
 }
+
+
+/* v0.10.2: compact food index + generic restaurant detail */
+.food-area-group{margin:30px 0 0}
+.food-area-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
+.food-area-head h2{margin:0}.food-area-head span{color:var(--muted);font-size:.82rem}
+.food-index-list{display:grid;gap:8px}
+.food-index-row{
+  display:grid;grid-template-columns:minmax(0,1.6fr) minmax(180px,.9fr) minmax(135px,.55fr) auto;
+  gap:16px;align-items:center;text-decoration:none;color:inherit;background:var(--paper);
+  border:1px solid var(--line);border-radius:14px;padding:13px 15px;transition:border-color .16s ease,background .16s ease
+}
+.food-index-row:hover{border-color:#bdb5a9;background:#fff}
+.food-index-main{min-width:0}.food-index-main h3{margin:4px 0 1px;font-size:1rem}
+.food-index-badges{display:flex;gap:6px;flex-wrap:wrap}.food-index-badges .priority,.food-index-badges .food-role{font-size:.66rem;padding:4px 7px}
+.food-index-dish{display:block;color:var(--muted);font-size:.83rem}
+.food-index-fit span,.food-index-price>span{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.06em;font-weight:750}
+.food-index-fit strong{display:block;font-size:.78rem;line-height:1.3;margin-top:3px}
+.food-index-price{text-align:right}.food-index-price>span{font-size:.86rem;color:var(--accent2);letter-spacing:.08em}
+.food-index-price strong{display:block;font-size:.82rem;margin-top:2px}.food-index-price small{display:block;color:var(--muted);font-size:.7rem}
+.food-index-arrow{font-size:1.25rem;color:var(--accent2);font-weight:700}
+.food-watch-card{text-decoration:none;color:inherit}
+.restaurant-detail-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:32px;align-items:end}
+.restaurant-priority{margin-top:16px}
+.restaurant-price-panel{background:var(--ink);color:#fff;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:4px}
+.restaurant-price-panel>span{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.66;font-weight:800;margin-top:10px}
+.restaurant-price-panel>span:first-child{margin-top:0}
+.restaurant-price-panel>#restaurant-price-class{font-size:1.55rem;letter-spacing:.08em}
+.restaurant-family-price strong{display:block;font-size:1.5rem;line-height:1.1}.restaurant-family-price small{display:block;opacity:.78;margin-top:4px}
+.restaurant-price-panel>small{opacity:.62;font-size:.7rem;margin-top:10px}
+.restaurant-section-label{margin-top:34px}
+.restaurant-plan-card h3{margin-top:20px}.restaurant-plan-card h3:first-child{margin-top:0}
+.restaurant-plan-card p{margin:.3em 0;color:var(--muted)}
+.restaurant-alt-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.restaurant-alt{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:13px}
+.restaurant-alt:hover{border-color:#bdb5a9;background:#fff}.restaurant-alt span{color:var(--accent);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+.restaurant-alt strong{font-size:.9rem}.restaurant-alt small{color:var(--muted);font-size:.76rem}
+.detail-back{margin:0 0 20px}
+@media(max-width:900px){
+  .food-index-row{grid-template-columns:minmax(0,1.4fr) minmax(150px,.8fr) minmax(125px,.55fr) auto}
+  .restaurant-detail-hero{grid-template-columns:1fr}
+  .restaurant-alt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+  .food-index-row{grid-template-columns:1fr auto;gap:9px}
+  .food-index-fit{grid-column:1}.food-index-price{grid-column:1;text-align:left}
+  .food-index-arrow{grid-column:2;grid-row:1/4;align-self:center}
+  .restaurant-alt-grid{grid-template-columns:1fr}
+}
