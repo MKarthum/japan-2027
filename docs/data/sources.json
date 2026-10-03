@@ -118,5 +118,45 @@
     "title": "Jinshin-visualization – JR West railway GeoJSON",
     "url": "https://github.com/yutyan0119/Jinshin-visualization",
     "use": "Publiserte JR West-stasjons- og skinnekoordinater brukt til å forankre Shin-Osaka–Osaka-delen."
+  },
+  {
+    "title": "Odakyu – Romancecar",
+    "url": "https://odakyu-global.com/passes/romancecar/",
+    "use": "Reisetid, billettype og voksen-/barnepriser Shinjuku–Hakone-Yumoto."
+  },
+  {
+    "title": "JR Central – Adults and Children",
+    "url": "https://global.jr-central.co.jp/en/tickets/type/adults_children.html",
+    "use": "Regler for voksen- og barnebilletter på JR."
+  },
+  {
+    "title": "Ekitan – Odawara to Kyoto",
+    "url": "https://ekitan.com/en/planner/shinkansen/section/odawara/kyoto",
+    "use": "Representative Shinkansen-tider og priser for Hakone–Kyoto-etappen."
+  },
+  {
+    "title": "Ekitan – Kyoto to Himeji",
+    "url": "https://ekitan.com/en/planner/shinkansen/section/kyoto/himeji",
+    "use": "Representative Shinkansen-tider og priser Kyoto–Himeji."
+  },
+  {
+    "title": "Ekitan – Himeji to Hiroshima",
+    "url": "https://ekitan.com/en/planner/shinkansen/section/himeji/hiroshima",
+    "use": "Representative Shinkansen-tider og priser Himeji–Hiroshima."
+  },
+  {
+    "title": "Ekitan – Hiroshima to Shin-Osaka",
+    "url": "https://ekitan.com/en/planner/shinkansen/section/hiroshima/shin-osaka",
+    "use": "Representative Shinkansen-tider og priser Hiroshima–Shin-Osaka."
+  },
+  {
+    "title": "JR East timetable – Hikari 641",
+    "url": "https://timetables.jreast.co.jp/en/2610/train/025/026641.html",
+    "use": "Representative stoppetider Odawara–Nagoya–Gifu-Hashima–Maibara–Kyoto."
+  },
+  {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/",
+    "use": "Koordinatkontroll for offentlige severdigheter der offisielle sider ikke oppgir kartkoordinater."
   }
 ]
