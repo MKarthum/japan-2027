@@ -1,8 +1,8 @@
 {
   "asOf": "2026-10-03",
   "currency": "JPY",
-  "fareBasis": "Planestimat med representative tog og reservert ordinært sete der relevant. Prisene må sjekkes på nytt for 2027.",
-  "childNote": "2V+2B betyr to voksenbilletter og to barnebilletter. Etter dagens JR-regler er child normalt 6–11 år; 12+ betaler normalt voksenpris.",
+  "fareBasis": "Representative pris- og tidsanslag for de planlagte etappene, kontrollert 3. oktober 2026. Bekreft pris og avgang før bestilling.",
+  "childNote": "2V+2B betyr to voksenbilletter og to barnebilletter. JR-reglene kontrollert 3. oktober 2026 oppgir normalt barnepris for 6–11 år; fra 12 år brukes normalt voksenpris.",
   "legs": [
     {
       "id": "tokyo-hakone",
@@ -140,7 +140,7 @@
       "toRouteId": "hiroshima",
       "from": "Himeji",
       "to": "Hiroshima",
-      "service": "Hikari 731 som representativt eksempel",
+      "service": "Hikari-forbindelse via Sanyo Shinkansen",
       "durationMin": 61,
       "fare": {
         "adultYen": 8440,
@@ -229,5 +229,5 @@
       "source": "https://ekitan.com/en/planner/shinkansen/section/hiroshima/shin-osaka"
     }
   ],
-  "stationNote": "Kartet viser utvalgte stopp på representative forbindelser, ikke hver stasjon langs den fysiske jernbanelinjen. Tidene er ca.-tider fra starten av den aktuelle etappen."
+  "stationNote": "Kartet viser utvalgte stopp på representative forbindelser. Tidene er omtrentlige reisetider fra starten av hver etappe."
 }
