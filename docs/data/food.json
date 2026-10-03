@@ -1,0 +1,102 @@
+[
+  {
+    "area": "Tokyo",
+    "priority": "Må prøve",
+    "name": "Uobei Shibuya Dogenzaka",
+    "dish": "Sushi levert på «hurtigbane»",
+    "why": "Morsom og lavterskel sushiopplevelse midt i Shibuya – særlig fin som familiens første Tokyo-sushi.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Uobei+Shibuya+Dogenzaka+Tokyo",
+    "note": "Sjekk kø og åpningstider nærmere reisen."
+  },
+  {
+    "area": "Tokyo",
+    "priority": "Sterk kandidat",
+    "name": "Nihonbashi Kaisen Don Tsujihan",
+    "dish": "Kaisendon – risbolle med sjømat",
+    "why": "God måte å prøve rå og marinert sjømat uten at måltidet blir formelt sushi-omakase.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Tsujihan+Nihonbashi+Tokyo",
+    "note": "Populært sted; kø kan være en del av opplevelsen."
+  },
+  {
+    "area": "Tokyo",
+    "priority": "Sterk kandidat",
+    "name": "Gyukatsu Motomura Akihabara",
+    "dish": "Gyukatsu – sprøstekt oksekotelett",
+    "why": "Passer naturlig inn i Akihabara-dagen og gir et tydelig japansk kjøttmåltid som er enkelt for barn å forstå.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Gyukatsu+Motomura+Akihabara+Tokyo",
+    "note": "Velg filial etter hvor vi faktisk er den dagen."
+  },
+  {
+    "area": "Kyoto",
+    "priority": "Må prøve",
+    "name": "Omen Ginkaku-ji",
+    "dish": "Udon med dip, grønnsaker og tilbehør",
+    "why": "En Kyoto-klassiker som passer svært godt sammen med tempelområdet og er oppført som familievennlig.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Omen+Ginkakuji+Kyoto",
+    "website": "https://omen.co.jp/pages/shops",
+    "note": "Kan få kø; reservasjon er mulig etter dagens regler."
+  },
+  {
+    "area": "Kyoto",
+    "priority": "Valgfri",
+    "name": "Katsukura",
+    "dish": "Tonkatsu",
+    "why": "Praktisk backup når vi vil ha noe svært tilgjengelig og barnevennlig mellom mer tradisjonelle måltider.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto",
+    "note": "Velg filial etter dagsruten."
+  },
+  {
+    "area": "Himeji",
+    "priority": "Sterk kandidat",
+    "name": "Menme",
+    "dish": "Udon",
+    "why": "Ligger rett ved Himeji Castle og kan gjøre slottsstoppet til en enkel halvdag uten restaurantlogistikk.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Menme+Himeji",
+    "note": "Dagens åpningstider er hovedsakelig lunsj; må sjekkes før besøket."
+  },
+  {
+    "area": "Hiroshima",
+    "priority": "Må prøve",
+    "name": "Nagataya",
+    "dish": "Hiroshima-style okonomiyaki",
+    "why": "Hiroshimas egen variant av okonomiyaki er et måltid vi bør planlegge inn, og dette ligger svært praktisk ved Peace Park.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Nagataya+Hiroshima",
+    "note": "Regional spesialitet – dette er viktigere enn akkurat hvilken restaurant vi ender på."
+  },
+  {
+    "area": "Miyajima",
+    "priority": "Må prøve",
+    "name": "Anagomeshi Ueno",
+    "dish": "Anagomeshi – grillet havål over ris",
+    "why": "En klassisk lokal rett ved Miyajimaguchi som passer perfekt før eller etter ferga til Miyajima.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Anagomeshi+Ueno+Miyajimaguchi",
+    "note": "Ligger på fastlandssiden ved ferga, ikke ute på selve øya."
+  },
+  {
+    "area": "Osaka",
+    "priority": "Må prøve",
+    "name": "Ajinoya Honten",
+    "dish": "Osaka-style okonomiyaki",
+    "why": "Okonomiyaki er en av rettene Osaka er kjent for, og Namba-plasseringen passer en kveld rundt Dōtonbori.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Ajinoya+Honten+Osaka",
+    "note": "Sjekk kø og eventuelle reservasjonsmuligheter nærmere reisen."
+  },
+  {
+    "area": "Osaka",
+    "priority": "Må prøve",
+    "name": "Takoyaki Wanaka Namba",
+    "dish": "Takoyaki – blekksprutboller",
+    "why": "Dette skal ikke nødvendigvis være en full middag; det er en Osaka-snack vi bør spise mens vi går rundt Namba/Dōtonbori.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Takoyaki+Wanaka+Namba",
+    "note": "Best som snack/deling, ikke som stor restaurantreservasjon."
+  },
+  {
+    "area": "Osaka",
+    "priority": "Valgfri",
+    "name": "CHIBO Dōtonbori",
+    "dish": "Okonomiyaki",
+    "why": "Et lett tilgjengelig alternativ midt i Dōtonbori hvis førstevalget har for lang kø.",
+    "maps": "https://www.google.com/maps/search/?api=1&query=CHIBO+Dotonbori+Osaka",
+    "note": "Backup-alternativ – ikke verdt å bygge dagsplanen rundt."
+  }
+]
