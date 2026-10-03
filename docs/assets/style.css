@@ -105,3 +105,14 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm);
 }
 .maplibregl-ctrl-group{border-radius:10px!important;overflow:hidden}
+
+.map-error{
+  display:grid;place-items:center;text-align:center;
+  min-height:100%;padding:24px;color:#7a2922;background:#fff1ed;
+  font-weight:650;
+}
+.map-error.floating{
+  position:absolute;left:18px;right:18px;bottom:18px;min-height:0;
+  z-index:10;border:1px solid #efb9b0;border-radius:12px;
+  box-shadow:var(--shadow-sm);
+}
