@@ -113,5 +113,10 @@
     "title": "station_database – Hakone Tozan stations",
     "url": "https://github.com/Seo-4d696b75/station_database",
     "use": "Stasjonskoordinater for Odawara–Hakone-Yumoto-delen."
+  },
+  {
+    "title": "Jinshin-visualization – JR West railway GeoJSON",
+    "url": "https://github.com/yutyan0119/Jinshin-visualization",
+    "use": "Publiserte JR West-stasjons- og skinnekoordinater brukt til å forankre Shin-Osaka–Osaka-delen."
   }
 ]
