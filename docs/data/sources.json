@@ -100,13 +100,18 @@
     "use": "Åpen kartmotor brukt til å vise rutekartet."
   },
   {
-    "title": "OSM Public Transport → GeoJSON",
-    "url": "https://openstreetmap.tools/public_transport_geojson/docs",
-    "use": "Henter faktisk jernbanegeometri fra OpenStreetMap-relasjoner til rutekartet."
-  },
-  {
     "title": "Wikidata – Nozomi",
     "url": "https://www.wikidata.org/wiki/Q1193603",
     "use": "Dokumenterer OSM-relasjonen brukt for Tōkaidō/Sanyō Shinkansen-geometrien."
+  },
+  {
+    "title": "OniChase – MLIT N02-derived railway geometry",
+    "url": "https://github.com/Eigenoperator/OniChase",
+    "use": "Kilde for statisk, fysisk jernbanegeometri for Tokaido/Sanyo Shinkansen og Odakyu-linjen, bygget fra MLIT N02 2024."
+  },
+  {
+    "title": "station_database – Hakone Tozan stations",
+    "url": "https://github.com/Seo-4d696b75/station_database",
+    "use": "Stasjonskoordinater for Odawara–Hakone-Yumoto-delen."
   }
 ]
