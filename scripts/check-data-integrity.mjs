@@ -3,6 +3,8 @@ import fs from 'node:fs';
 const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
 const food = readJson('docs/data/food.json');
 const places = readJson('docs/data/places.json');
+const trip = readJson('docs/data/trip.json');
+const routeGeometry = readJson('docs/data/route-geometry.json');
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -22,6 +24,33 @@ function validMap(item) {
 
 uniqueIds(food, 'food.json');
 uniqueIds(places, 'places.json');
+
+const routeIds = new Set(trip.route.map(x => x.id));
+const themedAreas = new Set();
+for (const stop of trip.route) {
+  if (!stop.theme || !/^#[0-9A-Fa-f]{6}$/.test(stop.theme.color || '')) {
+    errors.push(`trip.json: ${stop.id} mangler gyldig theme.color`);
+  }
+  if (!Array.isArray(stop.theme?.areas) || stop.theme.areas.length === 0) {
+    errors.push(`trip.json: ${stop.id} mangler theme.areas`);
+  }
+  for (const area of stop.theme?.areas || []) {
+    if (themedAreas.has(area)) errors.push(`trip.json: området ${area} er koblet til flere destinasjonstemaer`);
+    themedAreas.add(area);
+  }
+}
+for (const dayTrip of trip.dayTrips || []) {
+  if (!dayTrip.destinationId || !routeIds.has(dayTrip.destinationId)) {
+    errors.push(`trip.json: dagstur ${dayTrip.id} mangler gyldig destinationId`);
+  }
+}
+for (const item of [...places, ...food.filter(x => x.status === 'active')]) {
+  if (!themedAreas.has(item.area)) errors.push(`${item.id}: området ${item.area} mangler destinasjonstema i trip.json`);
+}
+for (const part of routeGeometry.parts || []) {
+  if ('color' in part) errors.push(`route-geometry.json: ${part.journeyId} lagrer color; fargen skal avledes fra trip.json`);
+  if (!Number.isFinite(part.offset)) errors.push(`route-geometry.json: ${part.journeyId} mangler numerisk offset`);
+}
 
 for (const item of food.filter(x => x.status === 'active')) {
   if (!validMap(item)) errors.push(`food.json: aktiv kandidat ${item.id} mangler gyldig map.lat/map.lng`);
