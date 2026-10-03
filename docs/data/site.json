@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0",
-  "released": "3. okt. 2026 kl. 18:13",
-  "note": "Actual rail geometry with overlap handling"
+  "version": "0.6.1",
+  "released": "3. okt. 2026 kl. 19:09",
+  "note": "Static rail geometry; no runtime route API dependency"
 }
