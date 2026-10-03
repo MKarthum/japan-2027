@@ -79,28 +79,73 @@ async function renderRoute() {
     const p=places.find(p=>p.id===x.id)||x; const img=guide.images[areaImageKey(guide,p)];
     return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div></div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
   }).join('');
-  const map = L.map('map', {scrollWheelZoom:false}).setView([35.15, 137.1], 6);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-    maxZoom:20,
-    subdomains:'abcd',
-    attribution:'&copy; OpenStreetMap contributors &copy; CARTO'
-  }).addTo(map);
-  const coords = [];
-  trip.route.forEach((x,i)=>{
-    coords.push([x.lat,x.lng]);
-    L.marker([x.lat,x.lng])
-      .addTo(map)
-      .bindTooltip(x.name, {permanent:true, direction:'right', offset:[10,0], className:'route-label'})
-      .bindPopup(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`);
+
+  const map = new maplibregl.Map({
+    container:'map',
+    style:'https://tiles.openfreemap.org/styles/liberty',
+    center:[137.1,35.15],
+    zoom:5.2,
+    attributionControl:true
   });
-  trip.dayTrips.forEach(x=>{
-    L.circleMarker([x.lat,x.lng], {radius:7, weight:2, fillOpacity:.85})
-      .addTo(map)
-      .bindTooltip(x.name, {permanent:true, direction:'right', offset:[8,0], className:'route-label daytrip-label'})
-      .bindPopup(`<strong>${x.name}</strong><br>Dagstur fra ${x.base}`);
+  map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-left');
+
+  map.on('load', ()=>{
+    // Keep the geography, roads and land/water styling, but remove all
+    // provider text labels. Our route labels below are the only place names.
+    const style = map.getStyle();
+    for (const layer of (style.layers || [])) {
+      if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
+        map.setLayoutProperty(layer.id, 'visibility', 'none');
+      }
+    }
+
+    const coords = trip.route.map(x=>[x.lng,x.lat]);
+    map.addSource('journey-route', {
+      type:'geojson',
+      data:{
+        type:'Feature',
+        geometry:{type:'LineString',coordinates:coords},
+        properties:{}
+      }
+    });
+    map.addLayer({
+      id:'journey-route-line',
+      type:'line',
+      source:'journey-route',
+      layout:{'line-join':'round','line-cap':'round'},
+      paint:{'line-color':'#4f86e8','line-width':4,'line-opacity':0.78}
+    });
+
+    const bounds = new maplibregl.LngLatBounds();
+
+    trip.route.forEach((x,i)=>{
+      bounds.extend([x.lng,x.lat]);
+      const el=document.createElement('div');
+      el.className='map-stop';
+      el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${x.name}</span>`;
+      new maplibregl.Marker({element:el,anchor:'center'})
+        .setLngLat([x.lng,x.lat])
+        .setPopup(new maplibregl.Popup({offset:22}).setHTML(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`))
+        .addTo(map);
+    });
+
+    trip.dayTrips.forEach(x=>{
+      bounds.extend([x.lng,x.lat]);
+      const el=document.createElement('div');
+      el.className='map-stop daytrip';
+      el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${x.name}</span>`;
+      new maplibregl.Marker({element:el,anchor:'center'})
+        .setLngLat([x.lng,x.lat])
+        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<strong>${x.name}</strong><br>Dagstur fra ${x.base}`))
+        .addTo(map);
+    });
+
+    map.fitBounds(bounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:0});
   });
-  L.polyline(coords, {weight:4, opacity:.65}).addTo(map);
-  map.fitBounds(coords, {padding:[25,25]});
+
+  map.on('error', (event)=>{
+    console.warn('Kartfeil', event?.error || event);
+  });
 }
 
 async function renderPlaces() {
