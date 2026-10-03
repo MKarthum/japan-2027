@@ -18,10 +18,11 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 ## Kanoniske dataeiere
 
-- `docs/data/trip.json`: reisevindu, hovedrute og budsjett.
+- `docs/data/trip.json`: reisevindu, hovedrute, budsjett og destinasjonstemaer/farger. Destinasjonsfargen er én felles identitet for rute, steder, opplevelser og mat.
 - `docs/data/places.json`: steder, forklaringer og kartposisjoner.
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag.
 - `docs/data/transport.json`: intercity-etapper, tider, priser og stasjoner.
+- `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
 - `docs/data/guide.json`: praktiske råd, bookingradar, bilder for steder, ord og mediekoblinger.
 - `docs/data/prep.json`: forberedelser før turen.
 - `docs/data/fx.json`: felles planleggingskurs.
