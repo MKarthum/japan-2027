@@ -88,5 +88,15 @@
     "title": "JNTO – Japanese manners",
     "url": "https://www.japan.travel/en/guide/japanese-manners-dos-and-donts/",
     "use": "Praktisk etikette og skikker."
+  },
+  {
+    "title": "OpenFreeMap",
+    "url": "https://openfreemap.org/",
+    "use": "Åpen karttjeneste uten API-nøkkel for rutekartet; kartdata fra OpenStreetMap."
+  },
+  {
+    "title": "MapLibre GL JS",
+    "url": "https://maplibre.org/",
+    "use": "Åpen kartmotor brukt til å vise rutekartet."
   }
 ]
