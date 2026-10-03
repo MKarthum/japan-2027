@@ -36,7 +36,12 @@
     "prep": [
       "Se klipp eller filmer fra Shibuya før avreise"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 35.65949,
+      "lng": 139.70054,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "asakusa",
@@ -52,7 +57,12 @@
       "Nakamise-gaten"
     ],
     "prep": [],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 35.714444,
+      "lng": 139.796667,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "hakone",
@@ -125,7 +135,12 @@
     "prep": [
       "Lær ordet torii"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "map": {
+      "lat": 34.96754,
+      "lng": 135.77944,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "kiyomizu-dera",
@@ -143,7 +158,12 @@
     "prep": [
       "Finn stedet i AC Shadows"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "map": {
+      "lat": 34.994831,
+      "lng": 135.785003,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "kinkakuji",
@@ -160,7 +180,12 @@
     "prep": [
       "Finn stedet i AC Shadows"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "map": {
+      "lat": 35.03959,
+      "lng": 135.72951,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "arashiyama",
@@ -178,7 +203,12 @@
     "prep": [
       "Se området i AC Shadows"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "map": {
+      "lat": 35.01701,
+      "lng": 135.67169,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "nara",
@@ -214,7 +244,12 @@
     "prep": [
       "Finn stedet i AC Shadows"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "map": {
+      "lat": 34.689167,
+      "lng": 135.839722,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "himeji",
@@ -234,7 +269,12 @@
       "Finn slottet i AC Shadows",
       "Ta spill-screenshot og gjenskap bildet på reisen"
     ],
-    "acShadows": true
+    "acShadows": true,
+    "map": {
+      "lat": 34.83933,
+      "lng": 134.69402,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "osaka",
@@ -272,7 +312,12 @@
     "prep": [
       "Prøv okonomiyaki hjemme før turen"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 34.6687,
+      "lng": 135.50409,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "hiroshima",
@@ -328,7 +373,12 @@
       "Spill noen Nintendo-klassikere",
       "Legg inn billettrekningen tre måneder før ønsket dato"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 34.89261,
+      "lng": 135.78405,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "ghibli-museum",
@@ -347,7 +397,12 @@
       "Se 2–3 Ghibli-filmer før vi bestemmer oss",
       "Billetter må kjøpes på forhånd"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 35.69623,
+      "lng": 139.57045,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "teamlab",
@@ -365,7 +420,12 @@
     "prep": [
       "Se noen få bilder – men ikke spoil hele opplevelsen"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 35.66185,
+      "lng": 139.741842,
+      "showOnRouteMap": true
+    }
   },
   {
     "id": "usj",
@@ -384,6 +444,80 @@
       "Spill Mario Kart og andre Mario-spill",
       "Bestem om en hel USJ-dag er verdt tiden på en to ukers tur"
     ],
-    "acShadows": false
+    "acShadows": false,
+    "map": {
+      "lat": 34.6647,
+      "lng": 135.433,
+      "showOnRouteMap": true
+    }
+  },
+  {
+    "id": "peace-memorial-museum",
+    "name": "Hiroshima Peace Memorial Museum",
+    "area": "Hiroshima",
+    "type": "museum",
+    "simple": "Historien om atombomben og menneskene som ble rammet",
+    "description": "Museet i Peace Memorial Park dokumenterer bombingen av Hiroshima 6. august 1945, konsekvensene for byen og menneskene som levde gjennom den.",
+    "why": "Dette er den viktigste historiske delen av Hiroshima-oppholdet og bør behandles som et eget sted, ikke bare en markør på kartet.",
+    "highlights": [
+      "Personlige gjenstander og vitnesbyrd",
+      "Historisk kontekst",
+      "Peace Memorial Park rundt museet"
+    ],
+    "prep": [
+      "Forbered barna på hva museet handler om før besøket"
+    ],
+    "acShadows": false,
+    "map": {
+      "lat": 34.391472,
+      "lng": 132.453056,
+      "showOnRouteMap": true
+    }
+  },
+  {
+    "id": "itsukushima-shrine",
+    "name": "Itsukushima Shrine",
+    "area": "Hiroshima",
+    "type": "helligdom",
+    "simple": "Helligdommen bak den ikoniske torii-porten i sjøen",
+    "description": "Shinto-helligdom på Miyajima bygget over tidevannssonen, kjent for den store torii-porten som ser ut til å flyte ved høyvann.",
+    "why": "Dette er det konkrete hovedmålet på Miyajima og fortjener sin egen kanoniske stedspost.",
+    "highlights": [
+      "Den store torii-porten",
+      "Helligdommen over vannet",
+      "Tidevannet endrer opplevelsen"
+    ],
+    "prep": [
+      "Lær forskjellen mellom tempel og shinto-helligdom"
+    ],
+    "acShadows": false,
+    "map": {
+      "lat": 34.295806,
+      "lng": 132.320111,
+      "showOnRouteMap": true
+    }
+  },
+  {
+    "id": "osaka-castle",
+    "name": "Osaka Castle",
+    "area": "Osaka",
+    "type": "slott",
+    "simple": "Samuraislott midt i den moderne storbyen",
+    "description": "Osaka Castle er et av byens viktigste historiske landemerker og gir en direkte kobling mellom dagens Osaka og krigene i sen Sengoku-periode.",
+    "why": "Gir Osaka en historisk dimensjon utover mat, neonlys og Universal Studios – og en tydelig kobling til Assassin’s Creed Shadows.",
+    "highlights": [
+      "Slottstårnet",
+      "Slottsparken",
+      "Historisk kobling til Toyotomi Hideyoshi"
+    ],
+    "prep": [
+      "Finn Osaka Castle i AC Shadows"
+    ],
+    "acShadows": true,
+    "map": {
+      "lat": 34.68737,
+      "lng": 135.52586,
+      "showOnRouteMap": true
+    }
   }
 ]
