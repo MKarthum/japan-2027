@@ -1,9 +1,92 @@
 [
-  {"title":"Japan National Tourism Organization (JNTO)","url":"https://www.japan.travel/en/","use":"Offisiell turistinformasjon om regioner, severdigheter og sesonger."},
-  {"title":"Himeji Castle – offisiell side","url":"https://www.himejicastle.jp/en/","use":"Praktisk informasjon om Himeji Castle."},
-  {"title":"Japan Rail Pass","url":"https://japanrailpass.net/en/","use":"Offisielle priser og vilkår for JR Pass."},
-  {"title":"Universal Studios Japan","url":"https://www.usj.co.jp/web/en/us","use":"Offisiell informasjon om USJ og Super Nintendo World."},
-  {"title":"GitHub Pages docs","url":"https://docs.github.com/en/pages","use":"Teknisk kilde for publisering av denne nettsiden."},
-  {"title":"Ubisoft – Assassin’s Creed Shadows","url":"https://www.ubisoft.com/en-us/game/assassins-creed/shadows","use":"Offisiell informasjon om spillet og perioden det foregår i."},
-  {"title":"ESRB – Assassin’s Creed Shadows","url":"https://www.esrb.org/ratings/40886/assassins-creed-shadows/","use":"Alders- og innholdsvurdering for spillet."}
+  {
+    "title": "Japan National Tourism Organization (JNTO)",
+    "url": "https://www.japan.travel/en/",
+    "use": "Offisiell turistinformasjon om regioner, severdigheter og sesonger."
+  },
+  {
+    "title": "Himeji Castle – offisiell side",
+    "url": "https://www.himejicastle.jp/en/",
+    "use": "Praktisk informasjon om Himeji Castle."
+  },
+  {
+    "title": "Japan Rail Pass",
+    "url": "https://japanrailpass.net/en/",
+    "use": "Offisielle priser og vilkår for JR Pass."
+  },
+  {
+    "title": "Universal Studios Japan",
+    "url": "https://www.usj.co.jp/web/en/us",
+    "use": "Offisiell informasjon om USJ og Super Nintendo World."
+  },
+  {
+    "title": "GitHub Pages docs",
+    "url": "https://docs.github.com/en/pages",
+    "use": "Teknisk kilde for publisering av denne nettsiden."
+  },
+  {
+    "title": "Ubisoft – Assassin’s Creed Shadows",
+    "url": "https://www.ubisoft.com/en-us/game/assassins-creed/shadows",
+    "use": "Offisiell informasjon om spillet og perioden det foregår i."
+  },
+  {
+    "title": "ESRB – Assassin’s Creed Shadows",
+    "url": "https://www.esrb.org/ratings/40886/assassins-creed-shadows/",
+    "use": "Alders- og innholdsvurdering for spillet."
+  },
+  {
+    "title": "Nintendo Museum – official",
+    "url": "https://museum.nintendo.com/en/index.html",
+    "use": "Billettregler, trekning og besøksinformasjon."
+  },
+  {
+    "title": "SmartEX – official Shinkansen reservation",
+    "url": "https://smart-ex.jp/en/",
+    "use": "Bestilling av Tokaido/Sanyo/Kyushu Shinkansen."
+  },
+  {
+    "title": "JR East – Welcome Suica",
+    "url": "https://www.jreast.co.jp/en/multi/welcomesuica/welcomesuica.html",
+    "use": "IC-kort for lokaltransport og betaling."
+  },
+  {
+    "title": "Yamato Hands-Free Travel",
+    "url": "https://www.global-yamato.com/en/hands-free-travel/",
+    "use": "Bagasjefrakt og oppbevaring."
+  },
+  {
+    "title": "GO Taxi",
+    "url": "https://go.goinc.jp/en",
+    "use": "Taxiapp og betalingsinformasjon."
+  },
+  {
+    "title": "teamLab Borderless Tokyo",
+    "url": "https://www.teamlab.art/e/tokyo/",
+    "use": "Offisiell besøks- og billettinformasjon."
+  },
+  {
+    "title": "Ghibli Museum tickets",
+    "url": "https://www.ghibli-museum.jp/en/tickets/",
+    "use": "Offisielle billettregler."
+  },
+  {
+    "title": "Fushimi Inari Taisha",
+    "url": "https://inari.jp/en/",
+    "use": "Offisiell informasjon om helligdommen."
+  },
+  {
+    "title": "Tōdai-ji",
+    "url": "https://www.todaiji.or.jp/en/",
+    "use": "Offisiell besøksinformasjon."
+  },
+  {
+    "title": "Itsukushima Shrine",
+    "url": "https://www.itsukushimajinja.jp/en/index.html",
+    "use": "Offisiell besøks- og adgangsinformasjon."
+  },
+  {
+    "title": "JNTO – Japanese manners",
+    "url": "https://www.japan.travel/en/guide/japanese-manners-dos-and-donts/",
+    "use": "Praktisk etikette og skikker."
+  }
 ]
