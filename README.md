@@ -40,6 +40,7 @@ Kilder og personvern ligger i bunnteksten.
 - Bilder skal ha gjenbrukbar lisens og synlig kreditering.
 - Fakta som kan endre seg skal ha kilde og formuleres som dagens regel/arbeidshypotese.
 - Ingen privat reiseinformasjon skal inn i repoet.
+- Alle priser vises i både NOK og JPY via en felles, datert planleggingskurs.
 
 ## Oppdatere
 
