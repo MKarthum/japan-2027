@@ -15,18 +15,19 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Arbeidsregler
 
-- Nye steder går normalt i `docs/data/places.json` og vises via `place.html?id=<id>`.
+- Nye steder går i `docs/data/places.json` og vises via `place.html?id=<id>`. Stedet skal eie navn, beskrivelse, kart, bilde/illustrasjon og eksterne lenker i samme objekt.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
 - Hotellkandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
 - Reiseetapper, priser og stasjoner går i `docs/data/transport.json`.
+- Rute og dagsturer refererer til steder med ID. Ikke lagre navn eller koordinater i `trip.json` når de allerede finnes i `places.json`.
 - Destinasjonsfarger og hvilke områder som arver dem eies av `docs/data/trip.json`. Steder, restaurantkort, kartmarkører og rutelinjer skal avlede fargen derfra.
 - `docs/data/route-geometry.json` eier bare fysisk linjegeometri og spor-offset. Ikke legg destinasjonsfarger eller annen domenedata i geometrifilen.
 - Når to ruter deler samme fysiske spor i motsatt retning, skal de tegnes som parallelle spor. MapLibre `line-offset` er retningsrelativ: motsatt rettede linjer bruker samme fortegn for å havne på hver sin fysiske side.
-- Praktiske råd, bookingradar, stedsbilder, ordbok og mediekoblinger går i `docs/data/guide.json`.
+- Praktiske råd, bookingradar, ordbok og mediekoblinger går i `docs/data/guide.json`. Bookingradar skal referere til `placeId`; ikke kopier stedets navn, område eller URL.
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
-- Bilder skal ha lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
+- Bilder skal ha eksplisitt `type`. `licensed` krever lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. `ai` skal lagres lokalt i repoet, ha alt-tekst og genereringsdato og alltid merkes som AI-generert i UI-et. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Ikke innfør rammeverk, database eller byggesteg uten et konkret behov.
 
 ## Offentlig språk
