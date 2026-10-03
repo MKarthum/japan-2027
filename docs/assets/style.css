@@ -754,3 +754,33 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .route-thumb-wrap .route-thumb{min-height:88px}
   .image-credit-mini{font-size:.54rem}
 }
+
+
+/* v0.13: canonical place media + detail maps */
+#place-map{
+  width:100%;
+  min-height:360px;
+  height:min(52vh,520px);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  background:#e7e3db;
+  box-shadow:var(--shadow-sm)
+}
+.place-map-section .section-head p{max-width:480px}
+.place-map-fallback{margin-top:10px}
+.place-detail-marker{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--area-color,#5f6b73);
+  border:4px solid #fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.25)
+}
+.image-ai-label{
+  display:inline-flex;align-items:center;
+  border-radius:999px;padding:3px 6px;
+  background:rgba(16,22,28,.72);color:#fff;
+  font-size:.58rem;font-weight:750;letter-spacing:.03em
+}
+@media(max-width:620px){
+  #place-map{min-height:300px;height:42vh}
+}
