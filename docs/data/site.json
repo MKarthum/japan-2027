@@ -1,5 +1,5 @@
 {
-  "version": "0.10.0",
+  "version": "0.10.1",
   "released": "3. okt. 2026",
-  "note": "Recurated restaurant guide with destination meals, practical picks and family price estimates"
+  "note": "Route map now derives restaurants and attractions directly from canonical food and place detail data"
 }
