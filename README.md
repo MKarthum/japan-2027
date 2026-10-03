@@ -37,6 +37,7 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Prinsipper
 
+- Bilder: bruk bare medier med dokumentert gjenbruksrett og synlig kreditering; foretrekk Wikimedia Commons/CC0/public domain/egne bilder, og ikke anta at Google/Booking/Tripadvisor/offisielle nettsider kan kopieres.
 - Destinasjonsfargen i `trip.json` gjenbrukes på rutelinjer, destinasjonskort, steder, opplevelser og mat i samme område.
 - Ingen avledet `map-pois.json`: rutekartet bygges direkte fra `places.json` og `food.json`, slik at detaljendringer slår gjennom overalt.
 - Startsiden skal være visuelt attraktiv og gi lyst til å utforske.
