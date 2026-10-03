@@ -59,7 +59,7 @@ function destinationTheme(trip, subject) {
   const fallback={color:'#5f6b73',areas:[]};
   if(!trip?.route) return fallback;
   if(typeof subject==='string'){
-    return trip.route.find(x=>x.id===subject || x.name===subject || x.theme?.areas?.includes(subject))?.theme || fallback;
+    return trip.route.find(x=>x.id===subject || x.theme?.areas?.includes(subject))?.theme || fallback;
   }
   if(!subject) return fallback;
   if(subject.destinationId){
@@ -74,9 +74,6 @@ function destinationTheme(trip, subject) {
   }
   if(subject.area){
     return trip.route.find(x=>x.theme?.areas?.includes(subject.area))?.theme || fallback;
-  }
-  if(subject.name){
-    return trip.route.find(x=>x.name===subject.name)?.theme || fallback;
   }
   return fallback;
 }
@@ -109,7 +106,7 @@ async function renderHome() {
   const route = document.getElementById('route-cards');
   route.innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
-    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(p.image,x.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${p.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
+    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(p.image,p.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${p.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
   }).join('');
 
   const featureIds=['nintendo-museum','nara','himeji','usj'];
