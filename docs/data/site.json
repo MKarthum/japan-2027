@@ -1,5 +1,5 @@
 {
-  "version": "0.12.0",
+  "version": "0.12.1",
   "released": "3. okt. 2026",
-  "note": "Destination colors fixed at component level and curated hotel planning added for every overnight base"
+  "note": "Quality pass: representative place imagery, explicit image licensing/credits, stronger data validation and UI cleanup"
 }
