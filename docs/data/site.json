@@ -1,5 +1,5 @@
 {
-  "version": "0.7.0",
-  "released": "3. okt. 2026 kl. 19:35",
-  "note": "Interactive stations, leg travel times, fares and toggleable map POI layers"
+  "version": "0.8.0",
+  "released": "3. okt. 2026 kl. 20:05",
+  "note": "All displayed prices use both NOK and JPY with a dated planning exchange rate"
 }
