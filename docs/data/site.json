@@ -1,5 +1,5 @@
 {
-  "version": "0.10.2",
+  "version": "0.10.3",
   "released": "3. okt. 2026",
-  "note": "Food is now a compact index with one generic restaurant detail view backed by canonical food.json data"
+  "note": "Restaurant details now include ordering suggestions, menu/booking links, dated ratings and licensed image support"
 }
