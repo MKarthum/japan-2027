@@ -52,6 +52,31 @@ function areaImageKey(guide, place) {
     ({tokyo:'tokyo',hakone:'hakone',kyoto:'kyoto',himeji:'himeji',hiroshima:'hiroshima',osaka:'osaka'})[place.id];
 }
 
+function destinationTheme(trip, subject) {
+  const fallback={color:'#5f6b73',areas:[]};
+  if(!trip?.route) return fallback;
+  if(typeof subject==='string'){
+    return trip.route.find(x=>x.id===subject || x.name===subject || x.theme?.areas?.includes(subject))?.theme || fallback;
+  }
+  if(!subject) return fallback;
+  if(subject.destinationId){
+    return trip.route.find(x=>x.id===subject.destinationId)?.theme || fallback;
+  }
+  if(subject.id){
+    const direct=trip.route.find(x=>x.id===subject.id);
+    if(direct) return direct.theme || fallback;
+  }
+  if(subject.area){
+    return trip.route.find(x=>x.theme?.areas?.includes(subject.area))?.theme || fallback;
+  }
+  if(subject.name){
+    return trip.route.find(x=>x.name===subject.name)?.theme || fallback;
+  }
+  return fallback;
+}
+const themeStyle=(theme)=>`--area-color:${theme?.color||'#5f6b73'}`;
+const destinationColor=(trip,subject)=>destinationTheme(trip,subject).color;
+
 function priorityBadge(priority){
   const cls = priority==='Må prøve' || priority==='Viktig' ? 'must' : priority==='Sterk kandidat' || priority==='Bør bestilles' ? 'strong' : 'optional';
   return `<span class="priority ${cls}">${priority}</span>`;
@@ -72,13 +97,13 @@ async function renderHome() {
     const p=places.find(p=>p.id===x.id)||x;
     const key=areaImageKey(guide,p);
     const img=guide.images[key];
-    return `<article class="visual-card"><a href="place.html?id=${x.id}">${img?`<img src="${img.url}" alt="${x.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
+    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${img?`<img src="${img.url}" alt="${x.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
   }).join('');
 
   const featureIds=['nintendo-museum','nara','himeji','usj'];
   document.getElementById('family-hooks').innerHTML = featureIds.map(id=>{
     const p=places.find(x=>x.id===id); const key=areaImageKey(guide,p); const img=guide.images[key];
-    return `<article class="visual-card compact"><a href="place.html?id=${p.id}">${img?`<img src="${img.url}" alt="${p.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
+    return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<img src="${img.url}" alt="${p.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
   }).join('');
 
   document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,3).map(x=>`<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${x.title}</strong><span>${x.when}</span></div><a href="${x.url}" target="_blank" rel="noopener">Offisiell side ↗</a></article>`).join('');
@@ -130,9 +155,21 @@ async function renderRoute() {
 
   document.getElementById('window').textContent = trip.window;
   document.getElementById('route-list').innerHTML = trip.route.map(x=>{
-    const p=places.find(p=>p.id===x.id)||x; const img=guide.images[areaImageKey(guide,p)];
+    const p=places.find(p=>p.id===x.id)||x;
+    const img=guide.images[areaImageKey(guide,p)];
     const leg=nextLegByRouteId.get(x.id);
-    return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div>${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}</div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
+    return `<article class="route-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
+      ${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}
+      <div class="route-item-main">
+        <div class="route-item-top">
+          <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
+          <div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div>
+        </div>
+        <a class="route-item-title" href="place.html?id=${x.id}"><strong>${x.name}</strong></a>
+        <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
+        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}
+      </div>
+    </article>`;
   }).join('');
   document.getElementById('route-list').addEventListener('click',e=>{
     const btn=e.target.closest('[data-leg]');
@@ -248,6 +285,7 @@ async function renderRoute() {
   const addRoutePart = (segment,index) => {
     const sourceId=`journey-${index}`;
     const leg=legById.get(segment.journeyId);
+    const color=destinationColor(trip,leg?.toRouteId);
     map.addSource(sourceId,{type:'geojson',data:{
       type:'Feature',
       properties:{journeyId:segment.journeyId,name:segment.name,mode:segment.mode},
@@ -261,7 +299,7 @@ async function renderRoute() {
     map.addLayer({
       id:`${sourceId}-line`,type:'line',source:sourceId,
       layout:{'line-join':'round','line-cap':'round'},
-      paint:{'line-color':segment.color,'line-width':5,'line-opacity':.95,'line-offset':segment.offset||0}
+      paint:{'line-color':color,'line-width':5,'line-opacity':.95,'line-offset':segment.offset||0}
     });
     map.addLayer({
       id:`${sourceId}-hit`,type:'line',source:sourceId,
@@ -271,7 +309,7 @@ async function renderRoute() {
     map.addLayer({
       id:`${sourceId}-arrows`,type:'symbol',source:sourceId,
       layout:{'symbol-placement':'line','symbol-spacing':95,'text-field':'›','text-size':18,'text-rotation-alignment':'map','text-keep-upright':false,'text-allow-overlap':true},
-      paint:{'text-color':segment.color,'text-halo-color':'#fff','text-halo-width':1.2}
+      paint:{'text-color':color,'text-halo-color':'#fff','text-halo-width':1.2}
     });
     map.on('click',`${sourceId}-hit`,e=>{ if(leg) popupForLeg(leg,e.lngLat); });
     map.on('mouseenter',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='pointer');
@@ -332,10 +370,11 @@ async function renderRoute() {
       const el=document.createElement('button');
       el.type='button';
       el.className='map-poi-dot experience';
+      el.style.setProperty('--area-color',destinationColor(trip,p));
       el.textContent=categoryMeta.experience.symbol;
       el.setAttribute('aria-label',p.name);
       const popup=new maplibregl.Popup({offset:14,maxWidth:'310px'}).setHTML(`
-        <div class="map-popup">
+        <div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
           <div class="meta">${p.type} · ${p.area}</div>
           <h3>${p.name}</h3>
           <p><strong>${p.simple}</strong></p>
@@ -351,11 +390,12 @@ async function renderRoute() {
       const el=document.createElement('button');
       el.type='button';
       el.className='map-poi-dot food';
+      el.style.setProperty('--area-color',destinationColor(trip,x));
       el.textContent=categoryMeta.food.symbol;
       el.setAttribute('aria-label',x.name);
       const family=familyFoodPrice(x);
       const popup=new maplibregl.Popup({offset:14,maxWidth:'330px'}).setHTML(`
-        <div class="map-popup">
+        <div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
           <div class="meta">${x.role} · ${x.area}</div>
           <h3>${x.name}</h3>
           <p><strong>${x.dish}</strong> · ${x.priority}</p>
@@ -423,7 +463,8 @@ async function renderRoute() {
     if(legend){
       legend.innerHTML=[...journeyMap.values()].map(s=>{
         const leg=legById.get(s.journeyId);
-        return `<button class="route-legend-item" type="button" data-leg="${s.journeyId}"><i style="background:${s.color}"></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
+        const color=destinationColor(trip,leg?.toRouteId);
+        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
       }).join('');
       legend.addEventListener('click',e=>{
         const btn=e.target.closest('[data-leg]');
@@ -434,7 +475,8 @@ async function renderRoute() {
     trip.route.forEach((x,i)=>{
       const el=document.createElement('button');
       el.type='button';
-      el.className='map-stop';
+      el.className='map-stop destination-themed';
+      el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',`${i+1}. ${x.name}`);
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${x.name}</span>`;
       const anchor=routeGeometry.stops?.[x.id]||[x.lng,x.lat];
@@ -447,7 +489,8 @@ async function renderRoute() {
     trip.dayTrips.forEach(x=>{
       const el=document.createElement('button');
       el.type='button';
-      el.className='map-stop daytrip';
+      el.className='map-stop daytrip destination-themed';
+      el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',x.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${x.name}</span>`;
       new maplibregl.Marker({element:el,anchor:'center'})
@@ -481,15 +524,15 @@ async function renderRoute() {
 
 async function renderPlaces() {
   nav('places'); footer();
-  const [places,guide] = await Promise.all([json('data/places.json'),json('data/guide.json')]);
+  const [places,guide,trip] = await Promise.all([json('data/places.json'),json('data/guide.json'),json('data/trip.json')]);
   const areas = ['Alle', ...new Set(places.map(p=>p.area))];
   const filters = document.getElementById('filters');
-  filters.innerHTML = areas.map((a,i)=>`<button class="${i===0?'active':''}" data-area="${a}">${a}</button>`).join('');
+  filters.innerHTML = areas.map((a,i)=>`<button class="${i===0?'active':''} ${a==='Alle'?'':'destination-filter'}" ${a==='Alle'?'':`style="${themeStyle(destinationTheme(trip,a))}"`} data-area="${a}">${a}</button>`).join('');
   const grid = document.getElementById('places-grid');
   const draw = (area='Alle') => {
     grid.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>{
       const img=guide.images[areaImageKey(guide,p)];
-      return `<article class="visual-card place-card"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill">${p.area}</span><span class="type-pill">${p.type}</span></div></div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
+      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill">${p.area}</span><span class="type-pill">${p.type}</span></div></div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
     }).join('');
   };
   filters.addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON') return; [...filters.children].forEach(b=>b.classList.remove('active')); e.target.classList.add('active'); draw(e.target.dataset.area); });
@@ -498,9 +541,11 @@ async function renderPlaces() {
 
 async function renderPlace() {
   nav('places'); footer();
-  const [places,guide,food] = await Promise.all([json('data/places.json'),json('data/guide.json'),json('data/food.json')]);
+  const [places,guide,food,trip] = await Promise.all([json('data/places.json'),json('data/guide.json'),json('data/food.json'),json('data/trip.json')]);
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id) || places[0];
+  document.querySelector('main')?.setAttribute('style',themeStyle(destinationTheme(trip,p)));
+  document.querySelector('main')?.classList.add('destination-themed');
   const extra=guide.placeExtras[p.id]||{};
   const img=guide.images[areaImageKey(guide,p)];
   document.title = `${p.name} · Japan 2027`;
@@ -515,7 +560,7 @@ async function renderPlace() {
   if(img) document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${p.name}"><div class="photo-credit">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${img.license}</div>`;
   document.getElementById('external-links').innerHTML = [...(extra.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
   const related=food.filter(x=>x.status==='active' && (x.area===p.area || (p.area==='Hiroshima'&&x.area==='Miyajima'))).slice(0,4);
-  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen restaurantkandidater lagt inn her ennå.</p>';
+  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen restaurantkandidater lagt inn her ennå.</p>';
 }
 
 async function renderPrep() {
@@ -527,7 +572,7 @@ async function renderPrep() {
 
 async function renderFood() {
   nav('food'); footer();
-  const [food,fx]=await Promise.all([json('data/food.json'),json('data/fx.json')]);
+  const [food,fx,trip]=await Promise.all([json('data/food.json'),json('data/fx.json'),json('data/trip.json')]);
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
   const areaOrder=['Tokyo','Kyoto','Nara','Himeji','Hiroshima','Miyajima','Osaka'];
@@ -553,7 +598,7 @@ async function renderFood() {
     return bits.length?bits.join(''):'<span>Vurderinger på detaljsiden</span>';
   };
 
-  const row=(x)=>`<a class="food-index-row" href="restaurant.html?id=${encodeURIComponent(x.id)}">
+  const row=(x)=>`<a class="food-index-row destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}">
     <div class="food-index-main">
       <div class="food-index-badges">${priorityBadge(x.priority)}<span class="food-role">${x.role}</span></div>
       <h3>${x.name}</h3>
@@ -570,11 +615,11 @@ async function renderFood() {
     const groups=area==='Alle'?areaOrder.filter(a=>visible.some(x=>x.area===a)):[area];
     list.innerHTML=groups.map(group=>{
       const items=visible.filter(x=>x.area===group).sort((a,b)=>(order[a.priority]??9)-(order[b.priority]??9));
-      return `<section class="food-area-group"><div class="food-area-head"><h2>${group}</h2><span>${items.length} ${items.length===1?'sted':'steder'}</span></div><div class="food-index-list">${items.map(row).join('')}</div></section>`;
+      return `<section class="food-area-group destination-themed" style="${themeStyle(destinationTheme(trip,group))}"><div class="food-area-head"><h2>${group}</h2><span>${items.length} ${items.length===1?'sted':'steder'}</span></div><div class="food-index-list">${items.map(row).join('')}</div></section>`;
     }).join('');
   };
 
-  filters.innerHTML=areas.map((a,i)=>`<button class="${i===0?'active':''}" data-area="${a}">${a}</button>`).join('');
+  filters.innerHTML=areas.map((a,i)=>`<button class="${i===0?'active':''} ${a==='Alle'?'':'destination-filter'}" ${a==='Alle'?'':`style="${themeStyle(destinationTheme(trip,a))}"`} data-area="${a}">${a}</button>`).join('');
   filters.addEventListener('click',e=>{
     if(e.target.tagName!=='BUTTON') return;
     [...filters.children].forEach(b=>b.classList.remove('active'));
@@ -600,7 +645,7 @@ async function renderFood() {
 
 async function renderRestaurant() {
   nav('food'); footer();
-  const [food,fx]=await Promise.all([json('data/food.json'),json('data/fx.json')]);
+  const [food,fx,trip]=await Promise.all([json('data/food.json'),json('data/fx.json'),json('data/trip.json')]);
   const id=new URLSearchParams(location.search).get('id');
   const x=food.find(item=>item.id===id);
   if(!x){
@@ -610,6 +655,8 @@ async function renderRestaurant() {
   }
 
   document.title=`${x.name} · Japan 2027`;
+  document.querySelector('main')?.setAttribute('style',themeStyle(destinationTheme(trip,x)));
+  document.querySelector('main')?.classList.add('destination-themed');
   document.getElementById('restaurant-area').textContent=`${x.area} · ${x.role}`;
   document.getElementById('restaurant-name').textContent=x.name;
   document.getElementById('restaurant-dish').textContent=x.dish;
@@ -675,7 +722,7 @@ async function renderRestaurant() {
 
   const alternatives=food.filter(item=>item.status==='active'&&item.id!==x.id&&item.area===x.area).slice(0,4);
   document.getElementById('restaurant-alternatives').innerHTML=alternatives.length
-    ? alternatives.map(item=>`<a class="restaurant-alt" href="restaurant.html?id=${encodeURIComponent(item.id)}"><span>${item.role}</span><strong>${item.name}</strong><small>${item.dish}</small></a>`).join('')
+    ? alternatives.map(item=>`<a class="restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,item))}" href="restaurant.html?id=${encodeURIComponent(item.id)}"><span>${item.role}</span><strong>${item.name}</strong><small>${item.dish}</small></a>`).join('')
     : '<p class="small">Ingen andre aktive kandidater i dette området.</p>';
 }
 
