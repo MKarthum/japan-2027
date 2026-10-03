@@ -396,7 +396,7 @@ async function renderPlaces() {
   const draw = (area='Alle') => {
     grid.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>{
       const img=guide.images[areaImageKey(guide,p)];
-      return `<article class="visual-card place-card"><a href="place.html?id=${p.id}">${img?`<img src="${img.url}" alt="${p.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${p.area} · ${p.type}</div><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
+      return `<article class="visual-card place-card"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill">${p.area}</span><span class="type-pill">${p.type}</span></div></div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
     }).join('');
   };
   filters.addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON') return; [...filters.children].forEach(b=>b.classList.remove('active')); e.target.classList.add('active'); draw(e.target.dataset.area); });
