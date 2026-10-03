@@ -1,0 +1,655 @@
+{
+  "updated": "2026-10-03",
+  "images": {
+    "tokyo": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Shibuya%20Scramble%20Crossing%202018-10-09.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg",
+      "credit": "Benh LIEU SONG",
+      "license": "CC BY-SA 2.0"
+    },
+    "hakone": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Mount%20Fuji%20from%20Lake%20Ashi.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:View_of_Mount_Fuji_from_Lake_Ashi.jpg",
+      "credit": "Quercus acuta",
+      "license": "CC0"
+    },
+    "kyoto": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fushimi%20Inari%20Shrine%2C%20Kyoto%20City%3B%20November%202013%20%2807%29.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Fushimi_Inari_Shrine,_Kyoto_City;_November_2013_(07).jpg",
+      "credit": "chee.hong",
+      "license": "CC BY 2.0"
+    },
+    "nara": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nara%20deer%20lounging%20at%20Todaiji.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Nara_deer_lounging_at_Todaiji.jpg",
+      "credit": "Photos of Japan",
+      "license": "CC0"
+    },
+    "himeji": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Himeji%20Castle%20with%20cherry%20blossoms%20from%20SouthWest.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Himeji_Castle_with_cherry_blossoms_from_SouthWest.jpg",
+      "credit": "Seattleite7",
+      "license": "CC BY-SA 4.0"
+    },
+    "hiroshima": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20Gate.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Itsukushima_Gate.jpg",
+      "credit": "JordyMeow",
+      "license": "CC BY-SA 3.0"
+    },
+    "osaka": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dotonbori%2C%20Osaka%2C%20at%20night%2C%20November%202016.jpg?width=1200",
+      "source": "https://commons.wikimedia.org/wiki/File:Dotonbori,_Osaka,_at_night,_November_2016.jpg",
+      "credit": "Martin Falbisoner",
+      "license": "CC BY-SA 4.0"
+    }
+  },
+  "placeExtras": {
+    "tokyo": {
+      "image": "tokyo",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/kanto/tokyo/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tokyo",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "shibuya": {
+      "image": "tokyo",
+      "links": [
+        {
+          "label": "GO TOKYO",
+          "url": "https://www.gotokyo.org/en/destinations/western-tokyo/shibuya/index.html",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Shibuya",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "asakusa": {
+      "image": "tokyo",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Asakusa",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "hakone": {
+      "image": "hakone",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/kanto/kanagawa/hakone-and-around/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hakone",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "kyoto": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/kansai/kyoto/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kyoto",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "gion": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/kansai/kyoto/gion-and-higashiyama/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Gion",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "fushimi-inari": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Offisiell side",
+          "url": "https://inari.jp/en/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fushimi_Inari-taisha",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "kiyomizu-dera": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Offisiell side",
+          "url": "https://www.kiyomizudera.or.jp/en/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kiyomizu-dera",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "kinkakuji": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Offisiell side",
+          "url": "https://www.shokoku-ji.jp/en/kinkakuji/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kinkaku-ji",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "arashiyama": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/spot/1142/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Arashiyama",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "nara": {
+      "image": "nara",
+      "links": [
+        {
+          "label": "Visit Nara",
+          "url": "https://www.visitnara.jp/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Nara_(city)",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "todaiji": {
+      "image": "nara",
+      "links": [
+        {
+          "label": "Offisiell side",
+          "url": "https://www.todaiji.or.jp/en/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/T%C5%8Ddai-ji",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "himeji": {
+      "image": "himeji",
+      "links": [
+        {
+          "label": "Offisiell side / billetter",
+          "url": "https://www.himejicastle.jp/en/",
+          "kind": "ticket"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Himeji_Castle",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "osaka": {
+      "image": "osaka",
+      "links": [
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/kansai/osaka/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Osaka",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "dotonbori": {
+      "image": "osaka",
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/D%C5%8Dtonbori",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "hiroshima": {
+      "image": "hiroshima",
+      "links": [
+        {
+          "label": "Peace Memorial Museum",
+          "url": "https://hpmmuseum.jp/?lang=eng",
+          "kind": "official"
+        },
+        {
+          "label": "Travel Japan",
+          "url": "https://www.japan.travel/en/destinations/chugoku/hiroshima/",
+          "kind": "info"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hiroshima",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "miyajima": {
+      "image": "hiroshima",
+      "links": [
+        {
+          "label": "Itsukushima – offisiell",
+          "url": "https://www.itsukushimajinja.jp/en/index.html",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Itsukushima",
+          "kind": "wiki"
+        }
+      ]
+    },
+    "nintendo-museum": {
+      "image": "kyoto",
+      "links": [
+        {
+          "label": "Billetter",
+          "url": "https://museum.nintendo.com/en/index.html",
+          "kind": "ticket"
+        },
+        {
+          "label": "Slik fungerer trekningen",
+          "url": "https://museum.nintendo.com/en/guide/visit-flow/index.html",
+          "kind": "info"
+        }
+      ]
+    },
+    "ghibli-museum": {
+      "image": "tokyo",
+      "links": [
+        {
+          "label": "Billetter",
+          "url": "https://www.ghibli-museum.jp/en/tickets/",
+          "kind": "ticket"
+        },
+        {
+          "label": "Offisiell side",
+          "url": "https://www.ghibli-museum.jp/en/",
+          "kind": "official"
+        }
+      ]
+    },
+    "teamlab": {
+      "image": "tokyo",
+      "links": [
+        {
+          "label": "Billetter / offisiell",
+          "url": "https://www.teamlab.art/e/tokyo/",
+          "kind": "ticket"
+        }
+      ]
+    },
+    "usj": {
+      "image": "osaka",
+      "links": [
+        {
+          "label": "Billetter / offisiell",
+          "url": "https://www.usj.co.jp/web/en/us",
+          "kind": "ticket"
+        },
+        {
+          "label": "Super Nintendo World",
+          "url": "https://www.usj.co.jp/web/en/us/areas/super-nintendo-world",
+          "kind": "info"
+        }
+      ]
+    }
+  },
+  "bookingRadar": [
+    {
+      "priority": "Viktig",
+      "title": "Nintendo Museum",
+      "area": "Kyoto / Uji",
+      "when": "Trekning åpner tre måneder før besøket",
+      "why": "Billetter selges på forhånd for bestemt dato og tid. Trekning først; ledige restbilletter kan komme senere.",
+      "url": "https://museum.nintendo.com/en/guide/visit-flow/index.html"
+    },
+    {
+      "priority": "Viktig",
+      "title": "Ghibli Museum",
+      "area": "Tokyo / Mitaka",
+      "when": "Dagens regel: 10. kl. 10:00 JST måneden før",
+      "why": "Kun forhåndsreservasjon. Dette bør overvåkes hvis Ghibli blir en familiefavoritt.",
+      "url": "https://www.ghibli-museum.jp/en/tickets/"
+    },
+    {
+      "priority": "Viktig",
+      "title": "Universal Studios Japan",
+      "area": "Osaka",
+      "when": "Når vår dato åpnes for salg",
+      "why": "Studio Pass må kjøpes, og Super Nintendo World kan i tillegg kreve tidsbestemt områdeinngang.",
+      "url": "https://www.usj.co.jp/web/en/us"
+    },
+    {
+      "priority": "Bør bestilles",
+      "title": "teamLab Borderless",
+      "area": "Tokyo",
+      "when": "Når datoene våre er tilgjengelige",
+      "why": "Billetter er dato-/tidsbestemte og kan bli utsolgt.",
+      "url": "https://www.teamlab.art/e/tokyo/"
+    },
+    {
+      "priority": "Kan bestilles",
+      "title": "Himeji Castle",
+      "area": "Himeji",
+      "when": "Dagens ordning: digitale tidsbilletter fra 90 dager før",
+      "why": "Ikke kritisk ennå, men nyttig i sakura-perioden når det kan være mye folk.",
+      "url": "https://www.himejicastle.jp/en/"
+    }
+  ],
+  "transport": [
+    {
+      "icon": "🚆",
+      "title": "Shinkansen mellom byene",
+      "short": "Dette blir ryggraden i reisen.",
+      "body": "Tokyo → Kyoto → Himeji → Hiroshima → Shin-Osaka ligger på Tokaido/Sanyo-korridoren. SmartEX-nettsiden lar oss reservere seter og bruke QR-billett. Vi trenger ikke planlegge innenriksfly på dagens rute.",
+      "links": [
+        {
+          "label": "SmartEX",
+          "url": "https://smart-ex.jp/en/"
+        }
+      ]
+    },
+    {
+      "icon": "💳",
+      "title": "Lokaltog, metro og buss",
+      "short": "IC-kort gjør hverdagen enkel.",
+      "body": "Suica/Welcome Suica kan brukes på svært mye lokal kollektivtransport og i mange butikker. Welcome Suica Mobile krever 13+, så yngste barn trenger en annen løsning dersom aldersgrensen består i 2027.",
+      "links": [
+        {
+          "label": "Welcome Suica",
+          "url": "https://www.jreast.co.jp/en/multi/welcomesuica/welcomesuica.html"
+        },
+        {
+          "label": "Welcome Suica Mobile",
+          "url": "https://www.jreast.co.jp/en/multi/welcomesuicamobile/"
+        }
+      ]
+    },
+    {
+      "icon": "🧳",
+      "title": "Bagasje uten stress",
+      "short": "Send kofferten foran oss når det lønner seg.",
+      "body": "Yamato tilbyr hotell-til-hotell bagasjefrakt og oppbevaring. Det er spesielt interessant rundt Hakone og Himeji, så vi slipper å dra store kofferter gjennom stasjoner og slott. På Tokaido/Sanyo/Kyushu Shinkansen krever bagasje over 160 cm samlet mål reservert bagasjeplass.",
+      "links": [
+        {
+          "label": "Yamato Hands-Free Travel",
+          "url": "https://www.global-yamato.com/en/hands-free-travel/"
+        },
+        {
+          "label": "Shinkansen bagasjeregler",
+          "url": "https://global.jr-central.co.jp/en/info/oversized-baggage/index.html"
+        }
+      ]
+    },
+    {
+      "icon": "🚕",
+      "title": "Taxi",
+      "short": "Et verktøy, ikke hovedtransporten.",
+      "body": "Tog er standard. Taxi gir mening med fire personer, slitne bein eller bagasje på korte strekninger. GO er en stor japansk taxiapp og støtter internasjonale kort og Apple Pay.",
+      "links": [
+        {
+          "label": "GO Taxi",
+          "url": "https://go.goinc.jp/en"
+        }
+      ]
+    },
+    {
+      "icon": "✈️",
+      "title": "Flyplasser",
+      "short": "Vi låser ikke dette før flyprisene avgjør.",
+      "body": "Arbeidshypotesen er inn i Tokyo og hjem fra Osaka/Kansai hvis open-jaw-prisen er fornuftig. Haneda er enklest inn til Tokyo; Narita fungerer også godt. Fra Osaka er KIX det naturlige internasjonale utgangspunktet.",
+      "links": [
+        {
+          "label": "Haneda-access",
+          "url": "https://www.gotokyo.org/en/plan/airport-access/haneda-airport/"
+        },
+        {
+          "label": "Narita-access",
+          "url": "https://www.narita-airport.jp/en/access/"
+        },
+        {
+          "label": "Kansai Airport",
+          "url": "https://www.kansai-airport.or.jp/en/access/to-airport"
+        }
+      ]
+    }
+  ],
+  "placeWords": [
+    {
+      "term": "torii",
+      "meaning": "Porten ved en shinto-helligdom. Fushimi Inari og Miyajima gjør dette ordet lett å huske."
+    },
+    {
+      "term": "-ji / -dera",
+      "meaning": "Buddhistisk tempel. Tōdai-ji, Kinkaku-ji og Kiyomizu-dera."
+    },
+    {
+      "term": "jinja / taisha",
+      "meaning": "Shinto-helligdom. Taisha brukes om særlig viktige helligdommer, som Fushimi Inari Taisha."
+    },
+    {
+      "term": "-jō",
+      "meaning": "Slott. Himeji-jō betyr Himeji Castle."
+    },
+    {
+      "term": "-eki",
+      "meaning": "Stasjon. Kyoto-eki = Kyoto Station."
+    },
+    {
+      "term": "-yama / -san",
+      "meaning": "Fjell. Fuji-san er den vanlige japanske måten å si Mount Fuji."
+    },
+    {
+      "term": "-dōri",
+      "meaning": "Gate / avenue. Dukker ofte opp i adresser og bydelsnavn."
+    },
+    {
+      "term": "ryokan",
+      "meaning": "Tradisjonelt japansk vertshus, ofte med tatami, futon og måltider."
+    },
+    {
+      "term": "onsen",
+      "meaning": "Varm kilde / bad med naturlig varmt kildevann."
+    },
+    {
+      "term": "konbini",
+      "meaning": "Convenience store – f.eks. 7-Eleven, Lawson og FamilyMart."
+    },
+    {
+      "term": "shinkansen",
+      "meaning": "Japans høyhastighetstog – «bullet train»."
+    }
+  ],
+  "phrases": [
+    {
+      "jp": "Sumimasen",
+      "no": "Unnskyld / excuse me – ekstremt nyttig."
+    },
+    {
+      "jp": "Arigatō gozaimasu",
+      "no": "Tusen takk / høflig takk."
+    },
+    {
+      "jp": "Onegaishimasu",
+      "no": "Vær så snill / dette, takk – nyttig når man bestiller."
+    },
+    {
+      "jp": "Oishii!",
+      "no": "Deilig!"
+    },
+    {
+      "jp": "Daijōbu desu",
+      "no": "Det går bra / jeg er ok / nei takk, avhengig av situasjon."
+    },
+    {
+      "jp": "Kore kudasai",
+      "no": "Denne, takk."
+    },
+    {
+      "jp": "Ikura desu ka?",
+      "no": "Hvor mye koster det?"
+    },
+    {
+      "jp": "Toire wa doko desu ka?",
+      "no": "Hvor er toalettet?"
+    },
+    {
+      "jp": "Eigo wa daijōbu desu ka?",
+      "no": "Går det greit med engelsk?"
+    },
+    {
+      "jp": "Wakarimasen",
+      "no": "Jeg forstår ikke."
+    }
+  ],
+  "nameNotes": [
+    {
+      "name": "Tokyo 東京",
+      "note": "Betyr «østlig hovedstad»."
+    },
+    {
+      "name": "Kyoto 京都",
+      "note": "Betyr omtrent «hovedstadsbyen» – byen var keiserlig hovedstad i over tusen år."
+    },
+    {
+      "name": "Osaka 大阪",
+      "note": "Tegnene betyr bokstavelig «stor» + «skråning/bakke». Ikke alle japanske stedsnavn bør leses som en sikker historisk etymologi."
+    },
+    {
+      "name": "Hiroshima 広島",
+      "note": "Tegnene betyr «bred/stor» + «øy»."
+    },
+    {
+      "name": "Miyajima 宮島",
+      "note": "Betyr «helligdomsøy». Øyas formelle navn er Itsukushima."
+    },
+    {
+      "name": "Himeji 姫路",
+      "note": "Tegnene kan leses som «prinsesse» + «vei». Det er en nyttig huskeregel, ikke nødvendigvis hele navnets historiske opprinnelse."
+    },
+    {
+      "name": "Nara 奈良",
+      "note": "Her finnes det ikke en enkel, sikkert dokumentert bokstavelig forklaring; navnets opprinnelse er omdiskutert."
+    }
+  ],
+  "etiquette": [
+    {
+      "title": "Ingen tips",
+      "body": "I restaurant, taxi og hotell er tips normalt ikke forventet."
+    },
+    {
+      "title": "Rolig på toget",
+      "body": "Snakk lavt og unngå telefonsamtaler på tog og buss."
+    },
+    {
+      "title": "Sko av noen steder",
+      "body": "Ryokan, enkelte restauranter, templer og hjem kan ha no-shoe-regler."
+    },
+    {
+      "title": "Ta med søppelet",
+      "body": "Offentlige søppelbøtter kan være få. Ha en liten pose i sekken."
+    },
+    {
+      "title": "Kø betyr kø",
+      "body": "Still deg i markerte rekker ved tog, heiser og populære steder."
+    },
+    {
+      "title": "Onsen har egne regler",
+      "body": "Vask deg før badet og les reglene på stedet; tatoveringsregler varierer."
+    }
+  ],
+  "connections": [
+    {
+      "title": "LEGO Himeji → Himeji",
+      "type": "LEGO",
+      "text": "Bygg slottet hjemme, finn det i AC Shadows og ta så samme «der er det jo!» på ekte.",
+      "placeId": "himeji"
+    },
+    {
+      "title": "AC Shadows → det gamle Japan",
+      "type": "Spill",
+      "text": "Kyoto, Nara, Himeji og Osaka gir konkrete steder fra spillets verden. Bruk spillet til gjenkjennelse, ikke som historiebok.",
+      "placeId": "kyoto"
+    },
+    {
+      "title": "Mario → Nintendo på ekte",
+      "type": "Spill",
+      "text": "Super Nintendo World i Osaka og Nintendo Museum i Uji gjør Mario/Nintendo til en fysisk del av turen.",
+      "placeId": "nintendo-museum"
+    },
+    {
+      "title": "Your Name → Tokyo",
+      "type": "Film",
+      "text": "Filmen bruker gjenkjennelige moderne Tokyo-miljøer, særlig rundt Shinjuku/Yotsuya. Fint å se før Tokyo-delen.",
+      "placeId": "tokyo"
+    },
+    {
+      "title": "Ghibli → Mitaka",
+      "type": "Film",
+      "text": "Hvis Ghibli-filmene treffer familien, kan Ghibli Museum bli en egen Tokyo-utflukt. Billetter krever planlegging.",
+      "placeId": "ghibli-museum"
+    }
+  ]
+}
