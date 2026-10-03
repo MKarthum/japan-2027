@@ -29,7 +29,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/guide.json` – bilder, eksterne lenker, bookingradar, transport, ordbok, etikette og mediekoblinger
 - `docs/data/sources.json` – kilder
 
-`docs/place.html?id=<id>` er generisk detaljside for steder, slik at nye steder normalt ikke trenger ny HTML.
+`docs/place.html?id=<id>` er generisk detaljside for steder, og `docs/restaurant.html?id=<id>` er generisk detaljside for restauranter. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
 
 ## Prinsipper
 
