@@ -137,3 +137,92 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 @media(max-width:620px){
   .route-legend{display:grid;gap:8px}
 }
+
+/* v0.7 route-map interaction */
+.map-language-note{margin:0 0 10px}
+.map-tools{display:grid;grid-template-columns:1fr minmax(230px,340px);gap:12px;align-items:stretch;margin:12px 0}
+.map-layer-toolbar{
+  display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;
+  padding:10px 12px;background:var(--paper);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow-sm)
+}
+.map-layer-toolbar::-webkit-scrollbar{display:none}
+.map-layer-title{font-size:.78rem;font-weight:850;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);white-space:nowrap;margin-right:2px}
+.map-layer-toggle,.map-layer-fit{
+  appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+  padding:8px 11px;font:inherit;font-size:.82rem;font-weight:760;white-space:nowrap;cursor:pointer
+}
+.map-layer-toggle b{font-size:.72rem;color:var(--muted);margin-left:3px}
+.map-layer-toggle[aria-pressed="true"]{box-shadow:inset 0 0 0 1px currentColor}
+.map-layer-toggle.stations[aria-pressed="true"]{background:#eaf2fd;color:#245c9f;border-color:#b8d0ef}
+.map-layer-toggle.experience[aria-pressed="true"]{background:#fff5dc;color:#835b12;border-color:#ead39b}
+.map-layer-toggle.food[aria-pressed="true"]{background:#feece8;color:#8f2f25;border-color:#efc0b8}
+.map-layer-toggle.hotel[aria-pressed="true"]{background:#e8f4ee;color:#1d664b;border-color:#b8ddce}
+.map-layer-toggle:disabled{opacity:.46;cursor:not-allowed}
+.map-layer-fit{margin-left:auto;background:var(--ink);color:#fff;border-color:var(--ink)}
+.map-price-summary{
+  background:var(--ink);color:#fff;border-radius:15px;padding:11px 14px;display:flex;flex-direction:column;justify-content:center
+}
+.map-price-summary span{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;opacity:.7;font-weight:800}
+.map-price-summary strong{font-size:1.04rem}
+.map-price-summary small{font-size:.72rem;opacity:.72;margin-top:2px}
+#map{position:relative}
+.map-stop{appearance:none;border:0;background:transparent;padding:0;margin:0}
+.map-station-dot{
+  appearance:none;width:14px;height:14px;border-radius:50%;border:3px solid #2f73c9;background:#fff;
+  box-shadow:0 2px 8px rgba(22,32,40,.28);padding:0;cursor:pointer
+}
+.map-station-dot:hover,.map-station-dot:focus-visible{transform:scale(1.25);outline:2px solid #fff;outline-offset:2px}
+.map-poi-dot{
+  appearance:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;padding:0;
+  border:2px solid #fff;box-shadow:0 2px 9px rgba(22,32,40,.3);font-size:.72rem;font-weight:900;cursor:pointer
+}
+.map-poi-dot.experience{background:#c69235;color:#fff}
+.map-poi-dot.food{background:#b94a3d;color:#fff}
+.map-poi-dot.hotel{background:#2d765b;color:#fff;border-radius:6px}
+.map-poi-dot:hover,.map-poi-dot:focus-visible{transform:scale(1.16);outline:2px solid rgba(255,255,255,.9);outline-offset:2px}
+.map-popup h3{margin:2px 0 7px}.map-popup p{margin:.35em 0}.map-popup>a{font-weight:750}
+.station-time{display:flex;justify-content:space-between;gap:18px;border-top:1px solid #e8e2d8;padding:7px 0;font-size:.85rem}
+.station-time span{color:var(--muted)}.station-time strong{white-space:nowrap}
+.fare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0}
+.fare-grid>div{border:1px solid #e5ded2;border-radius:9px;padding:7px 9px;background:#fff}
+.fare-grid .family{grid-column:1/-1;background:#f3eee5}
+.fare-grid span{display:block;color:var(--muted);font-size:.72rem}.fare-grid strong{font-size:.9rem}
+.route-service{margin:.3em 0 .6em}.route-source-link{font-size:.8rem;font-weight:750}
+.route-detail-panel{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:12px 0;
+  box-shadow:var(--shadow-sm)
+}
+.route-detail-panel[hidden]{display:none}
+.route-detail-panel h3{font-size:1.12rem}.route-detail-placeholder{display:flex;flex-direction:column;gap:3px}
+.route-detail-placeholder span,.route-detail-placeholder small{color:var(--muted)}
+.route-inline-info{
+  appearance:none;border:0;background:transparent;padding:4px 0 0;color:var(--accent2);font:inherit;
+  font-size:.8rem;font-weight:750;text-align:left;cursor:pointer
+}
+.route-inline-info:hover{text-decoration:underline}
+.route-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.route-legend-item{
+  appearance:none;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:9px 11px;
+  display:flex;align-items:center;gap:9px;text-align:left;cursor:pointer;color:var(--muted);font:inherit
+}
+.route-legend-item:hover{border-color:#bdb5a9;background:#fff}
+.route-legend-item i{width:26px;height:4px;border-radius:99px;flex:0 0 auto}
+.route-legend-item span{min-width:0;display:flex;flex-direction:column}
+.route-legend-item strong{color:var(--ink);font-size:.83rem}
+.route-legend-item small{font-size:.73rem;color:var(--muted)}
+.maplibregl-popup-content .fare-grid{min-width:230px}
+@media(max-width:900px){
+  .map-tools{grid-template-columns:1fr}
+  .map-price-summary{min-height:62px}
+}
+@media(max-width:620px){
+  .map-tools{margin-top:10px}
+  .map-layer-toolbar{margin-left:-4px;margin-right:-4px;padding:9px}
+  .map-layer-title{display:none}
+  .map-layer-fit{margin-left:0}
+  .map-price-summary strong{font-size:.96rem}
+  .route-legend{grid-template-columns:1fr}
+  .route-detail-panel{padding:12px}
+  .map-place-label{font-size:.76rem;padding:4px 7px}
+  .fare-grid{gap:5px}
+}
