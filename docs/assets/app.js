@@ -80,6 +80,11 @@ async function renderRoute() {
     return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div></div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
   }).join('');
 
+  if (typeof maplibregl === 'undefined') {
+    document.getElementById('map').innerHTML = '<div class="map-error"><strong>Kartet kunne ikke lastes.</strong><br>MapLibre-biblioteket mangler. Oppdater siden eller prøv igjen senere.</div>';
+    return;
+  }
+
   const map = new maplibregl.Map({
     container:'map',
     style:'https://tiles.openfreemap.org/styles/liberty',
@@ -159,8 +164,16 @@ async function renderRoute() {
     map.fitBounds(bounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:0});
   });
 
+  let firstMapErrorShown = false;
   map.on('error', (event)=>{
     console.warn('Kartfeil', event?.error || event);
+    if (!firstMapErrorShown && !map.loaded()) {
+      firstMapErrorShown = true;
+      const el=document.createElement('div');
+      el.className='map-error floating';
+      el.innerHTML='<strong>Kartdata kunne ikke lastes.</strong><br>Prøv å oppdatere siden.';
+      document.getElementById('map').appendChild(el);
+    }
   });
 }
 
