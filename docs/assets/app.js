@@ -94,11 +94,11 @@ async function renderRoute() {
   nav('route'); footer();
   const [trip,places,guide,routeGeometry,transport,food,fx]=await Promise.all([
     json('data/trip.json'),
-    json('data/places.json?v=0.10.1'),
+    json('data/places.json'),
     json('data/guide.json'),
     json('data/route-geometry.json?v=0.8.0'),
     json('data/transport.json?v=0.8.0'),
-    json('data/food.json?v=0.10.1'),
+    json('data/food.json'),
     json('data/fx.json?v=0.8.0')
   ]);
 
@@ -533,7 +533,7 @@ async function renderPrep() {
 
 async function renderFood() {
   nav('food'); footer();
-  const [food,fx]=await Promise.all([json('data/food.json?v=0.10.2'),json('data/fx.json')]);
+  const [food,fx]=await Promise.all([json('data/food.json'),json('data/fx.json')]);
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
   const areaOrder=['Tokyo','Kyoto','Nara','Himeji','Hiroshima','Miyajima','Osaka'];
@@ -552,6 +552,13 @@ async function renderFood() {
     return `${yen}<small>ca. ${nok}</small>`;
   };
 
+  const ratingSummary=(x)=>{
+    const bits=[];
+    if(x.ratings?.google?.score) bits.push(`<span>Google <strong>${x.ratings.google.score.toFixed(1)}</strong></span>`);
+    if(x.ratings?.tripadvisor?.score) bits.push(`<span>Tripadvisor <strong>${x.ratings.tripadvisor.score.toFixed(1)}</strong></span>`);
+    return bits.length?bits.join(''):'<span>Vurderinger på detaljsiden</span>';
+  };
+
   const row=(x)=>`<a class="food-index-row" href="restaurant.html?id=${encodeURIComponent(x.id)}">
     <div class="food-index-main">
       <div class="food-index-badges">${priorityBadge(x.priority)}<span class="food-role">${x.role}</span></div>
@@ -559,6 +566,7 @@ async function renderFood() {
       <span class="food-index-dish">${x.dish}</span>
     </div>
     <div class="food-index-fit"><span>Passer med</span><strong>${x.fit}</strong></div>
+    <div class="food-index-rating">${ratingSummary(x)}</div>
     <div class="food-index-price"><span>${x.priceClass}</span><strong>${familyPrice(x)}</strong></div>
     <span class="food-index-arrow" aria-hidden="true">→</span>
   </a>`;
@@ -589,13 +597,13 @@ async function renderFood() {
     watchlist.innerHTML=watch.length?watch.map(x=>`<a class="food-watch-card" href="restaurant.html?id=${encodeURIComponent(x.id)}"><div><span class="food-role">${x.role}</span><h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p></div><span class="food-index-arrow" aria-hidden="true">→</span></a>`).join(''):'';
   }
   const fxNote=document.getElementById('food-fx-note');
-  if(fxNote) fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}).`;
+  if(fxNote) fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}). Ratinger er daterte øyeblikksbilder og kan endre seg.`;
   draw();
 }
 
 async function renderRestaurant() {
   nav('food'); footer();
-  const [food,fx]=await Promise.all([json('data/food.json?v=0.10.2'),json('data/fx.json')]);
+  const [food,fx]=await Promise.all([json('data/food.json'),json('data/fx.json')]);
   const id=new URLSearchParams(location.search).get('id');
   const x=food.find(item=>item.id===id);
   if(!x){
@@ -630,10 +638,40 @@ async function renderRestaurant() {
   document.getElementById('restaurant-note').textContent=x.note||'';
   document.getElementById('restaurant-fx-note').textContent=`NOK-estimatet bruker planleggingskurs ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}).`;
 
+  const img=document.getElementById('restaurant-image');
+  if(x.image){
+    img.hidden=false;
+    img.innerHTML=`<img src="${x.image.url}" alt="${x.image.alt||x.name}" loading="eager"><figcaption>Foto: <a href="${x.image.source}" target="_blank" rel="noopener">${x.image.credit}</a> · ${x.image.license}</figcaption>`;
+  } else {
+    img.hidden=true;
+  }
+
+  const ratings=document.getElementById('restaurant-ratings');
+  const ratingCard=(label,r,fallbackUrl)=>{
+    if(r){
+      const sourceNote=r.sourceNote?` · ${r.sourceNote}`:'';
+      return `<a class="rating-card" href="${r.url||fallbackUrl}" target="_blank" rel="noopener"><span>${label}</span><strong>${r.score.toFixed(1)} / 5</strong><small>${r.count?`${new Intl.NumberFormat('nb-NO').format(r.count)} anmeldelser`:''}${sourceNote}</small></a>`;
+    }
+    return `<a class="rating-card muted" href="${fallbackUrl}" target="_blank" rel="noopener"><span>${label}</span><strong>Ikke kontrollert</strong><small>Åpne oppføringen ↗</small></a>`;
+  };
+  ratings.innerHTML=[
+    ratingCard('Google',x.ratings?.google,x.links?.googleMaps||x.maps),
+    ratingCard('Tripadvisor',x.ratings?.tripadvisor,x.ratings?.tripadvisor?.url||'https://www.tripadvisor.com/')
+  ].join('');
+  document.getElementById('restaurant-ratings-note').textContent=x.ratings?.checked?`Score kontrollert ${x.ratings.checked}. Ratinger endrer seg over tid.`:'';
+
+  const orderEl=document.getElementById('restaurant-order');
+  const orderRecs=x.orderRecommendations||[];
+  orderEl.innerHTML=orderRecs.length
+    ? orderRecs.map((r,i)=>`<article class="order-card"><span>${i+1}</span><div><h3>${r.title}</h3><p>${r.why}</p></div></article>`).join('')
+    : '<p class="small">Ingen konkret bestillingsanbefaling lagt inn ennå.</p>';
+
   const links=[
-    x.maps?`<a class="button primary" href="${x.maps}" target="_blank" rel="noopener">Google Maps ↗</a>`:'',
-    x.website?`<a class="button" href="${x.website}" target="_blank" rel="noopener">Nettside ↗</a>`:'',
-    x.source?`<a class="button" href="${x.source}" target="_blank" rel="noopener">${x.sourceLabel||'Kilde'} ↗</a>`:''
+    x.links?.googleMaps?`<a class="button primary" href="${x.links.googleMaps}" target="_blank" rel="noopener">Google Maps ↗</a>`:'',
+    x.links?.menu?`<a class="button" href="${x.links.menu}" target="_blank" rel="noopener">Meny ↗</a>`:'',
+    x.links?.booking?`<a class="button" href="${x.links.booking}" target="_blank" rel="noopener">Booking ↗</a>`:'',
+    x.links?.website?`<a class="button" href="${x.links.website}" target="_blank" rel="noopener">Nettside ↗</a>`:'',
+    x.ratings?.tripadvisor?.url?`<a class="button" href="${x.ratings.tripadvisor.url}" target="_blank" rel="noopener">Tripadvisor ↗</a>`:''
   ].filter(Boolean);
   document.getElementById('restaurant-links').innerHTML=links.join('');
 
