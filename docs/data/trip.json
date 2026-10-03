@@ -5,8 +5,56 @@
   "window": "20. mars – 3. april 2027",
   "budget": {
     "targetNok": 165000,
-    "rangeNok": [140000, 190000],
-    "note": "Arbeidsbudsjett for reisen, ekskl. større shopping. Prisene skal oppdateres når fly og hotell faktisk vurderes."
+    "rangeNok": [
+      140000,
+      190000
+    ],
+    "note": "Arbeidsbudsjett for reisen, ekskl. større shopping. Prisene skal oppdateres når fly og hotell faktisk vurderes.",
+    "items": [
+      {
+        "label": "Fly",
+        "rangeNok": [
+          50000,
+          65000
+        ]
+      },
+      {
+        "label": "Overnatting",
+        "rangeNok": [
+          45000,
+          60000
+        ]
+      },
+      {
+        "label": "Transport i Japan",
+        "rangeNok": [
+          10000,
+          15000
+        ]
+      },
+      {
+        "label": "Mat",
+        "rangeNok": [
+          18000,
+          25000
+        ]
+      },
+      {
+        "label": "Aktiviteter",
+        "rangeNok": [
+          10000,
+          20000
+        ]
+      },
+      {
+        "label": "Diverse",
+        "rangeNok": [
+          5000,
+          8000
+        ]
+      }
+    ],
+    "currencyPolicy": "Alle priser vises i både NOK og JPY. Kildevaluta vises først; omregnet beløp er omtrentlige planleggingstall."
   },
   "route": [
     {
