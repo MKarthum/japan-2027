@@ -5,6 +5,8 @@ const food = readJson('docs/data/food.json');
 const places = readJson('docs/data/places.json');
 const trip = readJson('docs/data/trip.json');
 const routeGeometry = readJson('docs/data/route-geometry.json');
+const hotelData = readJson('docs/data/hotels.json');
+const hotels = hotelData.hotels || [];
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -24,6 +26,7 @@ function validMap(item) {
 
 uniqueIds(food, 'food.json');
 uniqueIds(places, 'places.json');
+uniqueIds(hotels, 'hotels.json');
 
 const routeIds = new Set(trip.route.map(x => x.id));
 const themedAreas = new Set();
@@ -67,8 +70,21 @@ for (const item of places.filter(x => x.map?.showOnRouteMap !== false && x.map))
   if (!validMap(item)) errors.push(`places.json: ${item.id} har ugyldig kartposisjon`);
 }
 
+for (const item of hotels) {
+  if (!routeIds.has(item.baseId)) errors.push(`hotels.json: ${item.id} har ugyldig baseId ${item.baseId}`);
+  if (!validMap(item)) errors.push(`hotels.json: ${item.id} mangler gyldig kartposisjon`);
+  if (!item.factsChecked) errors.push(`hotels.json: ${item.id} mangler factsChecked`);
+  if (!Array.isArray(item.planningFamilyNightYen) || item.planningFamilyNightYen.length !== 2 || !item.planningFamilyNightYen.every(Number.isFinite)) errors.push(`hotels.json: ${item.id} mangler familieprisintervall`);
+  if (!item.links?.official || !item.links?.googleMaps) errors.push(`hotels.json: ${item.id} mangler offisiell side eller Google Maps`);
+  if (!Array.isArray(item.sources) || item.sources.length === 0) errors.push(`hotels.json: ${item.id} mangler kilder`);
+}
+
 if (fs.existsSync('docs/data/map-pois.json')) {
   errors.push('docs/data/map-pois.json skal ikke finnes; kartdata skal ligge i kanoniske detaljfiler');
+}
+
+if (!fs.existsSync('docs/hotel.html') || !fs.existsSync('docs/hotels.html')) {
+  errors.push('hotellvisningene mangler');
 }
 
 if (!fs.existsSync('docs/restaurant.html')) {
@@ -82,11 +98,17 @@ if (!app.includes('async function renderRestaurant()') || !app.includes('restaur
 if (!app.includes('restaurant-order') || !app.includes('restaurant-ratings')) {
   errors.push('restaurantdetaljen mangler bestillingsforslag eller ratingvisning');
 }
+if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) {
+  errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
+}
+if (!app.includes('renderHotels()') || !app.includes('renderHotel()') || !app.includes("data-map-layer=\"hotel\"")) {
+  errors.push('hotellindeks, detaljvisning eller kartlag mangler');
+}
 if (app.includes('map-pois.json') || app.includes('mapPois')) {
   errors.push('app.js refererer fortsatt til avledet map-pois-data');
 }
-if (!app.includes("json('data/food.json')") || !app.includes("json('data/places.json')")) {
-  errors.push('appen henter ikke eksplisitt food.json og places.json');
+if (!app.includes("json('data/food.json')") || !app.includes("json('data/places.json')") || !app.includes("json('data/hotels.json')")) {
+  errors.push('appen henter ikke eksplisitt food.json, places.json og hotels.json');
 }
 
 if (errors.length) {
