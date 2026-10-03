@@ -76,3 +76,32 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   font-weight:750;
   background:rgba(240,249,246,.96);
 }
+
+/* MapLibre route markers: base-map text is intentionally disabled in JS. */
+.map-stop{
+  width:30px;height:30px;position:relative;cursor:pointer;
+}
+.map-pin{
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#2f73c9;color:white;border:3px solid #fff;
+  box-shadow:0 3px 12px rgba(22,32,40,.32);
+  font-size:.72rem;font-weight:850;
+}
+.map-place-label{
+  position:absolute;left:36px;top:50%;transform:translateY(-50%);
+  white-space:nowrap;background:rgba(255,253,248,.96);color:var(--ink);
+  border:1px solid rgba(22,32,40,.16);border-radius:9px;
+  padding:5px 8px;font-size:.82rem;font-weight:850;
+  box-shadow:0 4px 14px rgba(22,32,40,.10);
+}
+.map-stop.daytrip{width:18px;height:18px}
+.map-stop.daytrip .map-pin{
+  width:18px;height:18px;background:#e5f5f1;border:3px solid #2e8175;
+}
+.map-stop.daytrip .map-place-label{left:25px;color:var(--accent2)}
+.maplibregl-popup-content{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm);
+}
+.maplibregl-ctrl-group{border-radius:10px!important;overflow:hidden}
