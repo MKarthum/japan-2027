@@ -23,8 +23,8 @@ Kilder og personvern ligger i bunnteksten.
 ## Datamodell
 
 - `docs/data/trip.json` – rute, foreløpige datoer og arbeidsbudsjett
-- `docs/data/places.json` – steder og forklaringer
-- `docs/data/food.json` – kuratert restaurant-/matliste med prioritet
+- `docs/data/places.json` – kanoniske steder, forklaringer og kartposisjon
+- `docs/data/food.json` – kanonisk restaurant-/matliste med prioritet, pris og kartposisjon
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
 - `docs/data/guide.json` – bilder, eksterne lenker, bookingradar, transport, ordbok, etikette og mediekoblinger
 - `docs/data/sources.json` – kilder
@@ -33,6 +33,7 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Prinsipper
 
+- Ingen avledet `map-pois.json`: rutekartet bygges direkte fra `places.json` og `food.json`, slik at detaljendringer slår gjennom overalt.
 - Startsiden skal være visuelt attraktiv og gi lyst til å utforske.
 - Detaljer skal ligge ett klikk ned, ikke fylle hovedoversikten.
 - Bruk offisielle lenker for billetter og praktisk informasjon der de finnes.
@@ -44,4 +45,4 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Oppdatere
 
-Kjør `node scripts/check-public-content.mjs` før publisering. Den automatiske GitHub Actions-kontrollen er et ekstra sikkerhetsnett, ikke en runtime-avhengighet.
+Kjør `node scripts/check-public-content.mjs` og `node scripts/check-data-integrity.mjs` før publisering. Den automatiske GitHub Actions-kontrollen er et ekstra sikkerhetsnett, ikke en runtime-avhengighet.
