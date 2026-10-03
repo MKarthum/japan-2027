@@ -1,5 +1,5 @@
 {
-  "version": "0.14.0",
+  "version": "0.14.1",
   "released": "4. okt. 2026",
-  "note": "Compact place list, restored release metadata, selected train-node semantics and live ECB NOK/JPY conversion with fallback"
+  "note": "Consistent in-image destination labels and bottom-left image attribution across the site"
 }
