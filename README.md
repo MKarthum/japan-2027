@@ -1,34 +1,46 @@
 # Japan 2027
 
-Offentlig planleggingsrepo for en mulig Japan-tur våren 2027. Nettsiden er laget som en enkel, datadrevet GitHub Pages-side som kan utvides uten rammeverk eller byggesteg.
+Offentlig planleggingsrepo for en mulig Japan-tur våren 2027. Nettsiden er en enkel, datadrevet GitHub Pages-side som skal være interessant å utforske for hele familien – uten å bli et tungt reiseplanleggingssystem.
 
 > **Viktig:** Dette repoet er offentlig. Ikke legg inn private eller identifiserende opplysninger. Les `PUBLIC_DATA_POLICY.md` før du legger til eller endrer innhold.
 
-## Publisering
+## Nettside
 
-GitHub Pages publiserer direkte fra:
+GitHub Pages publiserer fra repoet, og rotens `index.html` sender videre til `/docs/`.
 
-- branch: `main`
-- mappe: `/docs`
+Hovednavigasjonen holdes bevisst liten:
 
-Nettsiden har ingen egen deploy-workflow og er ikke avhengig av GitHub Actions for å være tilgjengelig. GitHub Actions brukes bare til en enkel personvernkontroll ved endringer.
+- Oversikt
+- Rute
+- Steder
+- Mat
+- Før turen
+- Praktisk
+- Budsjett
 
-## Struktur
+Kilder og personvern ligger i bunnteksten.
 
-- `docs/` – selve GitHub Pages-nettsiden
-- `docs/data/` – strukturert innhold som driver nettsiden
-- `docs/place.html?id=<id>` – generisk detaljside for steder
-- `PUBLIC_DATA_POLICY.md` – hva som aldri skal publiseres
-- `AGENTS.md` – regler for ChatGPT/Codex/andre agenter som arbeider i repoet
-- `scripts/check-public-content.mjs` – enkel automatisk kontroll for å fange vanlige lekkasjer
-- `.github/workflows/privacy-check.yml` – valgfritt sikkerhetsnett; ikke en runtime-avhengighet
+## Datamodell
 
-## Oppdatere reiseplanen
+- `docs/data/trip.json` – rute, foreløpige datoer og arbeidsbudsjett
+- `docs/data/places.json` – steder og forklaringer
+- `docs/data/food.json` – kuratert restaurant-/matliste med prioritet
+- `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
+- `docs/data/guide.json` – bilder, eksterne lenker, bookingradar, transport, ordbok, etikette og mediekoblinger
+- `docs/data/sources.json` – kilder
 
-1. Oppdater `docs/data/trip.json` for rute og foreløpige datoer.
-2. Legg til eller oppdater steder i `docs/data/places.json`.
-3. Oppdater forberedelser i `docs/data/prep.json`.
-4. Legg kilder i `docs/data/sources.json`.
-5. Kjør `node scripts/check-public-content.mjs` før commit.
+`docs/place.html?id=<id>` er generisk detaljside for steder, slik at nye steder normalt ikke trenger ny HTML.
 
-Nettsiden er med vilje uten byggeverktøy. Det gjør den enkel å forstå, endre og flytte til en annen statisk host senere om ønskelig.
+## Prinsipper
+
+- Startsiden skal være visuelt attraktiv og gi lyst til å utforske.
+- Detaljer skal ligge ett klikk ned, ikke fylle hovedoversikten.
+- Bruk offisielle lenker for billetter og praktisk informasjon der de finnes.
+- Restaurantprioriteringer betyr **planprioritet for denne turen**, ikke en objektiv rangering av restaurantkvalitet.
+- Bilder skal ha gjenbrukbar lisens og synlig kreditering.
+- Fakta som kan endre seg skal ha kilde og formuleres som dagens regel/arbeidshypotese.
+- Ingen privat reiseinformasjon skal inn i repoet.
+
+## Oppdatere
+
+Kjør `node scripts/check-public-content.mjs` før publisering. Den automatiske GitHub Actions-kontrollen er et ekstra sikkerhetsnett, ikke en runtime-avhengighet.
