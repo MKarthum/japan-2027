@@ -26,7 +26,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
-- Bilder skal ha lovlig gjenbruk, kilde, kreditering og lisens.
+- Bilder skal ha lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Ikke innfør rammeverk, database eller byggesteg uten et konkret behov.
 
 ## Offentlig språk
