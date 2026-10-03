@@ -167,6 +167,75 @@ async function renderRoute() {
   });
   map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-left');
 
+  let userMarker=null;
+  let userLngLat=null;
+  let userWatchId=null;
+  let focusLocationWhenReady=false;
+
+  const locationButton=()=>document.getElementById('my-location');
+  const setLocationButtonState=(label,{disabled=false,title=''}={})=>{
+    const btn=locationButton();
+    if(!btn) return;
+    btn.textContent=label;
+    btn.disabled=disabled;
+    btn.title=title;
+  };
+  const focusUserLocation=()=>{
+    if(userLngLat){
+      map.easeTo({center:userLngLat,zoom:12.5,duration:650});
+      return;
+    }
+    focusLocationWhenReady=true;
+    setLocationButtonState('Finner posisjon …',{disabled:true});
+    startLocationWatch();
+  };
+  const updateUserLocation=(position)=>{
+    const {longitude,latitude,accuracy}=position.coords;
+    userLngLat=[longitude,latitude];
+    const accuracyText=Number.isFinite(accuracy) ? `Nøyaktighet ca. ${Math.max(1,Math.round(accuracy))} m.` : '';
+    const popup=new maplibregl.Popup({offset:16,maxWidth:'280px'}).setHTML(
+      `<div class="map-popup"><div class="meta">Live i nettleseren</div><h3>Min posisjon</h3><p class="small">${accuracyText} Posisjonen lagres ikke i reiseplanen.</p></div>`
+    );
+    if(!userMarker){
+      const el=document.createElement('button');
+      el.type='button';
+      el.className='map-user-location';
+      el.setAttribute('aria-label','Min posisjon');
+      el.innerHTML='<span class="map-user-pulse"></span><span class="map-user-dot"></span>';
+      userMarker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(userLngLat).setPopup(popup).addTo(map);
+    } else {
+      userMarker.setLngLat(userLngLat).setPopup(popup);
+    }
+    setLocationButtonState('◎ Min posisjon',{title:'Zoom inn til min posisjon'});
+    if(focusLocationWhenReady){
+      focusLocationWhenReady=false;
+      map.easeTo({center:userLngLat,zoom:12.5,duration:650});
+    }
+  };
+  const handleLocationError=(error)=>{
+    focusLocationWhenReady=false;
+    const denied=error?.code===1;
+    setLocationButtonState(denied?'Posisjon ikke tillatt':'Prøv min posisjon',{
+      title:denied?'Tillat posisjon for denne nettsiden i nettleseren for å vise hvor du er.':'Kunne ikke hente posisjonen akkurat nå.'
+    });
+    if(denied && userWatchId!==null){
+      navigator.geolocation.clearWatch(userWatchId);
+      userWatchId=null;
+    }
+  };
+  function startLocationWatch(){
+    if(!navigator.geolocation){
+      setLocationButtonState('Posisjon ikke støttet',{disabled:true,title:'Denne nettleseren støtter ikke posisjonering.'});
+      return;
+    }
+    if(userWatchId!==null) return;
+    userWatchId=navigator.geolocation.watchPosition(
+      updateUserLocation,
+      handleLocationError,
+      {enableHighAccuracy:true,maximumAge:15000,timeout:12000}
+    );
+  }
+
   const routeBounds = new maplibregl.LngLatBounds();
   for(const part of routeGeometry.parts){
     for(const coord of part.coords) routeBounds.extend(coord);
@@ -292,7 +361,8 @@ async function renderRoute() {
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
       <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false" ${counts.hotel?'':'disabled'}>Hotell <b>${counts.hotel}</b></button>
-      <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>`;
+      <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>
+      <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
     toolbar.addEventListener('click',e=>{
       const btn=e.target.closest('[data-map-layer]');
       if(btn && !btn.disabled){
@@ -301,6 +371,7 @@ async function renderRoute() {
       }
     });
     document.getElementById('fit-route')?.addEventListener('click',fitRoute);
+    document.getElementById('my-location')?.addEventListener('click',focusUserLocation);
   };
 
   map.on('load', ()=>{
@@ -368,6 +439,7 @@ async function renderRoute() {
     addPoiMarkers();
     renderLayerToolbar();
     fitRoute();
+    startLocationWatch();
   });
 
   detail.hidden=false;
