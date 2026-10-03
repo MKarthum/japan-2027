@@ -1,49 +1,58 @@
 # Instruksjoner for agenter
 
-Dette er et offentlig reiseplanleggingsrepo og en familievennlig GitHub Pages-side.
+Les `START_HERE.md` først. Denne filen utfyller rehydreringskontrakten der.
 
-## Hovedregel
+## Autoritet
 
-**Ikke skriv privat eller identifiserende informasjon til repoet.** `PUBLIC_DATA_POLICY.md` er autoritativ for personvern.
+- Siste `main` er autoritativ state.
+- Ikke bruk tidligere chat, minne eller commit-historikk som grunnlag dersom det avviker fra nåværende filer.
+- Bruk én kanonisk dataeier per domene. Offentlige sider skal avlede visninger fra datafilene, ikke opprette parallelle kopier.
+- `PUBLIC_DATA_POLICY.md` er autoritativ for hva som kan publiseres.
 
 ## Produktmål
 
-Siden skal gjøre planleggingen lettere og samtidig være interessant nok til at familien faktisk vil utforske den. Hold hovednavigasjonen enkel, og legg detaljer ett nivå ned.
+Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunnskap. Hovedoversikter skal være skannbare; detaljer ligger ett klikk ned.
 
-## Arbeidsmåte
+## Arbeidsregler
 
-- Behandle `docs/data/*.json` som autoritativt innhold for nettsiden.
-- Bevar enkel statisk arkitektur. Ikke innfør rammeverk, database eller byggesteg uten konkret behov.
-- Nye steder skal normalt inn i `places.json` og bruke `place.html?id=<id>`.
-- Mat/restaurantkandidater skal inn i `food.json`.
-- Transport, bookingradar, miniordbok, bilder og mediekoblinger skal normalt inn i `guide.json`.
-- Legg pålitelige kilder i `sources.json`.
-- Bruk offisielle sider for billettbestilling når de finnes.
-- Fakta som kan endres (pris, åpningstid, billettregler, transportregler) skal beskrives som dagens informasjon og sjekkes på nytt nærmere reisen.
-- Skill tydelig mellom bekreftet fakta og foreløpige forslag.
-- Ikke gjør foreløpige datoer eller budsjett til «bekreftede bestillinger».
-- Restaurantetikettene «Må prøve», «Sterk kandidat» og «Valgfri» er interne reiseprioriteringer, ikke objektive kvalitetsrangeringer.
-- Bilder må kunne gjenbrukes lovlig. Lagre kreditering og lisens i `guide.json`, og vis krediteringen på siden.
-- Hold ekstern detaljinformasjon ekstern når det er bedre: lenk til offisiell side, Wikipedia eller billettside fremfor å kopiere store mengder innhold.
-- Kjør `node scripts/check-public-content.mjs` før endringer publiseres.
+- Nye steder går normalt i `docs/data/places.json` og vises via `place.html?id=<id>`.
+- Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
+- Reiseetapper, priser og stasjoner går i `docs/data/transport.json`.
+- Praktiske råd, bookingradar, stedsbilder, ordbok og mediekoblinger går i `docs/data/guide.json`.
+- Felles kilder går i `docs/data/sources.json`.
+- Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
+- Opplysninger som kan endres skal ha konkret kontroll-dato i data.
+- Bilder skal ha lovlig gjenbruk, kilde, kreditering og lisens.
+- Ikke innfør rammeverk, database eller byggesteg uten et konkret behov.
 
-## Forbudt innhold
+## Offentlig språk
 
-Aldri legg inn navn på reisende, kontaktinformasjon, hjemmeadresse, skole/arbeidssted, bookingreferanser, eksakte flydetaljer, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som knytter en offentlig reiseplan til konkrete privatpersoner.
+- Skriv for en ny leser, ikke for utvikleren som gjorde forrige endring.
+- Ikke bruk endringsloggspråk som «ny kandidat», «nedgradert», «beholdes», «fjernet» eller «nå har vi».
+- Ikke legg tekniske implementasjonsforklaringer i UI.
+- Ikke vis «ikke kontrollert» eller andre research-placeholdere. Skjul uverifiserte felt.
+- Bruk datert metadata for volatile fakta; unngå «dagens regel».
+- Restaurantprioriteringer er planprioritet for reisen, ikke objektive restaurantkarakterer.
 
+## Personvern
 
-## Versjonering
+Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbeidssted, bookingreferanser, eksakte flydetaljer, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som identifiserer eller lokaliserer konkrete personer.
 
-- Hver bruker-synlige publisering skal bumpe `docs/data/site.json`.
-- Bruk semantisk versjon (`0.x.y`) og oppdater `released`.
-- Når CSS eller JavaScript endres, oppdater også `?v=<versjon>` på asset-lenkene i alle `docs/*.html` for å unngå cache.
-- Oppgi forventet versjonsnummer til brukeren når du ber dem verifisere en ny publisering.
+## Priser og valuta
 
+- Bruk `docs/data/fx.json` som eneste omregningsgrunnlag.
+- Japanske priser vises JPY først og NOK som omtrentlige planleggingstall.
+- Norske budsjettall vises NOK først og JPY som omregning.
+- Ikke hardkod separate valutakurser i visninger eller data.
 
-## Valuta og priser
+## Verifisering
 
-- Alle bruker-synlige priser skal vises i **både NOK og JPY**.
-- Bruk felles formattering og kurs fra `docs/data/fx.json`; ikke hardkod separate omregninger i sider eller datasett.
-- Vis normalt kildens valuta først og den omregnede valutaen som «ca.».
-- Norske budsjettall vises NOK først, japanske priser/farer vises JPY først.
-- Kursen er et datert planleggingsøyeblikksbilde, ikke en garantert kort-/bankkurs. Oppdater `fx.json` når konkrete priser gjennomgås.
+Før publisering skal alle tre kontroller passere:
+
+```bash
+node scripts/check-public-content.mjs
+node scripts/check-data-integrity.mjs
+node scripts/check-content-style.mjs
+```
+
+Ved brukersynlige endringer bumpes `docs/data/site.json`. Når CSS eller JavaScript endres, skal alle `docs/*.html` peke til samme assetversjon.
