@@ -44,24 +44,16 @@ const mapsButton = (name, area='Japan') => `<a class="button" href="https://www.
 const imageLicenseHtml=(img)=>img?.licenseUrl
   ? `<a href="${img.licenseUrl}" target="_blank" rel="license noopener">${img.license}</a>`
   : (img?.license||'');
-const imageCreditHtml=(img,cls='image-credit')=>img
-  ? `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`
+const imageCreditHtml=(img,cls='image-credit')=>{
+  if(!img) return '';
+  if(img.type==='ai'){
+    return `<span class="${cls}">AI-generert illustrasjon</span>`;
+  }
+  return `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`;
+};
+const cardImageHtml=(img,alt,compact=false)=>img?.url
+  ? `<div class="visual-card-media ${compact?'compact':''}"><img src="${img.url}" alt="${img.alt||alt}" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`
   : '';
-const cardImageHtml=(img,alt,compact=false)=>img
-  ? `<div class="visual-card-media ${compact?'compact':''}"><img src="${img.url}" alt="${alt}" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`
-  : '';
-
-function photo(guide, key, alt, cls='card-photo') {
-  const img=guide.images[key];
-  if (!img) return '';
-  return `<figure class="${cls}"><img src="${img.url}" alt="${alt}" loading="lazy"><figcaption>${imageCreditHtml(img,'')}</figcaption></figure>`;
-}
-
-function areaImageKey(guide, place) {
-  return guide.placeExtras[place.id]?.image ||
-    ({Tokyo:'tokyo','Hakone / Fuji':'hakone',Kyoto:'kyoto',Nara:'nara',Himeji:'himeji',Hiroshima:'hiroshima',Miyajima:'hiroshima',Osaka:'osaka'})[place.area] ||
-    ({tokyo:'tokyo',hakone:'hakone',kyoto:'kyoto',himeji:'himeji',hiroshima:'hiroshima',osaka:'osaka'})[place.id];
-}
 
 function destinationTheme(trip, subject) {
   const fallback={color:'#5f6b73',areas:[]};
@@ -100,21 +92,22 @@ async function renderHome() {
   document.getElementById('window').textContent = trip.window;
   document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
 
-  const hero = guide.images.himeji;
-  document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="Himeji Castle med kirsebærblomstring"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div><div class="photo-credit">${imageCreditHtml(hero,'')}</div>`;
+  const himeji=places.find(p=>p.id==='himeji');
+  const hero=himeji?.image;
+  if(hero){
+    document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="${hero.alt||'Himeji Castle'}"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div><div class="photo-credit">${imageCreditHtml(hero,'')}</div>`;
+  }
 
   const route = document.getElementById('route-cards');
   route.innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
-    const key=areaImageKey(guide,p);
-    const img=guide.images[key];
-    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(img,x.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
+    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(p.image,x.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
   }).join('');
 
   const featureIds=['nintendo-museum','nara','himeji','usj'];
   document.getElementById('family-hooks').innerHTML = featureIds.map(id=>{
-    const p=places.find(x=>x.id===id); const key=areaImageKey(guide,p); const img=guide.images[key];
-    return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${cardImageHtml(img,p.name,true)}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
+    const p=places.find(x=>x.id===id);
+    return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${cardImageHtml(p.image,p.name,true)}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
   }).join('');
 
   document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,3).map(x=>`<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${x.title}</strong><span>${x.when}</span></div><a href="${x.url}" target="_blank" rel="noopener">Offisiell side ↗</a></article>`).join('');
@@ -122,10 +115,9 @@ async function renderHome() {
 
 async function renderRoute() {
   nav('route'); footer();
-  const [trip,places,guide,routeGeometry,transport,food,hotelsData,fx]=await Promise.all([
+  const [trip,places,routeGeometry,transport,food,hotelsData,fx]=await Promise.all([
     json('data/trip.json'),
     json('data/places.json'),
-    json('data/guide.json'),
     json('data/route-geometry.json'),
     json('data/transport.json'),
     json('data/food.json'),
@@ -168,7 +160,7 @@ async function renderRoute() {
   document.getElementById('window').textContent = trip.window;
   document.getElementById('route-list').innerHTML = trip.route.map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
-    const img=guide.images[areaImageKey(guide,p)];
+    const img=p.image;
     const leg=nextLegByRouteId.get(x.id);
     return `<article class="route-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
       ${img?`<div class="route-thumb-wrap"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`:''}
@@ -579,15 +571,15 @@ async function renderRoute() {
 
 async function renderPlaces() {
   nav('places'); footer();
-  const [places,guide,trip] = await Promise.all([json('data/places.json'),json('data/guide.json'),json('data/trip.json')]);
+  const [places,trip] = await Promise.all([json('data/places.json'),json('data/trip.json')]);
   const areas = ['Alle', ...new Set(places.map(p=>p.area))];
   const filters = document.getElementById('filters');
   filters.innerHTML = areas.map((a,i)=>`<button class="${i===0?'active':''} ${a==='Alle'?'':'destination-filter'}" ${a==='Alle'?'':`style="${themeStyle(destinationTheme(trip,a))}"`} data-area="${a}">${a}</button>`).join('');
   const grid = document.getElementById('places-grid');
   const draw = (area='Alle') => {
     grid.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>{
-      const img=guide.images[areaImageKey(guide,p)];
-      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span><span class="type-pill">${p.type}</span></div>${imageCreditHtml(img,'image-credit-mini')}</div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}</div></div></a></article>`;
+      const img=p.image;
+      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?.url?`<div class="place-media"><img src="${img.url}" alt="${img.alt||p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span><span class="type-pill">${p.type}</span></div>${imageCreditHtml(img,'image-credit-mini')}</div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}</div></div></a></article>`;
     }).join('');
   };
   filters.addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON') return; [...filters.children].forEach(b=>b.classList.remove('active')); e.target.classList.add('active'); draw(e.target.dataset.area); });
@@ -596,7 +588,7 @@ async function renderPlaces() {
 
 async function renderPlace() {
   nav('places'); footer();
-  const [places,guide,food,trip] = await Promise.all([json('data/places.json'),json('data/guide.json'),json('data/food.json'),json('data/trip.json')]);
+  const [places,food,trip] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json')]);
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id);
   if(!p){
@@ -604,10 +596,9 @@ async function renderPlace() {
     document.querySelector('main').innerHTML='<div class="eyebrow">Steder</div><h1>Stedet ble ikke funnet</h1><p><a href="places.html">← Tilbake til alle steder</a></p>';
     return;
   }
+
   document.querySelector('main')?.setAttribute('style',themeStyle(destinationTheme(trip,p)));
   document.querySelector('main')?.classList.add('destination-themed');
-  const extra=guide.placeExtras[p.id]||{};
-  const img=guide.images[areaImageKey(guide,p)];
   document.title = `${p.name} · Japan 2027`;
   document.getElementById('area').textContent = `${p.area} · ${p.type}`;
   document.getElementById('name').textContent = p.name;
@@ -617,12 +608,50 @@ async function renderPlace() {
   document.getElementById('highlights').innerHTML = p.highlights.map(x=>`<li>${x}</li>`).join('');
   document.getElementById('prep').innerHTML = p.prep.length ? p.prep.map(x=>`<li>${x}</li>`).join('') : '<li>Ingen særskilt forberedelse anbefalt.</li>';
   document.getElementById('ac').innerHTML = p.acShadows ? '<span class="badge accent">Finnes / er relevant i Assassin’s Creed Shadows</span>' : '';
-  if(img) document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${p.name}"><div class="photo-credit">${imageCreditHtml(img,'')}</div>`;
-  document.getElementById('external-links').innerHTML = [...(extra.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
+
+  const img=p.image;
+  if(img?.url){
+    document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${img.alt||p.name}"><div class="photo-credit">${imageCreditHtml(img,'')}</div>`;
+  }
+
+  document.getElementById('external-links').innerHTML = [...(p.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
+
+  const mapRoot=document.getElementById('place-map');
+  if(mapRoot && p.map && Number.isFinite(p.map.lat) && Number.isFinite(p.map.lng)){
+    if(typeof maplibregl==='undefined'){
+      mapRoot.innerHTML=`<div class="map-error"><strong>Kartet kunne ikke lastes.</strong><br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.area+' Japan')}" target="_blank" rel="noopener">Åpne i Google Maps ↗</a></div>`;
+    } else {
+      const map=new maplibregl.Map({
+        container:'place-map',
+        style:'https://tiles.openfreemap.org/styles/liberty',
+        center:[p.map.lng,p.map.lat],
+        zoom:p.type==='base'||p.type==='dagstur'?11.5:13.5,
+        attributionControl:true
+      });
+      map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-left');
+      const el=document.createElement('div');
+      el.className='place-detail-marker';
+      el.style.setProperty('--area-color',destinationColor(trip,p));
+      el.setAttribute('aria-label',p.name);
+      new maplibregl.Marker({element:el,anchor:'center'})
+        .setLngLat([p.map.lng,p.map.lat])
+        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div>`))
+        .addTo(map);
+      let mapErrorShown=false;
+      map.on('error',()=>{
+        if(mapErrorShown) return;
+        mapErrorShown=true;
+        const fallback=document.getElementById('place-map-fallback');
+        if(fallback) fallback.hidden=false;
+      });
+    }
+  } else if(mapRoot){
+    mapRoot.innerHTML='<div class="map-error"><strong>Kartposisjon mangler.</strong></div>';
+  }
+
   const related=food.filter(x=>x.status==='active' && (x.area===p.area || (p.area==='Hiroshima'&&x.area==='Miyajima'))).slice(0,4);
   document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
 }
-
 async function renderPrep() {
   nav('prep'); footer();
   const [prep,guide]=await Promise.all([json('data/prep.json'),json('data/guide.json')]);
