@@ -163,5 +163,15 @@
     "title": "Norges Bank – exchange rates",
     "url": "https://www.norges-bank.no/en/topics/statistics/exchange_rates/",
     "use": "Referanse for valutakurser og senere oppdatering av NOK/JPY-planleggingskurs."
+  },
+  {
+    "title": "Google Maps",
+    "url": "https://www.google.com/maps",
+    "use": "Kartlenker og daterte restaurantvurderinger. Score og antall anmeldelser kan endre seg."
+  },
+  {
+    "title": "Tripadvisor",
+    "url": "https://www.tripadvisor.com/",
+    "use": "Daterte restaurantvurderinger og lenker til anmeldelser. Score og antall anmeldelser kan endre seg."
   }
 ]
