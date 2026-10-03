@@ -25,7 +25,8 @@ function uniqueIds(items, label) {
 function validMap(item) {
   return item.map &&
     Number.isFinite(item.map.lat) && item.map.lat >= -90 && item.map.lat <= 90 &&
-    Number.isFinite(item.map.lng) && item.map.lng >= -180 && item.map.lng <= 180;
+    Number.isFinite(item.map.lng) && item.map.lng >= -180 && item.map.lng <= 180 &&
+    typeof item.map.showOnRouteMap === 'boolean';
 }
 
 function dateDays(a,b) {
@@ -33,14 +34,32 @@ function dateDays(a,b) {
 }
 
 function validateImage(img,label) {
-  if (!img?.url || !img?.source || !img?.credit || !img?.license || !img?.licenseUrl) {
-    errors.push(`${label}: bilde mangler url/source/credit/license/licenseUrl`);
+  if (!img?.type || !['licensed','ai'].includes(img.type)) {
+    errors.push(`${label}: image.type må være licensed eller ai`);
     return;
   }
-  const commons = img.source.startsWith('https://commons.wikimedia.org/wiki/File:');
-  const explicitlyAllowed = img.ownedByProject === true || Boolean(img.permissionUrl);
-  if (!commons && !explicitlyAllowed) {
-    errors.push(`${label}: bildekilden har ikke dokumentert gjenbruksgrunnlag`);
+  if (!img.url || !img.alt) {
+    errors.push(`${label}: bilde mangler url/alt`);
+    return;
+  }
+
+  if (img.type === 'licensed') {
+    if (!img.source || !img.credit || !img.license || !img.licenseUrl) {
+      errors.push(`${label}: lisensiert bilde mangler source/credit/license/licenseUrl`);
+      return;
+    }
+    const commons = img.source.startsWith('https://commons.wikimedia.org/wiki/File:');
+    const explicitlyAllowed = img.ownedByProject === true || Boolean(img.permissionUrl);
+    if (!commons && !explicitlyAllowed) {
+      errors.push(`${label}: bildekilden har ikke dokumentert gjenbruksgrunnlag`);
+    }
+  }
+
+  if (img.type === 'ai') {
+    if (!img.generatedAt) errors.push(`${label}: AI-bilde mangler generatedAt`);
+    if (/^https?:\/\//.test(img.url)) errors.push(`${label}: AI-bilde skal lagres lokalt i repoet, ikke som ekstern URL`);
+    const target=path.resolve('docs',img.url);
+    if (!fs.existsSync(target)) errors.push(`${label}: AI-bildefilen finnes ikke: ${img.url}`);
   }
 }
 
@@ -49,12 +68,16 @@ uniqueIds(places, 'places.json');
 uniqueIds(hotels, 'hotels.json');
 
 const placeIds = new Set(places.map(x => x.id));
+const placeById = new Map(places.map(x => [x.id,x]));
 const routeIds = new Set(trip.route.map(x => x.id));
 const themedAreas = new Set();
 
 for (let i=0;i<trip.route.length;i++) {
   const stop=trip.route[i];
   if (!placeIds.has(stop.id)) errors.push(`trip.json: rutestopp ${stop.id} mangler i places.json`);
+  for (const duplicateKey of ['name','lat','lng']) {
+    if (duplicateKey in stop) errors.push(`trip.json: ${stop.id} dupliserer ${duplicateKey}; stedet eies av places.json`);
+  }
   if (!stop.theme || !/^#[0-9A-Fa-f]{6}$/.test(stop.theme.color || '')) {
     errors.push(`trip.json: ${stop.id} mangler gyldig theme.color`);
   }
@@ -74,8 +97,9 @@ for (let i=0;i<trip.route.length;i++) {
 
 for (const dayTrip of trip.dayTrips || []) {
   if (!placeIds.has(dayTrip.id)) errors.push(`trip.json: dagstur ${dayTrip.id} mangler i places.json`);
-  if (!dayTrip.destinationId || !routeIds.has(dayTrip.destinationId)) {
-    errors.push(`trip.json: dagstur ${dayTrip.id} mangler gyldig destinationId`);
+  if (!dayTrip.baseId || !routeIds.has(dayTrip.baseId)) errors.push(`trip.json: dagstur ${dayTrip.id} mangler gyldig baseId`);
+  for (const duplicateKey of ['name','base','lat','lng','summary','destinationId']) {
+    if (duplicateKey in dayTrip) errors.push(`trip.json: dagstur ${dayTrip.id} dupliserer ${duplicateKey}; bruk places.json/baseId`);
   }
 }
 
@@ -83,23 +107,53 @@ for (const item of [...places, ...food.filter(x => x.status === 'active')]) {
   if (!themedAreas.has(item.area)) errors.push(`${item.id}: området ${item.area} mangler destinasjonstema i trip.json`);
 }
 
-const legIds=new Set(transport.legs.map(x=>x.id));
-if (transport.legs.length !== trip.route.length-1) {
-  errors.push('transport.json: antall etapper samsvarer ikke med hovedruten');
+const placeImageUrls=new Map();
+for (const item of places) {
+  for (const key of ['id','name','area','type','simple','description','why']) {
+    if (!item[key]) errors.push(`places.json: ${item.id||'(uten id)'} mangler ${key}`);
+  }
+  if (!Array.isArray(item.highlights) || !Array.isArray(item.prep)) errors.push(`places.json: ${item.id} mangler highlights/prep-lister`);
+  if (!Array.isArray(item.links) || item.links.length === 0) errors.push(`places.json: ${item.id} mangler eksterne lenker`);
+  if (!validMap(item)) errors.push(`places.json: ${item.id} mangler komplett map-data`);
+  validateImage(item.image,`places.json image ${item.id}`);
+  if (item.image?.url) {
+    if (placeImageUrls.has(item.image.url)) {
+      errors.push(`places.json: ${item.id} og ${placeImageUrls.get(item.image.url)} bruker samme stedbilde`);
+    } else {
+      placeImageUrls.set(item.image.url,item.id);
+    }
+  }
 }
+
+if ('images' in guide || 'placeExtras' in guide) {
+  errors.push('guide.json skal ikke eie stedsbilder eller placeExtras; dette hører til places.json');
+}
+for (const item of guide.bookingRadar || []) {
+  const p=placeById.get(item.placeId);
+  if (!p) errors.push(`guide.json: bookingRadar har ukjent placeId ${item.placeId}`);
+  for (const duplicateKey of ['title','area','url']) {
+    if (duplicateKey in item) errors.push(`guide.json: bookingRadar ${item.placeId} dupliserer ${duplicateKey}; bruk places.json`);
+  }
+  if (!item.priority || !item.when || !item.why || !item.checked) errors.push(`guide.json: bookingRadar ${item.placeId} mangler felter`);
+  if (p && !(p.links||[]).some(x=>x.kind==='ticket' || x.kind==='official')) {
+    errors.push(`places.json: ${item.placeId} mangler billett/offisiell lenke for bookingradar`);
+  }
+}
+for (const item of guide.connections || []) {
+  if (!placeIds.has(item.placeId)) errors.push(`guide.json: connection har ukjent placeId ${item.placeId}`);
+}
+
+const legIds=new Set(transport.legs.map(x=>x.id));
+if (transport.legs.length !== trip.route.length-1) errors.push('transport.json: antall etapper samsvarer ikke med hovedruten');
 for (let i=0;i<transport.legs.length;i++) {
   const leg=transport.legs[i];
   const from=trip.route[i], to=trip.route[i+1];
   if (!from || !to || leg.fromRouteId!==from.id || leg.toRouteId!==to.id) {
     errors.push(`transport.json: etappe ${leg.id} følger ikke hovedrutens rekkefølge`);
   }
-  if (leg.fare?.family2a2cYen !== leg.fare?.adultYen*2 + leg.fare?.childYen*2) {
-    errors.push(`transport.json: familiepris stemmer ikke for ${leg.id}`);
-  }
+  if (leg.fare?.family2a2cYen !== leg.fare?.adultYen*2 + leg.fare?.childYen*2) errors.push(`transport.json: familiepris stemmer ikke for ${leg.id}`);
   const elapsed=(leg.stations||[]).map(s=>s.elapsedMin);
-  if (elapsed.some((n,j)=>!Number.isFinite(n)||(j>0&&n<elapsed[j-1]))) {
-    errors.push(`transport.json: stasjonstidene er ugyldige for ${leg.id}`);
-  }
+  if (elapsed.some((n,j)=>!Number.isFinite(n)||(j>0&&n<elapsed[j-1]))) errors.push(`transport.json: stasjonstidene er ugyldige for ${leg.id}`);
 }
 
 for (const part of routeGeometry.parts || []) {
@@ -109,39 +163,8 @@ for (const part of routeGeometry.parts || []) {
   if (!Array.isArray(part.coords) || part.coords.length < 2) errors.push(`route-geometry.json: ${part.journeyId} mangler geometri`);
 }
 
-for (const item of places) {
-  for (const key of ['id','name','area','type','simple','description','why']) {
-    if (!item[key]) errors.push(`places.json: ${item.id||'(uten id)'} mangler ${key}`);
-  }
-  if (!Array.isArray(item.highlights) || !Array.isArray(item.prep)) errors.push(`places.json: ${item.id} mangler highlights/prep-lister`);
-  if (item.map && !validMap(item)) errors.push(`places.json: ${item.id} har ugyldig kartposisjon`);
-}
-
-const areaImageFallback={Tokyo:'tokyo','Hakone / Fuji':'hakone',Kyoto:'kyoto',Nara:'nara',Himeji:'himeji',Hiroshima:'hiroshima',Miyajima:'hiroshima',Osaka:'osaka'};
-const idImageFallback={tokyo:'tokyo',hakone:'hakone',kyoto:'kyoto',himeji:'himeji',hiroshima:'hiroshima',osaka:'osaka'};
-const resolvedImages=new Map();
-for (const [id,extra] of Object.entries(guide.placeExtras||{})) {
-  if (!placeIds.has(id)) errors.push(`guide.json: placeExtras har ukjent sted ${id}`);
-  if (extra.image && !guide.images?.[extra.image]) errors.push(`guide.json: ${id} peker til ukjent bilde ${extra.image}`);
-}
-for (const item of places) {
-  const key=guide.placeExtras?.[item.id]?.image || areaImageFallback[item.area] || idImageFallback[item.id];
-  const img=guide.images?.[key];
-  if (!img) {
-    errors.push(`guide.json: ${item.id} mangler representativt bilde`);
-    continue;
-  }
-  validateImage(img,`guide.json image ${key}`);
-  if (resolvedImages.has(img.url)) {
-    errors.push(`guide.json: ${item.id} og ${resolvedImages.get(img.url)} bruker samme stedbilde`);
-  } else {
-    resolvedImages.set(img.url,item.id);
-  }
-}
-for (const [key,img] of Object.entries(guide.images||{})) validateImage(img,`guide.json image ${key}`);
-
 for (const item of food.filter(x => x.status === 'active')) {
-  if (!validMap(item)) errors.push(`food.json: aktiv kandidat ${item.id} mangler gyldig map.lat/map.lng`);
+  if (!validMap(item)) errors.push(`food.json: aktiv kandidat ${item.id} mangler gyldig map-data`);
   if (!item.factsChecked) errors.push(`food.json: ${item.id} mangler factsChecked`);
   if (!Array.isArray(item.orderRecommendations) || item.orderRecommendations.length === 0) errors.push(`food.json: ${item.id} mangler bestillingsforslag`);
   if (!item.links?.googleMaps) errors.push(`food.json: ${item.id} mangler Google Maps-lenke`);
@@ -190,18 +213,20 @@ for (const name of htmlFiles) {
   }
 }
 
-if (fs.existsSync('docs/data/map-pois.json')) {
-  errors.push('docs/data/map-pois.json skal ikke finnes; kartdata skal ligge i kanoniske detaljfiler');
-}
+if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
 for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
+const placeHtml=fs.readFileSync('docs/place.html','utf8');
+if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js')) errors.push('place.html mangler generisk kartvisning');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler hotellvisninger');
+if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
+if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
 if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
-if (!app.includes('imageCreditHtml') || !app.includes('licenseUrl')) errors.push('app.js viser ikke dokumentert bildekreditering');
+if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
 if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.js refererer fortsatt til avledet map-pois-data');
 for (const dataFile of ['food.json','places.json','hotels.json']) {
   if (!app.includes(`json('data/${dataFile}')`)) errors.push(`app.js henter ikke data/${dataFile}`);
@@ -211,5 +236,4 @@ if (errors.length) {
   console.error('Dataintegritetsfeil:\n' + errors.map(x => `- ${x}`).join('\n'));
   process.exit(1);
 }
-
-console.log(`OK: ${food.filter(x=>x.status==='active').length} restauranter, ${hotels.length} hoteller og ${places.length} steder er konsistente og kilde-/bildesjekket.`);
+console.log(`OK: ${places.length} steder, ${food.filter(x=>x.status==='active').length} restauranter og ${hotels.length} hoteller bruker kanoniske data.`);
