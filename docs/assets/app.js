@@ -2,8 +2,9 @@ const fmtDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', mont
 const fmtLongDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${iso}T12:00:00Z`));
 const fmtNok = (n) => new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n)) + ' kr';
 const fmtJpy = (n) => '¥' + new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n));
+const fmtRate = (n, digits=4) => new Intl.NumberFormat('nb-NO', { minimumFractionDigits:digits, maximumFractionDigits:digits }).format(n);
 const nokFromJpy = (jpy,fx) => jpy * fx.nokPerJpy;
-const jpyFromNok = (nok,fx) => nok / fx.nokPerJpy;
+const jpyFromNok = (nok,fx) => nok * fx.jpyPerNok;
 const dualFromJpy = (jpy,fx) => `${fmtJpy(jpy)} · ca. ${fmtNok(nokFromJpy(jpy,fx))}`;
 const dualFromNok = (nok,fx) => `${fmtNok(nok)} · ca. ${fmtJpy(jpyFromNok(nok,fx))}`;
 const dualRangeFromNok = (range,fx) => `${fmtNok(range[0])}–${fmtNok(range[1])} · ca. ${fmtJpy(jpyFromNok(range[0],fx))}–${fmtJpy(jpyFromNok(range[1],fx))}`;
@@ -14,6 +15,37 @@ async function json(path) {
   if (!r.ok) throw new Error(`Kunne ikke hente ${path}`);
   return r.json();
 }
+
+let fxPromise=null;
+async function loadFx() {
+  if(fxPromise) return fxPromise;
+  fxPromise=(async()=>{
+    const fallback=await json('data/fx.json');
+    try {
+      const endpoint=fallback.liveEndpoint || 'https://api.frankfurter.dev/v2/rate/NOK/JPY?providers=ecb';
+      const r=await fetch(endpoint,{cache:'no-store'});
+      if(!r.ok) throw new Error(`FX API ${r.status}`);
+      const live=await r.json();
+      const rate=Number(live.rate);
+      if(!Number.isFinite(rate) || rate < 5 || rate > 30) throw new Error('Ugyldig NOK/JPY-kurs');
+      return {
+        ...fallback,
+        asOf:live.date || fallback.asOf,
+        jpyPerNok:rate,
+        nokPerJpy:1/rate,
+        live:true,
+        sourceName:'ECB referansekurs',
+        sourceUrl:'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html'
+      };
+    } catch(error) {
+      console.warn('Live valutakurs utilgjengelig; bruker lagret ECB-fallback.',error);
+      return {...fallback,live:false};
+    }
+  })();
+  return fxPromise;
+}
+
+const fxStatusText=(fx)=>fx.live?'Live ECB-referansekurs':'Lagret ECB-referansekurs';
 
 function nav(active='') {
   const items = [
@@ -30,11 +62,12 @@ function nav(active='') {
 }
 
 function footer() {
-  document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Reiseplan med priser, steder og praktiske kilder samlet på ett sted.</span><br><span id="footer-fx" class="small footer-fx"></span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a></div></div>`;
-  fetch('data/fx.json', {cache:'no-store'}).then(r=>r.ok?r.json():null).then(fx=>{
-    if(!fx) return;
+  document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Reiseplan med priser, steder og praktiske kilder samlet på ett sted.</span><br><span id="footer-version" class="small footer-version"></span><br><span id="footer-fx" class="small footer-fx"></span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a></div></div>`;
+  Promise.all([json('data/site.json'),loadFx()]).then(([site,fx])=>{
+    const version=document.getElementById('footer-version');
+    if(version) version.textContent=`v${site.version} · Sist oppdatert ${site.released}`;
     const el=document.getElementById('footer-fx');
-    if(el) el.textContent=`Planleggingskurs ${fmtLongDate(fx.asOf)}: ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)}`;
+    if(el) el.innerHTML=`${fxStatusText(fx)} ${fmtLongDate(fx.asOf)}: 1 NOK = ${fmtRate(fx.jpyPerNok)} JPY · 1 JPY = ${fmtRate(fx.nokPerJpy)} NOK · <a href="${fx.sourceUrl}" target="_blank" rel="noopener">kilde ↗</a>`;
   }).catch(()=>{});
 }
 
@@ -52,8 +85,8 @@ const imageCreditHtml=(img,cls='image-credit')=>{
   return `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`;
 };
 const cardImageHtml=(img,alt,compact=false)=>img?.url
-  ? `<div class="visual-card-media ${compact?'compact':''}"><img src="${img.url}" alt="${img.alt||alt}" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`
-  : '';
+  ? `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback" aria-hidden="true">${alt}</div><img src="${img.url}" alt="${img.alt||alt}" loading="lazy" onerror="this.remove()">${imageCreditHtml(img,'image-credit-mini')}</div>`
+  : `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback">${alt}</div></div>`;
 
 function destinationTheme(trip, subject) {
   const fallback={color:'#5f6b73',areas:[]};
@@ -92,9 +125,11 @@ function priorityBadge(priority){
 
 async function renderHome() {
   nav('home'); footer();
-  const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),json('data/fx.json')]);
+  const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),loadFx()]);
   document.getElementById('status').textContent = trip.status;
   document.getElementById('window').textContent = trip.window;
+  const stationNote=document.getElementById('station-note');
+  if(stationNote) stationNote.textContent=`${transport.stationNote} Stoppmønsteret kan variere med konkret togavgang og fastsettes først når toget velges.`;
   document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
 
   const himeji=places.find(p=>p.id==='himeji');
@@ -131,7 +166,7 @@ async function renderRoute() {
     json('data/transport.json'),
     json('data/food.json'),
     json('data/hotels.json'),
-    json('data/fx.json')
+    loadFx()
   ]);
 
   const formatMinutes = (mins) => {
@@ -371,7 +406,7 @@ async function renderRoute() {
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
       const popup=new maplibregl.Popup({offset:12,maxWidth:'300px'}).setHTML(`
-        <div class="map-popup"><div class="meta">Stasjon</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
+        <div class="map-popup"><div class="meta">Utvalgt knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       markerGroups.stations.push(marker);
       if(layerState.stations) marker.addTo(map);
@@ -476,7 +511,7 @@ async function renderRoute() {
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
-      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Stasjoner <b>${counts.stations}</b></button>
+      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Knutepunkter <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
       <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Hotell <b>${counts.hotel}</b></button>
@@ -592,17 +627,35 @@ async function renderPlaces() {
   const areas = ['Alle', ...new Set(places.map(p=>p.area))];
   const filters = document.getElementById('filters');
   filters.innerHTML = areas.map((a,i)=>`<button class="${i===0?'active':''} ${a==='Alle'?'':'destination-filter'}" ${a==='Alle'?'':`style="${themeStyle(destinationTheme(trip,a))}"`} data-area="${a}">${a}</button>`).join('');
-  const grid = document.getElementById('places-grid');
+  const list = document.getElementById('places-grid');
   const draw = (area='Alle') => {
-    grid.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>{
-      const img=p.image;
-      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?.url?`<div class="place-media"><img src="${img.url}" alt="${img.alt||p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span><span class="type-pill">${p.type}</span></div>${imageCreditHtml(img,'image-credit-mini')}</div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}</div></div></a></article>`;
-    }).join('');
+    list.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>`
+      <article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
+        <a href="place.html?id=${encodeURIComponent(p.id)}">
+          <div class="place-list-media">
+            <div class="place-list-fallback" aria-hidden="true">${p.name}</div>
+            ${p.image?.url?`<img src="${p.image.url}" alt="${p.image.alt||p.name}" loading="lazy" onerror="this.remove()">`:''}
+            ${p.image?imageCreditHtml(p.image,'image-credit-mini'):''}
+          </div>
+          <div class="place-list-copy">
+            <div class="place-list-meta"><span style="color:${destinationColor(trip,p)}">${p.area}</span><span>${p.type}</span></div>
+            <h3>${p.name}</h3>
+            <strong>${p.simple}</strong>
+            <p>${p.description}</p>
+            ${p.acShadows?'<span class="badge">AC Shadows</span>':''}
+          </div>
+          <span class="place-list-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>`).join('');
   };
-  filters.addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON') return; [...filters.children].forEach(b=>b.classList.remove('active')); e.target.classList.add('active'); draw(e.target.dataset.area); });
+  filters.addEventListener('click',e=>{
+    if(e.target.tagName!=='BUTTON') return;
+    [...filters.children].forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');
+    draw(e.target.dataset.area);
+  });
   draw();
 }
-
 async function renderPlace() {
   nav('places'); footer();
   const [places,food,trip] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json')]);
@@ -678,7 +731,7 @@ async function renderPrep() {
 
 async function renderFood() {
   nav('food'); footer();
-  const [food,fx,trip]=await Promise.all([json('data/food.json'),json('data/fx.json'),json('data/trip.json')]);
+  const [food,fx,trip]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json')]);
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
   const areaOrder=['Tokyo','Kyoto','Nara','Himeji','Hiroshima','Miyajima','Osaka'];
@@ -744,14 +797,14 @@ async function renderFood() {
   const fxNote=document.getElementById('food-fx-note');
   if(fxNote){
     const ratingDate=active.find(x=>x.ratings?.checked)?.ratings?.checked;
-    fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fmtLongDate(fx.asOf)}).${ratingDate?` Restaurantvurderinger kontrollert ${fmtLongDate(ratingDate)}.`:''}`;
+    fxNote.textContent=`Familieprisene er planestimater. ${fxStatusText(fx)} ${fmtLongDate(fx.asOf)} brukes i alle omregninger.${ratingDate?` Restaurantvurderinger kontrollert ${fmtLongDate(ratingDate)}.`:''}`;
   }
   draw();
 }
 
 async function renderRestaurant() {
   nav('food'); footer();
-  const [food,fx,trip]=await Promise.all([json('data/food.json'),json('data/fx.json'),json('data/trip.json')]);
+  const [food,fx,trip]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json')]);
   const id=new URLSearchParams(location.search).get('id');
   const x=food.find(item=>item.id===id);
   if(!x){
@@ -787,7 +840,7 @@ async function renderRestaurant() {
   document.getElementById('restaurant-price-basis').textContent=x.priceBasis||'';
   document.getElementById('restaurant-booking').textContent=x.booking||'';
   document.getElementById('restaurant-note').textContent=x.note||'';
-  document.getElementById('restaurant-fx-note').textContent=`NOK-estimatet bruker planleggingskurs ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}).`;
+  document.getElementById('restaurant-fx-note').textContent=`NOK-estimatet bruker ${fxStatusText(fx).toLowerCase()} fra ${fmtLongDate(fx.asOf)}.`;
 
   const img=document.getElementById('restaurant-image');
   if(x.image){
@@ -835,7 +888,7 @@ async function renderRestaurant() {
 
 async function renderHotels() {
   nav('hotels'); footer();
-  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/fx.json')]);
+  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),loadFx()]);
   const hotels=data.hotels;
   const tierOrder={'Verdi':0,'Mellomklasse':1,'Mellomklasse+':2,'Premium':3,'Splurge':4,'Splurge-opplevelse':4};
   const price=(x)=>{
@@ -867,12 +920,12 @@ async function renderHotels() {
       <div class="hotel-grid">${items.map(card).join('')}</div>
     </section>`;
   }).join('');
-  document.getElementById('hotel-price-note').textContent=`${data.priceNote} NOK bruker planleggingskurs ${fmtLongDate(fx.asOf)}.`;
+  document.getElementById('hotel-price-note').textContent=`${data.priceNote} NOK-omregningen bruker ${fxStatusText(fx).toLowerCase()} fra ${fmtLongDate(fx.asOf)}.`;
 }
 
 async function renderHotel() {
   nav('hotels'); footer();
-  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/fx.json')]);
+  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),loadFx()]);
   const id=new URLSearchParams(location.search).get('id');
   const x=data.hotels.find(h=>h.id===id);
   if(!x){
@@ -929,7 +982,7 @@ async function renderPractical() {
 
 async function renderBudget() {
   nav('budget'); footer();
-  const [trip,fx] = await Promise.all([json('data/trip.json'),json('data/fx.json')]);
+  const [trip,fx] = await Promise.all([json('data/trip.json'),loadFx()]);
   document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
   document.getElementById('range').innerHTML = dualMoneyHtml(
     `${fmtNok(trip.budget.rangeNok[0])}–${fmtNok(trip.budget.rangeNok[1])}`,
@@ -940,7 +993,7 @@ async function renderBudget() {
     <tr><td>${item.label}</td><td>${dualRangeFromNok(item.rangeNok,fx)}</td></tr>
   `).join('');
   document.getElementById('fx-note').textContent =
-    `Omregnet med planleggingskurs ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}). ${fx.displayNote}`;
+    `Budsjettet er primært i NOK. JPY ved siden av beregnes med ${fxStatusText(fx).toLowerCase()} fra ${fmtLongDate(fx.asOf)}.`;
 }
 
 async function renderSources() {
