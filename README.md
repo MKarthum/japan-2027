@@ -1,5 +1,7 @@
 # Japan 2027
 
+> Skal du videreutvikle repoet eller bruke en AI-agent? Start med `START_HERE.md`.
+
 Offentlig planleggingsrepo for en mulig Japan-tur våren 2027. Nettsiden er en enkel, datadrevet GitHub Pages-side som skal være interessant å utforske for hele familien – uten å bli et tungt reiseplanleggingssystem.
 
 > **Viktig:** Dette repoet er offentlig. Ikke legg inn private eller identifiserende opplysninger. Les `PUBLIC_DATA_POLICY.md` før du legger til eller endrer innhold.
@@ -39,10 +41,10 @@ Kilder og personvern ligger i bunnteksten.
 - Bruk offisielle lenker for billetter og praktisk informasjon der de finnes.
 - Restaurantprioriteringer betyr **planprioritet for denne turen**, ikke en objektiv rangering av restaurantkvalitet.
 - Bilder skal ha gjenbrukbar lisens og synlig kreditering.
-- Fakta som kan endre seg skal ha kilde og formuleres som dagens regel/arbeidshypotese.
+- Fakta som kan endre seg skal ha kilde og konkret kontroll-dato; offentlig tekst skal ikke bruke relative formuleringer som «dagens regel».
 - Ingen privat reiseinformasjon skal inn i repoet.
 - Alle priser vises i både NOK og JPY via en felles, datert planleggingskurs.
 
 ## Oppdatere
 
-Kjør `node scripts/check-public-content.mjs` og `node scripts/check-data-integrity.mjs` før publisering. Den automatiske GitHub Actions-kontrollen er et ekstra sikkerhetsnett, ikke en runtime-avhengighet.
+Kjør `node scripts/check-public-content.mjs`, `node scripts/check-data-integrity.mjs` og `node scripts/check-content-style.mjs` før publisering. GitHub Actions kjører de samme kontrollene automatisk.
