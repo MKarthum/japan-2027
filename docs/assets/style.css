@@ -226,3 +226,11 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .map-place-label{font-size:.76rem;padding:4px 7px}
   .fare-grid{gap:5px}
 }
+
+.money-dual{display:inline-flex;flex-direction:column;line-height:1.15;gap:2px}
+.money-dual>span{font-weight:inherit}
+.money-dual>small{font-size:.68em;color:var(--muted);font-weight:700;letter-spacing:0}
+.hero-stat .money-dual>small{font-size:.7rem}
+.stat .money-dual>small{font-size:.95rem;margin-top:3px}
+.footer-fx{opacity:.9}
+.fx-note{margin-top:12px}
