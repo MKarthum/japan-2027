@@ -330,7 +330,7 @@
         65000,
         100000
       ],
-      "familyOption": "Store familierom finnes; den viktigste fordelen er hotellstandard kombinert med direkte tilknytning til Kyoto Station.",
+      "familyOption": "Granvia Family er 62 m² med fire faste senger og én konvertibel seng, med kapasitet opptil fem personer.",
       "why": "Premium-valget når maksimal toglogistikk og fullservicehotell veier mer enn leilighetsplass.",
       "logistics": "Integrert i Kyoto Station – optimalt for dagsturer, bagasje og avreise mot Himeji.",
       "tradeoff": "Dyrere enn 22 PIECES/MIMARU og mindre «nabolagsfølelse».",
@@ -341,11 +341,12 @@
         "checked": "2026-10-03"
       },
       "links": {
-        "official": "https://www.granvia-kyoto.co.jp/english/",
+        "official": "https://www.granviakyoto.com/rooms/",
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Hotel+Granvia+Kyoto"
       },
       "sources": [
-        "https://www.granvia-kyoto.co.jp/english/"
+        "https://www.granviakyoto.com/rooms/",
+        "https://www.granviakyoto.com/20th-anniversary/"
       ],
       "map": {
         "lat": 34.98584,
