@@ -1,0 +1,271 @@
+{
+  "version": "1.0",
+  "note": "Public planning POIs only. Hotels stay empty until public hotel candidates are deliberately added.",
+  "pois": [
+    {
+      "id": "shibuya",
+      "category": "experience",
+      "name": "Shibuya Crossing",
+      "area": "Tokyo",
+      "lat": 35.65949,
+      "lng": 139.70054,
+      "href": "place.html?id=shibuya"
+    },
+    {
+      "id": "asakusa",
+      "category": "experience",
+      "name": "Sensō-ji / Asakusa",
+      "area": "Tokyo",
+      "lat": 35.714444,
+      "lng": 139.796667,
+      "href": "place.html?id=asakusa"
+    },
+    {
+      "id": "ghibli-museum",
+      "category": "experience",
+      "name": "Ghibli Museum",
+      "area": "Tokyo",
+      "lat": 35.69623,
+      "lng": 139.57045,
+      "href": "place.html?id=ghibli-museum"
+    },
+    {
+      "id": "teamlab",
+      "category": "experience",
+      "name": "teamLab Borderless",
+      "area": "Tokyo",
+      "lat": 35.66185,
+      "lng": 139.741842,
+      "href": "place.html?id=teamlab"
+    },
+    {
+      "id": "fushimi-inari",
+      "category": "experience",
+      "name": "Fushimi Inari",
+      "area": "Kyoto",
+      "lat": 34.96754,
+      "lng": 135.77944,
+      "href": "place.html?id=fushimi-inari"
+    },
+    {
+      "id": "kiyomizu-dera",
+      "category": "experience",
+      "name": "Kiyomizu-dera",
+      "area": "Kyoto",
+      "lat": 34.994831,
+      "lng": 135.785003,
+      "href": "place.html?id=kiyomizu-dera"
+    },
+    {
+      "id": "kinkakuji",
+      "category": "experience",
+      "name": "Kinkaku-ji",
+      "area": "Kyoto",
+      "lat": 35.03959,
+      "lng": 135.72951,
+      "href": "place.html?id=kinkakuji"
+    },
+    {
+      "id": "arashiyama",
+      "category": "experience",
+      "name": "Arashiyama Bamboo Grove",
+      "area": "Kyoto",
+      "lat": 35.01701,
+      "lng": 135.67169,
+      "href": "place.html?id=arashiyama"
+    },
+    {
+      "id": "nintendo-museum",
+      "category": "experience",
+      "name": "Nintendo Museum",
+      "area": "Kyoto / Uji",
+      "lat": 34.89261,
+      "lng": 135.78405,
+      "href": "place.html?id=nintendo-museum"
+    },
+    {
+      "id": "todaiji",
+      "category": "experience",
+      "name": "Tōdai-ji",
+      "area": "Nara",
+      "lat": 34.689167,
+      "lng": 135.839722,
+      "href": "place.html?id=todaiji"
+    },
+    {
+      "id": "himeji-castle",
+      "category": "experience",
+      "name": "Himeji Castle",
+      "area": "Himeji",
+      "lat": 34.83933,
+      "lng": 134.69402,
+      "href": "place.html?id=himeji"
+    },
+    {
+      "id": "peace-museum",
+      "category": "experience",
+      "name": "Hiroshima Peace Memorial Museum",
+      "area": "Hiroshima",
+      "lat": 34.391472,
+      "lng": 132.453056,
+      "href": "place.html?id=hiroshima"
+    },
+    {
+      "id": "itsukushima",
+      "category": "experience",
+      "name": "Itsukushima Shrine",
+      "area": "Miyajima",
+      "lat": 34.295806,
+      "lng": 132.320111,
+      "href": "place.html?id=miyajima"
+    },
+    {
+      "id": "dotonbori",
+      "category": "experience",
+      "name": "Dōtonbori",
+      "area": "Osaka",
+      "lat": 34.6687,
+      "lng": 135.50409,
+      "href": "place.html?id=dotonbori"
+    },
+    {
+      "id": "osaka-castle",
+      "category": "experience",
+      "name": "Osaka Castle",
+      "area": "Osaka",
+      "lat": 34.68737,
+      "lng": 135.52586,
+      "href": "place.html?id=osaka"
+    },
+    {
+      "id": "usj",
+      "category": "experience",
+      "name": "Universal Studios Japan / Super Nintendo World",
+      "area": "Osaka",
+      "lat": 34.6647,
+      "lng": 135.433,
+      "href": "place.html?id=usj"
+    },
+    {
+      "id": "food-uobei",
+      "category": "food",
+      "name": "Uobei Shibuya Dogenzaka",
+      "area": "Tokyo",
+      "lat": 35.659435,
+      "lng": 139.697921,
+      "href": "food.html",
+      "priority": "Må prøve",
+      "detail": "Sushi"
+    },
+    {
+      "id": "food-tsujihan",
+      "category": "food",
+      "name": "Nihonbashi Kaisen Don Tsujihan",
+      "area": "Tokyo",
+      "lat": 35.680717,
+      "lng": 139.771577,
+      "href": "food.html",
+      "priority": "Sterk kandidat",
+      "detail": "Kaisendon"
+    },
+    {
+      "id": "food-gyukatsu",
+      "category": "food",
+      "name": "Gyukatsu Motomura Akihabara",
+      "area": "Tokyo",
+      "lat": 35.69773,
+      "lng": 139.77162,
+      "href": "food.html",
+      "priority": "Sterk kandidat",
+      "detail": "Gyukatsu"
+    },
+    {
+      "id": "food-omen",
+      "category": "food",
+      "name": "Omen Ginkaku-ji",
+      "area": "Kyoto",
+      "lat": 35.0263125,
+      "lng": 135.7950625,
+      "href": "food.html",
+      "priority": "Må prøve",
+      "detail": "Udon"
+    },
+    {
+      "id": "food-katsukura",
+      "category": "food",
+      "name": "Katsukura Kyoto Porta",
+      "area": "Kyoto",
+      "lat": 34.985855,
+      "lng": 135.758682,
+      "href": "food.html",
+      "priority": "Valgfri",
+      "detail": "Tonkatsu"
+    },
+    {
+      "id": "food-menme",
+      "category": "food",
+      "name": "Menme",
+      "area": "Himeji",
+      "lat": 34.833654,
+      "lng": 134.691913,
+      "href": "food.html",
+      "priority": "Sterk kandidat",
+      "detail": "Udon"
+    },
+    {
+      "id": "food-nagataya",
+      "category": "food",
+      "name": "Nagataya",
+      "area": "Hiroshima",
+      "lat": 34.393964,
+      "lng": 132.454854,
+      "href": "food.html",
+      "priority": "Må prøve",
+      "detail": "Hiroshima-okonomiyaki"
+    },
+    {
+      "id": "food-ueno",
+      "category": "food",
+      "name": "Anagomeshi Ueno",
+      "area": "Miyajimaguchi",
+      "lat": 34.311507,
+      "lng": 132.303515,
+      "href": "food.html",
+      "priority": "Må prøve",
+      "detail": "Anagomeshi"
+    },
+    {
+      "id": "food-ajinoya",
+      "category": "food",
+      "name": "Ajinoya Honten",
+      "area": "Osaka",
+      "lat": 34.668052,
+      "lng": 135.500954,
+      "href": "food.html",
+      "priority": "Må prøve",
+      "detail": "Okonomiyaki"
+    },
+    {
+      "id": "food-wanaka",
+      "category": "food",
+      "name": "Takoyaki Wanaka Namba",
+      "area": "Osaka",
+      "lat": 34.66628,
+      "lng": 135.50123,
+      "href": "food.html",
+      "priority": "Må prøve",
+      "detail": "Takoyaki"
+    },
+    {
+      "id": "food-chibo",
+      "category": "food",
+      "name": "CHIBO Dōtonbori",
+      "area": "Osaka",
+      "lat": 34.668725,
+      "lng": 135.504203,
+      "href": "food.html",
+      "priority": "Valgfri",
+      "detail": "Okonomiyaki"
+    }
+  ]
+}
