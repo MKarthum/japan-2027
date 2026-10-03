@@ -184,16 +184,18 @@ async function renderRoute() {
 
     routeGeometry.parts.forEach(addRoutePart);
 
-    const journeys=[];
-    const seen=new Set();
+    const journeyMap=new Map();
     for(const part of routeGeometry.parts){
-      if(seen.has(part.journeyId)) continue;
-      seen.add(part.journeyId);
-      journeys.push(part);
+      if(!journeyMap.has(part.journeyId)){
+        journeyMap.set(part.journeyId,{...part,modes:[]});
+      }
+      const j=journeyMap.get(part.journeyId);
+      if(!j.modes.includes(part.mode)) j.modes.push(part.mode);
     }
+    const journeys=[...journeyMap.values()];
     const legend=document.getElementById('route-legend');
     if(legend){
-      legend.innerHTML=journeys.map(s=>`<span class="route-legend-item"><i style="background:${s.color}"></i><strong>${s.name}</strong> · ${s.mode}</span>`).join('');
+      legend.innerHTML=journeys.map(s=>`<span class="route-legend-item"><i style="background:${s.color}"></i><strong>${s.name}</strong> · ${s.modes.join(' + ')}</span>`).join('');
     }
 
     const bounds = new maplibregl.LngLatBounds();
