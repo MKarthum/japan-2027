@@ -1,7 +1,10 @@
 {
-  "asOf": "2026-10-03",
-  "nokPerJpy": 0.060941,
-  "jpyPerNok": 16.409314,
-  "displayNote": "Planleggingskurs. Valutakursen endrer seg; begge beløp er omtrentlige omregninger.",
-  "sourceName": "Markedsbasert kursøyeblikksbilde"
+  "asOf": "2026-10-02",
+  "nokPerJpy": 0.061198372789423125,
+  "jpyPerNok": 16.340303743710475,
+  "displayNote": "Lagret fallback basert på ECBs referansekurser. Nettstedet forsøker ved hver sidelasting å hente siste ECB-kurs og bruker fallback bare hvis livekilden ikke er tilgjengelig.",
+  "sourceName": "European Central Bank",
+  "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+  "liveEndpoint": "https://api.frankfurter.dev/v2/rate/NOK/JPY?providers=ecb",
+  "liveTransport": "Frankfurter API, låst til ECB som provider"
 }
