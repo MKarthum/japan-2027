@@ -65,6 +65,9 @@ function destinationTheme(trip, subject) {
   if(subject.destinationId){
     return trip.route.find(x=>x.id===subject.destinationId)?.theme || fallback;
   }
+  if(subject.baseId){
+    return trip.route.find(x=>x.id===subject.baseId)?.theme || fallback;
+  }
   if(subject.id){
     const direct=trip.route.find(x=>x.id===subject.id);
     if(direct) return direct.theme || fallback;
@@ -79,6 +82,11 @@ function destinationTheme(trip, subject) {
 }
 const themeStyle=(theme)=>`--area-color:${theme?.color||'#5f6b73'}`;
 const destinationColor=(trip,subject)=>destinationTheme(trip,subject).color;
+
+const placePrimaryLink=(place)=>{
+  const links=place?.links||[];
+  return links.find(x=>x.kind==='ticket') || links.find(x=>x.kind==='official') || links[0] || null;
+};
 
 function priorityBadge(priority){
   const cls = priority==='Må prøve' || priority==='Viktig' ? 'must' : priority==='Sterk kandidat' || priority==='Bør bestilles' ? 'strong' : 'optional';
@@ -101,7 +109,7 @@ async function renderHome() {
   const route = document.getElementById('route-cards');
   route.innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
-    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(p.image,x.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
+    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(p.image,x.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${p.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
   }).join('');
 
   const featureIds=['nintendo-museum','nara','himeji','usj'];
@@ -110,7 +118,11 @@ async function renderHome() {
     return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${cardImageHtml(p.image,p.name,true)}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
   }).join('');
 
-  document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,3).map(x=>`<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${x.title}</strong><span>${x.when}</span></div><a href="${x.url}" target="_blank" rel="noopener">Offisiell side ↗</a></article>`).join('');
+  document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,3).map(x=>{
+    const p=places.find(p=>p.id===x.placeId);
+    const link=placePrimaryLink(p);
+    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${p?.name||x.placeId}</strong><span>${x.when}</span></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
+  }).join('');
 }
 
 async function renderRoute() {
@@ -169,7 +181,7 @@ async function renderRoute() {
           <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
           <div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div>
         </div>
-        <a class="route-item-title" href="place.html?id=${x.id}"><strong>${x.name}</strong></a>
+        <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
         <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
         ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}
       </div>
@@ -275,7 +287,10 @@ async function renderRoute() {
   for(const part of routeGeometry.parts){
     for(const coord of part.coords) routeBounds.extend(coord);
   }
-  for(const x of trip.dayTrips) routeBounds.extend([x.lng,x.lat]);
+  for(const x of trip.dayTrips){
+    const p=places.find(p=>p.id===x.id);
+    if(p?.map) routeBounds.extend([p.map.lng,p.map.lat]);
+  }
   const fitRoute=()=>map.fitBounds(routeBounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:500});
 
   const popupForLeg=(leg,lngLat) => {
@@ -519,29 +534,34 @@ async function renderRoute() {
     }
 
     trip.route.forEach((x,i)=>{
+      const p=places.find(p=>p.id===x.id);
+      if(!p) return;
       const el=document.createElement('button');
       el.type='button';
       el.className='map-stop destination-themed';
       el.style.setProperty('--area-color',destinationColor(trip,x));
-      el.setAttribute('aria-label',`${i+1}. ${x.name}`);
-      el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${x.name}</span>`;
-      const anchor=routeGeometry.stops?.[x.id]||[x.lng,x.lat];
+      el.setAttribute('aria-label',`${i+1}. ${p.name}`);
+      el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
+      const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
       const nextLeg=nextLegByRouteId.get(x.id);
-      const popupHtml=`<div class="map-popup"><div class="meta">Stopp ${i+1}</div><h3>${x.name}</h3><p>${x.label} · ${fmtDate(x.from)}</p>${nextLeg?legHtml(nextLeg,{compact:true}):'<p><strong>Siste hovedstopp på ruten.</strong></p>'}</div>`;
+      const popupHtml=`<div class="map-popup"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}</p>${nextLeg?legHtml(nextLeg,{compact:true}):'<p><strong>Siste hovedstopp på ruten.</strong></p>'}</div>`;
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'340px'}).setHTML(popupHtml)).addTo(map);
       if(nextLeg) el.addEventListener('click',()=>showLegDetail(nextLeg));
     });
 
     trip.dayTrips.forEach(x=>{
+      const p=places.find(p=>p.id===x.id);
+      const base=places.find(p=>p.id===x.baseId);
+      if(!p?.map) return;
       const el=document.createElement('button');
       el.type='button';
       el.className='map-stop daytrip destination-themed';
       el.style.setProperty('--area-color',destinationColor(trip,x));
-      el.setAttribute('aria-label',x.name);
-      el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${x.name}</span>`;
+      el.setAttribute('aria-label',p.name);
+      el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${p.name}</span>`;
       new maplibregl.Marker({element:el,anchor:'center'})
-        .setLngLat([x.lng,x.lat])
-        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup"><div class="meta">Dagstur fra ${x.base}</div><h3>${x.name}</h3><p>${x.summary}</p><a href="place.html?id=${x.id}">Se stedet →</a></div>`))
+        .setLngLat([p.map.lng,p.map.lat])
+        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`))
         .addTo(map);
     });
 
@@ -897,9 +917,13 @@ async function renderHotel() {
 
 async function renderPractical() {
   nav('practical'); footer();
-  const guide=await json('data/guide.json');
+  const [guide,places]=await Promise.all([json('data/guide.json'),json('data/places.json')]);
   document.getElementById('transport-grid').innerHTML=guide.transport.map(x=>`<article class="card transport-card"><div class="transport-icon">${x.icon}</div><h3>${x.title}</h3><strong>${x.short}</strong><p>${x.body}</p><div class="button-row">${x.links.map(l=>`<a class="button" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join('')}</div></article>`).join('');
-  document.getElementById('booking-radar').innerHTML=guide.bookingRadar.map(x=>`<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${x.title}</strong><span>${x.area} · ${x.when}</span><p>${x.why}</p></div><a href="${x.url}" target="_blank" rel="noopener">Billetter/info ↗</a></article>`).join('');
+  document.getElementById('booking-radar').innerHTML=guide.bookingRadar.map(x=>{
+    const p=places.find(p=>p.id===x.placeId);
+    const link=placePrimaryLink(p);
+    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${p?.name||x.placeId}</strong><span>${p?.area||''} · ${x.when}</span><p>${x.why}</p></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
+  }).join('');
   document.getElementById('place-words').innerHTML=guide.placeWords.map(x=>`<div class="glossary-row"><strong>${x.term}</strong><span>${x.meaning}</span></div>`).join('');
   document.getElementById('phrases').innerHTML=guide.phrases.map(x=>`<div class="glossary-row"><strong>${x.jp}</strong><span>${x.no}</span></div>`).join('');
   document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
