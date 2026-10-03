@@ -17,6 +17,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 - Nye steder går normalt i `docs/data/places.json` og vises via `place.html?id=<id>`.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
+- Hotellkandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
 - Reiseetapper, priser og stasjoner går i `docs/data/transport.json`.
 - Destinasjonsfarger og hvilke områder som arver dem eies av `docs/data/trip.json`. Steder, restaurantkort, kartmarkører og rutelinjer skal avlede fargen derfra.
 - `docs/data/route-geometry.json` eier bare fysisk linjegeometri og spor-offset. Ikke legg destinasjonsfarger eller annen domenedata i geometrifilen.
