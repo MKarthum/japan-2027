@@ -66,7 +66,13 @@
       "lat": 35.6762,
       "lng": 139.6503,
       "label": "Moderne Japan",
-      "summary": "Storby, neonlys, spill, teknologi, gamle bydeler og en myk start på Japan."
+      "summary": "Storby, neonlys, spill, teknologi, gamle bydeler og en myk start på Japan.",
+      "theme": {
+        "color": "#B6473D",
+        "areas": [
+          "Tokyo"
+        ]
+      }
     },
     {
       "id": "hakone",
@@ -77,7 +83,13 @@
       "lat": 35.2324,
       "lng": 139.1069,
       "label": "Ryokan og onsen",
-      "summary": "Én roligere natt med tradisjonelt vertshus, varmt kildebad og mulig utsikt mot Fuji."
+      "summary": "Én roligere natt med tradisjonelt vertshus, varmt kildebad og mulig utsikt mot Fuji.",
+      "theme": {
+        "color": "#216D61",
+        "areas": [
+          "Hakone / Fuji"
+        ]
+      }
     },
     {
       "id": "kyoto",
@@ -88,7 +100,14 @@
       "lat": 35.0116,
       "lng": 135.7681,
       "label": "Det klassiske Japan",
-      "summary": "Templer, gamle gater, røde porter, hager og dagstur til Nara."
+      "summary": "Templer, gamle gater, røde porter, hager og dagstur til Nara.",
+      "theme": {
+        "color": "#6D4A9B",
+        "areas": [
+          "Kyoto",
+          "Nara"
+        ]
+      }
     },
     {
       "id": "himeji",
@@ -99,7 +118,13 @@
       "lat": 34.8394,
       "lng": 134.6939,
       "label": "LEGO-slottet på ekte",
-      "summary": "Stopp på vei vestover for å se det originale hvite samuraislottet."
+      "summary": "Stopp på vei vestover for å se det originale hvite samuraislottet.",
+      "theme": {
+        "color": "#9B6C22",
+        "areas": [
+          "Himeji"
+        ]
+      }
     },
     {
       "id": "hiroshima",
@@ -110,7 +135,14 @@
       "lat": 34.3853,
       "lng": 132.4553,
       "label": "Historie og øyliv",
-      "summary": "Fredsminnesmerket og museum, kombinert med Miyajima og den store torii-porten."
+      "summary": "Fredsminnesmerket og museum, kombinert med Miyajima og den store torii-porten.",
+      "theme": {
+        "color": "#2A649D",
+        "areas": [
+          "Hiroshima",
+          "Miyajima"
+        ]
+      }
     },
     {
       "id": "osaka",
@@ -121,7 +153,13 @@
       "lat": 34.6937,
       "lng": 135.5023,
       "label": "Mat og Nintendo",
-      "summary": "Dōtonbori, god mat og mulig heldag i Universal Studios / Super Nintendo World."
+      "summary": "Dōtonbori, god mat og mulig heldag i Universal Studios / Super Nintendo World.",
+      "theme": {
+        "color": "#B84D78",
+        "areas": [
+          "Osaka"
+        ]
+      }
     }
   ],
   "dayTrips": [
@@ -132,7 +170,8 @@
       "suggestedDate": "2027-03-28",
       "lat": 34.6851,
       "lng": 135.8048,
-      "summary": "Dagstur med frittgående hjort, enorme templer og den store Buddhaen."
+      "summary": "Dagstur med frittgående hjort, enorme templer og den store Buddhaen.",
+      "destinationId": "kyoto"
     },
     {
       "id": "miyajima",
@@ -141,7 +180,8 @@
       "suggestedDate": "2027-03-31",
       "lat": 34.2959,
       "lng": 132.3198,
-      "summary": "Øy med natur, hjort og den ikoniske torii-porten ute i sjøen."
+      "summary": "Øy med natur, hjort og den ikoniske torii-porten ute i sjøen.",
+      "destinationId": "hiroshima"
     }
   ]
 }
