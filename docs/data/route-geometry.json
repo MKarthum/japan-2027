@@ -1,14 +1,13 @@
 {
   "version": "1.1",
   "generated": "2026-10-03",
-  "note": "Static route geometry stored in-repo. Shinkansen and Odakyu main-line geometry derived from MLIT N02 2024 data as published by Eigenoperator/OniChase. Odawara–Hakone-Yumoto uses station-anchored Hakone Tozan corridor geometry. Shin-Osaka–Osaka uses the JR Kyoto Line corridor, anchored to the published station/track coordinates.",
+  "note": "Rail geometry only. Destination colors come from trip.json. Positive offsets on opposite-direction shared tracks intentionally render as parallel lanes because line offset is direction-relative.",
   "parts": [
     {
       "journeyId": "tokyo-hakone",
       "name": "Tokyo → Hakone / Fuji",
       "mode": "Odakyu / Romancecar-korridor",
-      "color": "#b43a30",
-      "offset": 3,
+      "offset": 0,
       "coords": [
         [
           139.69978,
@@ -648,8 +647,7 @@
       "journeyId": "tokyo-hakone",
       "name": "Tokyo → Hakone / Fuji",
       "mode": "Hakone Tozan til Hakone-Yumoto",
-      "color": "#b43a30",
-      "offset": 3,
+      "offset": 6,
       "coords": [
         [
           139.155772,
@@ -677,8 +675,7 @@
       "journeyId": "hakone-kyoto",
       "name": "Hakone / Fuji → Kyoto",
       "mode": "Hakone Tozan til Odawara",
-      "color": "#1f6f63",
-      "offset": -3,
+      "offset": 6,
       "coords": [
         [
           139.103743,
@@ -706,7 +703,6 @@
       "journeyId": "hakone-kyoto",
       "name": "Hakone / Fuji → Kyoto",
       "mode": "Tokaido Shinkansen",
-      "color": "#1f6f63",
       "offset": 0,
       "coords": [
         [
@@ -1899,8 +1895,7 @@
       "journeyId": "kyoto-himeji",
       "name": "Kyoto → Himeji",
       "mode": "Tokaido/Sanyo Shinkansen",
-      "color": "#b98934",
-      "offset": 3,
+      "offset": 0,
       "coords": [
         [
           135.75692,
@@ -2038,6 +2033,18 @@
           135.5084,
           34.73713
         ],
+        [
+          135.50238,
+          34.73412
+        ]
+      ]
+    },
+    {
+      "journeyId": "kyoto-himeji",
+      "name": "Kyoto → Himeji",
+      "mode": "Tokaido/Sanyo Shinkansen",
+      "offset": 6,
+      "coords": [
         [
           135.50238,
           34.73412
@@ -2284,8 +2291,7 @@
       "journeyId": "himeji-hiroshima",
       "name": "Himeji → Hiroshima / Miyajima",
       "mode": "Sanyo Shinkansen",
-      "color": "#785aa6",
-      "offset": 3,
+      "offset": 6,
       "coords": [
         [
           134.69225,
@@ -2897,8 +2903,7 @@
       "journeyId": "hiroshima-osaka",
       "name": "Hiroshima / Miyajima → Osaka",
       "mode": "Sanyo Shinkansen til Shin-Osaka",
-      "color": "#2f73c9",
-      "offset": -3,
+      "offset": 6,
       "coords": [
         [
           132.47607,
@@ -3738,7 +3743,6 @@
       "journeyId": "hiroshima-osaka",
       "name": "Hiroshima / Miyajima → Osaka",
       "mode": "JR Kyoto Line: Shin-Osaka → Osaka Station",
-      "color": "#2f73c9",
       "offset": 0,
       "coords": [
         [
