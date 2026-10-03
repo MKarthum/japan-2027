@@ -80,13 +80,25 @@ async function renderRoute() {
     return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div></div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
   }).join('');
   const map = L.map('map', {scrollWheelZoom:false}).setView([35.15, 137.1], 6);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+    maxZoom:20,
+    subdomains:'abcd',
+    attribution:'&copy; OpenStreetMap contributors &copy; CARTO'
+  }).addTo(map);
   const coords = [];
   trip.route.forEach((x,i)=>{
     coords.push([x.lat,x.lng]);
-    L.marker([x.lat,x.lng]).addTo(map).bindPopup(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`);
+    L.marker([x.lat,x.lng])
+      .addTo(map)
+      .bindTooltip(x.name, {permanent:true, direction:'right', offset:[10,0], className:'route-label'})
+      .bindPopup(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`);
   });
-  trip.dayTrips.forEach(x=>L.circleMarker([x.lat,x.lng], {radius:7}).addTo(map).bindPopup(`<strong>${x.name}</strong><br>Dagstur fra ${x.base}`));
+  trip.dayTrips.forEach(x=>{
+    L.circleMarker([x.lat,x.lng], {radius:7, weight:2, fillOpacity:.85})
+      .addTo(map)
+      .bindTooltip(x.name, {permanent:true, direction:'right', offset:[8,0], className:'route-label daytrip-label'})
+      .bindPopup(`<strong>${x.name}</strong><br>Dagstur fra ${x.base}`);
+  });
   L.polyline(coords, {weight:4, opacity:.65}).addTo(map);
   map.fitBounds(coords, {padding:[25,25]});
 }
