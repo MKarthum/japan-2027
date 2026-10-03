@@ -162,7 +162,7 @@
   {
     "title": "Norges Bank – exchange rates",
     "url": "https://www.norges-bank.no/en/topics/statistics/exchange_rates/",
-    "use": "Referanse for valutakurser og senere oppdatering av NOK/JPY-planleggingskurs."
+    "use": "Sekundær offisiell referanse for valutakurser; nettstedets automatiske NOK/JPY-omregning bruker ECB-referansekurs."
   },
   {
     "title": "Google Maps",
@@ -173,5 +173,15 @@
     "title": "Tripadvisor",
     "url": "https://www.tripadvisor.com/",
     "use": "Daterte restaurantvurderinger og lenker til anmeldelser. Score og antall anmeldelser kan endre seg."
+  },
+  {
+    "title": "European Central Bank – euro reference exchange rates",
+    "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+    "use": "Autoritativ daglig referanse for EUR/NOK og EUR/JPY. NOK↔JPY beregnes som krysskurs og brukes for alle liveomregninger."
+  },
+  {
+    "title": "Frankfurter API – ECB provider",
+    "url": "https://frankfurter.dev/providers/ecb/",
+    "use": "Nøkkelfritt HTTPS-API brukt i nettleseren for å hente siste ECB-referansekurs. Provider låses eksplisitt til ECB."
   }
 ]
