@@ -42,11 +42,119 @@
       "source": "https://commons.wikimedia.org/wiki/File:Dotonbori,_Osaka,_at_night,_November_2016.jpg",
       "credit": "Martin Falbisoner",
       "license": "CC BY-SA 4.0"
+    },
+    "tokyo-base": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20-%20Sunset%20Skyline.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_-_Sunset_Skyline.jpg",
+      "credit": "Fred Cherrygarden",
+      "license": "CC BY-SA 4.0"
+    },
+    "shibuya": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Shibuya%20Scramble%20Crossing%202018-10-09.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg",
+      "credit": "Benh LIEU SONG",
+      "license": "CC BY-SA 2.0"
+    },
+    "asakusa": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Senso-ji.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Senso-ji.jpg",
+      "credit": "Felix Filnkössl",
+      "license": "CC BY-SA 3.0"
+    },
+    "kyoto-base": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yasaka%20Pagode.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Yasaka_Pagode.jpg",
+      "credit": "Piet Parkiet",
+      "license": "CC BY 4.0"
+    },
+    "gion": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Street%20in%20Gion%2C%20Kyoto%2C%202024.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Street_in_Gion,_Kyoto,_2024.jpg",
+      "credit": "Smiley.toerist",
+      "license": "CC BY-SA 4.0"
+    },
+    "fushimi-inari": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fushimi%20Inari%20Shrine%2C%20Kyoto%20City%3B%20November%202013%20%2807%29.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Fushimi_Inari_Shrine,_Kyoto_City;_November_2013_(07).jpg",
+      "credit": "chee.hong",
+      "license": "CC BY 2.0"
+    },
+    "kiyomizu-dera": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kiyomizu%20dera%20in%20Kyoto.JPG?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Kiyomizu_dera_in_Kyoto.JPG",
+      "credit": "Vinodmp",
+      "license": "CC BY-SA 3.0"
+    },
+    "kinkakuji": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinkaku-ji%2C%20Ky%C5%8Dto.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Kinkaku-ji,_Ky%C5%8Dto.jpg",
+      "credit": "Renate Hano",
+      "license": "CC BY-SA 4.0"
+    },
+    "arashiyama": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arashiyama%20Bamboo%20Grove.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Arashiyama_Bamboo_Grove.jpg",
+      "credit": "Mitchwandrew",
+      "license": "CC BY 4.0"
+    },
+    "todaiji": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/T%C5%8Ddai-ji%20Daibutsuden.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Daibutsuden.jpg",
+      "credit": "Cun Cun",
+      "license": "CC BY-SA 4.0"
+    },
+    "osaka-base": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20skyline%20from%20Osaka%20Castle%20(001)%202023-07-07.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Osaka_skyline_from_Osaka_Castle_(001)_2023-07-07.jpg",
+      "credit": "LMP 2001",
+      "license": "CC BY-SA 4.0"
+    },
+    "dotonbori": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dotonbori%2C%20Osaka%2C%20at%20night%2C%20November%202016.jpg?width=1200",
+      "source": "https://commons.wikimedia.org/wiki/File:Dotonbori,_Osaka,_at_night,_November_2016.jpg",
+      "credit": "Martin Falbisoner",
+      "license": "CC BY-SA 4.0"
+    },
+    "hiroshima-base": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atomic%20Bomb%20Dome%20Hiroshima.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Atomic_Bomb_Dome_Hiroshima.jpg",
+      "credit": "SRP1998",
+      "license": "CC BY-SA 4.0"
+    },
+    "miyajima": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20Gate.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Itsukushima_Gate.jpg",
+      "credit": "JordyMeow",
+      "license": "CC BY-SA 3.0"
+    },
+    "nintendo-museum": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nintendo%20Museum%20Entrance.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Nintendo_Museum_Entrance.jpg",
+      "credit": "Nagomijirap",
+      "license": "CC BY-SA 4.0"
+    },
+    "ghibli-museum": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ghibli%20Museum.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Ghibli_Museum.jpg",
+      "credit": "Douglas Paul Perkins",
+      "license": "Public domain"
+    },
+    "teamlab": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/TeamLab%20Borderless%20Azabudai%20Hills.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:TeamLab_Borderless_Azabudai_Hills.jpg",
+      "credit": "DannyWithLove",
+      "license": "CC BY-SA 4.0"
+    },
+    "usj": {
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Super%20Nintendo%20World%20(Universal%20Studios%20Japan).png?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Super_Nintendo_World_(Universal_Studios_Japan).png",
+      "credit": "Basil the Bat Lord",
+      "license": "CC BY-SA 4.0"
     }
   },
   "placeExtras": {
     "tokyo": {
-      "image": "tokyo",
+      "image": "tokyo-base",
       "links": [
         {
           "label": "Travel Japan",
@@ -61,7 +169,7 @@
       ]
     },
     "shibuya": {
-      "image": "tokyo",
+      "image": "shibuya",
       "links": [
         {
           "label": "GO TOKYO",
@@ -76,7 +184,7 @@
       ]
     },
     "asakusa": {
-      "image": "tokyo",
+      "image": "asakusa",
       "links": [
         {
           "label": "Travel Japan",
@@ -106,7 +214,7 @@
       ]
     },
     "kyoto": {
-      "image": "kyoto",
+      "image": "kyoto-base",
       "links": [
         {
           "label": "Travel Japan",
@@ -121,7 +229,7 @@
       ]
     },
     "gion": {
-      "image": "kyoto",
+      "image": "gion",
       "links": [
         {
           "label": "Travel Japan",
@@ -136,7 +244,7 @@
       ]
     },
     "fushimi-inari": {
-      "image": "kyoto",
+      "image": "fushimi-inari",
       "links": [
         {
           "label": "Offisiell side",
@@ -151,7 +259,7 @@
       ]
     },
     "kiyomizu-dera": {
-      "image": "kyoto",
+      "image": "kiyomizu-dera",
       "links": [
         {
           "label": "Offisiell side",
@@ -166,7 +274,7 @@
       ]
     },
     "kinkakuji": {
-      "image": "kyoto",
+      "image": "kinkakuji",
       "links": [
         {
           "label": "Offisiell side",
@@ -181,7 +289,7 @@
       ]
     },
     "arashiyama": {
-      "image": "kyoto",
+      "image": "arashiyama",
       "links": [
         {
           "label": "Travel Japan",
@@ -211,7 +319,7 @@
       ]
     },
     "todaiji": {
-      "image": "nara",
+      "image": "todaiji",
       "links": [
         {
           "label": "Offisiell side",
@@ -241,7 +349,7 @@
       ]
     },
     "osaka": {
-      "image": "osaka",
+      "image": "osaka-base",
       "links": [
         {
           "label": "Travel Japan",
@@ -256,7 +364,7 @@
       ]
     },
     "dotonbori": {
-      "image": "osaka",
+      "image": "dotonbori",
       "links": [
         {
           "label": "Wikipedia",
@@ -266,7 +374,7 @@
       ]
     },
     "hiroshima": {
-      "image": "hiroshima",
+      "image": "hiroshima-base",
       "links": [
         {
           "label": "Peace Memorial Museum",
@@ -286,7 +394,7 @@
       ]
     },
     "miyajima": {
-      "image": "hiroshima",
+      "image": "miyajima",
       "links": [
         {
           "label": "Itsukushima – offisiell",
@@ -301,7 +409,7 @@
       ]
     },
     "nintendo-museum": {
-      "image": "kyoto",
+      "image": "nintendo-museum",
       "links": [
         {
           "label": "Billetter",
@@ -316,7 +424,7 @@
       ]
     },
     "ghibli-museum": {
-      "image": "tokyo",
+      "image": "ghibli-museum",
       "links": [
         {
           "label": "Billetter",
@@ -331,7 +439,7 @@
       ]
     },
     "teamlab": {
-      "image": "tokyo",
+      "image": "teamlab",
       "links": [
         {
           "label": "Billetter / offisiell",
@@ -341,7 +449,7 @@
       ]
     },
     "usj": {
-      "image": "osaka",
+      "image": "usj",
       "links": [
         {
           "label": "Billetter / offisiell",
