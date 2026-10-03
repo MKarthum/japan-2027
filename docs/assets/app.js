@@ -77,18 +77,66 @@ async function renderHome() {
 
 async function renderRoute() {
   nav('route'); footer();
-  const [trip,places,guide,routeGeometry]=await Promise.all([
+  const [trip,places,guide,routeGeometry,transport,mapPois]=await Promise.all([
     json('data/trip.json'),
     json('data/places.json'),
     json('data/guide.json'),
-    json('data/route-geometry.json?v=0.6.2')
+    json('data/route-geometry.json?v=0.7.0'),
+    json('data/transport.json?v=0.7.0'),
+    json('data/map-pois.json?v=0.7.0')
   ]);
+
+  const formatMinutes = (mins) => {
+    if (mins < 60) return `${mins} min`;
+    const h=Math.floor(mins/60), m=mins%60;
+    return m ? `${h} t ${m} min` : `${h} t`;
+  };
+  const formatYen = (n) => new Intl.NumberFormat('nb-NO').format(n) + ' ¥';
+  const legById=new Map(transport.legs.map(x=>[x.id,x]));
+  const nextLegByRouteId=new Map(transport.legs.map(x=>[x.fromRouteId,x]));
+
+  const fareHtml=(leg) => `
+    <div class="fare-grid">
+      <div><span>Voksen</span><strong>${formatYen(leg.fare.adultYen)}</strong></div>
+      <div><span>Barn</span><strong>${formatYen(leg.fare.childYen)}</strong></div>
+      <div class="family"><span>2 voksne + 2 barn</span><strong>${formatYen(leg.fare.family2a2cYen)}</strong></div>
+    </div>`;
+
+  const legHtml=(leg,{compact=false}={}) => `
+    <div class="route-detail-content">
+      <div class="meta">Reiseetappe · planestimat 2026</div>
+      <h3>${leg.from} → ${leg.to}</h3>
+      <p class="route-service">${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p>
+      ${fareHtml(leg)}
+      ${compact?'':`<p class="small">Prisene er representative dagenspriser og må sjekkes igjen for 2027. Barnepris gjelder bare når den reisende kvalifiserer etter operatørens regler.</p>`}
+      <a class="route-source-link" href="${leg.source}" target="_blank" rel="noopener">Pris-/rutegrunnlag ↗</a>
+    </div>`;
+
+  const detail=document.getElementById('route-detail');
+  const showLegDetail=(leg) => {
+    if(!detail || !leg) return;
+    detail.hidden=false;
+    detail.innerHTML=legHtml(leg);
+  };
 
   document.getElementById('window').textContent = trip.window;
   document.getElementById('route-list').innerHTML = trip.route.map(x=>{
     const p=places.find(p=>p.id===x.id)||x; const img=guide.images[areaImageKey(guide,p)];
-    return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div></div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
+    const leg=nextLegByRouteId.get(x.id);
+    return `<div class="route-item">${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}<div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div><div><a href="place.html?id=${x.id}"><strong>${x.name}</strong></a><div class="small">${x.label} · ${x.summary}</div>${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${formatYen(leg.fare.family2a2cYen)} for 2V+2B</button>`:''}</div><div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div></div>`;
   }).join('');
+  document.getElementById('route-list').addEventListener('click',e=>{
+    const btn=e.target.closest('[data-leg]');
+    if(btn) showLegDetail(legById.get(btn.dataset.leg));
+  });
+
+  const adultTotal=transport.legs.reduce((n,l)=>n+l.fare.adultYen,0);
+  const childTotal=transport.legs.reduce((n,l)=>n+l.fare.childYen,0);
+  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.family2a2cYen,0);
+  const summary=document.getElementById('map-price-summary');
+  if(summary){
+    summary.innerHTML=`<span>Etappene på kartet</span><strong>${formatYen(familyTotal)} for 2V+2B</strong><small>Voksen én vei summert: ${formatYen(adultTotal)} · Barn: ${formatYen(childTotal)} · ekskl. lokaltransport/dagsturer</small>`;
+  }
 
   if (typeof maplibregl === 'undefined') {
     document.getElementById('map').innerHTML = '<div class="map-error"><strong>Kartet kunne ikke lastes.</strong><br>MapLibre-biblioteket mangler. Oppdater siden eller prøv igjen senere.</div>';
@@ -104,79 +152,153 @@ async function renderRoute() {
   });
   map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-left');
 
+  const routeBounds = new maplibregl.LngLatBounds();
+  for(const part of routeGeometry.parts){
+    for(const coord of part.coords) routeBounds.extend(coord);
+  }
+  for(const x of trip.dayTrips) routeBounds.extend([x.lng,x.lat]);
+  const fitRoute=()=>map.fitBounds(routeBounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:500});
+
+  const popupForLeg=(leg,lngLat) => {
+    showLegDetail(leg);
+    new maplibregl.Popup({offset:10,maxWidth:'330px'})
+      .setLngLat(lngLat)
+      .setHTML(legHtml(leg,{compact:true}))
+      .addTo(map);
+  };
+
   const addRoutePart = (segment,index) => {
     const sourceId=`journey-${index}`;
+    const leg=legById.get(segment.journeyId);
     map.addSource(sourceId,{type:'geojson',data:{
       type:'Feature',
       properties:{journeyId:segment.journeyId,name:segment.name,mode:segment.mode},
       geometry:{type:'LineString',coordinates:segment.coords}
     }});
     map.addLayer({
-      id:`${sourceId}-casing`,
-      type:'line',source:sourceId,
+      id:`${sourceId}-casing`,type:'line',source:sourceId,
       layout:{'line-join':'round','line-cap':'round'},
-      paint:{
-        'line-color':'rgba(255,255,255,.94)',
-        'line-width':8,
-        'line-offset':segment.offset||0
-      }
+      paint:{'line-color':'rgba(255,255,255,.94)','line-width':9,'line-offset':segment.offset||0}
     });
     map.addLayer({
-      id:`${sourceId}-line`,
-      type:'line',source:sourceId,
+      id:`${sourceId}-line`,type:'line',source:sourceId,
       layout:{'line-join':'round','line-cap':'round'},
-      paint:{
-        'line-color':segment.color,
-        'line-width':4,
-        'line-opacity':.95,
-        'line-offset':segment.offset||0
-      }
+      paint:{'line-color':segment.color,'line-width':5,'line-opacity':.95,'line-offset':segment.offset||0}
     });
     map.addLayer({
-      id:`${sourceId}-arrows`,
-      type:'symbol',source:sourceId,
-      layout:{
-        'symbol-placement':'line',
-        'symbol-spacing':90,
-        'text-field':'›',
-        'text-size':18,
-        'text-rotation-alignment':'map',
-        'text-keep-upright':false,
-        'text-allow-overlap':true
-      },
+      id:`${sourceId}-hit`,type:'line',source:sourceId,
+      layout:{'line-join':'round','line-cap':'round'},
+      paint:{'line-color':'rgba(0,0,0,0)','line-width':18,'line-offset':segment.offset||0}
+    });
+    map.addLayer({
+      id:`${sourceId}-arrows`,type:'symbol',source:sourceId,
+      layout:{'symbol-placement':'line','symbol-spacing':95,'text-field':'›','text-size':18,'text-rotation-alignment':'map','text-keep-upright':false,'text-allow-overlap':true},
       paint:{'text-color':segment.color,'text-halo-color':'#fff','text-halo-width':1.2}
     });
+    map.on('click',`${sourceId}-hit`,e=>{ if(leg) popupForLeg(leg,e.lngLat); });
+    map.on('mouseenter',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='pointer');
+    map.on('mouseleave',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='');
+  };
 
-    map.on('click',`${sourceId}-line`,e=>{
-      const p=e.features?.[0]?.properties||{};
-      new maplibregl.Popup({closeButton:false})
-        .setLngLat(e.lngLat)
-        .setHTML(`<strong>${p.name||segment.name}</strong><br>${p.mode||segment.mode}`)
-        .addTo(map);
+  const markerGroups={stations:[],experience:[],food:[],hotel:[]};
+  const layerState={stations:true,experience:true,food:false,hotel:false};
+
+  const setMarkerVisibility=(category,on)=>{
+    layerState[category]=on;
+    for(const marker of markerGroups[category]||[]){
+      if(on) marker.addTo(map); else marker.remove();
+    }
+    const btn=document.querySelector(`[data-map-layer="${category}"]`);
+    if(btn) btn.setAttribute('aria-pressed',String(on));
+  };
+
+  const addStationMarkers=()=>{
+    const grouped=new Map();
+    for(const leg of transport.legs){
+      for(const s of leg.stations){
+        const key=`${s.name}|${s.lng.toFixed(4)}|${s.lat.toFixed(4)}`;
+        if(!grouped.has(key)) grouped.set(key,{...s,memberships:[]});
+        grouped.get(key).memberships.push({leg,elapsedMin:s.elapsedMin,note:s.note});
+      }
+    }
+    for(const s of grouped.values()){
+      const el=document.createElement('button');
+      el.type='button';
+      el.className='map-station-dot';
+      el.setAttribute('aria-label',`${s.name} stasjon`);
+      const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
+      const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
+      const popup=new maplibregl.Popup({offset:12,maxWidth:'300px'}).setHTML(`
+        <div class="map-popup"><div class="meta">Stasjon</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
+      markerGroups.stations.push(marker);
+      if(layerState.stations) marker.addTo(map);
+    }
+  };
+
+  const categoryMeta={
+    experience:{label:'Opplevelser',symbol:'★'},
+    food:{label:'Mat',symbol:'●'},
+    hotel:{label:'Hotell',symbol:'■'}
+  };
+
+  const addPoiMarkers=()=>{
+    for(const poi of mapPois.pois){
+      const meta=categoryMeta[poi.category]||categoryMeta.experience;
+      const el=document.createElement('button');
+      el.type='button';
+      el.className=`map-poi-dot ${poi.category}`;
+      el.textContent=meta.symbol;
+      el.setAttribute('aria-label',poi.name);
+      const extra=poi.category==='food'
+        ? `<p><strong>${poi.detail||'Restaurant'}</strong>${poi.priority?` · ${poi.priority}`:''}</p>`
+        : '';
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'290px'}).setHTML(`
+        <div class="map-popup"><div class="meta">${meta.label} · ${poi.area||''}</div><h3>${poi.name}</h3>${extra}<a href="${poi.href||'#'}">Se mer →</a></div>`);
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([poi.lng,poi.lat]).setPopup(popup);
+      if(!markerGroups[poi.category]) markerGroups[poi.category]=[];
+      markerGroups[poi.category].push(marker);
+      if(layerState[poi.category]) marker.addTo(map);
+    }
+  };
+
+  const renderLayerToolbar=()=>{
+    const toolbar=document.getElementById('map-layers');
+    if(!toolbar) return;
+    const counts={
+      stations:new Set(transport.legs.flatMap(l=>l.stations.map(s=>s.name))).size,
+      experience:mapPois.pois.filter(p=>p.category==='experience').length,
+      food:mapPois.pois.filter(p=>p.category==='food').length,
+      hotel:mapPois.pois.filter(p=>p.category==='hotel').length
+    };
+    toolbar.innerHTML=`
+      <span class="map-layer-title">Vis på kartet</span>
+      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Stasjoner <b>${counts.stations}</b></button>
+      <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
+      <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
+      <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false" ${counts.hotel?'':'disabled'}>Hotell <b>${counts.hotel}</b></button>
+      <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>`;
+    toolbar.addEventListener('click',e=>{
+      const btn=e.target.closest('[data-map-layer]');
+      if(btn && !btn.disabled){
+        const category=btn.dataset.mapLayer;
+        setMarkerVisibility(category,!layerState[category]);
+      }
     });
-    map.on('mouseenter',`${sourceId}-line`,()=>map.getCanvas().style.cursor='pointer');
-    map.on('mouseleave',`${sourceId}-line`,()=>map.getCanvas().style.cursor='');
+    document.getElementById('fit-route')?.addEventListener('click',fitRoute);
   };
 
   map.on('load', ()=>{
-    // Norwegian labels where available, then English, romanised/Latin, then local.
     const style = map.getStyle();
-    const preferredName = [
-      'coalesce',
-      ['get','name:nb'],
-      ['get','name:en'],
-      ['get','name_en'],
-      ['get','name:latin'],
-      ['get','name']
-    ];
-    const usesNameField = (value) => {
-      if (typeof value === 'string') return /name(?::[a-z-]+|_[a-z]+)?|\\{name/.test(value);
-      if (!Array.isArray(value)) return false;
+    const preferredName=['coalesce',['get','name:nb'],['get','name:en'],['get','name_en'],['get','name:latin'],['get','name']];
+    const usesNameField=(value)=>{
+      if(typeof value==='string') return /name(?::[a-z-]+|_[a-z]+)?|\\{name/.test(value);
+      if(!Array.isArray(value)) return false;
       return value.some(usesNameField);
     };
-    for (const layer of (style.layers || [])) {
-      const textField = layer?.layout?.['text-field'];
-      if (layer.type === 'symbol' && textField && usesNameField(textField)) {
+    for(const layer of (style.layers||[])){
+      const textField=layer?.layout?.['text-field'];
+      if(layer.type==='symbol' && textField && usesNameField(textField)){
         map.setLayoutProperty(layer.id,'visibility','visible');
         map.setLayoutProperty(layer.id,'text-field',preferredName);
       }
@@ -186,51 +308,61 @@ async function renderRoute() {
 
     const journeyMap=new Map();
     for(const part of routeGeometry.parts){
-      if(!journeyMap.has(part.journeyId)){
-        journeyMap.set(part.journeyId,{...part,modes:[]});
-      }
+      if(!journeyMap.has(part.journeyId)) journeyMap.set(part.journeyId,{...part,modes:[]});
       const j=journeyMap.get(part.journeyId);
       if(!j.modes.includes(part.mode)) j.modes.push(part.mode);
     }
-    const journeys=[...journeyMap.values()];
     const legend=document.getElementById('route-legend');
     if(legend){
-      legend.innerHTML=journeys.map(s=>`<span class="route-legend-item"><i style="background:${s.color}"></i><strong>${s.name}</strong> · ${s.modes.join(' + ')}</span>`).join('');
-    }
-
-    const bounds = new maplibregl.LngLatBounds();
-    for(const part of routeGeometry.parts){
-      for(const coord of part.coords) bounds.extend(coord);
+      legend.innerHTML=[...journeyMap.values()].map(s=>{
+        const leg=legById.get(s.journeyId);
+        return `<button class="route-legend-item" type="button" data-leg="${s.journeyId}"><i style="background:${s.color}"></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${formatYen(leg.fare.family2a2cYen)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
+      }).join('');
+      legend.addEventListener('click',e=>{
+        const btn=e.target.closest('[data-leg]');
+        if(btn) showLegDetail(legById.get(btn.dataset.leg));
+      });
     }
 
     trip.route.forEach((x,i)=>{
-      const el=document.createElement('div');
+      const el=document.createElement('button');
+      el.type='button';
       el.className='map-stop';
+      el.setAttribute('aria-label',`${i+1}. ${x.name}`);
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${x.name}</span>`;
-      const anchor=routeGeometry.stops?.[x.id] || [x.lng,x.lat];
-      new maplibregl.Marker({element:el,anchor:'center'})
-        .setLngLat(anchor)
-        .setPopup(new maplibregl.Popup({offset:22}).setHTML(`<strong>${i+1}. ${x.name}</strong><br>${x.label}<br>${fmtDate(x.from)}`))
-        .addTo(map);
+      const anchor=routeGeometry.stops?.[x.id]||[x.lng,x.lat];
+      const nextLeg=nextLegByRouteId.get(x.id);
+      const popupHtml=`<div class="map-popup"><div class="meta">Stopp ${i+1}</div><h3>${x.name}</h3><p>${x.label} · ${fmtDate(x.from)}</p>${nextLeg?legHtml(nextLeg,{compact:true}):'<p><strong>Siste hovedstopp på ruten.</strong></p>'}</div>`;
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'340px'}).setHTML(popupHtml)).addTo(map);
+      if(nextLeg) el.addEventListener('click',()=>showLegDetail(nextLeg));
     });
+
     trip.dayTrips.forEach(x=>{
-      bounds.extend([x.lng,x.lat]);
-      const el=document.createElement('div');
+      const el=document.createElement('button');
+      el.type='button';
       el.className='map-stop daytrip';
+      el.setAttribute('aria-label',x.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${x.name}</span>`;
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([x.lng,x.lat])
-        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<strong>${x.name}</strong><br>Dagstur fra ${x.base}`))
+        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup"><div class="meta">Dagstur fra ${x.base}</div><h3>${x.name}</h3><p>${x.summary}</p><a href="place.html?id=${x.id}">Se stedet →</a></div>`))
         .addTo(map);
     });
-    map.fitBounds(bounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:0});
+
+    addStationMarkers();
+    addPoiMarkers();
+    renderLayerToolbar();
+    fitRoute();
   });
 
-  let firstMapErrorShown = false;
-  map.on('error', (event)=>{
-    console.warn('Kartfeil', event?.error || event);
-    if (!firstMapErrorShown && !map.loaded()) {
-      firstMapErrorShown = true;
+  detail.hidden=false;
+  detail.innerHTML=`<div class="route-detail-placeholder"><strong>Trykk på en rutelinje, et rutenummer eller en etappe under kartet.</strong><span>Da vises estimert reisetid og pris for voksen, barn og 2 voksne + 2 barn.</span><small>${transport.childNote}</small></div>`;
+
+  let firstMapErrorShown=false;
+  map.on('error',(event)=>{
+    console.warn('Kartfeil',event?.error||event);
+    if(!firstMapErrorShown && !map.loaded()){
+      firstMapErrorShown=true;
       const el=document.createElement('div');
       el.className='map-error floating';
       el.innerHTML='<strong>Kartdata kunne ikke lastes.</strong><br>Prøv å oppdatere siden.';
