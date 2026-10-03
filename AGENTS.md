@@ -45,10 +45,11 @@ Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbe
 
 ## Priser og valuta
 
-- Bruk `docs/data/fx.json` som eneste omregningsgrunnlag.
-- Japanske priser vises JPY først og NOK som omtrentlige planleggingstall.
-- Norske budsjettall vises NOK først og JPY som omregning.
+- `docs/data/fx.json` eier live-endepunkt og lagret fallback. Nettstedet skal hente siste ECB-referansekurs ved sidelasting og bruke fallback bare ved nettverks-/API-feil.
+- Budsjett og norske rammebeløp har NOK som primærvaluta og JPY beregnes ved siden av.
+- Faktiske japanske priser har JPY som kildevaluta og NOK beregnes ved siden av med samme livekurs.
 - Ikke hardkod separate valutakurser i visninger eller data.
+- Footer skal alltid vise publisert versjon, sist oppdatert og kursen begge veier (NOK→JPY og JPY→NOK).
 
 ## Verifisering
 
