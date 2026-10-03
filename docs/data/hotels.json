@@ -1,0 +1,574 @@
+{
+  "asOf": "2026-10-03",
+  "priceNote": "Bredt planleggingsintervall per natt for 2 voksne + 2 barn, basert på publiserte romtyper og prisreferanser kontrollert 3. oktober 2026. Det er ikke et pristilbud for 2027; sakura-perioden kan bli dyrere.",
+  "bases": [
+    {
+      "baseId": "tokyo",
+      "label": "Tokyo · Shinjuku",
+      "strategy": "Bo i Shinjuku",
+      "why": "Fem netter gjør leilighetsfølelse og plass verdifullt. Shinjuku passer både de vestlige Tokyo-dagene og avreisen til Hakone."
+    },
+    {
+      "baseId": "hakone",
+      "label": "Hakone · Gora",
+      "strategy": "Gjør hotellet til en del av opplevelsen",
+      "why": "Dette er bare én natt. Prioriter onsen, ro og et godt familieoppsett fremfor å spare en liten sum på et ordinært byhotell."
+    },
+    {
+      "baseId": "kyoto",
+      "label": "Kyoto · Kyoto Station",
+      "strategy": "Prioriter stasjonen",
+      "why": "Fire netter med dagsturer til Nara/Uji og videre reise vestover gjør Kyoto Station mer verdifull enn å bo midt i Gion. De historiske områdene nås enkelt med lokaltransport."
+    },
+    {
+      "baseId": "hiroshima",
+      "label": "Hiroshima / Miyajima",
+      "strategy": "Velg mellom bylogistikk og én øynatt",
+      "why": "Bo ved Peace Park for sightseeing, ved Hiroshima Station for maksimal toglogistikk, eller bruk én av nettene på Miyajima for den mest særpregede opplevelsen."
+    },
+    {
+      "baseId": "osaka",
+      "label": "Osaka · Namba",
+      "strategy": "Bo i Namba",
+      "why": "Namba gir Dōtonbori til fots og direkte Nankai-forbindelse mot Kansai Airport. Universal Studios blir en egen kollektivdag uansett."
+    }
+  ],
+  "hotels": [
+    {
+      "id": "tokyu-stay-shinjuku-eastside",
+      "baseId": "tokyo",
+      "area": "Tokyo",
+      "name": "Tokyu Stay Shinjuku Eastside",
+      "tier": "Verdi",
+      "priceClass": "¥¥",
+      "planningFamilyNightYen": [
+        40000,
+        65000
+      ],
+      "familyOption": "Adjoining Room A kombinerer to rom til 43 m² for opptil fire personer, med vaskemaskin/tørketrommel, mikrobølgeovn og kjøkkenkrok.",
+      "why": "Et pragmatisk femnettersvalg når plass, klesvask og enkel egenmat betyr mer enn hotell-luksus.",
+      "logistics": "Higashi-Shinjuku / Shinjuku-sanchome. God bybase og fortsatt praktisk mot Shinjuku Station før Hakone.",
+      "tradeoff": "Mindre «spesiell Japan-opplevelse» enn de dyrere alternativene, og ikke like nær hovedstasjonen som MIMARU West.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.3,
+        "count": 550,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.tokyustay.co.jp/en/hotel/shinjuku-eastside-kabukicho-tokyo/room/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Tokyu+Stay+Shinjuku+Eastside+Tokyo"
+      },
+      "sources": [
+        "https://www.tokyustay.co.jp/en/hotel/shinjuku-eastside-kabukicho-tokyo/room/"
+      ],
+      "map": {
+        "lat": 35.696713,
+        "lng": 139.706825,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "mimaru-tokyo-shinjuku-west",
+      "baseId": "tokyo",
+      "area": "Tokyo",
+      "name": "MIMARU Tokyo Shinjuku West",
+      "tier": "Mellomklasse",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        65000,
+        90000
+      ],
+      "familyOption": "Family Apartment er 40 m² med to enkeltsenger + køyeseng, kjøkken og spiseplass; dimensjonert for fire voksne.",
+      "why": "Det mest balanserte Tokyo-valget for en familie på fire over fem netter: ordentlig plass, kjøkken og en romløsning som faktisk er laget for familien.",
+      "logistics": "Ca. 10 minutters gange fra Shinjuku Station South Exit og 8 minutter fra Tochomae.",
+      "tradeoff": "Dyrere enn et vanlig businesshotell, men man kjøper seg mye mer brukbar plass og slipper to små rom.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.8,
+        "count": 1580,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://mimaruhotels.com/en/hotel/shinjuku-west/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=MIMARU+Tokyo+Shinjuku+West"
+      },
+      "sources": [
+        "https://mimaruhotels.com/en/hotel/shinjuku-west/"
+      ],
+      "map": {
+        "lat": 35.68587,
+        "lng": 139.69304,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "hotel-groove-shinjuku",
+      "baseId": "tokyo",
+      "area": "Tokyo",
+      "name": "HOTEL GROOVE SHINJUKU, A PARKROYAL Hotel",
+      "tier": "Premium",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        70000,
+        110000
+      ],
+      "familyOption": "Premier Suite er 61 m² og oppgitt for opptil fire gjester; Japanese Suite gir samme størrelse med mer japansk uttrykk.",
+      "why": "Velg dette dersom Tokyo-hotellet også skal være en opplevelse: høy etasje, storbyutsikt og mer hotellfølelse enn leilighetshotellene.",
+      "logistics": "Kabukicho Tower i Shinjuku, tett på mat, underholdning og transport.",
+      "tradeoff": "Man betaler mye for utsikt og hotellnivå; MIMARU er mer praktisk som familiebase over fem netter.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.5,
+        "count": 1191,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.panpacific.com/en/hotels-and-resorts/hotel-groove-shinjuku/sleep.html",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Hotel+Groove+Shinjuku"
+      },
+      "sources": [
+        "https://www.panpacific.com/en/hotels-and-resorts/hotel-groove-shinjuku/sleep.html"
+      ],
+      "map": {
+        "lat": 35.69592,
+        "lng": 139.7008,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "hakone-yutowa",
+      "baseId": "hakone",
+      "area": "Hakone / Fuji",
+      "name": "Hakone Yutowa",
+      "tier": "Verdi",
+      "priceClass": "¥¥",
+      "planningFamilyNightYen": [
+        45000,
+        75000
+      ],
+      "familyOption": "Leilighets-/condominium-alternativer gir plass til fire, kjøkkenkrok og enkelte rom med privat bad.",
+      "why": "En god måte å få Gora, onsen og familieplass uten å gjøre Hakone-natten til turens dyreste overnatting.",
+      "logistics": "I Gora, praktisk for Hakone-runden og videre transport.",
+      "tradeoff": "Mindre tradisjonell ryokan-følelse enn Gora Kadan og mindre luksuriøst enn Ten-yu.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.4,
+        "count": 1001,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.hakoneyutowa-hotel.jp/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Hakone+Yutowa"
+      },
+      "sources": [
+        "https://www.hakoneyutowa-hotel.jp/",
+        "https://wanderlog.com/place/details/477079/hakone-yutowa"
+      ],
+      "map": {
+        "lat": 35.2499,
+        "lng": 139.0484,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "hakone-kowakien-tenyu",
+      "baseId": "hakone",
+      "area": "Hakone / Fuji",
+      "name": "Hakone Kowakien Ten-yu",
+      "tier": "Premium",
+      "priceClass": "¥¥¥¥",
+      "planningFamilyNightYen": [
+        110000,
+        170000
+      ],
+      "familyOption": "Superior-rom kan ta fire gjester og har privat utendørs hot-spring-bad; hotellet har også store felles onsen.",
+      "why": "Et sterkt kompromiss hvis Hakone-natten skal føles luksuriøs, men man vil ha et moderne og familievennlig oppsett fremfor svært formell ryokan.",
+      "logistics": "Ninotaira/Kowakudani-området, godt plassert for Hakone-sightseeing.",
+      "tradeoff": "Høy pris for én natt, og opplevelsen er mer resort enn klassisk liten ryokan.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.3,
+        "count": 2331,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.ten-yu.com/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Hakone+Kowakien+Ten-yu"
+      },
+      "sources": [
+        "https://www.ten-yu.com/",
+        "https://wanderlog.com/place/details/416390"
+      ],
+      "map": {
+        "lat": 35.23853,
+        "lng": 139.0446,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "gora-kadan",
+      "baseId": "hakone",
+      "area": "Hakone / Fuji",
+      "name": "Gora Kadan",
+      "tier": "Splurge",
+      "priceClass": "¥¥¥¥",
+      "planningFamilyNightYen": [
+        220000,
+        320000
+      ],
+      "familyOption": "Tradisjonell luksusryokan med flere romtyper og måltider som del av oppholdet; barnepris styres av alder.",
+      "why": "Dette er alternativet dersom én overnatting skal være en av turens store opplevelser i seg selv – ikke bare et sted å sove.",
+      "logistics": "Gora, svært naturlig i ruten gjennom Hakone.",
+      "tradeoff": "Ekstremt kostbart sammenlignet med resten av turen. Gir bare mening hvis ryokan/onsen prioriteres som et hovedminne.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.5,
+        "count": 1093,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.gorakadan.com/hakone/",
+        "booking": "https://www.gorakadan.com/hakone/reservation/?lang=en",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Gora+Kadan+Hakone"
+      },
+      "sources": [
+        "https://www.gorakadan.com/hakone/reservation/?lang=en"
+      ],
+      "map": {
+        "lat": 35.24768,
+        "lng": 139.04832,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "22-pieces",
+      "baseId": "kyoto",
+      "area": "Kyoto",
+      "name": "22 PIECES",
+      "tier": "Verdi",
+      "priceClass": "¥¥",
+      "planningFamilyNightYen": [
+        35000,
+        55000
+      ],
+      "familyOption": "34–36 m² studio med tre enkeltsenger og ekstra futon for fire, kjøkken og spisebord.",
+      "why": "Svært godt forhold mellom familieplass og beliggenhet når Kyoto Station er den logiske basen.",
+      "logistics": "Fire minutters gange fra Kyoto Station Hachijo-west exit.",
+      "tradeoff": "Mer leilighetshotell enn fullservicehotell og mindre atmosfære enn å bo i Higashiyama/Gion.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.8,
+        "count": 375,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://piecehotel.com/20-22pieces/en/",
+        "booking": "https://piecehotel.com/20-22pieces/en/22rooms/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=22+PIECES+Kyoto"
+      },
+      "sources": [
+        "https://piecehotel.com/20-22pieces/en/",
+        "https://piecehotel.com/20-22pieces/en/22rooms/"
+      ],
+      "map": {
+        "lat": 34.982452,
+        "lng": 135.756809,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "mimaru-kyoto-station",
+      "baseId": "kyoto",
+      "area": "Kyoto",
+      "name": "MIMARU Kyoto Station",
+      "tier": "Mellomklasse",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        55000,
+        80000
+      ],
+      "familyOption": "Family Apartment er 40 m² med to enkeltsenger + køyeseng; egne varianter har togutsikt eller liten japansk hage.",
+      "why": "Det enkleste allround-valget i Kyoto for en familie: god plass og svært kort vei til tog for Nara, Uji og neste reiseetappe.",
+      "logistics": "Rett ved Kyoto Station, på sørsiden.",
+      "tradeoff": "Man bor ikke i den mest stemningsfulle delen av Kyoto; kvelder i Gion krever transport tilbake.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.8,
+        "count": 439,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://mimaruhotels.com/en/hotel/kyoto-station/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=MIMARU+Kyoto+Station"
+      },
+      "sources": [
+        "https://mimaruhotels.com/en/hotel/kyoto-station/"
+      ],
+      "map": {
+        "lat": 34.98423,
+        "lng": 135.7617,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "hotel-granvia-kyoto",
+      "baseId": "kyoto",
+      "area": "Kyoto",
+      "name": "Hotel Granvia Kyoto",
+      "tier": "Premium",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        65000,
+        100000
+      ],
+      "familyOption": "Store familierom finnes; den viktigste fordelen er hotellstandard kombinert med direkte tilknytning til Kyoto Station.",
+      "why": "Premium-valget når maksimal toglogistikk og fullservicehotell veier mer enn leilighetsplass.",
+      "logistics": "Integrert i Kyoto Station – optimalt for dagsturer, bagasje og avreise mot Himeji.",
+      "tradeoff": "Dyrere enn 22 PIECES/MIMARU og mindre «nabolagsfølelse».",
+      "rating": {
+        "platform": "Google",
+        "score": 4.3,
+        "count": 4890,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.granvia-kyoto.co.jp/english/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Hotel+Granvia+Kyoto"
+      },
+      "sources": [
+        "https://www.granvia-kyoto.co.jp/english/"
+      ],
+      "map": {
+        "lat": 34.98584,
+        "lng": 135.75982,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "rihga-royal-hiroshima",
+      "baseId": "hiroshima",
+      "area": "Hiroshima",
+      "name": "RIHGA Royal Hotel Hiroshima",
+      "tier": "Verdi",
+      "priceClass": "¥¥",
+      "planningFamilyNightYen": [
+        25000,
+        45000
+      ],
+      "familyOption": "Superior Twin finnes for opptil fire personer på 38 m²; connecting-rom finnes også.",
+      "why": "Beste balanse hvis Hiroshima-delen først og fremst handler om Peace Memorial Park og sentrum.",
+      "logistics": "Svært nær Peace Park, Hiroshima Castle og sentrum; mindre optimal enn stasjonshotellet ved tidlig tog.",
+      "tradeoff": "Krever lokaltransport mellom JR Hiroshima Station og hotellet med bagasje.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.3,
+        "count": 5437,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.rihga.com/hiroshima",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=RIHGA+Royal+Hotel+Hiroshima"
+      },
+      "sources": [
+        "https://www.rihga.com/hiroshima/rooms",
+        "https://www.google.com/travel/hotels/entity/CgoIpu-QpbKT7eEmEAE"
+      ],
+      "map": {
+        "lat": 34.39728,
+        "lng": 132.45769,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "hotel-granvia-hiroshima",
+      "baseId": "hiroshima",
+      "area": "Hiroshima",
+      "name": "Hotel Granvia Hiroshima",
+      "tier": "Mellomklasse+",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        70000,
+        105000
+      ],
+      "familyOption": "Premium Tsudoi-4B er 66 m² med fire faste senger og er laget for familie/gruppe.",
+      "why": "Det klart beste logistikkvalget for ankomst fra Himeji, dagstur mot Miyajima og avreise til Osaka.",
+      "logistics": "Direkte koblet til JR Hiroshima Station.",
+      "tradeoff": "Familierommet er betydelig dyrere enn standardrom og hotellet ligger et stykke fra Peace Park.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.2,
+        "count": 6563,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://hgh.co.jp/english/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Hotel+Granvia+Hiroshima"
+      },
+      "sources": [
+        "https://hgh.co.jp/english/",
+        "https://hgh.co.jp/english/stay/",
+        "https://www.google.com/travel/hotels/entity/CgoI97KFspqxyIQeEAE"
+      ],
+      "map": {
+        "lat": 34.399027,
+        "lng": 132.475623,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "iwaso-miyajima",
+      "baseId": "hiroshima",
+      "area": "Miyajima",
+      "name": "Iwaso",
+      "tier": "Splurge-opplevelse",
+      "priceClass": "¥¥¥¥",
+      "planningFamilyNightYen": [
+        100000,
+        160000
+      ],
+      "recommendedNights": 1,
+      "familyOption": "Tradisjonell ryokan på Miyajima; rom og måltidsopplegg varierer, og familiepris påvirkes av barnas alderskategori.",
+      "why": "Dette er ikke «bedre hotellrom», men en annen reise: bli igjen på Miyajima når dagsturistene drar, spis middag på ryokanen og våkn opp på øya.",
+      "logistics": "I Momijidani, nær Itsukushima Shrine. Krever at én av Hiroshima-nettene flyttes til øya og at bagasjen planlegges smart.",
+      "tradeoff": "Dyrere og mer logistikk enn å bo begge netter i Hiroshima, men klart mest særpreget.",
+      "rating": {
+        "platform": "Ikyu",
+        "score": 4.49,
+        "count": null,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.iwaso.com/english",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Iwaso+Miyajima"
+      },
+      "sources": [
+        "https://www.iwaso.com/english"
+      ],
+      "map": {
+        "lat": 34.29523,
+        "lng": 132.32182,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "citadines-namba-osaka",
+      "baseId": "osaka",
+      "area": "Osaka",
+      "name": "Citadines Namba Osaka",
+      "tier": "Verdi",
+      "priceClass": "¥¥",
+      "planningFamilyNightYen": [
+        25000,
+        45000
+      ],
+      "familyOption": "Family Room er 28 m² og oppgitt for opptil fire personer; større serviced-apartment-følelse enn et vanlig kompakt byhotell.",
+      "why": "Et godt Namba-valg når man vil holde hotellbudsjettet nede uten å gi opp familievennlighet eller sentral beliggenhet.",
+      "logistics": "Nipponbashi/Namba, kort vei til Kuromon Market og Dōtonbori.",
+      "tradeoff": "Ikke like sømløst mot Nankai Namba/KIX som Fraser eller Swissôtel.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.7,
+        "count": 1251,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.discoverasr.com/en/citadines/japan/citadines-namba-osaka",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Citadines+Namba+Osaka"
+      },
+      "sources": [
+        "https://www.discoverasr.com/en/citadines/japan/citadines-namba-osaka",
+        "https://www.discoverasr.com/en/citadines/japan/citadines-namba-osaka/family-room"
+      ],
+      "map": {
+        "lat": 34.6623,
+        "lng": 135.5061,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "fraser-residence-nankai",
+      "baseId": "osaka",
+      "area": "Osaka",
+      "name": "Fraser Residence Nankai Osaka",
+      "tier": "Mellomklasse",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        35000,
+        60000
+      ],
+      "familyOption": "Two-Bedroom Deluxe/Executive er 77 m² for opptil fire voksne + ett barn, med to soverom, kjøkken og vaskemaskin/tørketrommel.",
+      "why": "Mitt sterkeste logistikk-/familievalg i Osaka: mye plass og nesten ideell plassering mot både Namba-kveldene og KIX-avreisen.",
+      "logistics": "Få minutters gange fra Nankai Namba Station; direkte tog til Kansai Airport.",
+      "tradeoff": "Mer serviced apartment enn klassisk hotellopplevelse, og prisfordelen forsvinner hvis bare de største 2-roms leilighetene er tilgjengelige.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.5,
+        "count": 992,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.frasershospitality.com/en/japan/osaka/fraser-residence-nankai-osaka/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Fraser+Residence+Nankai+Osaka"
+      },
+      "sources": [
+        "https://www.frasershospitality.com/en/japan/osaka/fraser-residence-nankai-osaka/accommodation/two-bedroom-deluxe/"
+      ],
+      "map": {
+        "lat": 34.66321,
+        "lng": 135.50051,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    },
+    {
+      "id": "swissotel-nankai-osaka",
+      "baseId": "osaka",
+      "area": "Osaka",
+      "name": "Swissôtel Nankai Osaka",
+      "tier": "Premium",
+      "priceClass": "¥¥¥",
+      "planningFamilyNightYen": [
+        65000,
+        100000
+      ],
+      "familyOption": "Connecting-rom er tilgjengelige; de fleste vanlige rom tar opptil tre inkludert barn, så familie på fire bør planlegge connecting-rom eller passende suite.",
+      "why": "Premiumvalget for maksimal enkelhet siste del av turen: hotell over Namba-stasjonen, byliv rett utenfor og direkte flyplasstog under dere.",
+      "logistics": "Direkte over Nankai Namba Station.",
+      "tradeoff": "For fire personer kan romoppsettet bli dyrt fordi man ofte trenger to rom/connecting eller suite.",
+      "rating": {
+        "platform": "Google",
+        "score": 4.3,
+        "count": 5634,
+        "checked": "2026-10-03"
+      },
+      "links": {
+        "official": "https://www.swissotel.com/hotels/nankai-osaka/",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Swissotel+Nankai+Osaka"
+      },
+      "sources": [
+        "https://www.swissotel.com/hotels/nankai-osaka/accommodation/",
+        "https://www.swissotel.com/hotels/nankai-osaka/explore-hotel/faq/"
+      ],
+      "map": {
+        "lat": 34.664095,
+        "lng": 135.501397,
+        "showOnRouteMap": true
+      },
+      "factsChecked": "2026-10-03"
+    }
+  ]
+}
