@@ -41,10 +41,20 @@ function footer() {
 const linkButton = (x) => `<a class="button ${x.kind==='ticket'?'primary':''}" href="${x.url}" target="_blank" rel="noopener">${x.label} ↗</a>`;
 const mapsButton = (name, area='Japan') => `<a class="button" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name+' '+area+' Japan')}" target="_blank" rel="noopener">Kart ↗</a>`;
 
+const imageLicenseHtml=(img)=>img?.licenseUrl
+  ? `<a href="${img.licenseUrl}" target="_blank" rel="license noopener">${img.license}</a>`
+  : (img?.license||'');
+const imageCreditHtml=(img,cls='image-credit')=>img
+  ? `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`
+  : '';
+const cardImageHtml=(img,alt,compact=false)=>img
+  ? `<div class="visual-card-media ${compact?'compact':''}"><img src="${img.url}" alt="${alt}" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`
+  : '';
+
 function photo(guide, key, alt, cls='card-photo') {
   const img=guide.images[key];
   if (!img) return '';
-  return `<figure class="${cls}"><img src="${img.url}" alt="${alt}" loading="lazy"><figcaption>Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${img.license}</figcaption></figure>`;
+  return `<figure class="${cls}"><img src="${img.url}" alt="${alt}" loading="lazy"><figcaption>${imageCreditHtml(img,'')}</figcaption></figure>`;
 }
 
 function areaImageKey(guide, place) {
@@ -91,20 +101,20 @@ async function renderHome() {
   document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
 
   const hero = guide.images.himeji;
-  document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="Himeji Castle med kirsebærblomstring"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div><div class="photo-credit">Foto: <a href="${hero.source}" target="_blank" rel="noopener">${hero.credit}</a> · ${hero.license}</div>`;
+  document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="Himeji Castle med kirsebærblomstring"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div><div class="photo-credit">${imageCreditHtml(hero,'')}</div>`;
 
   const route = document.getElementById('route-cards');
   route.innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
     const key=areaImageKey(guide,p);
     const img=guide.images[key];
-    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${img?`<img src="${img.url}" alt="${x.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
+    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(img,x.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${x.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
   }).join('');
 
   const featureIds=['nintendo-museum','nara','himeji','usj'];
   document.getElementById('family-hooks').innerHTML = featureIds.map(id=>{
     const p=places.find(x=>x.id===id); const key=areaImageKey(guide,p); const img=guide.images[key];
-    return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<img src="${img.url}" alt="${p.name}" loading="lazy">`:''}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
+    return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${cardImageHtml(img,p.name,true)}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
   }).join('');
 
   document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,3).map(x=>`<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${x.title}</strong><span>${x.when}</span></div><a href="${x.url}" target="_blank" rel="noopener">Offisiell side ↗</a></article>`).join('');
@@ -161,7 +171,7 @@ async function renderRoute() {
     const img=guide.images[areaImageKey(guide,p)];
     const leg=nextLegByRouteId.get(x.id);
     return `<article class="route-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
-      ${img?`<img class="route-thumb" src="${img.url}" alt="" loading="lazy">`:''}
+      ${img?`<div class="route-thumb-wrap"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-mini')}</div>`:''}
       <div class="route-item-main">
         <div class="route-item-top">
           <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
@@ -577,7 +587,7 @@ async function renderPlaces() {
   const draw = (area='Alle') => {
     grid.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>{
       const img=guide.images[areaImageKey(guide,p)];
-      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span><span class="type-pill">${p.type}</span></div></div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
+      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span><span class="type-pill">${p.type}</span></div>${imageCreditHtml(img,'image-credit-mini')}</div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}</div></div></a></article>`;
     }).join('');
   };
   filters.addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON') return; [...filters.children].forEach(b=>b.classList.remove('active')); e.target.classList.add('active'); draw(e.target.dataset.area); });
@@ -588,7 +598,12 @@ async function renderPlace() {
   nav('places'); footer();
   const [places,guide,food,trip] = await Promise.all([json('data/places.json'),json('data/guide.json'),json('data/food.json'),json('data/trip.json')]);
   const id = new URLSearchParams(location.search).get('id');
-  const p = places.find(x=>x.id===id) || places[0];
+  const p = places.find(x=>x.id===id);
+  if(!p){
+    document.title='Sted ikke funnet · Japan 2027';
+    document.querySelector('main').innerHTML='<div class="eyebrow">Steder</div><h1>Stedet ble ikke funnet</h1><p><a href="places.html">← Tilbake til alle steder</a></p>';
+    return;
+  }
   document.querySelector('main')?.setAttribute('style',themeStyle(destinationTheme(trip,p)));
   document.querySelector('main')?.classList.add('destination-themed');
   const extra=guide.placeExtras[p.id]||{};
@@ -600,12 +615,12 @@ async function renderPlace() {
   document.getElementById('description').textContent = p.description;
   document.getElementById('why').textContent = p.why;
   document.getElementById('highlights').innerHTML = p.highlights.map(x=>`<li>${x}</li>`).join('');
-  document.getElementById('prep').innerHTML = p.prep.length ? p.prep.map(x=>`<li>${x}</li>`).join('') : '<li>Ingen spesifikk oppladning lagt inn ennå.</li>';
+  document.getElementById('prep').innerHTML = p.prep.length ? p.prep.map(x=>`<li>${x}</li>`).join('') : '<li>Ingen særskilt forberedelse anbefalt.</li>';
   document.getElementById('ac').innerHTML = p.acShadows ? '<span class="badge accent">Finnes / er relevant i Assassin’s Creed Shadows</span>' : '';
-  if(img) document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${p.name}"><div class="photo-credit">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${img.license}</div>`;
+  if(img) document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${p.name}"><div class="photo-credit">${imageCreditHtml(img,'')}</div>`;
   document.getElementById('external-links').innerHTML = [...(extra.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
   const related=food.filter(x=>x.status==='active' && (x.area===p.area || (p.area==='Hiroshima'&&x.area==='Miyajima'))).slice(0,4);
-  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen restaurantkandidater lagt inn her ennå.</p>';
+  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
 }
 
 async function renderPrep() {
@@ -640,7 +655,7 @@ async function renderFood() {
     const bits=[];
     if(x.ratings?.google?.score) bits.push(`<span>Google <strong>${x.ratings.google.score.toFixed(1)}</strong></span>`);
     if(x.ratings?.tripadvisor?.score) bits.push(`<span>Tripadvisor <strong>${x.ratings.tripadvisor.score.toFixed(1)}</strong></span>`);
-    return bits.length?bits.join(''):'<span>Vurderinger på detaljsiden</span>';
+    return bits.join('');
   };
 
   const row=(x)=>`<a class="food-index-row destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}">
@@ -719,7 +734,8 @@ async function renderRestaurant() {
     const nok=lo===hi?nokLo:`${nokLo}–${nokHi}`;
     price.innerHTML=`<strong>${yen}</strong><small>ca. ${nok}</small>`;
   } else {
-    price.innerHTML='<strong>Ikke avklart</strong>';
+    const panel=price.closest('.restaurant-price-panel');
+    if(panel) panel.hidden=true;
   }
 
   document.getElementById('restaurant-price-basis').textContent=x.priceBasis||'';
@@ -730,7 +746,7 @@ async function renderRestaurant() {
   const img=document.getElementById('restaurant-image');
   if(x.image){
     img.hidden=false;
-    img.innerHTML=`<img src="${x.image.url}" alt="${x.image.alt||x.name}" loading="eager"><figcaption>Foto: <a href="${x.image.source}" target="_blank" rel="noopener">${x.image.credit}</a> · ${x.image.license}</figcaption>`;
+    img.innerHTML=`<img src="${x.image.url}" alt="${x.image.alt||x.name}" loading="eager"><figcaption>${imageCreditHtml(x.image,'')}</figcaption>`;
   } else {
     img.hidden=true;
   }
