@@ -11,6 +11,8 @@ const guide = readJson('docs/data/guide.json');
 const sources = readJson('docs/data/sources.json');
 const hotelData = readJson('docs/data/hotels.json');
 const hotels = hotelData.hotels || [];
+const fx = readJson('docs/data/fx.json');
+const site = readJson('docs/data/site.json');
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -190,6 +192,12 @@ for (const item of hotels) {
   if (!Array.isArray(item.sources) || item.sources.length === 0) errors.push(`hotels.json: ${item.id} mangler kilder`);
 }
 
+if (!/^https:\/\//.test(fx.liveEndpoint || '')) errors.push('fx.json: liveEndpoint må være HTTPS');
+if (!/^https:\/\//.test(fx.sourceUrl || '')) errors.push('fx.json: sourceUrl må være HTTPS');
+if (!Number.isFinite(fx.jpyPerNok) || !Number.isFinite(fx.nokPerJpy)) errors.push('fx.json: fallback-kurser mangler');
+else if (Math.abs((fx.jpyPerNok * fx.nokPerJpy) - 1) > 0.000001) errors.push('fx.json: fallback-kursene er ikke inverse');
+if (!fx.asOf) errors.push('fx.json: fallback mangler asOf');
+
 const sourceUrls=new Set();
 for (const item of sources) {
   if (!item.title || !item.url || !item.use) errors.push('sources.json: kilde mangler title/url/use');
@@ -203,6 +211,8 @@ for (const name of htmlFiles) {
   const html=fs.readFileSync(file,'utf8');
   if (!/<html lang="nb">/.test(html)) errors.push(`${file}: mangler lang="nb"`);
   if (!/<meta name="viewport"/.test(html)) errors.push(`${file}: mangler viewport`);
+  const assetVersions=[...html.matchAll(/assets\/(?:style\.css|app\.js)\?v=([0-9.]+)/g)].map(m=>m[1]);
+  if (!assetVersions.length || assetVersions.some(v=>v!==site.version)) errors.push(`${file}: assetversjon samsvarer ikke med site.json (${site.version})`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const ref=match[1];
     if (/^(?:https?:|mailto:|tel:|#|data:)/.test(ref)) continue;
@@ -224,6 +234,13 @@ const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler hotellvisninger');
 if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
+if (!app.includes('async function loadFx()') || !app.includes('providers=ecb')) errors.push('app.js mangler live ECB-kurs');
+const directFxLoads=[...app.matchAll(/json\('data\/fx\.json'\)/g)].length;
+if (directFxLoads !== 1) errors.push('app.js skal bare lese fx.json inne i loadFx()');
+if (!app.includes('footer-version') || !app.includes("json('data/site.json')")) errors.push('footer mangler versjon/sist oppdatert');
+if (!app.includes('1 NOK =') || !app.includes('1 JPY =')) errors.push('footer viser ikke kurs begge veier');
+if (!app.includes('place-list-card')) errors.push('Steder bruker ikke kompakt kortliste');
+if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
 if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
 if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
