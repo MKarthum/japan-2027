@@ -116,3 +116,24 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   z-index:10;border:1px solid #efb9b0;border-radius:12px;
   box-shadow:var(--shadow-sm);
 }
+
+.route-legend{
+  display:flex;flex-wrap:wrap;gap:8px 12px;
+  margin:12px 0 8px;padding:12px 14px;
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow-sm);
+}
+.route-legend-item{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.82rem;color:var(--muted);
+}
+.route-legend-item i{
+  width:24px;height:4px;border-radius:999px;display:inline-block;
+}
+.route-legend-item strong{color:var(--ink)}
+.route-warning{
+  width:100%;color:#8b241c;font-size:.82rem;font-weight:700;
+}
+@media(max-width:620px){
+  .route-legend{display:grid;gap:8px}
+}
