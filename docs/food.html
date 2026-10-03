@@ -1,6 +1,27 @@
-<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mat · Japan 2027</title><meta name="description" content="Kuraterte mat- og restaurantforslag for Japan 2027."><link rel="stylesheet" href="assets/style.css?v=0.9.0"></head><body><header></header><main>
-<div class="eyebrow">Mat</div><h1>Hva skal vi faktisk spise?</h1><p class="lede">Ikke en tilfeldig restaurantliste. Vi prioriterer opplevelser som hører til stedet vi er på, og beholder noen enkle backup-alternativer når kø, vær eller dagsform vinner.</p>
-<div class="grid three section"><article class="card"><span class="priority must">Må prøve</span><h3>Planlegg rundt dette</h3><p>En regional rett eller restaurant vi aktivt prøver å få inn i dagsplanen.</p></article><article class="card"><span class="priority strong">Sterk kandidat</span><h3>Hvis det passer</h3><p>Veldig interessant, men ikke verdt å ødelegge dagsflyten for.</p></article><article class="card"><span class="priority optional">Valgfri</span><h3>God backup</h3><p>Praktisk, familievennlig eller et alternativ hvis førstevalget ikke fungerer.</p></article></div>
-<div id="food-filters" class="filters section"></div><div id="food-grid" class="grid"></div>
-<section class="section card"><h2>Mat vi bør lære hjemme først</h2><p>Ramen, gyoza, okonomiyaki, japansk curry og onigiri ligger allerede i oppladningsplanen. Når vi vet mer om hva familien liker, kan restaurantlisten bli mye skarpere.</p><a href="prep.html">Se oppladningen →</a></section>
-</main><footer></footer><script src="assets/app.js?v=0.9.0"></script><script>renderFood()</script></body></html>
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mat · Japan 2027</title><meta name="description" content="Kuraterte mat- og restaurantforslag for Japan 2027 med prisnivå og familieestimat."><link rel="stylesheet" href="assets/style.css?v=0.10.0"></head><body><header></header><main>
+<div class="eyebrow">Mat</div><h1>Hva skal vi faktisk spise?</h1>
+<p class="lede">Et kuratert utvalg – ikke en restaurantdatabase. Noen steder er verdt å planlegge dagen rundt, andre er valgt fordi de treffer en lokal rett eller ligger perfekt langs en aktivitet. Hvert valg skal kunne svare på «hvorfor akkurat denne?».</p>
+<div id="food-summary" class="food-summary" aria-live="polite"></div>
+<section class="food-method">
+  <div><span class="food-role">Destinasjonsmåltid</span><p>Restauranten er en del av selve reisen. Her kan tid, reservasjon og høyere pris være verdt det.</p></div>
+  <div><span class="food-role">Signaturrett</span><p>Vi vil først og fremst spise en bestemt lokal eller japansk rett – dette er et særlig godt sted å gjøre det.</p></div>
+  <div><span class="food-role">Praktisk treff</span><p>God mat som passer naturlig sammen med området eller aktiviteten vi allerede skal til.</p></div>
+  <div><span class="food-role">Backup / snack</span><p>Lav terskel når dagsflyten er viktigere enn å oppsøke en bestemt restaurant.</p></div>
+</section>
+<div class="food-price-guide"><strong>Prisnivå for hele familien:</strong><span>¥ opptil ca. ¥8 000</span><span>¥¥ ca. ¥8–20 000</span><span>¥¥¥ ca. ¥20–50 000</span><span>¥¥¥¥ over ca. ¥50 000</span></div>
+<p id="food-fx-note" class="small fx-note"></p>
+<div id="food-filters" class="filters section"></div>
+<div id="food-grid" class="grid"></div>
+
+<section class="section">
+  <div class="section-head"><div><div class="eyebrow">Ikke låst ennå</div><h2>Følg med</h2></div><p>Interessante steder der 2027-planen er for usikker til at vi bør bygge en dag rundt dem nå.</p></div>
+  <div id="food-watchlist"></div>
+</section>
+
+<section class="section grid two">
+  <article class="card"><div class="eyebrow">Hakone</div><h2>La ryokanen styre middagen</h2><p>Vi legger ikke inn en tilfeldig Hakone-restaurant nå. Når ryokan velges, bør vi vurdere om kaiseki-middag og frokost der er en viktig del av onsen-opplevelsen.</p></article>
+  <article class="card"><div class="eyebrow">Bevisst valg</div><h2>Ikke alle berømte steder passer</h2><p>Vi prioriterer ikke status for statusens skyld. Eksempel: Tonkatsu Narikura er høyt profilert, men dagens regel om at barn under 12 ikke tillates gjør det dårlig egnet som generell familiekandidat på denne turen.</p><a href="https://tabelog.com/en/tokyo/A1319/A131905/13236380/" target="_blank" rel="noopener">Se gjeldende butikkinfo ↗</a></article>
+</section>
+
+<section class="section card"><h2>Mat vi bør lære hjemme først</h2><p>Ramen, gyoza, okonomiyaki, japansk curry og onigiri ligger allerede i oppladningsplanen. Det gjør det lettere å bruke restaurantene til å oppleve variasjoner og regionale spesialiteter – ikke bare til å finne noe barna kjenner igjen.</p><a href="prep.html">Se oppladningen →</a></section>
+</main><footer></footer><script src="assets/app.js?v=0.10.0"></script><script>renderFood()</script></body></html>
