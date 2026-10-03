@@ -58,3 +58,16 @@ node scripts/check-content-style.mjs
 Alle tre skal passere. Hvis miljøet ikke kan kjøre Node, må tilsvarende validering gjøres eksplisitt før commit og begrensningen dokumenteres.
 
 Ved brukersynlige endringer bumpes `docs/data/site.json`, og CSS/JS-assetversjonen i alle `docs/*.html` skal samsvare med den versjonen.
+
+
+## Bilder og medier
+
+Dette er en offentlig side. Bruk bare bilder med dokumentert gjenbruksrett:
+
+- foretrekk Wikimedia Commons-bilder med eksplisitt fri lisens, CC0/public domain eller prosjektets egne bilder;
+- ikke kopier bilder fra Google Maps, Booking.com, Tripadvisor, Instagram, hotell-/restaurantnettsteder eller andre nettsider bare fordi de er offentlig synlige;
+- «offisiell nettside» betyr ikke automatisk at bildet kan gjenbrukes;
+- hvert bilde skal ha kilde, kreditering, lisens og lisenslenke i dataene, og krediteringen skal vises i UI-et der bildet brukes;
+- hvert sted skal som hovedregel ha et eget, representativt bilde. Ikke gjenbruk et områdebilde på et konkret museum/slott/helligdom bare som fallback.
+
+Dersom gjenbruksretten er uklar, skal bildet ikke brukes.
