@@ -1,4 +1,5 @@
 const fmtDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'short' }).format(new Date(`${iso}T12:00:00Z`));
+const fmtLongDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${iso}T12:00:00Z`));
 const fmtNok = (n) => new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n)) + ' kr';
 const fmtJpy = (n) => '¥' + new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n));
 const nokFromJpy = (jpy,fx) => jpy * fx.nokPerJpy;
@@ -28,18 +29,11 @@ function nav(active='') {
 }
 
 function footer() {
-  document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Offentlig planleggingsside. Ingen private booking- eller personopplysninger.</span><br><span id="site-version" class="small">Versjon …</span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a><a href="https://github.com/MKarthum/japan-2027">GitHub</a></div></div>`;
-  Promise.all([
-    fetch('data/site.json', {cache:'no-store'}).then(r=>r.ok?r.json():null),
-    fetch('data/fx.json', {cache:'no-store'}).then(r=>r.ok?r.json():null)
-  ]).then(([v,fx])=>{
-    if(v) document.getElementById('site-version').textContent = `Versjon ${v.version} · ${v.released}`;
-    if(fx){
-      const note=document.createElement('span');
-      note.className='small footer-fx';
-      note.textContent=`Valutakurs ${fx.asOf}: ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)}`;
-      document.getElementById('site-version')?.after(document.createElement('br'),note);
-    }
+  document.querySelector('footer').innerHTML = `<div class="inner"><div><strong>Japan 2027</strong><br><span class="small">Reiseplan med priser, steder og praktiske kilder samlet på ett sted.</span><br><span id="footer-fx" class="small footer-fx"></span></div><div class="footer-links"><a href="sources.html">Kilder</a><a href="privacy.html">Personvern</a></div></div>`;
+  fetch('data/fx.json', {cache:'no-store'}).then(r=>r.ok?r.json():null).then(fx=>{
+    if(!fx) return;
+    const el=document.getElementById('footer-fx');
+    if(el) el.textContent=`Planleggingskurs ${fmtLongDate(fx.asOf)}: ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)}`;
   }).catch(()=>{});
 }
 
@@ -65,7 +59,7 @@ function priorityBadge(priority){
 
 async function renderHome() {
   nav('home'); footer();
-  const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),json('data/fx.json?v=0.8.0')]);
+  const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),json('data/fx.json')]);
   document.getElementById('status').textContent = trip.status;
   document.getElementById('window').textContent = trip.window;
   document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
@@ -96,10 +90,10 @@ async function renderRoute() {
     json('data/trip.json'),
     json('data/places.json'),
     json('data/guide.json'),
-    json('data/route-geometry.json?v=0.8.0'),
-    json('data/transport.json?v=0.8.0'),
+    json('data/route-geometry.json'),
+    json('data/transport.json'),
     json('data/food.json'),
-    json('data/fx.json?v=0.8.0')
+    json('data/fx.json')
   ]);
 
   const formatMinutes = (mins) => {
@@ -119,11 +113,11 @@ async function renderRoute() {
 
   const legHtml=(leg,{compact=false}={}) => `
     <div class="route-detail-content">
-      <div class="meta">Reiseetappe · planestimat 2026</div>
+      <div class="meta">Reiseetappe · prisestimat</div>
       <h3>${leg.from} → ${leg.to}</h3>
       <p class="route-service">${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p>
       ${fareHtml(leg)}
-      ${compact?'':`<p class="small">Prisene er representative dagenspriser og må sjekkes igjen for 2027. Barnepris gjelder bare når den reisende kvalifiserer etter operatørens regler.</p>`}
+      ${compact?'':`<p class="small">Prisgrunnlaget ble kontrollert ${fmtLongDate(transport.asOf)}. Bekreft pris og billettregler før bestilling.</p>`}
       <a class="route-source-link" href="${leg.source}" target="_blank" rel="noopener">Pris-/rutegrunnlag ↗</a>
     </div>`;
 
@@ -154,7 +148,7 @@ async function renderRoute() {
   }
 
   if (typeof maplibregl === 'undefined') {
-    document.getElementById('map').innerHTML = '<div class="map-error"><strong>Kartet kunne ikke lastes.</strong><br>MapLibre-biblioteket mangler. Oppdater siden eller prøv igjen senere.</div>';
+    document.getElementById('map').innerHTML = '<div class="map-error"><strong>Kartet kunne ikke lastes.</strong><br>Oppdater siden eller prøv igjen senere.</div>';
     return;
   }
 
@@ -597,7 +591,10 @@ async function renderFood() {
     watchlist.innerHTML=watch.length?watch.map(x=>`<a class="food-watch-card" href="restaurant.html?id=${encodeURIComponent(x.id)}"><div><span class="food-role">${x.role}</span><h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p></div><span class="food-index-arrow" aria-hidden="true">→</span></a>`).join(''):'';
   }
   const fxNote=document.getElementById('food-fx-note');
-  if(fxNote) fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}). Ratinger er daterte øyeblikksbilder og kan endre seg.`;
+  if(fxNote){
+    const ratingDate=active.find(x=>x.ratings?.checked)?.ratings?.checked;
+    fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fmtLongDate(fx.asOf)}).${ratingDate?` Restaurantvurderinger kontrollert ${fmtLongDate(ratingDate)}.`:''}`;
+  }
   draw();
 }
 
@@ -647,18 +644,19 @@ async function renderRestaurant() {
   }
 
   const ratings=document.getElementById('restaurant-ratings');
-  const ratingCard=(label,r,fallbackUrl)=>{
-    if(r){
-      const sourceNote=r.sourceNote?` · ${r.sourceNote}`:'';
-      return `<a class="rating-card" href="${r.url||fallbackUrl}" target="_blank" rel="noopener"><span>${label}</span><strong>${r.score.toFixed(1)} / 5</strong><small>${r.count?`${new Intl.NumberFormat('nb-NO').format(r.count)} anmeldelser`:''}${sourceNote}</small></a>`;
-    }
-    return `<a class="rating-card muted" href="${fallbackUrl}" target="_blank" rel="noopener"><span>${label}</span><strong>Ikke kontrollert</strong><small>Åpne oppføringen ↗</small></a>`;
+  const ratingCard=(label,r)=>{
+    if(!r?.score || !r?.url) return '';
+    const count=r.count ? `${r.approximateCount?'ca. ':''}${new Intl.NumberFormat('nb-NO').format(r.count)} anmeldelser` : '';
+    return `<a class="rating-card" href="${r.url}" target="_blank" rel="noopener"><span>${label}</span><strong>${r.score.toFixed(1)} / 5</strong><small>${count}</small></a>`;
   };
-  ratings.innerHTML=[
-    ratingCard('Google',x.ratings?.google,x.links?.googleMaps||x.maps),
-    ratingCard('Tripadvisor',x.ratings?.tripadvisor,x.ratings?.tripadvisor?.url||'https://www.tripadvisor.com/')
-  ].join('');
-  document.getElementById('restaurant-ratings-note').textContent=x.ratings?.checked?`Score kontrollert ${x.ratings.checked}. Ratinger endrer seg over tid.`:'';
+  const ratingCards=[
+    ratingCard('Google',x.ratings?.google),
+    ratingCard('Tripadvisor',x.ratings?.tripadvisor)
+  ].filter(Boolean);
+  ratings.innerHTML=ratingCards.join('');
+  const ratingsSection=document.getElementById('restaurant-ratings-section');
+  if(ratingsSection) ratingsSection.hidden=ratingCards.length===0;
+  document.getElementById('restaurant-ratings-note').textContent=x.ratings?.checked?`Kontrollert ${fmtLongDate(x.ratings.checked)}. Vurderinger kan endre seg.`:'';
 
   const orderEl=document.getElementById('restaurant-order');
   const orderRecs=x.orderRecommendations||[];
@@ -678,7 +676,7 @@ async function renderRestaurant() {
   const alternatives=food.filter(item=>item.status==='active'&&item.id!==x.id&&item.area===x.area).slice(0,4);
   document.getElementById('restaurant-alternatives').innerHTML=alternatives.length
     ? alternatives.map(item=>`<a class="restaurant-alt" href="restaurant.html?id=${encodeURIComponent(item.id)}"><span>${item.role}</span><strong>${item.name}</strong><small>${item.dish}</small></a>`).join('')
-    : '<p class="small">Ingen andre aktive kandidater i dette området akkurat nå.</p>';
+    : '<p class="small">Ingen andre aktive kandidater i dette området.</p>';
 }
 
 async function renderPractical() {
@@ -694,7 +692,7 @@ async function renderPractical() {
 
 async function renderBudget() {
   nav('budget'); footer();
-  const [trip,fx] = await Promise.all([json('data/trip.json'),json('data/fx.json?v=0.8.0')]);
+  const [trip,fx] = await Promise.all([json('data/trip.json'),json('data/fx.json')]);
   document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
   document.getElementById('range').innerHTML = dualMoneyHtml(
     `${fmtNok(trip.budget.rangeNok[0])}–${fmtNok(trip.budget.rangeNok[1])}`,
