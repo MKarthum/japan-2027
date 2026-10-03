@@ -506,16 +506,76 @@ async function renderPrep() {
 
 async function renderFood() {
   nav('food'); footer();
-  const food=await json('data/food.json');
-  const areas=['Alle',...new Set(food.map(x=>x.area))];
+  const [food,fx]=await Promise.all([json('data/food.json?v=0.10.0'),json('data/fx.json')]);
+  const active=food.filter(x=>x.status!=='watch');
+  const watch=food.filter(x=>x.status==='watch');
+  const areas=['Alle',...new Set(active.map(x=>x.area))];
   const filters=document.getElementById('food-filters');
-  filters.innerHTML=areas.map((a,i)=>`<button class="${i===0?'active':''}" data-area="${a}">${a}</button>`).join('');
   const grid=document.getElementById('food-grid');
-  const order={'Må prøve':0,'Sterk kandidat':1,'Valgfri':2};
-  const draw=(area='Alle')=>{
-    grid.innerHTML=food.filter(x=>area==='Alle'||x.area===area).sort((a,b)=>order[a.priority]-order[b.priority]).map(x=>`<article class="food-card">${priorityBadge(x.priority)}<div class="meta">${x.area}</div><h3>${x.name}</h3><div class="kicker">${x.dish}</div><p>${x.why}</p><p class="small">${x.note||''}</p><div class="button-row"><a class="button" href="${x.maps}" target="_blank" rel="noopener">Google Maps ↗</a>${x.website?`<a class="button" href="${x.website}" target="_blank" rel="noopener">Nettside ↗</a>`:''}</div></article>`).join('');
+  const order={'Må prøve':0,'Sterk kandidat':1,'Valgfri':2,'Følg med':3};
+  const priceClassText={
+    '¥':'lavt familieforbruk',
+    '¥¥':'middels familieforbruk',
+    '¥¥¥':'dyrt måltid',
+    '¥¥¥¥':'stort splurge-måltid'
   };
-  filters.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;[...filters.children].forEach(b=>b.classList.remove('active'));e.target.classList.add('active');draw(e.target.dataset.area);});
+  const familyPrice=(x)=>{
+    if(!x.familyEstimateYen) return '<strong>Pris oppdateres senere</strong>';
+    const [lo,hi]=x.familyEstimateYen;
+    const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
+    const nokLo=fmtNok(nokFromJpy(lo,fx));
+    const nokHi=fmtNok(nokFromJpy(hi,fx));
+    const nok=lo===hi?nokLo:`${nokLo}–${nokHi}`;
+    return `<strong>${yen}</strong><small>ca. ${nok}</small>`;
+  };
+  const card=(x)=>`<article class="food-card">
+    <div class="food-card-head">
+      <span class="food-role">${x.role}</span>
+      ${priorityBadge(x.priority)}
+    </div>
+    <div class="meta">${x.area}</div>
+    <h3>${x.name}</h3>
+    <div class="kicker">${x.dish}</div>
+    <p>${x.why}</p>
+    <div class="food-context">
+      <div><span>Passer med</span><strong>${x.fit}</strong></div>
+      <div><span>Prisnivå</span><strong class="food-price-class" title="${priceClassText[x.priceClass]||''}">${x.priceClass}</strong></div>
+      <div class="food-family-price"><span>2 voksne + 2 barn</span>${familyPrice(x)}</div>
+    </div>
+    <details class="food-details">
+      <summary>Pris og planlegging</summary>
+      <p><strong>Prisgrunnlag:</strong> ${x.priceBasis}</p>
+      <p><strong>Praktisk:</strong> ${x.booking}</p>
+      ${x.note?`<p>${x.note}</p>`:''}
+    </details>
+    <div class="button-row">
+      <a class="button" href="${x.maps}" target="_blank" rel="noopener">Google Maps ↗</a>
+      ${x.website?`<a class="button" href="${x.website}" target="_blank" rel="noopener">Nettside ↗</a>`:''}
+      ${x.source?`<a class="button food-source" href="${x.source}" target="_blank" rel="noopener">${x.sourceLabel||'Priskilde'} ↗</a>`:''}
+    </div>
+  </article>`;
+  const draw=(area='Alle')=>{
+    grid.innerHTML=active
+      .filter(x=>area==='Alle'||x.area===area)
+      .sort((a,b)=>(order[a.priority]??9)-(order[b.priority]??9))
+      .map(card).join('');
+  };
+  filters.innerHTML=areas.map((a,i)=>`<button class="${i===0?'active':''}" data-area="${a}">${a}</button>`).join('');
+  filters.addEventListener('click',e=>{
+    if(e.target.tagName!=='BUTTON')return;
+    [...filters.children].forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');
+    draw(e.target.dataset.area);
+  });
+  const destinations=active.filter(x=>x.role==='Destinasjonsmåltid').length;
+  const summary=document.getElementById('food-summary');
+  if(summary) summary.innerHTML=`<strong>${active.length} kuraterte kandidater</strong><span>${destinations} destinasjonsmåltider · ${areas.length-1} områder · prisestimat for 2 voksne + 2 barn</span>`;
+  const watchlist=document.getElementById('food-watchlist');
+  if(watchlist){
+    watchlist.innerHTML=watch.length?watch.map(x=>`<article class="food-watch-card"><div><span class="food-role">${x.role}</span><h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p><p class="small">${x.booking}</p></div><div class="button-row"><a class="button" href="${x.source}" target="_blank" rel="noopener">${x.sourceLabel} ↗</a></div></article>`).join(''):'';
+  }
+  const fxNote=document.getElementById('food-fx-note');
+  if(fxNote) fxNote.textContent=`Familieprisene er planestimater. NOK er omregnet med ${fmtJpy(1000)} ≈ ${fmtNok(1000*fx.nokPerJpy)} (${fx.asOf}). Drikke er normalt ikke inkludert.`;
   draw();
 }
 
