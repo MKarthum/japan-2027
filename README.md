@@ -27,12 +27,13 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/trip.json` – rute, planleggingsdatoer, budsjett og destinasjonstemaer/farger
 - `docs/data/places.json` – kanoniske steder, forklaringer og kartposisjon
 - `docs/data/food.json` – kanonisk restaurant-/matliste med prioritet, pris og kartposisjon
+- `docs/data/hotels.json` – hotellkandidater per base med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
 - `docs/data/guide.json` – bilder, eksterne lenker, bookingradar, transport, ordbok, etikette og mediekoblinger
 - `docs/data/sources.json` – kilder
 
-`docs/place.html?id=<id>` er generisk detaljside for steder, og `docs/restaurant.html?id=<id>` er generisk detaljside for restauranter. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
+`docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for hotellalternativer. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
 
 ## Prinsipper
 
