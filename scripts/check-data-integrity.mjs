@@ -34,7 +34,14 @@ if (fs.existsSync('docs/data/map-pois.json')) {
   errors.push('docs/data/map-pois.json skal ikke finnes; kartdata skal ligge i kanoniske detaljfiler');
 }
 
+if (!fs.existsSync('docs/restaurant.html')) {
+  errors.push('docs/restaurant.html mangler; restauranter skal bruke én generisk detaljvisning');
+}
+
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) {
+  errors.push('app.js mangler generisk restaurantdetalj eller direkte restaurantlenker');
+}
 if (app.includes('map-pois.json') || app.includes('mapPois')) {
   errors.push('app.js refererer fortsatt til avledet map-pois-data');
 }
