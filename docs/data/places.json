@@ -385,16 +385,16 @@
     "name": "Ghibli Museum",
     "area": "Tokyo",
     "type": "museum",
-    "simple": "Hvis Ghibli-filmene treffer",
+    "simple": "Ghibli-universet i Mitaka",
     "description": "Lite og detaljrikt museum i Mitaka viet Studio Ghiblis animasjon og univers.",
-    "why": "Ikke obligatorisk nå, men blir et opplagt tillegg dersom Totoro, Chihiro eller Kiki blir en viktig del av oppladningen.",
+    "why": "Et godt tillegg dersom Totoro, Chihiro eller Kiki blir en viktig del av oppladningen før reisen.",
     "highlights": [
       "Original animasjonskunst",
       "Ghibli-univers",
       "Mitaka-utflukt"
     ],
     "prep": [
-      "Se 2–3 Ghibli-filmer før vi bestemmer oss",
+      "Se 2–3 Ghibli-filmer",
       "Billetter må kjøpes på forhånd"
     ],
     "acShadows": false,
@@ -481,7 +481,7 @@
     "type": "helligdom",
     "simple": "Helligdommen bak den ikoniske torii-porten i sjøen",
     "description": "Shinto-helligdom på Miyajima bygget over tidevannssonen, kjent for den store torii-porten som ser ut til å flyte ved høyvann.",
-    "why": "Dette er det konkrete hovedmålet på Miyajima og fortjener sin egen kanoniske stedspost.",
+    "why": "Dette er hovedmålet på Miyajima og et av de tydeligste møtene med shinto-arkitektur på ruten.",
     "highlights": [
       "Den store torii-porten",
       "Helligdommen over vannet",
