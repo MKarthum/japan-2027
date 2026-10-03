@@ -21,6 +21,7 @@ function nav(active='') {
     ['route.html','Rute','route'],
     ['places.html','Steder','places'],
     ['food.html','Mat','food'],
+    ['hotels.html','Hotell','hotels'],
     ['prep.html','Før turen','prep'],
     ['practical.html','Praktisk','practical'],
     ['budget.html','Budsjett','budget']
@@ -111,13 +112,14 @@ async function renderHome() {
 
 async function renderRoute() {
   nav('route'); footer();
-  const [trip,places,guide,routeGeometry,transport,food,fx]=await Promise.all([
+  const [trip,places,guide,routeGeometry,transport,food,hotelsData,fx]=await Promise.all([
     json('data/trip.json'),
     json('data/places.json'),
     json('data/guide.json'),
     json('data/route-geometry.json'),
     json('data/transport.json'),
     json('data/food.json'),
+    json('data/hotels.json'),
     json('data/fx.json')
   ]);
 
@@ -316,10 +318,11 @@ async function renderRoute() {
     map.on('mouseleave',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='');
   };
 
-  const markerGroups={stations:[],experience:[],food:[]};
-  const layerState={stations:true,experience:true,food:false};
+  const markerGroups={stations:[],experience:[],food:[],hotel:[]};
+  const layerState={stations:true,experience:true,food:false,hotel:false};
   const mappablePlaces=places.filter(p=>p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
   const mappableFood=food.filter(x=>x.status==='active' && x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
+  const mappableHotels=hotelsData.hotels.filter(x=>x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
 
   const setMarkerVisibility=(category,on)=>{
     layerState[category]=on;
@@ -343,6 +346,13 @@ async function renderRoute() {
       const el=document.createElement('button');
       el.type='button';
       el.className='map-station-dot';
+      const stationColors=[...new Set(s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)))];
+      if(stationColors.length===1){
+        el.style.background=stationColors[0];
+      } else if(stationColors.length>1){
+        const step=360/stationColors.length;
+        el.style.background=`conic-gradient(${stationColors.map((c,i)=>`${c} ${Math.round(i*step)}deg ${Math.round((i+1)*step)}deg`).join(',')})`;
+      }
       el.setAttribute('aria-label',`${s.name} stasjon`);
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
@@ -356,7 +366,8 @@ async function renderRoute() {
 
   const categoryMeta={
     experience:{label:'Opplevelser',symbol:'★'},
-    food:{label:'Mat',symbol:'●'}
+    food:{label:'Mat',symbol:'●'},
+    hotel:{label:'Hotell',symbol:'H'}
   };
 
   const familyFoodPrice=(x)=>{
@@ -409,19 +420,52 @@ async function renderRoute() {
     }
   };
 
+
+  const hotelFamilyPrice=(x)=>{
+    const [lo,hi]=x.planningFamilyNightYen||[];
+    if(!Number.isFinite(lo)||!Number.isFinite(hi)) return '';
+    return `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
+  };
+
+  const addHotelMarkers=()=>{
+    for(const x of mappableHotels){
+      const el=document.createElement('button');
+      el.type='button';
+      el.className='map-poi-dot hotel';
+      el.style.setProperty('--area-color',destinationColor(trip,x.baseId));
+      el.textContent=categoryMeta.hotel.symbol;
+      el.setAttribute('aria-label',x.name);
+      const price=hotelFamilyPrice(x);
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'340px'}).setHTML(`
+        <div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}">
+          <div class="meta">${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}</div>
+          <h3>${x.name}</h3>
+          <p><strong>${x.familyOption}</strong></p>
+          ${price?`<p class="map-hotel-price"><span>Familieestimat per natt</span><strong>${price}</strong></p>`:''}
+          <p class="small">${x.logistics}</p>
+          <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se hotelldetaljer →</a>
+        </div>`);
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
+      markerGroups.hotel.push(marker);
+      if(layerState.hotel) marker.addTo(map);
+    }
+  };
+
   const renderLayerToolbar=()=>{
     const toolbar=document.getElementById('map-layers');
     if(!toolbar) return;
     const counts={
       stations:new Set(transport.legs.flatMap(l=>l.stations.map(s=>s.name))).size,
       experience:mappablePlaces.length,
-      food:mappableFood.length
+      food:mappableFood.length,
+      hotel:mappableHotels.length
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
       <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Stasjoner <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
+      <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Hotell <b>${counts.hotel}</b></button>
       <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>
       <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
     toolbar.addEventListener('click',e=>{
@@ -501,6 +545,7 @@ async function renderRoute() {
 
     addStationMarkers();
     addPoiMarkers();
+    addHotelMarkers();
     renderLayerToolbar();
     fitRoute();
     startLocationWatch();
@@ -532,7 +577,7 @@ async function renderPlaces() {
   const draw = (area='Alle') => {
     grid.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>{
       const img=guide.images[areaImageKey(guide,p)];
-      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill">${p.area}</span><span class="type-pill">${p.type}</span></div></div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
+      return `<article class="visual-card place-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${img?`<div class="place-media"><img src="${img.url}" alt="${p.name}" loading="lazy"><div class="place-taxonomy"><span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span><span class="type-pill">${p.type}</span></div></div>`:''}<div class="visual-card-body"><h3>${p.name}</h3><div class="kicker">${p.simple}</div><p>${p.description}</p><div class="chips">${p.acShadows?'<span class="badge">AC Shadows</span>':''}${['nintendo-museum','ghibli-museum','teamlab','usj'].includes(p.id)?'<span class="badge">Ekstra kandidat</span>':''}</div></div></a></article>`;
     }).join('');
   };
   filters.addEventListener('click',e=>{ if(e.target.tagName!=='BUTTON') return; [...filters.children].forEach(b=>b.classList.remove('active')); e.target.classList.add('active'); draw(e.target.dataset.area); });
@@ -725,6 +770,85 @@ async function renderRestaurant() {
     ? alternatives.map(item=>`<a class="restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,item))}" href="restaurant.html?id=${encodeURIComponent(item.id)}"><span>${item.role}</span><strong>${item.name}</strong><small>${item.dish}</small></a>`).join('')
     : '<p class="small">Ingen andre aktive kandidater i dette området.</p>';
 }
+
+async function renderHotels() {
+  nav('hotels'); footer();
+  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/fx.json')]);
+  const hotels=data.hotels;
+  const tierOrder={'Verdi':0,'Mellomklasse':1,'Mellomklasse+':2,'Premium':3,'Splurge':4,'Splurge-opplevelse':4};
+  const price=(x)=>{
+    const [lo,hi]=x.planningFamilyNightYen;
+    return `<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))} / natt</small>`;
+  };
+  const plannedNights=(x)=>{
+    if(Number.isFinite(x.recommendedNights)) return x.recommendedNights;
+    return trip.route.find(r=>r.id===x.baseId)?.nights||1;
+  };
+  const totalPrice=(x)=>{
+    const nights=plannedNights(x);
+    const [lo,hi]=x.planningFamilyNightYen;
+    return `${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)} · ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))}`;
+  };
+  const card=(x)=>`<a class="hotel-index-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="hotel.html?id=${encodeURIComponent(x.id)}">
+    <div class="hotel-index-top"><span class="hotel-tier">${x.tier}</span><span class="hotel-rating">${x.rating?.score?`${x.rating.platform} ${x.rating.score.toFixed(1)}`:''}</span></div>
+    <h3>${x.name}</h3>
+    <p class="hotel-family">${x.familyOption}</p>
+    <div class="hotel-index-price"><span>2 voksne + 2 barn</span>${price(x)}</div>
+    <p class="hotel-logistics">${x.logistics}</p>
+    <div class="hotel-total"><span>${plannedNights(x)} ${plannedNights(x)===1?'natt':'netter'} i planen</span><strong>${totalPrice(x)}</strong></div>
+  </a>`;
+  const root=document.getElementById('hotel-bases');
+  root.innerHTML=data.bases.map(base=>{
+    const items=hotels.filter(x=>x.baseId===base.baseId).sort((a,b)=>(tierOrder[a.tier]??9)-(tierOrder[b.tier]??9));
+    return `<section class="hotel-base destination-themed" style="${themeStyle(destinationTheme(trip,base.baseId))}">
+      <div class="section-head hotel-base-head"><div><div class="eyebrow">${base.label}</div><h2>${base.strategy}</h2></div><p>${base.why}</p></div>
+      <div class="hotel-grid">${items.map(card).join('')}</div>
+    </section>`;
+  }).join('');
+  document.getElementById('hotel-price-note').textContent=`${data.priceNote} NOK bruker planleggingskurs ${fmtLongDate(fx.asOf)}.`;
+}
+
+async function renderHotel() {
+  nav('hotels'); footer();
+  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/fx.json')]);
+  const id=new URLSearchParams(location.search).get('id');
+  const x=data.hotels.find(h=>h.id===id);
+  if(!x){
+    document.querySelector('main').innerHTML='<div class="eyebrow">Hotell</div><h1>Hotellet ble ikke funnet</h1><p><a href="hotels.html">← Tilbake til hotelloversikten</a></p>';
+    return;
+  }
+  const base=data.bases.find(b=>b.baseId===x.baseId);
+  const routeStop=trip.route.find(r=>r.id===x.baseId);
+  const nights=Number.isFinite(x.recommendedNights)?x.recommendedNights:(routeStop?.nights||1);
+  const [lo,hi]=x.planningFamilyNightYen;
+  document.title=`${x.name} · Japan 2027`;
+  const main=document.querySelector('main');
+  main?.setAttribute('style',themeStyle(destinationTheme(trip,x.baseId)));
+  main?.classList.add('destination-themed');
+  document.getElementById('hotel-area').textContent=`${base?.label||x.area} · ${x.tier}`;
+  document.getElementById('hotel-name').textContent=x.name;
+  document.getElementById('hotel-family').textContent=x.familyOption;
+  document.getElementById('hotel-why').textContent=x.why;
+  document.getElementById('hotel-logistics').textContent=x.logistics;
+  document.getElementById('hotel-tradeoff').textContent=x.tradeoff;
+  document.getElementById('hotel-base-logic').textContent=base?.why||'';
+  document.getElementById('hotel-price-night').innerHTML=`<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}</small>`;
+  document.getElementById('hotel-price-stay').innerHTML=`<strong>${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)}</strong><small>ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))} · ${nights} ${nights===1?'natt':'netter'}</small>`;
+  document.getElementById('hotel-price-note').textContent=data.priceNote;
+  const rating=document.getElementById('hotel-rating');
+  if(x.rating?.score){
+    rating.innerHTML=`<strong>${x.rating.score.toFixed(1)} / 5</strong><span>${x.rating.platform}${x.rating.count?` · ${new Intl.NumberFormat('nb-NO').format(x.rating.count)} anmeldelser`:''}</span><small>Kontrollert ${fmtLongDate(x.rating.checked)}.</small>`;
+  } else rating.hidden=true;
+  const links=[
+    x.links?.official?`<a class="button primary" href="${x.links.official}" target="_blank" rel="noopener">Offisiell side ↗</a>`:'',
+    x.links?.booking?`<a class="button" href="${x.links.booking}" target="_blank" rel="noopener">Booking ↗</a>`:'',
+    x.links?.googleMaps?`<a class="button" href="${x.links.googleMaps}" target="_blank" rel="noopener">Google Maps ↗</a>`:''
+  ].filter(Boolean);
+  document.getElementById('hotel-links').innerHTML=links.join('');
+  const alternatives=data.hotels.filter(h=>h.baseId===x.baseId&&h.id!==x.id);
+  document.getElementById('hotel-alternatives').innerHTML=alternatives.map(h=>`<a class="restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,h.baseId))}" href="hotel.html?id=${encodeURIComponent(h.id)}"><span>${h.tier}</span><strong>${h.name}</strong><small>${h.familyOption}</small></a>`).join('');
+}
+
 
 async function renderPractical() {
   nav('practical'); footer();
