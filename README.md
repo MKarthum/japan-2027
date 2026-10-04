@@ -16,7 +16,7 @@ Hovednavigasjonen holdes bevisst liten:
 - Rute
 - Steder
 - Mat
-- Hotell
+- Overnatting
 - Før turen
 - Praktisk
 - Budsjett
@@ -28,13 +28,13 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/trip.json` – rute, planleggingsdatoer, budsjett, oversiktskuratering og destinasjonstemaer/farger
 - `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon og eksterne lenker
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
-- `docs/data/hotels.json` – hotellkandidater per base med familieoppsett, logistikk, planpris og kartposisjon
+- `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
 - `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
 - `docs/data/sources.json` – kilder
 
-`docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for hotellalternativer. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
+`docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
 
 ## Prinsipper
 
@@ -56,9 +56,10 @@ Kilder og personvern ligger i bunnteksten.
 
 HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkrete reisedetaljer og kuraterte lister skal ikke hardkodes i visningskoden.
 
-- `trip.json.overview` bestemmer hvilke steder som brukes i hero og kuraterte oversiktsflater.
+- `trip.json.overview` eier budskapet på oversikten. Oversikten skal forklare hvorfor reisen og hvordan siden brukes, ikke gjengi innholdet fra alle undersidene.
 - `food.json` er ett samlet matdomene med metadata + `restaurants`.
-- `app.js` har små delte visningsprimitiver i stedet for side-spesifikke kopier av samme komponent. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
+- `app.js` har små delte visningsprimitiver i stedet for side-spesifikke kopier av samme komponent.
+- Steder, Mat og Overnatting bruker samme reise-/basefilter slik at innhold kan avgrenses etter del av reisen. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
 - Endres et delt visuelt mønster, endres helperen/CSS-primitiven slik at alle tilsvarende visninger følger med.
 - Offentlig tekst beskriver nåværende plan. Release-/endringshistorikk hører ikke hjemme i siden eller `site.json`.
 
