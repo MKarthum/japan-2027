@@ -1533,3 +1533,36 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
     min-height:88px;
   }
 }
+
+
+/* v0.21: compact pass watchlist */
+.pass-watchlist{display:grid;gap:10px}
+.pass-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(210px,280px);
+  gap:16px;
+  align-items:center;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px 16px;
+  box-shadow:var(--shadow-sm);
+}
+.pass-row-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pass-row h3{margin:.1em 0 .25em;font-size:1.02rem}
+.pass-row p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.42}
+.pass-row small{display:block;margin-top:6px;color:var(--muted);font-size:.72rem}
+.pass-row-aside{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.pass-row-aside span{font-size:.78rem;font-weight:800;color:var(--ink)}
+.pass-row-aside a{font-size:.75rem;font-weight:800}
+.pass-status{
+  display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;
+  font-size:.65rem;font-weight:900;letter-spacing:.03em
+}
+.pass-status.strong{background:#e6f3ec;color:#1d664b}
+.pass-status.watch{background:#fff3d7;color:#7a5718}
+.pass-status.low{background:#eceff2;color:#59636d}
+.pass-status.review{background:#ece7f6;color:#67409a}
+@media(max-width:720px){
+  .pass-row{grid-template-columns:1fr}
+}
