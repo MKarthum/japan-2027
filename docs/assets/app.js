@@ -16,6 +16,25 @@ async function json(path) {
   return r.json();
 }
 
+let pagesPromise=null;
+async function applyPageCopy(pageKey) {
+  pagesPromise ||= json('data/pages.json');
+  const pages=await pagesPromise;
+  const copy=pages[pageKey];
+  if(!copy) throw new Error(`Mangler sideinnhold for ${pageKey}`);
+  for(const el of document.querySelectorAll('[data-copy]')){
+    const value=el.dataset.copy.split('.').reduce((obj,key)=>obj?.[key],copy);
+    if(typeof value==='string') el.textContent=value;
+  }
+  return copy;
+}
+
+async function renderStaticPage(pageKey,active='') {
+  nav(active);
+  footer();
+  await applyPageCopy(pageKey);
+}
+
 let fxPromise=null;
 async function loadFx() {
   if(fxPromise) return fxPromise;
@@ -168,6 +187,7 @@ const routeContextLinksHtml=(trip,stop,place,food,hotelsData)=>{
 
 
 async function renderHome() {
+  await applyPageCopy('home');
   nav('home'); footer();
   const [trip,places,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),loadFx()]);
   const overview=trip.overview||{};
@@ -196,6 +216,7 @@ async function renderHome() {
 }
 
 async function renderRoute() {
+  await applyPageCopy('route');
   nav('route'); footer();
   const [trip,places,routeGeometry,transport,foodData,hotelsData,fx]=await Promise.all([
     json('data/trip.json'),
@@ -489,15 +510,11 @@ async function renderRoute() {
         el.style.background=`conic-gradient(${stationColors.map((c,i)=>`${c} ${Math.round(i*step)}deg ${Math.round((i+1)*step)}deg`).join(',')})`;
       }
       el.setAttribute('aria-label',`${s.name} stasjon`);
-      el.addEventListener('click',()=>{
-        const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
-        const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
-        setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
-      });
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
       const popup=new maplibregl.Popup({offset:12,maxWidth:'300px'}).setHTML(`
         <div class="map-popup"><div class="meta">Utvalgt knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
+      popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       markerGroups.stations.push(marker);
       if(layerState.stations) marker.addTo(map);
@@ -532,7 +549,7 @@ async function renderRoute() {
           <p class="small">${p.why}</p>
           <a href="place.html?id=${encodeURIComponent(p.id)}">Se stedet →</a>
         </div>`);
-      el.addEventListener('click',()=>showPlaceDetail(p));
+      popup.on('open',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       markerGroups.experience.push(marker);
       if(layerState.experience) marker.addTo(map);
@@ -555,7 +572,7 @@ async function renderRoute() {
           ${family?`<p class="map-food-price"><span>2 voksne + 2 barn</span><strong>${family}</strong></p>`:''}
           <a href="restaurant.html?id=${encodeURIComponent(x.id)}">Se restaurantdetaljer →</a>
         </div>`);
-      el.addEventListener('click',()=>showFoodDetail(x));
+      popup.on('open',()=>showFoodDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.food.push(marker);
       if(layerState.food) marker.addTo(map);
@@ -587,7 +604,7 @@ async function renderRoute() {
           <p class="small">${x.logistics}</p>
           <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se overnatting →</a>
         </div>`);
-      el.addEventListener('click',()=>showHotelDetail(x));
+      popup.on('open',()=>showHotelDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.hotel.push(marker);
       if(layerState.hotel) marker.addTo(map);
@@ -672,8 +689,9 @@ async function renderRoute() {
       const nextLeg=nextLegByRouteId.get(x.id);
       const nextSummary=nextLeg?`<p class="small">Neste: ${nextLeg.to} · ${formatMinutes(nextLeg.durationMin)}</p>`:'<p class="small">Siste hovedstopp på ruten.</p>';
       const popupHtml=`<div class="map-popup map-popup-stop destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}${x.nights>0?` · ${x.nights} ${x.nights===1?'natt':'netter'}`:''}</p>${nextSummary}${routeContextLinksHtml(trip,x,p,food,hotelsData)}</div>`;
-      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml)).addTo(map);
-      el.addEventListener('click',event=>{event.stopPropagation(); showStopDetail(x,p);});
+      const popup=new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml);
+      popup.on('open',()=>showStopDetail(x,p));
+      new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup).addTo(map);
     });
 
     trip.dayTrips.forEach(x=>{
@@ -686,10 +704,11 @@ async function renderRoute() {
       el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',p.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${p.name}</span>`;
-      el.addEventListener('click',()=>showPlaceDetail(p));
+      const popup=new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`);
+      popup.on('open',()=>showPlaceDetail(p));
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([p.map.lng,p.map.lat])
-        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`))
+        .setPopup(popup)
         .addTo(map);
     });
 
@@ -718,6 +737,7 @@ async function renderRoute() {
 }
 
 async function renderPlaces() {
+  await applyPageCopy('places');
   nav('places'); footer();
   const [places,trip] = await Promise.all([json('data/places.json'),json('data/trip.json')]);
   const filters=document.getElementById('filters');
@@ -815,12 +835,14 @@ async function renderPlace() {
     : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
 }
 async function renderPrep() {
+  await applyPageCopy('prep');
   nav('prep'); footer();
   const prep=await json('data/prep.json');
   document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`<article class="card prep-card"><div class="meta">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`).join('')}</div></section>`).join('');
 }
 
 async function renderFood() {
+  await applyPageCopy('food');
   nav('food'); footer();
   const [foodData,fx,trip,places]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json'),json('data/places.json')]);
   const food=foodData.restaurants||[];
@@ -992,6 +1014,7 @@ async function renderRestaurant() {
 }
 
 async function renderHotels() {
+  await applyPageCopy('hotels');
   nav('hotels'); footer();
   const [data,trip,places,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/places.json'),loadFx()]);
   const hotels=data.hotels;
@@ -1095,6 +1118,7 @@ async function renderHotel() {
 
 
 async function renderPractical() {
+  await applyPageCopy('practical');
   nav('practical'); footer();
   const [guide,places]=await Promise.all([json('data/guide.json'),json('data/places.json')]);
   document.getElementById('transport-grid').innerHTML=guide.transport.map(x=>`<article class="card transport-card"><div class="transport-icon">${x.icon}</div><h3>${x.title}</h3><strong>${x.short}</strong><p>${x.body}</p><div class="button-row">${x.links.map(l=>`<a class="button" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join('')}</div></article>`).join('');
@@ -1110,6 +1134,7 @@ async function renderPractical() {
 }
 
 async function renderBudget() {
+  await applyPageCopy('budget');
   nav('budget'); footer();
   const [trip,fx] = await Promise.all([json('data/trip.json'),loadFx()]);
   document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
@@ -1126,6 +1151,7 @@ async function renderBudget() {
 }
 
 async function renderSources() {
+  await applyPageCopy('sources');
   nav(''); footer();
   const sources = await json('data/sources.json');
   document.getElementById('sources-grid').innerHTML = sources.map(s=>`<article class="card"><h3><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></h3><p>${s.use}</p></article>`).join('');
