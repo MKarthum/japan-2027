@@ -740,10 +740,7 @@ async function renderRoute() {
       el.setAttribute('aria-label',`${i+1}. ${p.name}`);
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
       const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
-      const nextLeg=nextLegByRouteId.get(x.id);
-      const nextSummary=nextLeg?`<p class="small">Neste: ${nextLeg.to} · ${formatMinutes(nextLeg.durationMin)}</p>`:'<p class="small">Siste hovedstopp på ruten.</p>';
-      const popupHtml=`<div class="map-popup map-popup-stop destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}${x.nights>0?` · ${x.nights} ${x.nights===1?'natt':'netter'}`:''}</p>${nextSummary}${routeContextLinksHtml(trip,x,p,food,hotelsData)}</div>`;
-      const popup=new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml);
+      const popup=new maplibregl.Popup({offset:24,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x));
       popup.on('open',()=>showStopDetail(x,p));
       new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup).addTo(map);
     });
@@ -758,7 +755,7 @@ async function renderRoute() {
       el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',p.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${p.name}</span>`;
-      const popup=new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`);
+      const popup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Dagstur fra ${base?.name||x.baseId}`,p.name,p));
       popup.on('open',()=>showPlaceDetail(p));
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([p.map.lng,p.map.lat])
