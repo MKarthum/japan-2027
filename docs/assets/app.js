@@ -138,7 +138,7 @@ async function loadFx() {
   return fxPromise;
 }
 
-const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs':'Lagret ECB-fallback';
+const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs (virkedager)':'Lagret ECB-fallback';
 
 function nav(active='') {
   const items = [
@@ -365,7 +365,7 @@ async function renderRoute() {
   const showHotelDetail=(x)=>{
     if(!x) return;
     const price=hotelFamilyPrice(x);
-    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}"><div class="meta">${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}</div><h3>${x.name}</h3><p><strong>${x.familyOption}</strong></p>${price?`<p class="small">Familieestimat per natt: ${price}</p>`:''}${contextualLinksFor(x,`hotel.html?id=${encodeURIComponent(x.id)}`,'Se overnattingen')}</div>`);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}"><div class="meta">${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}</div><h3>${x.name}</h3><p><strong>${x.familyOption}</strong></p>${price?`<p class="small">${planningPartyLabel(trip)} per natt: ${price}</p>`:''}${contextualLinksFor(x,`hotel.html?id=${encodeURIComponent(x.id)}`,'Se overnattingen')}</div>`);
   };
   const showStopDetail=(stop,p)=>{
     if(!stop||!p) return;
