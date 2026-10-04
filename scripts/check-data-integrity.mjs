@@ -412,7 +412,10 @@ if (!app.includes('installMapLoadFallback') || !app.includes("map.once('load'"))
 if (!app.includes('placePriceSummaryHtml') || !app.includes('placePriceDetailHtml')) errors.push('app.js: stedspriser vises ikke konsistent i liste og detalj');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
-const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>app.indexOf(x));
+const toolbarStart=app.indexOf('const renderLayerToolbar=');
+const toolbarEnd=app.indexOf("map.on('load'",toolbarStart);
+const toolbarSource=toolbarStart>=0&&toolbarEnd>toolbarStart?app.slice(toolbarStart,toolbarEnd):'';
+const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>toolbarSource.indexOf(x));
 if (toolbarOrder.some(x=>x<0) || toolbarOrder.some((x,i)=>i>0 && x<=toolbarOrder[i-1])) errors.push('app.js: kartlag skal vises som Opplevelser, Mat, Overnatting, Knutepunkter');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
 if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
