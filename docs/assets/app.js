@@ -474,7 +474,7 @@ async function renderRoute() {
   };
 
   const markerGroups={stations:[],experience:[],food:[],hotel:[]};
-  const layerState={stations:true,experience:true,food:false,hotel:false};
+  const layerState={stations:false,experience:true,food:false,hotel:false};
   const routeContextIds=new Set([...trip.route.map(x=>x.id),...(trip.dayTrips||[]).map(x=>x.id)]);
   const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
   const mappableFood=food.filter(x=>x.status==='active' && x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
@@ -622,7 +622,7 @@ async function renderRoute() {
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
-      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Knutepunkter <b>${counts.stations}</b></button>
+      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
       <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Overnatting <b>${counts.hotel}</b></button>
