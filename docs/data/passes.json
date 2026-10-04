@@ -1,0 +1,168 @@
+{
+  "updated": "2026-10-04",
+  "principle": "Pass skal sammenlignes mot reisen vi faktisk ønsker. De skal spare penger eller gjøre logistikken enklere – ikke fylle dagene med aktiviteter bare fordi de er inkludert.",
+  "options": [
+    {
+      "id": "kansai-hiroshima",
+      "name": "JR West Kansai–Hiroshima Area Pass",
+      "kind": "Togpass",
+      "status": "strong",
+      "statusLabel": "Sterk kandidat",
+      "short": "Treffer Kyoto/Himeji/Hiroshima/Osaka-delen av ruten svært godt og inkluderer JR West-fergen til Miyajima.",
+      "when": "Sjekk på nytt når togdagene er låst. Fem sammenhengende dager må plasseres smart.",
+      "current": "5 dager · ¥17 000 voksen / ¥8 500 barn",
+      "sourceUrl": "https://www.westjr.co.jp/travel-information/en/tickets-passes/jrwest-rail-pass/kansai_hiroshima/",
+      "notes": [
+        "Dekker Sanyo Shinkansen mellom Shin-Osaka og Hiroshima samt JR West-lokaltog i gyldig område.",
+        "Tokaido Shinkansen mellom Kyoto og Shin-Osaka er ikke inkludert; bruk JR-lokaltog/rapid til Shin-Osaka dersom passet skal dekke denne delen.",
+        "Miyajima-fergen som inngår er JR West Miyajima Ferry."
+      ]
+    },
+    {
+      "id": "have-fun-japan",
+      "name": "Have Fun in Japan Pass",
+      "kind": "Aktivitets- og transportpass",
+      "status": "watch",
+      "statusLabel": "Vurder senere",
+      "short": "Geografisk passer 14-dagerspasset ruten godt, men verdien avhenger av hvilke av de faktiske planene våre som fortsatt er med i 2027-katalogen.",
+      "when": "Sjekk når aktivitetene er låst og 2027-listen er publisert. Ikke kjøp bare for å jage 21 mulige innløsninger.",
+      "current": "14 dager · inntil 21 valg. Kampanje på ¥29 000 per person ble observert 4. okt. 2026.",
+      "sourceUrl": "https://travelcontentsapp.com/en/have-fun-pass/japan/",
+      "purchaseUrl": "https://www.usjticketing.com/",
+      "notes": [
+        "Katalogen endres løpende; hva som faktisk kan innløses må bekreftes ved kjøp.",
+        "Samme pris for alle aldre gjør regnestykket svakere for familier enn for fire voksne.",
+        "Sammenlign også regionale/premium-varianter; de kan treffe en ferdig rute bedre enn landsdekkende pass."
+      ]
+    },
+    {
+      "id": "jr-national",
+      "name": "Japan Rail Pass",
+      "kind": "Nasjonalt togpass",
+      "status": "low",
+      "statusLabel": "Lite aktuell",
+      "short": "Den nåværende ruten er hovedsakelig én vei vestover, og det nasjonale passet er dyrt sammenlignet med regionale JR West-pass.",
+      "when": "Ta bare opp igjen hvis ruten endres vesentlig eller vi legger inn mye ekstra langdistansereising.",
+      "current": "7 dager online · ¥50 000 voksen / ¥25 000 barn",
+      "sourceUrl": "https://japanrailpass.net/en/purchase/price/",
+      "notes": [
+        "14- og 21-dagerspassene er enda dyrere.",
+        "Nozomi/Mizuho krever særskilt tillegg selv med nasjonalt JR Pass."
+      ]
+    },
+    {
+      "id": "jrwest-havefun-hiroshima",
+      "name": "JR West + Have Fun Hiroshima",
+      "kind": "Kombipakke",
+      "status": "review",
+      "statusLabel": "Sjekk ved kjøp",
+      "short": "JR West tilbyr en Kansai–Hiroshima-kombinasjon med Have Fun Hiroshima. Den kan være bedre enn å kjøpe togpass og Hiroshima-tillegg hver for seg.",
+      "when": "Sammenlign direkte mot ren Kansai–Hiroshima Area Pass når kjøpsvinduet åpner.",
+      "current": "JR West viser for tiden kombinasjon fra ¥17 500; innhold og barnepris må bekreftes på nytt.",
+      "sourceUrl": "https://www.westjr.co.jp/travel-information/en/tickets-passes/jrwest-rail-pass/kansai_hiroshima/",
+      "notes": [
+        "Ikke anta at dagens Hiroshima-innhold er identisk våren 2027.",
+        "Relevant særlig fordi Hiroshima/Miyajima allerede er en fast del av ruten."
+      ]
+    }
+  ],
+  "haveFunJapanReview": {
+    "checked": "2026-10-04",
+    "verdict": "watch",
+    "summary": "Dagens katalog har flere gode treff, men ikke nok sikre hovedtreff til at ¥29 000 per person er et opplagt kjøp for standardfamilien. Behold som kandidat og regn på nytt mot 2027-katalogen.",
+    "plannedMatches": [
+      {
+        "placeId": "teamlab",
+        "match": "teamLab Borderless admission",
+        "fit": "strong",
+        "note": "Direkte treff på planlagt opplevelse. Bekreft at den ligger i den aktuelle All Japan-varianten ved kjøp.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/tokyo/teamlab-borderless-mori-building-digital-art-museum/"
+      },
+      {
+        "placeId": "hakone",
+        "match": "Hakone Freepass 2-Day",
+        "fit": "partial",
+        "note": "Relevant lokalt i Hakone, men produktet inkluderer tur/retur Shinjuku–Odawara mens ruten vår fortsetter vestover. Returdelen har derfor liten verdi for oss.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/tokyo/hakone-free-pass/"
+      },
+      {
+        "placeId": "peace-memorial-museum",
+        "match": "Hiroshima Peace Memorial Museum admission",
+        "fit": "strong",
+        "note": "Direkte treff på planlagt museum.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/hiroshima/hiroshima-peace-memorial-museum/"
+      }
+    ],
+    "usefulAdjacent": [
+      {
+        "area": "Kyoto",
+        "match": "Kyoto Railway Museum",
+        "note": "God familieaktivitet, men ikke en kjerneaktivitet i dagens plan.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/kyoto/kyoto-railway-museum/"
+      },
+      {
+        "area": "Kyoto",
+        "match": "Arashiyama Gourmet Coupon + Randen 1-Day",
+        "note": "Kan passe naturlig inn på Arashiyama-dagen uten å skape en ny reisedag.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction-regional/kyoto/page/2/"
+      },
+      {
+        "area": "Osaka",
+        "match": "Umeda Sky Building",
+        "note": "Potensiell kveldaktivitet hvis det passer tidsmessig.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/osaka/umeda-sky-building/"
+      },
+      {
+        "area": "Osaka",
+        "match": "Osaka Castle Gozabune / Kaiyodo Figure Museum",
+        "note": "Ligger ved planlagte Osaka Castle, men er tillegg – ikke selve hovedinngangen til slottet.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/osaka/osaka-castle-gozabune/"
+      },
+      {
+        "area": "Hiroshima",
+        "match": "Hiroshima Travel Pass 2-Day",
+        "note": "Nyttig lokaltransport og ferge, men overlapper delvis med JR West-pass og Miyajima-transport.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/hiroshima/hiroshima-travel-pass/"
+      }
+    ],
+    "doNotCountOn": [
+      {
+        "placeId": "usj",
+        "note": "Ikke verdsett standardpasset som USJ-inngang. Have Fun-katalogen har USJ-kuponger og enkelte premiumprodukter, men relevante produktsider sier at separat Studio Pass kreves.",
+        "sourceUrl": "https://travelcontentsapp.com/en/attraction/osaka/universal-studios-japan-meal-shopping/"
+      },
+      {
+        "placeId": "nintendo-museum",
+        "note": "Ingen direkte treff bekreftet i den gjennomgåtte katalogen."
+      },
+      {
+        "placeId": "ghibli-museum",
+        "note": "Ingen direkte treff bekreftet i den gjennomgåtte katalogen."
+      },
+      {
+        "placeId": "himeji",
+        "note": "Ingen direkte inngang til Himeji Castle bekreftet i den gjennomgåtte katalogen."
+      },
+      {
+        "placeId": "kiyomizu-dera",
+        "note": "Ingen direkte tempelinngang bekreftet; katalogen har nærliggende Kyoto-produkter."
+      },
+      {
+        "placeId": "kinkakuji",
+        "note": "Ingen direkte tempelinngang bekreftet; katalogen har blant annet Randen/Sky Hop-løsninger som går i området."
+      },
+      {
+        "placeId": "todaiji",
+        "note": "Ingen direkte tempelinngang bekreftet i den gjennomgåtte katalogen."
+      },
+      {
+        "placeId": "itsukushima-shrine",
+        "note": "Ingen direkte helligdomsinngang bekreftet; flere Hiroshima/Miyajima-transportprodukter er relevante."
+      },
+      {
+        "placeId": "osaka-castle",
+        "note": "Katalogen har aktiviteter ved Osaka Castle, men selve hovedinngangen er ikke bekreftet som direkte treff."
+      }
+    ]
+  }
+}
