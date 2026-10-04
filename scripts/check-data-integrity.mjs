@@ -302,6 +302,7 @@ const narrativeOwners=new Map();
 const collectNarrative=(value,file,pathLabel='$')=>{
   if(typeof value==='string'){
     const text=value.trim();
+    if(/\.(?:id|placeId|baseId|destinationId)$/.test(pathLabel) || /\.placeIds\[\d+\]$/.test(pathLabel)) return;
     if(text.length<18 || /^https?:\/\//.test(text) || /^CC\b/.test(text)) return;
     const key=text.toLocaleLowerCase('nb-NO');
     const rows=narrativeOwners.get(key)||[];
