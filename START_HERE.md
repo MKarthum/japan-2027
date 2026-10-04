@@ -88,12 +88,12 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 
 ## Flyplanlegging per v0.24
 
-- Fly er første datodrivende beslutning. Før hotell- og dagsdatoer låses, skal fire oppsett prises: Tokyo inn / Osaka hjem, Osaka inn / Tokyo hjem, Tokyo tur/retur og Osaka tur/retur.
+- Fly er første datodrivende beslutning. Før hotell- og dagsdatoer låses, skal fire oppsett prises: Tokyo inn / Osaka hjem, Osaka inn / Tokyo hjem, Tokyo tur/retur og Osaka tur/retur. I offentlig tekst omtales de to første som «inn én by / hjem fra en annen» eller «Flere byer / Multi-city» der det er relevant for søkeverktøyet; ikke bruk «åpen kjeve».
 - Gjeldende datoer eies bare av `trip.json`. `flights.json` lagrer fleksibilitetsregelen (normalt ±3 dager) og datert markedsresearch; visningen avleder den konkrete datomatrisen fra `trip.json`.
 - Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. Tur/retur til samme by må vurderes mot ekstra innenlands transport, mulig hotellbehov og tapt reisetid.
 - Prisobservasjoner skal alltid angi hva tallet faktisk er: historisk nivå, publisert 2027-fra-pris, datert søkemotorfunn eller pakkereise. Ikke bland pris per person og totalpris for standardfamilien.
 - Sikkerhet deles i regulatorisk status, sekundære uavhengige signaler og tidsavhengig luftromsrisiko. Ikke presenter en privat rangering som objektiv fasit.
-- Dynamiske søk som siden ikke kan hente stabilt skal ligge som konkrete manuelle søkeoppgaver. Resultatmalen kan kopieres til chat og brukes til å oppdatere `flights.json`.
+- Dynamiske søk som siden ikke kan hente stabilt skal ligge som konkrete manuelle søkeoppgaver. Første søketrinn skal være brede sammenligningssøk i Google Flights og FINN Reise; direkte flyselskapssøk kommer etterpå når et konkret alternativ ser bra ut. Resultatmalen kan kopieres til chat og brukes til å oppdatere `flights.json`.
 - Offentlig repo skal aldri lagre booking-sessioner, innloggede delingslenker, PNR, flybilletter eller personlige pris-/konto-URL-er. Bruk offentlige søke-/destinasjonssider som lenkemål.
 
 ## Passvurdering per v0.21
