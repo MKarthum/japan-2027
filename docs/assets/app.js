@@ -489,6 +489,11 @@ async function renderRoute() {
         el.style.background=`conic-gradient(${stationColors.map((c,i)=>`${c} ${Math.round(i*step)}deg ${Math.round((i+1)*step)}deg`).join(',')})`;
       }
       el.setAttribute('aria-label',`${s.name} stasjon`);
+      el.addEventListener('click',()=>{
+        const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
+        const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
+        setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
+      });
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
       const popup=new maplibregl.Popup({offset:12,maxWidth:'300px'}).setHTML(`
