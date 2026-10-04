@@ -1060,7 +1060,7 @@ async function renderHotels() {
   activeKind=setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();},{initialValue:requestedKind});
 
   document.getElementById('stay-types').innerHTML=(data.accommodationTypes||[]).map(t=>`<article class="stay-type-card"><span>${hotels.filter(h=>h.kind===t.id).length||'—'} ${hotels.some(h=>h.kind===t.id)?'kandidater':'sammenligningsspor'}</span><h3>${t.label}</h3><p>${t.description}</p>${t.source?`<a href="${t.source}" target="_blank" rel="noopener">Regelgrunnlag ↗</a>`:''}</article>`).join('');
-  document.getElementById('stay-party-note').textContent=data.partyBasis||'';
+  document.getElementById('stay-party-note').textContent=data.partyBasis ? `Planleggingsgrunnlag: ${planningPartyLabel(trip)}. ${data.partyBasis}` : '';
 
   const cheapestByBase=trip.route.filter(r=>r.nights>0).map(stop=>{
     const candidates=hotels.filter(h=>h.baseId===stop.id);
