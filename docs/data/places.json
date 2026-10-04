@@ -858,7 +858,7 @@
         0,
         0
       ],
-      "note": "Ingen inngang til selve øya. Ferge og enkelte steder, blant annet Itsukushima Shrine, kommer i tillegg.",
+      "note": "Ingen inngang til selve øya. Ferge og enkelte steder kommer i tillegg.",
       "checked": "2026-10-04",
       "source": "https://www.miyajima.or.jp/english/"
     }
@@ -964,7 +964,7 @@
       "adultYen": 1000,
       "youthYen": 700,
       "childYen": 400,
-      "note": "Familieanslaget varierer med om eldste barn er 12 eller 13 på besøksdatoen. Forhåndsreservasjon kreves.",
+      "note": "Familieanslaget varierer med alderskategori. Forhåndsreservasjon kreves.",
       "checked": "2026-10-04",
       "source": "https://www.ghibli-museum.jp/en/tickets/"
     }
