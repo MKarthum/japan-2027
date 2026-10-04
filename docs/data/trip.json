@@ -187,5 +187,9 @@
       "suggestedDate": "2027-03-31",
       "baseId": "hiroshima"
     }
-  ]
+  ],
+  "planningParty": {
+    "adults": 2,
+    "children": 2
+  }
 }
