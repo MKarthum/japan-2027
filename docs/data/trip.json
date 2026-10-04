@@ -3,6 +3,19 @@
   "subtitle": "Plan for en ca. to ukers første Japan-tur",
   "status": "Planleggingsforslag – ikke bestilt",
   "window": "20. mars – 3. april 2027",
+  "overview": {
+    "hero": {
+      "placeId": "himeji",
+      "kicker": "LEGO → spill → virkelighet"
+    },
+    "familyHookPlaceIds": [
+      "nintendo-museum",
+      "nara",
+      "himeji",
+      "usj"
+    ],
+    "bookingPreviewCount": 3
+  },
   "budget": {
     "targetNok": 165000,
     "rangeNok": [
