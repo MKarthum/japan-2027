@@ -386,6 +386,7 @@ if (!app.includes("const layerState={stations:false,experience:true,food:false,h
 if (!app.includes("json('data/pages.json')") || !app.includes('applyPageCopy')) errors.push('app.js: mangler sentral sidecopy fra pages.json');
 if (!app.includes('renderPricePartySelector') || !app.includes('partyMultiplier') || app.includes('trip.planningParty')) errors.push('app.js: prisscenarier er ikke sentralisert');
 if ((app.match(/mapSelectionPopupHtml/g)||[]).length < 7) errors.push('app.js: rutekartet bruker ikke felles kompakt popup-renderer');
+if (!app.includes('installMapLoadFallback') || !app.includes("map.once('load'")) errors.push('app.js: kartfeil må skille fatal lastfeil fra enkeltressurser/fliser');
 if (!app.includes('placePriceSummaryHtml') || !app.includes('placePriceDetailHtml')) errors.push('app.js: stedspriser vises ikke konsistent i liste og detalj');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
