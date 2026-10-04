@@ -103,18 +103,6 @@
           "shibuya"
         ],
         "url": "https://www.criterion.com/films/34274-perfect-days"
-      },
-      {
-        "id": "perfect-days",
-        "title": "Perfect Days",
-        "for": "Voksne / eldre tenåringer",
-        "why": "En lavmælt film om hverdagsliv i Tokyo som gir byen menneskelig skala, rutiner og små observasjoner langt unna neon-klisjeene.",
-        "action": "Se når ruten er kjent; legg merke til Shibuya og hvordan byen brukes i hverdagen.",
-        "placeIds": [
-          "tokyo",
-          "shibuya"
-        ],
-        "url": "https://www.criterion.com/films/34274-perfect-days"
       }
     ]
   },
@@ -148,31 +136,6 @@
         "title": "The Makanai: Cooking for the Maiko House",
         "for": "13+ / voksne",
         "why": "Rolig serie om to venner i Kyoto, maiko-miljø, mat og hverdagsliv. Gir Gion og Kyoto en helt annen inngang enn templer og spill.",
-        "action": "Se noen episoder før Kyoto-planleggingen.",
-        "placeIds": [
-          "kyoto",
-          "gion"
-        ],
-        "url": "https://www.netflix.com/no/title/81325501"
-      },
-      {
-        "id": "shogun-tv",
-        "title": "Shōgun",
-        "for": "Voksne · tydelig vold og voksent innhold",
-        "why": "Historisk drama lagt til år 1600, med maktkampen som leder inn i Tokugawa-perioden og viktige scener i Osaka.",
-        "action": "Se serien, men bruk FX sin historiske guide ved siden av for å skille dramatisering fra historie.",
-        "placeIds": [
-          "osaka",
-          "kyoto",
-          "himeji"
-        ],
-        "url": "https://www.fxnetworks.com/shows/shogun/viewers-guide"
-      },
-      {
-        "id": "makanai",
-        "title": "The Makanai: Cooking for the Maiko House",
-        "for": "13+ / voksne",
-        "why": "Rolig serie om to venner i Kyoto, maiko-miljø, mat og hverdagsliv. Gir Gion og Kyoto en annen inngang enn templer og spill.",
         "action": "Se noen episoder før Kyoto-planleggingen.",
         "placeIds": [
           "kyoto",
@@ -257,69 +220,6 @@
         "title": "Pachinko",
         "for": "Voksne",
         "why": "Stor familiesaga om koreanere i Japan gjennom 1900-tallet. Gir et langt rikere bilde av Osaka, identitet, krig og etterkrigstid enn en vanlig reiseguide.",
-        "action": "Les hvis du vil ha én roman som virkelig trekker deg inn i Japans nyere historie.",
-        "placeIds": [
-          "osaka"
-        ],
-        "url": "https://www.hachettebookgroup.com/titles/min-jin-lee/pachinko-national-book-award-finalist/9781538784037/"
-      },
-      {
-        "id": "short-history-japan",
-        "title": "A Short History of Japan",
-        "for": "Voksne",
-        "why": "En konsis historie fra tidlig Japan via buddhisme og krigerklaner til modernisering, med mat, arkitektur og hverdagsliv som del av historien.",
-        "action": "Start her hvis målet er å forstå landet før reisen, ikke bare severdighetene.",
-        "placeIds": [
-          "tokyo",
-          "kyoto",
-          "himeji",
-          "hiroshima",
-          "osaka"
-        ],
-        "url": "https://www.penguin.co.uk/books/448290/a-short-history-of-japan-by-harding-christopher/9780241563205"
-      },
-      {
-        "id": "history-japan-manga",
-        "title": "A History of Japan in Manga",
-        "for": "Hele familien / eldre barn",
-        "why": "Forteller Japans historie kronologisk med mangaillustrasjoner og kart. Gjør shōgun, samuraier og periodene lettere å plassere.",
-        "action": "Les utvalgte kapitler sammen før Kyoto, Himeji og Osaka.",
-        "placeIds": [
-          "kyoto",
-          "himeji",
-          "osaka"
-        ],
-        "url": "https://tuttlepublishing.com/japan/history-of-japan-in-manga-9784805316702"
-      },
-      {
-        "id": "pure-invention",
-        "title": "Pure Invention",
-        "for": "Voksne / eldre tenåringer",
-        "why": "Kobler etterkrigstidens Japan til Nintendo, manga, anime, karaoke, Pokémon og teknologikulturen som gjorde Japan globalt gjenkjennelig.",
-        "action": "Les før Tokyo og Nintendo-delen av planleggingen.",
-        "placeIds": [
-          "tokyo",
-          "nintendo-museum",
-          "osaka"
-        ],
-        "url": "https://www.penguinrandomhouse.com/books/609076/pure-invention-by-matt-alt/9781984826718/"
-      },
-      {
-        "id": "convenience-store-woman",
-        "title": "Convenience Store Woman",
-        "for": "Voksne / eldre tenåringer",
-        "why": "Kort roman som trekker leseren inn i moderne japansk hverdagsliv, arbeidskultur og forventninger – mer samfunn enn turist-Japan.",
-        "action": "En lettlest skjønnlitterær inngang til Tokyo før avreise.",
-        "placeIds": [
-          "tokyo"
-        ],
-        "url": "https://groveatlantic.com/book/convenience-store-woman/"
-      },
-      {
-        "id": "pachinko",
-        "title": "Pachinko",
-        "for": "Voksne",
-        "why": "Stor familiesaga om koreanere i Japan gjennom 1900-tallet. Gir et rikere bilde av Osaka, identitet, krig og etterkrigstid enn en vanlig reiseguide.",
         "action": "Les hvis du vil ha én roman som virkelig trekker deg inn i Japans nyere historie.",
         "placeIds": [
           "osaka"
