@@ -25,9 +25,9 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Datamodell
 
-- `docs/data/trip.json` – rute, planleggingsdatoer, budsjett og destinasjonstemaer/farger
+- `docs/data/trip.json` – rute, planleggingsdatoer, budsjett, oversiktskuratering og destinasjonstemaer/farger
 - `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon og eksterne lenker
-- `docs/data/food.json` – kanonisk restaurant-/matliste med prioritet, pris og kartposisjon
+- `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – hotellkandidater per base med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
@@ -52,6 +52,20 @@ Kilder og personvern ligger i bunnteksten.
 - Ingen privat reiseinformasjon skal inn i repoet.
 - Alle priser vises i både NOK og JPY via én felles kursfunksjon. Ved sidelasting hentes siste ECB-referansekurs; `fx.json` er bare dokumentert fallback. Budsjett er primært i NOK.
 
+## Visningsarkitektur
+
+HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkrete reisedetaljer og kuraterte lister skal ikke hardkodes i visningskoden.
+
+- `trip.json.overview` bestemmer hvilke steder som brukes i hero og kuraterte oversiktsflater.
+- `food.json` er ett samlet matdomene med metadata + `restaurants`.
+- `app.js` har små delte visningsprimitiver i stedet for side-spesifikke kopier av samme komponent. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
+- Endres et delt visuelt mønster, endres helperen/CSS-primitiven slik at alle tilsvarende visninger følger med.
+- Offentlig tekst beskriver nåværende plan. Release-/endringshistorikk hører ikke hjemme i siden eller `site.json`.
+
+## Release
+
+Hver publisert endring på `main` skal ha ny versjon i `docs/data/site.json`. Alle HTML-sider skal bruke samme assetversjon, og flerfilendringer skal squash-merges slik at den publiserte releasen er atomisk.
+
 ## Oppdatere
 
-Kjør `node scripts/check-public-content.mjs`, `node scripts/check-data-integrity.mjs` og `node scripts/check-content-style.mjs` før publisering. GitHub Actions kjører de samme kontrollene automatisk.
+Kjør `node scripts/check-public-content.mjs`, `node scripts/check-data-integrity.mjs`, `node scripts/check-content-style.mjs` og `node scripts/check-release-discipline.mjs` før publisering. GitHub Actions kjører de samme kontrollene automatisk.
