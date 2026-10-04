@@ -339,6 +339,7 @@ async function renderFlights() {
         <div><span>Fleks</span><strong>±${data.planningWindow.flexDays} dager</strong></div>
         <div><span>Flybudsjett</span><strong>${Array.isArray(flyBudget)?`${fmtNok(flyBudget[0])}–${fmtNok(flyBudget[1])}`:'Planramme'}</strong></div>
       </div>
+      <div class="flight-principles"><strong>Slik velges vinneren</strong><ul>${data.decisionPrinciples.map(x=>`<li>${x}</li>`).join('')}</ul></div>
     </div>
     <aside><strong>Timing</strong><p>${bookingTiming}</p><a href="#flight-searches-anchor">Gå til søkene ↓</a></aside>`;
 
@@ -394,7 +395,7 @@ async function renderFlights() {
     </article>`).join('');
 
   const safety=data.safety;
-  document.getElementById('flight-safety').innerHTML=[
+  document.getElementById('flight-safety').innerHTML=`<article class="flight-safety-method"><strong>Hvordan vi bruker «sikkerhet»</strong><p>${safety.approach}</p></article>`+[
     {label:'EU-kontroll',title:'Air Safety List',body:safety.euList.summary,note:safety.euList.note,url:safety.euList.source,checked:safety.euList.checked},
     {label:'Sekundær kontekst',title:'Uavhengig rangering',body:safety.independent.summary,note:'Brukes som tillegg, ikke som fasit.',url:safety.independent.source,checked:safety.independent.checked},
     {label:'Operativt nå',title:'Luftrom må følges',body:safety.airspaceWatch.summary,note:safety.airspaceWatch.recheck,url:safety.airspaceWatch.source,checked:safety.airspaceWatch.checked}
