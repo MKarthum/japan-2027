@@ -46,6 +46,8 @@ Offentlig tekst skal kunne leses av en person som aldri har sett repoet eller en
 - Ratinger skal ha plattform, score, plattformlenke og `checked`-dato. Antall anmeldelser lagres når det er tilgjengelig.
 - Bilder må ha dokumentert gjenbruksrett, kreditering og lisens.
 - Prioritetsord er reiseprioriteringer for denne planen, ikke objektive kvalitetsdommer.
+- Et kuratert sted, måltid eller overnattingsvalg skal kort forklare hva det er, hvorfor det er med i denne reisen og hva som skiller det fra nærliggende alternativer. Unngå både Wikipedia-dybde og énlinjers tekst som forutsetter Japan-kunnskap.
+- Japanske fagord og reiseuttrykk skal forklares ved første naturlige anledning når en vanlig førstegangsreisende ikke kan forventes å kjenne dem.
 
 ## Ny chat eller konteksttap
 
@@ -79,6 +81,8 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Alle 24 steder har et `price`-objekt med status, kontroll-dato og kilde. Gratis steder vises eksplisitt som gratis; dynamiske priser vises som intervall/fra-pris eller avventer salgsdato.
 - «Før turen» skal ikke være en barneliste eller en Assassin’s Creed-liste. Den har egne voksenforslag og historie, og skal gi flere innganger til Japan: historie, hverdagsliv, litteratur, film/TV, spill, mat og språk.
 - Historieløypa dekker minst Sengoku/samlingen av Japan, Meiji/modernisering, andre verdenskrig/Hiroshima og etterkrigstid/popkultur.
+- Film og TV i `prep.json` skal ha både IMDb-lenke og en aktuell norsk strømme-/visningstjeneste med kontrolldato. Matforberedelser skal ha oppskriftslenke. «Små mål» skal ha nok detalj til at oppgaven kan gjennomføres uten forkunnskap.
+- Språkvisningen skal vise romanisering og japanske tegn sammen. Uttaleknappen bruker nettleserens japanske tekst-til-tale-stemme; den utvidede fraselisten ligger på `phrases.html`.
 
 ## Passvurdering per v0.21
 

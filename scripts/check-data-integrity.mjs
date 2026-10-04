@@ -83,7 +83,8 @@ const requiredPageCopy={
   practical:['eyebrow','title','intro','transportTitle','passesEyebrow','passesTitle','passesIntro','bookingTitle','phrasesTitle','namesTitle','etiquetteTitle'],
   budget:['eyebrow','title','intro','distributionTitle'],
   sources:['eyebrow','title','intro'],
-  privacy:['eyebrow','title','intro','publicTitle']
+  privacy:['eyebrow','title','intro','publicTitle'],
+  phrases:['eyebrow','title','intro','basicsTitle','basicsIntro','audioNote']
 };
 for(const [page,keys] of Object.entries(requiredPageCopy)){
   if(!pages[page]) errors.push(`pages.json: mangler ${page}`);
@@ -218,6 +219,20 @@ for (const item of guide.bookingRadar || []) {
 if ('connections' in guide) {
   errors.push('guide.json: connections skal ikke finnes; forberedelser og stedskoblinger eies av prep.json');
 }
+for (const item of guide.placeWords || []) {
+  if (!item.term || !item.meaning || !item.japanese || !item.speech) errors.push('guide.json: stedsord mangler romanisering, japanske tegn eller uttale');
+}
+for (const item of guide.phrases || []) {
+  if (!item.jp || !item.no || !item.japanese || !item.speech) errors.push('guide.json: hovedfrase mangler romanisering, japanske tegn eller uttale');
+}
+if (!Array.isArray(guide.morePhrases) || guide.morePhrases.length < 4) {
+  errors.push('guide.json: utvidet fraseliste mangler');
+} else {
+  for (const group of guide.morePhrases) {
+    if (!group.category || !Array.isArray(group.items) || !group.items.length) errors.push('guide.json: frasegruppe er ufullstendig');
+    for (const item of group.items || []) if (!item.jp || !item.no || !item.japanese || !item.speech) errors.push(`guide.json: frase i ${group.category||'ukjent gruppe'} er ufullstendig`);
+  }
+}
 
 const prepIds=new Set();
 let adultPrepCount=0;
@@ -234,6 +249,14 @@ for (const group of prep) {
     if (!Array.isArray(item.placeIds)) errors.push(`prep.json: ${item.id||item.title} mangler placeIds`);
     else for (const id of item.placeIds) if (!placeIds.has(id)) errors.push(`prep.json: ${item.id} peker på ukjent placeId ${id}`);
     if (item.url && !/^https:\/\//.test(item.url)) errors.push(`prep.json: ${item.id} har ugyldig url`);
+    for (const link of item.links || []) if (!link.label || !/^https:\/\//.test(link.url||'')) errors.push(`prep.json: ${item.id} har ugyldig lenke`);
+    if (['Film','TV og serier'].includes(group.category)) {
+      if (!item.streamingChecked || !(item.links||[]).some(x=>x.kind==='imdb') || !(item.links||[]).some(x=>x.kind==='stream')) {
+        errors.push(`prep.json: ${item.id} mangler IMDb, strømmetjeneste eller kontrolldato`);
+      }
+    }
+    if (group.category==='Mat' && !(item.links||[]).some(x=>x.kind==='recipe')) errors.push(`prep.json: ${item.id} mangler oppskriftslenke`);
+    if (group.category==='Små mål' && (!item.detail?.summary || !Array.isArray(item.detail?.steps) || item.detail.steps.length < 3)) errors.push(`prep.json: ${item.id} mangler detaljert gjennomføring`);
   }
 }
 
@@ -348,7 +371,7 @@ for (const item of sources) {
 }
 
 const htmlFiles=fs.readdirSync('docs').filter(name=>name.endsWith('.html'));
-const copyDrivenPages=new Set(['index.html','route.html','places.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html']);
+const copyDrivenPages=new Set(['index.html','route.html','places.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html','phrases.html']);
 for (const name of htmlFiles) {
   const file=`docs/${name}`;
   const html=fs.readFileSync(file,'utf8');
@@ -368,7 +391,7 @@ for (const name of htmlFiles) {
 }
 
 if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
-for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/data/pages.json','docs/data/passes.json']) {
+for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
@@ -411,6 +434,7 @@ if ((app.match(/mapSelectionPopupHtml/g)||[]).length < 7) errors.push('app.js: r
 if (!app.includes('installMapLoadFallback') || !app.includes("map.once('load'")) errors.push('app.js: kartfeil må skille fatal lastfeil fra enkeltressurser/fliser');
 if (!app.includes('placePriceSummaryHtml') || !app.includes('placePriceDetailHtml')) errors.push('app.js: stedspriser vises ikke konsistent i liste og detalj');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
+if (!app.includes('renderPhraseGuide') || !app.includes('speechSynthesis') || !app.includes('renderPrepItem')) errors.push('app.js: språklyd, utvidet fraseliste eller detaljside for små mål mangler');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 const toolbarStart=app.indexOf('const renderLayerToolbar=');
 const toolbarEnd=app.indexOf("map.on('load'",toolbarStart);

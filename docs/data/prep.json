@@ -4,9 +4,9 @@
     "items": [
       {
         "title": "Assassin’s Creed Shadows",
-        "for": "Voksne / vurdert familiespilling med innstillinger",
-        "why": "Gir gjenkjennelse i Kyoto, Nara, Osaka og Himeji.",
-        "action": "Skru av Blood FX og Dismemberment hvis barna skal se eller spille. Finn Himeji, Kyoto og Nara før reisen.",
+        "for": "Voksne · kan tilpasses hvis barna ser på",
+        "why": "Spillet bruker et dramatisert 1500-talls-Japan, men gir sterk visuell gjenkjennelse i Kyoto, Nara, Osaka og Himeji. Det gjør slott, porter og bydeler lettere å koble til noe man allerede har sett.",
+        "action": "Spill noen utvalgte sekvenser og finn Himeji, Kyoto og Nara før reisen. Hvis barna ser på, bruk innstillingene for å redusere Blood FX og Dismemberment.",
         "id": "prep-1",
         "placeIds": [
           "kyoto",
@@ -17,8 +17,8 @@
       {
         "title": "Mario Kart 8 Deluxe",
         "for": "Hele familien",
-        "why": "Tokyo Blur og Mario-universet gjør både Tokyo og Super Nintendo World mer kjent.",
-        "action": "Spill noen runder sammen og gjør Mario til en del av oppladningen.",
+        "why": "Mario er en enkel felles referanse før Nintendo Museum og Super Nintendo World, og Tokyo Blur gir et lekent første møte med en stilisert Tokyo-versjon.",
+        "action": "Spill noen runder sammen. La barna velge én figur eller detalj de vil prøve å finne igjen i Nintendo-delen av reisen.",
         "id": "prep-2",
         "placeIds": [
           "tokyo",
@@ -28,8 +28,8 @@
       {
         "title": "Tokaido",
         "for": "Hele familien",
-        "why": "Brettspill om å reise mellom Kyoto og Edo/Tokyo med mat, varme kilder og stopp underveis.",
-        "action": "Spill et par ganger før avreise og bruk det som introduksjon til reiseruten.",
+        "why": "Brettspillet gjør selve reisen mellom Edo/Tokyo og Kyoto til tema, med varme kilder, mat og stopp underveis. Det gir en enkel inngang til hvorfor ruten gjennom Japan er en del av opplevelsen.",
+        "action": "Spill et par ganger før avreise og bruk kartet i spillet til å snakke om Tokyo, Hakone og Kyoto.",
         "id": "prep-3",
         "placeIds": [
           "tokyo",
@@ -45,64 +45,141 @@
       {
         "title": "Min nabo Totoro",
         "for": "Hele familien",
-        "why": "Myk introduksjon til japansk natur og Ghibli.",
-        "action": "Familiekveld.",
+        "why": "En rolig og tilgjengelig introduksjon til Studio Ghibli, japansk landsbygd og natur. Filmen gjør Ghibli Museum langt mer meningsfullt hvis museet blir med i planen.",
+        "action": "Se den sammen som familiefilm og la alle velge én figur eller scene de husker best.",
         "id": "prep-4",
         "placeIds": [
           "ghibli-museum"
-        ]
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt0096283/"
+          },
+          {
+            "label": "Netflix",
+            "kind": "stream",
+            "url": "https://www.netflix.com/no/title/60032294"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       },
       {
         "title": "Chihiro og heksene",
         "for": "Hele familien",
-        "why": "Ikonisk japansk animasjon med mange kulturelle referanser.",
-        "action": "Familiekveld.",
+        "why": "En av Ghiblis mest kjente filmer og en rik inngang til japanske ånder, badehus, mat og visuelle detaljer. Den gir mer å kjenne igjen både på Ghibli Museum og i møte med japansk folklore.",
+        "action": "Se den sammen og snakk kort om hva som føles annerledes enn i vestlige animasjonsfilmer.",
         "id": "prep-5",
         "placeIds": [
           "ghibli-museum"
-        ]
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt0245429/"
+          },
+          {
+            "label": "Netflix",
+            "kind": "stream",
+            "url": "https://www.netflix.com/no/title/60023642"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       },
       {
         "title": "Kikis budservice",
         "for": "Hele familien",
-        "why": "Lav terskel og fin inngang til Ghibli.",
-        "action": "Familiekveld.",
+        "why": "En lett og varm Ghibli-film om å flytte hjemmefra, arbeid og hverdagsliv. Den gir variasjon fra de mer mytiske Ghibli-filmene og er enkel å se med hele familien.",
+        "action": "Bruk den som en lavterskel familiekveld før dere bestemmer hvor viktig Ghibli skal være på turen.",
         "id": "prep-6",
         "placeIds": [
           "ghibli-museum"
-        ]
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt0097814/"
+          },
+          {
+            "label": "Netflix",
+            "kind": "stream",
+            "url": "https://www.netflix.com/no/title/60027106"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       },
       {
         "title": "Your Name",
         "for": "Eldre barn og voksne",
-        "why": "Moderne Tokyo-miljøer gir senere gjenkjennelse i byen.",
-        "action": "Se nærmere avreise.",
+        "why": "Moderne Tokyo-miljøer, tog og byrom gjør filmen til en god visuell inngang til hverdagen i storbyen, samtidig som historien er sterk nok til å fungere uten reisekontekst.",
+        "action": "Se den nærmere avreise og legg merke til tog, stasjoner og kontrasten mellom Tokyo og landsbygda.",
         "id": "prep-7",
         "placeIds": [
           "tokyo"
-        ]
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt5311514/"
+          },
+          {
+            "label": "Apple TV",
+            "kind": "stream",
+            "url": "https://tv.apple.com/no/movie/your-name/umc.cmc.6ac4xg8jxxgxe4zqc367smjwo"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       },
       {
         "title": "Suzume",
         "for": "Eldre barn og voksne",
-        "why": "En reise gjennom ulike deler av Japan.",
-        "action": "Se etter at grunnkartet over Japan sitter litt bedre.",
+        "why": "Filmen er bygd som en reise gjennom flere deler av Japan og gjør avstander, tog og regionale miljøer mer konkrete enn et kart alene.",
+        "action": "Se den etter at hovedruten sitter litt. Prøv underveis å plassere hvor i Japan handlingen beveger seg.",
         "id": "prep-8",
         "placeIds": [
           "tokyo"
-        ]
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt16428256/"
+          },
+          {
+            "label": "Apple TV",
+            "kind": "stream",
+            "url": "https://tv.apple.com/no/movie/suzume/umc.cmc.52d5fx97y2t4o8rjoqfymqgtr"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       },
       {
         "id": "perfect-days",
         "title": "Perfect Days",
-        "for": "Voksne / eldre tenåringer",
+        "for": "Voksne og eldre tenåringer",
         "why": "En lavmælt film om hverdagsliv i Tokyo som gir byen menneskelig skala, rutiner og små observasjoner langt unna neon-klisjeene.",
-        "action": "Se når ruten er kjent; legg merke til Shibuya og hvordan byen brukes i hverdagen.",
+        "action": "Se når ruten er kjent; legg merke til Shibuya, kollektivtransporten og hvordan byen brukes i hverdagen.",
         "placeIds": [
           "tokyo",
           "shibuya"
         ],
-        "url": "https://www.criterion.com/films/34274-perfect-days"
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt27503384/"
+          },
+          {
+            "label": "Filmoteket",
+            "kind": "stream",
+            "url": "https://filmoteket.no/film/195642"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       }
     ]
   },
@@ -113,35 +190,73 @@
         "id": "pokemon-concierge",
         "title": "Pokémon Concierge",
         "for": "Hele familien",
-        "why": "Kort stop-motion-serie som gir en annen inngang til japansk popkultur enn spill og storfilmer.",
-        "action": "Se noen episoder som en lavterskel familiekveld.",
+        "why": "Kort stop-motion-serie som viser en roligere side av Pokémon-universet og gir en annen inngang til japansk popkultur enn spill og storfilmer.",
+        "action": "Se noen episoder som en lavterskel familiekveld før Nintendo- og Pokémon-referansene begynner å dukke opp i planen.",
         "placeIds": [],
-        "url": "https://media.netflix.com/en/only-on-netflix/81186864"
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt26916286/"
+          },
+          {
+            "label": "Netflix",
+            "kind": "stream",
+            "url": "https://www.netflix.com/no/title/81186864"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       },
       {
         "id": "shogun-tv",
         "title": "Shōgun",
         "for": "Voksne · tydelig vold og voksent innhold",
-        "why": "Historisk drama lagt til år 1600, med maktkampen som leder inn i Tokugawa-perioden og viktige scener i Osaka.",
-        "action": "Se serien, men bruk FX sin historiske guide ved siden av for å skille dramatisering fra historie.",
+        "why": "Historisk drama lagt til år 1600, med maktkampen som leder inn i Tokugawa-perioden og viktige scener knyttet til Osaka. Serien gir navn og konflikter å henge slotts- og samuraihistorien på.",
+        "action": "Se serien som dramatisering, og bruk FX sin historiske guide ved siden av for å skille virkelige hendelser fra fiksjon.",
         "placeIds": [
           "osaka",
           "kyoto",
           "himeji"
         ],
-        "url": "https://www.fxnetworks.com/shows/shogun/viewers-guide"
+        "url": "https://www.fxnetworks.com/shows/shogun/viewers-guide",
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt2788316/"
+          },
+          {
+            "label": "Disney+",
+            "kind": "stream",
+            "url": "https://www.disneyplus.com/nb-no/browse/entity-5422a5f9-e4f1-475e-9217-65e8249388d0"
+          }
+        ],
+        "streamingChecked": "2026-10-04",
+        "urlLabel": "Historisk guide (FX)"
       },
       {
         "id": "makanai",
         "title": "The Makanai: Cooking for the Maiko House",
-        "for": "13+ / voksne",
-        "why": "Rolig serie om to venner i Kyoto, maiko-miljø, mat og hverdagsliv. Gir Gion og Kyoto en helt annen inngang enn templer og spill.",
-        "action": "Se noen episoder før Kyoto-planleggingen.",
+        "for": "13+ og voksne",
+        "why": "Rolig serie om to venner i Kyoto, maiko-miljø, mat og hverdagsliv. Den gjør Gion og Kyoto mer menneskelig og mindre til en samling templer.",
+        "action": "Se noen episoder før Kyoto-planleggingen og legg spesielt merke til hverdagsrutiner, mat og gatemiljø.",
         "placeIds": [
           "kyoto",
           "gion"
         ],
-        "url": "https://www.netflix.com/no/title/81325501"
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt15964848/"
+          },
+          {
+            "label": "Netflix",
+            "kind": "stream",
+            "url": "https://www.netflix.com/no/title/81325501"
+          }
+        ],
+        "streamingChecked": "2026-10-04"
       }
     ]
   },
@@ -151,7 +266,7 @@
       {
         "id": "dk-japan",
         "title": "DK Japan",
-        "for": "Hele familien / oppslagsbok",
+        "for": "Hele familien · oppslagsbok",
         "why": "En svært visuell reiseguide med kart, illustrasjoner og kulturstoff som kan ligge fremme under planleggingen.",
         "action": "La alle velge ett sted eller én ting de vil lese mer om.",
         "placeIds": [
@@ -181,7 +296,7 @@
       {
         "id": "history-japan-manga",
         "title": "A History of Japan in Manga",
-        "for": "Hele familien / eldre barn",
+        "for": "Hele familien · eldre barn",
         "why": "Forteller Japans historie kronologisk med over 1000 mangaillustrasjoner og kart. Gjør shōgun, samuraier og periodene lettere å plassere.",
         "action": "Les utvalgte kapitler sammen før Kyoto, Himeji og Osaka.",
         "placeIds": [
@@ -194,7 +309,7 @@
       {
         "id": "pure-invention",
         "title": "Pure Invention",
-        "for": "Voksne / eldre tenåringer",
+        "for": "Voksne · eldre tenåringer",
         "why": "Kobler etterkrigstidens Japan til Nintendo, manga, anime, karaoke, Pokémon og teknologikulturen som gjorde Japan globalt gjenkjennelig.",
         "action": "Les før Tokyo og Nintendo-delen av planleggingen.",
         "placeIds": [
@@ -207,7 +322,7 @@
       {
         "id": "convenience-store-woman",
         "title": "Convenience Store Woman",
-        "for": "Voksne / eldre tenåringer",
+        "for": "Voksne · eldre tenåringer",
         "why": "Kort roman som trekker leseren rett inn i moderne japansk hverdagsliv, arbeidskultur og forventninger – mer samfunn enn turist-Japan.",
         "action": "En lettlest skjønnlitterær inngang til Tokyo før avreise.",
         "placeIds": [
@@ -234,7 +349,7 @@
       {
         "id": "history-sengoku",
         "title": "Sengoku-perioden og samlingen av Japan",
-        "for": "Voksne / eldre barn",
+        "for": "Voksne · eldre barn",
         "why": "Forklarer hvorfor shōgun, samuraier, Osaka og slottene er så sentrale – og setter Assassin’s Creed Shadows og Shōgun i en historisk ramme.",
         "action": "Bruk FX-tidslinjen som kort introduksjon før Himeji og Osaka.",
         "placeIds": [
@@ -259,7 +374,7 @@
       {
         "id": "history-hiroshima",
         "title": "Andre verdenskrig og Hiroshima",
-        "for": "Voksne / eldre barn med voksen",
+        "for": "Voksne · eldre barn med voksen",
         "why": "Hiroshima-besøket gir mer mening med litt kontekst om krigen, atombomben, sivile erfaringer og etterkrigstiden.",
         "action": "Ta dette som en egen forberedelse før besøket og la museumsopplevelsen være hovedkilden på stedet.",
         "placeIds": [
@@ -271,7 +386,7 @@
       {
         "id": "history-postwar",
         "title": "Etterkrigstid, økonomisk boom og popkultur",
-        "for": "Voksne / eldre tenåringer",
+        "for": "Voksne · eldre tenåringer",
         "why": "Kobler gjenoppbygging og økonomisk vekst til Sony, Nintendo, manga, anime, Pokémon og bildet av Japan som teknologiland.",
         "action": "Pure Invention er den mest tilgjengelige inngangen til denne delen.",
         "placeIds": [
@@ -289,47 +404,82 @@
       {
         "title": "Ramen",
         "for": "Hele familien",
-        "why": "Hverdagsklassiker i Japan.",
-        "action": "Prøv hjemme og ranger.",
+        "why": "Ramen er en japansk hverdagsklassiker med store regionale og personlige variasjoner. Å prøve én variant hjemme gjør det enklere å forstå hva som faktisk er annerledes når vi spiser ramen i Japan.",
+        "action": "Lag en enkel bolle hjemme og ranger kraft, nudler og topping. Poenget er å ha et sammenligningspunkt, ikke å mestre retten.",
         "id": "prep-9",
         "placeIds": [
           "tokyo"
+        ],
+        "links": [
+          {
+            "label": "Oppskrift",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/homemade-chashu-miso-ramen/"
+          }
         ]
       },
       {
         "title": "Gyoza",
         "for": "Hele familien",
-        "why": "Enkel inngang til japansk mat.",
-        "action": "Lag selv eller bestill.",
+        "why": "Gyoza er små stekte dumplings som ofte deles som siderett. De er en lav terskel inn i japansk mat og en morsom rett å lage sammen.",
+        "action": "Lag dem hjemme én gang og la alle prøve å brette noen selv.",
         "id": "prep-10",
-        "placeIds": []
+        "placeIds": [],
+        "links": [
+          {
+            "label": "Oppskrift",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/gyoza/"
+          }
+        ]
       },
       {
         "title": "Okonomiyaki",
         "for": "Hele familien",
-        "why": "Sterk Osaka-kobling.",
-        "action": "Prøv før Osaka-delen av planleggingen.",
+        "why": "Okonomiyaki er en stekt, salt pannekakerett med kål og topping, og både Osaka og Hiroshima har tydelige egne stiler. Den blir ekstra interessant på turen hvis vi allerede kjenner grunnideen.",
+        "action": "Lag Osaka-stil hjemme først. I Japan kan vi sammenligne den med Hiroshima-varianten med lag og nudler.",
         "id": "prep-11",
         "placeIds": [
           "hiroshima",
           "osaka"
+        ],
+        "links": [
+          {
+            "label": "Oppskrift",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/okonomiyaki/"
+          }
         ]
       },
       {
         "title": "Japansk curry",
         "for": "Hele familien",
-        "why": "Barnevennlig og vanlig japansk hverdagsmat.",
-        "action": "Lag hjemme.",
+        "why": "Japansk curry er tykkere, mildere og søtere enn mange indiske og thailandske curryretter og er vanlig japansk hverdagsmat. Den er også et trygt referansepunkt for barn.",
+        "action": "Lag en enkel curry med ris hjemme og se hvor mild eller sterk familien liker den.",
         "id": "prep-12",
-        "placeIds": []
+        "placeIds": [],
+        "links": [
+          {
+            "label": "Oppskrift",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/simple-chicken-curry/"
+          }
+        ]
       },
       {
         "title": "Onigiri",
         "for": "Hele familien",
-        "why": "Typisk konbini-mat som dere vil se overalt.",
-        "action": "Prøv ulike varianter.",
+        "why": "Onigiri er risboller eller -trekanter med fyll, ofte pakket i nori. De finnes overalt i japanske kiosker og blir sannsynligvis en praktisk snack på reisedager.",
+        "action": "Lag noen med to–tre ulike fyll og finn ut hvilke varianter vi vil se etter i konbini.",
         "id": "prep-13",
-        "placeIds": []
+        "placeIds": [],
+        "links": [
+          {
+            "label": "Oppskrift",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/onigiri-rice-balls/"
+          }
+        ]
       }
     ]
   },
@@ -339,19 +489,35 @@
       {
         "title": "20 japanske ord",
         "for": "Hele familien",
-        "why": "Gjør reisen mer interaktiv uten å prøve å lære hele språket.",
-        "action": "Start med sumimasen, arigatō, onegaishimasu, oishii og daijōbu.",
+        "why": "Gjør reisen mer interaktiv uten å gjøre språk til skolearbeid. Målet er å kjenne igjen noen ord på skilt, stasjoner og i korte samtaler.",
+        "action": "Velg 20 ord fra språkseksjonen og øv litt og ofte. Alle trenger ikke kunne de samme 20.",
         "id": "prep-14",
         "placeIds": [
           "tokyo",
           "kyoto"
-        ]
+        ],
+        "detail": {
+          "summary": "Dette er et gjenkjenningsmål, ikke et språkkurs. Hvis hvert familiemedlem kan noen få ord godt nok til å høre eller se dem igjen i Japan, har oppdraget fungert.",
+          "steps": [
+            "Start med ti svært nyttige ord og fraser fra Praktisk-siden, og bruk Hør-knappen for uttalen.",
+            "Legg til ord dere faktisk kommer til å møte: tog, stasjon, tempel, helligdom, onsen og konbini.",
+            "Fordel gjerne noen ord mellom familiemedlemmene slik at barna kan være «ekspert» på sine.",
+            "På turen: tell hver gang noen kjenner igjen et ord før oversettelsen kommer."
+          ],
+          "examples": [
+            "sumimasen – unnskyld",
+            "arigatō gozaimasu – tusen takk",
+            "eki – stasjon",
+            "onsen – varm kilde",
+            "konbini – nærbutikk"
+          ]
+        }
       },
       {
         "title": "Japan-bingo",
         "for": "Hele familien",
-        "why": "Gjør gjenkjennelse til en lek gjennom hele reisen.",
-        "action": "Ha med torii, shinkansen, Fuji, Pokémon, konbini, onsen, hjort, sakura og gachapon.",
+        "why": "Gjør observasjon og gjenkjennelse til en lek gjennom hele reisen, uten at noen må lese seg opp på forhånd.",
+        "action": "Lag et enkelt bingobrett før avreise og kryss av når vi faktisk ser tingene i Japan.",
         "id": "prep-15",
         "placeIds": [
           "tokyo",
@@ -360,25 +526,73 @@
           "himeji",
           "hiroshima",
           "osaka"
-        ]
+        ],
+        "detail": {
+          "summary": "Bingoen er tenkt som en lett bakgrunnslek gjennom hele turen. Velg ting som dukker opp naturlig, ikke oppgaver som får oss til å endre ruten.",
+          "steps": [
+            "Lag et 4 × 4-brett med 16 ting før avreise.",
+            "Bland helt enkle funn med noen som krever litt oppmerksomhet.",
+            "Kryss av når noen i familien ser tingen i virkeligheten – ett felles brett er nok.",
+            "Ta bilde av noen av de beste treffene og legg dem i reisedagboken."
+          ],
+          "examples": [
+            "torii-port",
+            "Shinkansen",
+            "Fuji",
+            "Pokémon",
+            "konbini",
+            "onsen",
+            "hjort",
+            "sakura",
+            "gachapon-maskin",
+            "automat med drikke"
+          ]
+        }
       },
       {
-        "title": "Spillbilde → ekte bilde",
+        "title": "Spillbilde → ekte sted",
         "for": "Hele familien",
-        "why": "Gir en konkret rød tråd fra oppladningen til reisen.",
-        "action": "Ta screenshot ved Himeji og andre kjente steder og gjenskap vinkelen på turen.",
+        "why": "Gir en konkret rød tråd fra Assassin’s Creed Shadows og andre Japan-spill til den virkelige reisen.",
+        "action": "Ta skjermbilder av steder vi faktisk skal besøke, og prøv å finne igjen omtrent samme motiv når vi står der.",
         "id": "prep-16",
         "placeIds": [
           "himeji"
-        ]
+        ],
+        "detail": {
+          "summary": "Før turen finner vi et spillmotiv som forestiller et ekte sted, lagrer skjermbildet og tar det med på telefonen. På stedet prøver vi å finne en gjenkjennelig vinkel og tar et ekte bilde ved siden av. Det trenger ikke matche perfekt – spillene tolker og forenkler virkeligheten.",
+          "steps": [
+            "Finn Himeji Castle i Assassin’s Creed Shadows og ta ett tydelig skjermbilde med hele slottet eller en karakteristisk port.",
+            "Lagre bildet i et lite album sammen med eventuelle andre motiver fra Kyoto eller Osaka.",
+            "Når vi kommer til stedet, bruk skjermbildet som ledetråd og finn en tilsvarende synsvinkel uten å blokkere andre besøkende.",
+            "Ta det virkelige bildet og legg spillbildet og fotoet ved siden av hverandre i reisedagboken."
+          ],
+          "examples": [
+            "Himeji Castle er hovedeksempelet fordi både LEGO-modellen, spillet og det virkelige slottet finnes i planen.",
+            "Kyoto- og Osaka-motiver kan legges til hvis vi finner gode, gjenkjennelige vinkler før avreise."
+          ]
+        }
       },
       {
         "id": "travel-journal",
         "title": "Felles reisedagbok",
         "for": "Hele familien",
-        "why": "Gjør forberedelser og selve reisen til én sammenhengende historie uten å kjøpe en bestemt ferdig bok.",
-        "action": "Lag en enkel mal med én observasjon, én favorittsmak, ett bilde og én ting vi lærte per dag.",
-        "placeIds": []
+        "why": "Gjør forberedelsene og selve reisen til én sammenhengende historie uten å kreve en ferdig kjøpt reisedagbok.",
+        "action": "Bruk en enkel felles mal som tar noen få minutter om kvelden – ikke et prosjekt som konkurrerer med selve turen.",
+        "placeIds": [],
+        "detail": {
+          "summary": "Én felles side per dag er nok. Målet er å bevare små detaljer som ellers forsvinner, ikke å dokumentere absolutt alt.",
+          "steps": [
+            "Skriv én observasjon som overrasket oss i dag.",
+            "Velg dagens favorittsmak eller måltid.",
+            "Legg inn ett bilde – gjerne et som forteller noe, ikke nødvendigvis dagens peneste.",
+            "Skriv én ting vi lærte, og eventuelt ett ord vi hørte eller kjente igjen."
+          ],
+          "examples": [
+            "«Det var roligere på toget enn vi trodde.»",
+            "«Første ekte okonomiyaki slo den vi lagde hjemme.»",
+            "Spillbilde og ekte bilde kan legges inn som et eget før/etter-par."
+          ]
+        }
       }
     ]
   }
