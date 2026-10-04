@@ -188,8 +188,24 @@
       "baseId": "hiroshima"
     }
   ],
-  "planningParty": {
-    "adults": 2,
-    "children": 2
+  "priceParties": {
+    "defaultScenarioId": "one-family",
+    "standardFamily": {
+      "adults": 2,
+      "children": 2
+    },
+    "scenarios": [
+      {
+        "id": "one-family",
+        "label": "1 familie",
+        "families": 1
+      },
+      {
+        "id": "two-families",
+        "label": "2 familier",
+        "families": 2
+      }
+    ],
+    "note": "To familier beregnes foreløpig som to like standardfamilier (2 voksne + 2 barn hver). Dette er et godt sammenligningsgrunnlag for transport, mat og inngang. Overnatting kan avvike fordi større leiligheter eller hele boliger kan gi lavere pris per familie."
   }
 }
