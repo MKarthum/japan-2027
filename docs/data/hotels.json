@@ -11,8 +11,8 @@
     {
       "baseId": "hakone",
       "label": "Hakone · Gora",
-      "strategy": "Gjør hotellet til en del av opplevelsen",
-      "why": "Dette er bare én natt. Prioriter onsen, ro og et godt familieoppsett fremfor å spare en liten sum på et ordinært byhotell."
+      "strategy": "Gjør overnattingen til en del av opplevelsen",
+      "why": "Dette er bare én natt. Prioriter onsen (varme kilder), ro og et godt familieoppsett fremfor å spare en liten sum på et ordinært byhotell. Gora er en praktisk base for å komme videre rundt i Hakone."
     },
     {
       "baseId": "kyoto",
@@ -30,7 +30,7 @@
       "baseId": "osaka",
       "label": "Osaka · Namba",
       "strategy": "Bo i Namba",
-      "why": "Namba gir Dōtonbori til fots og direkte Nankai-forbindelse mot Kansai Airport. Universal Studios blir en egen kollektivdag uansett."
+      "why": "Namba gir Dōtonbori til fots og direkte Nankai-tog mot Kansai International Airport (KIX). Universal Studios blir en egen kollektivdag uansett."
     }
   ],
   "hotels": [
@@ -521,9 +521,9 @@
       "tier": "Mellomklasse",
       "priceClass": "¥¥¥",
       "familyOption": "Two-Bedroom Deluxe/Executive er 77 m² for opptil fire voksne + ett barn, med to soverom, kjøkken og vaskemaskin/tørketrommel.",
-      "why": "Mitt sterkeste logistikk-/familievalg i Osaka: mye plass og nesten ideell plassering mot både Namba-kveldene og KIX-avreisen.",
+      "why": "Mitt sterkeste logistikk-/familievalg i Osaka: mye plass og nesten ideell plassering mot både Namba-kveldene og avreisen fra Kansai Airport (KIX).",
       "logistics": "Få minutters gange fra Nankai Namba Station; direkte tog til Kansai Airport.",
-      "tradeoff": "Mer serviced apartment enn klassisk hotellopplevelse, og prisfordelen forsvinner hvis bare de største 2-roms leilighetene er tilgjengelige.",
+      "tradeoff": "Mer leilighetshotell enn klassisk hotellopplevelse, og prisfordelen forsvinner hvis bare de største 2-roms leilighetene er tilgjengelige.",
       "rating": {
         "platform": "Google",
         "score": 4.5,
@@ -602,12 +602,12 @@
     {
       "id": "ryokan",
       "label": "Ryokan",
-      "description": "Velges først og fremst for selve opplevelsen – særlig i Hakone eller på Miyajima – ikke for lavest mulig pris."
+      "description": "Tradisjonelt japansk vertshus, ofte med tatami, futon, varme bad og måltider som del av oppholdet. Velges først og fremst for opplevelsen – særlig i Hakone eller på Miyajima – ikke for lavest pris."
     },
     {
       "id": "vacation-rental",
       "label": "Feriebolig / minpaku",
-      "description": "Et eget sammenligningsspor for hele boliger. Kan bli spesielt relevant ved større reisefølge, men lovlighet, kapasitet, gebyrer og totalpris må vurderes per konkret bolig.",
+      "description": "Feriebolig, ofte omtalt som minpaku i Japan. Kan være særlig interessant for større reisefølge, men lovlighet, kapasitet, gebyrer og totalpris må vurderes for den konkrete boligen.",
       "source": "https://www.mlit.go.jp/kankocho/minpaku/overview/minpaku/index_en.html"
     }
   ],
