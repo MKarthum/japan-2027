@@ -9,8 +9,80 @@ const dualFromJpy = (jpy,fx) => `${fmtJpy(jpy)} · ca. ${fmtNok(nokFromJpy(jpy,f
 const dualFromNok = (nok,fx) => `${fmtNok(nok)} · ca. ${fmtJpy(jpyFromNok(nok,fx))}`;
 const dualRangeFromNok = (range,fx) => `${fmtNok(range[0])}–${fmtNok(range[1])} · ca. ${fmtJpy(jpyFromNok(range[0],fx))}–${fmtJpy(jpyFromNok(range[1],fx))}`;
 const dualMoneyHtml = (primary,secondary) => `<span class="money-dual"><span>${primary}</span><small>ca. ${secondary}</small></span>`;
-const planningPartyLabel = (trip) => `${trip.planningParty.adults} voksne + ${trip.planningParty.children} barn`;
-const planningPartyShort = (trip) => `${trip.planningParty.adults}V+${trip.planningParty.children}B`;
+const standardFamily = (trip) => trip.priceParties?.standardFamily || {adults:2,children:2};
+const priceScenarios = (trip) => trip.priceParties?.scenarios || [{id:'one-family',label:'1 familie',families:1}];
+const selectedPriceScenario = (trip) => {
+  const scenarios=priceScenarios(trip);
+  const requested=new URLSearchParams(location.search).get('party');
+  if(requested && scenarios.some(x=>x.id===requested)){
+    try{localStorage.setItem('japan2027-price-party',requested);}catch{}
+    return scenarios.find(x=>x.id===requested);
+  }
+  let stored='';
+  try{stored=localStorage.getItem('japan2027-price-party')||'';}catch{}
+  return scenarios.find(x=>x.id===stored)
+    || scenarios.find(x=>x.id===trip.priceParties?.defaultScenarioId)
+    || scenarios[0];
+};
+const partyMultiplier = (trip) => selectedPriceScenario(trip)?.families || 1;
+const planningPartyLabel = (trip) => {
+  const base=standardFamily(trip), m=partyMultiplier(trip);
+  return `${base.adults*m} voksne + ${base.children*m} barn`;
+};
+const planningPartyShort = (trip) => {
+  const base=standardFamily(trip), m=partyMultiplier(trip);
+  return `${base.adults*m}V+${base.children*m}B`;
+};
+const scalePartyYen = (yen,trip) => Number.isFinite(yen) ? yen*partyMultiplier(trip) : yen;
+const scalePartyRange = (range,trip) => Array.isArray(range) ? range.map(v=>scalePartyYen(v,trip)) : null;
+const dualRangeFromJpy = (range,fx) => {
+  if(!Array.isArray(range)||range.length!==2) return '';
+  const [lo,hi]=range;
+  if(lo===hi) return dualFromJpy(lo,fx);
+  return `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
+};
+const placePriceValue = (place,trip,fx) => {
+  const price=place?.price;
+  if(!price) return {primary:'Pris mangler',secondary:''};
+  if(price.status==='free') return {primary:'Gratis',secondary:''};
+  const range=scalePartyRange(price.standardFamilyRangeYen,trip);
+  if(range) return {primary:range[0]===range[1]?fmtJpy(range[0]):`${fmtJpy(range[0])}–${fmtJpy(range[1])}`,secondary:range[0]===range[1]?fmtNok(nokFromJpy(range[0],fx)):`${fmtNok(nokFromJpy(range[0],fx))}–${fmtNok(nokFromJpy(range[1],fx))}`};
+  if(Number.isFinite(price.adultFromYen)) return {primary:`Fra ${fmtJpy(price.adultFromYen)} per voksen`,secondary:`ca. ${fmtNok(nokFromJpy(price.adultFromYen,fx))}`};
+  return {primary:'Pris varierer',secondary:''};
+};
+const placePriceSummaryHtml = (place,trip,fx) => {
+  const value=placePriceValue(place,trip,fx);
+  return `<div class="place-list-price"><span>${planningPartyShort(trip)}</span><strong>${value.primary}</strong>${value.secondary?`<small>ca. ${value.secondary}</small>`:''}</div>`;
+};
+const placePriceDetailHtml = (place,trip,fx) => {
+  const price=place?.price;
+  if(!price) return '';
+  const value=placePriceValue(place,trip,fx);
+  return `<div class="place-price-panel"><span>Pris · ${planningPartyLabel(trip)}</span><strong>${value.primary}</strong>${value.secondary?`<small>ca. ${value.secondary}</small>`:''}<p>${price.note||''}</p><div class="place-price-meta">${price.checked?`Kontrollert ${fmtLongDate(price.checked)}`:''}${price.source?` · <a href="${price.source}" target="_blank" rel="noopener">prisgrunnlag ↗</a>`:''}</div></div>`;
+};
+function renderPricePartySelector(trip) {
+  const config=trip.priceParties;
+  if(!config?.scenarios?.length || document.querySelector('.price-party-selector')) return;
+  const selected=selectedPriceScenario(trip);
+  const base=standardFamily(trip);
+  const root=document.createElement('div');
+  root.className='price-party-selector';
+  root.innerHTML=`<span>Vis priser for</span><div class="price-party-options">${config.scenarios.map(s=>{
+    const adults=base.adults*s.families, children=base.children*s.families;
+    return `<button type="button" data-party="${s.id}" aria-pressed="${s.id===selected.id}">${s.label} · ${adults}+${children}</button>`;
+  }).join('')}</div>${selected.families>1?`<small>${config.note}</small>`:''}`;
+  root.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-party]');
+    if(!btn || btn.dataset.party===selected.id) return;
+    try{localStorage.setItem('japan2027-price-party',btn.dataset.party);}catch{}
+    const url=new URL(location.href);
+    url.searchParams.set('party',btn.dataset.party);
+    location.href=url.toString();
+  });
+  const main=document.querySelector('main');
+  const anchor=main?.querySelector('.home-hero,.detail-hero,.lede') || main?.firstElementChild;
+  if(anchor) anchor.insertAdjacentElement('afterend',root);
+}
 
 async function json(path) {
   const r = await fetch(path, {cache:'no-store'});
@@ -59,14 +131,14 @@ async function loadFx() {
         sourceUrl:'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html'
       };
     } catch(error) {
-      console.warn('Live valutakurs utilgjengelig; bruker lagret ECB-fallback.',error);
+      console.warn('ECB-kurs utilgjengelig; bruker lagret ECB-fallback.',error);
       return {...fallback,live:false};
     }
   })();
   return fxPromise;
 }
 
-const fxStatusText=(fx)=>fx.live?'Live ECB-referansekurs':'Lagret ECB-referansekurs';
+const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs':'Lagret ECB-fallback';
 
 function nav(active='') {
   const items = [
@@ -243,7 +315,7 @@ async function renderRoute() {
     <div class="fare-grid">
       <div><span>Voksen</span><strong>${dualFromJpy(leg.fare.adultYen,fx)}</strong></div>
       <div><span>Barn</span><strong>${dualFromJpy(leg.fare.childYen,fx)}</strong></div>
-      <div class="family"><span>${planningPartyLabel(trip)}</span><strong>${dualFromJpy(leg.fare.planningPartyYen,fx)}</strong></div>
+      <div class="family"><span>${planningPartyLabel(trip)}</span><strong>${dualFromJpy(leg.fare.standardFamilyYen,fx)}</strong></div>
     </div>`;
 
   const legHtml=(leg,{compact=false}={}) => `
@@ -283,7 +355,7 @@ async function renderRoute() {
   };
   const showFoodDetail=(x)=>{
     if(!x) return;
-    const price=Array.isArray(x.familyEstimateYen) ? familyFoodPrice(x) : '';
+    const price=Array.isArray(x.standardFamilyEstimateYen) ? familyFoodPrice(x) : '';
     setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">${x.role} · ${x.area}</div><h3>${x.name}</h3><p><strong>${x.dish}</strong> · ${x.priority}</p>${price?`<p class="small">${planningPartyLabel(trip)}: ${price}</p>`:''}${contextualLinksFor(x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten')}</div>`);
   };
   const showHotelDetail=(x)=>{
@@ -319,7 +391,7 @@ async function renderRoute() {
         <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
         <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
         ${routeContextLinksHtml(trip,x,p,food,hotelsData)}
-        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.planningPartyYen,fx)} for ${planningPartyShort(trip)}</button>`:''}
+        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.standardFamilyYen,fx)} for ${planningPartyShort(trip)}</button>`:''}
       </div>
     </article>`;
   }).join('');
@@ -334,7 +406,7 @@ async function renderRoute() {
 
   const adultTotal=transport.legs.reduce((n,l)=>n+l.fare.adultYen,0);
   const childTotal=transport.legs.reduce((n,l)=>n+l.fare.childYen,0);
-  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.planningPartyYen,0);
+  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.standardFamilyYen,0);
   const summary=document.getElementById('map-price-summary');
   if(summary){
     summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for ${planningPartyShort(trip)}</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
@@ -437,7 +509,7 @@ async function renderRoute() {
     showLegDetail(leg);
     new maplibregl.Popup({offset:10,maxWidth:'280px'})
       .setLngLat(lngLat)
-      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.planningPartyYen,fx)} for ${planningPartyShort(trip)}</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
+      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.standardFamilyYen,fx)} for ${planningPartyShort(trip)}</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
       .addTo(map);
   };
 
@@ -530,8 +602,8 @@ async function renderRoute() {
   };
 
   const familyFoodPrice=(x)=>{
-    if(!Array.isArray(x.familyEstimateYen)) return '';
-    const [lo,hi]=x.familyEstimateYen;
+    if(!Array.isArray(x.standardFamilyEstimateYen)) return '';
+    const [lo,hi]=x.standardFamilyEstimateYen;
     return lo===hi ? dualFromJpy(lo,fx) : `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
   };
 
@@ -583,7 +655,7 @@ async function renderRoute() {
 
 
   const hotelFamilyPrice=(x)=>{
-    const [lo,hi]=x.planningFamilyNightYen||[];
+    const [lo,hi]=x.standardFamilyNightYen||[];
     if(!Number.isFinite(lo)||!Number.isFinite(hi)) return '';
     return `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
   };
@@ -670,7 +742,7 @@ async function renderRoute() {
       legend.innerHTML=[...journeyMap.values()].map(s=>{
         const leg=legById.get(s.journeyId);
         const color=destinationColor(trip,leg?.toRouteId);
-        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.planningPartyYen,fx)} (${planningPartyShort(trip)})`:s.modes.join(' + ')}</small></span></button>`;
+        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.standardFamilyYen,fx)} (${planningPartyShort(trip)})`:s.modes.join(' + ')}</small></span></button>`;
       }).join('');
       legend.addEventListener('click',e=>{
         const btn=e.target.closest('[data-leg]');
@@ -856,8 +928,8 @@ async function renderFood() {
   const order={'Må prøve':0,'Sterk kandidat':1,'Valgfri':2,'Følg med':3};
 
   const familyPrice=(x)=>{
-    if(!Array.isArray(x.familyEstimateYen)) return 'Pris kommer';
-    const [lo,hi]=x.familyEstimateYen;
+    if(!Array.isArray(x.standardFamilyEstimateYen)) return 'Pris kommer';
+    const [lo,hi]=x.standardFamilyEstimateYen;
     const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
     const nokLo=fmtNok(nokFromJpy(lo,fx));
     const nokHi=fmtNok(nokFromJpy(hi,fx));
@@ -954,8 +1026,8 @@ async function renderRestaurant() {
   document.getElementById('restaurant-price-class').textContent=x.priceClass;
 
   const price=document.getElementById('restaurant-family-price');
-  if(Array.isArray(x.familyEstimateYen)){
-    const [lo,hi]=x.familyEstimateYen;
+  if(Array.isArray(x.standardFamilyEstimateYen)){
+    const [lo,hi]=x.standardFamilyEstimateYen;
     const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
     const nokLo=fmtNok(nokFromJpy(lo,fx));
     const nokHi=fmtNok(nokFromJpy(hi,fx));
@@ -1025,12 +1097,12 @@ async function renderHotels() {
   let activeBase='all', activeKind='all';
 
   const price=(x)=>{
-    const [lo,hi]=x.planningFamilyNightYen;
+    const [lo,hi]=x.standardFamilyNightYen;
     return `<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))} / natt</small>`;
   };
   const plannedNights=(x)=>Number.isFinite(x.recommendedNights)?x.recommendedNights:(trip.route.find(r=>r.id===x.baseId)?.nights||1);
   const totalPrice=(x)=>{
-    const nights=plannedNights(x), [lo,hi]=x.planningFamilyNightYen;
+    const nights=plannedNights(x), [lo,hi]=x.standardFamilyNightYen;
     return `${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)} · ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))}`;
   };
   const card=(x)=>`<a class="hotel-index-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="hotel.html?id=${encodeURIComponent(x.id)}">
@@ -1064,10 +1136,10 @@ async function renderHotels() {
 
   const cheapestByBase=trip.route.filter(r=>r.nights>0).map(stop=>{
     const candidates=hotels.filter(h=>h.baseId===stop.id);
-    return candidates.sort((a,b)=>((a.planningFamilyNightYen[0]+a.planningFamilyNightYen[1])/2)-((b.planningFamilyNightYen[0]+b.planningFamilyNightYen[1])/2))[0];
+    return candidates.sort((a,b)=>((a.standardFamilyNightYen[0]+a.standardFamilyNightYen[1])/2)-((b.standardFamilyNightYen[0]+b.standardFamilyNightYen[1])/2))[0];
   }).filter(Boolean);
-  const low=cheapestByBase.reduce((sum,h)=>sum+h.planningFamilyNightYen[0]*plannedNights(h),0);
-  const high=cheapestByBase.reduce((sum,h)=>sum+h.planningFamilyNightYen[1]*plannedNights(h),0);
+  const low=cheapestByBase.reduce((sum,h)=>sum+h.standardFamilyNightYen[0]*plannedNights(h),0);
+  const high=cheapestByBase.reduce((sum,h)=>sum+h.standardFamilyNightYen[1]*plannedNights(h),0);
   document.getElementById('stay-cost-summary').innerHTML=`<span>Prisgrep med rimeligste listede kandidat per base</span><strong>${fmtJpy(low)}–${fmtJpy(high)} · ca. ${fmtNok(nokFromJpy(low,fx))}–${fmtNok(nokFromJpy(high,fx))}</strong><small>Planestimat for hele oppholdet; ikke et pristilbud.</small>`;
 
   document.getElementById('stay-alternatives').innerHTML=(data.alternativeExamples||[]).map(x=>`<a class="stay-alt-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="${x.url}" target="_blank" rel="noopener"><span>${typeById.get(x.kind)?.label||x.kind}</span><h3>${x.name}</h3><p>${x.description}</p><strong>Offisiell side ↗</strong></a>`).join('');
@@ -1088,7 +1160,7 @@ async function renderHotel() {
   const base=data.bases.find(b=>b.baseId===x.baseId);
   const routeStop=trip.route.find(r=>r.id===x.baseId);
   const nights=Number.isFinite(x.recommendedNights)?x.recommendedNights:(routeStop?.nights||1);
-  const [lo,hi]=x.planningFamilyNightYen;
+  const [lo,hi]=x.standardFamilyNightYen;
   document.title=`${x.name} · Japan 2027`;
   const main=document.querySelector('main');
   main?.setAttribute('style',themeStyle(destinationTheme(trip,x.baseId)));
