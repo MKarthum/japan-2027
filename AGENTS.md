@@ -29,7 +29,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
-- Strømmelenker skal peke direkte til tittelen. For tjenester med dokumentert/utprøvd app-skjema kan `appUrl` brukes med HTTPS-lenken som fallback; ikke lenk bare til tjenestens forside eller en generell appåpning.
+- Strømmelenker skal peke direkte til tittelen via HTTPS og åpnes som ekstern lenke slik at Japan-siden blir liggende. Stol på operativsystemets universal links for eventuell appåpning. Ikke bruk custom URL-scheme med tidsstyrt fallback; det kan åpne både appen og nettsiden og samtidig navigere bort fra reiseplanen.
 - Bilder skal ha eksplisitt `type`. `licensed` krever lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. `ai` skal lagres lokalt i repoet, ha alt-tekst og genereringsdato og alltid merkes som AI-generert i UI-et. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Bildekreditering vises som en liten overlay nederst til venstre i bildet, ikke som egen rad under bildet. På stedskort ligger områdeetiketten øverst til venstre i selve bildet; type kan ligge øverst til høyre.
 - Ikke innfør rammeverk, database eller byggesteg uten et konkret behov.
