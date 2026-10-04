@@ -16,6 +16,7 @@ const hotels = hotelData.hotels || [];
 const fx = readJson('docs/data/fx.json');
 const site = readJson('docs/data/site.json');
 const pages = readJson('docs/data/pages.json');
+const passes = readJson('docs/data/passes.json');
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -79,7 +80,7 @@ const requiredPageCopy={
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
   hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],
   prep:['eyebrow','title','intro'],
-  practical:['eyebrow','title','intro','transportTitle','bookingTitle','phrasesTitle','namesTitle','etiquetteTitle'],
+  practical:['eyebrow','title','intro','transportTitle','passesEyebrow','passesTitle','passesIntro','bookingTitle','phrasesTitle','namesTitle','etiquetteTitle'],
   budget:['eyebrow','title','intro','distributionTitle'],
   sources:['eyebrow','title','intro'],
   privacy:['eyebrow','title','intro','publicTitle']
@@ -87,6 +88,26 @@ const requiredPageCopy={
 for(const [page,keys] of Object.entries(requiredPageCopy)){
   if(!pages[page]) errors.push(`pages.json: mangler ${page}`);
   else for(const key of keys) if(typeof pages[page][key]!=='string'||!pages[page][key].trim()) errors.push(`pages.json: ${page}.${key} mangler`);
+}
+
+if (!passes.updated || !passes.principle || !Array.isArray(passes.options) || passes.options.length < 3) {
+  errors.push('passes.json: mangler oppdatert beslutningsgrunnlag');
+} else {
+  uniqueIds(passes.options,'passes.json options');
+  for (const item of passes.options) {
+    if (!item.name || !item.kind || !item.status || !item.statusLabel || !item.short || !item.when || !item.current || !/^https:\/\//.test(item.sourceUrl||'')) {
+      errors.push(`passes.json: ${item.id||'(uten id)'} er ufullstendig`);
+    }
+  }
+}
+if (!passes.haveFunJapanReview?.checked || !passes.haveFunJapanReview?.summary ||
+    !Array.isArray(passes.haveFunJapanReview?.plannedMatches) ||
+    !Array.isArray(passes.haveFunJapanReview?.usefulAdjacent) ||
+    !Array.isArray(passes.haveFunJapanReview?.doNotCountOn)) {
+  errors.push('passes.json: Have Fun-gjennomgangen mangler detaljgrunnlag');
+}
+for (const row of [...(passes.haveFunJapanReview?.plannedMatches||[]), ...(passes.haveFunJapanReview?.doNotCountOn||[])]) {
+  if (row.placeId && !places.some(p=>p.id===row.placeId)) errors.push(`passes.json: ukjent placeId ${row.placeId}`);
 }
 
 const priceParties=trip.priceParties;
@@ -347,7 +368,7 @@ for (const name of htmlFiles) {
 }
 
 if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
-for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/data/pages.json']) {
+for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/data/pages.json','docs/data/passes.json']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
@@ -384,12 +405,15 @@ const popupSyncCount=[...app.matchAll(/popup\.on\('open'/g)].length;
 if (popupSyncCount < 5) errors.push('app.js: detaljpanelet må bindes til faktisk åpnet kart-popup, ikke separate klikkhendelser');
 if (!app.includes("const layerState={stations:false,experience:true,food:false,hotel:false}")) errors.push('app.js: knutepunkter skal være avslått som standard for å redusere kart-overlapp');
 if (!app.includes("json('data/pages.json')") || !app.includes('applyPageCopy')) errors.push('app.js: mangler sentral sidecopy fra pages.json');
+if (!app.includes("json('data/passes.json')") || !app.includes('pass-watchlist')) errors.push('app.js: passvurdering hentes ikke fra passes.json');
 if (!app.includes('renderPricePartySelector') || !app.includes('partyMultiplier') || app.includes('trip.planningParty')) errors.push('app.js: prisscenarier er ikke sentralisert');
 if ((app.match(/mapSelectionPopupHtml/g)||[]).length < 7) errors.push('app.js: rutekartet bruker ikke felles kompakt popup-renderer');
 if (!app.includes('installMapLoadFallback') || !app.includes("map.once('load'")) errors.push('app.js: kartfeil må skille fatal lastfeil fra enkeltressurser/fliser');
 if (!app.includes('placePriceSummaryHtml') || !app.includes('placePriceDetailHtml')) errors.push('app.js: stedspriser vises ikke konsistent i liste og detalj');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
+const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>app.indexOf(x));
+if (toolbarOrder.some(x=>x<0) || toolbarOrder.some((x,i)=>i>0 && x<=toolbarOrder[i-1])) errors.push('app.js: kartlag skal vises som Opplevelser, Mat, Overnatting, Knutepunkter');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
 if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
 if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
