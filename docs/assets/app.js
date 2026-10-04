@@ -697,11 +697,11 @@ async function renderRoute() {
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
-      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
       <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Overnatting <b>${counts.hotel}</b></button>
-      <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>
+      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
+      <button class="map-layer-fit" id="fit-route" type="button">Hele ruten</button>
       <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
     toolbar.addEventListener('click',e=>{
       const btn=e.target.closest('[data-map-layer]');
@@ -1204,8 +1204,22 @@ async function renderHotel() {
 async function renderPractical() {
   await applyPageCopy('practical');
   nav('practical'); footer();
-  const [guide,places]=await Promise.all([json('data/guide.json'),json('data/places.json')]);
+  const [guide,places,passes]=await Promise.all([json('data/guide.json'),json('data/places.json'),json('data/passes.json')]);
   document.getElementById('transport-grid').innerHTML=guide.transport.map(x=>`<article class="card transport-card"><div class="transport-icon">${x.icon}</div><h3>${x.title}</h3><strong>${x.short}</strong><p>${x.body}</p><div class="button-row">${x.links.map(l=>`<a class="button" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join('')}</div></article>`).join('');
+  const statusClass=(status)=>({strong:'strong',watch:'watch',low:'low',review:'review'}[status]||'watch');
+  document.getElementById('pass-watchlist').innerHTML=passes.options.map(x=>`
+    <article class="pass-row">
+      <div class="pass-row-main">
+        <div class="pass-row-top"><span class="pass-status ${statusClass(x.status)}">${x.statusLabel}</span><span class="meta">${x.kind}</span></div>
+        <h3>${x.name}</h3>
+        <p>${x.short}</p>
+        <small>${x.when}</small>
+      </div>
+      <div class="pass-row-aside">
+        <span>${x.current}</span>
+        <a href="${x.sourceUrl}" target="_blank" rel="noopener">Offisiell info ↗</a>
+      </div>
+    </article>`).join('');
   document.getElementById('booking-radar').innerHTML=guide.bookingRadar.map(x=>{
     const p=places.find(p=>p.id===x.placeId);
     const link=placePrimaryLink(p);

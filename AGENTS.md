@@ -25,6 +25,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Når to ruter deler samme fysiske spor i motsatt retning, skal de tegnes som parallelle spor. MapLibre `line-offset` er retningsrelativ: motsatt rettede linjer bruker samme fortegn for å havne på hver sin fysiske side.
 - Praktiske råd, bookingradar, ordbok og mediekoblinger går i `docs/data/guide.json`. Bookingradar skal referere til `placeId`; ikke kopier stedets navn, område eller URL.
 - Sidebudskap og forklarende tekst som ikke tilhører et domene går i `docs/data/pages.json`. HTML skal bare angi hvilke tekstelementer som vises via `data-copy`.
+- Pass, pakkeløsninger og kombinasjonsprodukter går i `docs/data/passes.json`. Hold visningen kort; detaljerte treff/overlapp kan ligge i datafilen for senere re-evaluering uten å fylle siden.
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
@@ -41,6 +42,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Rutesiden er et navigasjonspunkt, ikke en blindvei. Hvert hovedstopp skal gi tydelige veier videre til stoppdetalj, filtrerte Steder/Mat og aktuell Overnatting. Filteret skal kunne åpnes direkte med `?base=<routeId>`.
 - På mobil skal stedslister være kompakte rader med fast, smal bildekolonne. Ikke la bilde-/fallbackflaten få automatisk full kortbredde eller prosentvis høyde som kan vokse sirkulært i Safari.
 - Kort som inneholder bildekreditering må ikke pakkes i én ytre `<a>`; krediteringen inneholder selv lenke og gir ugyldig nested-anchor HTML. Bruk egen primærlenke/overlay slik at hele kortet kan klikkes uten ugyldig DOM.
+- På rutekartet skal de mest nyttige lagene komme først: Opplevelser, Mat, Overnatting, deretter Knutepunkter. Kartkontroller skal ha full bredde før prisoppsummeringen slik at de ikke blir unødvendig trangt på iPad.
 - På rutekartet skal detaljpanelet under kartet alltid følge den popupen som faktisk åpnes. Bind synkronisering til MapLibre-popupens `open`-hendelse, ikke et separat marker-click. Kart-popupen skal være minimal: kategori + navn + «Detaljer under kartet». Beskrivelse, pris og kontekst hører hjemme i panelet under kartet. Bare valg av rutelinje/etappe skal vise strekning og pris. `mapSelectionPopupHtml()` er den delte popup-primitiven. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
 - Kartets `error`-hendelse kan fyre for enkeltfliser, glyphs eller andre delressurser selv om kartet fungerer. Ikke vis «kartet kunne ikke lastes» på første error. Fatal fallback vises bare dersom kartets stil ikke blir ferdig lastet etter en kort grace-periode.
 - Ikke kopier markup for en eksisterende objekttype for å lage en ny variant. Utvid den delte helperen/klassen når semantikken er den samme. Hvis en delt visning endres visuelt, skal alle brukere av komponenten få endringen samtidig.
@@ -66,6 +68,12 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 ## Personvern
 
 Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbeidssted, bookingreferanser, eksakte flydetaljer, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som identifiserer eller lokaliserer konkrete personer.
+
+## Pass og pakkeløsninger
+
+- Et pass skal ikke styre reiseruten. Vurder pass opp mot den planen vi allerede ønsker, og kjøp bare hvis det gir reell økonomisk eller logistisk gevinst.
+- Have Fun/JR-kataloger endres over tid. `passes.json` kan bevare dagens gjennomgang, men synlig tekst skal si at innhold må bekreftes ved kjøp.
+- Ikke spre passøkonomi ned på hvert sted. Stedspris viser inngang; passvurdering hører hjemme samlet under Praktisk.
 
 ## Prisscenarier
 

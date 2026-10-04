@@ -27,6 +27,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 - `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.
 - `docs/data/prep.json`: forberedelser før turen og deres kobling til steder via `placeIds`. Inneholder familieinnhold, tydelig merket vokseninnhold og en egen historie-læringssti. Medie-/forberedelseskoblinger skal ikke dupliseres i `places.json` eller `guide.json`.
 - `docs/data/fx.json`: siste tilgjengelige ECB-kurs via nettendepunkt + lagret fallback. ECB oppdaterer kun virkedager; helgedato fra siste virkedag er forventet. Alle omregninger går gjennom `loadFx()`.
+- `docs/data/passes.json`: kandidater for togpass, aktivitets-/transportpass og kombipakker. Synlig side viser bare kort status og når de bør vurderes; detaljert match mot planen ligger i samme datafil for senere re-evaluering.
 - `docs/data/pages.json`: offentlig sidebudskap og forklarende tekst som ikke tilhører et konkret domene. HTML peker på feltene med `data-copy`.
 - `docs/data/sources.json`: felles kildeliste.
 
@@ -78,6 +79,16 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Alle 24 steder har et `price`-objekt med status, kontroll-dato og kilde. Gratis steder vises eksplisitt som gratis; dynamiske priser vises som intervall/fra-pris eller avventer salgsdato.
 - «Før turen» skal ikke være en barneliste eller en Assassin’s Creed-liste. Den har egne voksenforslag og historie, og skal gi flere innganger til Japan: historie, hverdagsliv, litteratur, film/TV, spill, mat og språk.
 - Historieløypa dekker minst Sengoku/samlingen av Japan, Meiji/modernisering, andre verdenskrig/Hiroshima og etterkrigstid/popkultur.
+
+## Passvurdering per v0.21
+
+- Sterk kandidat: JR West Kansai–Hiroshima Area Pass for den vestlige delen av ruten. Fem sammenhengende dager må plasseres etter endelig togplan.
+- Have Fun in Japan Pass beholdes som kandidat, ikke beslutning. Dagens katalog treffer blant annet teamLab Borderless, Hakone Freepass og Hiroshima Peace Memorial Museum, men det er også mye overlapp og flere hovedaktiviteter uten bekreftet direkte treff.
+- Ikke regn standard Have Fun-pass som USJ-inngang. Nåværende USJ-kuponger i katalogen sier at separat Studio Pass kreves.
+- Nasjonalt Japan Rail Pass er lite aktuelt med dagens énveisrute; regionalt JR West-pass ser bedre ut.
+- JR West tilbyr også en Kansai–Hiroshima + Have Fun Hiroshima-kombinasjon som skal sammenlignes når kjøpsvinduet åpner.
+- Passene skal ikke presse inn ekstra aktiviteter bare for å «tjene dem inn». Sjekk 2027-katalog og priser mot faktisk plan før kjøp.
+- Rute-kontroller: Opplevelser, Mat, Overnatting og så Knutepunkter. Prisoppsummeringen ligger på egen rad for å gi plass på iPad.
 
 ## Før publisering
 

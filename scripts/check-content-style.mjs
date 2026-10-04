@@ -12,7 +12,8 @@ const publicDataFiles = [
   'docs/data/prep.json',
   'docs/data/transport.json',
   'docs/data/hotels.json',
-  'docs/data/pages.json'
+  'docs/data/pages.json',
+  'docs/data/passes.json'
 ];
 
 const historyPatterns = [
