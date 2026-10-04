@@ -5,6 +5,7 @@ const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const foodData = readJson('docs/data/food.json');
 const food = foodData.restaurants || [];
 const places = readJson('docs/data/places.json');
+const prep = readJson('docs/data/prep.json');
 const trip = readJson('docs/data/trip.json');
 const routeGeometry = readJson('docs/data/route-geometry.json');
 const transport = readJson('docs/data/transport.json');
@@ -115,7 +116,8 @@ for (const item of places) {
   for (const key of ['id','name','area','type','simple','description','why']) {
     if (!item[key]) errors.push(`places.json: ${item.id||'(uten id)'} mangler ${key}`);
   }
-  if (!Array.isArray(item.highlights) || !Array.isArray(item.prep)) errors.push(`places.json: ${item.id} mangler highlights/prep-lister`);
+  if (!Array.isArray(item.highlights)) errors.push(`places.json: ${item.id} mangler highlights-liste`);
+  if ('prep' in item || 'acShadows' in item) errors.push(`places.json: ${item.id} lagrer gammel forberedelsesdata; bruk prep.json`);
   if (!Array.isArray(item.links) || item.links.length === 0) errors.push(`places.json: ${item.id} mangler eksterne lenker`);
   if (!validMap(item)) errors.push(`places.json: ${item.id} mangler komplett map-data`);
   validateImage(item.image,`places.json image ${item.id}`);
@@ -142,8 +144,22 @@ for (const item of guide.bookingRadar || []) {
     errors.push(`places.json: ${item.placeId} mangler billett/offisiell lenke for bookingradar`);
   }
 }
-for (const item of guide.connections || []) {
-  if (!placeIds.has(item.placeId)) errors.push(`guide.json: connection har ukjent placeId ${item.placeId}`);
+if ('connections' in guide) {
+  errors.push('guide.json: connections skal ikke finnes; forberedelser og stedskoblinger eies av prep.json');
+}
+
+const prepIds=new Set();
+for (const group of prep) {
+  if (!group.category || !Array.isArray(group.items) || group.items.length===0) errors.push('prep.json: gruppe mangler category/items');
+  for (const item of group.items || []) {
+    if (!item.id) errors.push(`prep.json: ${group.category} har post uten id`);
+    else if (prepIds.has(item.id)) errors.push(`prep.json: duplikat id ${item.id}`);
+    else prepIds.add(item.id);
+    if (!item.title || !item.for || !item.why || !item.action) errors.push(`prep.json: ${item.id||item.title||'(uten id)'} mangler innhold`);
+    if (!Array.isArray(item.placeIds)) errors.push(`prep.json: ${item.id||item.title} mangler placeIds`);
+    else for (const id of item.placeIds) if (!placeIds.has(id)) errors.push(`prep.json: ${item.id} peker på ukjent placeId ${id}`);
+    if (item.url && !/^https:\/\//.test(item.url)) errors.push(`prep.json: ${item.id} har ugyldig url`);
+  }
 }
 
 const legIds=new Set(transport.legs.map(x=>x.id));
@@ -183,8 +199,20 @@ for (const baseId of overnightBaseIds) {
   const count=hotels.filter(x=>x.baseId===baseId).length;
   if (count < 3) errors.push(`hotels.json: ${baseId} har bare ${count} hotellkandidater`);
 }
+const accommodationTypeIds=new Set((hotelData.accommodationTypes||[]).map(x=>x.id));
+if (!hotelData.partyBasis) errors.push('hotels.json: partyBasis mangler');
+if (!Array.isArray(hotelData.accommodationTypes) || hotelData.accommodationTypes.length < 4) errors.push('hotels.json: minst fire overnattingsformer skal beskrives');
+for (const type of hotelData.accommodationTypes || []) {
+  if (!type.id || !type.label || !type.description) errors.push('hotels.json: overnattingsform mangler id/label/description');
+}
+for (const example of hotelData.alternativeExamples || []) {
+  if (!routeIds.has(example.baseId)) errors.push(`hotels.json: alternativ ${example.name} har ugyldig baseId ${example.baseId}`);
+  if (!accommodationTypeIds.has(example.kind)) errors.push(`hotels.json: alternativ ${example.name} har ukjent kind ${example.kind}`);
+  if (!example.name || !example.description || !/^https:\/\//.test(example.url||'')) errors.push('hotels.json: alternativt overnattingsspor mangler navn/beskrivelse/url');
+}
 for (const item of hotels) {
   if (!routeIds.has(item.baseId)) errors.push(`hotels.json: ${item.id} har ugyldig baseId ${item.baseId}`);
+  if (!accommodationTypeIds.has(item.kind)) errors.push(`hotels.json: ${item.id} har ukjent kind ${item.kind}`);
   if (!validMap(item)) errors.push(`hotels.json: ${item.id} mangler gyldig kartposisjon`);
   if (!item.factsChecked) errors.push(`hotels.json: ${item.id} mangler factsChecked`);
   if (!Array.isArray(item.planningFamilyNightYen) || item.planningFamilyNightYen.length !== 2 || !item.planningFamilyNightYen.every(Number.isFinite)) errors.push(`hotels.json: ${item.id} mangler familieprisintervall`);
@@ -233,7 +261,7 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
-if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler hotellvisninger');
+if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
 if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
 if (!app.includes('async function loadFx()') || !app.includes('providers=ecb')) errors.push('app.js mangler live ECB-kurs');
 const directFxLoads=[...app.matchAll(/json\('data\/fx\.json'\)/g)].length;
@@ -241,6 +269,8 @@ if (directFxLoads !== 1) errors.push('app.js skal bare lese fx.json inne i loadF
 if (!app.includes('footer-version') || !app.includes("json('data/site.json')")) errors.push('footer mangler versjon/sist oppdatert');
 if (!app.includes('1 NOK =') || !app.includes('1 JPY =')) errors.push('footer viser ikke kurs begge veier');
 if (!app.includes('place-list-card')) errors.push('Steder bruker ikke kompakt kortliste');
+if (!app.includes('setupJourneyFilters')) errors.push('app.js mangler felles filter for del av reisen');
+if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
 if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
@@ -254,11 +284,14 @@ for (const dataFile of ['food.json','places.json','hotels.json']) {
 if (!trip.overview?.hero?.placeId || !placeIds.has(trip.overview.hero.placeId)) {
   errors.push('trip.json: overview.hero.placeId mangler eller peker på ukjent sted');
 }
-if (!Array.isArray(trip.overview?.familyHookPlaceIds) || trip.overview.familyHookPlaceIds.some(id => !placeIds.has(id))) {
-  errors.push('trip.json: overview.familyHookPlaceIds mangler eller peker på ukjent sted');
+if (!trip.overview?.hero?.eyebrow || !trip.overview?.hero?.title || !trip.overview?.hero?.intro) {
+  errors.push('trip.json: overview.hero mangler offentlig inngangstekst');
 }
-if (!Number.isInteger(trip.overview?.bookingPreviewCount) || trip.overview.bookingPreviewCount < 1) {
-  errors.push('trip.json: overview.bookingPreviewCount må være et positivt heltall');
+if (!Array.isArray(trip.overview?.reasons) || trip.overview.reasons.length < 3 || trip.overview.reasons.some(x=>!x.title||!x.text)) {
+  errors.push('trip.json: overview.reasons må ha minst tre komplette begrunnelser');
+}
+if (!trip.overview?.plan?.title || !trip.overview?.plan?.text) {
+  errors.push('trip.json: overview.plan mangler title/text');
 }
 if (!transport.strategy) errors.push('transport.json: strategy mangler');
 
@@ -311,4 +344,4 @@ if (errors.length) {
   console.error('Dataintegritetsfeil:\n' + errors.map(x => `- ${x}`).join('\n'));
   process.exit(1);
 }
-console.log(`OK: ${places.length} steder, ${food.filter(x=>x.status==='active').length} restauranter og ${hotels.length} hoteller bruker kanoniske data.`);
+console.log(`OK: ${places.length} steder, ${food.filter(x=>x.status==='active').length} restauranter og ${hotels.length} overnattingskandidater bruker kanoniske data.`);
