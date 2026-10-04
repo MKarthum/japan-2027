@@ -93,22 +93,20 @@ for(const [page,keys] of Object.entries(requiredPageCopy)){
   else for(const key of keys) if(typeof pages[page][key]!=='string'||!pages[page][key].trim()) errors.push(`pages.json: ${page}.${key} mangler`);
 }
 
-if (!flights.asOf || !flights.planningWindow?.baselineDepart || !flights.planningWindow?.baselineReturn || !Number.isInteger(flights.planningWindow?.flexDays)) {
+if (!flights.asOf || !Number.isInteger(flights.planningWindow?.flexDays) || flights.planningWindow.flexDays !== 3 || !flights.planningWindow?.summary) {
   errors.push('flights.json: planleggingsvindu er ufullstendig');
 }
-if (!Array.isArray(flights.datePairs) || flights.datePairs.length !== 7 || !flights.datePairs.some(x=>x.shift===0)) {
-  errors.push('flights.json: dato-matrisen skal dekke baseline ±3 dager');
-} else {
-  for (const pair of flights.datePairs) {
-    if (!Number.isInteger(pair.shift) || !pair.depart || !pair.return || dateDays(pair.depart,pair.return)!==flights.planningWindow.baselineNights) {
-      errors.push(`flights.json: ugyldig 14-netters datopar ${pair.label||pair.shift}`);
-    }
-  }
+if ('baselineDepart' in (flights.planningWindow||{}) || 'baselineReturn' in (flights.planningWindow||{}) || 'datePairs' in flights) {
+  errors.push('flights.json: reisedatoer eies av trip.json; flydata skal bare lagre fleksibilitetsregelen');
 }
-for (const [key,min] of [['itineraryPatterns',4],['carrierOptions',6],['fareObservations',3],['packageChecks',3],['manualSearches',6],['sources',8]]) {
+if (!Number.isFinite(flights.bookingSignals?.tokyo?.bestWeeksBefore) || !Number.isFinite(flights.bookingSignals?.osaka?.bestWeeksBefore)) {
+  errors.push('flights.json: bookingSignals mangler');
+}
+for (const [key,min] of [['itineraryPatterns',4],['carrierOptions',6],['fareObservations',3],['packageChecks',3],['manualSearches',6]]) {
   if (!Array.isArray(flights[key]) || flights[key].length < min) errors.push(`flights.json: ${key} mangler tilstrekkelig beslutningsgrunnlag`);
   else uniqueIds(flights[key],`flights.json ${key}`);
 }
+if (!Array.isArray(flights.sources) || flights.sources.length < 8) errors.push('flights.json: kildelisten er for svak');
 const httpsOnly=(url)=>/^https:\/\//.test(url||'') && !/[?&](?:token|session|account|profile|user|booking(?:ref|reference)|pnr)=/i.test(url||'');
 for (const row of flights.carrierOptions || []) {
   if (!row.airline || !row.hub || !row.fit || !row.tokyo || !row.osaka || !row.why || !httpsOnly(row.officialSearch) || !httpsOnly(row.routeSource)) {
