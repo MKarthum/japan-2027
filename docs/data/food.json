@@ -44,10 +44,6 @@
       "why": "Et bevisst «stor restaurant»-valg: klassisk sushihåndverk og en kjent Ginza-institusjon, ikke bare enda et sted å spise sushi.",
       "fit": "Ginza / Marunouchi-dag eller en egen god lunsj",
       "priceClass": "¥¥¥",
-      "familyEstimateYen": [
-        33000,
-        44000
-      ],
       "priceBasis": "4 lunsjmenyer på nivå Oribe–Karatsu. Drikke, privatrom og eventuelt service kommer i tillegg.",
       "booking": "Bestill i god tid. Avklar plassering og familiebehov ved reservasjon.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Ginza+Kyubey+Ginza+Main+Tokyo",
@@ -99,7 +95,11 @@
         "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "type": "licensed"
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        33000,
+        44000
+      ]
     },
     {
       "id": "uobei-shibuya",
@@ -112,10 +112,6 @@
       "why": "Billig, raskt og morsomt i Shibuya. Poenget er teknologi og lav terskel – ikke at dette skal være turens beste sushi.",
       "fit": "Shibuya-kveld når vi vil spise uten mye logistikk",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        4000,
-        8000
-      ],
       "priceBasis": "Omtrent ¥1 000–2 000 per person, avhengig av antall tallerkener og tilbehør.",
       "booking": "Ingen grunn til å bygge dagen rundt stedet; bruk det hvis køen er grei.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Uobei+Shibuya+Dogenzaka+Tokyo",
@@ -157,7 +153,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g1066456-d3871559-Reviews-Uobei_Shibuya_Dogenzaka-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        4000,
+        8000
+      ]
     },
     {
       "id": "tsujihan-nihonbashi",
@@ -170,10 +170,6 @@
       "why": "Et svært godt verdi-valg for rå og marinert sjømat uten omakase-pris eller formalitet. Her er retten viktigere enn restaurantstatusen.",
       "fit": "Nihonbashi / Tokyo Station / Marunouchi",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        5400,
-        10000
-      ],
       "priceBasis": "Fire porsjoner fra Ume til Matsu, basert på menyen kontrollert 3. oktober 2026.",
       "booking": "Tar ikke reservasjoner; legg inn litt købuffer.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Tsujihan+Nihonbashi+Tokyo",
@@ -216,7 +212,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g14129589-d6211497-Reviews-Tsujihan-Nihonbashi_Chuo_Tokyo_Tokyo_Prefecture_Kanto.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        5400,
+        10000
+      ]
     },
     {
       "id": "gyukatsu-motomura-akihabara",
@@ -229,10 +229,6 @@
       "why": "En tydelig japansk matopplevelse som også er enkel å forstå for barn, og som passer naturlig inn i en Akihabara-dag.",
       "fit": "Akihabara",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        8000,
-        12000
-      ],
       "priceBasis": "Planestimat basert på publiserte priser rundt ¥2 000–3 000 per person, kontrollert 3. oktober 2026.",
       "booking": "Velg filial etter dagsruten; dette er ikke et sted vi bør reise på tvers av byen for.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Gyukatsu+Motomura+Akihabara+Tokyo",
@@ -274,7 +270,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g1066443-d14028838-Reviews-Gyukatsu_Motomura_Akihabara-Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        8000,
+        12000
+      ]
     },
     {
       "id": "maisen-aoyama",
@@ -287,10 +287,6 @@
       "why": "Et mer familievennlig valg for klassisk tonkatsu enn flere av de mest profilerte små spesialrestaurantene, samtidig som hovedrestauranten har egen identitet.",
       "fit": "Harajuku / Omotesando",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        8000,
-        12000
-      ],
       "priceBasis": "Fire hovedretter på ca. ¥2 000–3 000 per person, basert på priser kontrollert 3. oktober 2026.",
       "booking": "Praktisk som lunsj eller tidlig middag; helger kan være travle.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Tonkatsu+Maisen+Aoyama+Honten+Tokyo",
@@ -332,7 +328,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g1066456-d807531-Reviews-Tonkatsu_Maisen_Aoyama-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        8000,
+        12000
+      ]
     },
     {
       "id": "rokurinsha-tokyo-station",
@@ -345,10 +345,6 @@
       "why": "Gir oss en ramen-relatert opplevelse som faktisk skiller seg fra vanlig ramen, og ligger ekstremt praktisk til i Tokyo Station.",
       "fit": "Tokyo Station / ankomst, avreise eller Marunouchi",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        3400,
-        5000
-      ],
       "priceBasis": "Fire nudelretter, basert på prisnivået kontrollert 3. oktober 2026.",
       "booking": "Ingen grunn til reservasjon; kø kan være ulempen.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Rokurinsha+Tokyo+Station",
@@ -391,7 +387,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g14129528-d1698070-Reviews-Rokurinsha_Tokyo_Ramen_Street-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        3400,
+        5000
+      ]
     },
     {
       "id": "kikunoi-honten",
@@ -404,10 +404,6 @@
       "why": "Hvis vi skal ha ett virkelig stort tradisjonelt japansk måltid på turen, er dette typen sted som gir mening: flere timer, sesongmeny, rom og servering som del av opplevelsen.",
       "fit": "Higashiyama / Kōdai-ji – sett av selve måltidet som aktivitet",
       "priceClass": "¥¥¥¥",
-      "familyEstimateYen": [
-        75900,
-        101200
-      ],
       "priceBasis": "4 x de to rimeligste lunsjkursene (¥16 500–22 000) + 15 % service. Drikke kommer i tillegg.",
       "booking": "Må planlegges og bestilles. Familiekrav og kurs for barn må bekreftes ved booking.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Kikunoi+Honten+Kyoto",
@@ -450,7 +446,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298564-d1663413-Reviews-Kikunoi_Honten-Kyoto_Kyoto_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        75900,
+        101200
+      ]
     },
     {
       "id": "muge-kikunoi",
@@ -463,10 +463,6 @@
       "why": "En smart mellomløsning: mat og miljø fra Kikunoi-universet uten prisen og tidsbruken til full kaiseki på Honten.",
       "fit": "Higashiyama / Kōdai-ji",
       "priceClass": "¥¥¥",
-      "familyEstimateYen": [
-        28600,
-        28600
-      ],
       "priceBasis": "4 x ¥5 500 lunsj + ¥1 650 sitteavgift per person, før drikke.",
       "booking": "Lunsjen kan reserveres. Restaurantens publiserte regler oppgir at barn 6 år og yngre ikke tillates.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Mugesambo+Salon+de+Muge+Kyoto",
@@ -509,7 +505,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298564-d13417351-Reviews-Salon_de_Muge-Kyoto_Kyoto_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        28600,
+        28600
+      ]
     },
     {
       "id": "omen-ginkakuji",
@@ -522,10 +522,6 @@
       "why": "En etablert Kyoto-lunsj som passer direkte inn ved Ginkaku-ji og gir et rolig, annerledes nudelmåltid.",
       "fit": "Ginkaku-ji / Philosopher’s Path",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        6080,
-        13920
-      ],
       "priceBasis": "Fire hovedretter fra enkel Omen til spesialsett; barnemeny kan gjøre totalen lavere.",
       "booking": "Kan få kø; sjekk reservasjonsregler før turen.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Omen+Ginkakuji+Kyoto",
@@ -568,7 +564,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298564-d1664756-Reviews-Myodai_Omen_Ginkakuji_Honten-Kyoto_Kyoto_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        6080,
+        13920
+      ]
     },
     {
       "id": "katsukura-porta",
@@ -581,10 +581,6 @@
       "why": "Ikke en destinasjon, men en svært nyttig kvalitetsbackup rett ved Kyoto Station når en lang dag trenger en enkel avslutning.",
       "fit": "Kyoto Station / transportdag",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        5500,
-        10600
-      ],
       "priceBasis": "Omtrent fire enkle til mellomstore sett; barnemeny finnes og kan redusere totalen.",
       "booking": "Tar ikke reservasjoner på Porta-filialen.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta",
@@ -627,7 +623,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298564-d1671300-Reviews-Katsukura_Kyoto_Station_Bldg_The_Cube-Kyoto_Kyoto_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        5500,
+        10600
+      ]
     },
     {
       "id": "hiraso-nara",
@@ -640,10 +640,6 @@
       "why": "Kakinoha-zushi – sushi pakket i persimmonblad – er en tydelig regional Nara-tradisjon og gir lunsjen en sterk lokal identitet.",
       "fit": "Naramachi / Sarusawa-ike / mellom Kintetsu Nara og tempelområdet",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        6600,
-        11600
-      ],
       "priceBasis": "Fire måltider fra kakinoha-sushi-assortert til Mahoroba-lunsj.",
       "booking": "Enkel å bruke som lunsj i Nara-dagen.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Hiraso+Nara+Kakinoha+Sushi",
@@ -686,7 +682,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298198-d1691259-Reviews-Hiraso_Nara-Nara_Nara_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        6600,
+        11600
+      ]
     },
     {
       "id": "tamagoya-himeji",
@@ -699,10 +699,6 @@
       "why": "Rett foran slottet og mer stedsspesifikt enn enda en udon. En enkel japansk rett blir selve poenget med lunsjen.",
       "fit": "Himeji Castle – rett før eller etter besøket",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        6400,
-        10400
-      ],
       "priceBasis": "Fire sett fra ¥1 600 til ¥2 600, basert på menyen kontrollert 3. oktober 2026.",
       "booking": "Bruk som rask lunsj på transittdagen; sjekk åpningstid mot togtid.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Tamagoya+Himeji+Castle",
@@ -744,7 +740,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298191-d3937040-Reviews-Tamagoya-Himeji_Hyogo_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        6400,
+        10400
+      ]
     },
     {
       "id": "menme-himeji",
@@ -757,10 +757,6 @@
       "why": "Billig og ukomplisert i nærheten av slottet. Bra hvis tidsplanen sprekker, men ikke et sted som alene rettferdiggjør restaurantplanlegging.",
       "fit": "Himeji Castle / vei mot stasjonen",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        2600,
-        4000
-      ],
       "priceBasis": "Typisk under ¥1 000 per person, basert på prisnivået kontrollert 3. oktober 2026.",
       "booking": "Ingen reservasjon. Åpningstidene som ble kontrollert 3. oktober 2026 oppgir onsdag som stengt; bekreft før besøket.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Sanuki+Udon+Menme+Himeji",
@@ -802,7 +798,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298191-d1698589-Reviews-Memme-Himeji_Hyogo_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        2600,
+        4000
+      ]
     },
     {
       "id": "micchan-hatchobori",
@@ -815,10 +815,6 @@
       "why": "Et bedre «historien bak retten»-valg: hovedbutikken knytter okonomiyaki-opplevelsen til Mitsuo Ise og utviklingen av Hiroshima-stilen.",
       "fit": "Sentrum / Hatchobori",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        3600,
-        8200
-      ],
       "priceBasis": "Fire klassiske til mer påkostede okonomiyaki-retter; enklere barnevalg finnes.",
       "booking": "Stor og relativt enkel å bruke; sjekk kø mot dagsplanen.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Micchan+Sohonten+Hatchobori+Hiroshima",
@@ -861,7 +857,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298561-d1701632-Reviews-Mitchan_Sohonten_Hatchobori-Hiroshima_Hiroshima_Prefecture_Chugoku.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        3600,
+        8200
+      ]
     },
     {
       "id": "nagataya-hiroshima",
@@ -874,10 +874,6 @@
       "why": "Mindre viktig som «berømt restaurant» enn Micchan, men ekstremt praktisk ved Peace Park og derfor et sterkt valg på den faktiske Hiroshima-dagen.",
       "fit": "Peace Memorial Park / Atomic Bomb Dome",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        3600,
-        6400
-      ],
       "priceBasis": "Fire retter fra klassisk kjøtt/egg/nudler til Nagataya-special.",
       "booking": "Bruk hvis køen og tidspunktet passer etter Peace Park.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Nagataya+Hiroshima",
@@ -920,7 +916,11 @@
         }
       },
       "factsChecked": "2026-10-03",
-      "website": "http://nagataya-okonomi.com/"
+      "website": "http://nagataya-okonomi.com/",
+      "standardFamilyEstimateYen": [
+        3600,
+        6400
+      ]
     },
     {
       "id": "anagomeshi-ueno",
@@ -933,10 +933,6 @@
       "why": "Et sted der både restaurant og lokal rett henger tett sammen. Perfekt ved ferga og en av de tydeligste regionale matopplevelsene på ruten.",
       "fit": "Miyajimaguchi – før eller etter ferga",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        10120,
-        13360
-      ],
       "priceBasis": "Fire porsjoner fra liten til stor anagomeshi, basert på menyen kontrollert 3. oktober 2026.",
       "booking": "Seter kan ikke reserveres i matsalen; planlegg fleksibilitet rundt kø.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Anagomeshi+Ueno+Miyajimaguchi",
@@ -979,7 +975,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g1022438-d1230206-Reviews-Ueno_Anagomeshi_Miyajimaguchi_Honten-Hatsukaichi_Hiroshima_Prefecture_Chugoku.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        10120,
+        13360
+      ]
     },
     {
       "id": "kakiya-miyajima",
@@ -992,10 +992,6 @@
       "why": "Et dedikert østerssted på selve Miyajima gjør dette til mer enn «prøv en østers fra en bod». Mars er dessuten innenfor dagens sesong for rå østers.",
       "fit": "Miyajima – lunsj eller deling under øydagen",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        6000,
-        11600
-      ],
       "priceBasis": "Fra deling av grillede østers til fire komplette Kakiya-sett på ¥2 900.",
       "booking": "Kan brukes fleksibelt; menyen er nesten bare østers, så hele familien må ikke nødvendigvis velge full lunsj her.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Kakiya+Miyajima",
@@ -1037,7 +1033,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g1022438-d1670503-Reviews-Kakiya-Hatsukaichi_Hiroshima_Prefecture_Chugoku.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        6000,
+        11600
+      ]
     },
     {
       "id": "ajinoya-honten",
@@ -1050,10 +1050,6 @@
       "why": "Et sterkt hovedvalg for Osakas mest opplagte signaturmåltid, med delingssett som faktisk passer en familie på fire.",
       "fit": "Namba / Dōtonbori",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        7200,
-        12000
-      ],
       "priceBasis": "Offisiell 4-personers meny starter rundt ¥7 200; større bestilling og drikke løfter totalen.",
       "booking": "FastPass gir prioritert kø etter publiserte vilkår; kontroller vilkårene før besøket.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Ajinoya+Honten+Osaka",
@@ -1096,7 +1092,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g14134988-d1678755-Reviews-Ajinoya-Namba_Chuo_Osaka_Osaka_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        7200,
+        12000
+      ]
     },
     {
       "id": "wanaka-sennichimae",
@@ -1109,10 +1109,6 @@
       "why": "Dette trenger ikke være et restaurantmåltid. Det er en lavterskel Osaka-opplevelse vi kan dele mens vi går rundt Namba.",
       "fit": "Namba / Dōtonbori",
       "priceClass": "¥",
-      "familyEstimateYen": [
-        2600,
-        4000
-      ],
       "priceBasis": "Flere delbare porsjoner; 12 takoyaki kostet rundt ¥850 på menyen kontrollert 3. oktober 2026.",
       "booking": "Ingen planlegging utover å treffe stedet når vi er i området.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Takoyaki+Wanaka+Sennichimae+Honten+Osaka",
@@ -1155,7 +1151,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g14127623-d1663430-Reviews-Wanaka_Sennichimae_Honten-Chuo_Osaka_Osaka_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        2600,
+        4000
+      ]
     },
     {
       "id": "kushikatsu-daruma-dotonbori",
@@ -1168,10 +1168,6 @@
       "why": "Gir Osaka-listen en helt annen rett enn okonomiyaki/takoyaki, i et kjent og svært tilgjengelig format midt i området vi allerede skal besøke.",
       "fit": "Dōtonbori / Namba",
       "priceClass": "¥¥",
-      "familyEstimateYen": [
-        6000,
-        10000
-      ],
       "priceBasis": "Offisiell gjennomsnittspris er ca. ¥1 500–2 500 per person.",
       "booking": "Reservasjon før kl. 18 på hverdager er oppgitt som mulig; kontroller ordningen før besøket.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Kushikatsu+Daruma+Dotonbori+Osaka",
@@ -1214,7 +1210,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g14135010-d3460447-Reviews-Ganso_Kushikatsu_Daruma_Dotombori-Dotombori_Chuo_Osaka_Osaka_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        6000,
+        10000
+      ]
     },
     {
       "id": "endo-sushi-market",
@@ -1227,10 +1227,6 @@
       "why": "Dette er sushi med egen Osaka-historie og markedskontekst, ikke en kopi av Kyubey-opplevelsen. En god kandidat hvis vi vil ha seriøs sushi uten Ginza-formatet.",
       "fit": "Tidlig frokost/lunsj i Osaka – krever en liten avstikker til markedet",
       "priceClass": "¥¥¥",
-      "familyEstimateYen": [
-        16000,
-        32000
-      ],
       "priceBasis": "Planestimat på omtrent ¥4 000–8 000 per person, basert på publisert prisnivå kontrollert 3. oktober 2026.",
       "booking": "Åpningstidene kontrollert 3. oktober 2026 viser tidlig åpning, ettermiddagsstenging og stengt søndag/helligdager.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Chuo+Ichiba+Endo+Sushi+Osaka",
@@ -1273,7 +1269,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g298566-d1701362-Reviews-Endo_Sushi_Chuo_Ichiba-Osaka_Osaka_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        16000,
+        32000
+      ]
     },
     {
       "id": "harijyu-dotonbori",
@@ -1286,10 +1286,6 @@
       "why": "Et tradisjonelt kjøttmåltid som gir et annet splurge-alternativ enn sushi og kaiseki, rett i Dōtonbori.",
       "fit": "Dōtonbori-kveld",
       "priceClass": "¥¥¥",
-      "familyEstimateYen": [
-        28600,
-        35200
-      ],
       "priceBasis": "4 x lunsj-sukiyaki til ny pris fra nov. 2026 (¥7 150) opp til 4 x basis-sukiyaki ¥8 800. Prisene inkluderer service/skatt.",
       "booking": "Hovedrestauranten tar reservasjoner fra 2 personer.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Harijyu+Dotonbori+Honten+Osaka",
@@ -1333,7 +1329,11 @@
           "url": "https://www.tripadvisor.com/Restaurant_Review-g14135010-d1702654-Reviews-Hariju_Grill_Dotonbori_Honten-Dotombori_Chuo_Osaka_Osaka_Prefecture_Kinki.html"
         }
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": [
+        28600,
+        35200
+      ]
     },
     {
       "id": "tsuta-watch",
@@ -1346,7 +1346,6 @@
       "why": "Tsuta var verdens første ramenrestaurant med Michelin-stjerne og er derfor interessant – men den har annonsert at den forlater Yoyogi-Uehara våren 2027.",
       "fit": "Tokyo – bare hvis ny lokasjon og datoer passer reisevinduet",
       "priceClass": "–",
-      "familyEstimateYen": null,
       "priceBasis": "Ikke brukt i budsjettet før ny lokasjon og meny er kjent.",
       "booking": "Ny lokasjon og meny må være publisert før stedet kan planlegges.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Japanese+Soba+Noodles+Tsuta+Tokyo",
@@ -1371,7 +1370,8 @@
         "google": null,
         "tripadvisor": null
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "standardFamilyEstimateYen": null
     }
   ]
 }

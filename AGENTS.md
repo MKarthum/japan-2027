@@ -18,7 +18,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Nye steder går i `docs/data/places.json` og vises via `place.html?id=<id>`. Stedet skal eie navn, beskrivelse, kart, bilde/illustrasjon og eksterne lenker i samme objekt.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
 - Overnattingskandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Filen eier også overnattingsformer og alternative sammenligningsspor. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
-- Reiseetapper, priser og stasjoner går i `docs/data/transport.json`.
+- Reiseetapper, priser og stasjoner går i `docs/data/transport.json`. `standardFamilyYen` er basisprisen for standardfamilien; valgt prisscenario skaleres i visningslaget.
 - Rute og dagsturer refererer til steder med ID. Ikke lagre navn eller koordinater i `trip.json` når de allerede finnes i `places.json`.
 - Destinasjonsfarger og hvilke områder som arver dem eies av `docs/data/trip.json`. Steder, restaurantkort, kartmarkører og rutelinjer skal avlede fargen derfra.
 - `docs/data/route-geometry.json` eier bare fysisk linjegeometri og spor-offset. Ikke legg destinasjonsfarger eller annen domenedata i geometrifilen.
@@ -41,7 +41,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Rutesiden er et navigasjonspunkt, ikke en blindvei. Hvert hovedstopp skal gi tydelige veier videre til stoppdetalj, filtrerte Steder/Mat og aktuell Overnatting. Filteret skal kunne åpnes direkte med `?base=<routeId>`.
 - På mobil skal stedslister være kompakte rader med fast, smal bildekolonne. Ikke la bilde-/fallbackflaten få automatisk full kortbredde eller prosentvis høyde som kan vokse sirkulært i Safari.
 - Kort som inneholder bildekreditering må ikke pakkes i én ytre `<a>`; krediteringen inneholder selv lenke og gir ugyldig nested-anchor HTML. Bruk egen primærlenke/overlay slik at hele kortet kan klikkes uten ugyldig DOM.
-- På rutekartet skal detaljpanelet under kartet alltid følge den popupen som faktisk åpnes. Bind synkronisering til MapLibre-popupens `open`-hendelse, ikke et separat marker-click. Bare valg av rutelinje/etappe skal vise strekning og pris; valg av sted, mat, overnatting, stopp eller knutepunkt skal vise det objektet. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
+- På rutekartet skal detaljpanelet under kartet alltid følge den popupen som faktisk åpnes. Bind synkronisering til MapLibre-popupens `open`-hendelse, ikke et separat marker-click. Kart-popupen skal være minimal: kategori + navn + «Detaljer under kartet». Beskrivelse, pris og kontekst hører hjemme i panelet under kartet. Bare valg av rutelinje/etappe skal vise strekning og pris. `mapSelectionPopupHtml()` er den delte popup-primitiven. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
 - Ikke kopier markup for en eksisterende objekttype for å lage en ny variant. Utvid den delte helperen/klassen når semantikken er den samme. Hvis en delt visning endres visuelt, skal alle brukere av komponenten få endringen samtidig.
 - CSS skal ha én kanonisk layoutdefinisjon per delt komponent. Ikke legg nye versjonslag med samme selektor nederst i filen; konsolider eksisterende regel når komponenten endres.
 
@@ -66,9 +66,18 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbeidssted, bookingreferanser, eksakte flydetaljer, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som identifiserer eller lokaliserer konkrete personer.
 
+## Prisscenarier
+
+- `trip.json.priceParties` eier prisgruppene. Standardvisningen er én familie med 2 voksne + 2 barn. Et andre scenario viser to familier, foreløpig 4 voksne + 4 barn.
+- Standardfamilien er én prisbasis på tvers av domener: steder bruker `price.standardFamilyRangeYen`, mat `standardFamilyEstimateYen`, overnatting `standardFamilyNightYen` og transport `fare.standardFamilyYen`.
+- Transport må bruke `standardFamily.railFareMix`, ikke bare telle «barn»: JR bruker normalt voksenpris fra 12 år. Ikke publiser eksakte personlige aldre; lagre bare nødvendig billettmiks.
+- Valgt scenario styres av `?party=<scenarioId>` og kan huskes lokalt i nettleseren. Standard er alltid én familie.
+- To-familiepris for transport, mat og inngang kan skaleres fra standardfamilien. Overnatting er bare et sammenligningsanslag når det skaleres; større leiligheter/hele boliger kan gi annen totalpris.
+- Alle steder skal ha et eksplisitt `price`-objekt. Gratis steder merkes `free` og vises som «Gratis»; dynamiske eller ufullstendige priser skal aldri fylles ut ved gjetning. Prisfelt skal ha `checked` og `source`.
+
 ## Priser og valuta
 
-- `docs/data/fx.json` eier live-endepunkt og lagret fallback. Nettstedet skal hente siste ECB-referansekurs ved sidelasting og bruke fallback bare ved nettverks-/API-feil.
+- `docs/data/fx.json` eier endepunkt og lagret fallback. Nettstedet skal hente siste tilgjengelige ECB-referansekurs ved sidelasting og bruke fallback bare ved nettverks-/API-feil. ECB publiserer på virkedager; i helger er en kursdato fra foregående virkedag korrekt. UI skal derfor si «Siste ECB-referansekurs (virkedager)», ikke antyde at kalenderdatoen skal være dagens.
 - Budsjett og norske rammebeløp har NOK som primærvaluta og JPY beregnes ved siden av.
 - Faktiske japanske priser har JPY som kildevaluta og NOK beregnes ved siden av med samme livekurs.
 - Ikke hardkod separate valutakurser i visninger eller data.

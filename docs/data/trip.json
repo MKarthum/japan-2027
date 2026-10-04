@@ -188,8 +188,28 @@
       "baseId": "hiroshima"
     }
   ],
-  "planningParty": {
-    "adults": 2,
-    "children": 2
+  "priceParties": {
+    "defaultScenarioId": "one-family",
+    "standardFamily": {
+      "adults": 2,
+      "children": 2,
+      "railFareMix": {
+        "adult": 3,
+        "child": 1
+      }
+    },
+    "scenarios": [
+      {
+        "id": "one-family",
+        "label": "1 familie",
+        "families": 1
+      },
+      {
+        "id": "two-families",
+        "label": "2 familier",
+        "families": 2
+      }
+    ],
+    "note": "To-familievisningen legger foreløpig til en familie med samme 2+2-struktur og samme prisprofil som standardfamilien. Det er et sammenligningsanslag. Transport kan justeres når alders-/billettkategoriene i familie nummer to er kjent, og overnatting kan bli billigere per familie med større leiligheter eller hele boliger."
   }
 }

@@ -3,7 +3,7 @@
   "currency": "JPY",
   "strategy": "Shinkansen og regionaltog er ryggraden mellom hovedstoppene. På reisedager med sightseeing eller omveier kan bagasjefrakt brukes for å gjøre logistikken enklere.",
   "fareBasis": "Representative pris- og tidsanslag for de planlagte etappene, kontrollert 3. oktober 2026. Bekreft pris og avgang før bestilling.",
-  "childNote": "2V+2B betyr to voksenbilletter og to barnebilletter. JR-reglene kontrollert 3. oktober 2026 oppgir normalt barnepris for 6–11 år; fra 12 år brukes normalt voksenpris.",
+  "childNote": "JR bruker normalt barnepris for 6–11 år og voksenpris fra 12 år. Standardfamilien prises derfor med riktig voksen-/barnebillettmiks, uten å publisere personlige aldersopplysninger.",
   "legs": [
     {
       "id": "tokyo-hakone",
@@ -16,7 +16,7 @@
       "fare": {
         "adultYen": 2470,
         "childYen": 1240,
-        "planningPartyYen": 7420
+        "standardFamilyYen": 8650
       },
       "stations": [
         {
@@ -51,7 +51,7 @@
       "fare": {
         "adultYen": 12660,
         "childYen": 6320,
-        "planningPartyYen": 37960
+        "standardFamilyYen": 44300
       },
       "stations": [
         {
@@ -105,7 +105,7 @@
       "fare": {
         "adultYen": 5270,
         "childYen": 2630,
-        "planningPartyYen": 15800
+        "standardFamilyYen": 18440
       },
       "stations": [
         {
@@ -146,7 +146,7 @@
       "fare": {
         "adultYen": 8440,
         "childYen": 4210,
-        "planningPartyYen": 25300
+        "standardFamilyYen": 29530
       },
       "stations": [
         {
@@ -187,7 +187,7 @@
       "fare": {
         "adultYen": 11130,
         "childYen": 5560,
-        "planningPartyYen": 33380
+        "standardFamilyYen": 38950
       },
       "stations": [
         {

@@ -18,15 +18,15 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 ## Kanoniske dataeiere
 
-- `docs/data/trip.json`: reisevindu, hovedrute, budsjett, oversiktskuratering og destinasjonstemaer/farger. Destinasjonsfargen er én felles identitet for rute, steder, opplevelser og mat.
-- `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon og eksterne lenker.
+- `docs/data/trip.json`: reisevindu, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
+- `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris. Hvert sted skal ha eksplisitt `price`, også når prisen er «Gratis».
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
 - `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
 - `docs/data/transport.json`: intercity-etapper, tider, priser og stasjoner.
 - `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
 - `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.
-- `docs/data/prep.json`: forberedelser før turen og deres kobling til steder via `placeIds`. Medie-/forberedelseskoblinger skal ikke dupliseres i `places.json` eller `guide.json`.
-- `docs/data/fx.json`: live valutakilde + lagret ECB-fallback. Alle omregninger skal gå gjennom den felles `loadFx()`-funksjonen.
+- `docs/data/prep.json`: forberedelser før turen og deres kobling til steder via `placeIds`. Inneholder familieinnhold, tydelig merket vokseninnhold og en egen historie-læringssti. Medie-/forberedelseskoblinger skal ikke dupliseres i `places.json` eller `guide.json`.
+- `docs/data/fx.json`: siste tilgjengelige ECB-kurs via nettendepunkt + lagret fallback. ECB oppdaterer kun virkedager; helgedato fra siste virkedag er forventet. Alle omregninger går gjennom `loadFx()`.
 - `docs/data/pages.json`: offentlig sidebudskap og forklarende tekst som ikke tilhører et konkret domene. HTML peker på feltene med `data-copy`.
 - `docs/data/sources.json`: felles kildeliste.
 
@@ -61,11 +61,22 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Steder, Mat og Overnatting skal bruke samme destinasjons-/basefilter basert på `trip.json`, slik at Nara arver Kyoto, Miyajima arver Hiroshima osv. Filteret støtter `?base=<routeId>` for lenking mellom sider.
 - Rutesiden skal lenke videre fra hvert stopp til relevant stoppdetalj, Steder, Mat og Overnatting. Kart-popupene skal være korte; full prisdetalj hører hjemme i panelet under kartet.
 - Mobilvisningen av Steder skal følge den kompakte ruten: smalt bilde til venstre, tekst til høyre. Stor tom medieflate over bildet er en regresjon. Ikke pakk hele kortet i en `<a>` når bildekrediteringen også inneholder lenke.
-- Rutedetaljpanelet under kartet skal vise det som faktisk ble valgt på kartet. Synkroniseringen skal følge popupens `open`-hendelse. Strekning/pris vises bare når en rutelinje eller etappe velges.
+- Rutedetaljpanelet under kartet skal vise det som faktisk ble valgt på kartet. Synkroniseringen følger popupens `open`-hendelse. Popupen på selve kartet holdes bevisst kort (kategori + navn + detaljlenke); beskrivelse, pris og navigasjon ligger i panelet under. Strekning/pris vises bare når en rutelinje eller etappe velges.
 - Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side. Ikke behold eldre CSS-varianter av samme komponent som overlappende override-lag.
 - Nettsiden skal leses som én aktuell utgave, ikke som en logg over tidligere utgaver.
 - `site.json` inneholder kun versjon og publiseringsdato. Versjonen bumpes ved hver publisert endring på `main`.
 - Releases til `main` skal være atomiske. Bruk arbeidsbranch og squash-merge når en endring berører flere filer.
+
+## Pris- og læringsmodell per v0.20
+
+- Standard prisgruppe: én familie, 2 voksne + 2 barn. Dette er default ved førstegangsvisning.
+- Alternativt scenario: to familier, 4 voksne + 4 barn. Velges med prisvelgeren og kan åpnes som `?party=two-families`; nettleseren husker valget lokalt.
+- Familie nummer to har foreløpig samme prisprofil som standardfamilien. Dette er et plananslag som skal kunne justeres når billettkategoriene er kjent.
+- JR-prising teller ikke alle «barn» som barnebillett: voksenpris gjelder normalt fra 12 år. Standardfamilien har derfor en separat `railFareMix` uten at eksakte aldre publiseres.
+- Overnatting skalert til to familier er kun sammenligningsgrunnlag. Egen feriebolig, stor leilighet eller annen felles løsning kan bli billigere enn to identiske familieenheter.
+- Alle 24 steder har et `price`-objekt med status, kontroll-dato og kilde. Gratis steder vises eksplisitt som gratis; dynamiske priser vises som intervall/fra-pris eller avventer salgsdato.
+- «Før turen» skal ikke være en barneliste eller en Assassin’s Creed-liste. Den har egne voksenforslag og historie, og skal gi flere innganger til Japan: historie, hverdagsliv, litteratur, film/TV, spill, mat og språk.
+- Historieløypa dekker minst Sengoku/samlingen av Japan, Meiji/modernisering, andre verdenskrig/Hiroshima og etterkrigstid/popkultur.
 
 ## Før publisering
 
