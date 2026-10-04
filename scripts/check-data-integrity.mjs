@@ -262,8 +262,20 @@ for (const group of prep) {
       if (!item.streamingChecked || !imdb || !stream) {
         errors.push(`prep.json: ${item.id} mangler IMDb, strømmetjeneste eller kontrolldato`);
       }
-      if (stream?.label==='Netflix' && !stream.url?.startsWith('https://www.netflix.com/title/')) errors.push(`prep.json: ${item.id} bruker ikke direkte Netflix-innholdsside`);
-      if (stream?.label==='Disney+' && !stream.url?.startsWith('https://www.disneyplus.com/browse/entity-')) errors.push(`prep.json: ${item.id} bruker ikke direkte Disney+-innholdsside`);
+      if (stream) {
+        const canonicalStreamUrl = {
+          'Netflix': /^https:\/\/www\.netflix\.com\/title\/\d+$/,
+          'Disney+': /^https:\/\/www\.disneyplus\.com\/browse\/entity-[0-9a-f-]+$/i,
+          'Apple TV': /^https:\/\/tv\.apple\.com\/no\/(?:movie|show)\/[^/?#]+\/umc\.cmc\.[A-Za-z0-9]+$/,
+          'Filmoteket (nett)': /^https:\/\/filmoteket\.no\/film\/\d+$/
+        };
+        const pattern=canonicalStreamUrl[stream.label];
+        if (!pattern) errors.push(`prep.json: ${item.id} bruker ukjent strømmetjenesteformat ${stream.label}`);
+        else if (!pattern.test(stream.url||'')) errors.push(`prep.json: ${item.id} bruker ikke kanonisk direkte lenke for ${stream.label}`);
+        if (stream.appUrl || /sharesource=|[?&](?:token|session|account|profile|user)=/i.test(stream.url||'')) {
+          errors.push(`prep.json: ${item.id} har app-/delings-/kontoformat i strømmetjenestelenken`);
+        }
+      }
     }
     if (group.category==='Mat' && !(item.links||[]).some(x=>x.kind==='recipe')) errors.push(`prep.json: ${item.id} mangler oppskriftslenke`);
     if (group.category==='Små mål' && (!item.detail?.summary || !Array.isArray(item.detail?.steps) || item.detail.steps.length < 3)) errors.push(`prep.json: ${item.id} mangler detaljert gjennomføring`);
