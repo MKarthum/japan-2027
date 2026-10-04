@@ -1682,6 +1682,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 }
 .flight-decision aside>strong{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em}
 .flight-decision aside a{color:#fff;font-size:.8rem;font-weight:850}
+.flight-decision aside a.button{color:var(--ink)}
 .flight-principles{
   margin-top:18px;
   padding-top:15px;
