@@ -315,7 +315,7 @@ async function renderHome() {
 async function renderFlights() {
   await applyPageCopy('flights');
   nav('flights'); footer();
-  const [data,trip]=await Promise.all([json('data/flights.json'),json('data/trip.json')]);
+  const [data,trip,transport,fx]=await Promise.all([json('data/flights.json'),json('data/trip.json'),json('data/transport.json'),loadFx()]);
   const dateLabel=(iso)=>new Intl.DateTimeFormat('nb-NO',{weekday:'short',day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(`${iso}T12:00:00Z`));
   const checkedLabel=(iso)=>fmtLongDate(iso);
   const shiftDate=(iso,days)=>{ const d=new Date(`${iso}T12:00:00Z`); d.setUTCDate(d.getUTCDate()+days); return d.toISOString().slice(0,10); };
@@ -332,16 +332,16 @@ async function renderFlights() {
   decision.innerHTML=`
     <div class="flight-decision-main">
       <span class="flight-kicker">Første beslutning</span>
-      <h2>Pris fly før resten av datoene låses</h2>
+      <h2>${data.research.title}</h2>
       <p>${data.planningWindow.summary}</p>
       <div class="flight-decision-stats">
         <div><span>Baseline</span><strong>${dateLabel(baselineDepart)} – ${dateLabel(baselineReturn)}</strong></div>
         <div><span>Fleks</span><strong>±${data.planningWindow.flexDays} dager</strong></div>
-        <div><span>Flybudsjett</span><strong>${Array.isArray(flyBudget)?`${fmtNok(flyBudget[0])}–${fmtNok(flyBudget[1])}`:'Planramme'}</strong></div>
+        <div><span>Flybudsjett</span><strong>${Array.isArray(flyBudget)?dualRangeFromNok(flyBudget,fx):'Planramme'}</strong></div>
       </div>
       <div class="flight-principles"><strong>Slik velges vinneren</strong><ul>${data.decisionPrinciples.map(x=>`<li>${x}</li>`).join('')}</ul></div>
     </div>
-    <aside><strong>Timing</strong><p>${bookingTiming}</p><a href="#flight-searches-anchor">Gå til søkene ↓</a></aside>`;
+    <aside><strong>Søk for standardfamilien</strong><p>${data.research.partyNote}</p><div class="button-row">${data.manualSearches.filter(x=>x.stage==='start').map(x=>external(x.url,x.title)).join('')}</div></aside>`;
 
   document.getElementById('flight-patterns').innerHTML=data.itineraryPatterns.map(x=>`
     <article class="flight-pattern-card ${x.status==='Hovedspor'?'preferred':''}">
@@ -354,13 +354,35 @@ async function renderFlights() {
       ${x.evidenceUrl?external(x.evidenceUrl,'Se publisert eksempel'):''}
     </article>`).join('');
 
-  document.getElementById('flight-date-pairs').innerHTML=datePairs.map(x=>`
-    <div class="flight-date-pair ${x.shift===0?'baseline':''}">
-      <span>${x.label}</span>
-      <strong>${dateLabel(x.depart)}</strong>
-      <b>→</b>
-      <strong>${dateLabel(x.return)}</strong>
-    </div>`).join('');
+  const duration=(min)=>`${Math.floor(min/60)} t ${String(min%60).padStart(2,'0')}`;
+  const stamp=(iso)=>new Intl.DateTimeFormat('nb-NO',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'}).format(new Date(iso))+' UTC';
+  const money=(nok)=>dualMoneyHtml(fmtNok(nok),fmtJpy(jpyFromNok(nok,fx)));
+  const patterns=new Map(data.itineraryPatterns.map(x=>[x.id,x]));
+  const matchingRun=(pair,pattern)=>data.searchRuns.find(x=>x.patternId===pattern.id && x.departDate===pair.depart && x.returnDate===pair.return);
+  const matrix=document.getElementById('flight-date-pairs');
+  matrix.className='flight-matrix';
+  const drawMatrix=(sort='best')=>{
+    matrix.innerHTML=`<div class="flight-matrix-scroll" role="region" aria-label="Flypriser for datoer og reiseretninger" tabindex="0"><table><caption>${data.research.matrixTitle}</caption><thead><tr><th scope="col">Avreise / hjemreise</th>${data.itineraryPatterns.map(p=>`<th scope="col">${p.label}</th>`).join('')}</tr></thead><tbody>${datePairs.map(pair=>`<tr class="${pair.shift===0?'baseline':''}"><th scope="row">${pair.label}<small>${fmtDate(pair.depart)} – ${fmtDate(pair.return)}</small></th>${data.itineraryPatterns.map(p=>{
+      const run=matchingRun(pair,p),fare=run?.summaries[sort];
+      if(!fare)return '<td>Søk på nytt</td>';
+      const column=data.searchRuns.filter(x=>x.patternId===p.id && x.lengthDeltaDays===0 && datePairs.some(d=>d.depart===x.departDate && d.return===x.returnDate));
+      const lowest=Math.min(...column.map(x=>x.summaries[sort].priceNok));
+      return `<td class="${fare.priceNok===lowest?'flight-lowest':''}"><a href="${run.publicUrl}" target="_blank" rel="noopener" title="FINN · ${stamp(run.checkedAt)}">${money(fare.priceNok)}</a><small>${duration(fare.outboundDurationMin)} / ${duration(fare.inboundDurationMin)}</small>${Math.max(fare.outboundDurationMin,fare.inboundDurationMin)>1440?'<span class="flight-long">Over ett døgn én vei</span>':''}</td>`;
+    }).join('')}</tr>`).join('')}</tbody></table></div>`;
+  };
+  document.getElementById('flight-matrix-controls').innerHTML=`<p>${data.research.matrixNote}</p><label>FINN-sortering <select id="flight-sort"><option value="best">Best</option><option value="cheapest">Billigst</option><option value="fastest">Raskest</option></select></label><p class="small">${data.research.partyNote} Grønt markerer laveste viste pris i hver kolonne.</p>`;
+  drawMatrix();
+  document.getElementById('flight-sort').addEventListener('change',e=>drawMatrix(e.target.value));
+  const candidates=data.candidates;
+  document.getElementById('flight-candidates').innerHTML=`<div class="section-head"><div><h2>${data.research.candidateTitle}</h2><p>${data.research.candidateNote}</p></div></div><div class="flight-fare-grid">${candidates.map(c=>`<article class="flight-fare-card" id="candidate-${c.id}"><div class="flight-card-top"><span>${c.label}</span><span>${c.service}</span></div><h3>${money(c.price.amount)}</h3><strong>${patterns.get(c.patternId).label}</strong><p>${dateLabel(c.departDate)} – ${dateLabel(c.returnDate)}<br>${c.airlines.join(' + ')} · ${c.provider}</p><strong>${duration(c.outbound.durationMin)} ut · ${duration(c.inbound.durationMin)} hjem</strong><p>${c.why}</p><details><summary>Forbindelser og prisgrunnlag</summary><p>${c.outbound.from} → ${c.outbound.transferAirports.join(' → ')} → ${c.outbound.to}<br>${c.inbound.from} → ${c.inbound.transferAirports.join(' → ')} → ${c.inbound.to}</p><p>${c.outbound.stops} stopp ut / ${c.inbound.stops} hjem · lengste transfer ${duration(c.longestTransferMin)}</p><p>${c.baggage.cabinPiecesPerPerson!=null?`Håndbagasje: ${c.baggage.cabinPiecesPerPerson} per person. `:''}${c.baggage.checkedPiecesPerPerson!=null?`Innsjekket: ${c.baggage.checkedPiecesPerPerson} per person. `:''} ${c.baggage.evidence}</p><p>${c.connection.note}</p>${c.operatingAirlines?`<p>Operert av ${c.operatingAirlines.join(' + ')}</p>`:''}<small>${c.price.basis==='family-total'?'Søkt total for 2+2':'Søkt pris per person'} · ${stamp(c.checkedAt)}</small>${external(c.publicUrl,'Gjenta søket')}</details></article>`).join('')}</div>`;
+  const returnLeg=transport.flightReturnComparisons.find(x=>x.id===data.comparison.transportRef);
+  document.getElementById('flight-comparison').innerHTML=`<h2>${data.comparison.title}</h2><div class="flight-signal-grid">${data.comparison.pairs.map(p=>{
+    const left=candidates.find(x=>x.id===p.leftId),right=candidates.find(x=>x.id===p.rightId);
+    return `<article class="flight-signal-card"><h3>${p.title}</h3><p>${left.label}: ${dualFromNok(left.price.amount,fx)}<br>${right.label}: ${dualFromNok(right.price.amount,fx)}</p><p>${p.finding}</p></article>`;
+  }).join('')}<article class="flight-signal-card"><h3>${returnLeg.label}</h3><strong>${dualFromJpy(returnLeg.standardFamilyYen,fx)}</strong><p>${returnLeg.service}. Raskeste publiserte togtid: ${duration(returnLeg.fastestTrainMin)}. Sett av ${returnLeg.planningDoorToDoorHours.join('–')} timer dør til dør.</p><p>${returnLeg.note}</p><small>${checkedLabel(returnLeg.checked)} · <a href="${returnLeg.source}" target="_blank" rel="noopener">prisgrunnlag ↗</a> · <a href="${returnLeg.durationSource}" target="_blank" rel="noopener">togtid ↗</a></small></article></div><p class="small">${data.comparison.note}</p>`;
+  document.getElementById('flight-direct').innerHTML=`<h2>Direkte kontroll hos selskapene</h2><div class="flight-fare-grid">${data.directChecks.map(c=>`<article class="flight-fare-card"><span>${c.service} · ${stamp(c.checkedAt)}</span><h3>${c.price?money(c.price.amount):c.service}</h3>${c.price?`<small>${c.price.basis==='family-total'?'Total for 2+2':'Per person'}</small>`:''}${c.ticketType?`<strong>${c.ticketType}</strong>`:''}<p>${c.finding}</p>${c.baggage?`<p>${c.baggage}</p>`:''}${c.terms?`<p>${c.terms}</p>`:''}${c.termsContext?`<p>${c.termsContext}</p><a href="${c.termsSource}" target="_blank" rel="noopener">Generelle billettvilkår ↗</a>`:''}${external(c.publicUrl,'Søk direkte')}</article>`).join('')}</div>`;
+  document.getElementById('flight-research-limits').innerHTML=data.research.limits.map(x=>`<p class="small"><strong>${x.service} · ${stamp(x.checkedAt)}</strong> ${x.detail}</p>`).join('');
+  document.getElementById('flight-lengths').innerHTML=`<h3>Én dag kortere eller lengre</h3><p>${data.research.lengthNote}</p><div class="flight-matrix-scroll"><table><thead><tr><th>Oppsett</th><th>Datoer</th><th>FINN Best · 2+2</th><th>Ut / hjem</th></tr></thead><tbody>${data.searchRuns.filter(x=>x.lengthDeltaDays!==0).map(x=>`<tr><th>${patterns.get(x.patternId).label}</th><td>${fmtDate(x.departDate)} – ${fmtDate(x.returnDate)}<small>${x.lengthDeltaDays>0?'Én dag lengre':'Én dag kortere'}</small></td><td>${money(x.summaries.best.priceNok)}</td><td>${duration(x.summaries.best.outboundDurationMin)} / ${duration(x.summaries.best.inboundDurationMin)}</td></tr>`).join('')}</tbody></table></div>`;
 
   document.getElementById('flight-date-signals').innerHTML=data.dateSignals.map(x=>`
     <article class="flight-signal-card">
@@ -387,8 +409,8 @@ async function renderFlights() {
 
   document.getElementById('flight-fares').innerHTML=data.fareObservations.map(x=>`
     <article class="flight-fare-card">
-      <div class="flight-card-top"><span>${x.kind==='published-2027-fare'?'Publisert 2027-pris':x.kind==='dated-search-result'?'Datert søk':x.kind==='dated-airline-fare'?'Datert flyselskappris':x.kind==='current-route-from'?'Aktuell fra-pris':x.kind==='search-engine-from'?'Søkemotor · fra-pris':'Historisk nivå'}</span><span>${x.route}</span></div>
-      <h3>${Number.isFinite(x.priceNok)?fmtNok(x.priceNok):'Pris varierer'}</h3>
+      <div class="flight-card-top"><span>${x.kind==='published-2027-fare'?'Publisert 2027-fra-pris':x.kind==='indexed-dated-fare'?'Indeksert datert pris':x.kind==='dated-airline-fare'?'Datert publisert fra-pris':x.kind==='current-route-from'?'Aktuell fra-pris':x.kind==='search-engine-from'?'Søkemotor · fra-pris':'Historisk nivå'}</span><span>${x.route}</span></div>
+      <h3>${Number.isFinite(x.priceNok)?money(x.priceNok):'Pris varierer'}</h3>
       <strong>${x.dates}</strong>
       <p>${x.basis}</p><small>${x.use}</small>
       <a href="${x.source}" target="_blank" rel="noopener">Kilde · kontrollert ${checkedLabel(x.checked)} ↗</a>
@@ -405,7 +427,7 @@ async function renderFlights() {
     <article class="flight-package-card">
       <div class="flight-card-top"><span>${x.provider}</span><span>${x.kind}</span></div>
       <h3>${x.dates}</h3>
-      ${Number.isFinite(x.priceNok)?`<strong class="flight-package-price">${fmtNok(x.priceNok)} <small>per person</small></strong>`:''}
+      ${Number.isFinite(x.priceNok)?`<strong class="flight-package-price">${money(x.priceNok)} <small>per person · publisert fra-pris</small></strong>`:''}
       <p>${x.signal}</p><small>${x.compareAs}</small>
       ${external(x.url,'Åpne hos '+x.provider,true)}
     </article>`).join('');

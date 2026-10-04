@@ -3,7 +3,7 @@
   "status": "research-active",
   "planningWindow": {
     "flexDays": 3,
-    "summary": "Gjeldende reisevindu er baseline, men samme reiselengde skal flyttes opptil tre dager begge veier før datoene regnes som faste.",
+    "summary": "Osaka inn / Tokyo hjem har det billigste aktuelle treffet. Tokyo inn / Osaka hjem med KLM er et enklere alternativ med én mellomlanding hver vei. Prisene gjelder konkrete søk for 2 voksne + 2 barn og må prises på nytt før kjøp.",
     "sameLengthFirst": true,
     "thenVaryLengthDays": 1
   },
@@ -254,12 +254,12 @@
     },
     {
       "id": "momondo-osaka-23mar-one-stop",
-      "kind": "dated-search-result",
+      "kind": "indexed-dated-fare",
       "route": "OSL → KIX",
       "dates": "23. mars 2027",
       "priceNok": 7078,
       "basis": "énveis per reisende, 1 stopp via Bangkok, ca. 33 t 50 min",
-      "use": "Viser at datoen har søkbare billetter og at en senere avreise kan gi prisalternativer; ikke direkte sammenlignbar med en gjennomgående billett med ulike inn-/utreisebyer.",
+      "use": "Indeksert datert prisreferanse; ikke et gjennomført interaktivt familiesøk.",
       "checked": "2026-10-04",
       "source": "https://www.momondo.no/flybilletter/oslo-airport-gardermoen-osl/osaka-prefektur"
     },
@@ -321,52 +321,67 @@
   ],
   "packageChecks": [
     {
-      "id": "escape-japan-mar27",
+      "id": "finn-packages-japan",
+      "provider": "FINN Reise",
+      "kind": "Fly + hotell / pakkereise",
+      "dates": "Planens datoer · konkret familiepris krever riktig alder",
+      "signal": "Det interaktive pakkeskjemaet lot Japan og 2 voksne + 2 barn velges. Det viste ingen passende pakkereiser med skjemaets standardaldre. Barnas faktiske alder var ikke angitt, så dette er ingen verifisert konklusjon om tilgjengelighet for familien. Ingen pakkepris inngår i flysammenligningen.",
+      "compareAs": "Separat pakkesøk med alder per barn; ikke fly-only og ikke en bekreftet familiepris.",
+      "checked": "2026-10-04",
+      "url": "https://www.finn.no/reise/"
+    },
+    {
+      "id": "escape-spring",
       "provider": "Escape Travel",
-      "kind": "Gruppereise",
-      "dates": "22. mars–3. april 2027",
+      "kind": "Organisert rundreise",
+      "dates": "Avreise 22. mars 2027 · 14 dager",
       "priceNok": 75300,
-      "basis": "fra-pris per person for komplett gruppereise",
-      "signal": "Svært nyttig ruteindikasjon: Turkish Airlines OSL–IST–KIX ut og HND–IST–OSL hjem er publisert på nesten samme datoer som planen.",
-      "compareAs": "Ikke sammenlign direkte med flypris; pakken inkluderer langt mer enn fly.",
-      "url": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/",
-      "checked": "2026-10-04"
+      "signal": "Publisert fra-pris per person. Fly Oslo–Osaka / Tokyo–Oslo med Turkish, 11 hotellnetter, programtransport, utflukter, guide/reiseleder og angitte måltider.",
+      "compareAs": "Et komplett alternativ til egen rundreise. Ingen konkret 2+2-pris; beløpet skal ikke regnes som flypris.",
+      "checked": "2026-10-04",
+      "url": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/"
     },
     {
       "id": "ving-tokyo",
       "provider": "Ving",
       "kind": "Fly + hotell med rutefly",
-      "dates": "26. januar 2027, 9 dager / 7 hotellnetter",
-      "priceNok": 18295,
-      "basis": "pris per person i publisert eksempel, inkl. innsjekket bagasje",
-      "signal": "Viser at Ving pakker Tokyo med rutefly; bør sjekkes manuelt på våre datoer som prisbenchmark mot fly + hotell separat.",
-      "compareAs": "Pakkereise, ikke fly-only.",
-      "url": "https://www.ving.no/flyreiser/flyselskapene/qatar-airways",
-      "checked": "2026-10-04"
+      "dates": "Publisert eksempel: 5. desember 2026 · 6 dager / 4 hotellnetter",
+      "priceNok": 12895,
+      "signal": "Ving viser Agora Place Tokyo Asakusa fra 12 895 kr per person, inkludert innsjekket bagasje. Andre datoer og kortere tur enn planvinduet.",
+      "compareAs": "Generell pakkereferanse, ikke et tilbud for planens datoer eller standardfamilien.",
+      "checked": "2026-10-04",
+      "url": "https://www.ving.no/japan/tokyo"
     },
     {
-      "id": "tui-tokyo",
+      "id": "tui-japan",
       "provider": "TUI",
-      "kind": "Fly + hotell",
-      "dates": "Dynamisk",
-      "priceNok": null,
-      "basis": "Tokyo-siden tilbyr Fly + Hotell",
-      "signal": "Bør sjekkes rundt de aktuelle datoene; kan gi annen totalpris eller bedre forbrukerbeskyttelse enn separate kjøp.",
-      "compareAs": "Pakkereise, ikke fly-only.",
-      "url": "https://www.tui.no/feriereiser/japan/tokyo/hotell/",
-      "checked": "2026-10-04"
+      "kind": "Fly + hotell med rutefly",
+      "dates": "Fleksibel reiselengde",
+      "signal": "TUI tilbyr Japan med rutefly og hotell. Ingen dokumentert familiepris på planens datoer fra den åpne destinasjonssiden.",
+      "compareAs": "Sammenlign hotellplassering og totalt antall netter med egen rute, ikke med flyprisen alene.",
+      "checked": "2026-10-04",
+      "url": "https://www.tui.no/feriereiser/japan/"
     },
     {
-      "id": "apollo-tema",
-      "provider": "Apollo / TEMA",
-      "kind": "Temareise",
-      "dates": "12. mars 2027 finnes som publisert avreise på en Asia/Japan-reise",
-      "priceNok": null,
-      "basis": "plasser på forespørsel i den publiserte bookingvisningen",
-      "signal": "Ikke samme reise, men nyttig som charter-/temareise-watchlist for publiserte 2027-reiser fra Oslo.",
-      "compareAs": "Temareise, ikke fly-only.",
-      "url": "https://tema.apollo.no/booking/?btype=B&city=OSL&lang=no&tour_date_id=9236&tour_id=423",
-      "checked": "2026-10-04"
+      "id": "apollo-japan",
+      "provider": "Apollo",
+      "kind": "Fly + hotell",
+      "dates": "Valgfri dato og lengde",
+      "signal": "Apollo lar kunden sette sammen fly og hotell til Japan. Den åpne siden gir ikke en sammenlignbar 2+2-pris for reisevinduet.",
+      "compareAs": "Et Tokyo-opphold erstatter ikke hotell og transport i hele rundreisen.",
+      "checked": "2026-10-04",
+      "url": "https://www.apollo.no/japan"
+    },
+    {
+      "id": "tema-japan",
+      "provider": "TEMA",
+      "kind": "Organisert rundreise",
+      "dates": "Publisert Tokyo-program · 8 dager",
+      "priceNok": 39550,
+      "signal": "Tokyo med Hakone, Kamakura og Fuji-fjellet fra 39 550 kr per person i delt dobbeltrom. Dato og familieoppsett er ikke identiske med planen.",
+      "compareAs": "Generell rundreisereferanse; ikke ren flypris eller bekreftet 2027-familietilbud.",
+      "checked": "2026-10-04",
+      "url": "https://www.tema-reiser.no/reiser/asia/japan"
     }
   ],
   "safety": {
@@ -463,40 +478,40 @@
       "captureKey": "kayak-osaka"
     },
     {
-      "id": "finnair-direct",
-      "stage": "direct",
-      "priority": "Sjekk direkte etterpå",
-      "title": "Finnair · pris direkte",
-      "instruction": "Når Google/FINN har vist et interessant Finnair-alternativ, pris samme kombinasjon direkte hos Finnair og sammenlign bagasje, setevalg og endringsvilkår.",
-      "url": "https://www.finnair.com/no-no/",
-      "captureKey": "finnair"
-    },
-    {
-      "id": "turkish-direct",
-      "stage": "direct",
-      "priority": "Sjekk direkte etterpå",
-      "title": "Turkish Airlines · pris direkte",
-      "instruction": "Når Turkish ser konkurransedyktig ut i Google/FINN, pris samme kombinasjon direkte. Vi vet at Osaka inn / Haneda hjem finnes i publisert 2027-oppsett rundt planvinduet.",
-      "url": "https://www.turkishairlines.com/en-no/",
-      "captureKey": "turkish"
-    },
-    {
-      "id": "lufthansa-direct",
-      "stage": "direct",
-      "priority": "Sjekk direkte etterpå",
-      "title": "Lufthansa · pris direkte",
-      "instruction": "Pris den samme konkrete reisen direkte hos Lufthansa-gruppen hvis den dukker opp blant de beste i søkemotorene.",
-      "url": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-tokyo",
-      "captureKey": "lufthansa"
-    },
-    {
       "id": "packages",
       "stage": "package",
       "priority": "Pakkesjekk",
       "title": "Pakkereiser · sjekk om totalen overrasker",
-      "instruction": "Sjekk Escape, Ving, TUI og Apollo/TEMA. Ikke sammenlign personpris direkte med fly-only; sammenlign hva som faktisk er inkludert.",
-      "url": "https://www.ving.no/flyreiser/flyselskapene/qatar-airways",
+      "instruction": "Sjekk Escape, Ving, TUI, Apollo og TEMA som separate aktører. Sammenlign inkludert fly, hotell og program; publisert personpris er ikke en familiepris.",
+      "url": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/",
       "captureKey": "package"
+    },
+    {
+      "id": "klm-direct",
+      "stage": "direct",
+      "priority": "Pris kandidaten direkte",
+      "title": "KLM · pris samme reise",
+      "instruction": "Pris Tokyo inn / Osaka hjem 18. mars–1. april med 2 voksne + 2 barn. Sammenlign innsjekket bagasje og Light-vilkårene.",
+      "url": "https://www.klm.no/",
+      "captureKey": "klm-east-west"
+    },
+    {
+      "id": "thai-direct",
+      "stage": "direct",
+      "priority": "Pris kandidaten direkte",
+      "title": "Thai Airways · pris samme reise",
+      "instruction": "Pris Osaka inn / Tokyo hjem 22. mars–5. april med 2 voksne + 2 barn. Sammenlign Standard, bagasje og endrings-/refusjonsgebyr.",
+      "url": "https://www.thaiairways.com/en-no/",
+      "captureKey": "thai-reverse"
+    },
+    {
+      "id": "juneyao-direct",
+      "stage": "direct",
+      "priority": "Pris kandidaten direkte",
+      "title": "Juneyao Airlines · pris samme reise",
+      "instruction": "Be om samme kombinasjon med Finnair og Juneyao: Oslo–Kansai / Haneda–Oslo via Helsinki og Shanghai. Bekreft én gjennomgående billett og bagasje hele veien.",
+      "url": "https://global.juneyaoair.com/?lang=en_us",
+      "captureKey": "juneyao-reverse"
     }
   ],
   "capture": {
@@ -514,7 +529,12 @@
       "Billettype / endringsvilkår",
       "Bestilles hos",
       "Lenke",
-      "Kommentar"
+      "Kommentar",
+      "Opererende selskap hvis annet enn markedsførende",
+      "Lengste transfer",
+      "Gjennomgående/beskyttet eller selv-transfer",
+      "Kontrollert dato og klokkeslett med tidssone",
+      "Prisnivå: søketreff / direkte valgt billett / sluttpris"
     ]
   },
   "sources": [
@@ -627,6 +647,21 @@
       "title": "FINN Reise · Oslo–Osaka",
       "url": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/osaka/",
       "use": "Enkel norsk pris- og ruteinngang før direkte flyselskapsøk."
+    },
+    {
+      "title": "FINN · interaktive flysøk",
+      "url": "https://www.finn.no/reise/flybilletter/",
+      "use": "Datoforskyvningene og kandidatdetaljene er lest i søkeresultatene for 2 voksne + 2 barn."
+    },
+    {
+      "title": "KLM · billettalternativer",
+      "url": "https://www.klm.no/information/ticket-services/ticket-options",
+      "use": "Generelle vilkår for Light, Standard og Flex; egne vilkår kan gjelde den konkrete reisen."
+    },
+    {
+      "title": "Juneyao · internasjonal søkeflate",
+      "url": "https://global.juneyaoair.com/?lang=en_us",
+      "use": "Direkte kontroll av om hele kandidatens reisemønster kan prises."
     }
   ],
   "bookingSignals": {
@@ -711,5 +746,1845 @@
       "source": "https://www.flightconnections.com/flights-from-osl-to-kix",
       "checked": "2026-10-04"
     }
-  ]
+  ],
+  "searchRuns": [
+    {
+      "id": "roundtrip-tokyo--3-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-17",
+      "returnDate": "2027-03-31",
+      "shiftDays": -3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:09:31.544Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=17.03.2027&requestedReturnDate=31.03.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 43612,
+          "outboundDurationMin": 1315,
+          "inboundDurationMin": 1355
+        },
+        "cheapest": {
+          "priceNok": 41352,
+          "outboundDurationMin": 1955,
+          "inboundDurationMin": 1720
+        },
+        "fastest": {
+          "priceNok": 156615,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo--2-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-01",
+      "shiftDays": -2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:10:19.911Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=01.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 58384,
+          "outboundDurationMin": 1200,
+          "inboundDurationMin": 1255
+        },
+        "cheapest": {
+          "priceNok": 57582,
+          "outboundDurationMin": 1230,
+          "inboundDurationMin": 2105
+        },
+        "fastest": {
+          "priceNok": 80582,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 970
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo--1-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-19",
+      "returnDate": "2027-04-02",
+      "shiftDays": -1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:10:48.039Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=19.03.2027&requestedReturnDate=02.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 58920,
+          "outboundDurationMin": 1180,
+          "inboundDurationMin": 1585
+        },
+        "cheapest": {
+          "priceNok": 58920,
+          "outboundDurationMin": 1180,
+          "inboundDurationMin": 1585
+        },
+        "fastest": {
+          "priceNok": 109149,
+          "outboundDurationMin": 955,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo-0-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-20",
+      "returnDate": "2027-04-03",
+      "shiftDays": 0,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:08Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=20.03.2027&requestedReturnDate=03.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 65728,
+          "outboundDurationMin": 1075,
+          "inboundDurationMin": 945
+        },
+        "cheapest": {
+          "priceNok": 63130,
+          "outboundDurationMin": 2175,
+          "inboundDurationMin": 1655
+        },
+        "fastest": {
+          "priceNok": 159596,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo-1-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-04",
+      "shiftDays": 1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:11:02.104Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=21.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 70438,
+          "outboundDurationMin": 1070,
+          "inboundDurationMin": 1235
+        },
+        "cheapest": {
+          "priceNok": 62108,
+          "outboundDurationMin": 1790,
+          "inboundDurationMin": 1715
+        },
+        "fastest": {
+          "priceNok": 111006,
+          "outboundDurationMin": 1120,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo-2-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "shiftDays": 2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:11:16.202Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 49598,
+          "outboundDurationMin": 1080,
+          "inboundDurationMin": 1355
+        },
+        "cheapest": {
+          "priceNok": 45480,
+          "outboundDurationMin": 1485,
+          "inboundDurationMin": 2285
+        },
+        "fastest": {
+          "priceNok": 74779,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 970
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo-3-0",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-23",
+      "returnDate": "2027-04-06",
+      "shiftDays": 3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:11:33.286Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=23.03.2027&requestedReturnDate=06.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 46470,
+          "outboundDurationMin": 1110,
+          "inboundDurationMin": 1670
+        },
+        "cheapest": {
+          "priceNok": 44228,
+          "outboundDurationMin": 1485,
+          "inboundDurationMin": 1670
+        },
+        "fastest": {
+          "priceNok": 156562,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka--3-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-17",
+      "returnDate": "2027-03-31",
+      "shiftDays": -3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:14:25.733Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=17.03.2027&requestedReturnDate=31.03.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 53458,
+          "outboundDurationMin": 1145,
+          "inboundDurationMin": 1405
+        },
+        "cheapest": {
+          "priceNok": 51944,
+          "outboundDurationMin": 1465,
+          "inboundDurationMin": 1700
+        },
+        "fastest": {
+          "priceNok": 85214,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka--2-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-01",
+      "shiftDays": -2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:12:51.434Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=18.03.2027&requestedReturnDate=01.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 57876,
+          "outboundDurationMin": 2005,
+          "inboundDurationMin": 1060
+        },
+        "cheapest": {
+          "priceNok": 57876,
+          "outboundDurationMin": 2005,
+          "inboundDurationMin": 1060
+        },
+        "fastest": {
+          "priceNok": 97608,
+          "outboundDurationMin": 1040,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka--1-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-19",
+      "returnDate": "2027-04-02",
+      "shiftDays": -1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:13:07.806Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=19.03.2027&requestedReturnDate=02.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 75902,
+          "outboundDurationMin": 1385,
+          "inboundDurationMin": 995
+        },
+        "cheapest": {
+          "priceNok": 75332,
+          "outboundDurationMin": 1385,
+          "inboundDurationMin": 1710
+        },
+        "fastest": {
+          "priceNok": 89488,
+          "outboundDurationMin": 980,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka-0-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-20",
+      "returnDate": "2027-04-03",
+      "shiftDays": 0,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:12:03.299Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=20.03.2027&requestedReturnDate=03.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 70376,
+          "outboundDurationMin": 1070,
+          "inboundDurationMin": 1060
+        },
+        "cheapest": {
+          "priceNok": 68206,
+          "outboundDurationMin": 2005,
+          "inboundDurationMin": 1060
+        },
+        "fastest": {
+          "priceNok": 166595,
+          "outboundDurationMin": 1005,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka-1-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-04",
+      "shiftDays": 1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:13:27.106Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=21.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 57665,
+          "outboundDurationMin": 1465,
+          "inboundDurationMin": 1510
+        },
+        "cheapest": {
+          "priceNok": 55264,
+          "outboundDurationMin": 1900,
+          "inboundDurationMin": 1510
+        },
+        "fastest": {
+          "priceNok": 95772,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka-2-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "shiftDays": 2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:13:46.440Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 52672,
+          "outboundDurationMin": 1105,
+          "inboundDurationMin": 1600
+        },
+        "cheapest": {
+          "priceNok": 52672,
+          "outboundDurationMin": 1105,
+          "inboundDurationMin": 1600
+        },
+        "fastest": {
+          "priceNok": 118556,
+          "outboundDurationMin": 1010,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka-3-0",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-23",
+      "returnDate": "2027-04-06",
+      "shiftDays": 3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:14:10.211Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=23.03.2027&requestedReturnDate=06.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 52672,
+          "outboundDurationMin": 1105,
+          "inboundDurationMin": 1600
+        },
+        "cheapest": {
+          "priceNok": 52672,
+          "outboundDurationMin": 1105,
+          "inboundDurationMin": 1600
+        },
+        "fastest": {
+          "priceNok": 81542,
+          "outboundDurationMin": 1045,
+          "inboundDurationMin": 1060
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west--3-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-17",
+      "returnDate": "2027-03-31",
+      "shiftDays": -3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:16:27.509Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=17.03.2027&requestedReturnDate=31.03.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 53922,
+          "outboundDurationMin": 1605,
+          "inboundDurationMin": 1545
+        },
+        "cheapest": {
+          "priceNok": 51896,
+          "outboundDurationMin": 2105,
+          "inboundDurationMin": 1690
+        },
+        "fastest": {
+          "priceNok": 63670,
+          "outboundDurationMin": 1025,
+          "inboundDurationMin": 1135
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west--2-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-01",
+      "shiftDays": -2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:17:01.131Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=01.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 54196,
+          "outboundDurationMin": 1200,
+          "inboundDurationMin": 1060
+        },
+        "cheapest": {
+          "priceNok": 41345,
+          "outboundDurationMin": 3320,
+          "inboundDurationMin": 1885
+        },
+        "fastest": {
+          "priceNok": 63056,
+          "outboundDurationMin": 1095,
+          "inboundDurationMin": 1060
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west--1-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-19",
+      "returnDate": "2027-04-02",
+      "shiftDays": -1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:17:59.188Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=19.03.2027&requestedReturnDate=02.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 56091,
+          "outboundDurationMin": 2190,
+          "inboundDurationMin": 1975
+        },
+        "cheapest": {
+          "priceNok": 54840,
+          "outboundDurationMin": 2190,
+          "inboundDurationMin": 2325
+        },
+        "fastest": {
+          "priceNok": 93112,
+          "outboundDurationMin": 1025,
+          "inboundDurationMin": 1060
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west-0-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-20",
+      "returnDate": "2027-04-03",
+      "shiftDays": 0,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:15:31.728Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=20.03.2027&requestedReturnDate=03.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 68064,
+          "outboundDurationMin": 1780,
+          "inboundDurationMin": 1060
+        },
+        "cheapest": {
+          "priceNok": 59635,
+          "outboundDurationMin": 2470,
+          "inboundDurationMin": 3250
+        },
+        "fastest": {
+          "priceNok": 78598,
+          "outboundDurationMin": 1095,
+          "inboundDurationMin": 1060
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west-1-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-04",
+      "shiftDays": 1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:18:30.139Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=21.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 50657,
+          "outboundDurationMin": 2650,
+          "inboundDurationMin": 1510
+        },
+        "cheapest": {
+          "priceNok": 48196,
+          "outboundDurationMin": 2650,
+          "inboundDurationMin": 2290
+        },
+        "fastest": {
+          "priceNok": 77810,
+          "outboundDurationMin": 1070,
+          "inboundDurationMin": 1060
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west-2-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "shiftDays": 2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:18:55.810Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 56018,
+          "outboundDurationMin": 1620,
+          "inboundDurationMin": 2105
+        },
+        "cheapest": {
+          "priceNok": 56018,
+          "outboundDurationMin": 1620,
+          "inboundDurationMin": 2105
+        },
+        "fastest": {
+          "priceNok": 163667,
+          "outboundDurationMin": 1010,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west-3-0",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-23",
+      "returnDate": "2027-04-06",
+      "shiftDays": 3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:19:21.311Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=23.03.2027&requestedReturnDate=06.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 57707,
+          "outboundDurationMin": 1555,
+          "inboundDurationMin": 1680
+        },
+        "cheapest": {
+          "priceNok": 54566,
+          "outboundDurationMin": 1555,
+          "inboundDurationMin": 3100
+        },
+        "fastest": {
+          "priceNok": 142749,
+          "outboundDurationMin": 955,
+          "inboundDurationMin": 1135
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east--3-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-17",
+      "returnDate": "2027-03-31",
+      "shiftDays": -3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:20:34.713Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=17.03.2027&requestedReturnDate=31.03.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 51189,
+          "outboundDurationMin": 1930,
+          "inboundDurationMin": 1945
+        },
+        "cheapest": {
+          "priceNok": 50781,
+          "outboundDurationMin": 1625,
+          "inboundDurationMin": 3035
+        },
+        "fastest": {
+          "priceNok": 70854,
+          "outboundDurationMin": 1070,
+          "inboundDurationMin": 1000
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east--2-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-01",
+      "shiftDays": -2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:21:00.630Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=01.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 51007,
+          "outboundDurationMin": 1625,
+          "inboundDurationMin": 2055
+        },
+        "cheapest": {
+          "priceNok": 49428,
+          "outboundDurationMin": 2435,
+          "inboundDurationMin": 2430
+        },
+        "fastest": {
+          "priceNok": 68690,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 1255
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east--1-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-19",
+      "returnDate": "2027-04-02",
+      "shiftDays": -1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:21:24.133Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=19.03.2027&requestedReturnDate=02.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 52287,
+          "outboundDurationMin": 2260,
+          "inboundDurationMin": 1975
+        },
+        "cheapest": {
+          "priceNok": 52287,
+          "outboundDurationMin": 2260,
+          "inboundDurationMin": 1975
+        },
+        "fastest": {
+          "priceNok": 92606,
+          "outboundDurationMin": 1065,
+          "inboundDurationMin": 1040
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east-0-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-20",
+      "returnDate": "2027-04-03",
+      "shiftDays": 0,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:20:04.911Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=20.03.2027&requestedReturnDate=03.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 68470,
+          "outboundDurationMin": 2120,
+          "inboundDurationMin": 945
+        },
+        "cheapest": {
+          "priceNok": 59397,
+          "outboundDurationMin": 2155,
+          "inboundDurationMin": 3525
+        },
+        "fastest": {
+          "priceNok": 130597,
+          "outboundDurationMin": 965,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east-1-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-04",
+      "shiftDays": 1,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:21:49.521Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=21.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 56465,
+          "outboundDurationMin": 1995,
+          "inboundDurationMin": 2020
+        },
+        "cheapest": {
+          "priceNok": 50581,
+          "outboundDurationMin": 3205,
+          "inboundDurationMin": 2020
+        },
+        "fastest": {
+          "priceNok": 94242,
+          "outboundDurationMin": 980,
+          "inboundDurationMin": 1085
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east-2-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "shiftDays": 2,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:22:17.518Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 44830,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 1410
+        },
+        "cheapest": {
+          "priceNok": 44830,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 1410
+        },
+        "fastest": {
+          "priceNok": 130659,
+          "outboundDurationMin": 1010,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east-3-0",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-23",
+      "returnDate": "2027-04-06",
+      "shiftDays": 3,
+      "lengthDeltaDays": 0,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:22:50.099Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=23.03.2027&requestedReturnDate=06.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 51775,
+          "outboundDurationMin": 1975,
+          "inboundDurationMin": 2200
+        },
+        "cheapest": {
+          "priceNok": 51775,
+          "outboundDurationMin": 1975,
+          "inboundDurationMin": 2200
+        },
+        "fastest": {
+          "priceNok": 73116,
+          "outboundDurationMin": 1045,
+          "inboundDurationMin": 1040
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east-2--1",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-04",
+      "shiftDays": 2,
+      "lengthDeltaDays": -1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:28:31.794Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 52787,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 1620
+        },
+        "cheapest": {
+          "priceNok": 52331,
+          "outboundDurationMin": 1285,
+          "inboundDurationMin": 1655
+        },
+        "fastest": {
+          "priceNok": 88510,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "different-airports-west-east-2-1",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-06",
+      "shiftDays": 2,
+      "lengthDeltaDays": 1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:28:51.328Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=06.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 52344,
+          "outboundDurationMin": 1665,
+          "inboundDurationMin": 2200
+        },
+        "cheapest": {
+          "priceNok": 52344,
+          "outboundDurationMin": 1665,
+          "inboundDurationMin": 2200
+        },
+        "fastest": {
+          "priceNok": 127285,
+          "outboundDurationMin": 1010,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo-2--1",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-04",
+      "shiftDays": 2,
+      "lengthDeltaDays": -1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:37:02.150Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 51522,
+          "outboundDurationMin": 1110,
+          "inboundDurationMin": 1670
+        },
+        "cheapest": {
+          "priceNok": 49280,
+          "outboundDurationMin": 1485,
+          "inboundDurationMin": 1670
+        },
+        "fastest": {
+          "priceNok": 159568,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-tokyo-2-1",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-06",
+      "shiftDays": 2,
+      "lengthDeltaDays": 1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:37:35.130Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=06.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 49510,
+          "outboundDurationMin": 1175,
+          "inboundDurationMin": 1390
+        },
+        "cheapest": {
+          "priceNok": 48162,
+          "outboundDurationMin": 1485,
+          "inboundDurationMin": 1670
+        },
+        "fastest": {
+          "priceNok": 74586,
+          "outboundDurationMin": 1060,
+          "inboundDurationMin": 945
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka-1--1",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-03",
+      "shiftDays": 1,
+      "lengthDeltaDays": -1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:56:43.178Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=21.03.2027&requestedReturnDate=03.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 58500,
+          "outboundDurationMin": 1465,
+          "inboundDurationMin": 1510
+        },
+        "cheapest": {
+          "priceNok": 55675,
+          "outboundDurationMin": 1900,
+          "inboundDurationMin": 2425
+        },
+        "fastest": {
+          "priceNok": 95024,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "roundtrip-osaka-1-1",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-05",
+      "shiftDays": 1,
+      "lengthDeltaDays": 1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T14:57:44.126Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=21.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 53630,
+          "outboundDurationMin": 1465,
+          "inboundDurationMin": 1850
+        },
+        "cheapest": {
+          "priceNok": 51197,
+          "outboundDurationMin": 1900,
+          "inboundDurationMin": 1850
+        },
+        "fastest": {
+          "priceNok": 95465,
+          "outboundDurationMin": 960,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west--2--1",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-03-31",
+      "shiftDays": -2,
+      "lengthDeltaDays": -1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T15:00:48.157Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=31.03.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 54345,
+          "outboundDurationMin": 1360,
+          "inboundDurationMin": 1405
+        },
+        "cheapest": {
+          "priceNok": 47099,
+          "outboundDurationMin": 3320,
+          "inboundDurationMin": 1690
+        },
+        "fastest": {
+          "priceNok": 159336,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 995
+        }
+      }
+    },
+    {
+      "id": "different-airports-east-west--2-1",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-02",
+      "shiftDays": -2,
+      "lengthDeltaDays": 1,
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-04T15:01:46.628Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=02.04.2027&adults=2&children=2&cabinType=economy",
+      "scope": "Bredt søk: Oslo inkluderer Torp; HND og NRT er med i Tokyo. Ingen krav om bagasje, reisetid eller gjennomgående billett.",
+      "summaries": {
+        "best": {
+          "priceNok": 56925,
+          "outboundDurationMin": 1360,
+          "inboundDurationMin": 1510
+        },
+        "cheapest": {
+          "priceNok": 49396,
+          "outboundDurationMin": 3320,
+          "inboundDurationMin": 2325
+        },
+        "fastest": {
+          "priceNok": 159325,
+          "outboundDurationMin": 895,
+          "inboundDurationMin": 995
+        }
+      }
+    }
+  ],
+  "research": {
+    "title": "Datofleks gir store utslag",
+    "summary": "Osaka inn / Tokyo hjem har det billigste aktuelle treffet. Tokyo inn / Osaka hjem med KLM er et enklere alternativ med én mellomlanding hver vei. Prisene gjelder konkrete søk for 2 voksne + 2 barn og må prises på nytt før kjøp.",
+    "partyNote": "Flytilbudene gjelder søkemotorenes kategori 2 voksne + 2 barn på 2–11 år. Bekreft riktig billettkategori ved ny prising. Prisene skaleres ikke til to familier.",
+    "matrixTitle": "Fire oppsett · sju datopar",
+    "matrixNote": "Tabellen viser FINNs sortering fra brede interaktive søk. «Billigst» og «Best» kan inkludere Torp, selv-transfer og svært lange reiser. Tidsbruken vises under prisen; bruk kandidatene nedenfor som beslutningsgrunnlag. Prisene er observerte søkeresultater, ikke garantert sluttpris.",
+    "candidateTitle": "Kandidater å prise på nytt",
+    "candidateNote": "Ingen av disse treffene viste varsel om selvbetjent flybytte. Fravær av varsel beviser ikke at billetten er gjennomgående: bekreft beskyttelse, opererende selskap og bagasje hos selgeren.",
+    "limits": [
+      {
+        "service": "Google Flights",
+        "checkedAt": "2026-10-04T14:07Z",
+        "status": "search-error",
+        "detail": "Søk med 2 voksne + 2 barn og planens datoer ga «Fant ingen resultater» og en teknisk feil, også etter ny lasting. Ingen Google-pris inngår i sammenligningen.",
+        "publicUrl": "https://www.google.com/travel/flights?hl=no&curr=NOK"
+      }
+    ],
+    "lengthNote": "For Osaka inn / Tokyo hjem 22. mars var én dag kortere eller lengre dyrere i FINNs brede søk enn 5. april-returen. For Tokyo tur/retur ga én dag lengre en Iberia-pris på 49 510 kr med bagasje, men 19 t 35 / 23 t 10 og en ekstra dag i Japan. Hotell og dagskostnad må legges til. For Tokyo inn / Osaka hjem 18. mars ga kortere/lengre reise ingen bedre rimelig forbindelse enn KLM på 14 dager; Best-treffene hadde selv-transfer og lengre reisetid. Osaka tur/retur 21. mars ble billigere med én ekstra dag i de brede søkene, men Best tok over ett døgn hver vei."
+  },
+  "candidates": [
+    {
+      "id": "juneyao-reverse",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "kind": "concrete-search-price",
+      "evidence": "interactive-search-details",
+      "price": {
+        "amount": 44830,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer"
+      },
+      "service": "FINN Reise",
+      "provider": "Kilroy",
+      "checkedAt": "2026-10-04T14:27Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "airlines": [
+        "Finnair",
+        "Juneyao Airlines"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "no-self-transfer-warning",
+        "note": "Ingen selv-transfer-advarsel i FINN; gjennomgående billett og beskyttelse må bekreftes hos selgeren."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "KIX",
+        "durationMin": 960,
+        "stops": 2,
+        "transferAirports": [
+          "HEL",
+          "PVG"
+        ],
+        "transferMinutes": [
+          105,
+          95
+        ]
+      },
+      "inbound": {
+        "from": "HND",
+        "to": "OSL",
+        "durationMin": 1410,
+        "stops": 2,
+        "transferAirports": [
+          "PVG",
+          "HEL"
+        ],
+        "transferMinutes": [
+          430,
+          130
+        ]
+      },
+      "longestTransferMin": 430,
+      "baggage": {
+        "checkedPiecesPerPerson": 1,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINNs tilbudsdetaljer; vekt og øvrige vilkår er ikke spesifisert."
+      },
+      "label": "Billigste aktuelle valg",
+      "why": "To stopp hver vei og lang transfer i Shanghai. Hjemreisen går rett etter midnatt: siste hotellnatt og tid på flyplassen må planlegges særskilt."
+    },
+    {
+      "id": "klm-east-west",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-01",
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "kind": "concrete-search-price",
+      "evidence": "interactive-search-details",
+      "price": {
+        "amount": 54196,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer"
+      },
+      "service": "FINN Reise",
+      "provider": "KLM / Air France (vist hos FINN)",
+      "checkedAt": "2026-10-04T14:17Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=01.04.2027&adults=2&children=2&cabinType=economy",
+      "airlines": [
+        "KLM"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "no-self-transfer-warning",
+        "note": "Ingen selv-transfer-advarsel i FINN; gjennomgående billett og beskyttelse må bekreftes hos selgeren."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "NRT",
+        "durationMin": 1200,
+        "stops": 1,
+        "transferAirports": [
+          "AMS"
+        ],
+        "transferMinutes": [
+          260
+        ]
+      },
+      "inbound": {
+        "from": "KIX",
+        "to": "OSL",
+        "durationMin": 1060,
+        "stops": 1,
+        "transferAirports": [
+          "AMS"
+        ],
+        "transferMinutes": [
+          100
+        ]
+      },
+      "longestTransferMin": 260,
+      "baggage": {
+        "checkedPiecesPerPerson": 0,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINNs tilbudsdetaljer; vekt og øvrige vilkår er ikke spesifisert."
+      },
+      "label": "Enklere reise til god pris",
+      "why": "Én mellomlanding hver vei og ingen ekstra reise tilbake til Tokyo. Samme forbindelse ble vist til 59 544 kr hos FlySmarter med innsjekket bagasje."
+    },
+    {
+      "id": "thai-reverse",
+      "patternId": "different-airports-west-east",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "kind": "concrete-search-price",
+      "evidence": "interactive-search-details",
+      "price": {
+        "amount": 55747,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer"
+      },
+      "service": "FINN Reise",
+      "provider": "Flightnetwork",
+      "checkedAt": "2026-10-04T14:32Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedOrigin2=TYO.METROPOLITAN_AREA&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "airlines": [
+        "Thai Airways"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "no-self-transfer-warning",
+        "note": "Ingen selv-transfer-advarsel i FINN; gjennomgående billett og beskyttelse må bekreftes hos selgeren."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "KIX",
+        "durationMin": 1105,
+        "stops": 1,
+        "transferAirports": [
+          "BKK"
+        ],
+        "transferMinutes": [
+          115
+        ]
+      },
+      "inbound": {
+        "from": "NRT",
+        "to": "OSL",
+        "durationMin": 1260,
+        "stops": 1,
+        "transferAirports": [
+          "BKK"
+        ],
+        "transferMinutes": [
+          130
+        ]
+      },
+      "longestTransferMin": 130,
+      "baggage": {
+        "checkedPiecesPerPerson": 1,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINNs tilbudsdetaljer; vekt og øvrige vilkår er ikke spesifisert."
+      },
+      "label": "Pris og reisetid med bagasje",
+      "why": "Én transfer hver vei, begge under 2 t 15. Samme datoer og retur som Tokyo tur/retur gjør totalreisekostnaden sammenlignbar."
+    },
+    {
+      "id": "thai-tokyo",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-22",
+      "returnDate": "2027-04-05",
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "kind": "concrete-search-price",
+      "evidence": "interactive-search-details",
+      "price": {
+        "amount": 52614,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer"
+      },
+      "service": "FINN Reise",
+      "provider": "Sembo",
+      "checkedAt": "2026-10-04T14:36Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=22.03.2027&requestedReturnDate=05.04.2027&adults=2&children=2&cabinType=economy",
+      "airlines": [
+        "Thai Airways"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "no-self-transfer-warning",
+        "note": "Ingen selv-transfer-advarsel i FINN; gjennomgående billett og beskyttelse må bekreftes hos selgeren."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "NRT",
+        "durationMin": 1110,
+        "stops": 1,
+        "transferAirports": [
+          "BKK"
+        ],
+        "transferMinutes": [
+          100
+        ]
+      },
+      "inbound": {
+        "from": "NRT",
+        "to": "OSL",
+        "durationMin": 1260,
+        "stops": 1,
+        "transferAirports": [
+          "BKK"
+        ],
+        "transferMinutes": [
+          130
+        ]
+      },
+      "longestTransferMin": 130,
+      "baggage": {
+        "checkedPiecesPerPerson": 1,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINNs tilbudsdetaljer; vekt og øvrige vilkår er ikke spesifisert."
+      },
+      "label": "Tur/retur som kontroll",
+      "why": "Flyet er 3 133 kr billigere enn Thai med Osaka inn / Tokyo hjem på samme datoer. Ekstra returtransport mellom Osaka og Tokyo kan spise opp hele besparelsen."
+    },
+    {
+      "id": "baseline-tokyo",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-20",
+      "returnDate": "2027-04-03",
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "kind": "concrete-search-price",
+      "evidence": "interactive-search-details",
+      "price": {
+        "amount": 65728,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer"
+      },
+      "service": "FINN Reise",
+      "provider": "Flightnetwork",
+      "checkedAt": "2026-10-04T14:08Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedDepartureDate=20.03.2027&requestedReturnDate=03.04.2027&adults=2&children=2&cabinType=economy",
+      "airlines": [
+        "Finnair",
+        "Japan Airlines"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "no-self-transfer-warning",
+        "note": "Ingen selv-transfer-advarsel i FINN; gjennomgående billett og beskyttelse må bekreftes hos selgeren."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "HND",
+        "durationMin": 1075,
+        "stops": 1,
+        "transferAirports": [
+          "HEL"
+        ],
+        "transferMinutes": [
+          155
+        ]
+      },
+      "inbound": {
+        "from": "HND",
+        "to": "OSL",
+        "durationMin": 945,
+        "stops": 1,
+        "transferAirports": [
+          "HEL"
+        ],
+        "transferMinutes": [
+          60
+        ]
+      },
+      "longestTransferMin": 155,
+      "baggage": {
+        "checkedPiecesPerPerson": 1,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINNs tilbudsdetaljer; vekt og øvrige vilkår er ikke spesifisert."
+      },
+      "label": "Raskt på planens datoer",
+      "why": "En rask konkret referanse med bagasje. Tokyo tur/retur krever også returtransport i Japan; én time transfer på hjemreisen gir mindre margin."
+    },
+    {
+      "id": "finnair-osaka",
+      "patternId": "roundtrip-osaka",
+      "departDate": "2027-03-21",
+      "returnDate": "2027-04-04",
+      "partyRef": "standardFamily",
+      "party": {
+        "adults": 2,
+        "children": 2,
+        "childCategory": "2–11 år"
+      },
+      "kind": "concrete-search-price",
+      "evidence": "interactive-search-details",
+      "price": {
+        "amount": 71410,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer"
+      },
+      "service": "FINN Reise",
+      "provider": "Sembo",
+      "checkedAt": "2026-10-04T14:55:39Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=roundtrip&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=KIX.AIRPORT&requestedDepartureDate=21.03.2027&requestedReturnDate=04.04.2027&adults=2&children=2&cabinType=economy&departureAirportLeg1=OSL%2CTRF&arrivalAirportLeg1=KIX&maximumNumberOfStops=1&excludeVirtualInterlining=true",
+      "airlines": [
+        "Finnair"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "no-self-transfer-warning",
+        "note": "Ingen selv-transfer-advarsel i FINN; gjennomgående billett og beskyttelse må bekreftes hos selgeren."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "KIX",
+        "durationMin": 980,
+        "stops": 1,
+        "transferAirports": [
+          "HEL"
+        ],
+        "transferMinutes": [
+          125
+        ]
+      },
+      "inbound": {
+        "from": "KIX",
+        "to": "OSL",
+        "durationMin": 995,
+        "stops": 1,
+        "transferAirports": [
+          "HEL"
+        ],
+        "transferMinutes": [
+          125
+        ]
+      },
+      "longestTransferMin": 125,
+      "baggage": {
+        "checkedPiecesPerPerson": 1,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINNs tilbudsdetaljer; vekt og øvrige vilkår er ikke spesifisert."
+      },
+      "label": "Raskest blant kandidatene",
+      "why": "Én kort mellomlanding hver vei og bagasje inkludert hos Sembo. Ticket viste samme forbindelse til 67 254 kr uten innsjekket bagasje; håndbagasje var ikke oppgitt der. Tur/retur Osaka krever at ruten i Japan ender tilbake ved Kansai."
+    }
+  ],
+  "directChecks": [
+    {
+      "id": "klm-direct-check",
+      "candidateId": "klm-east-west",
+      "service": "KLM",
+      "checkedAt": "2026-10-04T14:35Z",
+      "status": "incomplete",
+      "publicUrl": "https://www.klm.no/",
+      "finding": "Fler-by-skjema med OSL–NRT / KIX–OSL, 18. mars–1. april og 2 voksne + 2 barn ble fylt ut. Søkeknappen ble stående med lasting; ingen direkte sluttpris ble vist. FINNs KLM-pris er derfor ikke en fullført direkte verifisering.",
+      "termsSource": "https://www.klm.no/information/ticket-services/ticket-options",
+      "termsContext": "KLM oppgir generelt bare Light for Economy med flere reisemål på nettsiden. Light har håndbagasje, ingen innsjekket bagasje, ingen refusjon og på interkontinentale reiser normalt endringsgebyr EUR 300 pluss prisdifferanse. Den konkrete billettens vilkår har forrang."
+    },
+    {
+      "id": "juneyao-direct-check",
+      "candidateId": "juneyao-reverse",
+      "service": "Juneyao Airlines",
+      "checkedAt": "2026-10-04T14:36Z",
+      "status": "unsupported-itinerary",
+      "publicUrl": "https://global.juneyaoair.com/?lang=en_us",
+      "finding": "Oslo og Kansai kunne velges på den internasjonale nettsiden, men den synlige søkeflaten tilbød bare tur/retur og én vei. Hele kombinasjonen med Finnair og ulik by inn/hjem kunne ikke prises i samme skjema. Ingen direkte familiepris eller billettvilkår er bekreftet."
+    },
+    {
+      "id": "thai-direct-check",
+      "candidateId": "thai-reverse",
+      "service": "Thai Airways",
+      "checkedAt": "2026-10-04T14:45Z",
+      "status": "priced",
+      "publicUrl": "https://www.thaiairways.com/en-no/",
+      "price": {
+        "amount": 57362,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "carrier-selected-total"
+      },
+      "ticketType": "Economy Standard (K)",
+      "baggage": "1 × 23 kg innsjekket bagasje og 7 kg håndbagasje. Kvoten ble vist på valgt billett.",
+      "terms": "Valgt Standard viste endringsgebyr USD 100 og refusjonsgebyr USD 200 på begge retninger. Prisdifferanse og detaljvilkår må bekreftes ved kjøp.",
+      "finding": "Samme OSL–KIX / NRT–OSL og reisetider som FINN-kandidaten. Totalpris for 2 voksne + 2 barn, inkludert skatter og avgifter, vist etter valg av begge flyreisene og før personopplysninger. Ingen betalingssluttpris eller bestilling."
+    }
+  ],
+  "comparison": {
+    "title": "Flypris + nødvendig retur i Japan",
+    "transportRef": "osaka-tokyo-flight-return",
+    "pairs": [
+      {
+        "leftId": "thai-tokyo",
+        "rightId": "thai-reverse",
+        "title": "Samme datoer og Thai-retur",
+        "finding": "Tokyo tur/retur sparer 3 133 kr i flypris. Med én ekstra Shinkansen-etappe blir totalen omtrent lik før lokaltransport, flyplasstransfer og eventuell hotellnatt. Osaka inn / Tokyo hjem er derfor det sterkere én-stopp-valget på disse datoene."
+      },
+      {
+        "leftId": "klm-east-west",
+        "rightId": "juneyao-reverse",
+        "title": "Retning og komfort",
+        "finding": "Osaka inn / Tokyo hjem er 9 366 kr billigere i disse to konkrete treffene og inkluderer bagasje, men krever to stopp hver vei. KLM går to dager før planen, Juneyao to dager etter: forskjellen isolerer ikke retning alene. Begge retninger er aktuelle; bagasje, transfer og datofleks avgjør."
+      }
+    ],
+    "note": "Prisforskjeller mellom ulike datoer og selskaper er ikke en ren pristest av ruteretningen. Sammenlign identisk reisefølge, bagasje og rimelig tidsbruk. Det finnes ikke grunnlag her for å si at tur/retur alltid er billigst."
+  }
 }
