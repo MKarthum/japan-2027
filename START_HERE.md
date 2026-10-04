@@ -62,6 +62,7 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Rutesiden skal lenke videre fra hvert stopp til relevant stoppdetalj, Steder, Mat og Overnatting. Kart-popupene skal være korte; full prisdetalj hører hjemme i panelet under kartet.
 - Mobilvisningen av Steder skal følge den kompakte ruten: smalt bilde til venstre, tekst til høyre. Stor tom medieflate over bildet er en regresjon. Ikke pakk hele kortet i en `<a>` når bildekrediteringen også inneholder lenke.
 - Rutedetaljpanelet under kartet skal vise det som faktisk ble valgt på kartet. Synkroniseringen følger popupens `open`-hendelse. Popupen på selve kartet holdes bevisst kort (kategori + navn + detaljlenke); beskrivelse, pris og navigasjon ligger i panelet under. Strekning/pris vises bare når en rutelinje eller etappe velges.
+- Kartfeil skal behandles som fatal bare når kartstilen faktisk ikke blir lastet. Enkeltfeil på fliser/ressurser skal logges, men ikke utløse synlig fallback dersom kartet ellers er brukbart.
 - Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side. Ikke behold eldre CSS-varianter av samme komponent som overlappende override-lag.
 - Nettsiden skal leses som én aktuell utgave, ikke som en logg over tidligere utgaver.
 - `site.json` inneholder kun versjon og publiseringsdato. Versjonen bumpes ved hver publisert endring på `main`.
