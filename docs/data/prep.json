@@ -6,48 +6,226 @@
         "title": "Assassin’s Creed Shadows",
         "for": "Voksne / vurdert familiespilling med innstillinger",
         "why": "Gir gjenkjennelse i Kyoto, Nara, Osaka og Himeji.",
-        "action": "Skru av Blood FX og Dismemberment hvis barna skal se eller spille. Finn Himeji, Kyoto og Nara før reisen."
+        "action": "Skru av Blood FX og Dismemberment hvis barna skal se eller spille. Finn Himeji, Kyoto og Nara før reisen.",
+        "id": "prep-1",
+        "placeIds": [
+          "kyoto",
+          "himeji",
+          "osaka"
+        ]
       },
       {
         "title": "Mario Kart 8 Deluxe",
         "for": "Hele familien",
         "why": "Tokyo Blur og Mario-universet gjør både Tokyo og Super Nintendo World mer kjent.",
-        "action": "Spill noen runder sammen og gjør Mario til en del av oppladningen."
+        "action": "Spill noen runder sammen og gjør Mario til en del av oppladningen.",
+        "id": "prep-2",
+        "placeIds": [
+          "tokyo",
+          "usj"
+        ]
       },
       {
         "title": "Tokaido",
         "for": "Hele familien",
         "why": "Brettspill om å reise mellom Kyoto og Edo/Tokyo med mat, varme kilder og stopp underveis.",
-        "action": "Spill et par ganger før avreise og bruk det som introduksjon til reiseruten."
+        "action": "Spill et par ganger før avreise og bruk det som introduksjon til reiseruten.",
+        "id": "prep-3",
+        "placeIds": [
+          "tokyo",
+          "hakone",
+          "kyoto"
+        ]
       }
     ]
   },
   {
     "category": "Film",
     "items": [
-      {"title": "Min nabo Totoro", "for": "Hele familien", "why": "Myk introduksjon til japansk natur og Ghibli.", "action": "Familiekveld."},
-      {"title": "Chihiro og heksene", "for": "Hele familien", "why": "Ikonisk japansk animasjon med mange kulturelle referanser.", "action": "Familiekveld."},
-      {"title": "Kikis budservice", "for": "Hele familien", "why": "Lav terskel og fin inngang til Ghibli.", "action": "Familiekveld."},
-      {"title": "Your Name", "for": "Eldre barn og voksne", "why": "Moderne Tokyo-miljøer gir senere gjenkjennelse i byen.", "action": "Se nærmere avreise."},
-      {"title": "Suzume", "for": "Eldre barn og voksne", "why": "En reise gjennom ulike deler av Japan.", "action": "Se etter at grunnkartet over Japan sitter litt bedre."}
+      {
+        "title": "Min nabo Totoro",
+        "for": "Hele familien",
+        "why": "Myk introduksjon til japansk natur og Ghibli.",
+        "action": "Familiekveld.",
+        "id": "prep-4",
+        "placeIds": [
+          "ghibli-museum"
+        ]
+      },
+      {
+        "title": "Chihiro og heksene",
+        "for": "Hele familien",
+        "why": "Ikonisk japansk animasjon med mange kulturelle referanser.",
+        "action": "Familiekveld.",
+        "id": "prep-5",
+        "placeIds": [
+          "ghibli-museum"
+        ]
+      },
+      {
+        "title": "Kikis budservice",
+        "for": "Hele familien",
+        "why": "Lav terskel og fin inngang til Ghibli.",
+        "action": "Familiekveld.",
+        "id": "prep-6",
+        "placeIds": [
+          "ghibli-museum"
+        ]
+      },
+      {
+        "title": "Your Name",
+        "for": "Eldre barn og voksne",
+        "why": "Moderne Tokyo-miljøer gir senere gjenkjennelse i byen.",
+        "action": "Se nærmere avreise.",
+        "id": "prep-7",
+        "placeIds": [
+          "tokyo"
+        ]
+      },
+      {
+        "title": "Suzume",
+        "for": "Eldre barn og voksne",
+        "why": "En reise gjennom ulike deler av Japan.",
+        "action": "Se etter at grunnkartet over Japan sitter litt bedre.",
+        "id": "prep-8",
+        "placeIds": [
+          "tokyo"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "TV og serier",
+    "items": [
+      {
+        "id": "pokemon-concierge",
+        "title": "Pokémon Concierge",
+        "for": "Hele familien",
+        "why": "Kort stop-motion-serie som gir en annen inngang til japansk popkultur enn spill og storfilmer.",
+        "action": "Se noen episoder som en lavterskel familiekveld.",
+        "placeIds": [],
+        "url": "https://media.netflix.com/en/only-on-netflix/81186864"
+      }
+    ]
+  },
+  {
+    "category": "Bøker",
+    "items": [
+      {
+        "id": "dk-japan",
+        "title": "DK Japan",
+        "for": "Hele familien / oppslagsbok",
+        "why": "En svært visuell reiseguide med kart, illustrasjoner og kulturstoff som kan ligge fremme under planleggingen.",
+        "action": "La alle velge ett sted eller én ting de vil lese mer om.",
+        "placeIds": [
+          "tokyo",
+          "kyoto",
+          "himeji",
+          "hiroshima",
+          "osaka"
+        ],
+        "url": "https://dk.com/products/9780241738795-dk-japan"
+      },
+      {
+        "id": "japan-travel-journal",
+        "title": "Japan Travel Journal",
+        "for": "Hele familien",
+        "why": "Kan brukes som idé til en enkel felles reisedagbok med små observasjoner, billetter og ting vi vil huske.",
+        "action": "Bestem om vi vil bruke ferdig bok eller lage vår egen variant.",
+        "placeIds": [],
+        "url": "https://dk.com/products/9780241801444-japan-travel-journal"
+      }
     ]
   },
   {
     "category": "Mat",
     "items": [
-      {"title": "Ramen", "for": "Hele familien", "why": "Hverdagsklassiker i Japan.", "action": "Prøv hjemme og ranger."},
-      {"title": "Gyoza", "for": "Hele familien", "why": "Enkel inngang til japansk mat.", "action": "Lag selv eller bestill."},
-      {"title": "Okonomiyaki", "for": "Hele familien", "why": "Sterk Osaka-kobling.", "action": "Prøv før Osaka-delen av planleggingen."},
-      {"title": "Japansk curry", "for": "Hele familien", "why": "Barnevennlig og vanlig japansk hverdagsmat.", "action": "Lag hjemme."},
-      {"title": "Onigiri", "for": "Hele familien", "why": "Typisk konbini-mat som dere vil se overalt.", "action": "Prøv ulike varianter."}
+      {
+        "title": "Ramen",
+        "for": "Hele familien",
+        "why": "Hverdagsklassiker i Japan.",
+        "action": "Prøv hjemme og ranger.",
+        "id": "prep-9",
+        "placeIds": [
+          "tokyo"
+        ]
+      },
+      {
+        "title": "Gyoza",
+        "for": "Hele familien",
+        "why": "Enkel inngang til japansk mat.",
+        "action": "Lag selv eller bestill.",
+        "id": "prep-10",
+        "placeIds": []
+      },
+      {
+        "title": "Okonomiyaki",
+        "for": "Hele familien",
+        "why": "Sterk Osaka-kobling.",
+        "action": "Prøv før Osaka-delen av planleggingen.",
+        "id": "prep-11",
+        "placeIds": [
+          "hiroshima",
+          "osaka"
+        ]
+      },
+      {
+        "title": "Japansk curry",
+        "for": "Hele familien",
+        "why": "Barnevennlig og vanlig japansk hverdagsmat.",
+        "action": "Lag hjemme.",
+        "id": "prep-12",
+        "placeIds": []
+      },
+      {
+        "title": "Onigiri",
+        "for": "Hele familien",
+        "why": "Typisk konbini-mat som dere vil se overalt.",
+        "action": "Prøv ulike varianter.",
+        "id": "prep-13",
+        "placeIds": []
+      }
     ]
   },
   {
     "category": "Små mål",
     "items": [
-      {"title": "20 japanske ord", "for": "Hele familien", "why": "Gjør reisen mer interaktiv uten å prøve å lære hele språket.", "action": "Start med sumimasen, arigatō, onegaishimasu, oishii og daijōbu."},
-      {"title": "Japan-bingo", "for": "Hele familien", "why": "Gjør gjenkjennelse til en lek gjennom hele reisen.", "action": "Ha med torii, shinkansen, Fuji, Pokémon, konbini, onsen, hjort, sakura og gachapon."},
-      {"title": "Spillbilde → ekte bilde", "for": "Hele familien", "why": "Gir en konkret rød tråd fra oppladningen til reisen.", "action": "Ta screenshot ved Himeji og andre kjente steder og gjenskap vinkelen på turen."}
+      {
+        "title": "20 japanske ord",
+        "for": "Hele familien",
+        "why": "Gjør reisen mer interaktiv uten å prøve å lære hele språket.",
+        "action": "Start med sumimasen, arigatō, onegaishimasu, oishii og daijōbu.",
+        "id": "prep-14",
+        "placeIds": [
+          "tokyo",
+          "kyoto"
+        ]
+      },
+      {
+        "title": "Japan-bingo",
+        "for": "Hele familien",
+        "why": "Gjør gjenkjennelse til en lek gjennom hele reisen.",
+        "action": "Ha med torii, shinkansen, Fuji, Pokémon, konbini, onsen, hjort, sakura og gachapon.",
+        "id": "prep-15",
+        "placeIds": [
+          "tokyo",
+          "hakone",
+          "kyoto",
+          "himeji",
+          "hiroshima",
+          "osaka"
+        ]
+      },
+      {
+        "title": "Spillbilde → ekte bilde",
+        "for": "Hele familien",
+        "why": "Gir en konkret rød tråd fra oppladningen til reisen.",
+        "action": "Ta screenshot ved Himeji og andre kjente steder og gjenskap vinkelen på turen.",
+        "id": "prep-16",
+        "placeIds": [
+          "himeji"
+        ]
+      }
     ]
   }
 ]
