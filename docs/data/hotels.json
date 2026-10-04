@@ -587,7 +587,7 @@
       "kind": "hotel"
     }
   ],
-  "partyBasis": "Prisene sammenlignes foreløpig for 2 voksne + 2 barn. Hvis reisefølget blir større, skal totalpris per boenhet og faktisk kapasitet sammenlignes på nytt; store leiligheter og hele boliger kan da bli relativt mer interessante.",
+  "partyBasis": "Prisene sammenlignes mot reisefølget som er satt som planleggingsgrunnlag for turen. Hvis reisefølget blir større, skal totalpris per boenhet og faktisk kapasitet sammenlignes på nytt; store leiligheter og hele boliger kan da bli relativt mer interessante.",
   "accommodationTypes": [
     {
       "id": "hotel",

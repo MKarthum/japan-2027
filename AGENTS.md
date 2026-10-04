@@ -24,6 +24,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - `docs/data/route-geometry.json` eier bare fysisk linjegeometri og spor-offset. Ikke legg destinasjonsfarger eller annen domenedata i geometrifilen.
 - Når to ruter deler samme fysiske spor i motsatt retning, skal de tegnes som parallelle spor. MapLibre `line-offset` er retningsrelativ: motsatt rettede linjer bruker samme fortegn for å havne på hver sin fysiske side.
 - Praktiske råd, bookingradar, ordbok og mediekoblinger går i `docs/data/guide.json`. Bookingradar skal referere til `placeId`; ikke kopier stedets navn, område eller URL.
+- Sidebudskap og forklarende tekst som ikke tilhører et domene går i `docs/data/pages.json`. HTML skal bare angi hvilke tekstelementer som vises via `data-copy`.
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
@@ -33,15 +34,16 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Datagrense mellom data og visning
 
-- Offentlig HTML og JavaScript er visningslag. Det kan inneholde struktur, generiske UI-tekster, formatering og hvilke felt/komponenter som vises, men ikke hardkodede navn, beskrivelser, priser, koordinater eller kuraterte ID-lister for konkrete steder, restauranter, hoteller eller reiseetapper.
+- Offentlig HTML og JavaScript er visningslag. Det kan inneholde struktur, generiske UI-etiketter, formatering og hvilke felt/komponenter som vises, men ikke sidebudskap, hardkodede navn, beskrivelser, priser, koordinater eller kuraterte ID-lister. Sidebudskap eies av `pages.json`; domenetekst eies av riktig domenefil.
 - Budskapet på oversikten eies av `trip.json.overview`. Oversikten skal forklare hvorfor turen og hvordan siden brukes; den skal ikke bli en kopi av alle undersidene.
 - `food.json` eier både restaurantpostene og felles matmetadata som prisbånd og planleggingsnotater. `transport.json` eier rutens transportstrategi og etapper. `prep.json` eier forberedelser og koblinger til steder via `placeIds`; ikke lag egne AC-/film-/spillflagg i `places.json`.
 - Samme visuelle konsept skal bruke samme renderer og samme CSS-primitiv. Steder, Mat og Overnatting skal bruke samme reise-/basefilter fra `trip.json`.
 - Rutesiden er et navigasjonspunkt, ikke en blindvei. Hvert hovedstopp skal gi tydelige veier videre til stoppdetalj, filtrerte Steder/Mat og aktuell Overnatting. Filteret skal kunne åpnes direkte med `?base=<routeId>`.
 - På mobil skal stedslister være kompakte rader med fast, smal bildekolonne. Ikke la bilde-/fallbackflaten få automatisk full kortbredde eller prosentvis høyde som kan vokse sirkulært i Safari.
 - Kort som inneholder bildekreditering må ikke pakkes i én ytre `<a>`; krediteringen inneholder selv lenke og gir ugyldig nested-anchor HTML. Bruk egen primærlenke/overlay slik at hele kortet kan klikkes uten ugyldig DOM.
-- På rutekartet skal detaljpanelet under kartet alltid følge siste valgte kartobjekt. Bare valg av rutelinje/etappe skal vise strekning og pris; valg av sted, mat, overnatting, stopp eller knutepunkt skal vise det objektet. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
+- På rutekartet skal detaljpanelet under kartet alltid følge den popupen som faktisk åpnes. Bind synkronisering til MapLibre-popupens `open`-hendelse, ikke et separat marker-click. Bare valg av rutelinje/etappe skal vise strekning og pris; valg av sted, mat, overnatting, stopp eller knutepunkt skal vise det objektet. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
 - Ikke kopier markup for en eksisterende objekttype for å lage en ny variant. Utvid den delte helperen/klassen når semantikken er den samme. Hvis en delt visning endres visuelt, skal alle brukere av komponenten få endringen samtidig.
+- CSS skal ha én kanonisk layoutdefinisjon per delt komponent. Ikke legg nye versjonslag med samme selektor nederst i filen; konsolider eksisterende regel når komponenten endres.
 
 ## Publiseringsdisiplin
 

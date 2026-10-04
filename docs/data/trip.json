@@ -1,12 +1,12 @@
 {
   "title": "Japan 2027",
-  "subtitle": "Plan for en ca. to ukers første Japan-tur",
+  "subtitle": "Plan for ca. to uker i Japan",
   "status": "Planleggingsforslag – ikke bestilt",
   "window": "20. mars – 3. april 2027",
   "overview": {
     "hero": {
       "placeId": "tokyo",
-      "eyebrow": "Første Japan-tur",
+      "eyebrow": "Japan våren 2027",
       "title": "En reise med store kontraster",
       "intro": "Japan kombinerer ting som er vanskelig å få i én og samme ferie: storby og ro, teknologi og tradisjon, mat og historie, tog og templer – samtidig som mye er gjenkjennelig fra kultur vi allerede kjenner."
     },
@@ -118,7 +118,7 @@
       "from": "2027-03-26",
       "to": "2027-03-30",
       "nights": 4,
-      "label": "Det klassiske Japan",
+      "label": "Templer, hager og gamle gater",
       "summary": "Templer, gamle gater, røde porter, hager og dagstur til Nara.",
       "theme": {
         "color": "#6D4A9B",
@@ -134,7 +134,7 @@
       "from": "2027-03-30",
       "to": "2027-03-30",
       "nights": 0,
-      "label": "LEGO-slottet på ekte",
+      "label": "Historisk stopp på vei vestover",
       "summary": "Stopp på vei vestover for å se det originale hvite samuraislottet.",
       "theme": {
         "color": "#9B6C22",
@@ -187,5 +187,9 @@
       "suggestedDate": "2027-03-31",
       "baseId": "hiroshima"
     }
-  ]
+  ],
+  "planningParty": {
+    "adults": 2,
+    "children": 2
+  }
 }

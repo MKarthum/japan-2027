@@ -15,6 +15,7 @@ const hotelData = readJson('docs/data/hotels.json');
 const hotels = hotelData.hotels || [];
 const fx = readJson('docs/data/fx.json');
 const site = readJson('docs/data/site.json');
+const pages = readJson('docs/data/pages.json');
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -70,6 +71,28 @@ function validateImage(img,label) {
 uniqueIds(food, 'food.json');
 uniqueIds(places, 'places.json');
 uniqueIds(hotels, 'hotels.json');
+
+const requiredPageCopy={
+  home:['whyEyebrow','whyTitle','whyIntro','useEyebrow','useTitle','useIntro'],
+  route:['eyebrow','listEyebrow','listTitle','listIntro','transportTitle','mapNote'],
+  places:['eyebrow','title','intro','filterLabel'],
+  food:['eyebrow','title','intro','filterLabel','watchTitle'],
+  hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],
+  prep:['eyebrow','title','intro'],
+  practical:['eyebrow','title','intro','transportTitle','bookingTitle','phrasesTitle','namesTitle','etiquetteTitle'],
+  budget:['eyebrow','title','intro','distributionTitle'],
+  sources:['eyebrow','title','intro'],
+  privacy:['eyebrow','title','intro','publicTitle']
+};
+for(const [page,keys] of Object.entries(requiredPageCopy)){
+  if(!pages[page]) errors.push(`pages.json: mangler ${page}`);
+  else for(const key of keys) if(typeof pages[page][key]!=='string'||!pages[page][key].trim()) errors.push(`pages.json: ${page}.${key} mangler`);
+}
+
+if (!Number.isInteger(trip.planningParty?.adults) || trip.planningParty.adults < 1 ||
+    !Number.isInteger(trip.planningParty?.children) || trip.planningParty.children < 0) {
+  errors.push('trip.json: planningParty må angi gyldig antall voksne/barn');
+}
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
@@ -171,7 +194,9 @@ for (let i=0;i<transport.legs.length;i++) {
   if (!from || !to || leg.fromRouteId!==from.id || leg.toRouteId!==to.id) {
     errors.push(`transport.json: etappe ${leg.id} følger ikke hovedrutens rekkefølge`);
   }
-  if (leg.fare?.family2a2cYen !== leg.fare?.adultYen*2 + leg.fare?.childYen*2) errors.push(`transport.json: familiepris stemmer ikke for ${leg.id}`);
+  const expectedPartyFare=leg.fare?.adultYen*trip.planningParty.adults + leg.fare?.childYen*trip.planningParty.children;
+  if (leg.fare?.planningPartyYen !== expectedPartyFare) errors.push(`transport.json: planlagt reisefølge-pris stemmer ikke for ${leg.id}`);
+  if ('family2a2cYen' in (leg.fare||{})) errors.push(`transport.json: ${leg.id} bruker gammel party-spesifikk fare-key`);
   const elapsed=(leg.stations||[]).map(s=>s.elapsedMin);
   if (elapsed.some((n,j)=>!Number.isFinite(n)||(j>0&&n<elapsed[j-1]))) errors.push(`transport.json: stasjonstidene er ugyldige for ${leg.id}`);
 }
@@ -228,6 +253,35 @@ if (!Number.isFinite(fx.jpyPerNok) || !Number.isFinite(fx.nokPerJpy)) errors.pus
 else if (Math.abs((fx.jpyPerNok * fx.nokPerJpy) - 1) > 0.000001) errors.push('fx.json: fallback-kursene er ikke inverse');
 if (!fx.asOf) errors.push('fx.json: fallback mangler asOf');
 
+const canonicalNarrativeFiles=[
+  ['trip.json',trip],
+  ['places.json',places],
+  ['food.json',foodData],
+  ['hotels.json',hotelData],
+  ['transport.json',transport],
+  ['guide.json',guide],
+  ['prep.json',prep]
+];
+const narrativeOwners=new Map();
+const collectNarrative=(value,file,pathLabel='$')=>{
+  if(typeof value==='string'){
+    const text=value.trim();
+    if(text.length<18 || /^https?:\/\//.test(text) || /^CC\b/.test(text)) return;
+    const key=text.toLocaleLowerCase('nb-NO');
+    const rows=narrativeOwners.get(key)||[];
+    rows.push({file,path:pathLabel,text});
+    narrativeOwners.set(key,rows);
+    return;
+  }
+  if(Array.isArray(value)) return value.forEach((item,j)=>collectNarrative(item,file,`${pathLabel}[${j}]`));
+  if(value&&typeof value==='object') for(const [key,item] of Object.entries(value)) collectNarrative(item,file,`${pathLabel}.${key}`);
+};
+for(const [file,value] of canonicalNarrativeFiles) collectNarrative(value,file);
+for(const rows of narrativeOwners.values()){
+  const files=new Set(rows.map(x=>x.file));
+  if(files.size>1) errors.push(`Kanonisk tekst duplisert på tvers av domener: "${rows[0].text}" (${[...files].join(', ')})`);
+}
+
 const sourceUrls=new Set();
 for (const item of sources) {
   if (!item.title || !item.url || !item.use) errors.push('sources.json: kilde mangler title/url/use');
@@ -236,11 +290,13 @@ for (const item of sources) {
 }
 
 const htmlFiles=fs.readdirSync('docs').filter(name=>name.endsWith('.html'));
+const copyDrivenPages=new Set(['index.html','route.html','places.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html']);
 for (const name of htmlFiles) {
   const file=`docs/${name}`;
   const html=fs.readFileSync(file,'utf8');
   if (!/<html lang="nb">/.test(html)) errors.push(`${file}: mangler lang="nb"`);
   if (!/<meta name="viewport"/.test(html)) errors.push(`${file}: mangler viewport`);
+  if (copyDrivenPages.has(name) && !html.includes('data-copy=')) errors.push(`${file}: sidebudskap skal komme fra pages.json via data-copy`);
   const assetVersions=[...html.matchAll(/assets\/(?:style\.css|app\.js)\?v=([0-9.]+)/g)].map(m=>m[1]);
   if (!assetVersions.length || assetVersions.some(v=>v!==site.version)) errors.push(`${file}: assetversjon samsvarer ikke med site.json (${site.version})`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
@@ -254,7 +310,7 @@ for (const name of htmlFiles) {
 }
 
 if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
-for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html']) {
+for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/data/pages.json']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
@@ -276,14 +332,21 @@ if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=')
   errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
 }
 if (!app.includes("new URLSearchParams(location.search).get(param)")) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
-if (!style.includes('grid-template-columns:112px minmax(0,1fr) 26px!important') || !style.includes('.place-list-primary-link::after')) {
-  errors.push('style.css: mobil stedsrad mangler robust kompakt grid/klikkflate');
+if (!style.includes('/* Canonical place-list component */') || !style.includes('grid-template-columns:112px minmax(0,1fr) 26px') || !style.includes('.place-list-primary-link::after')) {
+  errors.push('style.css: mobil stedsrad mangler kanonisk kompakt grid/klikkflate');
+}
+if (style.includes('.place-list-card>a{') || style.includes('v0.17: robust compact place rows')) {
+  errors.push('style.css: gammel parallell stedskort-layout finnes fortsatt');
 }
 if (app.includes('<a class="route-thumb-wrap"')) errors.push('app.js: rute-thumbnail må ikke være ytre lenke rundt bildekreditering');
 if (!app.includes('place-list-primary-link')) errors.push('app.js: stedskort mangler gyldig primærlenke uten nested anchor');
 if (!app.includes('showPlaceDetail') || !app.includes('showFoodDetail') || !app.includes('showHotelDetail') || !app.includes('showStopDetail')) {
   errors.push('app.js: kartvalg synkroniserer ikke detaljpanelet for valgt innhold');
 }
+const popupSyncCount=[...app.matchAll(/popup\.on\('open'/g)].length;
+if (popupSyncCount < 5) errors.push('app.js: detaljpanelet må bindes til faktisk åpnet kart-popup, ikke separate klikkhendelser');
+if (!app.includes("const layerState={stations:false,experience:true,food:false,hotel:false}")) errors.push('app.js: knutepunkter skal være avslått som standard for å redusere kart-overlapp');
+if (!app.includes("json('data/pages.json')") || !app.includes('applyPageCopy')) errors.push('app.js: mangler sentral sidecopy fra pages.json');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
@@ -293,7 +356,6 @@ if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.j
 for (const dataFile of ['food.json','places.json','hotels.json']) {
   if (!app.includes(`json('data/${dataFile}')`)) errors.push(`app.js henter ikke data/${dataFile}`);
 }
-
 
 if (!trip.overview?.hero?.placeId || !placeIds.has(trip.overview.hero.placeId)) {
   errors.push('trip.json: overview.hero.placeId mangler eller peker på ukjent sted');

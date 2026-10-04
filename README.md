@@ -32,6 +32,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
 - `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
+- `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 
 `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
@@ -54,14 +55,14 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Visningsarkitektur
 
-HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkrete reisedetaljer og kuraterte lister skal ikke hardkodes i visningskoden.
+HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkrete reisedetaljer, kuraterte lister og sidebudskap skal ikke hardkodes i visningskoden. `pages.json` eier sidecopy som ikke hører til et spesifikt domene.
 
 - `trip.json.overview` eier budskapet på oversikten. Oversikten skal forklare hvorfor reisen og hvordan siden brukes, ikke gjengi innholdet fra alle undersidene.
 - `food.json` er ett samlet matdomene med metadata + `restaurants`.
 - `app.js` har små delte visningsprimitiver i stedet for side-spesifikke kopier av samme komponent.
 - Steder, Mat og Overnatting bruker samme reise-/basefilter slik at innhold kan avgrenses etter del av reisen. Filtertilstanden kan åpnes via `?base=<routeId>`, og rutesiden bruker dette for navigasjon videre.
-- Rutekartet bruker korte popup-kort til orientering. Panelet under kartet følger valgt objekt; detaljerte reisepriser vises bare når en rutelinje/etappe velges. Mobilkort for steder er kompakte rader med fast bildekolonne og gyldig HTML uten nested anchors. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
-- Endres et delt visuelt mønster, endres helperen/CSS-primitiven slik at alle tilsvarende visninger følger med.
+- Rutekartet bruker korte popup-kort til orientering. Panelet under kartet følger popupen som faktisk åpnes; detaljerte reisepriser vises bare når en rutelinje/etappe velges. Mobilkort for steder er kompakte rader med fast bildekolonne og gyldig HTML uten nested anchors. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
+- Endres et delt visuelt mønster, endres helperen/CSS-primitiven slik at alle tilsvarende visninger følger med. CSS skal konsolideres i én kanonisk regel per delt komponent, ikke bygges opp som versjonsvise override-lag.
 - Offentlig tekst beskriver nåværende plan. Release-/endringshistorikk hører ikke hjemme i siden eller `site.json`.
 
 ## Release

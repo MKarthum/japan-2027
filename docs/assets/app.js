@@ -9,11 +9,32 @@ const dualFromJpy = (jpy,fx) => `${fmtJpy(jpy)} · ca. ${fmtNok(nokFromJpy(jpy,f
 const dualFromNok = (nok,fx) => `${fmtNok(nok)} · ca. ${fmtJpy(jpyFromNok(nok,fx))}`;
 const dualRangeFromNok = (range,fx) => `${fmtNok(range[0])}–${fmtNok(range[1])} · ca. ${fmtJpy(jpyFromNok(range[0],fx))}–${fmtJpy(jpyFromNok(range[1],fx))}`;
 const dualMoneyHtml = (primary,secondary) => `<span class="money-dual"><span>${primary}</span><small>ca. ${secondary}</small></span>`;
+const planningPartyLabel = (trip) => `${trip.planningParty.adults} voksne + ${trip.planningParty.children} barn`;
+const planningPartyShort = (trip) => `${trip.planningParty.adults}V+${trip.planningParty.children}B`;
 
 async function json(path) {
   const r = await fetch(path, {cache:'no-store'});
   if (!r.ok) throw new Error(`Kunne ikke hente ${path}`);
   return r.json();
+}
+
+let pagesPromise=null;
+async function applyPageCopy(pageKey) {
+  pagesPromise ||= json('data/pages.json');
+  const pages=await pagesPromise;
+  const copy=pages[pageKey];
+  if(!copy) throw new Error(`Mangler sideinnhold for ${pageKey}`);
+  for(const el of document.querySelectorAll('[data-copy]')){
+    const value=el.dataset.copy.split('.').reduce((obj,key)=>obj?.[key],copy);
+    if(typeof value==='string') el.textContent=value;
+  }
+  return copy;
+}
+
+async function renderStaticPage(pageKey,active='') {
+  nav(active);
+  footer();
+  await applyPageCopy(pageKey);
 }
 
 let fxPromise=null;
@@ -168,6 +189,7 @@ const routeContextLinksHtml=(trip,stop,place,food,hotelsData)=>{
 
 
 async function renderHome() {
+  await applyPageCopy('home');
   nav('home'); footer();
   const [trip,places,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),loadFx()]);
   const overview=trip.overview||{};
@@ -196,6 +218,7 @@ async function renderHome() {
 }
 
 async function renderRoute() {
+  await applyPageCopy('route');
   nav('route'); footer();
   const [trip,places,routeGeometry,transport,foodData,hotelsData,fx]=await Promise.all([
     json('data/trip.json'),
@@ -220,7 +243,7 @@ async function renderRoute() {
     <div class="fare-grid">
       <div><span>Voksen</span><strong>${dualFromJpy(leg.fare.adultYen,fx)}</strong></div>
       <div><span>Barn</span><strong>${dualFromJpy(leg.fare.childYen,fx)}</strong></div>
-      <div class="family"><span>2 voksne + 2 barn</span><strong>${dualFromJpy(leg.fare.family2a2cYen,fx)}</strong></div>
+      <div class="family"><span>${planningPartyLabel(trip)}</span><strong>${dualFromJpy(leg.fare.planningPartyYen,fx)}</strong></div>
     </div>`;
 
   const legHtml=(leg,{compact=false}={}) => `
@@ -261,7 +284,7 @@ async function renderRoute() {
   const showFoodDetail=(x)=>{
     if(!x) return;
     const price=Array.isArray(x.familyEstimateYen) ? familyFoodPrice(x) : '';
-    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">${x.role} · ${x.area}</div><h3>${x.name}</h3><p><strong>${x.dish}</strong> · ${x.priority}</p>${price?`<p class="small">2 voksne + 2 barn: ${price}</p>`:''}${contextualLinksFor(x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten')}</div>`);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">${x.role} · ${x.area}</div><h3>${x.name}</h3><p><strong>${x.dish}</strong> · ${x.priority}</p>${price?`<p class="small">${planningPartyLabel(trip)}: ${price}</p>`:''}${contextualLinksFor(x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten')}</div>`);
   };
   const showHotelDetail=(x)=>{
     if(!x) return;
@@ -296,7 +319,7 @@ async function renderRoute() {
         <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
         <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
         ${routeContextLinksHtml(trip,x,p,food,hotelsData)}
-        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}
+        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.planningPartyYen,fx)} for ${planningPartyShort(trip)}</button>`:''}
       </div>
     </article>`;
   }).join('');
@@ -311,10 +334,10 @@ async function renderRoute() {
 
   const adultTotal=transport.legs.reduce((n,l)=>n+l.fare.adultYen,0);
   const childTotal=transport.legs.reduce((n,l)=>n+l.fare.childYen,0);
-  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.family2a2cYen,0);
+  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.planningPartyYen,0);
   const summary=document.getElementById('map-price-summary');
   if(summary){
-    summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for 2V+2B</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
+    summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for ${planningPartyShort(trip)}</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
   }
 
   if (typeof maplibregl === 'undefined') {
@@ -414,7 +437,7 @@ async function renderRoute() {
     showLegDetail(leg);
     new maplibregl.Popup({offset:10,maxWidth:'280px'})
       .setLngLat(lngLat)
-      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
+      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.planningPartyYen,fx)} for ${planningPartyShort(trip)}</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
       .addTo(map);
   };
 
@@ -453,7 +476,7 @@ async function renderRoute() {
   };
 
   const markerGroups={stations:[],experience:[],food:[],hotel:[]};
-  const layerState={stations:true,experience:true,food:false,hotel:false};
+  const layerState={stations:false,experience:true,food:false,hotel:false};
   const routeContextIds=new Set([...trip.route.map(x=>x.id),...(trip.dayTrips||[]).map(x=>x.id)]);
   const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
   const mappableFood=food.filter(x=>x.status==='active' && x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
@@ -489,15 +512,11 @@ async function renderRoute() {
         el.style.background=`conic-gradient(${stationColors.map((c,i)=>`${c} ${Math.round(i*step)}deg ${Math.round((i+1)*step)}deg`).join(',')})`;
       }
       el.setAttribute('aria-label',`${s.name} stasjon`);
-      el.addEventListener('click',()=>{
-        const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
-        const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
-        setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
-      });
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
       const popup=new maplibregl.Popup({offset:12,maxWidth:'300px'}).setHTML(`
         <div class="map-popup"><div class="meta">Utvalgt knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
+      popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       markerGroups.stations.push(marker);
       if(layerState.stations) marker.addTo(map);
@@ -532,7 +551,7 @@ async function renderRoute() {
           <p class="small">${p.why}</p>
           <a href="place.html?id=${encodeURIComponent(p.id)}">Se stedet →</a>
         </div>`);
-      el.addEventListener('click',()=>showPlaceDetail(p));
+      popup.on('open',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       markerGroups.experience.push(marker);
       if(layerState.experience) marker.addTo(map);
@@ -552,10 +571,10 @@ async function renderRoute() {
           <h3>${x.name}</h3>
           <p><strong>${x.dish}</strong> · ${x.priority}</p>
           <p class="small">${x.why}</p>
-          ${family?`<p class="map-food-price"><span>2 voksne + 2 barn</span><strong>${family}</strong></p>`:''}
+          ${family?`<p class="map-food-price"><span>${planningPartyLabel(trip)}</span><strong>${family}</strong></p>`:''}
           <a href="restaurant.html?id=${encodeURIComponent(x.id)}">Se restaurantdetaljer →</a>
         </div>`);
-      el.addEventListener('click',()=>showFoodDetail(x));
+      popup.on('open',()=>showFoodDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.food.push(marker);
       if(layerState.food) marker.addTo(map);
@@ -587,7 +606,7 @@ async function renderRoute() {
           <p class="small">${x.logistics}</p>
           <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se overnatting →</a>
         </div>`);
-      el.addEventListener('click',()=>showHotelDetail(x));
+      popup.on('open',()=>showHotelDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.hotel.push(marker);
       if(layerState.hotel) marker.addTo(map);
@@ -605,7 +624,7 @@ async function renderRoute() {
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
-      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Knutepunkter <b>${counts.stations}</b></button>
+      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
       <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Overnatting <b>${counts.hotel}</b></button>
@@ -651,7 +670,7 @@ async function renderRoute() {
       legend.innerHTML=[...journeyMap.values()].map(s=>{
         const leg=legById.get(s.journeyId);
         const color=destinationColor(trip,leg?.toRouteId);
-        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
+        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.planningPartyYen,fx)} (${planningPartyShort(trip)})`:s.modes.join(' + ')}</small></span></button>`;
       }).join('');
       legend.addEventListener('click',e=>{
         const btn=e.target.closest('[data-leg]');
@@ -672,8 +691,9 @@ async function renderRoute() {
       const nextLeg=nextLegByRouteId.get(x.id);
       const nextSummary=nextLeg?`<p class="small">Neste: ${nextLeg.to} · ${formatMinutes(nextLeg.durationMin)}</p>`:'<p class="small">Siste hovedstopp på ruten.</p>';
       const popupHtml=`<div class="map-popup map-popup-stop destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}${x.nights>0?` · ${x.nights} ${x.nights===1?'natt':'netter'}`:''}</p>${nextSummary}${routeContextLinksHtml(trip,x,p,food,hotelsData)}</div>`;
-      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml)).addTo(map);
-      el.addEventListener('click',event=>{event.stopPropagation(); showStopDetail(x,p);});
+      const popup=new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml);
+      popup.on('open',()=>showStopDetail(x,p));
+      new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup).addTo(map);
     });
 
     trip.dayTrips.forEach(x=>{
@@ -686,10 +706,11 @@ async function renderRoute() {
       el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',p.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${p.name}</span>`;
-      el.addEventListener('click',()=>showPlaceDetail(p));
+      const popup=new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`);
+      popup.on('open',()=>showPlaceDetail(p));
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([p.map.lng,p.map.lat])
-        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`))
+        .setPopup(popup)
         .addTo(map);
     });
 
@@ -718,6 +739,7 @@ async function renderRoute() {
 }
 
 async function renderPlaces() {
+  await applyPageCopy('places');
   nav('places'); footer();
   const [places,trip] = await Promise.all([json('data/places.json'),json('data/trip.json')]);
   const filters=document.getElementById('filters');
@@ -815,12 +837,14 @@ async function renderPlace() {
     : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
 }
 async function renderPrep() {
+  await applyPageCopy('prep');
   nav('prep'); footer();
   const prep=await json('data/prep.json');
   document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`<article class="card prep-card"><div class="meta">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`).join('')}</div></section>`).join('');
 }
 
 async function renderFood() {
+  await applyPageCopy('food');
   nav('food'); footer();
   const [foodData,fx,trip,places]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json'),json('data/places.json')]);
   const food=foodData.restaurants||[];
@@ -992,6 +1016,7 @@ async function renderRestaurant() {
 }
 
 async function renderHotels() {
+  await applyPageCopy('hotels');
   nav('hotels'); footer();
   const [data,trip,places,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/places.json'),loadFx()]);
   const hotels=data.hotels;
@@ -1012,7 +1037,7 @@ async function renderHotels() {
     <div class="hotel-index-top"><div><span class="hotel-tier">${x.tier}</span><span class="stay-kind">${typeById.get(x.kind)?.label||x.kind}</span></div><span class="hotel-rating">${x.rating?.score?`${x.rating.platform} ${x.rating.score.toFixed(1)}`:''}</span></div>
     <h3>${x.name}</h3>
     <p class="hotel-family">${x.familyOption}</p>
-    <div class="hotel-index-price"><span>2 voksne + 2 barn</span>${price(x)}</div>
+    <div class="hotel-index-price"><span>${planningPartyLabel(trip)}</span>${price(x)}</div>
     <p class="hotel-logistics">${x.logistics}</p>
     <div class="hotel-total"><span>${plannedNights(x)} ${plannedNights(x)===1?'natt':'netter'} i planen</span><strong>${totalPrice(x)}</strong></div>
   </a>`;
@@ -1035,7 +1060,7 @@ async function renderHotels() {
   activeKind=setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();},{initialValue:requestedKind});
 
   document.getElementById('stay-types').innerHTML=(data.accommodationTypes||[]).map(t=>`<article class="stay-type-card"><span>${hotels.filter(h=>h.kind===t.id).length||'—'} ${hotels.some(h=>h.kind===t.id)?'kandidater':'sammenligningsspor'}</span><h3>${t.label}</h3><p>${t.description}</p>${t.source?`<a href="${t.source}" target="_blank" rel="noopener">Regelgrunnlag ↗</a>`:''}</article>`).join('');
-  document.getElementById('stay-party-note').textContent=data.partyBasis||'';
+  document.getElementById('stay-party-note').textContent=data.partyBasis ? `Planleggingsgrunnlag: ${planningPartyLabel(trip)}. ${data.partyBasis}` : '';
 
   const cheapestByBase=trip.route.filter(r=>r.nights>0).map(stop=>{
     const candidates=hotels.filter(h=>h.baseId===stop.id);
@@ -1095,6 +1120,7 @@ async function renderHotel() {
 
 
 async function renderPractical() {
+  await applyPageCopy('practical');
   nav('practical'); footer();
   const [guide,places]=await Promise.all([json('data/guide.json'),json('data/places.json')]);
   document.getElementById('transport-grid').innerHTML=guide.transport.map(x=>`<article class="card transport-card"><div class="transport-icon">${x.icon}</div><h3>${x.title}</h3><strong>${x.short}</strong><p>${x.body}</p><div class="button-row">${x.links.map(l=>`<a class="button" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join('')}</div></article>`).join('');
@@ -1110,6 +1136,7 @@ async function renderPractical() {
 }
 
 async function renderBudget() {
+  await applyPageCopy('budget');
   nav('budget'); footer();
   const [trip,fx] = await Promise.all([json('data/trip.json'),loadFx()]);
   document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
@@ -1126,6 +1153,7 @@ async function renderBudget() {
 }
 
 async function renderSources() {
+  await applyPageCopy('sources');
   nav(''); footer();
   const sources = await json('data/sources.json');
   document.getElementById('sources-grid').innerHTML = sources.map(s=>`<article class="card"><h3><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></h3><p>${s.use}</p></article>`).join('');
