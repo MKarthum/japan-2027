@@ -9,6 +9,8 @@ const dualFromJpy = (jpy,fx) => `${fmtJpy(jpy)} · ca. ${fmtNok(nokFromJpy(jpy,f
 const dualFromNok = (nok,fx) => `${fmtNok(nok)} · ca. ${fmtJpy(jpyFromNok(nok,fx))}`;
 const dualRangeFromNok = (range,fx) => `${fmtNok(range[0])}–${fmtNok(range[1])} · ca. ${fmtJpy(jpyFromNok(range[0],fx))}–${fmtJpy(jpyFromNok(range[1],fx))}`;
 const dualMoneyHtml = (primary,secondary) => `<span class="money-dual"><span>${primary}</span><small>ca. ${secondary}</small></span>`;
+const planningPartyLabel = (trip) => `${trip.planningParty.adults} voksne + ${trip.planningParty.children} barn`;
+const planningPartyShort = (trip) => `${trip.planningParty.adults}V+${trip.planningParty.children}B`;
 
 async function json(path) {
   const r = await fetch(path, {cache:'no-store'});
@@ -241,7 +243,7 @@ async function renderRoute() {
     <div class="fare-grid">
       <div><span>Voksen</span><strong>${dualFromJpy(leg.fare.adultYen,fx)}</strong></div>
       <div><span>Barn</span><strong>${dualFromJpy(leg.fare.childYen,fx)}</strong></div>
-      <div class="family"><span>2 voksne + 2 barn</span><strong>${dualFromJpy(leg.fare.family2a2cYen,fx)}</strong></div>
+      <div class="family"><span>${planningPartyLabel(trip)}</span><strong>${dualFromJpy(leg.fare.planningPartyYen,fx)}</strong></div>
     </div>`;
 
   const legHtml=(leg,{compact=false}={}) => `
@@ -282,7 +284,7 @@ async function renderRoute() {
   const showFoodDetail=(x)=>{
     if(!x) return;
     const price=Array.isArray(x.familyEstimateYen) ? familyFoodPrice(x) : '';
-    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">${x.role} · ${x.area}</div><h3>${x.name}</h3><p><strong>${x.dish}</strong> · ${x.priority}</p>${price?`<p class="small">2 voksne + 2 barn: ${price}</p>`:''}${contextualLinksFor(x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten')}</div>`);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">${x.role} · ${x.area}</div><h3>${x.name}</h3><p><strong>${x.dish}</strong> · ${x.priority}</p>${price?`<p class="small">${planningPartyLabel(trip)}: ${price}</p>`:''}${contextualLinksFor(x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten')}</div>`);
   };
   const showHotelDetail=(x)=>{
     if(!x) return;
@@ -317,7 +319,7 @@ async function renderRoute() {
         <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
         <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
         ${routeContextLinksHtml(trip,x,p,food,hotelsData)}
-        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}
+        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.planningPartyYen,fx)} for ${planningPartyShort(trip)}</button>`:''}
       </div>
     </article>`;
   }).join('');
@@ -332,10 +334,10 @@ async function renderRoute() {
 
   const adultTotal=transport.legs.reduce((n,l)=>n+l.fare.adultYen,0);
   const childTotal=transport.legs.reduce((n,l)=>n+l.fare.childYen,0);
-  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.family2a2cYen,0);
+  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.planningPartyYen,0);
   const summary=document.getElementById('map-price-summary');
   if(summary){
-    summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for 2V+2B</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
+    summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for ${planningPartyShort(trip)}</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
   }
 
   if (typeof maplibregl === 'undefined') {
@@ -435,7 +437,7 @@ async function renderRoute() {
     showLegDetail(leg);
     new maplibregl.Popup({offset:10,maxWidth:'280px'})
       .setLngLat(lngLat)
-      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
+      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.planningPartyYen,fx)} for ${planningPartyShort(trip)}</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
       .addTo(map);
   };
 
@@ -569,7 +571,7 @@ async function renderRoute() {
           <h3>${x.name}</h3>
           <p><strong>${x.dish}</strong> · ${x.priority}</p>
           <p class="small">${x.why}</p>
-          ${family?`<p class="map-food-price"><span>2 voksne + 2 barn</span><strong>${family}</strong></p>`:''}
+          ${family?`<p class="map-food-price"><span>${planningPartyLabel(trip)}</span><strong>${family}</strong></p>`:''}
           <a href="restaurant.html?id=${encodeURIComponent(x.id)}">Se restaurantdetaljer →</a>
         </div>`);
       popup.on('open',()=>showFoodDetail(x));
@@ -668,7 +670,7 @@ async function renderRoute() {
       legend.innerHTML=[...journeyMap.values()].map(s=>{
         const leg=legById.get(s.journeyId);
         const color=destinationColor(trip,leg?.toRouteId);
-        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} (2V+2B)`:s.modes.join(' + ')}</small></span></button>`;
+        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.planningPartyYen,fx)} (${planningPartyShort(trip)})`:s.modes.join(' + ')}</small></span></button>`;
       }).join('');
       legend.addEventListener('click',e=>{
         const btn=e.target.closest('[data-leg]');
@@ -1035,7 +1037,7 @@ async function renderHotels() {
     <div class="hotel-index-top"><div><span class="hotel-tier">${x.tier}</span><span class="stay-kind">${typeById.get(x.kind)?.label||x.kind}</span></div><span class="hotel-rating">${x.rating?.score?`${x.rating.platform} ${x.rating.score.toFixed(1)}`:''}</span></div>
     <h3>${x.name}</h3>
     <p class="hotel-family">${x.familyOption}</p>
-    <div class="hotel-index-price"><span>2 voksne + 2 barn</span>${price(x)}</div>
+    <div class="hotel-index-price"><span>${planningPartyLabel(trip)}</span>${price(x)}</div>
     <p class="hotel-logistics">${x.logistics}</p>
     <div class="hotel-total"><span>${plannedNights(x)} ${plannedNights(x)===1?'natt':'netter'} i planen</span><strong>${totalPrice(x)}</strong></div>
   </a>`;
