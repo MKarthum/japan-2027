@@ -183,5 +183,30 @@
     "title": "Frankfurter API – ECB provider",
     "url": "https://frankfurter.dev/providers/ecb/",
     "use": "Nøkkelfritt HTTPS-API brukt i nettleseren for å hente siste ECB-referansekurs. Provider låses eksplisitt til ECB."
+  },
+  {
+    "title": "Japan Tourism Agency / MHLW – Private Lodging (minpaku)",
+    "url": "https://www.mlit.go.jp/kankocho/minpaku/overview/minpaku/index_en.html",
+    "use": "Regelgrunnlag for feriebolig/minpaku som overnattingsform."
+  },
+  {
+    "title": "MACHIYA RESIDENCE INN – private holiday houses",
+    "url": "https://www.machiya-inn-japan.com/about/accommodations/machiya-residence-inn/",
+    "use": "Kapasitet og konsept for hele machiya-hus i Kyoto."
+  },
+  {
+    "title": "GRAND BASE Hiroshima Ekimae",
+    "url": "https://grand-base.jp/hotel/gb-hiroshimaekimae/",
+    "use": "Leilighetspregede familieenheter nær Hiroshima Station."
+  },
+  {
+    "title": "Netflix – Pokémon Concierge",
+    "url": "https://media.netflix.com/en/only-on-netflix/81186864",
+    "use": "Offisiell informasjon om serien brukt i før-turen-forslag."
+  },
+  {
+    "title": "DK – Japan",
+    "url": "https://dk.com/products/9780241738795-dk-japan",
+    "use": "Offisiell informasjon om reiseguiden brukt i før-turen-forslag."
   }
 ]

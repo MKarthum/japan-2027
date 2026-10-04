@@ -5,16 +5,29 @@
   "window": "20. mars – 3. april 2027",
   "overview": {
     "hero": {
-      "placeId": "himeji",
-      "kicker": "LEGO → spill → virkelighet"
+      "placeId": "tokyo",
+      "eyebrow": "Første Japan-tur",
+      "title": "En reise med store kontraster",
+      "intro": "Japan kombinerer ting som er vanskelig å få i én og samme ferie: storby og ro, teknologi og tradisjon, mat og historie, tog og templer – samtidig som mye er gjenkjennelig fra kultur vi allerede kjenner."
     },
-    "familyHookPlaceIds": [
-      "nintendo-museum",
-      "nara",
-      "himeji",
-      "usj"
+    "reasons": [
+      {
+        "title": "Kontrastene",
+        "text": "Noen dager handler om Tokyo, neonlys og teknologi. Andre om ryokan, onsen, gamle gater, slott og helligdommer. Poenget er variasjonen, ikke å rekke flest mulig severdigheter."
+      },
+      {
+        "title": "Opplevelsene sammen",
+        "text": "Mat, tog, Nintendo, historie, natur og små ting i hverdagen gir ulike innganger til den samme reisen. Det skal være plass til både store høydepunkter og dager uten et tett program."
+      },
+      {
+        "title": "Turen begynner før avreise",
+        "text": "Film, serier, spill, LEGO, bøker, mat og noen japanske ord kan gjøre steder gjenkjennelige før vi kommer dit – uten at forberedelsene blir lekser."
+      }
     ],
-    "bookingPreviewCount": 3
+    "plan": {
+      "title": "En enkel hovedidé",
+      "text": "Ruten går i hovedsak vestover gjennom noen få baser. Detaljene om steder, mat, overnatting og praktiske valg ligger på egne sider, slik at oversikten kan være enkel."
+    }
   },
   "budget": {
     "targetNok": 165000,

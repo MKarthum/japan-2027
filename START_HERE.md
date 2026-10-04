@@ -21,11 +21,11 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 - `docs/data/trip.json`: reisevindu, hovedrute, budsjett, oversiktskuratering og destinasjonstemaer/farger. Destinasjonsfargen er én felles identitet for rute, steder, opplevelser og mat.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon og eksterne lenker.
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
-- `docs/data/hotels.json`: hotellkandidater, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
+- `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
 - `docs/data/transport.json`: intercity-etapper, tider, priser og stasjoner.
 - `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
 - `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.
-- `docs/data/prep.json`: forberedelser før turen.
+- `docs/data/prep.json`: forberedelser før turen og deres kobling til steder via `placeIds`. Medie-/forberedelseskoblinger skal ikke dupliseres i `places.json` eller `guide.json`.
 - `docs/data/fx.json`: live valutakilde + lagret ECB-fallback. Alle omregninger skal gå gjennom den felles `loadFx()`-funksjonen.
 - `docs/data/sources.json`: felles kildeliste.
 
@@ -56,7 +56,8 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 ## Visnings- og releasekontrakt
 
 - Domeneinnhold ligger i JSON. HTML/JavaScript bestemmer struktur og hvordan felt vises, ikke konkrete reisedetaljer.
-- Oversiktens kuraterte stedvalg ligger i `trip.json.overview`, ikke som hardkodede ID-er i JavaScript.
+- Oversiktens budskap ligger i `trip.json.overview`. Oversikten skal være en inngang til reisen, ikke en katalog over rute, steder, mat og booking.
+- Steder, Mat og Overnatting skal bruke samme destinasjons-/basefilter basert på `trip.json`, slik at Nara arver Kyoto, Miyajima arver Hiroshima osv.
 - Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side.
 - Nettsiden skal leses som én aktuell utgave, ikke som en logg over tidligere utgaver.
 - `site.json` inneholder kun versjon og publiseringsdato. Versjonen bumpes ved hver publisert endring på `main`.

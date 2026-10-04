@@ -13,12 +13,6 @@
       "Akihabara",
       "teamLab"
     ],
-    "prep": [
-      "Se Your Name",
-      "Spill Mario Kart – Tokyo Blur",
-      "Lær historien om Hachikō"
-    ],
-    "acShadows": false,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20-%20Sunset%20Skyline.jpg?width=1400",
@@ -59,10 +53,6 @@
       "Hachikō",
       "Utsikt over krysset"
     ],
-    "prep": [
-      "Se klipp eller filmer fra Shibuya før avreise"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 35.65949,
       "lng": 139.70054,
@@ -103,8 +93,6 @@
       "Kaminarimon-porten",
       "Nakamise-gaten"
     ],
-    "prep": [],
-    "acShadows": false,
     "map": {
       "lat": 35.714444,
       "lng": 139.796667,
@@ -145,10 +133,6 @@
       "Onsen",
       "Mulig Fuji-utsikt"
     ],
-    "prep": [
-      "Lær hva onsen og ryokan er før turen"
-    ],
-    "acShadows": false,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Mount%20Fuji%20from%20Lake%20Ashi.jpg?width=1400",
@@ -191,11 +175,6 @@
       "Kinkaku-ji",
       "Arashiyama"
     ],
-    "prep": [
-      "Spill AC Shadows i Kyoto-området",
-      "Se etter torii-porter og pagoder"
-    ],
-    "acShadows": true,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yasaka%20Pagode.jpg?width=1400",
@@ -236,8 +215,6 @@
       "Kveldstur",
       "Higashiyama i nærheten"
     ],
-    "prep": [],
-    "acShadows": true,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Street%20in%20Gion%2C%20Kyoto%2C%202024.jpg?width=1400",
@@ -278,10 +255,6 @@
       "Skogsstiene",
       "Tidlig morgen for mindre folk"
     ],
-    "prep": [
-      "Lær ordet torii"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 34.96754,
       "lng": 135.77944,
@@ -322,10 +295,6 @@
       "Utsikt over Kyoto",
       "Gamle gater nedenfor"
     ],
-    "prep": [
-      "Finn stedet i AC Shadows"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 34.994831,
       "lng": 135.785003,
@@ -365,10 +334,6 @@
       "Gullpaviljongen",
       "Hagen og dammen"
     ],
-    "prep": [
-      "Finn stedet i AC Shadows"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 35.03959,
       "lng": 135.72951,
@@ -409,10 +374,6 @@
       "Tenryū-ji",
       "Elveområdet"
     ],
-    "prep": [
-      "Se området i AC Shadows"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 35.01701,
       "lng": 135.67169,
@@ -454,10 +415,6 @@
       "Kasuga Taisha",
       "Kōfuku-ji"
     ],
-    "prep": [
-      "Finn Nara/Yamato-området i AC Shadows"
-    ],
-    "acShadows": true,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nara%20deer%20lounging%20at%20Todaiji.jpg?width=1400",
@@ -497,10 +454,6 @@
       "Den store Buddhaen",
       "Den enorme tempelhallen"
     ],
-    "prep": [
-      "Finn stedet i AC Shadows"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 34.689167,
       "lng": 135.839722,
@@ -541,12 +494,6 @@
       "Forsvarsverk og porter",
       "Kirsebærtrær i sesong"
     ],
-    "prep": [
-      "Bygg LEGO Himeji",
-      "Finn slottet i AC Shadows",
-      "Ta spill-screenshot og gjenskap bildet på reisen"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 34.83933,
       "lng": 134.69402,
@@ -587,11 +534,6 @@
       "Super Nintendo World",
       "Osaka Castle"
     ],
-    "prep": [
-      "Spill Mario",
-      "Spill AC Shadows rundt Osaka Castle"
-    ],
-    "acShadows": true,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20skyline%20from%20Osaka%20Castle%20(001)%202023-07-07.jpg?width=1400",
@@ -633,10 +575,6 @@
       "Okonomiyaki",
       "Kveldsliv"
     ],
-    "prep": [
-      "Prøv okonomiyaki hjemme før turen"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 34.6687,
       "lng": 135.50409,
@@ -672,10 +610,6 @@
       "Atomic Bomb Dome",
       "Peace Memorial Museum"
     ],
-    "prep": [
-      "Forbered konteksten før museumsbesøket"
-    ],
-    "acShadows": false,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atomic%20Bomb%20Dome%20Hiroshima.jpg?width=1400",
@@ -722,10 +656,6 @@
       "Hjort",
       "Natur"
     ],
-    "prep": [
-      "Lær forskjellen mellom tempel og shinto-helligdom"
-    ],
-    "acShadows": false,
     "image": {
       "type": "licensed",
       "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Itsukushima%20Gate.jpg?width=1400",
@@ -766,11 +696,6 @@
       "Interaktive opplevelser",
       "Uji som mulig halvdag"
     ],
-    "prep": [
-      "Spill noen Nintendo-klassikere",
-      "Legg inn billettrekningen tre måneder før ønsket dato"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 34.89261,
       "lng": 135.78405,
@@ -811,11 +736,6 @@
       "Ghibli-univers",
       "Mitaka-utflukt"
     ],
-    "prep": [
-      "Se 2–3 Ghibli-filmer",
-      "Billetter må kjøpes på forhånd"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 35.69623,
       "lng": 139.57045,
@@ -856,10 +776,6 @@
       "Lys og projeksjoner",
       "God regnværsaktivitet"
     ],
-    "prep": [
-      "Se noen få bilder – men ikke spoil hele opplevelsen"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 35.66185,
       "lng": 139.741842,
@@ -895,11 +811,6 @@
       "Mario Kart",
       "Power-Up Band-aktiviteter"
     ],
-    "prep": [
-      "Spill Mario Kart og andre Mario-spill",
-      "Bestem om en hel USJ-dag er verdt tiden på en to ukers tur"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 34.6647,
       "lng": 135.433,
@@ -940,10 +851,6 @@
       "Historisk kontekst",
       "Peace Memorial Park rundt museet"
     ],
-    "prep": [
-      "Forbered barna på hva museet handler om før besøket"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 34.391472,
       "lng": 132.453056,
@@ -984,10 +891,6 @@
       "Helligdommen over vannet",
       "Tidevannet endrer opplevelsen"
     ],
-    "prep": [
-      "Lær forskjellen mellom tempel og shinto-helligdom"
-    ],
-    "acShadows": false,
     "map": {
       "lat": 34.295806,
       "lng": 132.320111,
@@ -1023,10 +926,6 @@
       "Slottsparken",
       "Historisk kobling til Toyotomi Hideyoshi"
     ],
-    "prep": [
-      "Finn Osaka Castle i AC Shadows"
-    ],
-    "acShadows": true,
     "map": {
       "lat": 34.68737,
       "lng": 135.52586,

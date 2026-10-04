@@ -67,7 +67,8 @@
         "lng": 139.706825,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "mimaru-tokyo-shinjuku-west",
@@ -102,7 +103,8 @@
         "lng": 139.69304,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "hotel-groove-shinjuku",
@@ -137,7 +139,8 @@
         "lng": 139.7008,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "hotel"
     },
     {
       "id": "hakone-yutowa",
@@ -173,7 +176,8 @@
         "lng": 139.0484,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "hakone-kowakien-tenyu",
@@ -209,7 +213,8 @@
         "lng": 139.0446,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "hotel"
     },
     {
       "id": "gora-kadan",
@@ -245,7 +250,8 @@
         "lng": 139.04832,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "ryokan"
     },
     {
       "id": "22-pieces",
@@ -282,7 +288,8 @@
         "lng": 135.756809,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "mimaru-kyoto-station",
@@ -317,7 +324,8 @@
         "lng": 135.7617,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "hotel-granvia-kyoto",
@@ -353,7 +361,8 @@
         "lng": 135.75982,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "hotel"
     },
     {
       "id": "rihga-royal-hiroshima",
@@ -389,7 +398,8 @@
         "lng": 132.45769,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "hotel"
     },
     {
       "id": "hotel-granvia-hiroshima",
@@ -426,7 +436,8 @@
         "lng": 132.475623,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "hotel"
     },
     {
       "id": "iwaso-miyajima",
@@ -462,7 +473,8 @@
         "lng": 132.32182,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "ryokan"
     },
     {
       "id": "citadines-namba-osaka",
@@ -498,7 +510,8 @@
         "lng": 135.5061,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "fraser-residence-nankai",
@@ -533,7 +546,8 @@
         "lng": 135.50051,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "aparthotel"
     },
     {
       "id": "swissotel-nankai-osaka",
@@ -569,7 +583,48 @@
         "lng": 135.501397,
         "showOnRouteMap": true
       },
-      "factsChecked": "2026-10-03"
+      "factsChecked": "2026-10-03",
+      "kind": "hotel"
+    }
+  ],
+  "partyBasis": "Prisene sammenlignes foreløpig for 2 voksne + 2 barn. Hvis reisefølget blir større, skal totalpris per boenhet og faktisk kapasitet sammenlignes på nytt; store leiligheter og hele boliger kan da bli relativt mer interessante.",
+  "accommodationTypes": [
+    {
+      "id": "hotel",
+      "label": "Hotell",
+      "description": "Enklest drift og service, men familie på fire kan bli dyrt dersom man trenger connecting-rom eller suite."
+    },
+    {
+      "id": "aparthotel",
+      "label": "Leilighetshotell",
+      "description": "Ofte den mest praktiske kombinasjonen av plass, kjøkken og hotell-lignende drift. Flere av de rimeligste kandidatene i planen er allerede i denne kategorien."
+    },
+    {
+      "id": "ryokan",
+      "label": "Ryokan",
+      "description": "Velges først og fremst for selve opplevelsen – særlig i Hakone eller på Miyajima – ikke for lavest mulig pris."
+    },
+    {
+      "id": "vacation-rental",
+      "label": "Feriebolig / minpaku",
+      "description": "Et eget sammenligningsspor for hele boliger. Kan bli spesielt relevant ved større reisefølge, men lovlighet, kapasitet, gebyrer og totalpris må vurderes per konkret bolig.",
+      "source": "https://www.mlit.go.jp/kankocho/minpaku/overview/minpaku/index_en.html"
+    }
+  ],
+  "alternativeExamples": [
+    {
+      "baseId": "kyoto",
+      "kind": "vacation-rental",
+      "name": "MACHIYA RESIDENCE INN",
+      "description": "Hele tradisjonelle machiya-hus i Kyoto. Offisiell side oppgir boliger for omtrent 4–9 gjester, med kjøkken og lisensiert overnattingsdrift.",
+      "url": "https://www.machiya-inn-japan.com/about/accommodations/machiya-residence-inn/"
+    },
+    {
+      "baseId": "hiroshima",
+      "kind": "aparthotel",
+      "name": "GRAND BASE Hiroshima Ekimae",
+      "description": "Leilighetspregede familieenheter nær Hiroshima Station, med kjøkken og romtyper for fire eller flere. Interessant som mulig pris-/plassalternativ til de dyrere stasjonshotellene.",
+      "url": "https://grand-base.jp/hotel/gb-hiroshimaekimae/"
     }
   ]
 }

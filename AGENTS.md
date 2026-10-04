@@ -17,7 +17,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 - Nye steder går i `docs/data/places.json` og vises via `place.html?id=<id>`. Stedet skal eie navn, beskrivelse, kart, bilde/illustrasjon og eksterne lenker i samme objekt.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
-- Hotellkandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
+- Overnattingskandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Filen eier også overnattingsformer og alternative sammenligningsspor. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
 - Reiseetapper, priser og stasjoner går i `docs/data/transport.json`.
 - Rute og dagsturer refererer til steder med ID. Ikke lagre navn eller koordinater i `trip.json` når de allerede finnes i `places.json`.
 - Destinasjonsfarger og hvilke områder som arver dem eies av `docs/data/trip.json`. Steder, restaurantkort, kartmarkører og rutelinjer skal avlede fargen derfra.
@@ -34,9 +34,9 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 ## Datagrense mellom data og visning
 
 - Offentlig HTML og JavaScript er visningslag. Det kan inneholde struktur, generiske UI-tekster, formatering og hvilke felt/komponenter som vises, men ikke hardkodede navn, beskrivelser, priser, koordinater eller kuraterte ID-lister for konkrete steder, restauranter, hoteller eller reiseetapper.
-- Kuratering for oversikten eies av `trip.json.overview`. Hvis et sted skal inn eller ut av hero/familiekroker, endres data – ikke en liste i `app.js`.
-- `food.json` eier både restaurantpostene og felles matmetadata som prisbånd og planleggingsnotater. `transport.json` eier rutens transportstrategi og etapper.
-- Samme visuelle konsept skal bruke samme renderer og samme CSS-primitiv. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
+- Budskapet på oversikten eies av `trip.json.overview`. Oversikten skal forklare hvorfor turen og hvordan siden brukes; den skal ikke bli en kopi av alle undersidene.
+- `food.json` eier både restaurantpostene og felles matmetadata som prisbånd og planleggingsnotater. `transport.json` eier rutens transportstrategi og etapper. `prep.json` eier forberedelser og koblinger til steder via `placeIds`; ikke lag egne AC-/film-/spillflagg i `places.json`.
+- Samme visuelle konsept skal bruke samme renderer og samme CSS-primitiv. Steder, Mat og Overnatting skal bruke samme reise-/basefilter fra `trip.json`. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
 - Ikke kopier markup for en eksisterende objekttype for å lage en ny variant. Utvid den delte helperen/klassen når semantikken er den samme. Hvis en delt visning endres visuelt, skal alle brukere av komponenten få endringen samtidig.
 
 ## Publiseringsdisiplin
