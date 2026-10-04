@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
-const food = readJson('docs/data/food.json');
+const foodData = readJson('docs/data/food.json');
+const food = foodData.restaurants || [];
 const places = readJson('docs/data/places.json');
 const trip = readJson('docs/data/trip.json');
 const routeGeometry = readJson('docs/data/route-geometry.json');
@@ -247,6 +248,63 @@ if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bil
 if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.js refererer fortsatt til avledet map-pois-data');
 for (const dataFile of ['food.json','places.json','hotels.json']) {
   if (!app.includes(`json('data/${dataFile}')`)) errors.push(`app.js henter ikke data/${dataFile}`);
+}
+
+
+if (!trip.overview?.hero?.placeId || !placeIds.has(trip.overview.hero.placeId)) {
+  errors.push('trip.json: overview.hero.placeId mangler eller peker på ukjent sted');
+}
+if (!Array.isArray(trip.overview?.familyHookPlaceIds) || trip.overview.familyHookPlaceIds.some(id => !placeIds.has(id))) {
+  errors.push('trip.json: overview.familyHookPlaceIds mangler eller peker på ukjent sted');
+}
+if (!Number.isInteger(trip.overview?.bookingPreviewCount) || trip.overview.bookingPreviewCount < 1) {
+  errors.push('trip.json: overview.bookingPreviewCount må være et positivt heltall');
+}
+if (!transport.strategy) errors.push('transport.json: strategy mangler');
+
+if (!Array.isArray(foodData.priceBands) || foodData.priceBands.length === 0) {
+  errors.push('food.json: priceBands mangler');
+} else {
+  for (const band of foodData.priceBands) {
+    if (!band.label) errors.push('food.json: prisbånd mangler label');
+    if (band.minYen != null && !Number.isFinite(band.minYen)) errors.push(`food.json: prisbånd ${band.label} har ugyldig minYen`);
+    if (band.maxYen != null && !Number.isFinite(band.maxYen)) errors.push(`food.json: prisbånd ${band.label} har ugyldig maxYen`);
+  }
+}
+for (const note of foodData.planningNotes || []) {
+  if (note.placeId && !placeIds.has(note.placeId)) errors.push(`food.json: planningNote har ukjent placeId ${note.placeId}`);
+  if (!note.title || !note.body) errors.push('food.json: planningNote mangler title/body');
+}
+
+const allowedSiteKeys=new Set(['version','released']);
+for (const key of Object.keys(site)) {
+  if (!allowedSiteKeys.has(key)) errors.push(`site.json: ${key} hører ikke hjemme i offentlig release-metadata`);
+}
+
+const domainTerms=[
+  ...places.map(x=>x.id),
+  ...new Set(places.map(x=>x.area)),
+  ...places.map(x=>x.name),
+  ...food.map(x=>x.name),
+  ...hotels.map(x=>x.name)
+].filter(Boolean);
+for (const term of domainTerms) {
+  if (app.includes(`'${term}'`) || app.includes(`"${term}"`)) {
+    errors.push(`app.js hardkoder domenedata "${term}"; flytt detaljen eller kurateringen til JSON`);
+  }
+}
+for (const name of htmlFiles) {
+  const file=`docs/${name}`;
+  const html=fs.readFileSync(file,'utf8');
+  for (const term of [...new Set([...places.map(x=>x.name),...food.map(x=>x.name),...hotels.map(x=>x.name)])]) {
+    if (term && html.includes(term)) errors.push(`${file}: hardkoder domenedata "${term}"; vis via JSON`);
+  }
+}
+if (!app.includes('entityMediaHtml') || app.includes('cardImageHtml')) {
+  errors.push('app.js: felles entityMediaHtml-primitiv mangler eller gammel cardImageHtml brukes fortsatt');
+}
+if (!app.includes('relatedEntityCardHtml') || app.includes('class="restaurant-alt ')) {
+  errors.push('app.js: relaterte objekter bruker ikke felles relatedEntityCardHtml');
 }
 
 if (errors.length) {
