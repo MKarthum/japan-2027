@@ -15,6 +15,7 @@ const hotelData = readJson('docs/data/hotels.json');
 const hotels = hotelData.hotels || [];
 const fx = readJson('docs/data/fx.json');
 const site = readJson('docs/data/site.json');
+const pages = readJson('docs/data/pages.json');
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -70,6 +71,23 @@ function validateImage(img,label) {
 uniqueIds(food, 'food.json');
 uniqueIds(places, 'places.json');
 uniqueIds(hotels, 'hotels.json');
+
+const requiredPageCopy={
+  home:['whyEyebrow','whyTitle','whyIntro','useEyebrow','useTitle','useIntro'],
+  route:['eyebrow','listEyebrow','listTitle','listIntro','transportTitle','mapNote'],
+  places:['eyebrow','title','intro','filterLabel'],
+  food:['eyebrow','title','intro','filterLabel','watchTitle'],
+  hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],
+  prep:['eyebrow','title','intro'],
+  practical:['eyebrow','title','intro','transportTitle','bookingTitle','phrasesTitle','namesTitle','etiquetteTitle'],
+  budget:['eyebrow','title','intro','distributionTitle'],
+  sources:['eyebrow','title','intro'],
+  privacy:['eyebrow','title','intro','publicTitle']
+};
+for(const [page,keys] of Object.entries(requiredPageCopy)){
+  if(!pages[page]) errors.push(`pages.json: mangler ${page}`);
+  else for(const key of keys) if(typeof pages[page][key]!=='string'||!pages[page][key].trim()) errors.push(`pages.json: ${page}.${key} mangler`);
+}
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
@@ -227,6 +245,166 @@ if (!/^https:\/\//.test(fx.sourceUrl || '')) errors.push('fx.json: sourceUrl må
 if (!Number.isFinite(fx.jpyPerNok) || !Number.isFinite(fx.nokPerJpy)) errors.push('fx.json: fallback-kurser mangler');
 else if (Math.abs((fx.jpyPerNok * fx.nokPerJpy) - 1) > 0.000001) errors.push('fx.json: fallback-kursene er ikke inverse');
 if (!fx.asOf) errors.push('fx.json: fallback mangler asOf');
+
+const canonicalNarrativeFiles=[
+  ['trip.json',trip],
+  ['places.json',places],
+  ['food.json',foodData],
+  ['hotels.json',hotelData],
+  ['transport.json',transport],
+  ['guide.json',guide],
+  ['prep.json',prep]
+];
+const narrativeOwners=new Map();
+const collectNarrative=(value,file,pathLabel='
+for (const item of sources) {
+  if (!item.title || !item.url || !item.use) errors.push('sources.json: kilde mangler title/url/use');
+  if (sourceUrls.has(item.url)) errors.push(`sources.json: duplikat URL ${item.url}`);
+  sourceUrls.add(item.url);
+}
+
+const htmlFiles=fs.readdirSync('docs').filter(name=>name.endsWith('.html'));
+for (const name of htmlFiles) {
+  const file=`docs/${name}`;
+  const html=fs.readFileSync(file,'utf8');
+  if (!/<html lang="nb">/.test(html)) errors.push(`${file}: mangler lang="nb"`);
+  if (!/<meta name="viewport"/.test(html)) errors.push(`${file}: mangler viewport`);
+  const assetVersions=[...html.matchAll(/assets\/(?:style\.css|app\.js)\?v=([0-9.]+)/g)].map(m=>m[1]);
+  if (!assetVersions.length || assetVersions.some(v=>v!==site.version)) errors.push(`${file}: assetversjon samsvarer ikke med site.json (${site.version})`);
+  for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    const ref=match[1];
+    if (/^(?:https?:|mailto:|tel:|#|data:)/.test(ref)) continue;
+    const clean=ref.split('#')[0].split('?')[0];
+    if (!clean) continue;
+    const target=path.resolve('docs',clean);
+    if (!fs.existsSync(target)) errors.push(`${file}: lokal referanse finnes ikke: ${ref}`);
+  }
+}
+
+if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
+for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html']) {
+  if (!fs.existsSync(required)) errors.push(`${required} mangler`);
+}
+const placeHtml=fs.readFileSync('docs/place.html','utf8');
+if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js')) errors.push('place.html mangler generisk kartvisning');
+
+const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
+if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
+if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
+if (!app.includes('async function loadFx()') || !app.includes('providers=ecb')) errors.push('app.js mangler live ECB-kurs');
+const directFxLoads=[...app.matchAll(/json\('data\/fx\.json'\)/g)].length;
+if (directFxLoads !== 1) errors.push('app.js skal bare lese fx.json inne i loadFx()');
+if (!app.includes('footer-version') || !app.includes("json('data/site.json')")) errors.push('footer mangler versjon/sist oppdatert');
+if (!app.includes('1 NOK =') || !app.includes('1 JPY =')) errors.push('footer viser ikke kurs begge veier');
+if (!app.includes('place-list-card')) errors.push('Steder bruker ikke kompakt kortliste');
+if (!app.includes('setupJourneyFilters')) errors.push('app.js mangler felles filter for del av reisen');
+if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=') || !app.includes('food.html?base=') || !app.includes('hotels.html?base=')) {
+  errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
+}
+if (!app.includes("new URLSearchParams(location.search).get(param)")) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
+if (!style.includes('grid-template-columns:112px minmax(0,1fr) 26px!important') || !style.includes('.place-list-primary-link::after')) {
+  errors.push('style.css: mobil stedsrad mangler robust kompakt grid/klikkflate');
+}
+if (app.includes('<a class="route-thumb-wrap"')) errors.push('app.js: rute-thumbnail må ikke være ytre lenke rundt bildekreditering');
+if (!app.includes('place-list-primary-link')) errors.push('app.js: stedskort mangler gyldig primærlenke uten nested anchor');
+if (!app.includes('showPlaceDetail') || !app.includes('showFoodDetail') || !app.includes('showHotelDetail') || !app.includes('showStopDetail')) {
+  errors.push('app.js: kartvalg synkroniserer ikke detaljpanelet for valgt innhold');
+}
+if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
+if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
+if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
+if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
+if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
+if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.js refererer fortsatt til avledet map-pois-data');
+for (const dataFile of ['food.json','places.json','hotels.json']) {
+  if (!app.includes(`json('data/${dataFile}')`)) errors.push(`app.js henter ikke data/${dataFile}`);
+}
+
+
+if (!trip.overview?.hero?.placeId || !placeIds.has(trip.overview.hero.placeId)) {
+  errors.push('trip.json: overview.hero.placeId mangler eller peker på ukjent sted');
+}
+if (!trip.overview?.hero?.eyebrow || !trip.overview?.hero?.title || !trip.overview?.hero?.intro) {
+  errors.push('trip.json: overview.hero mangler offentlig inngangstekst');
+}
+if (!Array.isArray(trip.overview?.reasons) || trip.overview.reasons.length < 3 || trip.overview.reasons.some(x=>!x.title||!x.text)) {
+  errors.push('trip.json: overview.reasons må ha minst tre komplette begrunnelser');
+}
+if (!trip.overview?.plan?.title || !trip.overview?.plan?.text) {
+  errors.push('trip.json: overview.plan mangler title/text');
+}
+if (!transport.strategy) errors.push('transport.json: strategy mangler');
+
+if (!Array.isArray(foodData.priceBands) || foodData.priceBands.length === 0) {
+  errors.push('food.json: priceBands mangler');
+} else {
+  for (const band of foodData.priceBands) {
+    if (!band.label) errors.push('food.json: prisbånd mangler label');
+    if (band.minYen != null && !Number.isFinite(band.minYen)) errors.push(`food.json: prisbånd ${band.label} har ugyldig minYen`);
+    if (band.maxYen != null && !Number.isFinite(band.maxYen)) errors.push(`food.json: prisbånd ${band.label} har ugyldig maxYen`);
+  }
+}
+for (const note of foodData.planningNotes || []) {
+  if (note.placeId && !placeIds.has(note.placeId)) errors.push(`food.json: planningNote har ukjent placeId ${note.placeId}`);
+  if (!note.title || !note.body) errors.push('food.json: planningNote mangler title/body');
+}
+
+const allowedSiteKeys=new Set(['version','released']);
+for (const key of Object.keys(site)) {
+  if (!allowedSiteKeys.has(key)) errors.push(`site.json: ${key} hører ikke hjemme i offentlig release-metadata`);
+}
+
+const domainTerms=[
+  ...places.map(x=>x.id),
+  ...new Set(places.map(x=>x.area)),
+  ...places.map(x=>x.name),
+  ...food.map(x=>x.name),
+  ...hotels.map(x=>x.name)
+].filter(Boolean);
+for (const term of domainTerms) {
+  if (app.includes(`'${term}'`) || app.includes(`"${term}"`)) {
+    errors.push(`app.js hardkoder domenedata "${term}"; flytt detaljen eller kurateringen til JSON`);
+  }
+}
+for (const name of htmlFiles) {
+  const file=`docs/${name}`;
+  const html=fs.readFileSync(file,'utf8');
+  for (const term of [...new Set([...places.map(x=>x.name),...food.map(x=>x.name),...hotels.map(x=>x.name)])]) {
+    if (term && html.includes(term)) errors.push(`${file}: hardkoder domenedata "${term}"; vis via JSON`);
+  }
+}
+if (!app.includes('entityMediaHtml') || app.includes('cardImageHtml')) {
+  errors.push('app.js: felles entityMediaHtml-primitiv mangler eller gammel cardImageHtml brukes fortsatt');
+}
+if (!app.includes('relatedEntityCardHtml') || app.includes('class="restaurant-alt ')) {
+  errors.push('app.js: relaterte objekter bruker ikke felles relatedEntityCardHtml');
+}
+
+if (errors.length) {
+  console.error('Dataintegritetsfeil:\n' + errors.map(x => `- ${x}`).join('\n'));
+  process.exit(1);
+}
+console.log(`OK: ${places.length} steder, ${food.filter(x=>x.status==='active').length} restauranter og ${hotels.length} overnattingskandidater bruker kanoniske data.`);
+)=>{
+  if(typeof value==='string'){
+    const text=value.trim();
+    if(text.length<18 || /^https?:\/\//.test(text) || /^CC\b/.test(text)) return;
+    const key=text.toLocaleLowerCase('nb-NO');
+    const rows=narrativeOwners.get(key)||[];
+    rows.push({file,path:pathLabel,text});
+    narrativeOwners.set(key,rows);
+    return;
+  }
+  if(Array.isArray(value)) return value.forEach((item,i)=>collectNarrative(item,file,`${pathLabel}[${i}]`));
+  if(value&&typeof value==='object') for(const [key,item] of Object.entries(value)) collectNarrative(item,file,`${pathLabel}.${key}`);
+};
+for(const [file,value] of canonicalNarrativeFiles) collectNarrative(value,file);
+for(const rows of narrativeOwners.values()){
+  const files=new Set(rows.map(x=>x.file));
+  if(files.size>1) errors.push(`Kanonisk tekst duplisert på tvers av domener: "${rows[0].text}" (${[...files].join(', ')})`);
+}
 
 const sourceUrls=new Set();
 for (const item of sources) {
