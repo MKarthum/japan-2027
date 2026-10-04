@@ -125,7 +125,8 @@
         "note": "Google Flights' raskeste forbindelse med stopp i den nåværende markedsvisningen.",
         "source": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html"
       }
-    ]
+    ],
+    "availability": "Mars 2027 er allerede i salgs-/rutetabellvinduet hos flere aktører: Lufthansa og Thai viser marspriser, og Escape har publisert konkrete Turkish-flyvninger 22. mars–3. april 2027."
   },
   "carrierOptions": [
     {
@@ -558,5 +559,75 @@
       "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX"
     },
     "note": "Historiske KAYAK-data, ikke en garanti for 2027-priser."
-  }
+  },
+  "oneStopHubs": [
+    {
+      "id": "hnd",
+      "airport": "Tokyo Haneda (HND)",
+      "hubs": [
+        "PEK",
+        "CPH",
+        "VIE",
+        "MUC",
+        "FRA",
+        "ARN",
+        "HEL",
+        "IST",
+        "MXP",
+        "CDG",
+        "FCO",
+        "DXB",
+        "LHR",
+        "DOH",
+        "BKK",
+        "YYZ",
+        "EWR",
+        "JFK"
+      ],
+      "source": "https://www.flightconnections.com/flights-from-osl-to-hnd",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "nrt",
+      "airport": "Tokyo Narita (NRT)",
+      "hubs": [
+        "PEK",
+        "HEL",
+        "VIE",
+        "WAW",
+        "IST",
+        "FRA",
+        "AMS",
+        "ZRH",
+        "BRU",
+        "DXB",
+        "CAI",
+        "DOH",
+        "BKK",
+        "MAD",
+        "YYZ",
+        "EWR"
+      ],
+      "source": "https://www.flightconnections.com/flights-from-osl-to-nrt",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "kix",
+      "airport": "Osaka Kansai (KIX)",
+      "hubs": [
+        "PEK",
+        "MUC",
+        "HEL",
+        "IST",
+        "AMS",
+        "CDG",
+        "DOH",
+        "DXB",
+        "BKK",
+        "YYZ"
+      ],
+      "source": "https://www.flightconnections.com/flights-from-osl-to-kix",
+      "checked": "2026-10-04"
+    }
+  ]
 }
