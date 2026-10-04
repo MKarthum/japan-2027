@@ -16,7 +16,7 @@
       "fare": {
         "adultYen": 2470,
         "childYen": 1240,
-        "family2a2cYen": 7420
+        "planningPartyYen": 7420
       },
       "stations": [
         {
@@ -51,7 +51,7 @@
       "fare": {
         "adultYen": 12660,
         "childYen": 6320,
-        "family2a2cYen": 37960
+        "planningPartyYen": 37960
       },
       "stations": [
         {
@@ -105,7 +105,7 @@
       "fare": {
         "adultYen": 5270,
         "childYen": 2630,
-        "family2a2cYen": 15800
+        "planningPartyYen": 15800
       },
       "stations": [
         {
@@ -146,7 +146,7 @@
       "fare": {
         "adultYen": 8440,
         "childYen": 4210,
-        "family2a2cYen": 25300
+        "planningPartyYen": 25300
       },
       "stations": [
         {
@@ -187,7 +187,7 @@
       "fare": {
         "adultYen": 11130,
         "childYen": 5560,
-        "family2a2cYen": 33380
+        "planningPartyYen": 33380
       },
       "stations": [
         {
