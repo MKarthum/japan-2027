@@ -447,7 +447,7 @@ async function renderRoute() {
   const categoryMeta={
     experience:{label:'Opplevelser',symbol:'★'},
     food:{label:'Mat',symbol:'●'},
-    hotel:{label:'Hotell',symbol:'H'}
+    hotel:{label:'Overnatting',symbol:'H'}
   };
 
   const familyFoodPrice=(x)=>{
@@ -523,7 +523,7 @@ async function renderRoute() {
           <p><strong>${x.familyOption}</strong></p>
           ${price?`<p class="map-hotel-price"><span>Familieestimat per natt</span><strong>${price}</strong></p>`:''}
           <p class="small">${x.logistics}</p>
-          <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se hotelldetaljer →</a>
+          <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se overnatting →</a>
         </div>`);
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.hotel.push(marker);
@@ -545,7 +545,7 @@ async function renderRoute() {
       <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="true">Knutepunkter <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
-      <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Hotell <b>${counts.hotel}</b></button>
+      <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Overnatting <b>${counts.hotel}</b></button>
       <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>
       <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
     toolbar.addEventListener('click',e=>{
@@ -993,7 +993,7 @@ async function renderHotel() {
   const id=new URLSearchParams(location.search).get('id');
   const x=data.hotels.find(h=>h.id===id);
   if(!x){
-    document.querySelector('main').innerHTML='<div class="eyebrow">Hotell</div><h1>Hotellet ble ikke funnet</h1><p><a href="hotels.html">← Tilbake til hotelloversikten</a></p>';
+    document.querySelector('main').innerHTML='<div class="eyebrow">Overnatting</div><h1>Overnattingen ble ikke funnet</h1><p><a href="hotels.html">← Tilbake til overnattingsoversikten</a></p>';
     return;
   }
   const base=data.bases.find(b=>b.baseId===x.baseId);
