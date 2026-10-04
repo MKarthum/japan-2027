@@ -387,7 +387,7 @@ async function renderFlights() {
 
   document.getElementById('flight-fares').innerHTML=data.fareObservations.map(x=>`
     <article class="flight-fare-card">
-      <div class="flight-card-top"><span>${x.kind==='published-2027-fare'?'Publisert 2027-pris':x.kind==='dated-search-result'?'Datert søk':'Historisk nivå'}</span><span>${x.route}</span></div>
+      <div class="flight-card-top"><span>${x.kind==='published-2027-fare'?'Publisert 2027-pris':x.kind==='dated-search-result'?'Datert søk':x.kind==='dated-airline-fare'?'Datert flyselskappris':x.kind==='current-route-from'?'Aktuell fra-pris':x.kind==='search-engine-from'?'Søkemotor · fra-pris':'Historisk nivå'}</span><span>${x.route}</span></div>
       <h3>${Number.isFinite(x.priceNok)?fmtNok(x.priceNok):'Pris varierer'}</h3>
       <strong>${x.dates}</strong>
       <p>${x.basis}</p><small>${x.use}</small>
