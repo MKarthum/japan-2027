@@ -953,31 +953,9 @@ function prepLinksHtml(item,{includeDetail=true}={}) {
   return `<div class="button-row prep-actions">${links.map(link=>{
     const local=link.local || !/^https?:\/\//.test(link.url||'');
     const stream=link.kind==='stream';
-    const attrs=link.appUrl
-      ? ` data-stream-app-url="${encodeURIComponent(link.appUrl)}" data-stream-web-url="${encodeURIComponent(link.url)}"`
-      : '';
-    const target=local||stream?'':'target="_blank" rel="noopener"';
-    return `<a class="button${stream?' primary stream-link':''}" href="${link.url}"${attrs} ${target}>${link.label}${local||stream?'':' ↗'}</a>`;
+    const target=local?'':'target="_blank" rel="noopener"';
+    return `<a class="button${stream?' primary stream-link':''}" href="${link.url}" ${target}>${link.label}${local?'':' ↗'}</a>`;
   }).join('')}</div>`;
-}
-function bindPrepStreamLinks(root=document) {
-  if(!root || root.dataset?.prepStreamBound==='true') return;
-  if(root.dataset) root.dataset.prepStreamBound='true';
-  root.addEventListener('click',event=>{
-    const link=event.target.closest('[data-stream-app-url][data-stream-web-url]');
-    if(!link) return;
-    event.preventDefault();
-    const appUrl=decodeURIComponent(link.dataset.streamAppUrl||'');
-    const webUrl=decodeURIComponent(link.dataset.streamWebUrl||'');
-    if(!appUrl || !webUrl) return;
-    let leftPage=false;
-    const onVisibility=()=>{ if(document.hidden) leftPage=true; };
-    document.addEventListener('visibilitychange',onVisibility,{once:true});
-    window.location.href=appUrl;
-    window.setTimeout(()=>{
-      if(!leftPage && document.visibilityState==='visible') window.location.href=webUrl;
-    },1100);
-  });
 }
 
 async function renderPrep() {
@@ -999,7 +977,6 @@ async function renderPrep() {
       <strong class="prep-action">${x.action}</strong>
       ${prepLinksHtml(x)}
     </article>`).join('')}</div></section>`).join('');
-  bindPrepStreamLinks(document.querySelector('main'));
 }
 
 async function renderFood() {
@@ -1357,7 +1334,6 @@ async function renderPrepItem() {
   if(exampleItems.length) document.getElementById('prep-detail-examples').innerHTML=exampleItems.map(v=>`<li>${v}</li>`).join('');
   else document.getElementById('prep-detail-example-section').hidden=true;
   document.getElementById('prep-detail-links').innerHTML=prepLinksHtml(x,{includeDetail:false});
-  bindPrepStreamLinks(document.querySelector('main'));
   const related=(x.placeIds||[]).map(pid=>places.find(p=>p.id===pid)).filter(Boolean);
   if(related.length){
     document.getElementById('prep-detail-related').innerHTML=related.map(p=>relatedEntityCardHtml({href:`place.html?id=${encodeURIComponent(p.id)}`,meta:p.area,title:p.name,subtitle:p.simple,trip,subject:p})).join('');
