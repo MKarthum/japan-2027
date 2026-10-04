@@ -276,8 +276,13 @@ if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=')
   errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
 }
 if (!app.includes("new URLSearchParams(location.search).get(param)")) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
-if (!style.includes('flex:0 0 112px!important') || !style.includes('.place-list-card>a')) {
-  errors.push('style.css: mobil stedsrad mangler fast kompakt mediebredde');
+if (!style.includes('grid-template-columns:112px minmax(0,1fr) 26px!important') || !style.includes('.place-list-primary-link::after')) {
+  errors.push('style.css: mobil stedsrad mangler robust kompakt grid/klikkflate');
+}
+if (app.includes('<a class="route-thumb-wrap"')) errors.push('app.js: rute-thumbnail må ikke være ytre lenke rundt bildekreditering');
+if (!app.includes('place-list-primary-link')) errors.push('app.js: stedskort mangler gyldig primærlenke uten nested anchor');
+if (!app.includes('showPlaceDetail') || !app.includes('showFoodDetail') || !app.includes('showHotelDetail') || !app.includes('showStopDetail')) {
+  errors.push('app.js: kartvalg synkroniserer ikke detaljpanelet for valgt innhold');
 }
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
