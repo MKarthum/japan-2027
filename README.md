@@ -32,6 +32,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film/TV, bøker, historie, mat og små oppgaver før turen, med tydelig målgruppe
 - `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
+- `docs/data/passes.json` – kompakt beslutningslogg for togpass, aktivitets-/transportpass og kombipakker
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 
@@ -52,6 +53,10 @@ Kilder og personvern ligger i bunnteksten.
 - Fakta som kan endre seg skal ha kilde og konkret kontroll-dato; offentlig tekst skal ikke bruke relative formuleringer som «dagens regel».
 - Ingen privat reiseinformasjon skal inn i repoet.
 - Alle priser vises i både NOK og JPY via én felles kursfunksjon. Ved sidelasting hentes siste tilgjengelige ECB-referansekurs; ECB publiserer kun virkedager, så helger viser siste virkedag. `fx.json` er dokumentert fallback. Budsjett er primært i NOK.
+
+## Pass og pakkeløsninger
+
+Pass vurderes samlet under Praktisk. Siden viser bare kandidatstatus, kort begrunnelse og når den bør sjekkes igjen. Detaljert katalogmatch ligger i `passes.json`, slik at vi kan huske vurderingen uten å gjøre hvert sted til et pass-regnestykke.
 
 ## Visningsarkitektur
 
