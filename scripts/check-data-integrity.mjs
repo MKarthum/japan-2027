@@ -208,7 +208,7 @@ for (const group of prep) {
     else if (prepIds.has(item.id)) errors.push(`prep.json: duplikat id ${item.id}`);
     else prepIds.add(item.id);
     if (!item.title || !item.for || !item.why || !item.action) errors.push(`prep.json: ${item.id||item.title||'(uten id)'} mangler innhold`);
-    if (/voksne|voksent/i.test(item.for||'')) adultPrepCount++;
+    if (/^voksne\b/i.test(item.for||'')) adultPrepCount++;
     if (group.category==='Historie') historyPrepCount++;
     if (!Array.isArray(item.placeIds)) errors.push(`prep.json: ${item.id||item.title} mangler placeIds`);
     else for (const id of item.placeIds) if (!placeIds.has(id)) errors.push(`prep.json: ${item.id} peker på ukjent placeId ${id}`);
