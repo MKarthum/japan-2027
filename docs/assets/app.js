@@ -895,8 +895,8 @@ async function renderPrep() {
   nav('prep'); footer();
   const prep=await json('data/prep.json');
   document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>{
-    const adult=/voksne|voksent/i.test(x.for||'');
-    return `<article class="card prep-card ${adult?'prep-adult':''}"><div class="meta prep-audience">${adult?'Vokseninnhold · ':''}${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`;
+    const adult=/^voksne\b/i.test(x.for||'');
+    return `<article class="card prep-card ${adult?'prep-adult':''}"><div class="meta prep-audience">${adult?'For voksne · ':''}${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`;
   }).join('')}</div></section>`).join('');
 }
 
