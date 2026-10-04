@@ -901,6 +901,7 @@ async function renderFood() {
   await applyPageCopy('food');
   nav('food'); footer();
   const [foodData,fx,trip,places]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json'),json('data/places.json')]);
+  renderPricePartySelector(trip);
   const food=foodData.restaurants||[];
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
@@ -911,7 +912,7 @@ async function renderFood() {
 
   const familyPrice=(x)=>{
     if(!Array.isArray(x.standardFamilyEstimateYen)) return 'Pris kommer';
-    const [lo,hi]=x.standardFamilyEstimateYen;
+    const [lo,hi]=scalePartyRange(x.standardFamilyEstimateYen,trip);
     const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
     const nokLo=fmtNok(nokFromJpy(lo,fx));
     const nokHi=fmtNok(nokFromJpy(hi,fx));
@@ -955,13 +956,14 @@ async function renderFood() {
   const priceGuide=document.getElementById('food-price-guide');
   if(priceGuide){
     const bandText=(band)=>{
-      const lo=band.minYen, hi=band.maxYen;
+      const lo=Number.isFinite(band.minYen)?scalePartyYen(band.minYen,trip):band.minYen;
+      const hi=Number.isFinite(band.maxYen)?scalePartyYen(band.maxYen,trip):band.maxYen;
       if(Number.isFinite(lo)&&Number.isFinite(hi)) return `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
       if(Number.isFinite(hi)) return `opptil ${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(hi,fx))}`;
       if(Number.isFinite(lo)) return `over ${fmtJpy(lo)} · ca. ${fmtNok(nokFromJpy(lo,fx))}`;
       return '';
     };
-    priceGuide.innerHTML=`<strong>Familiepris:</strong>${(foodData.priceBands||[]).map(b=>`<span><b>${b.label}</b> ${bandText(b)}</span>`).join('')}`;
+    priceGuide.innerHTML=`<strong>Pris for ${planningPartyLabel(trip)}:</strong>${(foodData.priceBands||[]).map(b=>`<span><b>${b.label}</b> ${bandText(b)}</span>`).join('')}`;
   }
   const planningNotes=document.getElementById('food-planning-notes');
   if(planningNotes){
@@ -979,7 +981,7 @@ async function renderFood() {
   const fxNote=document.getElementById('food-fx-note');
   if(fxNote){
     const ratingDate=active.find(x=>x.ratings?.checked)?.ratings?.checked;
-    fxNote.textContent=`Familieprisene er planestimater. ${fxStatusText(fx)} ${fmtLongDate(fx.asOf)} brukes i alle omregninger.${ratingDate?` Restaurantvurderinger kontrollert ${fmtLongDate(ratingDate)}.`:''}`;
+    fxNote.textContent=`Prisene for ${planningPartyLabel(trip)} er planestimater. ${fxStatusText(fx)} ${fmtLongDate(fx.asOf)} brukes i alle omregninger.${ratingDate?` Restaurantvurderinger kontrollert ${fmtLongDate(ratingDate)}.`:''}`;
   }
   draw(initial);
 }
@@ -997,6 +999,7 @@ async function renderRestaurant() {
   }
 
   document.title=`${x.name} · Japan 2027`;
+  renderPricePartySelector(trip);
   document.querySelector('main')?.setAttribute('style',themeStyle(destinationTheme(trip,x)));
   document.querySelector('main')?.classList.add('destination-themed');
   document.getElementById('restaurant-area').textContent=`${x.area} · ${x.role}`;
@@ -1009,7 +1012,7 @@ async function renderRestaurant() {
 
   const price=document.getElementById('restaurant-family-price');
   if(Array.isArray(x.standardFamilyEstimateYen)){
-    const [lo,hi]=x.standardFamilyEstimateYen;
+    const [lo,hi]=scalePartyRange(x.standardFamilyEstimateYen,trip);
     const yen=lo===hi?fmtJpy(lo):`${fmtJpy(lo)}–${fmtJpy(hi)}`;
     const nokLo=fmtNok(nokFromJpy(lo,fx));
     const nokHi=fmtNok(nokFromJpy(hi,fx));
@@ -1020,6 +1023,8 @@ async function renderRestaurant() {
     if(panel) panel.hidden=true;
   }
 
+  const partyLabel=document.getElementById('restaurant-party-label');
+  if(partyLabel) partyLabel.textContent=`Estimat · ${planningPartyLabel(trip)}`;
   document.getElementById('restaurant-price-basis').textContent=x.priceBasis||'';
   document.getElementById('restaurant-booking').textContent=x.booking||'';
   document.getElementById('restaurant-note').textContent=x.note||'';
