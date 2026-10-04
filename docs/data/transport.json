@@ -11,7 +11,7 @@
       "toRouteId": "hakone",
       "from": "Shinjuku",
       "to": "Hakone-Yumoto",
-      "service": "Odakyu Romancecar",
+      "service": "Odakyu Romancecar – reservert hurtigtog fra Shinjuku",
       "durationMin": 80,
       "fare": {
         "adultYen": 2470,
@@ -46,7 +46,7 @@
       "toRouteId": "kyoto",
       "from": "Hakone-Yumoto",
       "to": "Kyoto",
-      "service": "Hakone Tozan + Hikari via Odawara",
+      "service": "Hakone Tozan-tog + Hikari Shinkansen via Odawara",
       "durationMin": 155,
       "fare": {
         "adultYen": 12660,
@@ -100,7 +100,7 @@
       "toRouteId": "himeji",
       "from": "Kyoto",
       "to": "Himeji",
-      "service": "Hikari",
+      "service": "Hikari Shinkansen",
       "durationMin": 43,
       "fare": {
         "adultYen": 5270,
@@ -141,7 +141,7 @@
       "toRouteId": "hiroshima",
       "from": "Himeji",
       "to": "Hiroshima",
-      "service": "Hikari-forbindelse via Sanyo Shinkansen",
+      "service": "Hikari-forbindelse på Sanyo Shinkansen",
       "durationMin": 61,
       "fare": {
         "adultYen": 8440,
@@ -182,7 +182,7 @@
       "toRouteId": "osaka",
       "from": "Hiroshima",
       "to": "Osaka Station",
-      "service": "Nozomi til Shin-Osaka + JR til Osaka",
+      "service": "Nozomi Shinkansen til Shin-Osaka + lokalt JR-tog til Osaka",
       "durationMin": 90,
       "fare": {
         "adultYen": 11130,
