@@ -6,6 +6,7 @@ const htmlFiles = fs.readdirSync('docs').filter(name => name.endsWith('.html')).
 
 const publicDataFiles = [
   'docs/data/trip.json',
+  'docs/data/flights.json',
   'docs/data/food.json',
   'docs/data/places.json',
   'docs/data/guide.json',

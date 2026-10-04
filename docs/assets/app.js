@@ -147,6 +147,7 @@ const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs (virkedager)':'Lagret 
 function nav(active='') {
   const items = [
     ['index.html','Oversikt','home'],
+    ['flights.html','Fly','flights'],
     ['route.html','Rute','route'],
     ['places.html','Steder','places'],
     ['food.html','Mat','food'],
@@ -309,6 +310,133 @@ async function renderHome() {
     const p=placeById.get(stop.id);
     return `<span class="home-route-stop destination-themed" style="${themeStyle(destinationTheme(trip,stop))}">${p?.name||stop.id}${stop.nights===0?' · stopp':''}</span>`;
   }).join('<b aria-hidden="true">→</b>');
+}
+
+async function renderFlights() {
+  await applyPageCopy('flights');
+  nav('flights'); footer();
+  const [data,trip]=await Promise.all([json('data/flights.json'),json('data/trip.json')]);
+  const dateLabel=(iso)=>new Intl.DateTimeFormat('nb-NO',{weekday:'short',day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(`${iso}T12:00:00Z`));
+  const checkedLabel=(iso)=>fmtLongDate(iso);
+  const shiftDate=(iso,days)=>{ const d=new Date(`${iso}T12:00:00Z`); d.setUTCDate(d.getUTCDate()+days); return d.toISOString().slice(0,10); };
+  const baselineDepart=trip.route?.[0]?.from;
+  const baselineReturn=trip.route?.[trip.route.length-1]?.to;
+  const baselineNights=Math.round((Date.parse(baselineReturn)-Date.parse(baselineDepart))/86400000);
+  const datePairs=Array.from({length:data.planningWindow.flexDays*2+1},(_,i)=>{ const shift=i-data.planningWindow.flexDays; return {shift,depart:shiftDate(baselineDepart,shift),return:shiftDate(baselineReturn,shift),label:shift===0?'Baseline':`${Math.abs(shift)} ${Math.abs(shift)===1?'dag':'dager'} ${shift<0?'tidligere':'senere'}`}; });
+  const weeksUntil=Math.max(0,(Date.parse(baselineDepart)-Date.parse(data.asOf))/604800000);
+  const bookingTiming=`Baseline er ca. ${Math.round(weeksUntil)} uker unna. KAYAKs historikk peker mot rundt ${data.bookingSignals.tokyo.bestWeeksBefore} uker før Oslo–Tokyo og ${data.bookingSignals.osaka.bestWeeksBefore} uker før Oslo–Kansai som gunstige nivåer sammenlignet med siste liten. Det gjør dette til en naturlig periode for aktiv prissjekk.`;
+  const flyBudget=(trip.budget?.items||[]).find(x=>x.label==='Fly')?.rangeNok;
+  const external=(url,label,primary=false)=>`<a class="button${primary?' primary':''}" href="${url}" target="_blank" rel="noopener">${label} ↗</a>`;
+
+  const decision=document.getElementById('flight-decision');
+  decision.innerHTML=`
+    <div class="flight-decision-main">
+      <span class="flight-kicker">Første beslutning</span>
+      <h2>Pris fly før resten av datoene låses</h2>
+      <p>${data.planningWindow.summary}</p>
+      <div class="flight-decision-stats">
+        <div><span>Baseline</span><strong>${dateLabel(baselineDepart)} – ${dateLabel(baselineReturn)}</strong></div>
+        <div><span>Fleks</span><strong>±${data.planningWindow.flexDays} dager</strong></div>
+        <div><span>Flybudsjett</span><strong>${Array.isArray(flyBudget)?`${fmtNok(flyBudget[0])}–${fmtNok(flyBudget[1])}`:'Planramme'}</strong></div>
+      </div>
+      <div class="flight-principles"><strong>Slik velges vinneren</strong><ul>${data.decisionPrinciples.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+    <aside><strong>Timing</strong><p>${bookingTiming}</p><a href="#flight-searches-anchor">Gå til søkene ↓</a></aside>`;
+
+  document.getElementById('flight-patterns').innerHTML=data.itineraryPatterns.map(x=>`
+    <article class="flight-pattern-card ${x.status==='Hovedspor'?'preferred':''}">
+      <div class="flight-card-top"><span class="flight-status">${x.status}</span><span>${x.type==='roundtrip'?'Tur/retur':'Åpen kjeve'}</span></div>
+      <h3>${x.label}</h3>
+      <div class="flight-route-pair"><strong>${x.outbound}</strong><strong>${x.inbound}</strong></div>
+      <p class="flight-direction">${x.routeDirection}</p>
+      <p>${x.why}</p>
+      <small>${x.tradeoff}</small>
+      ${x.evidenceUrl?external(x.evidenceUrl,'Se publisert eksempel'):''}
+    </article>`).join('');
+
+  document.getElementById('flight-date-pairs').innerHTML=datePairs.map(x=>`
+    <div class="flight-date-pair ${x.shift===0?'baseline':''}">
+      <span>${x.label}</span>
+      <strong>${dateLabel(x.depart)}</strong>
+      <b>→</b>
+      <strong>${dateLabel(x.return)}</strong>
+    </div>`).join('');
+
+  document.getElementById('flight-date-signals').innerHTML=data.dateSignals.map(x=>`
+    <article class="flight-signal-card">
+      <span>${x.kind==='historical'?'Historisk mønster':'Observasjon'}</span>
+      <h3>${x.title}</h3><p>${x.finding}</p>
+      <small>Kontrollert ${checkedLabel(x.checked)} · <a href="${x.source}" target="_blank" rel="noopener">kilde ↗</a></small>
+    </article>`).join('');
+
+  const market=document.getElementById('flight-market');
+  market.innerHTML=`
+    <div class="flight-market-main"><span>Marked</span><strong>${data.market.nonstop}</strong><small>${data.market.availability}</small></div>
+    <div class="flight-fastest">${data.market.fastestListed.map(x=>`<div><span>${x.route}</span><strong>${x.time}</strong><small>${x.note}</small></div>`).join('')}</div>
+    <div class="flight-airports">${data.airportNotes.map(x=>`<div><b>${x.code}</b><strong>${x.name}</strong><span>${x.role}</span><small>${x.note}</small></div>`).join('')}</div>
+    <div class="flight-hubs"><div class="flight-hubs-head"><strong>Alle mellomlandingsflyplasser i den kontrollerte ruteoversikten</strong><span>Kompakt referanse – ikke alle er like gode forbindelser.</span></div>${data.oneStopHubs.map(x=>`<div class="flight-hub-row"><b>${x.airport}</b><div>${x.hubs.map(h=>`<span>${h}</span>`).join('')}</div><a href="${x.source}" target="_blank" rel="noopener">rutekilde ↗</a></div>`).join('')}</div>`;
+
+  document.getElementById('flight-carriers').innerHTML=data.carrierOptions.map(x=>`
+    <article class="flight-carrier-card">
+      <div class="flight-card-top"><span>${x.hub}</span><span>${x.fit}</span></div>
+      <h3>${x.airline}</h3>
+      <div class="flight-airport-fit"><span>Tokyo <strong>${x.tokyo}</strong></span><span>Osaka <strong>${x.osaka}</strong></span></div>
+      <p>${x.why}</p>
+      <div class="button-row">${external(x.officialSearch,'Søk hos selskapet',true)}${external(x.routeSource,'Rutegrunnlag')}</div>
+    </article>`).join('');
+
+  document.getElementById('flight-fares').innerHTML=data.fareObservations.map(x=>`
+    <article class="flight-fare-card">
+      <div class="flight-card-top"><span>${x.kind==='published-2027-fare'?'Publisert 2027-pris':x.kind==='dated-search-result'?'Datert søk':'Historisk nivå'}</span><span>${x.route}</span></div>
+      <h3>${Number.isFinite(x.priceNok)?fmtNok(x.priceNok):'Pris varierer'}</h3>
+      <strong>${x.dates}</strong>
+      <p>${x.basis}</p><small>${x.use}</small>
+      <a href="${x.source}" target="_blank" rel="noopener">Kilde · kontrollert ${checkedLabel(x.checked)} ↗</a>
+    </article>`).join('');
+
+  const safety=data.safety;
+  document.getElementById('flight-safety').innerHTML=`<article class="flight-safety-method"><strong>Hvordan vi bruker «sikkerhet»</strong><p>${safety.approach}</p></article>`+[
+    {label:'EU-kontroll',title:'Air Safety List',body:safety.euList.summary,note:safety.euList.note,url:safety.euList.source,checked:safety.euList.checked},
+    {label:'Sekundær kontekst',title:'Uavhengig rangering',body:safety.independent.summary,note:'Brukes som tillegg, ikke som fasit.',url:safety.independent.source,checked:safety.independent.checked},
+    {label:'Operativt nå',title:'Luftrom må følges',body:safety.airspaceWatch.summary,note:safety.airspaceWatch.recheck,url:safety.airspaceWatch.source,checked:safety.airspaceWatch.checked}
+  ].map(x=>`<article class="flight-safety-card"><span>${x.label}</span><h3>${x.title}</h3><p>${x.body}</p><small>${x.note}</small><a href="${x.url}" target="_blank" rel="noopener">Kilde · ${checkedLabel(x.checked)} ↗</a></article>`).join('');
+
+  document.getElementById('flight-packages').innerHTML=data.packageChecks.map(x=>`
+    <article class="flight-package-card">
+      <div class="flight-card-top"><span>${x.provider}</span><span>${x.kind}</span></div>
+      <h3>${x.dates}</h3>
+      ${Number.isFinite(x.priceNok)?`<strong class="flight-package-price">${fmtNok(x.priceNok)} <small>per person</small></strong>`:''}
+      <p>${x.signal}</p><small>${x.compareAs}</small>
+      ${external(x.url,'Åpne hos '+x.provider,true)}
+    </article>`).join('');
+
+  const searches=document.getElementById('flight-searches');
+  searches.id='flight-searches-anchor';
+  searches.innerHTML=data.manualSearches.map((x,i)=>`
+    <article class="flight-search-card">
+      <span class="flight-search-number">${String(i+1).padStart(2,'0')}</span>
+      <div><div class="flight-card-top"><span>${x.priority}</span></div><h3>${x.title}</h3><p>${x.instruction}</p>${external(x.url,'Åpne søk',i<2)}</div>
+    </article>`).join('');
+
+  const template=[data.capture.title,'',...data.capture.fields.map(x=>`${x}: `)].join('\n');
+  document.getElementById('flight-capture').innerHTML=`
+    <div class="flight-capture-box"><p>${data.capture.instruction}</p>
+      <pre id="flight-capture-template">${template}</pre>
+      <button id="flight-copy-template" class="button primary" type="button">Kopier resultatmal</button>
+      <span id="flight-copy-status" class="small" aria-live="polite"></span>
+    </div>`;
+  document.getElementById('flight-copy-template')?.addEventListener('click',async()=>{
+    const status=document.getElementById('flight-copy-status');
+    try{
+      await navigator.clipboard.writeText(template);
+      if(status) status.textContent='Kopiert – lim den inn i chatten etter søket.';
+    }catch{
+      if(status) status.textContent='Kunne ikke kopiere automatisk. Marker teksten over og kopier manuelt.';
+    }
+  });
+
+  document.getElementById('flight-sources').innerHTML=data.sources.map(x=>`
+    <a class="flight-source-card" href="${x.url}" target="_blank" rel="noopener"><strong>${x.title}</strong><span>${x.use}</span><b>Åpne kilde ↗</b></a>`).join('');
 }
 
 async function renderRoute() {

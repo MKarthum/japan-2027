@@ -19,6 +19,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 ## Kanoniske dataeiere
 
 - `docs/data/trip.json`: reisevindu, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
+- `docs/data/flights.json`: flyresearch, rutetyper, datofleks-regler, prisobservasjoner, flyselskaper/huber, sikkerhetsgrunnlag, pakkereisebenchmarker og manuelle søkeoppgaver. Den skal ikke duplisere de faktiske reisedatoene som eies av `trip.json`.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris. Hvert sted skal ha eksplisitt `price`, også når prisen er «Gratis».
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
 - `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
@@ -84,6 +85,16 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Film og TV i `prep.json` skal ha både IMDb-lenke og en aktuell norsk strømme-/visningstjeneste med kontrolldato. Strømmelenken skal være tjenestens kanoniske, direkte HTTPS-innholdsside og åpnes eksternt slik at Japan-siden blir liggende. Ikke bruk custom-scheme, automatisk fallback, app-/delingsparametre eller konto-/brukerparametre. La operativsystemets universal links avgjøre eventuell appåpning. Matforberedelser skal ha oppskriftslenke. «Små mål» skal ha nok detalj til at oppgaven kan gjennomføres uten forkunnskap.
 - Målgruppe i `prep.json` er strukturert som `audience.id`, `audience.label` og valgfri `audience.note`. Bruk de fire nivåene `family`, `older-kids`, `teens` og `adults`. Innholdsadvarsel eller konkret aldersmerking er en separat merknad, ikke en del av selve målgruppen.
 - Språkvisningen skal vise romanisering og japanske tegn sammen. Uttaleknappen bruker nettleserens japanske tekst-til-tale-stemme; den utvidede fraselisten ligger på `phrases.html`.
+
+## Flyplanlegging per v0.24
+
+- Fly er første datodrivende beslutning. Før hotell- og dagsdatoer låses, skal fire oppsett prises: Tokyo inn / Osaka hjem, Osaka inn / Tokyo hjem, Tokyo tur/retur og Osaka tur/retur.
+- Gjeldende datoer eies bare av `trip.json`. `flights.json` lagrer fleksibilitetsregelen (normalt ±3 dager) og datert markedsresearch; visningen avleder den konkrete datomatrisen fra `trip.json`.
+- Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. Tur/retur til samme by må vurderes mot ekstra innenlands transport, mulig hotellbehov og tapt reisetid.
+- Prisobservasjoner skal alltid angi hva tallet faktisk er: historisk nivå, publisert 2027-fra-pris, datert søkemotorfunn eller pakkereise. Ikke bland pris per person og totalpris for standardfamilien.
+- Sikkerhet deles i regulatorisk status, sekundære uavhengige signaler og tidsavhengig luftromsrisiko. Ikke presenter en privat rangering som objektiv fasit.
+- Dynamiske søk som siden ikke kan hente stabilt skal ligge som konkrete manuelle søkeoppgaver. Resultatmalen kan kopieres til chat og brukes til å oppdatere `flights.json`.
+- Offentlig repo skal aldri lagre booking-sessioner, innloggede delingslenker, PNR, flybilletter eller personlige pris-/konto-URL-er. Bruk offentlige søke-/destinasjonssider som lenkemål.
 
 ## Passvurdering per v0.21
 

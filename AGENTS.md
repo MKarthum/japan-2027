@@ -18,7 +18,8 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Nye steder går i `docs/data/places.json` og vises via `place.html?id=<id>`. Stedet skal eie navn, beskrivelse, kart, bilde/illustrasjon og eksterne lenker i samme objekt.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
 - Overnattingskandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Filen eier også overnattingsformer og alternative sammenligningsspor. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
-- Reiseetapper, priser og stasjoner går i `docs/data/transport.json`. `standardFamilyYen` er basisprisen for standardfamilien; valgt prisscenario skaleres i visningslaget.
+- Flyresearch går i `docs/data/flights.json`. Filen eier rutetyper, fleksibilitetsregler, prisobservasjoner, flyselskap/hub-spor, sikkerhetsgrunnlag, pakkereisebenchmarker og manuelle søkeoppgaver. De faktiske reisedatoene eies fortsatt av `trip.json` og skal avledes derfra i flyvisningen.
+- Reiseetapper inne i Japan, priser og stasjoner går i `docs/data/transport.json`. `standardFamilyYen` er basisprisen for standardfamilien; valgt prisscenario skaleres i visningslaget.
 - Rute og dagsturer refererer til steder med ID. Ikke lagre navn eller koordinater i `trip.json` når de allerede finnes i `places.json`.
 - Destinasjonsfarger og hvilke områder som arver dem eies av `docs/data/trip.json`. Steder, restaurantkort, kartmarkører og rutelinjer skal avlede fargen derfra.
 - `docs/data/route-geometry.json` eier bare fysisk linjegeometri og spor-offset. Ikke legg destinasjonsfarger eller annen domenedata i geometrifilen.
@@ -29,6 +30,8 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
+- Flypris er alltid en observasjon, ikke en varig sannhet. Lagre kilde, kontrolldato, om prisen er per person/total, turtype og om den er historisk, publisert fra-pris eller konkret søk. Ikke skaler voksenpris mekanisk til familiepris når barnetakst/billettvilkår er ukjent.
+- Flysøk som krever dynamisk søkemotor skal representeres som en manuell søkeoppgave med offentlig URL og instruksjon. Ikke lagre booking-session-URL, innlogget delingslenke, token, PNR eller annen bruker-/kontoidentifikator.
 - Strømmelenker skal peke direkte til tittelen via kanonisk HTTPS-format og åpnes som ekstern lenke slik at Japan-siden blir liggende. Stol på operativsystemets universal links for eventuell appåpning. Ikke bruk custom URL-scheme, tidsstyrt fallback, delingsparametre eller konto-/brukerparametre. De tillatte formatene valideres i `check-data-integrity.mjs`, slik at gamle lenkevarianter ikke sniker seg tilbake.
 - Bilder skal ha eksplisitt `type`. `licensed` krever lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. `ai` skal lagres lokalt i repoet, ha alt-tekst og genereringsdato og alltid merkes som AI-generert i UI-et. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Bildekreditering vises som en liten overlay nederst til venstre i bildet, ikke som egen rad under bildet. På stedskort ligger områdeetiketten øverst til venstre i selve bildet; type kan ligge øverst til høyre.

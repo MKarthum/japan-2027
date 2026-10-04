@@ -1,0 +1,633 @@
+{
+  "asOf": "2026-10-04",
+  "status": "research-active",
+  "planningWindow": {
+    "flexDays": 3,
+    "summary": "Gjeldende reisevindu er baseline, men samme reiselengde skal flyttes opptil tre dager begge veier før datoene regnes som faste.",
+    "sameLengthFirst": true,
+    "thenVaryLengthDays": 1
+  },
+  "decisionPrinciples": [
+    "Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. En billigere tur/retur til samme by kan tape gevinsten hvis den krever ekstra hurtigtog, mulig hotellnatt og en halv reisedag tilbake.",
+    "Pris begge retninger som åpen kjeve: Tokyo inn / Osaka hjem og Osaka inn / Tokyo hjem. Ruten i Japan kan snus hvis flyforskjellen er stor nok.",
+    "Søk først samme 14-netters reiselengde på alle datoer ±3 dager. Deretter testes én dag kortere/lengre hvis prisbildet har tydelige hopp.",
+    "Foretrekk én gjennomgående billett med beskyttede forbindelser. Separate billetter – særlig der man selv må hente bagasje og sjekke inn på nytt – er et eget risikonivå og skal merkes tydelig.",
+    "Når prisforskjellen er liten, er bestilling direkte hos flyselskapet normalt enklere ved endringer enn en ukjent tredjepart."
+  ],
+  "dateSignals": [
+    {
+      "id": "osl-tokyo-weekday",
+      "title": "Lørdag er historisk dyr på Oslo–Tokyo",
+      "finding": "KAYAKs siste 12 måneder viser tirsdag omtrent 6 % under en gjennomsnittsdag og lørdag omtrent 8 % over. Derfor skal tirsdager i fleksvinduet alltid kontrolleres før avreisedatoen låses.",
+      "kind": "historical",
+      "checked": "2026-10-04",
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO"
+    },
+    {
+      "id": "kix-osl-weekday",
+      "title": "Returdagen fra Kansai kan flytte prisen mye",
+      "finding": "KAYAKs siste 12 måneder viser mandag som billigste og søndag som dyreste dag på KIX–OSL, med svært stor historisk forskjell. Mandager i fleksvinduet skal derfor alltid prises.",
+      "kind": "historical",
+      "checked": "2026-10-04",
+      "source": "https://www.kayak.no/fly/Osaka-Kansai-Intl-KIX/Oslo-og-andre-flyplasser-OSL"
+    },
+    {
+      "id": "booking-window",
+      "title": "Vi er i et relevant bestillingsvindu",
+      "finding": "KAYAK oppgir historisk lavest nivå rundt 22 uker før Oslo–Tokyo og rundt 24 uker før Oslo–KIX. Det er ikke en garanti, men betyr at flyprisene bør følges aktivt før resten av detaljplanen låses.",
+      "kind": "historical",
+      "checked": "2026-10-04",
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX"
+    }
+  ],
+  "itineraryPatterns": [
+    {
+      "id": "open-jaw-east-west",
+      "label": "Tokyo inn · Osaka hjem",
+      "type": "open-jaw",
+      "status": "Hovedspor",
+      "outbound": "OSL → HND/NRT",
+      "inbound": "KIX → OSL",
+      "routeDirection": "Tokyo → Hakone → Kyoto → Hiroshima → Osaka",
+      "why": "Passer den nåværende ruten og unngår å reise tilbake til Tokyo bare for å fly hjem.",
+      "tradeoff": "Må prises som multi-city; enkelte kampanjer er bedre på ordinær tur/retur."
+    },
+    {
+      "id": "open-jaw-west-east",
+      "label": "Osaka inn · Tokyo hjem",
+      "type": "open-jaw-reverse",
+      "status": "Må sammenlignes",
+      "outbound": "OSL → KIX",
+      "inbound": "HND/NRT → OSL",
+      "routeDirection": "Osaka → Hiroshima → Kyoto → Hakone → Tokyo",
+      "why": "Beholder fordelen med énveisreise gjennom Japan, men kan åpne et helt annet pris- og tilgjengelighetsbilde.",
+      "tradeoff": "Krever at hele reiseruten snus. Escape Travel har publisert akkurat denne flyretningen med Turkish Airlines 22. mars–3. april 2027, så alternativet er konkret og ikke bare teoretisk.",
+      "evidenceUrl": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/"
+    },
+    {
+      "id": "roundtrip-tokyo",
+      "label": "Tokyo tur/retur",
+      "type": "roundtrip",
+      "status": "Prisreferanse",
+      "outbound": "OSL → HND/NRT",
+      "inbound": "HND/NRT → OSL",
+      "routeDirection": "Nåværende rute + tilbake til Tokyo",
+      "why": "Kan ha gode kampanjepriser og gir størst marked av de to byene.",
+      "tradeoff": "Krever ekstra transport fra Osaka tilbake til Tokyo og reduserer gevinsten ved den lineære ruten."
+    },
+    {
+      "id": "roundtrip-osaka",
+      "label": "Osaka tur/retur",
+      "type": "roundtrip",
+      "status": "Prisreferanse",
+      "outbound": "OSL → KIX",
+      "inbound": "KIX → OSL",
+      "routeDirection": "Må bygges om rundt Osaka",
+      "why": "Kan være relevant hvis KIX-prisene blir klart bedre enn Tokyo eller en bestemt forbindelse passer svært godt.",
+      "tradeoff": "Gir mest ekstra innenlands transport med dagens Tokyo–Osaka-plan og er derfor ikke førstevalget uten tydelig besparelse."
+    }
+  ],
+  "airportNotes": [
+    {
+      "code": "HND",
+      "name": "Tokyo Haneda",
+      "role": "Foretrukket Tokyo-flyplass",
+      "note": "Nærmere sentrale Tokyo enn Narita. Prioriteres når pris og reisetid ellers er omtrent like.",
+      "source": "https://www.google.com/travel/flights/flights-from-oslo-to-tokyo.html"
+    },
+    {
+      "code": "NRT",
+      "name": "Tokyo Narita",
+      "role": "Fullverdig prisalternativ",
+      "note": "Større avstand til sentrale Tokyo, men skal alltid være med i prissøket fordi fare inventory kan være helt annerledes enn Haneda.",
+      "source": "https://www.google.com/travel/flights/flights-from-oslo-to-tokyo.html"
+    },
+    {
+      "code": "KIX",
+      "name": "Kansai International",
+      "role": "Osaka / Kansai",
+      "note": "Det naturlige internasjonale endepunktet for Osaka-siden av ruten.",
+      "source": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html"
+    }
+  ],
+  "market": {
+    "nonstop": "Ingen direktefly er publisert fra Oslo til Tokyo eller Osaka; minst én mellomlanding må regnes med.",
+    "fastestListed": [
+      {
+        "route": "OSL → Tokyo",
+        "time": "ca. 14 t 55 min",
+        "note": "Google Flights' raskeste forbindelse med stopp i den nåværende markedsvisningen.",
+        "source": "https://www.google.com/travel/flights/flights-from-oslo-to-tokyo.html"
+      },
+      {
+        "route": "OSL → Osaka",
+        "time": "ca. 15 t 30 min",
+        "note": "Google Flights' raskeste forbindelse med stopp i den nåværende markedsvisningen.",
+        "source": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html"
+      }
+    ],
+    "availability": "Mars 2027 er allerede i salgs-/rutetabellvinduet hos flere aktører: Lufthansa og Thai viser marspriser, og Escape har publisert konkrete Turkish-flyvninger 22. mars–3. april 2027."
+  },
+  "carrierOptions": [
+    {
+      "id": "finnair",
+      "airline": "Finnair",
+      "hub": "Helsinki (HEL)",
+      "fit": "Svært sterk for begge ender",
+      "tokyo": "HND og NRT",
+      "osaka": "KIX",
+      "why": "Kort geografisk omvei via Helsinki, daglig Helsinki–Haneda ifølge Finnair, og Finnair vises med forbindelser til både Tokyo og Osaka.",
+      "officialSearch": "https://www.finnair.com/no-no/",
+      "routeSource": "https://www.flightconnections.com/flights-from-osl-to-kix"
+    },
+    {
+      "id": "turkish",
+      "airline": "Turkish Airlines",
+      "hub": "Istanbul (IST)",
+      "fit": "Svært sterk for åpen kjeve",
+      "tokyo": "HND og NRT",
+      "osaka": "KIX",
+      "why": "Dekker begge ender via Istanbul. En norsk gruppereise har allerede publisert OSL–IST–KIX ut og HND–IST–OSL hjem 22. mars–3. april 2027.",
+      "officialSearch": "https://www.turkishairlines.com/en-no/",
+      "routeSource": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/"
+    },
+    {
+      "id": "lufthansa",
+      "airline": "Lufthansa",
+      "hub": "Frankfurt / München (FRA / MUC)",
+      "fit": "Sterk sammenligning",
+      "tokyo": "HND",
+      "osaka": "KIX",
+      "why": "Én-stopp-alternativer til begge ender via Tyskland og publiserte mars 2027-priseksempler på både Tokyo og Osaka.",
+      "officialSearch": "https://www.lufthansa.com/no/en/homepage",
+      "routeSource": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-tokyo"
+    },
+    {
+      "id": "klm-air-france",
+      "airline": "KLM / Air France",
+      "hub": "Amsterdam / Paris (AMS / CDG)",
+      "fit": "God europeisk reserve",
+      "tokyo": "Tokyo",
+      "osaka": "KIX",
+      "why": "Begge hubene finnes som én-stopp-ruter til Japan og gir nyttige alternativer når Helsinki, Istanbul eller Tyskland er dyre.",
+      "officialSearch": "https://www.klm.no/",
+      "routeSource": "https://www.flightconnections.com/flights-from-osl-to-kix"
+    },
+    {
+      "id": "qatar",
+      "airline": "Qatar Airways",
+      "hub": "Doha (DOH)",
+      "fit": "Pris og kvalitet må sammenlignes",
+      "tokyo": "HND og NRT",
+      "osaka": "KIX",
+      "why": "Én-stopp-ruter til begge ender. Lengre geografisk vei enn Helsinki, men kan være konkurransedyktig på pris og produkt.",
+      "officialSearch": "https://www.qatarairways.com/",
+      "routeSource": "https://www.google.com/travel/flights/flights-from-oslo-to-tokyo.html"
+    },
+    {
+      "id": "emirates",
+      "airline": "Emirates",
+      "hub": "Dubai (DXB)",
+      "fit": "Pris og kvalitet må sammenlignes",
+      "tokyo": "HND / Tokyo",
+      "osaka": "KIX",
+      "why": "Én-stopp-alternativ via Dubai til begge ender. Vanligvis lengre enn de korteste europeiske rutene, men kan ha godt pris-/produktforhold.",
+      "officialSearch": "https://www.emirates.com/no/norwegian/",
+      "routeSource": "https://www.flightconnections.com/flights-from-osl-to-kix"
+    },
+    {
+      "id": "thai",
+      "airline": "Thai Airways",
+      "hub": "Bangkok (BKK)",
+      "fit": "Lengre, men reell prisjoker",
+      "tokyo": "HND og NRT",
+      "osaka": "KIX",
+      "why": "Ruter via Bangkok er lengre, men kan dukke opp med gode priser. Thai publiserer mars 2027-priser fra Oslo til Tokyo.",
+      "officialSearch": "https://www.thaiairways.com/flights/en/flights-from-oslo-to-tokyo",
+      "routeSource": "https://www.thaiairways.com/flights/en/flights-from-oslo-to-tokyo"
+    },
+    {
+      "id": "sas",
+      "airline": "SAS",
+      "hub": "København / Stockholm (CPH / ARN)",
+      "fit": "Sterk på Tokyo-siden",
+      "tokyo": "HND",
+      "osaka": "Ikke tilsvarende enkel OSL–KIX-rute i den nåværende FlightConnections-listen",
+      "why": "København er blant de korteste listede én-stopp-veiene til Haneda. For åpen kjeve må Osaka-returen prises med partner eller annet selskap.",
+      "officialSearch": "https://www.flysas.com/",
+      "routeSource": "https://www.flightconnections.com/flights-from-osl-to-hnd"
+    }
+  ],
+  "fareObservations": [
+    {
+      "id": "kayak-march-tokyo-history",
+      "kind": "historical-market",
+      "route": "OSL ↔ Tokyo",
+      "dates": "Mars, historiske data siste 12 måneder",
+      "priceNok": 13039,
+      "basis": "median tur/retur per reisende",
+      "use": "Sesongreferanse, ikke et tilbud for 2027-datoene.",
+      "checked": "2026-10-04",
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO"
+    },
+    {
+      "id": "lufthansa-march-tokyo",
+      "kind": "published-2027-fare",
+      "route": "OSL ↔ Tokyo",
+      "dates": "Mars 2027-eksempel, 14 dager",
+      "priceNok": 12118,
+      "basis": "fra-pris per reisende, Economy",
+      "use": "Offisiell prisindikasjon for mars; ikke den eksakte reiseuken.",
+      "checked": "2026-10-04",
+      "source": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-tokyo"
+    },
+    {
+      "id": "lufthansa-march-osaka",
+      "kind": "published-2027-fare",
+      "route": "OSL ↔ Osaka",
+      "dates": "Mars 2027-eksempel, 14 dager",
+      "priceNok": 12427,
+      "basis": "fra-pris per reisende, Economy",
+      "use": "Offisiell prisindikasjon for mars; ikke den eksakte reiseuken.",
+      "checked": "2026-10-04",
+      "source": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-osaka"
+    },
+    {
+      "id": "thai-march-tokyo",
+      "kind": "published-2027-fare",
+      "route": "OSL ↔ Tokyo",
+      "dates": "Mars 2027",
+      "priceNok": 15465,
+      "basis": "fra-pris per reisende, tur/retur Economy",
+      "use": "Offisiell månedlig prisindikasjon; eksakte datoer kan være annerledes.",
+      "checked": "2026-10-04",
+      "source": "https://www.thaiairways.com/flights/en/flights-from-oslo-to-tokyo"
+    },
+    {
+      "id": "momondo-osaka-23mar-one-stop",
+      "kind": "dated-search-result",
+      "route": "OSL → KIX",
+      "dates": "23. mars 2027",
+      "priceNok": 7078,
+      "basis": "énveis per reisende, 1 stopp via Bangkok, ca. 33 t 50 min",
+      "use": "Viser at datoen har søkbare billetter og at en senere avreise kan gi prisalternativer; ikke direkte sammenlignbar med en gjennomgående åpen-kjeve-billett.",
+      "checked": "2026-10-04",
+      "source": "https://www.momondo.no/flybilletter/oslo-airport-gardermoen-osl/osaka-prefektur"
+    }
+  ],
+  "packageChecks": [
+    {
+      "id": "escape-japan-mar27",
+      "provider": "Escape Travel",
+      "kind": "Gruppereise",
+      "dates": "22. mars–3. april 2027",
+      "priceNok": 75300,
+      "basis": "fra-pris per person for komplett gruppereise",
+      "signal": "Svært nyttig ruteindikasjon: Turkish Airlines OSL–IST–KIX ut og HND–IST–OSL hjem er publisert på nesten samme datoer som planen.",
+      "compareAs": "Ikke sammenlign direkte med flypris; pakken inkluderer langt mer enn fly.",
+      "url": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "ving-tokyo",
+      "provider": "Ving",
+      "kind": "Fly + hotell med rutefly",
+      "dates": "26. januar 2027, 9 dager / 7 hotellnetter",
+      "priceNok": 18295,
+      "basis": "pris per person i publisert eksempel, inkl. innsjekket bagasje",
+      "signal": "Viser at Ving pakker Tokyo med rutefly; bør sjekkes manuelt på våre datoer som prisbenchmark mot fly + hotell separat.",
+      "compareAs": "Pakkereise, ikke fly-only.",
+      "url": "https://www.ving.no/flyreiser/flyselskapene/qatar-airways",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "tui-tokyo",
+      "provider": "TUI",
+      "kind": "Fly + hotell",
+      "dates": "Dynamisk",
+      "priceNok": null,
+      "basis": "Tokyo-siden tilbyr Fly + Hotell",
+      "signal": "Bør sjekkes rundt de aktuelle datoene; kan gi annen totalpris eller bedre forbrukerbeskyttelse enn separate kjøp.",
+      "compareAs": "Pakkereise, ikke fly-only.",
+      "url": "https://www.tui.no/feriereiser/japan/tokyo/hotell/",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "apollo-tema",
+      "provider": "Apollo / TEMA",
+      "kind": "Temareise",
+      "dates": "12. mars 2027 finnes som publisert avreise på en Asia/Japan-reise",
+      "priceNok": null,
+      "basis": "plasser på forespørsel i den publiserte bookingvisningen",
+      "signal": "Ikke samme reise, men nyttig som charter-/temareise-watchlist for publiserte 2027-reiser fra Oslo.",
+      "compareAs": "Temareise, ikke fly-only.",
+      "url": "https://tema.apollo.no/booking/?btype=B&city=OSL&lang=no&tour_date_id=9236&tour_id=423",
+      "checked": "2026-10-04"
+    }
+  ],
+  "safety": {
+    "approach": "«Sikkerhet» brukes som et beslutningssignal, ikke som en falsk poengscore. Først sjekkes regulatoriske begrensninger; deretter kan uavhengige rangeringer og aktuell luftromssituasjon brukes som sekundær kontekst.",
+    "euList": {
+      "checked": "2026-10-04",
+      "summary": "Finnair, SAS, Lufthansa, Turkish Airlines, Qatar Airways, Emirates, Thai Airways, KLM, Air France og LOT ble kontrollert mot EUs gjeldende Air Safety List og finnes ikke blant selskapene med driftsforbud/restriksjon.",
+      "note": "Fravær fra listen betyr at selskapet ikke er omfattet av dette EU-forbudet; det er ikke en komplett sikkerhetsrangering.",
+      "source": "https://transport.ec.europa.eu/transport-themes/eu-air-safety-list_en"
+    },
+    "independent": {
+      "checked": "2026-10-04",
+      "summary": "AirlineRatings' 2026-liste plasserer blant annet Qatar, Emirates, Turkish Airlines og SAS i topp 25 for fullservice-selskaper, samtidig som kilden selv understreker at forskjellene mellom de øverste er små.",
+      "source": "https://www.airlineratings.com/articles/worlds-safest-airlines-for-2026"
+    },
+    "airspaceWatch": {
+      "checked": "2026-10-04",
+      "summary": "EASA har aktive konfliktsoneråd i flere deler av Midtøsten. Dette er en kortsiktig operativ faktor som kan påvirke rutevalg og flytid for enkelte forbindelser, ikke en konklusjon om mars 2027 eller om et bestemt flyselskap.",
+      "recheck": "Kontroller EASA på nytt ved bestilling og nær avreise.",
+      "source": "https://www.easa.europa.eu/en/domains/air-operations/czibs"
+    }
+  },
+  "manualSearches": [
+    {
+      "id": "google-openjaw-current",
+      "priority": "Start her",
+      "title": "Google Flights · Tokyo inn / Osaka hjem",
+      "instruction": "Velg Flere byer / Multi-city: OSL → Tokyo 20.03.2027 og KIX → OSL 03.04.2027. Sett 2 voksne + 2 barn, Economy. Gjenta så hele 14-netters vinduet ±3 dager.",
+      "url": "https://www.google.com/travel/flights?hl=no&curr=NOK",
+      "captureKey": "open-jaw-east-west"
+    },
+    {
+      "id": "google-openjaw-reverse",
+      "priority": "Obligatorisk sammenligning",
+      "title": "Google Flights · Osaka inn / Tokyo hjem",
+      "instruction": "Velg Flere byer / Multi-city: OSL → KIX og Tokyo → OSL med samme dato-par. Sammenlign totalpris og reisetid mot hovedsporet.",
+      "url": "https://www.google.com/travel/flights?hl=no&curr=NOK",
+      "captureKey": "open-jaw-west-east"
+    },
+    {
+      "id": "google-tokyo-return",
+      "priority": "Prisreferanse",
+      "title": "Google Flights · Tokyo tur/retur",
+      "instruction": "Søk OSL ↔ TYO/HND/NRT på samme datoer og ±3 dager. Noter om besparelsen faktisk dekker ekstra transport tilbake til Tokyo.",
+      "url": "https://www.google.com/travel/flights/flights-from-oslo-to-tokyo.html",
+      "captureKey": "roundtrip-tokyo"
+    },
+    {
+      "id": "google-osaka-return",
+      "priority": "Prisreferanse",
+      "title": "Google Flights · Osaka tur/retur",
+      "instruction": "Søk OSL ↔ KIX på samme datoer og ±3 dager. Bruk dette som prisreferanse, ikke som automatisk ruteforslag.",
+      "url": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html",
+      "captureKey": "roundtrip-osaka"
+    },
+    {
+      "id": "kayak-tokyo-flex",
+      "priority": "Datofleks",
+      "title": "KAYAK · Oslo–Tokyo ±3 dager",
+      "instruction": "Bruk fleksible datoer og se etter tydelige hopp mellom dagene. KAYAK er spesielt nyttig for å se kalender-/ukedagseffekt.",
+      "url": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO",
+      "captureKey": "kayak-tokyo"
+    },
+    {
+      "id": "kayak-osaka-flex",
+      "priority": "Datofleks",
+      "title": "KAYAK · Oslo–Kansai ±3 dager",
+      "instruction": "Sjekk særlig 22.–23. mars ut og 5.–6. april hjem, men sammenlign mot samme reiselengde først.",
+      "url": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX",
+      "captureKey": "kayak-osaka"
+    },
+    {
+      "id": "finnair-direct",
+      "priority": "Flyselskap",
+      "title": "Finnair · pris direkte",
+      "instruction": "Pris begge open-jaw-retninger direkte hos Finnair. Sammenlign bagasje, setevalg og endringsvilkår med søkemotorresultatet.",
+      "url": "https://www.finnair.com/no-no/",
+      "captureKey": "finnair"
+    },
+    {
+      "id": "turkish-direct",
+      "priority": "Flyselskap",
+      "title": "Turkish Airlines · pris direkte",
+      "instruction": "Pris begge open-jaw-retninger direkte. Vi vet allerede at KIX inn / HND hjem finnes i publisert 2027-oppsett rundt de aktuelle datoene.",
+      "url": "https://www.turkishairlines.com/en-no/",
+      "captureKey": "turkish"
+    },
+    {
+      "id": "lufthansa-direct",
+      "priority": "Flyselskap",
+      "title": "Lufthansa · Tokyo og Osaka",
+      "instruction": "Sammenlign multi-city med Lufthansa-gruppen mot deres publiserte marsnivåer for vanlig tur/retur.",
+      "url": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-tokyo",
+      "captureKey": "lufthansa"
+    },
+    {
+      "id": "packages",
+      "priority": "Pakkesjekk",
+      "title": "Pakkereiser · sjekk om totalen overrasker",
+      "instruction": "Sjekk Escape, Ving, TUI og Apollo/TEMA. Ikke sammenlign personpris direkte med fly-only; sammenlign hva som faktisk er inkludert.",
+      "url": "https://www.ving.no/flyreiser/flyselskapene/qatar-airways",
+      "captureKey": "package"
+    }
+  ],
+  "capture": {
+    "title": "Flyfunn til Japan-planen",
+    "instruction": "Kopier malen, fyll ut det du ser i søket og lim den inn i chatten. Da kan funnet legges tilbake i flights.json uten backend eller konto på nettsiden.",
+    "fields": [
+      "Søk / scenario",
+      "Datoer",
+      "Totalpris for 2 voksne + 2 barn",
+      "Flyselskap og hvem som faktisk opererer flyene",
+      "Flyplasser og mellomlandinger",
+      "Antall stopp",
+      "Total reisetid ut / hjem",
+      "Bagasje inkludert",
+      "Billettype / endringsvilkår",
+      "Bestilles hos",
+      "Lenke",
+      "Kommentar"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Google Flights · Oslo–Tokyo",
+      "url": "https://www.google.com/travel/flights/flights-from-oslo-to-tokyo.html",
+      "use": "Direktefly, flyselskaper, tilgjengelig marked og raskeste forbindelser."
+    },
+    {
+      "title": "Google Flights · Oslo–Osaka",
+      "url": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html",
+      "use": "Direktefly, flyselskaper, tilgjengelig marked og raskeste forbindelser."
+    },
+    {
+      "title": "KAYAK · OSL–Tokyo",
+      "url": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO",
+      "use": "Historiske ukedager, månedsnivåer og bestillingstidspunkt."
+    },
+    {
+      "title": "KAYAK · OSL–KIX",
+      "url": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX",
+      "use": "Fleksible datoer, bestillingstidspunkt og Osaka-marked."
+    },
+    {
+      "title": "KAYAK · KIX–OSL",
+      "url": "https://www.kayak.no/fly/Osaka-Kansai-Intl-KIX/Oslo-og-andre-flyplasser-OSL",
+      "use": "Historisk returdagsforskjell og mellomlandinger."
+    },
+    {
+      "title": "FlightConnections · OSL–HND",
+      "url": "https://www.flightconnections.com/flights-from-osl-to-hnd",
+      "use": "Én-stopp-huber til Haneda."
+    },
+    {
+      "title": "FlightConnections · OSL–NRT",
+      "url": "https://www.flightconnections.com/flights-from-osl-to-nrt",
+      "use": "Én-stopp-huber til Narita."
+    },
+    {
+      "title": "FlightConnections · OSL–KIX",
+      "url": "https://www.flightconnections.com/flights-from-osl-to-kix",
+      "use": "Én-stopp-huber til Kansai."
+    },
+    {
+      "title": "Escape Travel · Japan mars 2027",
+      "url": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/",
+      "use": "Publisert 2027-flyoppsett med Turkish Airlines og reversert open-jaw."
+    },
+    {
+      "title": "Lufthansa · Oslo–Tokyo",
+      "url": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-tokyo",
+      "use": "Publisert mars 2027-prisnivå."
+    },
+    {
+      "title": "Lufthansa · Oslo–Osaka",
+      "url": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-osaka",
+      "use": "Publisert mars 2027-prisnivå."
+    },
+    {
+      "title": "Thai Airways · Oslo–Tokyo",
+      "url": "https://www.thaiairways.com/flights/en/flights-from-oslo-to-tokyo",
+      "use": "Publisert mars 2027-prisnivå."
+    },
+    {
+      "title": "Finnair · Tokyo",
+      "url": "https://www.finnair.com/no-no/reisem%C3%A5l/asia-stillehavet/japan/tokyo",
+      "use": "Daglig Helsinki–Haneda og offisiell bookinginngang."
+    },
+    {
+      "title": "Momondo · OSL–Osaka",
+      "url": "https://www.momondo.no/flybilletter/oslo-airport-gardermoen-osl/osaka-prefektur",
+      "use": "Datert énveisobservasjon 23. mars 2027."
+    },
+    {
+      "title": "Ving · Qatar Airways / Tokyo-eksempel",
+      "url": "https://www.ving.no/flyreiser/flyselskapene/qatar-airways",
+      "use": "Pakkereisebenchmark med Tokyo i 2027."
+    },
+    {
+      "title": "TUI · Tokyo hotell",
+      "url": "https://www.tui.no/feriereiser/japan/tokyo/hotell/",
+      "use": "Fly + hotell som manuell pakkesjekk."
+    },
+    {
+      "title": "Apollo / TEMA · 2027-booking",
+      "url": "https://tema.apollo.no/booking/?btype=B&city=OSL&lang=no&tour_date_id=9236&tour_id=423",
+      "use": "Temareise-inventory fra Oslo i 2027."
+    },
+    {
+      "title": "EU Air Safety List",
+      "url": "https://transport.ec.europa.eu/transport-themes/eu-air-safety-list_en",
+      "use": "Regulatorisk sikkerhetskontroll."
+    },
+    {
+      "title": "EASA Conflict Zone Advisories",
+      "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs",
+      "use": "Aktuelle luftromsrisikoer som må kontrolleres på nytt."
+    },
+    {
+      "title": "AirlineRatings · safest airlines 2026",
+      "url": "https://www.airlineratings.com/articles/worlds-safest-airlines-for-2026",
+      "use": "Sekundær, uavhengig sikkerhetskontekst."
+    }
+  ],
+  "bookingSignals": {
+    "tokyo": {
+      "bestWeeksBefore": 22,
+      "savingVsLastMinutePct": 19,
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO"
+    },
+    "osaka": {
+      "bestWeeksBefore": 24,
+      "savingVsLastMinutePct": 25,
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX"
+    },
+    "note": "Historiske KAYAK-data, ikke en garanti for 2027-priser."
+  },
+  "oneStopHubs": [
+    {
+      "id": "hnd",
+      "airport": "Tokyo Haneda (HND)",
+      "hubs": [
+        "PEK",
+        "CPH",
+        "VIE",
+        "MUC",
+        "FRA",
+        "ARN",
+        "HEL",
+        "IST",
+        "MXP",
+        "CDG",
+        "FCO",
+        "DXB",
+        "LHR",
+        "DOH",
+        "BKK",
+        "YYZ",
+        "EWR",
+        "JFK"
+      ],
+      "source": "https://www.flightconnections.com/flights-from-osl-to-hnd",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "nrt",
+      "airport": "Tokyo Narita (NRT)",
+      "hubs": [
+        "PEK",
+        "HEL",
+        "VIE",
+        "WAW",
+        "IST",
+        "FRA",
+        "AMS",
+        "ZRH",
+        "BRU",
+        "DXB",
+        "CAI",
+        "DOH",
+        "BKK",
+        "MAD",
+        "YYZ",
+        "EWR"
+      ],
+      "source": "https://www.flightconnections.com/flights-from-osl-to-nrt",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "kix",
+      "airport": "Osaka Kansai (KIX)",
+      "hubs": [
+        "PEK",
+        "MUC",
+        "HEL",
+        "IST",
+        "AMS",
+        "CDG",
+        "DOH",
+        "DXB",
+        "BKK",
+        "YYZ"
+      ],
+      "source": "https://www.flightconnections.com/flights-from-osl-to-kix",
+      "checked": "2026-10-04"
+    }
+  ]
+}

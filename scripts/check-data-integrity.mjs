@@ -17,6 +17,7 @@ const fx = readJson('docs/data/fx.json');
 const site = readJson('docs/data/site.json');
 const pages = readJson('docs/data/pages.json');
 const passes = readJson('docs/data/passes.json');
+const flights = readJson('docs/data/flights.json');
 const errors = [];
 
 function uniqueIds(items, label) {
@@ -74,7 +75,8 @@ uniqueIds(places, 'places.json');
 uniqueIds(hotels, 'hotels.json');
 
 const requiredPageCopy={
-  home:['whyEyebrow','whyTitle','whyIntro','useEyebrow','useTitle','useIntro'],
+  home:['whyEyebrow','whyTitle','whyIntro','useEyebrow','useTitle','useIntro','navFlights'],
+  flights:['eyebrow','title','intro','patternsEyebrow','patternsTitle','patternsIntro','datesEyebrow','datesTitle','datesIntro','routesEyebrow','routesTitle','routesIntro','pricesEyebrow','pricesTitle','pricesIntro','safetyEyebrow','safetyTitle','safetyIntro','packagesEyebrow','packagesTitle','packagesIntro','searchEyebrow','searchTitle','searchIntro','captureEyebrow','captureTitle','captureIntro','sourcesEyebrow','sourcesTitle','sourcesIntro'],
   route:['eyebrow','listEyebrow','listTitle','listIntro','transportTitle','mapNote'],
   places:['eyebrow','title','intro','filterLabel'],
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
@@ -90,6 +92,44 @@ for(const [page,keys] of Object.entries(requiredPageCopy)){
   if(!pages[page]) errors.push(`pages.json: mangler ${page}`);
   else for(const key of keys) if(typeof pages[page][key]!=='string'||!pages[page][key].trim()) errors.push(`pages.json: ${page}.${key} mangler`);
 }
+
+if (!flights.asOf || !Number.isInteger(flights.planningWindow?.flexDays) || flights.planningWindow.flexDays !== 3 || !flights.planningWindow?.summary) {
+  errors.push('flights.json: planleggingsvindu er ufullstendig');
+}
+if ('baselineDepart' in (flights.planningWindow||{}) || 'baselineReturn' in (flights.planningWindow||{}) || 'datePairs' in flights) {
+  errors.push('flights.json: reisedatoer eies av trip.json; flydata skal bare lagre fleksibilitetsregelen');
+}
+if (!Number.isFinite(flights.bookingSignals?.tokyo?.bestWeeksBefore) || !Number.isFinite(flights.bookingSignals?.osaka?.bestWeeksBefore)) {
+  errors.push('flights.json: bookingSignals mangler');
+}
+for (const [key,min] of [['itineraryPatterns',4],['carrierOptions',6],['fareObservations',3],['packageChecks',3],['manualSearches',6]]) {
+  if (!Array.isArray(flights[key]) || flights[key].length < min) errors.push(`flights.json: ${key} mangler tilstrekkelig beslutningsgrunnlag`);
+  else uniqueIds(flights[key],`flights.json ${key}`);
+}
+if (!Array.isArray(flights.sources) || flights.sources.length < 8) errors.push('flights.json: kildelisten er for svak');
+const httpsOnly=(url)=>/^https:\/\//.test(url||'') && !/[?&](?:token|session|account|profile|user|booking(?:ref|reference)|pnr)=/i.test(url||'');
+for (const row of flights.carrierOptions || []) {
+  if (!row.airline || !row.hub || !row.fit || !row.tokyo || !row.osaka || !row.why || !httpsOnly(row.officialSearch) || !httpsOnly(row.routeSource)) {
+    errors.push(`flights.json: flyselskap ${row.id||'(uten id)'} er ufullstendig eller har privat/ugyldig lenke`);
+  }
+}
+for (const row of flights.fareObservations || []) {
+  if (!row.kind || !row.route || !row.dates || !row.basis || !row.use || !row.checked || !httpsOnly(row.source)) errors.push(`flights.json: prisobservasjon ${row.id||'(uten id)'} er ufullstendig`);
+}
+for (const row of flights.packageChecks || []) {
+  if (!row.provider || !row.kind || !row.dates || !row.signal || !row.compareAs || !row.checked || !httpsOnly(row.url)) errors.push(`flights.json: pakkesjekk ${row.id||'(uten id)'} er ufullstendig`);
+}
+for (const row of flights.manualSearches || []) {
+  if (!row.priority || !row.title || !row.instruction || !row.captureKey || !httpsOnly(row.url)) errors.push(`flights.json: manuelt søk ${row.id||'(uten id)'} er ufullstendig`);
+}
+for (const row of flights.sources || []) {
+  if (!row.title || !row.use || !httpsOnly(row.url)) errors.push('flights.json: kilde er ufullstendig eller har ugyldig lenke');
+}
+if (!flights.safety?.euList?.checked || !httpsOnly(flights.safety?.euList?.source) || !flights.safety?.airspaceWatch?.checked || !httpsOnly(flights.safety?.airspaceWatch?.source)) {
+  errors.push('flights.json: sikkerhetsgrunnlaget mangler datert regulatorisk/luftromskilde');
+}
+if (!Array.isArray(flights.capture?.fields) || flights.capture.fields.length < 8 || !flights.capture?.instruction) errors.push('flights.json: resultatmal mangler');
+if ((flights.manualSearches||[]).some(x=>/booking|checkout|payment|manage-booking/i.test(x.url||''))) errors.push('flights.json: manuelle søk skal bruke offentlige søke-/destinasjonssider, ikke booking-sessioner');
 
 if (!passes.updated || !passes.principle || !Array.isArray(passes.options) || passes.options.length < 3) {
   errors.push('passes.json: mangler oppdatert beslutningsgrunnlag');
@@ -362,7 +402,8 @@ const canonicalNarrativeFiles=[
   ['hotels.json',hotelData],
   ['transport.json',transport],
   ['guide.json',guide],
-  ['prep.json',prep]
+  ['prep.json',prep],
+  ['flights.json',flights]
 ];
 const narrativeOwners=new Map();
 const collectNarrative=(value,file,pathLabel='$')=>{
@@ -393,7 +434,7 @@ for (const item of sources) {
 }
 
 const htmlFiles=fs.readdirSync('docs').filter(name=>name.endsWith('.html'));
-const copyDrivenPages=new Set(['index.html','route.html','places.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html','phrases.html']);
+const copyDrivenPages=new Set(['index.html','flights.html','route.html','places.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html','phrases.html']);
 for (const name of htmlFiles) {
   const file=`docs/${name}`;
   const html=fs.readFileSync(file,'utf8');
@@ -413,7 +454,7 @@ for (const name of htmlFiles) {
 }
 
 if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
-for (const required of ['docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
+for (const required of ['docs/flights.html','docs/data/flights.json','docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
@@ -421,6 +462,8 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+if (!app.includes('async function renderFlights()') || !app.includes("json('data/flights.json')") || !app.includes("['flights.html','Fly','flights']")) errors.push('app.js mangler flyplanleggingsvisning eller navigasjon');
+if (!app.includes('flight-copy-template') || !app.includes('navigator.clipboard.writeText')) errors.push('app.js: flyfunn kan ikke kopieres tilbake til chat');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
 if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');

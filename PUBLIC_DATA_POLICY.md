@@ -13,10 +13,11 @@ Dette repoet og GitHub Pages-siden er **offentlige**. Alt innhold skal kunne les
 - hotellrom, reservasjonsposter eller andre detaljer som gjør det mulig å finne reisende i sanntid
 - bilder eller dokumenter som inneholder private opplysninger i metadata eller synlig tekst
 - personlige notater som ikke er nødvendige for selve reiseplanleggingen
+- innloggede flysøks-/delingslenker, booking-session-URL-er, handlekurver, kundekonto-parametre eller andre lenker som kan være knyttet til en personlig sesjon
 
 ## Datoer og reiserute
 
-Det er tillatt å vise **foreløpige planleggingsdatoer** og en foreslått reiserute. Når konkrete bestillinger er gjort, skal nettsiden fortsatt bare vise avrundede planleggingsdata – ikke flynummer, eksakte avgangstider, hotellnavn, rom, bestillingsnumre eller annen sanntidslogistikk.
+Det er tillatt å vise **foreløpige planleggingsdatoer**, offentlige markedspriser/fra-priser og en foreslått reiserute. Flyresearch skal beskrive offentlig tilgjengelige ruter, priser og søkemønstre – ikke en konkret persons bestilling.  Når konkrete bestillinger er gjort, skal nettsiden fortsatt bare vise avrundede planleggingsdata – ikke flynummer, eksakte avgangstider, hotellnavn, rom, bestillingsnumre eller annen sanntidslogistikk.
 
 ## Før publisering
 
