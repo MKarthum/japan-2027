@@ -192,7 +192,11 @@
     "defaultScenarioId": "one-family",
     "standardFamily": {
       "adults": 2,
-      "children": 2
+      "children": 2,
+      "railFareMix": {
+        "adult": 3,
+        "child": 1
+      }
     },
     "scenarios": [
       {
@@ -206,6 +210,6 @@
         "families": 2
       }
     ],
-    "note": "To familier beregnes foreløpig som to like standardfamilier (2 voksne + 2 barn hver). Dette er et godt sammenligningsgrunnlag for transport, mat og inngang. Overnatting kan avvike fordi større leiligheter eller hele boliger kan gi lavere pris per familie."
+    "note": "To-familievisningen legger foreløpig til en familie med samme 2+2-struktur og samme prisprofil som standardfamilien. Det er et sammenligningsanslag. Transport kan justeres når alders-/billettkategoriene i familie nummer to er kjent, og overnatting kan bli billigere per familie med større leiligheter eller hele boliger."
   }
 }
