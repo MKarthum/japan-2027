@@ -1801,6 +1801,39 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .flight-airports span{font-size:.66rem;color:var(--muted);font-weight:800}
 .flight-airports small{font-size:.64rem;color:var(--muted);line-height:1.35}
 
+.flight-hubs{
+  grid-column:1 / -1;
+  display:grid;
+  gap:9px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--paper);
+  padding:16px;
+}
+.flight-hubs-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.flight-hubs-head strong{font-size:.84rem}
+.flight-hubs-head span{font-size:.68rem;color:var(--muted)}
+.flight-hub-row{
+  display:grid;
+  grid-template-columns:165px minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding-top:9px;
+  border-top:1px solid var(--line);
+}
+.flight-hub-row>b{font-size:.73rem}
+.flight-hub-row>div{display:flex;flex-wrap:wrap;gap:5px}
+.flight-hub-row>div span{
+  display:inline-flex;
+  padding:4px 6px;
+  border-radius:7px;
+  background:#f1eee8;
+  font-size:.65rem;
+  font-weight:800;
+}
+.flight-hub-row>a{font-size:.68rem;font-weight:800}
+.flight-market-main small{color:var(--muted);font-size:.72rem;line-height:1.45}
+
 .flight-carrier-card{display:flex;flex-direction:column}
 .flight-carrier-card h3{margin:.1em 0 .4em}
 .flight-airport-fit{
@@ -1904,6 +1937,9 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .flight-patterns,.flight-carrier-grid,.flight-fare-grid,.flight-package-grid,.flight-safety-grid,.flight-signal-grid,.flight-source-grid{grid-template-columns:1fr}
   .flight-market{grid-template-columns:1fr}
   .flight-airports{grid-template-columns:1fr}
+  .flight-hub-row{grid-template-columns:1fr}
+  .flight-hubs-head{display:block}
+  .flight-hubs-head span{display:block;margin-top:3px}
   .flight-route-pair,.flight-airport-fit{grid-template-columns:1fr}
   .flight-search-card{grid-template-columns:34px minmax(0,1fr);padding:12px}
   .flight-search-number{width:30px;height:30px}
