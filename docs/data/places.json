@@ -38,6 +38,16 @@
       "lat": 35.681236,
       "lng": 139.767125,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Ingen egen inngangsbillett til byen.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kanto/tokyo/"
     }
   },
   {
@@ -78,7 +88,17 @@
         "url": "https://en.wikipedia.org/wiki/Shibuya",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Bydelen og Shibuya Crossing kan oppleves uten inngangsbillett.",
+      "checked": "2026-10-04",
+      "source": "https://www.gotokyo.org/en/destinations/western-tokyo/shibuya/index.html"
+    }
   },
   {
     "id": "asakusa",
@@ -118,7 +138,17 @@
         "url": "https://en.wikipedia.org/wiki/Asakusa",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Området kan besøkes uten inngangsbillett; enkelte attraksjoner koster ekstra.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/"
+    }
   },
   {
     "id": "hakone",
@@ -158,6 +188,16 @@
       "lat": 35.250825,
       "lng": 139.04843,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Ingen inngang til selve området. Transport, onsen og attraksjoner prises separat.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kanto/kanagawa/hakone-and-around/"
     }
   },
   {
@@ -200,6 +240,16 @@
       "lat": 34.985849,
       "lng": 135.758766,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Ingen inngang til byen. Templer og attraksjoner har egne priser.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kansai/kyoto/"
     }
   },
   {
@@ -240,6 +290,16 @@
       "lat": 35.0037,
       "lng": 135.7756,
       "showOnRouteMap": true
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Bydelen kan besøkes uten inngangsbillett.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kansai/kyoto/gion-and-higashiyama/"
     }
   },
   {
@@ -280,7 +340,17 @@
         "url": "https://en.wikipedia.org/wiki/Fushimi_Inari-taisha",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Helligdomsområdet kan besøkes uten ordinær inngangsbillett.",
+      "checked": "2026-10-04",
+      "source": "https://inari.jp/en/"
+    }
   },
   {
     "id": "kiyomizu-dera",
@@ -320,7 +390,20 @@
         "url": "https://en.wikipedia.org/wiki/Kiyomizu-dera",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        1400,
+        1400
+      ],
+      "adultYen": 500,
+      "childYen": 200,
+      "childRule": "Barneskole og ungdomsskole",
+      "note": "Ordinær inngang. Spesielle visninger kan ha egne priser.",
+      "checked": "2026-10-04",
+      "source": "https://www.kiyomizudera.or.jp/en/news/2026/sennichi-2026.php"
+    }
   },
   {
     "id": "kinkakuji",
@@ -359,7 +442,19 @@
         "url": "https://en.wikipedia.org/wiki/Kinkaku-ji",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        1600,
+        1600
+      ],
+      "adultYen": 500,
+      "childYen": 300,
+      "childRule": "Barneskole og ungdomsskole",
+      "checked": "2026-10-04",
+      "source": "https://www.shokoku-ji.jp/en/kinkakuji/access/"
+    }
   },
   {
     "id": "arashiyama",
@@ -399,7 +494,17 @@
         "url": "https://en.wikipedia.org/wiki/Arashiyama",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Selve Arashiyama-området og den vanlige bambusvandringen har ingen samlet inngang. Templer og særarrangementer kan koste ekstra.",
+      "checked": "2026-10-04",
+      "source": "https://www.kyoto.travel/en/areas/saga-arashiyama/"
+    }
   },
   {
     "id": "nara",
@@ -440,6 +545,16 @@
       "lat": 34.685047,
       "lng": 135.804835,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Byen og Nara Park kan utforskes uten samlet inngang; templer og museer prises separat.",
+      "checked": "2026-10-04",
+      "source": "https://www.visitnara.jp/"
     }
   },
   {
@@ -479,7 +594,20 @@
         "url": "https://en.wikipedia.org/wiki/T%C5%8Ddai-ji",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        2400,
+        2800
+      ],
+      "adultYen": 800,
+      "primaryYen": 400,
+      "middleYen": 800,
+      "note": "Daibutsuden. Familieanslaget varierer med skoletrinn.",
+      "checked": "2026-10-04",
+      "source": "https://www.todaiji.or.jp/information/haikan/"
+    }
   },
   {
     "id": "himeji",
@@ -519,7 +647,19 @@
         "url": "https://en.wikipedia.org/wiki/Himeji_Castle",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        5000,
+        5000
+      ],
+      "adultYen": 2500,
+      "under18Yen": 0,
+      "note": "Barn og unge under 18 år er gratis etter gjeldende regel.",
+      "checked": "2026-10-04",
+      "source": "https://www.himejicastle.jp/en/"
+    }
   },
   {
     "id": "osaka",
@@ -559,6 +699,16 @@
       "lat": 34.6687,
       "lng": 135.5006,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Ingen inngang til byen; konkrete attraksjoner prises separat.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kansai/osaka/"
     }
   },
   {
@@ -595,7 +745,17 @@
         "url": "https://en.wikipedia.org/wiki/D%C5%8Dtonbori",
         "kind": "wiki"
       }
-    ]
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Området kan besøkes uten inngangsbillett.",
+      "checked": "2026-10-04",
+      "source": "https://www.japan.travel/en/destinations/kansai/osaka/"
+    }
   },
   {
     "id": "hiroshima",
@@ -640,6 +800,16 @@
       "lat": 34.395483,
       "lng": 132.453592,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Ingen inngang til byen eller Peace Memorial Park; museet har egen pris.",
+      "checked": "2026-10-04",
+      "source": "https://www.city.hiroshima.lg.jp/living/park-green/1005983/1026353/1003127.html"
     }
   },
   {
@@ -681,6 +851,16 @@
       "lat": 34.2985,
       "lng": 132.3198,
       "showOnRouteMap": false
+    },
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Ingen inngang til selve øya. Ferge og enkelte steder, blant annet Itsukushima Shrine, kommer i tillegg.",
+      "checked": "2026-10-04",
+      "source": "https://www.miyajima.or.jp/english/"
     }
   },
   {
@@ -721,7 +901,20 @@
         "url": "https://museum.nintendo.com/en/guide/visit-flow/index.html",
         "kind": "info"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        9900,
+        9900
+      ],
+      "adultYen": 3300,
+      "youthYen": 2200,
+      "childYen": 1100,
+      "note": "Voksen 18+, ungdom 12–17, barn 6–11.",
+      "checked": "2026-10-04",
+      "source": "https://museum.nintendo.com/en/guide/index.html"
+    }
   },
   {
     "id": "ghibli-museum",
@@ -761,7 +954,20 @@
         "url": "https://www.ghibli-museum.jp/en/",
         "kind": "official"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        2800,
+        3100
+      ],
+      "adultYen": 1000,
+      "youthYen": 700,
+      "childYen": 400,
+      "note": "Familieanslaget varierer med om eldste barn er 12 eller 13 på besøksdatoen. Forhåndsreservasjon kreves.",
+      "checked": "2026-10-04",
+      "source": "https://www.ghibli-museum.jp/en/tickets/"
+    }
   },
   {
     "id": "teamlab",
@@ -796,7 +1002,23 @@
         "url": "https://www.teamlab.art/e/tokyo/",
         "kind": "ticket"
       }
-    ]
+    ],
+    "price": {
+      "status": "dynamic",
+      "standardFamilyRangeYen": [
+        10200,
+        15500
+      ],
+      "adultRangeYen": [
+        3600,
+        5600
+      ],
+      "youthYen": 2800,
+      "childYen": 1500,
+      "note": "Dynamisk voksenpris. Familieanslaget er et planintervall og avhenger også av alderskategori.",
+      "checked": "2026-10-04",
+      "source": "https://www.teamlab.art/e/tokyo/"
+    }
   },
   {
     "id": "usj",
@@ -836,7 +1058,15 @@
         "url": "https://www.usj.co.jp/web/en/us/areas/super-nintendo-world",
         "kind": "info"
       }
-    ]
+    ],
+    "price": {
+      "status": "from",
+      "standardFamilyRangeYen": null,
+      "adultFromYen": 8400,
+      "note": "Studio Pass har dynamisk dato-pris. Komplett familiepris for våren 2027 settes når datoen er i salg.",
+      "checked": "2026-10-04",
+      "source": "https://www.usjticketing.com/"
+    }
   },
   {
     "id": "peace-memorial-museum",
@@ -876,7 +1106,20 @@
         "url": "https://www.japan.travel/en/spot/893/",
         "kind": "info"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        400,
+        400
+      ],
+      "adultYen": 200,
+      "highSchoolYen": 100,
+      "juniorHighAndUnderYen": 0,
+      "note": "Ungdomsskolealder og yngre er gratis etter gjeldende besøksinformasjon.",
+      "checked": "2026-10-04",
+      "source": "https://www.city.hiroshima.lg.jp/www/koho/shimintoshiseir070615/shimintoshisei/special/index.html"
+    }
   },
   {
     "id": "itsukushima-shrine",
@@ -911,7 +1154,19 @@
         "url": "https://www.itsukushimajinja.jp/en/index.html",
         "kind": "official"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        800,
+        800
+      ],
+      "adultYen": 300,
+      "childYen": 100,
+      "childRule": "Barneskole og ungdomsskole",
+      "checked": "2026-10-04",
+      "source": "https://itsukushimajinja.jp/en/admission.html"
+    }
   },
   {
     "id": "osaka-castle",
@@ -946,6 +1201,19 @@
         "url": "https://www.osakacastle.net/english/",
         "kind": "official"
       }
-    ]
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        2400,
+        2400
+      ],
+      "adultYen": 1200,
+      "highSchoolYen": 600,
+      "juniorHighAndUnderYen": 0,
+      "note": "Vanlig inngang til hovedtårnet; ungdomsskolealder og yngre er gratis.",
+      "checked": "2026-10-04",
+      "source": "https://osakacastle.net/"
+    }
   }
 ]
