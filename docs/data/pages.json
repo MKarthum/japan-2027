@@ -5,7 +5,13 @@
     "whyIntro": "Reisen kombinerer storby, historie, natur, mat og popkultur uten at hver dag må være fullpakket.",
     "useEyebrow": "Slik er planen bygget",
     "useTitle": "Oversikt her, valg på undersidene",
-    "useIntro": "Forsiden forklarer retningen. Rute, steder, mat, overnatting, forberedelser og budsjett har egne sider når vi skal ta konkrete valg."
+    "useIntro": "Forsiden forklarer retningen. Rute, steder, mat, overnatting, forberedelser og budsjett har egne sider når vi skal ta konkrete valg.",
+    "navPlaces": "Bydeler, templer, slott, museer og dagsturer.",
+    "navFood": "Restauranter, regionale retter og måltider det kan være verdt å planlegge.",
+    "navHotels": "Hotell, leilighetshotell, ryokan og feriebolig.",
+    "navPrep": "Film, serier, spill, bøker, mat og små forberedelser.",
+    "navPractical": "Transport, booking, språk og skikk og bruk.",
+    "navBudget": "Planramme, kostnadsfordeling og usikkerhet."
   },
   "route": {
     "eyebrow": "Rute",
@@ -13,7 +19,11 @@
     "listTitle": "Stopp for stopp",
     "listIntro": "Hvert hovedstopp kobler videre til steder, mat og overnatting i samme del av reisen.",
     "transportTitle": "Slik er transporten tenkt",
-    "mapNote": "Kartet viser hovedruten, utvalgte knutepunkter og valgfrie lag for opplevelser, mat og overnatting. Reisetid og priser er plananslag som må bekreftes før bestilling."
+    "mapNote": "Kartet viser hovedruten, utvalgte knutepunkter og valgfrie lag for opplevelser, mat og overnatting. Reisetid og priser er plananslag som må bekreftes før bestilling.",
+    "windowLead": "Planlagt reisevindu:",
+    "windowTail": "Datoene kan justeres når flypriser, blomstringsprognoser og billettvinduer blir klarere.",
+    "mapLanguage": "Kartnavn vises på norsk når det finnes, ellers engelsk, romanisert eller lokalt navn.",
+    "locationPrivacy": "Posisjonen din brukes bare mens rutesiden er åpen og lagres ikke i reiseplanen."
   },
   "places": {
     "eyebrow": "Steder",
@@ -41,7 +51,9 @@
     "typeFilterLabel": "Type",
     "alternativesEyebrow": "Andre spor",
     "alternativesTitle": "Alternativer verdt å sammenligne",
-    "alternativesIntro": "Eksempler som viser hvorfor større enheter eller hele boliger kan være interessante når reisefølget og datoene er kjent."
+    "alternativesIntro": "Eksempler som viser hvorfor større enheter eller hele boliger kan være interessante når reisefølget og datoene er kjent.",
+    "noticeTitle": "Prisene er planleggingstall.",
+    "noticeBody": "Intervallene er ikke 2027-tilbud. Kapasitet og totalpris må sammenlignes på nytt når reisefølget og de faktiske datoene er låst."
   },
   "prep": {
     "eyebrow": "Før turen",
@@ -61,13 +73,21 @@
     "namesEyebrow": "Stedsnavn",
     "namesTitle": "Hva betyr noen av navnene?",
     "etiquetteEyebrow": "Skikk og bruk",
-    "etiquetteTitle": "Seks ting det er verdt å vite"
+    "etiquetteTitle": "Seks ting det er verdt å vite",
+    "transportIntro": "Tog er hovedregelen. Taxi og bagasjefrakt brukes når det gjør en reisedag enklere.",
+    "bookingIntro": "Salgstidspunkt og regler kan endre seg. Hvert punkt viser kontrollgrunnlaget og bør bekreftes mot offisiell side før bestilling.",
+    "phrasesIntro": "Noen vanlige stedsord og korte fraser dekker mye av det praktiske.",
+    "placeWordsTitle": "Ord du ser ofte",
+    "phrasesListTitle": "Nyttige fraser",
+    "namesIntro": "Noen navn kan oversettes ganske direkte. Der opprinnelsen er usikker, markeres det i stedet for å forenkle for mye.",
+    "etiquetteIntro": "Et lite sett vaner og regler dekker mye av det praktiske i hverdagen."
   },
   "budget": {
     "eyebrow": "Budsjett",
     "title": "Hva kan reisen koste?",
     "intro": "En planleggingsramme for fly, overnatting, transport, mat og aktiviteter. Beløpene er anslag og blir mer presise når konkrete alternativer sammenlignes.",
-    "distributionTitle": "Fordeling"
+    "distributionTitle": "Fordeling",
+    "targetIntro": "Et komfortabelt planleggingsnivå uten at alle valg må optimaliseres på pris."
   },
   "sources": {
     "eyebrow": "Kilder",
