@@ -697,11 +697,11 @@ async function renderRoute() {
     };
     toolbar.innerHTML=`
       <span class="map-layer-title">Vis på kartet</span>
-      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
       <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
       <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
       <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Overnatting <b>${counts.hotel}</b></button>
-      <button class="map-layer-fit" id="fit-route" type="button">Vis hele ruten</button>
+      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
+      <button class="map-layer-fit" id="fit-route" type="button">Hele ruten</button>
       <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
     toolbar.addEventListener('click',e=>{
       const btn=e.target.closest('[data-map-layer]');
