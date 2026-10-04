@@ -79,7 +79,7 @@ const requiredPageCopy={
   places:['eyebrow','title','intro','filterLabel'],
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
   hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],
-  prep:['eyebrow','title','intro'],
+  prep:['eyebrow','title','intro','audienceEyebrow','audienceTitle','audienceIntro'],
   practical:['eyebrow','title','intro','transportTitle','passesEyebrow','passesTitle','passesIntro','bookingTitle','phrasesTitle','namesTitle','etiquetteTitle'],
   budget:['eyebrow','title','intro','distributionTitle'],
   sources:['eyebrow','title','intro'],
@@ -237,22 +237,36 @@ if (!Array.isArray(guide.morePhrases) || guide.morePhrases.length < 4) {
 const prepIds=new Set();
 let adultPrepCount=0;
 let historyPrepCount=0;
+const audienceIds=new Set(['family','older-kids','teens','adults']);
 for (const group of prep) {
   if (!group.category || !Array.isArray(group.items) || group.items.length===0) errors.push('prep.json: gruppe mangler category/items');
   for (const item of group.items || []) {
     if (!item.id) errors.push(`prep.json: ${group.category} har post uten id`);
     else if (prepIds.has(item.id)) errors.push(`prep.json: duplikat id ${item.id}`);
     else prepIds.add(item.id);
-    if (!item.title || !item.for || !item.why || !item.action) errors.push(`prep.json: ${item.id||item.title||'(uten id)'} mangler innhold`);
-    if (/^voksne\b/i.test(item.for||'')) adultPrepCount++;
+    if (!item.title || !item.why || !item.action) errors.push(`prep.json: ${item.id||item.title||'(uten id)'} mangler innhold`);
+    if (!item.audience?.id || !audienceIds.has(item.audience.id) || !item.audience?.label) errors.push(`prep.json: ${item.id} mangler gyldig strukturert målgruppe`);
+    if ('for' in item) errors.push(`prep.json: ${item.id} bruker gammel fri tekst for målgruppe`);
+    if (item.audience?.id==='adults') adultPrepCount++;
     if (group.category==='Historie') historyPrepCount++;
     if (!Array.isArray(item.placeIds)) errors.push(`prep.json: ${item.id||item.title} mangler placeIds`);
     else for (const id of item.placeIds) if (!placeIds.has(id)) errors.push(`prep.json: ${item.id} peker på ukjent placeId ${id}`);
     if (item.url && !/^https:\/\//.test(item.url)) errors.push(`prep.json: ${item.id} har ugyldig url`);
-    for (const link of item.links || []) if (!link.label || !/^https:\/\//.test(link.url||'')) errors.push(`prep.json: ${item.id} har ugyldig lenke`);
+    for (const link of item.links || []) {
+      if (!link.label || !/^https:\/\//.test(link.url||'')) errors.push(`prep.json: ${item.id} har ugyldig lenke`);
+      if (link.appUrl && !/^(?:nflx|disneyplus):\/\//.test(link.appUrl)) errors.push(`prep.json: ${item.id} har ugyldig app-lenke`);
+    }
     if (['Film','TV og serier'].includes(group.category)) {
-      if (!item.streamingChecked || !(item.links||[]).some(x=>x.kind==='imdb') || !(item.links||[]).some(x=>x.kind==='stream')) {
+      const imdb=(item.links||[]).find(x=>x.kind==='imdb');
+      const stream=(item.links||[]).find(x=>x.kind==='stream');
+      if (!item.streamingChecked || !imdb || !stream) {
         errors.push(`prep.json: ${item.id} mangler IMDb, strømmetjeneste eller kontrolldato`);
+      }
+      if (stream?.label==='Netflix' && (!stream.appUrl?.startsWith('nflx://www.netflix.com/title/') || !stream.url?.startsWith('https://www.netflix.com/title/'))) {
+        errors.push(`prep.json: ${item.id} bruker ikke direkte Netflix-app/web-lenke`);
+      }
+      if (stream?.label==='Disney+' && (!stream.appUrl?.startsWith('disneyplus://') || !stream.url?.startsWith('https://www.disneyplus.com/browse/entity-'))) {
+        errors.push(`prep.json: ${item.id} bruker ikke direkte Disney+-app/web-lenke`);
       }
     }
     if (group.category==='Mat' && !(item.links||[]).some(x=>x.kind==='recipe')) errors.push(`prep.json: ${item.id} mangler oppskriftslenke`);
@@ -435,6 +449,7 @@ if (!app.includes('installMapLoadFallback') || !app.includes("map.once('load'"))
 if (!app.includes('placePriceSummaryHtml') || !app.includes('placePriceDetailHtml')) errors.push('app.js: stedspriser vises ikke konsistent i liste og detalj');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('renderPhraseGuide') || !app.includes('speechSynthesis') || !app.includes('renderPrepItem')) errors.push('app.js: språklyd, utvidet fraseliste eller detaljside for små mål mangler');
+if (!app.includes('prepAudienceHtml') || !app.includes('bindPrepStreamLinks') || !app.includes('data-stream-app-url')) errors.push('app.js: tydelig målgruppevisning eller app-aware strømme-lenker mangler');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 const toolbarStart=app.indexOf('const renderLayerToolbar=');
 const toolbarEnd=app.indexOf("map.on('load'",toolbarStart);
