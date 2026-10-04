@@ -258,37 +258,5 @@
       "title": "Onsen har egne regler",
       "body": "Vask deg før badet og les reglene på stedet; tatoveringsregler varierer."
     }
-  ],
-  "connections": [
-    {
-      "title": "LEGO Himeji → Himeji",
-      "type": "LEGO",
-      "text": "Bygg slottet hjemme, finn det i AC Shadows og ta så samme «der er det jo!» på ekte.",
-      "placeId": "himeji"
-    },
-    {
-      "title": "AC Shadows → det gamle Japan",
-      "type": "Spill",
-      "text": "Kyoto, Nara, Himeji og Osaka gir konkrete steder fra spillets verden. Bruk spillet til gjenkjennelse, ikke som historiebok.",
-      "placeId": "kyoto"
-    },
-    {
-      "title": "Mario → Nintendo på ekte",
-      "type": "Spill",
-      "text": "Super Nintendo World i Osaka og Nintendo Museum i Uji gjør Mario/Nintendo til en fysisk del av turen.",
-      "placeId": "nintendo-museum"
-    },
-    {
-      "title": "Your Name → Tokyo",
-      "type": "Film",
-      "text": "Filmen bruker gjenkjennelige moderne Tokyo-miljøer, særlig rundt Shinjuku/Yotsuya. Fint å se før Tokyo-delen.",
-      "placeId": "tokyo"
-    },
-    {
-      "title": "Ghibli → Mitaka",
-      "type": "Film",
-      "text": "Hvis Ghibli-filmene treffer familien, kan Ghibli Museum bli en egen Tokyo-utflukt. Billetter krever planlegging.",
-      "placeId": "ghibli-museum"
-    }
   ]
 }
