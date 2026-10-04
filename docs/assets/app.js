@@ -894,7 +894,10 @@ async function renderPrep() {
   await applyPageCopy('prep');
   nav('prep'); footer();
   const prep=await json('data/prep.json');
-  document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`<article class="card prep-card"><div class="meta">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`).join('')}</div></section>`).join('');
+  document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>{
+    const adult=/voksne|voksent/i.test(x.for||'');
+    return `<article class="card prep-card ${adult?'prep-adult':''}"><div class="meta prep-audience">${adult?'Vokseninnhold · ':''}${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`;
+  }).join('')}</div></section>`).join('');
 }
 
 async function renderFood() {
@@ -1078,18 +1081,19 @@ async function renderHotels() {
   await applyPageCopy('hotels');
   nav('hotels'); footer();
   const [data,trip,places,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/places.json'),loadFx()]);
+  renderPricePartySelector(trip);
   const hotels=data.hotels;
   const typeById=new Map((data.accommodationTypes||[]).map(x=>[x.id,x]));
   const tierOrder={'Verdi':0,'Mellomklasse':1,'Mellomklasse+':2,'Premium':3,'Splurge':4,'Splurge-opplevelse':4};
   let activeBase='all', activeKind='all';
 
   const price=(x)=>{
-    const [lo,hi]=x.standardFamilyNightYen;
+    const [lo,hi]=scalePartyRange(x.standardFamilyNightYen,trip);
     return `<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))} / natt</small>`;
   };
   const plannedNights=(x)=>Number.isFinite(x.recommendedNights)?x.recommendedNights:(trip.route.find(r=>r.id===x.baseId)?.nights||1);
   const totalPrice=(x)=>{
-    const nights=plannedNights(x), [lo,hi]=x.standardFamilyNightYen;
+    const nights=plannedNights(x), [lo,hi]=scalePartyRange(x.standardFamilyNightYen,trip);
     return `${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)} · ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))}`;
   };
   const card=(x)=>`<a class="hotel-index-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="hotel.html?id=${encodeURIComponent(x.id)}">
@@ -1119,14 +1123,14 @@ async function renderHotels() {
   activeKind=setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();},{initialValue:requestedKind});
 
   document.getElementById('stay-types').innerHTML=(data.accommodationTypes||[]).map(t=>`<article class="stay-type-card"><span>${hotels.filter(h=>h.kind===t.id).length||'—'} ${hotels.some(h=>h.kind===t.id)?'kandidater':'sammenligningsspor'}</span><h3>${t.label}</h3><p>${t.description}</p>${t.source?`<a href="${t.source}" target="_blank" rel="noopener">Regelgrunnlag ↗</a>`:''}</article>`).join('');
-  document.getElementById('stay-party-note').textContent=data.partyBasis ? `Planleggingsgrunnlag: ${planningPartyLabel(trip)}. ${data.partyBasis}` : '';
+  document.getElementById('stay-party-note').textContent=`Prisvisning: ${planningPartyLabel(trip)}. ${data.partyBasis||''} ${partyMultiplier(trip)>1?(trip.priceParties?.note||''):''}`.trim();
 
   const cheapestByBase=trip.route.filter(r=>r.nights>0).map(stop=>{
     const candidates=hotels.filter(h=>h.baseId===stop.id);
     return candidates.sort((a,b)=>((a.standardFamilyNightYen[0]+a.standardFamilyNightYen[1])/2)-((b.standardFamilyNightYen[0]+b.standardFamilyNightYen[1])/2))[0];
   }).filter(Boolean);
-  const low=cheapestByBase.reduce((sum,h)=>sum+h.standardFamilyNightYen[0]*plannedNights(h),0);
-  const high=cheapestByBase.reduce((sum,h)=>sum+h.standardFamilyNightYen[1]*plannedNights(h),0);
+  const low=cheapestByBase.reduce((sum,h)=>sum+h.standardFamilyNightYen[0]*plannedNights(h),0)*partyMultiplier(trip);
+  const high=cheapestByBase.reduce((sum,h)=>sum+h.standardFamilyNightYen[1]*plannedNights(h),0)*partyMultiplier(trip);
   document.getElementById('stay-cost-summary').innerHTML=`<span>Prisgrep med rimeligste listede kandidat per base</span><strong>${fmtJpy(low)}–${fmtJpy(high)} · ca. ${fmtNok(nokFromJpy(low,fx))}–${fmtNok(nokFromJpy(high,fx))}</strong><small>Planestimat for hele oppholdet; ikke et pristilbud.</small>`;
 
   document.getElementById('stay-alternatives').innerHTML=(data.alternativeExamples||[]).map(x=>`<a class="stay-alt-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="${x.url}" target="_blank" rel="noopener"><span>${typeById.get(x.kind)?.label||x.kind}</span><h3>${x.name}</h3><p>${x.description}</p><strong>Offisiell side ↗</strong></a>`).join('');
@@ -1144,10 +1148,11 @@ async function renderHotel() {
     document.querySelector('main').innerHTML='<div class="eyebrow">Overnatting</div><h1>Overnattingen ble ikke funnet</h1><p><a href="hotels.html">← Tilbake til overnattingsoversikten</a></p>';
     return;
   }
+  renderPricePartySelector(trip);
   const base=data.bases.find(b=>b.baseId===x.baseId);
   const routeStop=trip.route.find(r=>r.id===x.baseId);
   const nights=Number.isFinite(x.recommendedNights)?x.recommendedNights:(routeStop?.nights||1);
-  const [lo,hi]=x.standardFamilyNightYen;
+  const [lo,hi]=scalePartyRange(x.standardFamilyNightYen,trip);
   document.title=`${x.name} · Japan 2027`;
   const main=document.querySelector('main');
   main?.setAttribute('style',themeStyle(destinationTheme(trip,x.baseId)));
@@ -1162,7 +1167,7 @@ async function renderHotel() {
   document.getElementById('hotel-base-logic').textContent=base?.why||'';
   document.getElementById('hotel-price-night').innerHTML=`<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}</small>`;
   document.getElementById('hotel-price-stay').innerHTML=`<strong>${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)}</strong><small>ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))} · ${nights} ${nights===1?'natt':'netter'}</small>`;
-  document.getElementById('hotel-price-note').textContent=data.priceNote;
+  document.getElementById('hotel-price-note').textContent=`${data.priceNote} Prisvisning: ${planningPartyLabel(trip)}.${partyMultiplier(trip)>1?' To familier er her et lineært sammenligningsanslag; større enheter eller hele boliger kan bli rimeligere enn to separate familieløsninger.':''}`;
   const rating=document.getElementById('hotel-rating');
   if(x.rating?.score){
     rating.innerHTML=`<strong>${x.rating.score.toFixed(1)} / 5</strong><span>${x.rating.platform}${x.rating.count?` · ${new Intl.NumberFormat('nb-NO').format(x.rating.count)} anmeldelser`:''}</span><small>Kontrollert ${fmtLongDate(x.rating.checked)}.</small>`;
@@ -1198,14 +1203,16 @@ async function renderBudget() {
   await applyPageCopy('budget');
   nav('budget'); footer();
   const [trip,fx] = await Promise.all([json('data/trip.json'),loadFx()]);
-  document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
+  renderPricePartySelector(trip);
+  const multiplier=partyMultiplier(trip);
+  document.getElementById('target').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok*multiplier),fmtJpy(jpyFromNok(trip.budget.targetNok*multiplier,fx)));
   document.getElementById('range').innerHTML = dualMoneyHtml(
-    `${fmtNok(trip.budget.rangeNok[0])}–${fmtNok(trip.budget.rangeNok[1])}`,
-    `${fmtJpy(jpyFromNok(trip.budget.rangeNok[0],fx))}–${fmtJpy(jpyFromNok(trip.budget.rangeNok[1],fx))}`
+    `${fmtNok(trip.budget.rangeNok[0]*multiplier)}–${fmtNok(trip.budget.rangeNok[1]*multiplier)}`,
+    `${fmtJpy(jpyFromNok(trip.budget.rangeNok[0]*multiplier,fx))}–${fmtJpy(jpyFromNok(trip.budget.rangeNok[1]*multiplier,fx))}`
   );
-  document.getElementById('note').textContent = trip.budget.note;
+  document.getElementById('note').textContent = `${trip.budget.note}${multiplier>1?' To-familievisningen er et lineært plananslag; særlig overnatting kan bli lavere ved delte større enheter.':''}`;
   document.getElementById('budget-rows').innerHTML = trip.budget.items.map(item=>`
-    <tr><td>${item.label}</td><td>${dualRangeFromNok(item.rangeNok,fx)}</td></tr>
+    <tr><td>${item.label}</td><td>${dualRangeFromNok(item.rangeNok.map(v=>v*multiplier),fx)}</td></tr>
   `).join('');
   document.getElementById('fx-note').textContent =
     `Budsjettet er primært i NOK. JPY ved siden av beregnes med ${fxStatusText(fx).toLowerCase()} fra ${fmtLongDate(fx.asOf)}.`;
