@@ -95,7 +95,8 @@
         "areas": [
           "Tokyo"
         ]
-      }
+      },
+      "filterLabel": "Tokyo"
     },
     {
       "id": "hakone",
@@ -109,7 +110,8 @@
         "areas": [
           "Hakone / Fuji"
         ]
-      }
+      },
+      "filterLabel": "Hakone"
     },
     {
       "id": "kyoto",
@@ -124,7 +126,8 @@
           "Kyoto",
           "Nara"
         ]
-      }
+      },
+      "filterLabel": "Kyoto"
     },
     {
       "id": "himeji",
@@ -138,7 +141,8 @@
         "areas": [
           "Himeji"
         ]
-      }
+      },
+      "filterLabel": "Himeji"
     },
     {
       "id": "hiroshima",
@@ -153,7 +157,8 @@
           "Hiroshima",
           "Miyajima"
         ]
-      }
+      },
+      "filterLabel": "Hiroshima"
     },
     {
       "id": "osaka",
@@ -167,7 +172,8 @@
         "areas": [
           "Osaka"
         ]
-      }
+      },
+      "filterLabel": "Osaka"
     }
   ],
   "dayTrips": [

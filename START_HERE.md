@@ -57,7 +57,9 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 
 - Domeneinnhold ligger i JSON. HTML/JavaScript bestemmer struktur og hvordan felt vises, ikke konkrete reisedetaljer.
 - Oversiktens budskap ligger i `trip.json.overview`. Oversikten skal være en inngang til reisen, ikke en katalog over rute, steder, mat og booking.
-- Steder, Mat og Overnatting skal bruke samme destinasjons-/basefilter basert på `trip.json`, slik at Nara arver Kyoto, Miyajima arver Hiroshima osv.
+- Steder, Mat og Overnatting skal bruke samme destinasjons-/basefilter basert på `trip.json`, slik at Nara arver Kyoto, Miyajima arver Hiroshima osv. Filteret støtter `?base=<routeId>` for lenking mellom sider.
+- Rutesiden skal lenke videre fra hvert stopp til relevant stoppdetalj, Steder, Mat og Overnatting. Kart-popupene skal være korte; full prisdetalj hører hjemme i panelet under kartet.
+- Mobilvisningen av Steder skal følge den kompakte ruten: smalt bilde til venstre, tekst til høyre. Stor tom medieflate over bildet er en regresjon.
 - Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side.
 - Nettsiden skal leses som én aktuell utgave, ikke som en logg over tidligere utgaver.
 - `site.json` inneholder kun versjon og publiseringsdato. Versjonen bumpes ved hver publisert endring på `main`.

@@ -82,6 +82,7 @@ for (let i=0;i<trip.route.length;i++) {
   for (const duplicateKey of ['name','lat','lng']) {
     if (duplicateKey in stop) errors.push(`trip.json: ${stop.id} dupliserer ${duplicateKey}; stedet eies av places.json`);
   }
+  if (!stop.filterLabel) errors.push(`trip.json: ${stop.id} mangler filterLabel`);
   if (!stop.theme || !/^#[0-9A-Fa-f]{6}$/.test(stop.theme.color || '')) {
     errors.push(`trip.json: ${stop.id} mangler gyldig theme.color`);
   }
@@ -260,6 +261,7 @@ const placeHtml=fs.readFileSync('docs/place.html','utf8');
 if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js')) errors.push('place.html mangler generisk kartvisning');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+const style = fs.readFileSync('docs/assets/style.css', 'utf8');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
 if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
@@ -270,6 +272,13 @@ if (!app.includes('footer-version') || !app.includes("json('data/site.json')")) 
 if (!app.includes('1 NOK =') || !app.includes('1 JPY =')) errors.push('footer viser ikke kurs begge veier');
 if (!app.includes('place-list-card')) errors.push('Steder bruker ikke kompakt kortliste');
 if (!app.includes('setupJourneyFilters')) errors.push('app.js mangler felles filter for del av reisen');
+if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=') || !app.includes('food.html?base=') || !app.includes('hotels.html?base=')) {
+  errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
+}
+if (!app.includes("new URLSearchParams(location.search).get(param)")) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
+if (!style.includes('flex:0 0 112px!important') || !style.includes('.place-list-card>a')) {
+  errors.push('style.css: mobil stedsrad mangler fast kompakt mediebredde');
+}
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');

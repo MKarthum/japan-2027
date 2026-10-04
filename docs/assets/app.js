@@ -125,10 +125,12 @@ function priorityBadge(priority){
 }
 const relatedEntityCardHtml=({href,meta,title,subtitle,trip,subject})=>`<a class="related-card destination-themed" style="${themeStyle(destinationTheme(trip,subject))}" href="${href}"><span>${meta}</span><strong>${title}</strong><small>${subtitle}</small></a>`;
 
-function setupChoiceFilters(root,options,onChange,{allLabel='Alle'}={}) {
-  if(!root) return;
+function setupChoiceFilters(root,options,onChange,{allLabel='Alle',initialValue='all'}={}) {
+  if(!root) return 'all';
+  const valid=new Set(['all',...options.map(x=>x.value)]);
+  const selected=valid.has(initialValue)?initialValue:'all';
   const all=[{value:'all',label:allLabel},...options];
-  root.innerHTML=all.map((x,i)=>`<button class="${i===0?'active':''} ${x.theme?'destination-filter':''}" ${x.theme?`style="${themeStyle(x.theme)}"`:''} data-filter-value="${x.value}">${x.label}</button>`).join('');
+  root.innerHTML=all.map(x=>`<button class="${x.value===selected?'active':''} ${x.theme?'destination-filter':''}" ${x.theme?`style="${themeStyle(x.theme)}"`:''} data-filter-value="${x.value}">${x.label}</button>`).join('');
   root.addEventListener('click',e=>{
     const btn=e.target.closest('button[data-filter-value]');
     if(!btn) return;
@@ -136,20 +138,33 @@ function setupChoiceFilters(root,options,onChange,{allLabel='Alle'}={}) {
     btn.classList.add('active');
     onChange(btn.dataset.filterValue);
   });
+  return selected;
 }
 
-function setupJourneyFilters(root,trip,places,subjects,onChange,{overnightOnly=false}={}) {
+function setupJourneyFilters(root,trip,places,subjects,onChange,{overnightOnly=false,param='base'}={}) {
   const placeById=new Map(places.map(p=>[p.id,p]));
   const stops=trip.route.filter(stop=>{
     if(overnightOnly && stop.nights<=0) return false;
     return subjects.some(subject=>destinationId(trip,subject)===stop.id);
   });
-  setupChoiceFilters(root,stops.map(stop=>({
+  const requested=new URLSearchParams(location.search).get(param)||'all';
+  return setupChoiceFilters(root,stops.map(stop=>({
     value:stop.id,
-    label:placeById.get(stop.id)?.name||stop.id,
+    label:stop.filterLabel||placeById.get(stop.id)?.name||stop.id,
     theme:stop.theme
-  })),onChange);
+  })),onChange,{initialValue:requested});
 }
+
+const routeContextLinksHtml=(trip,stop,place,food,hotelsData)=>{
+  const id=stop.id;
+  const links=[
+    `<a href="place.html?id=${encodeURIComponent(place.id)}">Om stoppet</a>`,
+    `<a href="places.html?base=${encodeURIComponent(id)}">Steder</a>`
+  ];
+  if(food.some(x=>x.status!=='watch'&&destinationId(trip,x)===id)) links.push(`<a href="food.html?base=${encodeURIComponent(id)}">Mat</a>`);
+  if(stop.nights>0 && (hotelsData.hotels||[]).some(x=>x.baseId===id)) links.push(`<a href="hotels.html?base=${encodeURIComponent(id)}">Overnatting</a>`);
+  return `<div class="route-context-links">${links.join('')}</div>`;
+};
 
 
 async function renderHome() {
@@ -238,7 +253,7 @@ async function renderRoute() {
     const img=p.image;
     const leg=nextLegByRouteId.get(x.id);
     return `<article class="route-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
-      ${img?`<div class="route-thumb-wrap"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</div>`:''}
+      ${img?`<a class="route-thumb-wrap" href="place.html?id=${encodeURIComponent(p.id)}" aria-label="Se ${p.name}"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</a>`:''}
       <div class="route-item-main">
         <div class="route-item-top">
           <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
@@ -246,6 +261,7 @@ async function renderRoute() {
         </div>
         <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
         <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
+        ${routeContextLinksHtml(trip,x,p,food,hotelsData)}
         ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</button>`:''}
       </div>
     </article>`;
@@ -358,9 +374,9 @@ async function renderRoute() {
 
   const popupForLeg=(leg,lngLat) => {
     showLegDetail(leg);
-    new maplibregl.Popup({offset:10,maxWidth:'330px'})
+    new maplibregl.Popup({offset:10,maxWidth:'280px'})
       .setLngLat(lngLat)
-      .setHTML(legHtml(leg,{compact:true}))
+      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.family2a2cYen,fx)} for 2V+2B</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
       .addTo(map);
   };
 
@@ -400,7 +416,8 @@ async function renderRoute() {
 
   const markerGroups={stations:[],experience:[],food:[],hotel:[]};
   const layerState={stations:true,experience:true,food:false,hotel:false};
-  const mappablePlaces=places.filter(p=>p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
+  const routeContextIds=new Set([...trip.route.map(x=>x.id),...(trip.dayTrips||[]).map(x=>x.id)]);
+  const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
   const mappableFood=food.filter(x=>x.status==='active' && x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
   const mappableHotels=hotelsData.hotels.filter(x=>x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
 
@@ -607,9 +624,10 @@ async function renderRoute() {
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
       const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
       const nextLeg=nextLegByRouteId.get(x.id);
-      const popupHtml=`<div class="map-popup"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}</p>${nextLeg?legHtml(nextLeg,{compact:true}):'<p><strong>Siste hovedstopp på ruten.</strong></p>'}</div>`;
-      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'340px'}).setHTML(popupHtml)).addTo(map);
-      if(nextLeg) el.addEventListener('click',()=>showLegDetail(nextLeg));
+      const nextSummary=nextLeg?`<p class="small">Neste: ${nextLeg.to} · ${formatMinutes(nextLeg.durationMin)}</p>`:'<p class="small">Siste hovedstopp på ruten.</p>';
+      const popupHtml=`<div class="map-popup map-popup-stop destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}${x.nights>0?` · ${x.nights} ${x.nights===1?'natt':'netter'}`:''}</p>${nextSummary}${routeContextLinksHtml(trip,x,p,food,hotelsData)}</div>`;
+      const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml)).addTo(map);
+      el.addEventListener('click',event=>{event.stopPropagation(); if(nextLeg) showLegDetail(nextLeg);});
     });
 
     trip.dayTrips.forEach(x=>{
@@ -674,8 +692,8 @@ async function renderPlaces() {
       </article>`).join('');
   };
 
-  setupJourneyFilters(filters,trip,places,places,draw);
-  draw();
+  const initial=setupJourneyFilters(filters,trip,places,places,draw);
+  draw(initial);
 }
 async function renderPlace() {
   nav('places'); footer();
@@ -806,7 +824,7 @@ async function renderFood() {
     }).join('');
   };
 
-  setupJourneyFilters(filters,trip,places,active,draw);
+  const initial=setupJourneyFilters(filters,trip,places,active,draw);
   const destinations=active.filter(x=>x.role==='Destinasjonsmåltid').length;
   const summary=document.getElementById('food-summary');
   if(summary) summary.innerHTML=`<strong>${active.length} kuraterte kandidater</strong><span>${destinations} destinasjonsmåltider · detaljene ligger ett klikk ned</span>`;
@@ -840,7 +858,7 @@ async function renderFood() {
     const ratingDate=active.find(x=>x.ratings?.checked)?.ratings?.checked;
     fxNote.textContent=`Familieprisene er planestimater. ${fxStatusText(fx)} ${fmtLongDate(fx.asOf)} brukes i alle omregninger.${ratingDate?` Restaurantvurderinger kontrollert ${fmtLongDate(ratingDate)}.`:''}`;
   }
-  draw();
+  draw(initial);
 }
 
 async function renderRestaurant() {
@@ -966,9 +984,10 @@ async function renderHotels() {
     }).join('');
   };
 
-  setupJourneyFilters(document.getElementById('stay-base-filters'),trip,places,hotels,value=>{activeBase=value;draw();},{overnightOnly:true});
+  activeBase=setupJourneyFilters(document.getElementById('stay-base-filters'),trip,places,hotels,value=>{activeBase=value;draw();},{overnightOnly:true,param:'base'});
   const availableKinds=(data.accommodationTypes||[]).filter(t=>hotels.some(h=>h.kind===t.id)).map(t=>({value:t.id,label:t.label}));
-  setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();});
+  const requestedKind=new URLSearchParams(location.search).get('type')||'all';
+  activeKind=setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();},{initialValue:requestedKind});
 
   document.getElementById('stay-types').innerHTML=(data.accommodationTypes||[]).map(t=>`<article class="stay-type-card"><span>${hotels.filter(h=>h.kind===t.id).length||'—'} ${hotels.some(h=>h.kind===t.id)?'kandidater':'sammenligningsspor'}</span><h3>${t.label}</h3><p>${t.description}</p>${t.source?`<a href="${t.source}" target="_blank" rel="noopener">Regelgrunnlag ↗</a>`:''}</article>`).join('');
   document.getElementById('stay-party-note').textContent=data.partyBasis||'';
