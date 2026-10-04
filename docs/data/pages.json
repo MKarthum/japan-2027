@@ -83,7 +83,9 @@
     "etiquetteIntro": "Et lite sett vaner og regler dekker mye av det praktiske i hverdagen.",
     "passesEyebrow": "Pass og pakkeløsninger",
     "passesTitle": "Kandidater vi skal huske på",
-    "passesIntro": "Noen pass kan passe ruten svært godt, men vi velger dem først når de sparer penger på planen vi faktisk ønsker – ikke fordi de gir oss flere ting å fylle dagene med."
+    "passesIntro": "Noen pass kan passe ruten svært godt, men vi velger dem først når de sparer penger på planen vi faktisk ønsker – ikke fordi de gir oss flere ting å fylle dagene med.",
+    "morePhrasesLink": "Flere nyttige fraser →",
+    "audioNote": "Trykk på høyttaleren for å høre japansk uttale med stemmen som er installert på enheten."
   },
   "budget": {
     "eyebrow": "Budsjett",
@@ -102,5 +104,13 @@
     "title": "En offentlig plan uten private reisedetaljer",
     "intro": "Siden inneholder generell planleggingsinformasjon om rute, steder, mat, priser og aktiviteter. Opplysninger som kan identifisere eller lokalisere reisende hører ikke hjemme her.",
     "publicTitle": "Hva kan være offentlig?"
+  },
+  "phrases": {
+    "eyebrow": "Språk",
+    "title": "Flere fraser som faktisk er nyttige",
+    "intro": "En litt større samling for den som vil kunne mer enn de ti viktigste. Romanisering og japanske tegn står side om side, og hver frase kan leses opp.",
+    "basicsTitle": "De viktigste først",
+    "basicsIntro": "Disse er de samme korte frasene som på Praktisk-siden. Kan du noen av dem, kommer du langt.",
+    "audioNote": "Uttalen spilles av med en japansk tekst-til-tale-stemme på telefonen, nettbrettet eller datamaskinen. Stemmekvaliteten kan variere litt mellom enheter."
   }
 }
