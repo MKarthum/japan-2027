@@ -80,8 +80,12 @@ function renderPricePartySelector(trip) {
     location.href=url.toString();
   });
   const main=document.querySelector('main');
-  const anchor=main?.querySelector('.home-hero,.detail-hero,.restaurant-detail-hero,.hotel-detail-hero,.lede') || main?.firstElementChild;
-  if(anchor) anchor.insertAdjacentElement('afterend',root);
+  const detailHero=main?.querySelector('.detail-hero,.restaurant-detail-hero,.hotel-detail-hero');
+  if(detailHero) detailHero.insertAdjacentElement('beforebegin',root);
+  else {
+    const anchor=main?.querySelector('.home-hero,.lede') || main?.firstElementChild;
+    if(anchor) anchor.insertAdjacentElement('afterend',root);
+  }
 }
 
 async function json(path) {
