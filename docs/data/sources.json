@@ -208,5 +208,75 @@
     "title": "DK – Japan",
     "url": "https://dk.com/products/9780241738795-dk-japan",
     "use": "Offisiell informasjon om reiseguiden brukt i før-turen-forslag."
+  },
+  {
+    "title": "Kiyomizu-dera – official",
+    "url": "https://www.kiyomizudera.or.jp/en/news/2026/sennichi-2026.php",
+    "use": "Gjeldende ordinær voksen-/skolepris oppgitt i 2026-besøksinformasjon."
+  },
+  {
+    "title": "Kinkaku-ji – official",
+    "url": "https://www.shokoku-ji.jp/en/kinkakuji/access/",
+    "use": "Åpningstid og inngangspris."
+  },
+  {
+    "title": "Tōdai-ji admission",
+    "url": "https://www.todaiji.or.jp/information/haikan/",
+    "use": "Offisielle inngangspriser etter skoletrinn."
+  },
+  {
+    "title": "Hiroshima City – Peace Memorial Museum fee",
+    "url": "https://www.city.hiroshima.lg.jp/www/koho/shimintoshiseir070615/shimintoshisei/special/index.html",
+    "use": "Kommunal besøksinformasjon med inngangspris."
+  },
+  {
+    "title": "Itsukushima Shrine admission",
+    "url": "https://itsukushimajinja.jp/en/admission.html",
+    "use": "Offisiell inngangspris."
+  },
+  {
+    "title": "Osaka Castle – official",
+    "url": "https://osakacastle.net/",
+    "use": "Offisiell besøks- og prisinformasjon."
+  },
+  {
+    "title": "A Short History of Japan – Penguin",
+    "url": "https://www.penguin.co.uk/books/448290/a-short-history-of-japan-by-harding-christopher/9780241563205",
+    "use": "Bokinformasjon for historieforslag før turen."
+  },
+  {
+    "title": "A History of Japan in Manga – Tuttle",
+    "url": "https://tuttlepublishing.com/japan/history-of-japan-in-manga-9784805316702",
+    "use": "Bokinformasjon for historie i mangaform."
+  },
+  {
+    "title": "Pure Invention – Penguin Random House",
+    "url": "https://www.penguinrandomhouse.com/books/609076/pure-invention-by-matt-alt/9781984826718/",
+    "use": "Bokinformasjon om japansk popkultur og etterkrigstid."
+  },
+  {
+    "title": "Convenience Store Woman – Grove Atlantic",
+    "url": "https://groveatlantic.com/book/convenience-store-woman/",
+    "use": "Bokinformasjon for moderne japansk skjønnlitteratur."
+  },
+  {
+    "title": "Pachinko – Hachette",
+    "url": "https://www.hachettebookgroup.com/titles/min-jin-lee/pachinko-national-book-award-finalist/9781538784037/",
+    "use": "Bokinformasjon for roman om Korea/Japan og Osaka."
+  },
+  {
+    "title": "FX Shōgun Viewer’s Guide",
+    "url": "https://www.fxnetworks.com/shows/shogun/viewers-guide",
+    "use": "Historisk bakgrunn og guide til serien."
+  },
+  {
+    "title": "Perfect Days – Criterion",
+    "url": "https://www.criterion.com/films/34274-perfect-days",
+    "use": "Filminformasjon og kontekst om Tokyo."
+  },
+  {
+    "title": "Netflix – The Makanai",
+    "url": "https://www.netflix.com/no/title/81325501",
+    "use": "Offisiell norsk side for serien om Kyoto og maiko-miljø."
   }
 ]
