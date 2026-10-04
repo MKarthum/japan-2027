@@ -25,12 +25,12 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Datamodell
 
-- `docs/data/trip.json` – rute, planleggingsdatoer, budsjett, oversiktskuratering og destinasjonstemaer/farger
-- `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon og eksterne lenker
+- `docs/data/trip.json` – rute, planleggingsdatoer, budsjett, oversiktskuratering, destinasjonstemaer/farger og prisscenarier
+- `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
-- `docs/data/prep.json` – spill, film, mat og familieoppgaver før turen
+- `docs/data/prep.json` – spill, film/TV, bøker, historie, mat og små oppgaver før turen, med tydelig målgruppe
 - `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
@@ -51,9 +51,12 @@ Kilder og personvern ligger i bunnteksten.
 - Bilder skal ha gjenbrukbar lisens og synlig kreditering.
 - Fakta som kan endre seg skal ha kilde og konkret kontroll-dato; offentlig tekst skal ikke bruke relative formuleringer som «dagens regel».
 - Ingen privat reiseinformasjon skal inn i repoet.
-- Alle priser vises i både NOK og JPY via én felles kursfunksjon. Ved sidelasting hentes siste ECB-referansekurs; `fx.json` er bare dokumentert fallback. Budsjett er primært i NOK.
+- Alle priser vises i både NOK og JPY via én felles kursfunksjon. Ved sidelasting hentes siste tilgjengelige ECB-referansekurs; ECB publiserer kun virkedager, så helger viser siste virkedag. `fx.json` er dokumentert fallback. Budsjett er primært i NOK.
 
 ## Visningsarkitektur
+
+- Prisscenarier styres av `trip.json.priceParties`: én standardfamilie (2+2) er default, og to-familiescenarioet (4+4) kan velges på alle prisrelevante sider. Standardfamiliepriser lagres én gang per domene og skaleres i visningen. Overnatting ved to familier er eksplisitt et sammenligningsanslag fordi større felles enheter kan endre økonomien.
+- Alle steder har inngangspris eller eksplisitt «Gratis», med kilde og kontrolldato. Dynamiske priser må være tydelig dynamiske; ukjent 2027-pris skal ikke gjettes.
 
 HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkrete reisedetaljer, kuraterte lister og sidebudskap skal ikke hardkodes i visningskoden. `pages.json` eier sidecopy som ikke hører til et spesifikt domene.
 
@@ -61,7 +64,7 @@ HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkret
 - `food.json` er ett samlet matdomene med metadata + `restaurants`.
 - `app.js` har små delte visningsprimitiver i stedet for side-spesifikke kopier av samme komponent.
 - Steder, Mat og Overnatting bruker samme reise-/basefilter slik at innhold kan avgrenses etter del av reisen. Filtertilstanden kan åpnes via `?base=<routeId>`, og rutesiden bruker dette for navigasjon videre.
-- Rutekartet bruker korte popup-kort til orientering. Panelet under kartet følger popupen som faktisk åpnes; detaljerte reisepriser vises bare når en rutelinje/etappe velges. Mobilkort for steder er kompakte rader med fast bildekolonne og gyldig HTML uten nested anchors. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
+- Rutekartet bruker minimale popup-kort (kategori + navn + detaljlenke). Panelet under kartet følger popupen som faktisk åpnes og eier beskrivelse, pris og kontekst; reisepriser vises når en rutelinje/etappe velges. Mobilkort for steder er kompakte rader med fast bildekolonne og gyldig HTML uten nested anchors. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
 - Endres et delt visuelt mønster, endres helperen/CSS-primitiven slik at alle tilsvarende visninger følger med. CSS skal konsolideres i én kanonisk regel per delt komponent, ikke bygges opp som versjonsvise override-lag.
 - Offentlig tekst beskriver nåværende plan. Release-/endringshistorikk hører ikke hjemme i siden eller `site.json`.
 
