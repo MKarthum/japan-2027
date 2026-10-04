@@ -345,7 +345,7 @@ async function renderFlights() {
 
   document.getElementById('flight-patterns').innerHTML=data.itineraryPatterns.map(x=>`
     <article class="flight-pattern-card ${x.status==='Hovedspor'?'preferred':''}">
-      <div class="flight-card-top"><span class="flight-status">${x.status}</span><span>${x.type==='roundtrip'?'Tur/retur':'Åpen kjeve'}</span></div>
+      <div class="flight-card-top"><span class="flight-status">${x.status}</span><span>${x.type==='roundtrip'?'Tur/retur':'Inn én by · hjem fra en annen'}</span></div>
       <h3>${x.label}</h3>
       <div class="flight-route-pair"><strong>${x.outbound}</strong><strong>${x.inbound}</strong></div>
       <p class="flight-direction">${x.routeDirection}</p>
@@ -412,11 +412,24 @@ async function renderFlights() {
 
   const searches=document.getElementById('flight-searches');
   searches.id='flight-searches-anchor';
-  searches.innerHTML=data.manualSearches.map((x,i)=>`
-    <article class="flight-search-card">
-      <span class="flight-search-number">${String(i+1).padStart(2,'0')}</span>
-      <div><div class="flight-card-top"><span>${x.priority}</span></div><h3>${x.title}</h3><p>${x.instruction}</p>${external(x.url,'Åpne søk',i<2)}</div>
-    </article>`).join('');
+  const searchStages=[
+    ['start','Start her','Google Flights og FINN først – de gir det raskeste helhetsbildet.'],
+    ['compare','Sammenlign datoer og tur/retur','Bruk disse for å se om dato eller samme-flyplass tur/retur endrer prisbildet mye.'],
+    ['direct','Sjekk vinneren direkte','Gå til flyselskapet først når vi vet hvilke alternativer som faktisk er interessante.'],
+    ['package','Pakkereiser','En separat kontroll på om fly + hotell eller rundreise gir overraskende verdi.']
+  ];
+  let searchIndex=0;
+  searches.innerHTML=searchStages.map(([stage,title,intro])=>{
+    const items=data.manualSearches.filter(x=>x.stage===stage);
+    if(!items.length) return '';
+    return `<section class="flight-search-stage"><div class="flight-search-stage-head"><h3>${title}</h3><p>${intro}</p></div><div class="flight-search-stage-list">${items.map(x=>{
+      searchIndex+=1;
+      return `<article class="flight-search-card">
+        <span class="flight-search-number">${String(searchIndex).padStart(2,'0')}</span>
+        <div><div class="flight-card-top"><span>${x.priority}</span></div><h3>${x.title}</h3><p>${x.instruction}</p>${external(x.url,'Åpne søk',stage==='start')}</div>
+      </article>`;
+    }).join('')}</div></section>`;
+  }).join('');
 
   const template=[data.capture.title,'',...data.capture.fields.map(x=>`${x}: `)].join('\n');
   document.getElementById('flight-capture').innerHTML=`
