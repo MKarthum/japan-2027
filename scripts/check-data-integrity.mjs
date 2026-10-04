@@ -120,8 +120,11 @@ for (const row of flights.packageChecks || []) {
   if (!row.provider || !row.kind || !row.dates || !row.signal || !row.compareAs || !row.checked || !httpsOnly(row.url)) errors.push(`flights.json: pakkesjekk ${row.id||'(uten id)'} er ufullstendig`);
 }
 for (const row of flights.manualSearches || []) {
-  if (!row.priority || !row.title || !row.instruction || !row.captureKey || !httpsOnly(row.url)) errors.push(`flights.json: manuelt søk ${row.id||'(uten id)'} er ufullstendig`);
+  if (!['start','compare','direct','package'].includes(row.stage) || !row.priority || !row.title || !row.instruction || !row.captureKey || !httpsOnly(row.url)) errors.push(`flights.json: manuelt søk ${row.id||'(uten id)'} er ufullstendig`);
 }
+const startSearches=(flights.manualSearches||[]).filter(x=>x.stage==='start');
+if (!startSearches.some(x=>/google\.com\/travel\/flights/.test(x.url)) || !startSearches.some(x=>/finn\.no\/reise\/flybilletter/.test(x.url))) errors.push('flights.json: første søketrinn skal inneholde både Google Flights og FINN Reise');
+if ((flights.itineraryPatterns||[]).some(x=>/open-jaw|åpen kjeve/i.test(JSON.stringify(x))) || /open-jaw|åpen kjeve/i.test(JSON.stringify(pages.flights||{}))) errors.push('flysiden skal bruke forståelig språk for ulik inn-/utreiseby, ikke open-jaw/åpen kjeve');
 for (const row of flights.sources || []) {
   if (!row.title || !row.use || !httpsOnly(row.url)) errors.push('flights.json: kilde er ufullstendig eller har ugyldig lenke');
 }

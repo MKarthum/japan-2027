@@ -9,7 +9,7 @@
   },
   "decisionPrinciples": [
     "Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. En billigere tur/retur til samme by kan tape gevinsten hvis den krever ekstra hurtigtog, mulig hotellnatt og en halv reisedag tilbake.",
-    "Pris begge retninger som åpen kjeve: Tokyo inn / Osaka hjem og Osaka inn / Tokyo hjem. Ruten i Japan kan snus hvis flyforskjellen er stor nok.",
+    "Pris begge retninger med ulik inn- og utreiseby: Tokyo inn / Osaka hjem og Osaka inn / Tokyo hjem. Ruten i Japan kan snus hvis flyforskjellen er stor nok.",
     "Søk først samme 14-netters reiselengde på alle datoer ±3 dager. Deretter testes én dag kortere/lengre hvis prisbildet har tydelige hopp.",
     "Foretrekk én gjennomgående billett med beskyttede forbindelser. Separate billetter – særlig der man selv må hente bagasje og sjekke inn på nytt – er et eget risikonivå og skal merkes tydelig.",
     "Når prisforskjellen er liten, er bestilling direkte hos flyselskapet normalt enklere ved endringer enn en ukjent tredjepart."
@@ -42,20 +42,20 @@
   ],
   "itineraryPatterns": [
     {
-      "id": "open-jaw-east-west",
+      "id": "different-airports-east-west",
       "label": "Tokyo inn · Osaka hjem",
-      "type": "open-jaw",
+      "type": "different-airports",
       "status": "Hovedspor",
       "outbound": "OSL → HND/NRT",
       "inbound": "KIX → OSL",
       "routeDirection": "Tokyo → Hakone → Kyoto → Hiroshima → Osaka",
       "why": "Passer den nåværende ruten og unngår å reise tilbake til Tokyo bare for å fly hjem.",
-      "tradeoff": "Må prises som multi-city; enkelte kampanjer er bedre på ordinær tur/retur."
+      "tradeoff": "Må prises som «Flere byer / Multi-city» i søket; enkelte kampanjer er bedre på vanlig tur/retur."
     },
     {
-      "id": "open-jaw-west-east",
+      "id": "different-airports-west-east",
       "label": "Osaka inn · Tokyo hjem",
-      "type": "open-jaw-reverse",
+      "type": "different-airports-reverse",
       "status": "Må sammenlignes",
       "outbound": "OSL → KIX",
       "inbound": "HND/NRT → OSL",
@@ -144,7 +144,7 @@
       "id": "turkish",
       "airline": "Turkish Airlines",
       "hub": "Istanbul (IST)",
-      "fit": "Svært sterk for åpen kjeve",
+      "fit": "Svært sterk for ulike inn-/utreisebyer",
       "tokyo": "HND og NRT",
       "osaka": "KIX",
       "why": "Dekker begge ender via Istanbul. En norsk gruppereise har allerede publisert OSL–IST–KIX ut og HND–IST–OSL hjem 22. mars–3. april 2027.",
@@ -213,7 +213,7 @@
       "fit": "Sterk på Tokyo-siden",
       "tokyo": "HND",
       "osaka": "Ikke tilsvarende enkel OSL–KIX-rute i den nåværende FlightConnections-listen",
-      "why": "København er blant de korteste listede én-stopp-veiene til Haneda. For åpen kjeve må Osaka-returen prises med partner eller annet selskap.",
+      "why": "København er blant de korteste listede én-stopp-veiene til Haneda. For ulike inn-/utreisebyer må Osaka-returen prises med partner eller annet selskap.",
       "officialSearch": "https://www.flysas.com/",
       "routeSource": "https://www.flightconnections.com/flights-from-osl-to-hnd"
     }
@@ -253,26 +253,70 @@
       "source": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-osaka"
     },
     {
-      "id": "thai-march-tokyo",
-      "kind": "published-2027-fare",
-      "route": "OSL ↔ Tokyo",
-      "dates": "Mars 2027",
-      "priceNok": 15465,
-      "basis": "fra-pris per reisende, tur/retur Economy",
-      "use": "Offisiell månedlig prisindikasjon; eksakte datoer kan være annerledes.",
-      "checked": "2026-10-04",
-      "source": "https://www.thaiairways.com/flights/en/flights-from-oslo-to-tokyo"
-    },
-    {
       "id": "momondo-osaka-23mar-one-stop",
       "kind": "dated-search-result",
       "route": "OSL → KIX",
       "dates": "23. mars 2027",
       "priceNok": 7078,
       "basis": "énveis per reisende, 1 stopp via Bangkok, ca. 33 t 50 min",
-      "use": "Viser at datoen har søkbare billetter og at en senere avreise kan gi prisalternativer; ikke direkte sammenlignbar med en gjennomgående åpen-kjeve-billett.",
+      "use": "Viser at datoen har søkbare billetter og at en senere avreise kan gi prisalternativer; ikke direkte sammenlignbar med en gjennomgående billett med ulike inn-/utreisebyer.",
       "checked": "2026-10-04",
       "source": "https://www.momondo.no/flybilletter/oslo-airport-gardermoen-osl/osaka-prefektur"
+    },
+    {
+      "id": "thai-near-window-18mar",
+      "kind": "dated-airline-fare",
+      "route": "OSL ↔ Tokyo (TYO)",
+      "dates": "18. mars–1. april 2027",
+      "priceNok": 14033,
+      "basis": "fra-pris per voksen, tur/retur Economy; oppgitt av Thai Airways",
+      "use": "Ligger svært nær dagens reisevindu og er derfor et mer nyttig prisanker enn et generelt månedsnivå.",
+      "checked": "2026-10-04",
+      "source": "https://www.thaiairways.com/flights/en-no/flights-from-oslo-to-tokyo"
+    },
+    {
+      "id": "thai-near-window-19mar-hnd",
+      "kind": "dated-airline-fare",
+      "route": "OSL ↔ Tokyo Haneda (HND)",
+      "dates": "19. mars–1. april 2027",
+      "priceNok": 16037,
+      "basis": "fra-pris per voksen, tur/retur Economy; oppgitt av Thai Airways",
+      "use": "Datert pris tett på planvinduet og spesifikt til Haneda. Ikke familiepris og ikke samme returdato som baseline.",
+      "checked": "2026-10-04",
+      "source": "https://www.thaiairways.com/flights/en-no/flights-from-oslo-to-tokyo"
+    },
+    {
+      "id": "finnair-route-from",
+      "kind": "current-route-from",
+      "route": "OSL ↔ Tokyo",
+      "dates": "Ikke knyttet til våre datoer",
+      "priceNok": 8947,
+      "basis": "publisert tur/retur fra-pris per voksen på Finnairs norske forside",
+      "use": "Nyttig markedsreferanse for hva Finnair kan ligge på, men ikke et 2027-tilbud for vår reiseuke.",
+      "checked": "2026-10-04",
+      "source": "https://www.finnair.com/no-en"
+    },
+    {
+      "id": "finn-route-tokyo",
+      "kind": "search-engine-from",
+      "route": "OSL ↔ Tokyo",
+      "dates": "Ikke knyttet til våre datoer",
+      "priceNok": 8311,
+      "basis": "FINN Reise viser ruten fra dette prisnivået",
+      "use": "Brukes bare som enkel markedsreferanse; åpne FINN og søk de faktiske datoene før tallet brukes i beslutningen.",
+      "checked": "2026-10-04",
+      "source": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/tokyo/"
+    },
+    {
+      "id": "finn-route-osaka",
+      "kind": "search-engine-from",
+      "route": "OSL ↔ Osaka",
+      "dates": "Ikke knyttet til våre datoer",
+      "priceNok": 8954,
+      "basis": "FINN Reise viser ruten fra dette prisnivået",
+      "use": "Brukes bare som enkel markedsreferanse; åpne FINN og søk de faktiske datoene før tallet brukes i beslutningen.",
+      "checked": "2026-10-04",
+      "source": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/osaka/"
     }
   ],
   "packageChecks": [
@@ -347,23 +391,44 @@
   },
   "manualSearches": [
     {
-      "id": "google-openjaw-current",
+      "id": "google-different-airports-current",
+      "stage": "start",
       "priority": "Start her",
       "title": "Google Flights · Tokyo inn / Osaka hjem",
-      "instruction": "Velg Flere byer / Multi-city: OSL → Tokyo 20.03.2027 og KIX → OSL 03.04.2027. Sett 2 voksne + 2 barn, Economy. Gjenta så hele 14-netters vinduet ±3 dager.",
+      "instruction": "Velg «Flere byer / Multi-city»: OSL → Tokyo og KIX → OSL. Bruk planens gjeldende datoer, 2 voksne + 2 barn og Economy. Deretter test samme reiselengde ±3 dager.",
       "url": "https://www.google.com/travel/flights?hl=no&curr=NOK",
-      "captureKey": "open-jaw-east-west"
+      "captureKey": "different-airports-east-west"
     },
     {
-      "id": "google-openjaw-reverse",
-      "priority": "Obligatorisk sammenligning",
+      "id": "google-different-airports-reverse",
+      "stage": "start",
+      "priority": "Start her",
       "title": "Google Flights · Osaka inn / Tokyo hjem",
-      "instruction": "Velg Flere byer / Multi-city: OSL → KIX og Tokyo → OSL med samme dato-par. Sammenlign totalpris og reisetid mot hovedsporet.",
+      "instruction": "Velg «Flere byer / Multi-city»: OSL → KIX og Tokyo → OSL. Bruk samme datopar som i hovedsøket og sammenlign totalpris og reisetid.",
       "url": "https://www.google.com/travel/flights?hl=no&curr=NOK",
-      "captureKey": "open-jaw-west-east"
+      "captureKey": "different-airports-west-east"
+    },
+    {
+      "id": "finn-tokyo",
+      "stage": "start",
+      "priority": "Enkel prissjekk",
+      "title": "FINN Reise · Oslo–Tokyo",
+      "instruction": "Søk tur/retur Tokyo på planens datoer og med fleksible datoer rundt dem. Dette er den enkleste norske prisreferansen før vi går til hvert flyselskap.",
+      "url": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/tokyo/",
+      "captureKey": "finn-tokyo"
+    },
+    {
+      "id": "finn-osaka",
+      "stage": "start",
+      "priority": "Enkel prissjekk",
+      "title": "FINN Reise · Oslo–Osaka",
+      "instruction": "Søk tur/retur Kansai/Osaka på de samme datoene. Bruk resultatet som kontroll mot Google Flights og mot eventuell pris ved ulik inn-/utreiseby.",
+      "url": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/osaka/",
+      "captureKey": "finn-osaka"
     },
     {
       "id": "google-tokyo-return",
+      "stage": "compare",
       "priority": "Prisreferanse",
       "title": "Google Flights · Tokyo tur/retur",
       "instruction": "Søk OSL ↔ TYO/HND/NRT på samme datoer og ±3 dager. Noter om besparelsen faktisk dekker ekstra transport tilbake til Tokyo.",
@@ -372,6 +437,7 @@
     },
     {
       "id": "google-osaka-return",
+      "stage": "compare",
       "priority": "Prisreferanse",
       "title": "Google Flights · Osaka tur/retur",
       "instruction": "Søk OSL ↔ KIX på samme datoer og ±3 dager. Bruk dette som prisreferanse, ikke som automatisk ruteforslag.",
@@ -380,46 +446,52 @@
     },
     {
       "id": "kayak-tokyo-flex",
+      "stage": "compare",
       "priority": "Datofleks",
       "title": "KAYAK · Oslo–Tokyo ±3 dager",
-      "instruction": "Bruk fleksible datoer og se etter tydelige hopp mellom dagene. KAYAK er spesielt nyttig for å se kalender-/ukedagseffekt.",
+      "instruction": "Bruk fleksible datoer og se etter tydelige hopp mellom dagene. KAYAK er særlig nyttig som kontroll på kalender-/ukedagseffekt.",
       "url": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO",
       "captureKey": "kayak-tokyo"
     },
     {
       "id": "kayak-osaka-flex",
+      "stage": "compare",
       "priority": "Datofleks",
       "title": "KAYAK · Oslo–Kansai ±3 dager",
-      "instruction": "Sjekk særlig 22.–23. mars ut og 5.–6. april hjem, men sammenlign mot samme reiselengde først.",
+      "instruction": "Bruk fleksible datoer rundt planvinduet og sammenlign samme reiselengde først.",
       "url": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX",
       "captureKey": "kayak-osaka"
     },
     {
       "id": "finnair-direct",
-      "priority": "Flyselskap",
+      "stage": "direct",
+      "priority": "Sjekk direkte etterpå",
       "title": "Finnair · pris direkte",
-      "instruction": "Pris begge open-jaw-retninger direkte hos Finnair. Sammenlign bagasje, setevalg og endringsvilkår med søkemotorresultatet.",
+      "instruction": "Når Google/FINN har vist et interessant Finnair-alternativ, pris samme kombinasjon direkte hos Finnair og sammenlign bagasje, setevalg og endringsvilkår.",
       "url": "https://www.finnair.com/no-no/",
       "captureKey": "finnair"
     },
     {
       "id": "turkish-direct",
-      "priority": "Flyselskap",
+      "stage": "direct",
+      "priority": "Sjekk direkte etterpå",
       "title": "Turkish Airlines · pris direkte",
-      "instruction": "Pris begge open-jaw-retninger direkte. Vi vet allerede at KIX inn / HND hjem finnes i publisert 2027-oppsett rundt de aktuelle datoene.",
+      "instruction": "Når Turkish ser konkurransedyktig ut i Google/FINN, pris samme kombinasjon direkte. Vi vet at Osaka inn / Haneda hjem finnes i publisert 2027-oppsett rundt planvinduet.",
       "url": "https://www.turkishairlines.com/en-no/",
       "captureKey": "turkish"
     },
     {
       "id": "lufthansa-direct",
-      "priority": "Flyselskap",
-      "title": "Lufthansa · Tokyo og Osaka",
-      "instruction": "Sammenlign multi-city med Lufthansa-gruppen mot deres publiserte marsnivåer for vanlig tur/retur.",
+      "stage": "direct",
+      "priority": "Sjekk direkte etterpå",
+      "title": "Lufthansa · pris direkte",
+      "instruction": "Pris den samme konkrete reisen direkte hos Lufthansa-gruppen hvis den dukker opp blant de beste i søkemotorene.",
       "url": "https://www.lufthansa.com/lhg/no/en/o-d/cy-cy/oslo-tokyo",
       "captureKey": "lufthansa"
     },
     {
       "id": "packages",
+      "stage": "package",
       "priority": "Pakkesjekk",
       "title": "Pakkereiser · sjekk om totalen overrasker",
       "instruction": "Sjekk Escape, Ving, TUI og Apollo/TEMA. Ikke sammenlign personpris direkte med fly-only; sammenlign hva som faktisk er inkludert.",
@@ -489,7 +561,7 @@
     {
       "title": "Escape Travel · Japan mars 2027",
       "url": "https://escape.no/reiser/japan-rundreise-tokyo-kyoto-hiroshima-gruppereise/",
-      "use": "Publisert 2027-flyoppsett med Turkish Airlines og reversert open-jaw."
+      "use": "Publisert 2027-flyoppsett med Turkish Airlines og innreise i Osaka / hjemreise fra Tokyo."
     },
     {
       "title": "Lufthansa · Oslo–Tokyo",
@@ -545,6 +617,16 @@
       "title": "AirlineRatings · safest airlines 2026",
       "url": "https://www.airlineratings.com/articles/worlds-safest-airlines-for-2026",
       "use": "Sekundær, uavhengig sikkerhetskontekst."
+    },
+    {
+      "title": "FINN Reise · Oslo–Tokyo",
+      "url": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/tokyo/",
+      "use": "Enkel norsk pris- og ruteinngang før direkte flyselskapsøk."
+    },
+    {
+      "title": "FINN Reise · Oslo–Osaka",
+      "url": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/osaka/",
+      "use": "Enkel norsk pris- og ruteinngang før direkte flyselskapsøk."
     }
   ],
   "bookingSignals": {

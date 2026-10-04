@@ -1963,3 +1963,19 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .flight-search-number{width:30px;height:30px}
   #flight-copy-status{display:block;margin:8px 0 0}
 }
+
+.flight-search-stage{display:grid;gap:9px;margin-bottom:20px}
+.flight-search-stage:last-child{margin-bottom:0}
+.flight-search-stage-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(250px,.8fr);
+  gap:18px;
+  align-items:end;
+  padding:0 2px 2px;
+}
+.flight-search-stage-head h3{margin:0;font-size:1rem}
+.flight-search-stage-head p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.4}
+.flight-search-stage-list{display:grid;gap:9px}
+@media(max-width:620px){
+  .flight-search-stage-head{grid-template-columns:1fr;gap:4px}
+}

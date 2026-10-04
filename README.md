@@ -27,7 +27,7 @@ Kilder og personvern ligger i bunnteksten.
 ## Datamodell
 
 - `docs/data/trip.json` – rute, planleggingsdatoer, budsjett, oversiktskuratering, destinasjonstemaer/farger og prisscenarier
-- `docs/data/flights.json` – flyresearch: open-jaw/tur-retur, datofleks, ruter/selskaper, prisobservasjoner, sikkerhetsgrunnlag, pakkesjekker og manuelle søkeoppgaver
+- `docs/data/flights.json` – flyresearch: ulik inn-/utreiseby og tur/retur, datofleks, ruter/selskaper, prisobservasjoner, sikkerhetsgrunnlag, pakkesjekker og manuelle søkeoppgaver
 - `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
