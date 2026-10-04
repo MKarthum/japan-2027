@@ -4,7 +4,6 @@
     "items": [
       {
         "title": "Assassin’s Creed Shadows",
-        "for": "Voksne · kan tilpasses hvis barna ser på",
         "why": "Spillet bruker et dramatisert 1500-talls-Japan, men gir sterk visuell gjenkjennelse i Kyoto, Nara, Osaka og Himeji. Det gjør slott, porter og bydeler lettere å koble til noe man allerede har sett.",
         "action": "Spill noen utvalgte sekvenser og finn Himeji, Kyoto og Nara før reisen. Hvis barna ser på, bruk innstillingene for å redusere Blood FX og Dismemberment.",
         "id": "prep-1",
@@ -12,22 +11,29 @@
           "kyoto",
           "himeji",
           "osaka"
-        ]
+        ],
+        "audience": {
+          "id": "adults",
+          "label": "Voksne",
+          "note": "Hvis barna bare ser på: reduser voldseffektene i spillet."
+        }
       },
       {
         "title": "Mario Kart 8 Deluxe",
-        "for": "Hele familien",
         "why": "Mario er en enkel felles referanse før Nintendo Museum og Super Nintendo World, og Tokyo Blur gir et lekent første møte med en stilisert Tokyo-versjon.",
         "action": "Spill noen runder sammen. La barna velge én figur eller detalj de vil prøve å finne igjen i Nintendo-delen av reisen.",
         "id": "prep-2",
         "placeIds": [
           "tokyo",
           "usj"
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Tokaido",
-        "for": "Hele familien",
         "why": "Brettspillet gjør selve reisen mellom Edo/Tokyo og Kyoto til tema, med varme kilder, mat og stopp underveis. Det gir en enkel inngang til hvorfor ruten gjennom Japan er en del av opplevelsen.",
         "action": "Spill et par ganger før avreise og bruk kartet i spillet til å snakke om Tokyo, Hakone og Kyoto.",
         "id": "prep-3",
@@ -35,7 +41,11 @@
           "tokyo",
           "hakone",
           "kyoto"
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       }
     ]
   },
@@ -44,7 +54,6 @@
     "items": [
       {
         "title": "Min nabo Totoro",
-        "for": "Hele familien",
         "why": "En rolig og tilgjengelig introduksjon til Studio Ghibli, japansk landsbygd og natur. Filmen gjør Ghibli Museum langt mer meningsfullt hvis museet blir med i planen.",
         "action": "Se den sammen som familiefilm og la alle velge én figur eller scene de husker best.",
         "id": "prep-4",
@@ -60,14 +69,18 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/no/title/60032294"
+            "url": "https://www.netflix.com/title/60032294",
+            "appUrl": "nflx://www.netflix.com/title/60032294"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Chihiro og heksene",
-        "for": "Hele familien",
         "why": "En av Ghiblis mest kjente filmer og en rik inngang til japanske ånder, badehus, mat og visuelle detaljer. Den gir mer å kjenne igjen både på Ghibli Museum og i møte med japansk folklore.",
         "action": "Se den sammen og snakk kort om hva som føles annerledes enn i vestlige animasjonsfilmer.",
         "id": "prep-5",
@@ -83,14 +96,19 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/no/title/60023642"
+            "url": "https://www.netflix.com/title/60023642",
+            "appUrl": "nflx://www.netflix.com/title/60023642"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne",
+          "note": "Netflix merker filmen 10+."
+        }
       },
       {
         "title": "Kikis budservice",
-        "for": "Hele familien",
         "why": "En lett og varm Ghibli-film om å flytte hjemmefra, arbeid og hverdagsliv. Den gir variasjon fra de mer mytiske Ghibli-filmene og er enkel å se med hele familien.",
         "action": "Bruk den som en lavterskel familiekveld før dere bestemmer hvor viktig Ghibli skal være på turen.",
         "id": "prep-6",
@@ -106,14 +124,18 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/no/title/60027106"
+            "url": "https://www.netflix.com/title/60027106",
+            "appUrl": "nflx://www.netflix.com/title/60027106"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Your Name",
-        "for": "Eldre barn og voksne",
         "why": "Moderne Tokyo-miljøer, tog og byrom gjør filmen til en god visuell inngang til hverdagen i storbyen, samtidig som historien er sterk nok til å fungere uten reisekontekst.",
         "action": "Se den nærmere avreise og legg merke til tog, stasjoner og kontrasten mellom Tokyo og landsbygda.",
         "id": "prep-7",
@@ -132,11 +154,14 @@
             "url": "https://tv.apple.com/no/movie/your-name/umc.cmc.6ac4xg8jxxgxe4zqc367smjwo"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne"
+        }
       },
       {
         "title": "Suzume",
-        "for": "Eldre barn og voksne",
         "why": "Filmen er bygd som en reise gjennom flere deler av Japan og gjør avstander, tog og regionale miljøer mer konkrete enn et kart alene.",
         "action": "Se den etter at hovedruten sitter litt. Prøv underveis å plassere hvor i Japan handlingen beveger seg.",
         "id": "prep-8",
@@ -155,12 +180,15 @@
             "url": "https://tv.apple.com/no/movie/suzume/umc.cmc.52d5fx97y2t4o8rjoqfymqgtr"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne"
+        }
       },
       {
         "id": "perfect-days",
         "title": "Perfect Days",
-        "for": "Voksne og eldre tenåringer",
         "why": "En lavmælt film om hverdagsliv i Tokyo som gir byen menneskelig skala, rutiner og små observasjoner langt unna neon-klisjeene.",
         "action": "Se når ruten er kjent; legg merke til Shibuya, kollektivtransporten og hvordan byen brukes i hverdagen.",
         "placeIds": [
@@ -174,12 +202,16 @@
             "url": "https://www.imdb.com/title/tt27503384/"
           },
           {
-            "label": "Filmoteket",
+            "label": "Filmoteket (nett)",
             "kind": "stream",
             "url": "https://filmoteket.no/film/195642"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "teens",
+          "label": "Tenåringer + voksne"
+        }
       }
     ]
   },
@@ -189,7 +221,6 @@
       {
         "id": "pokemon-concierge",
         "title": "Pokémon Concierge",
-        "for": "Hele familien",
         "why": "Kort stop-motion-serie som viser en roligere side av Pokémon-universet og gir en annen inngang til japansk popkultur enn spill og storfilmer.",
         "action": "Se noen episoder som en lavterskel familiekveld før Nintendo- og Pokémon-referansene begynner å dukke opp i planen.",
         "placeIds": [],
@@ -202,15 +233,19 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/no/title/81186864"
+            "url": "https://www.netflix.com/title/81186864",
+            "appUrl": "nflx://www.netflix.com/title/81186864"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "id": "shogun-tv",
         "title": "Shōgun",
-        "for": "Voksne · tydelig vold og voksent innhold",
         "why": "Historisk drama lagt til år 1600, med maktkampen som leder inn i Tokugawa-perioden og viktige scener knyttet til Osaka. Serien gir navn og konflikter å henge slotts- og samuraihistorien på.",
         "action": "Se serien som dramatisering, og bruk FX sin historiske guide ved siden av for å skille virkelige hendelser fra fiksjon.",
         "placeIds": [
@@ -228,16 +263,21 @@
           {
             "label": "Disney+",
             "kind": "stream",
-            "url": "https://www.disneyplus.com/nb-no/browse/entity-5422a5f9-e4f1-475e-9217-65e8249388d0"
+            "url": "https://www.disneyplus.com/browse/entity-5422a5f9-e4f1-475e-9217-65e8249388d0",
+            "appUrl": "disneyplus://5422a5f9-e4f1-475e-9217-65e8249388d0"
           }
         ],
         "streamingChecked": "2026-10-04",
-        "urlLabel": "Historisk guide (FX)"
+        "urlLabel": "Historisk guide (FX)",
+        "audience": {
+          "id": "adults",
+          "label": "Voksne",
+          "note": "Tydelig vold og voksent innhold."
+        }
       },
       {
         "id": "makanai",
         "title": "The Makanai: Cooking for the Maiko House",
-        "for": "13+ og voksne",
         "why": "Rolig serie om to venner i Kyoto, maiko-miljø, mat og hverdagsliv. Den gjør Gion og Kyoto mer menneskelig og mindre til en samling templer.",
         "action": "Se noen episoder før Kyoto-planleggingen og legg spesielt merke til hverdagsrutiner, mat og gatemiljø.",
         "placeIds": [
@@ -253,10 +293,16 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/no/title/81325501"
+            "url": "https://www.netflix.com/title/81325501",
+            "appUrl": "nflx://www.netflix.com/title/81325501"
           }
         ],
-        "streamingChecked": "2026-10-04"
+        "streamingChecked": "2026-10-04",
+        "audience": {
+          "id": "teens",
+          "label": "Tenåringer + voksne",
+          "note": "Netflix merker serien 13+."
+        }
       }
     ]
   },
@@ -266,7 +312,6 @@
       {
         "id": "dk-japan",
         "title": "DK Japan",
-        "for": "Hele familien · oppslagsbok",
         "why": "En svært visuell reiseguide med kart, illustrasjoner og kulturstoff som kan ligge fremme under planleggingen.",
         "action": "La alle velge ett sted eller én ting de vil lese mer om.",
         "placeIds": [
@@ -276,12 +321,15 @@
           "hiroshima",
           "osaka"
         ],
-        "url": "https://dk.com/products/9780241738795-dk-japan"
+        "url": "https://dk.com/products/9780241738795-dk-japan",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "id": "short-history-japan",
         "title": "A Short History of Japan",
-        "for": "Voksne",
         "why": "En ny, konsis historie som går fra tidlig Japan via buddhisme og krigerklaner til modernisering – med mat, arkitektur og hverdagsliv som del av historien.",
         "action": "Start her hvis målet er å forstå landet før reisen, ikke bare severdighetene.",
         "placeIds": [
@@ -291,12 +339,15 @@
           "hiroshima",
           "osaka"
         ],
-        "url": "https://www.penguin.co.uk/books/448290/a-short-history-of-japan-by-harding-christopher/9780241563205"
+        "url": "https://www.penguin.co.uk/books/448290/a-short-history-of-japan-by-harding-christopher/9780241563205",
+        "audience": {
+          "id": "adults",
+          "label": "Voksne"
+        }
       },
       {
         "id": "history-japan-manga",
         "title": "A History of Japan in Manga",
-        "for": "Hele familien · eldre barn",
         "why": "Forteller Japans historie kronologisk med over 1000 mangaillustrasjoner og kart. Gjør shōgun, samuraier og periodene lettere å plassere.",
         "action": "Les utvalgte kapitler sammen før Kyoto, Himeji og Osaka.",
         "placeIds": [
@@ -304,12 +355,15 @@
           "himeji",
           "osaka"
         ],
-        "url": "https://tuttlepublishing.com/japan/history-of-japan-in-manga-9784805316702"
+        "url": "https://tuttlepublishing.com/japan/history-of-japan-in-manga-9784805316702",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne"
+        }
       },
       {
         "id": "pure-invention",
         "title": "Pure Invention",
-        "for": "Voksne · eldre tenåringer",
         "why": "Kobler etterkrigstidens Japan til Nintendo, manga, anime, karaoke, Pokémon og teknologikulturen som gjorde Japan globalt gjenkjennelig.",
         "action": "Les før Tokyo og Nintendo-delen av planleggingen.",
         "placeIds": [
@@ -317,29 +371,39 @@
           "nintendo-museum",
           "osaka"
         ],
-        "url": "https://www.penguinrandomhouse.com/books/609076/pure-invention-by-matt-alt/9781984826718/"
+        "url": "https://www.penguinrandomhouse.com/books/609076/pure-invention-by-matt-alt/9781984826718/",
+        "audience": {
+          "id": "teens",
+          "label": "Tenåringer + voksne"
+        }
       },
       {
         "id": "convenience-store-woman",
         "title": "Convenience Store Woman",
-        "for": "Voksne · eldre tenåringer",
         "why": "Kort roman som trekker leseren rett inn i moderne japansk hverdagsliv, arbeidskultur og forventninger – mer samfunn enn turist-Japan.",
         "action": "En lettlest skjønnlitterær inngang til Tokyo før avreise.",
         "placeIds": [
           "tokyo"
         ],
-        "url": "https://groveatlantic.com/book/convenience-store-woman/"
+        "url": "https://groveatlantic.com/book/convenience-store-woman/",
+        "audience": {
+          "id": "teens",
+          "label": "Tenåringer + voksne"
+        }
       },
       {
         "id": "pachinko",
         "title": "Pachinko",
-        "for": "Voksne",
         "why": "Stor familiesaga om koreanere i Japan gjennom 1900-tallet. Gir et langt rikere bilde av Osaka, identitet, krig og etterkrigstid enn en vanlig reiseguide.",
         "action": "Les hvis du vil ha én roman som virkelig trekker deg inn i Japans nyere historie.",
         "placeIds": [
           "osaka"
         ],
-        "url": "https://www.hachettebookgroup.com/titles/min-jin-lee/pachinko-national-book-award-finalist/9781538784037/"
+        "url": "https://www.hachettebookgroup.com/titles/min-jin-lee/pachinko-national-book-award-finalist/9781538784037/",
+        "audience": {
+          "id": "adults",
+          "label": "Voksne"
+        }
       }
     ]
   },
@@ -349,7 +413,6 @@
       {
         "id": "history-sengoku",
         "title": "Sengoku-perioden og samlingen av Japan",
-        "for": "Voksne · eldre barn",
         "why": "Forklarer hvorfor shōgun, samuraier, Osaka og slottene er så sentrale – og setter Assassin’s Creed Shadows og Shōgun i en historisk ramme.",
         "action": "Bruk FX-tidslinjen som kort introduksjon før Himeji og Osaka.",
         "placeIds": [
@@ -357,36 +420,46 @@
           "himeji",
           "osaka"
         ],
-        "url": "https://www.fxnetworks.com/shows/shogun/characters/viewers-guide/timeline-and-history"
+        "url": "https://www.fxnetworks.com/shows/shogun/characters/viewers-guide/timeline-and-history",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne"
+        }
       },
       {
         "id": "history-modern",
         "title": "Fra Meiji til moderne Japan",
-        "for": "Voksne",
         "why": "Moderniseringen fra 1800-tallet forklarer mye av kontrasten mellom templer, keisertid, storby, teknologi og dagens samfunn.",
         "action": "Les de moderne kapitlene i A Short History of Japan.",
         "placeIds": [
           "tokyo",
           "kyoto"
         ],
-        "url": "https://www.penguin.co.uk/books/448290/a-short-history-of-japan-by-harding-christopher/9780241563205"
+        "url": "https://www.penguin.co.uk/books/448290/a-short-history-of-japan-by-harding-christopher/9780241563205",
+        "audience": {
+          "id": "adults",
+          "label": "Voksne"
+        }
       },
       {
         "id": "history-hiroshima",
         "title": "Andre verdenskrig og Hiroshima",
-        "for": "Voksne · eldre barn med voksen",
         "why": "Hiroshima-besøket gir mer mening med litt kontekst om krigen, atombomben, sivile erfaringer og etterkrigstiden.",
         "action": "Ta dette som en egen forberedelse før besøket og la museumsopplevelsen være hovedkilden på stedet.",
         "placeIds": [
           "hiroshima",
           "peace-memorial-museum"
         ],
-        "url": "https://hpmmuseum.jp/?lang=eng"
+        "url": "https://hpmmuseum.jp/?lang=eng",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne",
+          "note": "Best sammen med en voksen."
+        }
       },
       {
         "id": "history-postwar",
         "title": "Etterkrigstid, økonomisk boom og popkultur",
-        "for": "Voksne · eldre tenåringer",
         "why": "Kobler gjenoppbygging og økonomisk vekst til Sony, Nintendo, manga, anime, Pokémon og bildet av Japan som teknologiland.",
         "action": "Pure Invention er den mest tilgjengelige inngangen til denne delen.",
         "placeIds": [
@@ -394,7 +467,11 @@
           "nintendo-museum",
           "osaka"
         ],
-        "url": "https://www.penguinrandomhouse.com/books/609076/pure-invention-by-matt-alt/9781984826718/"
+        "url": "https://www.penguinrandomhouse.com/books/609076/pure-invention-by-matt-alt/9781984826718/",
+        "audience": {
+          "id": "teens",
+          "label": "Tenåringer + voksne"
+        }
       }
     ]
   },
@@ -403,7 +480,6 @@
     "items": [
       {
         "title": "Ramen",
-        "for": "Hele familien",
         "why": "Ramen er en japansk hverdagsklassiker med store regionale og personlige variasjoner. Å prøve én variant hjemme gjør det enklere å forstå hva som faktisk er annerledes når vi spiser ramen i Japan.",
         "action": "Lag en enkel bolle hjemme og ranger kraft, nudler og topping. Poenget er å ha et sammenligningspunkt, ikke å mestre retten.",
         "id": "prep-9",
@@ -416,11 +492,14 @@
             "kind": "recipe",
             "url": "https://www.justonecookbook.com/homemade-chashu-miso-ramen/"
           }
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Gyoza",
-        "for": "Hele familien",
         "why": "Gyoza er små stekte dumplings som ofte deles som siderett. De er en lav terskel inn i japansk mat og en morsom rett å lage sammen.",
         "action": "Lag dem hjemme én gang og la alle prøve å brette noen selv.",
         "id": "prep-10",
@@ -431,11 +510,14 @@
             "kind": "recipe",
             "url": "https://www.justonecookbook.com/gyoza/"
           }
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Okonomiyaki",
-        "for": "Hele familien",
         "why": "Okonomiyaki er en stekt, salt pannekakerett med kål og topping, og både Osaka og Hiroshima har tydelige egne stiler. Den blir ekstra interessant på turen hvis vi allerede kjenner grunnideen.",
         "action": "Lag Osaka-stil hjemme først. I Japan kan vi sammenligne den med Hiroshima-varianten med lag og nudler.",
         "id": "prep-11",
@@ -449,11 +531,14 @@
             "kind": "recipe",
             "url": "https://www.justonecookbook.com/okonomiyaki/"
           }
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Japansk curry",
-        "for": "Hele familien",
         "why": "Japansk curry er tykkere, mildere og søtere enn mange indiske og thailandske curryretter og er vanlig japansk hverdagsmat. Den er også et trygt referansepunkt for barn.",
         "action": "Lag en enkel curry med ris hjemme og se hvor mild eller sterk familien liker den.",
         "id": "prep-12",
@@ -464,11 +549,14 @@
             "kind": "recipe",
             "url": "https://www.justonecookbook.com/simple-chicken-curry/"
           }
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       },
       {
         "title": "Onigiri",
-        "for": "Hele familien",
         "why": "Onigiri er risboller eller -trekanter med fyll, ofte pakket i nori. De finnes overalt i japanske kiosker og blir sannsynligvis en praktisk snack på reisedager.",
         "action": "Lag noen med to–tre ulike fyll og finn ut hvilke varianter vi vil se etter i konbini.",
         "id": "prep-13",
@@ -479,7 +567,11 @@
             "kind": "recipe",
             "url": "https://www.justonecookbook.com/onigiri-rice-balls/"
           }
-        ]
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
       }
     ]
   },
@@ -488,7 +580,6 @@
     "items": [
       {
         "title": "20 japanske ord",
-        "for": "Hele familien",
         "why": "Gjør reisen mer interaktiv uten å gjøre språk til skolearbeid. Målet er å kjenne igjen noen ord på skilt, stasjoner og i korte samtaler.",
         "action": "Velg 20 ord fra språkseksjonen og øv litt og ofte. Alle trenger ikke kunne de samme 20.",
         "id": "prep-14",
@@ -511,11 +602,14 @@
             "onsen – varm kilde",
             "konbini – nærbutikk"
           ]
+        },
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
         }
       },
       {
         "title": "Japan-bingo",
-        "for": "Hele familien",
         "why": "Gjør observasjon og gjenkjennelse til en lek gjennom hele reisen, uten at noen må lese seg opp på forhånd.",
         "action": "Lag et enkelt bingobrett før avreise og kryss av når vi faktisk ser tingene i Japan.",
         "id": "prep-15",
@@ -547,11 +641,14 @@
             "gachapon-maskin",
             "automat med drikke"
           ]
+        },
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
         }
       },
       {
         "title": "Spillbilde → ekte sted",
-        "for": "Hele familien",
         "why": "Gir en konkret rød tråd fra Assassin’s Creed Shadows og andre Japan-spill til den virkelige reisen.",
         "action": "Ta skjermbilder av steder vi faktisk skal besøke, og prøv å finne igjen omtrent samme motiv når vi står der.",
         "id": "prep-16",
@@ -570,12 +667,15 @@
             "Himeji Castle er hovedeksempelet fordi både LEGO-modellen, spillet og det virkelige slottet finnes i planen.",
             "Kyoto- og Osaka-motiver kan legges til hvis vi finner gode, gjenkjennelige vinkler før avreise."
           ]
+        },
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
         }
       },
       {
         "id": "travel-journal",
         "title": "Felles reisedagbok",
-        "for": "Hele familien",
         "why": "Gjør forberedelsene og selve reisen til én sammenhengende historie uten å kreve en ferdig kjøpt reisedagbok.",
         "action": "Bruk en enkel felles mal som tar noen få minutter om kvelden – ikke et prosjekt som konkurrerer med selve turen.",
         "placeIds": [],
@@ -592,6 +692,10 @@
             "«Første ekte okonomiyaki slo den vi lagde hjemme.»",
             "Spillbilde og ekte bilde kan legges inn som et eget før/etter-par."
           ]
+        },
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
         }
       }
     ]

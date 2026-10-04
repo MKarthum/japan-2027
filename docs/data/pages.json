@@ -58,7 +58,10 @@
   "prep": {
     "eyebrow": "Før turen",
     "title": "Gjør Japan litt kjent på forhånd",
-    "intro": "Film, serier, spill, bøker, historie, mat og små oppdrag kan gjøre Japan mer gjenkjennelig før avreise. Noe er for hele familien, mens vokseninnhold er tydelig merket."
+    "intro": "Film, serier, spill, bøker, historie, mat og små oppdrag kan gjøre Japan mer gjenkjennelig før avreise. Noe er for hele familien, mens vokseninnhold er tydelig merket.",
+    "audienceEyebrow": "Målgruppe",
+    "audienceTitle": "Hvem passer forslagene for?",
+    "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen."
   },
   "practical": {
     "eyebrow": "Praktisk",

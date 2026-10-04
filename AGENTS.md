@@ -29,6 +29,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
+- Strømmelenker skal peke direkte til tittelen. For tjenester med dokumentert/utprøvd app-skjema kan `appUrl` brukes med HTTPS-lenken som fallback; ikke lenk bare til tjenestens forside eller en generell appåpning.
 - Bilder skal ha eksplisitt `type`. `licensed` krever lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. `ai` skal lagres lokalt i repoet, ha alt-tekst og genereringsdato og alltid merkes som AI-generert i UI-et. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Bildekreditering vises som en liten overlay nederst til venstre i bildet, ikke som egen rad under bildet. På stedskort ligger områdeetiketten øverst til venstre i selve bildet; type kan ligge øverst til høyre.
 - Ikke innfør rammeverk, database eller byggesteg uten et konkret behov.
@@ -37,7 +38,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 - Offentlig HTML og JavaScript er visningslag. Det kan inneholde struktur, generiske UI-etiketter, formatering og hvilke felt/komponenter som vises, men ikke sidebudskap, hardkodede navn, beskrivelser, priser, koordinater eller kuraterte ID-lister. Sidebudskap eies av `pages.json`; domenetekst eies av riktig domenefil.
 - Budskapet på oversikten eies av `trip.json.overview`. Oversikten skal forklare hvorfor turen og hvordan siden brukes; den skal ikke bli en kopi av alle undersidene.
-- `food.json` eier både restaurantpostene og felles matmetadata som prisbånd og planleggingsnotater. `transport.json` eier rutens transportstrategi og etapper. `prep.json` eier forberedelser og koblinger til steder via `placeIds`; ikke lag egne AC-/film-/spillflagg i `places.json`.
+- `food.json` eier både restaurantpostene og felles matmetadata som prisbånd og planleggingsnotater. `transport.json` eier rutens transportstrategi og etapper. `prep.json` eier forberedelser og koblinger til steder via `placeIds`; ikke lag egne AC-/film-/spillflagg i `places.json`. Målgruppen skal være strukturert (`audience.id` + `label`, eventuelt `note`) og ikke fri tekst. Innholdsadvarsel skal ligge i `note`, separat fra målgruppen.
 - Samme visuelle konsept skal bruke samme renderer og samme CSS-primitiv. Steder, Mat og Overnatting skal bruke samme reise-/basefilter fra `trip.json`.
 - Rutesiden er et navigasjonspunkt, ikke en blindvei. Hvert hovedstopp skal gi tydelige veier videre til stoppdetalj, filtrerte Steder/Mat og aktuell Overnatting. Filteret skal kunne åpnes direkte med `?base=<routeId>`.
 - På mobil skal stedslister være kompakte rader med fast, smal bildekolonne. Ikke la bilde-/fallbackflaten få automatisk full kortbredde eller prosentvis høyde som kan vokse sirkulært i Safari.

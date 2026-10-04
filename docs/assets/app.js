@@ -936,6 +936,15 @@ function bindJapaneseSpeech(root=document) {
     window.speechSynthesis.speak(utterance);
   });
 }
+function prepAudienceHtml(audience,{compact=false}={}) {
+  if(!audience?.label) return '';
+  const id=audience.id||'family';
+  return `<div class="prep-audience-block audience-${id}${compact?' compact':''}">
+    <span class="prep-audience-kicker">Passer for</span>
+    <span class="prep-audience-badge">${audience.label}</span>
+    ${audience.note?`<span class="prep-audience-note">${audience.note}</span>`:''}
+  </div>`;
+}
 function prepLinksHtml(item,{includeDetail=true}={}) {
   const links=[...(item.links||[])];
   if(item.url && !links.some(link=>link.url===item.url)) links.push({label:item.urlLabel||'Les mer',url:item.url});
@@ -943,18 +952,54 @@ function prepLinksHtml(item,{includeDetail=true}={}) {
   if(!links.length) return '';
   return `<div class="button-row prep-actions">${links.map(link=>{
     const local=link.local || !/^https?:\/\//.test(link.url||'');
-    return `<a class="button${link.kind==='stream'?' primary':''}" href="${link.url}" ${local?'':'target="_blank" rel="noopener"'}>${link.label}${local?'':' ↗'}</a>`;
+    const stream=link.kind==='stream';
+    const attrs=link.appUrl
+      ? ` data-stream-app-url="${encodeURIComponent(link.appUrl)}" data-stream-web-url="${encodeURIComponent(link.url)}"`
+      : '';
+    const target=local||stream?'':'target="_blank" rel="noopener"';
+    return `<a class="button${stream?' primary stream-link':''}" href="${link.url}"${attrs} ${target}>${link.label}${local||stream?'':' ↗'}</a>`;
   }).join('')}</div>`;
+}
+function bindPrepStreamLinks(root=document) {
+  if(!root || root.dataset?.prepStreamBound==='true') return;
+  if(root.dataset) root.dataset.prepStreamBound='true';
+  root.addEventListener('click',event=>{
+    const link=event.target.closest('[data-stream-app-url][data-stream-web-url]');
+    if(!link) return;
+    event.preventDefault();
+    const appUrl=decodeURIComponent(link.dataset.streamAppUrl||'');
+    const webUrl=decodeURIComponent(link.dataset.streamWebUrl||'');
+    if(!appUrl || !webUrl) return;
+    let leftPage=false;
+    const onVisibility=()=>{ if(document.hidden) leftPage=true; };
+    document.addEventListener('visibilitychange',onVisibility,{once:true});
+    window.location.href=appUrl;
+    window.setTimeout(()=>{
+      if(!leftPage && document.visibilityState==='visible') window.location.href=webUrl;
+    },1100);
+  });
 }
 
 async function renderPrep() {
   await applyPageCopy('prep');
   nav('prep'); footer();
   const prep=await json('data/prep.json');
-  document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>{
-    const adult=/^voksne\b/i.test(x.for||'');
-    return `<article class="card prep-card ${adult?'prep-adult':''}"><div class="prep-audience">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong class="prep-action">${x.action}</strong>${prepLinksHtml(x)}</article>`;
-  }).join('')}</div></section>`).join('');
+  const all=prep.flatMap(group=>group.items);
+  const audienceOrder=['family','older-kids','teens','adults'];
+  const audienceById=new Map(all.filter(x=>x.audience?.id).map(x=>[x.audience.id,x.audience]));
+  const guide=document.getElementById('prep-audience-guide');
+  if(guide){
+    guide.innerHTML=audienceOrder.filter(id=>audienceById.has(id)).map(id=>prepAudienceHtml({...audienceById.get(id),note:null},{compact:true})).join('');
+  }
+  document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`
+    <article class="card prep-card audience-card-${x.audience?.id||'family'}">
+      ${prepAudienceHtml(x.audience)}
+      <h3>${x.title}</h3>
+      <p>${x.why}</p>
+      <strong class="prep-action">${x.action}</strong>
+      ${prepLinksHtml(x)}
+    </article>`).join('')}</div></section>`).join('');
+  bindPrepStreamLinks(document.querySelector('main'));
 }
 
 async function renderFood() {
@@ -1302,7 +1347,7 @@ async function renderPrepItem() {
   }
   document.title=`${x.title} · Japan 2027`;
   document.getElementById('prep-detail-category').textContent=x.category;
-  document.getElementById('prep-detail-audience').textContent=x.for;
+  document.getElementById('prep-detail-audience').innerHTML=prepAudienceHtml(x.audience);
   document.getElementById('prep-detail-title').textContent=x.title;
   document.getElementById('prep-detail-why').textContent=x.why;
   document.getElementById('prep-detail-action').textContent=x.action;
@@ -1312,6 +1357,7 @@ async function renderPrepItem() {
   if(exampleItems.length) document.getElementById('prep-detail-examples').innerHTML=exampleItems.map(v=>`<li>${v}</li>`).join('');
   else document.getElementById('prep-detail-example-section').hidden=true;
   document.getElementById('prep-detail-links').innerHTML=prepLinksHtml(x,{includeDetail:false});
+  bindPrepStreamLinks(document.querySelector('main'));
   const related=(x.placeIds||[]).map(pid=>places.find(p=>p.id===pid)).filter(Boolean);
   if(related.length){
     document.getElementById('prep-detail-related').innerHTML=related.map(p=>relatedEntityCardHtml({href:`place.html?id=${encodeURIComponent(p.id)}`,meta:p.area,title:p.name,subtitle:p.simple,trip,subject:p})).join('');
