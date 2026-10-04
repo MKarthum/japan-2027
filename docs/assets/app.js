@@ -790,7 +790,8 @@ async function renderRoute() {
 async function renderPlaces() {
   await applyPageCopy('places');
   nav('places'); footer();
-  const [places,trip] = await Promise.all([json('data/places.json'),json('data/trip.json')]);
+  const [places,trip,fx] = await Promise.all([json('data/places.json'),json('data/trip.json'),loadFx()]);
+  renderPricePartySelector(trip);
   const filters=document.getElementById('filters');
   const list=document.getElementById('places-grid');
 
@@ -802,6 +803,7 @@ async function renderPlaces() {
         <div class="place-list-copy">
           <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
           <strong>${p.simple}</strong>
+          ${placePriceSummaryHtml(p,trip,fx)}
           <p>${p.description}</p>
         </div>
         <span class="place-list-arrow" aria-hidden="true">→</span>
@@ -813,7 +815,7 @@ async function renderPlaces() {
 }
 async function renderPlace() {
   nav('places'); footer();
-  const [places,foodData,trip,prepData] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json')]);
+  const [places,foodData,trip,prepData,fx] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json'),loadFx()]);
   const food=foodData.restaurants||[];
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id);
@@ -823,6 +825,7 @@ async function renderPlace() {
     return;
   }
 
+  renderPricePartySelector(trip);
   document.querySelector('main')?.setAttribute('style',themeStyle(destinationTheme(trip,p)));
   document.querySelector('main')?.classList.add('destination-themed');
   document.title = `${p.name} · Japan 2027`;
@@ -831,6 +834,8 @@ async function renderPlace() {
   document.getElementById('simple').textContent = p.simple;
   document.getElementById('description').textContent = p.description;
   document.getElementById('why').textContent = p.why;
+  const priceRoot=document.getElementById('place-price');
+  if(priceRoot) priceRoot.innerHTML=placePriceDetailHtml(p,trip,fx);
   document.getElementById('highlights').innerHTML = p.highlights.map(x=>`<li>${x}</li>`).join('');
   const relatedPrep=prepData.flatMap(group=>group.items.map(item=>({...item,category:group.category}))).filter(item=>item.placeIds?.includes(p.id)).slice(0,5);
   document.getElementById('prep').innerHTML = relatedPrep.length
@@ -863,7 +868,7 @@ async function renderPlace() {
       el.setAttribute('aria-label',p.name);
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([p.map.lng,p.map.lat])
-        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div>`))
+        .setPopup(new maplibregl.Popup({offset:18,maxWidth:'250px'}).setHTML(`<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3></div>`))
         .addTo(map);
       let mapErrorShown=false;
       map.on('error',()=>{
