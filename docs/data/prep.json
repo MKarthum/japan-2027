@@ -69,8 +69,7 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/title/60032294",
-            "appUrl": "nflx://www.netflix.com/title/60032294"
+            "url": "https://www.netflix.com/title/60032294"
           }
         ],
         "streamingChecked": "2026-10-04",
@@ -96,8 +95,7 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/title/60023642",
-            "appUrl": "nflx://www.netflix.com/title/60023642"
+            "url": "https://www.netflix.com/title/60023642"
           }
         ],
         "streamingChecked": "2026-10-04",
@@ -124,8 +122,7 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/title/60027106",
-            "appUrl": "nflx://www.netflix.com/title/60027106"
+            "url": "https://www.netflix.com/title/60027106"
           }
         ],
         "streamingChecked": "2026-10-04",
@@ -233,8 +230,7 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/title/81186864",
-            "appUrl": "nflx://www.netflix.com/title/81186864"
+            "url": "https://www.netflix.com/title/81186864"
           }
         ],
         "streamingChecked": "2026-10-04",
@@ -263,8 +259,7 @@
           {
             "label": "Disney+",
             "kind": "stream",
-            "url": "https://www.disneyplus.com/browse/entity-5422a5f9-e4f1-475e-9217-65e8249388d0",
-            "appUrl": "disneyplus://5422a5f9-e4f1-475e-9217-65e8249388d0"
+            "url": "https://www.disneyplus.com/browse/entity-5422a5f9-e4f1-475e-9217-65e8249388d0"
           }
         ],
         "streamingChecked": "2026-10-04",
@@ -293,8 +288,7 @@
           {
             "label": "Netflix",
             "kind": "stream",
-            "url": "https://www.netflix.com/title/81325501",
-            "appUrl": "nflx://www.netflix.com/title/81325501"
+            "url": "https://www.netflix.com/title/81325501"
           }
         ],
         "streamingChecked": "2026-10-04",
