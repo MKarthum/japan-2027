@@ -1682,6 +1682,14 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 }
 .flight-decision aside>strong{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em}
 .flight-decision aside a{color:#fff;font-size:.8rem;font-weight:850}
+.flight-principles{
+  margin-top:18px;
+  padding-top:15px;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.flight-principles>strong{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.flight-principles ul{margin:8px 0 0;padding-left:1.15rem;columns:2;column-gap:28px}
+.flight-principles li{break-inside:avoid;margin:0 0 7px;color:rgba(255,255,255,.75);font-size:.75rem;line-height:1.42}
 
 .flight-patterns,.flight-carrier-grid,.flight-fare-grid,.flight-package-grid,.flight-safety-grid{
   display:grid;
@@ -1764,6 +1772,15 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   gap:10px;
   margin-top:12px;
 }
+.flight-safety-method{
+  grid-column:1 / -1;
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#f7f4ef;
+}
+.flight-safety-method strong{font-size:.78rem}
+.flight-safety-method p{margin:.35em 0 0;color:var(--muted);font-size:.8rem}
 .flight-signal-card>span,.flight-safety-card>span{
   color:var(--accent2);
   font-size:.66rem;
@@ -1934,6 +1951,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 @media(max-width:620px){
   .flight-decision{padding:18px}
   .flight-decision-stats{grid-template-columns:1fr}
+  .flight-principles ul{columns:1}
   .flight-patterns,.flight-carrier-grid,.flight-fare-grid,.flight-package-grid,.flight-safety-grid,.flight-signal-grid,.flight-source-grid{grid-template-columns:1fr}
   .flight-market{grid-template-columns:1fr}
   .flight-airports{grid-template-columns:1fr}
