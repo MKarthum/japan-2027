@@ -904,13 +904,56 @@ async function renderPlace() {
     ? related.map(x=>relatedEntityCardHtml({href:`restaurant.html?id=${encodeURIComponent(x.id)}`,meta:`${x.role} · ${x.priority}`,title:x.name,subtitle:x.dish,trip,subject:x})).join('')
     : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
 }
+function speechButtonHtml(text,label='japansk uttale') {
+  if(!text) return '';
+  return `<button class="pronounce-button" type="button" data-speak-ja="${encodeURIComponent(text)}" aria-label="Hør ${label}" title="Hør uttale">🔊</button>`;
+}
+function languageRowHtml(x) {
+  const roman=x.jp||x.term||'';
+  const meaning=x.no||x.meaning||'';
+  return `<div class="glossary-row language-row"><div class="language-term"><strong>${roman}</strong>${x.japanese?`<span class="language-japanese" lang="ja">${x.japanese}</span>`:''}</div><span class="language-meaning">${meaning}</span>${speechButtonHtml(x.speech||x.japanese,roman)}</div>`;
+}
+function bindJapaneseSpeech(root=document) {
+  if(!root || root.dataset?.speechBound==='true') return;
+  if(root.dataset) root.dataset.speechBound='true';
+  root.addEventListener('click',event=>{
+    const button=event.target.closest('[data-speak-ja]');
+    if(!button) return;
+    if(!('speechSynthesis' in window)){
+      button.disabled=true;
+      button.title='Denne nettleseren støtter ikke avspilling av uttale.';
+      return;
+    }
+    const text=decodeURIComponent(button.dataset.speakJa||'');
+    if(!text) return;
+    window.speechSynthesis.cancel();
+    const utterance=new SpeechSynthesisUtterance(text);
+    utterance.lang='ja-JP';
+    utterance.rate=0.82;
+    const voices=window.speechSynthesis.getVoices?.()||[];
+    const japanese=voices.find(v=>(v.lang||'').toLowerCase().startsWith('ja'));
+    if(japanese) utterance.voice=japanese;
+    window.speechSynthesis.speak(utterance);
+  });
+}
+function prepLinksHtml(item,{includeDetail=true}={}) {
+  const links=[...(item.links||[])];
+  if(item.url && !links.some(link=>link.url===item.url)) links.push({label:item.urlLabel||'Les mer',url:item.url});
+  if(includeDetail && item.detail) links.unshift({label:'Slik gjør vi det',url:`prep-item.html?id=${encodeURIComponent(item.id)}`,local:true});
+  if(!links.length) return '';
+  return `<div class="button-row prep-actions">${links.map(link=>{
+    const local=link.local || !/^https?:\/\//.test(link.url||'');
+    return `<a class="button${link.kind==='stream'?' primary':''}" href="${link.url}" ${local?'':'target="_blank" rel="noopener"'}>${link.label}${local?'':' ↗'}</a>`;
+  }).join('')}</div>`;
+}
+
 async function renderPrep() {
   await applyPageCopy('prep');
   nav('prep'); footer();
   const prep=await json('data/prep.json');
   document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>{
     const adult=/^voksne\b/i.test(x.for||'');
-    return `<article class="card prep-card ${adult?'prep-adult':''}"><div class="meta prep-audience">${adult?'For voksne · ':''}${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`;
+    return `<article class="card prep-card ${adult?'prep-adult':''}"><div class="prep-audience">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong class="prep-action">${x.action}</strong>${prepLinksHtml(x)}</article>`;
   }).join('')}</div></section>`).join('');
 }
 
@@ -1225,10 +1268,54 @@ async function renderPractical() {
     const link=placePrimaryLink(p);
     return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${p?.name||x.placeId}</strong><span>${p?.area||''} · ${x.when}</span><p>${x.why}</p></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
   }).join('');
-  document.getElementById('place-words').innerHTML=guide.placeWords.map(x=>`<div class="glossary-row"><strong>${x.term}</strong><span>${x.meaning}</span></div>`).join('');
-  document.getElementById('phrases').innerHTML=guide.phrases.map(x=>`<div class="glossary-row"><strong>${x.jp}</strong><span>${x.no}</span></div>`).join('');
+  document.getElementById('place-words').innerHTML=guide.placeWords.map(languageRowHtml).join('');
+  document.getElementById('phrases').innerHTML=guide.phrases.map(languageRowHtml).join('');
   document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
   document.getElementById('etiquette').innerHTML=guide.etiquette.map(x=>`<article class="mini-card"><h3>${x.title}</h3><p>${x.body}</p></article>`).join('');
+  bindJapaneseSpeech(document.querySelector('main'));
+}
+
+
+async function renderPhraseGuide() {
+  await applyPageCopy('phrases');
+  nav('practical'); footer();
+  const guide=await json('data/guide.json');
+  document.getElementById('phrase-basics').innerHTML=guide.phrases.map(languageRowHtml).join('');
+  document.getElementById('phrase-guide-groups').innerHTML=(guide.morePhrases||[]).map(group=>`
+    <section class="section phrase-group">
+      <div class="section-head"><div><div class="eyebrow">Språk</div><h2>${group.category}</h2></div><p>${group.intro||''}</p></div>
+      <div class="glossary">${group.items.map(languageRowHtml).join('')}</div>
+    </section>`).join('');
+  bindJapaneseSpeech(document.querySelector('main'));
+}
+
+async function renderPrepItem() {
+  nav('prep'); footer();
+  const [prep,places,trip]=await Promise.all([json('data/prep.json'),json('data/places.json'),json('data/trip.json')]);
+  const id=new URLSearchParams(location.search).get('id');
+  const all=prep.flatMap(group=>group.items.map(item=>({...item,category:group.category})));
+  const x=all.find(item=>item.id===id);
+  if(!x || !x.detail){
+    document.title='Forberedelse ikke funnet · Japan 2027';
+    document.querySelector('main').innerHTML='<div class="eyebrow">Før turen</div><h1>Detaljene ble ikke funnet</h1><p><a href="prep.html">← Tilbake til Før turen</a></p>';
+    return;
+  }
+  document.title=`${x.title} · Japan 2027`;
+  document.getElementById('prep-detail-category').textContent=x.category;
+  document.getElementById('prep-detail-audience').textContent=x.for;
+  document.getElementById('prep-detail-title').textContent=x.title;
+  document.getElementById('prep-detail-why').textContent=x.why;
+  document.getElementById('prep-detail-action').textContent=x.action;
+  document.getElementById('prep-detail-summary').textContent=x.detail.summary||'';
+  document.getElementById('prep-detail-steps').innerHTML=(x.detail.steps||[]).map((step,i)=>`<li><span>${i+1}</span><p>${step}</p></li>`).join('');
+  const exampleItems=x.detail.examples||[];
+  if(exampleItems.length) document.getElementById('prep-detail-examples').innerHTML=exampleItems.map(v=>`<li>${v}</li>`).join('');
+  else document.getElementById('prep-detail-example-section').hidden=true;
+  document.getElementById('prep-detail-links').innerHTML=prepLinksHtml(x,{includeDetail:false});
+  const related=(x.placeIds||[]).map(pid=>places.find(p=>p.id===pid)).filter(Boolean);
+  if(related.length){
+    document.getElementById('prep-detail-related').innerHTML=related.map(p=>relatedEntityCardHtml({href:`place.html?id=${encodeURIComponent(p.id)}`,meta:p.area,title:p.name,subtitle:p.simple,trip,subject:p})).join('');
+  } else document.getElementById('prep-detail-related-section').hidden=true;
 }
 
 async function renderBudget() {
