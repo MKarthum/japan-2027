@@ -28,7 +28,7 @@
   "places": {
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
-    "intro": "Bydeler, templer, slott, museer og dagsturer samlet ett sted. Filtrer etter del av reisen og åpne et sted for bakgrunn, hvorfor det er med, mat i nærheten, kart og offisielle lenker.",
+    "intro": "Bydeler, templer, slott, museer og dagsturer samlet ett sted. Filtrer etter del av reisen og åpne et sted for bakgrunn, hva som gjør det interessant, mat i nærheten, kart og offisielle lenker.",
     "filterLabel": "Del av reisen"
   },
   "food": {
