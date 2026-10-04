@@ -2,13 +2,10 @@
   "asOf": "2026-10-04",
   "status": "research-active",
   "planningWindow": {
-    "origin": "OSL",
-    "baselineDepart": "2027-03-20",
-    "baselineReturn": "2027-04-03",
-    "baselineNights": 14,
     "flexDays": 3,
-    "summary": "Flyvalget skal låses før de øvrige datoene. Baseline er 20. mars–3. april 2027, men samme reiselengde flyttes opptil tre dager begge veier før datoene regnes som faste.",
-    "bookingTiming": "Per 4. oktober 2026 er baseline-avreisen omtrent 24 uker unna. KAYAKs historiske data peker mot rundt 22 uker før avreise for Oslo–Tokyo og rundt 24 uker for Oslo–Kansai som gunstige bestillingstidspunkter sammenlignet med siste liten."
+    "summary": "Gjeldende reisevindu er baseline, men samme reiselengde skal flyttes opptil tre dager begge veier før datoene regnes som faste.",
+    "sameLengthFirst": true,
+    "thenVaryLengthDays": 1
   },
   "decisionPrinciples": [
     "Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. En billigere tur/retur til samme by kan tape gevinsten hvis den krever ekstra hurtigtog, mulig hotellnatt og en halv reisedag tilbake.",
@@ -17,55 +14,11 @@
     "Foretrekk én gjennomgående billett med beskyttede forbindelser. Separate billetter eller selv-transfer er et eget risikonivå og skal merkes tydelig.",
     "Når prisforskjellen er liten, er bestilling direkte hos flyselskapet normalt enklere ved endringer enn en ukjent tredjepart."
   ],
-  "datePairs": [
-    {
-      "shift": -3,
-      "depart": "2027-03-17",
-      "return": "2027-03-31",
-      "label": "3 dager tidligere"
-    },
-    {
-      "shift": -2,
-      "depart": "2027-03-18",
-      "return": "2027-04-01",
-      "label": "2 dager tidligere"
-    },
-    {
-      "shift": -1,
-      "depart": "2027-03-19",
-      "return": "2027-04-02",
-      "label": "1 dag tidligere"
-    },
-    {
-      "shift": 0,
-      "depart": "2027-03-20",
-      "return": "2027-04-03",
-      "label": "Baseline"
-    },
-    {
-      "shift": 1,
-      "depart": "2027-03-21",
-      "return": "2027-04-04",
-      "label": "1 dag senere"
-    },
-    {
-      "shift": 2,
-      "depart": "2027-03-22",
-      "return": "2027-04-05",
-      "label": "2 dager senere"
-    },
-    {
-      "shift": 3,
-      "depart": "2027-03-23",
-      "return": "2027-04-06",
-      "label": "3 dager senere"
-    }
-  ],
   "dateSignals": [
     {
       "id": "osl-tokyo-weekday",
       "title": "Lørdag er historisk dyr på Oslo–Tokyo",
-      "finding": "KAYAKs siste 12 måneder viser tirsdag omtrent 6 % under en gjennomsnittsdag og lørdag omtrent 8 % over. Baseline 20. mars 2027 er en lørdag, mens 23. mars er tirsdag og ligger innenfor ±3-vinduet.",
+      "finding": "KAYAKs siste 12 måneder viser tirsdag omtrent 6 % under en gjennomsnittsdag og lørdag omtrent 8 % over. Derfor skal tirsdager i fleksvinduet alltid kontrolleres før avreisedatoen låses.",
       "kind": "historical",
       "checked": "2026-10-04",
       "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO"
@@ -73,7 +26,7 @@
     {
       "id": "kix-osl-weekday",
       "title": "Returdagen fra Kansai kan flytte prisen mye",
-      "finding": "KAYAKs siste 12 måneder viser mandag som billigste og søndag som dyreste dag på KIX–OSL, med svært stor historisk forskjell. Mandag 5. april ligger to dager etter baseline og bør derfor alltid sjekkes.",
+      "finding": "KAYAKs siste 12 måneder viser mandag som billigste og søndag som dyreste dag på KIX–OSL, med svært stor historisk forskjell. Mandager i fleksvinduet skal derfor alltid prises.",
       "kind": "historical",
       "checked": "2026-10-04",
       "source": "https://www.kayak.no/fly/Osaka-Kansai-Intl-KIX/Oslo-og-andre-flyplasser-OSL"
@@ -81,7 +34,7 @@
     {
       "id": "booking-window",
       "title": "Vi er i et relevant bestillingsvindu",
-      "finding": "KAYAK oppgir historisk lavest nivå rundt 22 uker før Oslo–Tokyo og rundt 24 uker før Oslo–KIX. Det er ikke en garanti, men gjør at flyprisene bør følges aktivt nå i stedet for å vente til resten av detaljplanen er ferdig.",
+      "finding": "KAYAK oppgir historisk lavest nivå rundt 22 uker før Oslo–Tokyo og rundt 24 uker før Oslo–KIX. Det er ikke en garanti, men betyr at flyprisene bør følges aktivt før resten av detaljplanen låses.",
       "kind": "historical",
       "checked": "2026-10-04",
       "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX"
@@ -592,5 +545,18 @@
       "url": "https://www.airlineratings.com/articles/worlds-safest-airlines-for-2026",
       "use": "Sekundær, uavhengig sikkerhetskontekst."
     }
-  ]
+  ],
+  "bookingSignals": {
+    "tokyo": {
+      "bestWeeksBefore": 22,
+      "savingVsLastMinutePct": 19,
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Tokyo-TYO"
+    },
+    "osaka": {
+      "bestWeeksBefore": 24,
+      "savingVsLastMinutePct": 25,
+      "source": "https://www.kayak.no/fly/Oslo-og-andre-flyplasser-OSL/Osaka-Kansai-Intl-KIX"
+    },
+    "note": "Historiske KAYAK-data, ikke en garanti for 2027-priser."
+  }
 }
