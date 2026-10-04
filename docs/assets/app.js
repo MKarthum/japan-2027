@@ -80,7 +80,7 @@ function renderPricePartySelector(trip) {
     location.href=url.toString();
   });
   const main=document.querySelector('main');
-  const anchor=main?.querySelector('.home-hero,.detail-hero,.lede') || main?.firstElementChild;
+  const anchor=main?.querySelector('.home-hero,.detail-hero,.restaurant-detail-hero,.hotel-detail-hero,.lede') || main?.firstElementChild;
   if(anchor) anchor.insertAdjacentElement('afterend',root);
 }
 
@@ -1165,6 +1165,10 @@ async function renderHotel() {
   document.getElementById('hotel-logistics').textContent=x.logistics;
   document.getElementById('hotel-tradeoff').textContent=x.tradeoff;
   document.getElementById('hotel-base-logic').textContent=base?.why||'';
+  const nightLabel=document.getElementById('hotel-party-night-label');
+  if(nightLabel) nightLabel.textContent=`${planningPartyLabel(trip)} · per natt`;
+  const stayLabel=document.getElementById('hotel-party-stay-label');
+  if(stayLabel) stayLabel.textContent=`${planningPartyLabel(trip)} · planlagt opphold`;
   document.getElementById('hotel-price-night').innerHTML=`<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}</small>`;
   document.getElementById('hotel-price-stay').innerHTML=`<strong>${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)}</strong><small>ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))} · ${nights} ${nights===1?'natt':'netter'}</small>`;
   document.getElementById('hotel-price-note').textContent=`${data.priceNote} Prisvisning: ${planningPartyLabel(trip)}.${partyMultiplier(trip)>1?' To familier er her et lineært sammenligningsanslag; større enheter eller hele boliger kan bli rimeligere enn to separate familieløsninger.':''}`;
