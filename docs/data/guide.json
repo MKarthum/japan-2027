@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03",
+  "updated": "2026-10-04",
   "bookingRadar": [
     {
       "priority": "Viktig",
@@ -41,8 +41,8 @@
     {
       "icon": "🚆",
       "title": "Shinkansen mellom byene",
-      "short": "Dette blir ryggraden i reisen.",
-      "body": "Tokyo → Kyoto → Himeji → Hiroshima → Shin-Osaka ligger langs Tokaido/Sanyo-korridoren. SmartEX kan brukes til å reservere seter og håndtere billetter for store deler av denne strekningen.",
+      "short": "Høyhastighetstogene blir ryggraden i reisen.",
+      "body": "Shinkansen er Japans høyhastighetstog. Tokyo → Kyoto → Himeji → Hiroshima → Shin-Osaka ligger langs Tokaido/Sanyo-korridoren, og SmartEX kan brukes til å reservere seter og håndtere billetter for store deler av denne strekningen.",
       "links": [
         {
           "label": "SmartEX",
@@ -53,8 +53,8 @@
     {
       "icon": "💳",
       "title": "Lokaltog, metro og buss",
-      "short": "IC-kort gjør hverdagen enkel.",
-      "body": "Suica/Welcome Suica kan brukes på mye lokal kollektivtransport og i mange butikker. Welcome Suica Mobile har en aldersgrense på 13 år; reisende under denne grensen trenger en annen løsning dersom regelen fortsatt gjelder ved avreise.",
+      "short": "IC-kort – japanske reisekort – gjør hverdagen enkel.",
+      "body": "Et IC-kort er et kontaktløst reisekort som kan tappes inn og ut på mye lokal kollektivtransport og brukes i mange butikker. Suica/Welcome Suica er vanlige varianter. Welcome Suica Mobile har en aldersgrense på 13 år; reisende under denne grensen trenger en annen løsning dersom regelen fortsatt gjelder ved avreise.",
       "links": [
         {
           "label": "Welcome Suica",
@@ -97,8 +97,8 @@
     {
       "icon": "✈️",
       "title": "Flyplasser",
-      "short": "Open-jaw kan spare en lang returreise.",
-      "body": "Ruten passer godt med innreise i Tokyo og hjemreise fra Osaka/Kansai dersom open-jaw-prisen er fornuftig. Haneda er enklest inn til Tokyo; Narita fungerer også godt. Fra Osaka er KIX det naturlige internasjonale utgangspunktet.",
+      "short": "Inn i Tokyo og hjem fra Osaka kan spare en lang returreise.",
+      "body": "«Open-jaw» betyr ganske enkelt at man flyr inn til én by og hjem fra en annen i samme flybestilling. For denne ruten betyr det innreise i Tokyo og hjemreise fra Osaka dersom prisen er fornuftig. Haneda er enklest inn til Tokyo; Narita fungerer også. Fra Osaka er Kansai International Airport (KIX) det naturlige internasjonale utgangspunktet.",
       "links": [
         {
           "label": "Haneda-access",
@@ -118,89 +118,131 @@
   "placeWords": [
     {
       "term": "torii",
-      "meaning": "Porten ved en shinto-helligdom. Fushimi Inari og Miyajima gjør dette ordet lett å huske."
+      "meaning": "Porten ved en shinto-helligdom. Fushimi Inari og Miyajima gjør dette ordet lett å huske.",
+      "japanese": "鳥居",
+      "speech": "とりい"
     },
     {
       "term": "-ji / -dera",
-      "meaning": "Buddhistisk tempel. Tōdai-ji, Kinkaku-ji og Kiyomizu-dera."
+      "meaning": "Buddhistisk tempel. Tōdai-ji, Kinkaku-ji og Kiyomizu-dera.",
+      "japanese": "寺",
+      "speech": "じ、てら"
     },
     {
       "term": "jinja / taisha",
-      "meaning": "Shinto-helligdom. Taisha brukes om særlig viktige helligdommer, som Fushimi Inari Taisha."
+      "meaning": "Shinto-helligdom. Taisha brukes om særlig viktige helligdommer, som Fushimi Inari Taisha.",
+      "japanese": "神社 / 大社",
+      "speech": "じんじゃ、たいしゃ"
     },
     {
       "term": "-jō",
-      "meaning": "Slott. Himeji-jō betyr Himeji Castle."
+      "meaning": "Slott. Himeji-jō betyr Himeji Castle.",
+      "japanese": "城",
+      "speech": "じょう"
     },
     {
       "term": "-eki",
-      "meaning": "Stasjon. Kyoto-eki = Kyoto Station."
+      "meaning": "Stasjon. Kyoto-eki = Kyoto Station.",
+      "japanese": "駅",
+      "speech": "えき"
     },
     {
       "term": "-yama / -san",
-      "meaning": "Fjell. Fuji-san er den vanlige japanske måten å si Mount Fuji."
+      "meaning": "Fjell. Fuji-san er den vanlige japanske måten å si Mount Fuji.",
+      "japanese": "山",
+      "speech": "やま、さん"
     },
     {
       "term": "-dōri",
-      "meaning": "Gate / avenue. Dukker ofte opp i adresser og bydelsnavn."
+      "meaning": "Gate / avenue. Dukker ofte opp i adresser og bydelsnavn.",
+      "japanese": "通り",
+      "speech": "どおり"
     },
     {
       "term": "ryokan",
-      "meaning": "Tradisjonelt japansk vertshus, ofte med tatami, futon og måltider."
+      "meaning": "Tradisjonelt japansk vertshus, ofte med tatami, futon og måltider.",
+      "japanese": "旅館",
+      "speech": "りょかん"
     },
     {
       "term": "onsen",
-      "meaning": "Varm kilde / bad med naturlig varmt kildevann."
+      "meaning": "Varm kilde / bad med naturlig varmt kildevann.",
+      "japanese": "温泉",
+      "speech": "おんせん"
     },
     {
       "term": "konbini",
-      "meaning": "Convenience store – f.eks. 7-Eleven, Lawson og FamilyMart."
+      "meaning": "Convenience store – f.eks. 7-Eleven, Lawson og FamilyMart.",
+      "japanese": "コンビニ",
+      "speech": "コンビニ"
     },
     {
       "term": "shinkansen",
-      "meaning": "Japans høyhastighetstog – «bullet train»."
+      "meaning": "Japans høyhastighetstog – «bullet train».",
+      "japanese": "新幹線",
+      "speech": "しんかんせん"
     }
   ],
   "phrases": [
     {
       "jp": "Sumimasen",
-      "no": "Unnskyld / excuse me – ekstremt nyttig."
+      "no": "Unnskyld / excuse me – ekstremt nyttig.",
+      "japanese": "すみません",
+      "speech": "すみません"
     },
     {
       "jp": "Arigatō gozaimasu",
-      "no": "Tusen takk / høflig takk."
+      "no": "Tusen takk / høflig takk.",
+      "japanese": "ありがとうございます",
+      "speech": "ありがとうございます"
     },
     {
       "jp": "Onegaishimasu",
-      "no": "Vær så snill / dette, takk – nyttig når man bestiller."
+      "no": "Vær så snill / dette, takk – nyttig når man bestiller.",
+      "japanese": "お願いします",
+      "speech": "おねがいします"
     },
     {
       "jp": "Oishii!",
-      "no": "Deilig!"
+      "no": "Deilig!",
+      "japanese": "おいしい！",
+      "speech": "おいしい"
     },
     {
       "jp": "Daijōbu desu",
-      "no": "Det går bra / jeg er ok / nei takk, avhengig av situasjon."
+      "no": "Det går bra / jeg er ok / nei takk, avhengig av situasjon.",
+      "japanese": "大丈夫です",
+      "speech": "だいじょうぶです"
     },
     {
       "jp": "Kore kudasai",
-      "no": "Denne, takk."
+      "no": "Denne, takk.",
+      "japanese": "これください",
+      "speech": "これください"
     },
     {
       "jp": "Ikura desu ka?",
-      "no": "Hvor mye koster det?"
+      "no": "Hvor mye koster det?",
+      "japanese": "いくらですか？",
+      "speech": "いくらですか"
     },
     {
       "jp": "Toire wa doko desu ka?",
-      "no": "Hvor er toalettet?"
+      "no": "Hvor er toalettet?",
+      "japanese": "トイレはどこですか？",
+      "speech": "トイレはどこですか"
     },
     {
-      "jp": "Eigo wa daijōbu desu ka?",
-      "no": "Går det greit med engelsk?"
+      "jp": "Eigo wa hanasemasu ka?",
+      "no": "Snakker du engelsk?",
+      "japanese": "英語は話せますか？",
+      "speech": "えいごは はなせますか"
     },
     {
       "jp": "Wakarimasen",
-      "no": "Jeg forstår ikke."
+      "no": "Jeg forstår ikke.",
+      "japanese": "わかりません",
+      "speech": "わかりません"
     }
   ],
   "nameNotes": [
@@ -244,7 +286,7 @@
     },
     {
       "title": "Sko av noen steder",
-      "body": "Ryokan, enkelte restauranter, templer og hjem kan ha no-shoe-regler."
+      "body": "Ryokan, enkelte restauranter, templer og private hjem kan ha tydelige regler om å ta av skoene. Se etter skohylle, tøfler eller hva de andre gjør."
     },
     {
       "title": "Ta med søppelet",
@@ -257,6 +299,164 @@
     {
       "title": "Onsen har egne regler",
       "body": "Vask deg før badet og les reglene på stedet; tatoveringsregler varierer."
+    }
+  ],
+  "morePhrases": [
+    {
+      "category": "Hilsener",
+      "intro": "Nok til å komme høflig i gang uten å lære et helt høflighetssystem.",
+      "items": [
+        {
+          "jp": "Ohayō gozaimasu",
+          "japanese": "おはようございます",
+          "speech": "おはようございます",
+          "no": "God morgen."
+        },
+        {
+          "jp": "Konnichiwa",
+          "japanese": "こんにちは",
+          "speech": "こんにちは",
+          "no": "Hei / god dag."
+        },
+        {
+          "jp": "Konbanwa",
+          "japanese": "こんばんは",
+          "speech": "こんばんは",
+          "no": "God kveld."
+        },
+        {
+          "jp": "Hajimemashite",
+          "japanese": "はじめまして",
+          "speech": "はじめまして",
+          "no": "Hyggelig å møte deg – brukes ved første møte."
+        }
+      ]
+    },
+    {
+      "category": "Restaurant og kafé",
+      "intro": "Fraser som faktisk hjelper når man skal få bord, forstå menyen og betale.",
+      "items": [
+        {
+          "jp": "Yonin desu",
+          "japanese": "4人です",
+          "speech": "よにんです",
+          "no": "Vi er fire personer."
+        },
+        {
+          "jp": "Eigo no menyū wa arimasu ka?",
+          "japanese": "英語のメニューはありますか？",
+          "speech": "えいごのメニューはありますか",
+          "no": "Har dere meny på engelsk?"
+        },
+        {
+          "jp": "Osusume wa nan desu ka?",
+          "japanese": "おすすめは何ですか？",
+          "speech": "おすすめはなんですか",
+          "no": "Hva anbefaler dere?"
+        },
+        {
+          "jp": "Mizu onegaishimasu",
+          "japanese": "水お願いします",
+          "speech": "みず おねがいします",
+          "no": "Vann, takk."
+        },
+        {
+          "jp": "Okanjō onegaishimasu",
+          "japanese": "お勘定お願いします",
+          "speech": "おかんじょう おねがいします",
+          "no": "Regningen, takk."
+        }
+      ]
+    },
+    {
+      "category": "Transport og vei",
+      "intro": "Korte spørsmål som er nyttige når skilting og kart ikke er nok.",
+      "items": [
+        {
+          "jp": "Eki wa doko desu ka?",
+          "japanese": "駅はどこですか？",
+          "speech": "えきはどこですか",
+          "no": "Hvor er stasjonen?"
+        },
+        {
+          "jp": "Norikae wa doko desu ka?",
+          "japanese": "乗り換えはどこですか？",
+          "speech": "のりかえはどこですか",
+          "no": "Hvor bytter jeg tog?"
+        },
+        {
+          "jp": "Koko de ii desu ka?",
+          "japanese": "ここでいいですか？",
+          "speech": "ここでいいですか",
+          "no": "Er det riktig her?"
+        },
+        {
+          "jp": "Kono densha de daijōbu desu ka?",
+          "japanese": "この電車で大丈夫ですか？",
+          "speech": "このでんしゃで だいじょうぶですか",
+          "no": "Er dette riktig tog?"
+        }
+      ]
+    },
+    {
+      "category": "Butikk og betaling",
+      "intro": "Nyttig i butikker, kiosker og billettluker.",
+      "items": [
+        {
+          "jp": "Kādo wa tsukaemasu ka?",
+          "japanese": "カードは使えますか？",
+          "speech": "カードはつかえますか",
+          "no": "Kan jeg betale med kort?"
+        },
+        {
+          "jp": "Kore wa nan desu ka?",
+          "japanese": "これは何ですか？",
+          "speech": "これはなんですか",
+          "no": "Hva er dette?"
+        },
+        {
+          "jp": "Kore o onegaishimasu",
+          "japanese": "これをお願いします",
+          "speech": "これをおねがいします",
+          "no": "Jeg tar denne / denne, takk."
+        },
+        {
+          "jp": "Fukuro wa irimasen",
+          "japanese": "袋はいりません",
+          "speech": "ふくろはいりません",
+          "no": "Jeg trenger ikke pose."
+        }
+      ]
+    },
+    {
+      "category": "Når samtalen går for fort",
+      "intro": "Fraser som gir litt kontroll når man ikke forstår.",
+      "items": [
+        {
+          "jp": "Mō ichido onegaishimasu",
+          "japanese": "もう一度お願いします",
+          "speech": "もういちど おねがいします",
+          "no": "En gang til, takk."
+        },
+        {
+          "jp": "Yukkuri onegaishimasu",
+          "japanese": "ゆっくりお願いします",
+          "speech": "ゆっくり おねがいします",
+          "no": "Litt saktere, takk."
+        },
+        {
+          "jp": "Nihongo wa sukoshi dake",
+          "japanese": "日本語は少しだけ",
+          "speech": "にほんごは すこしだけ",
+          "no": "Jeg kan bare litt japansk."
+        },
+        {
+          "jp": "Tasukete kudasai",
+          "japanese": "助けてください",
+          "speech": "たすけてください",
+          "no": "Hjelp meg, vær så snill."
+        }
+      ]
     }
   ]
 }
