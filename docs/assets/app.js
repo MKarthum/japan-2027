@@ -370,9 +370,10 @@ async function renderFlights() {
 
   const market=document.getElementById('flight-market');
   market.innerHTML=`
-    <div class="flight-market-main"><span>Marked</span><strong>${data.market.nonstop}</strong></div>
+    <div class="flight-market-main"><span>Marked</span><strong>${data.market.nonstop}</strong><small>${data.market.availability}</small></div>
     <div class="flight-fastest">${data.market.fastestListed.map(x=>`<div><span>${x.route}</span><strong>${x.time}</strong><small>${x.note}</small></div>`).join('')}</div>
-    <div class="flight-airports">${data.airportNotes.map(x=>`<div><b>${x.code}</b><strong>${x.name}</strong><span>${x.role}</span><small>${x.note}</small></div>`).join('')}</div>`;
+    <div class="flight-airports">${data.airportNotes.map(x=>`<div><b>${x.code}</b><strong>${x.name}</strong><span>${x.role}</span><small>${x.note}</small></div>`).join('')}</div>
+    <div class="flight-hubs"><div class="flight-hubs-head"><strong>Alle én-stopp-huber som ligger i dagens rutedata</strong><span>Kompakt referanse – ikke alle er like gode forbindelser.</span></div>${data.oneStopHubs.map(x=>`<div class="flight-hub-row"><b>${x.airport}</b><div>${x.hubs.map(h=>`<span>${h}</span>`).join('')}</div><a href="${x.source}" target="_blank" rel="noopener">rutekilde ↗</a></div>`).join('')}</div>`;
 
   document.getElementById('flight-carriers').innerHTML=data.carrierOptions.map(x=>`
     <article class="flight-carrier-card">
