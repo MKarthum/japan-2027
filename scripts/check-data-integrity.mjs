@@ -254,7 +254,7 @@ for (const group of prep) {
     if (item.url && !/^https:\/\//.test(item.url)) errors.push(`prep.json: ${item.id} har ugyldig url`);
     for (const link of item.links || []) {
       if (!link.label || !/^https:\/\//.test(link.url||'')) errors.push(`prep.json: ${item.id} har ugyldig lenke`);
-      if (link.appUrl && !/^(?:nflx|disneyplus):\/\//.test(link.appUrl)) errors.push(`prep.json: ${item.id} har ugyldig app-lenke`);
+      if (link.appUrl) errors.push(`prep.json: ${item.id} skal ikke bruke custom-scheme for strømmetjenester; bruk direkte HTTPS-innholdsside`);
     }
     if (['Film','TV og serier'].includes(group.category)) {
       const imdb=(item.links||[]).find(x=>x.kind==='imdb');
@@ -262,12 +262,8 @@ for (const group of prep) {
       if (!item.streamingChecked || !imdb || !stream) {
         errors.push(`prep.json: ${item.id} mangler IMDb, strømmetjeneste eller kontrolldato`);
       }
-      if (stream?.label==='Netflix' && (!stream.appUrl?.startsWith('nflx://www.netflix.com/title/') || !stream.url?.startsWith('https://www.netflix.com/title/'))) {
-        errors.push(`prep.json: ${item.id} bruker ikke direkte Netflix-app/web-lenke`);
-      }
-      if (stream?.label==='Disney+' && (!stream.appUrl?.startsWith('disneyplus://') || !stream.url?.startsWith('https://www.disneyplus.com/browse/entity-'))) {
-        errors.push(`prep.json: ${item.id} bruker ikke direkte Disney+-app/web-lenke`);
-      }
+      if (stream?.label==='Netflix' && !stream.url?.startsWith('https://www.netflix.com/title/')) errors.push(`prep.json: ${item.id} bruker ikke direkte Netflix-innholdsside`);
+      if (stream?.label==='Disney+' && !stream.url?.startsWith('https://www.disneyplus.com/browse/entity-')) errors.push(`prep.json: ${item.id} bruker ikke direkte Disney+-innholdsside`);
     }
     if (group.category==='Mat' && !(item.links||[]).some(x=>x.kind==='recipe')) errors.push(`prep.json: ${item.id} mangler oppskriftslenke`);
     if (group.category==='Små mål' && (!item.detail?.summary || !Array.isArray(item.detail?.steps) || item.detail.steps.length < 3)) errors.push(`prep.json: ${item.id} mangler detaljert gjennomføring`);
@@ -449,7 +445,8 @@ if (!app.includes('installMapLoadFallback') || !app.includes("map.once('load'"))
 if (!app.includes('placePriceSummaryHtml') || !app.includes('placePriceDetailHtml')) errors.push('app.js: stedspriser vises ikke konsistent i liste og detalj');
 if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kanonisk prep.json for stedskoblinger');
 if (!app.includes('renderPhraseGuide') || !app.includes('speechSynthesis') || !app.includes('renderPrepItem')) errors.push('app.js: språklyd, utvidet fraseliste eller detaljside for små mål mangler');
-if (!app.includes('prepAudienceHtml') || !app.includes('bindPrepStreamLinks') || !app.includes('data-stream-app-url')) errors.push('app.js: tydelig målgruppevisning eller app-aware strømme-lenker mangler');
+if (!app.includes('prepAudienceHtml') || !app.includes("link.kind==='stream'") || !app.includes('target="_blank" rel="noopener"')) errors.push('app.js: tydelig målgruppevisning eller sikker ekstern strømmenavigasjon mangler');
+if (app.includes('bindPrepStreamLinks') || app.includes('data-stream-app-url')) errors.push('app.js: custom-scheme strømmenavigasjon skal ikke brukes');
 if (!app.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 const toolbarStart=app.indexOf('const renderLayerToolbar=');
 const toolbarEnd=app.indexOf("map.on('load'",toolbarStart);
