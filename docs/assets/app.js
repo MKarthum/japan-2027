@@ -170,6 +170,23 @@ function footer() {
 
 const linkButton = (x) => `<a class="button ${x.kind==='ticket'?'primary':''}" href="${x.url}" target="_blank" rel="noopener">${x.label} ↗</a>`;
 const mapsButton = (name, area='Japan') => `<a class="button" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name+' '+area+' Japan')}" target="_blank" rel="noopener">Kart ↗</a>`;
+const installMapLoadFallback=(map,onFatal)=>{
+  let loaded=false;
+  let timer=null;
+  map.once('load',()=>{
+    loaded=true;
+    if(timer) clearTimeout(timer);
+  });
+  map.on('error',(event)=>{
+    console.warn('Kartressursfeil',event?.error||event);
+    if(loaded) return;
+    if(timer) clearTimeout(timer);
+    timer=setTimeout(()=>{
+      if(loaded || map.isStyleLoaded?.()) return;
+      onFatal();
+    },4000);
+  });
+};
 
 const imageLicenseHtml=(img)=>img?.licenseUrl
   ? `<a href="${img.licenseUrl}" target="_blank" rel="license noopener">${img.license}</a>`
@@ -778,16 +795,12 @@ async function renderRoute() {
   detail.hidden=false;
   detail.innerHTML=`<div class="route-detail-placeholder"><strong>Velg noe på kartet.</strong><span>Stopp, opplevelser, mat, overnatting og knutepunkter viser valgt innhold her. Velger du en rutelinje eller etappe, vises reisetid og pris.</span><small>${transport.childNote}</small></div>`;
 
-  let firstMapErrorShown=false;
-  map.on('error',(event)=>{
-    console.warn('Kartfeil',event?.error||event);
-    if(!firstMapErrorShown && !map.loaded()){
-      firstMapErrorShown=true;
-      const el=document.createElement('div');
-      el.className='map-error floating';
-      el.innerHTML='<strong>Kartdata kunne ikke lastes.</strong><br>Prøv å oppdatere siden.';
-      document.getElementById('map').appendChild(el);
-    }
+  installMapLoadFallback(map,()=>{
+    if(document.querySelector('#map .map-error.floating')) return;
+    const el=document.createElement('div');
+    el.className='map-error floating';
+    el.innerHTML='<strong>Kartet kunne ikke lastes.</strong><br>Prøv å oppdatere siden.';
+    document.getElementById('map').appendChild(el);
   });
 }
 
@@ -874,10 +887,7 @@ async function renderPlace() {
         .setLngLat([p.map.lng,p.map.lat])
         .setPopup(new maplibregl.Popup({offset:18,maxWidth:'250px'}).setHTML(`<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3></div>`))
         .addTo(map);
-      let mapErrorShown=false;
-      map.on('error',()=>{
-        if(mapErrorShown) return;
-        mapErrorShown=true;
+      installMapLoadFallback(map,()=>{
         const fallback=document.getElementById('place-map-fallback');
         if(fallback) fallback.hidden=false;
       });
