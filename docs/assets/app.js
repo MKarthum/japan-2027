@@ -84,32 +84,33 @@ const imageCreditHtml=(img,cls='image-credit-overlay')=>{
   }
   return `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`;
 };
-const cardImageHtml=(img,alt,compact=false)=>img?.url
-  ? `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback" aria-hidden="true">${alt}</div><img src="${img.url}" alt="${img.alt||alt}" loading="lazy" onerror="this.remove()">${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</div>`
-  : `<div class="visual-card-media ${compact?'compact':''}"><div class="media-fallback">${alt}</div></div>`;
+const entityMediaHtml=({img,alt,area='',type='',trip,subject,compact=false,variant='visual'})=>{
+  const mediaClass=variant==='list'?'place-list-media':`visual-card-media ${compact?'compact':''}`;
+  const fallbackClass=variant==='list'?'place-list-fallback':'media-fallback';
+  const taxonomy=(area||type)
+    ? `<div class="place-image-taxonomy">${area?`<span class="area-pill" style="background:${destinationColor(trip,subject)}">${area}</span>`:''}${type?`<span class="type-pill">${type}</span>`:''}</div>`
+    : '';
+  return `<div class="${mediaClass}"><div class="${fallbackClass}" aria-hidden="true">${alt}</div>${img?.url?`<img src="${img.url}" alt="${img.alt||alt}" loading="lazy" onerror="this.remove()">`:''}${taxonomy}${img?imageCreditHtml(img,'image-credit-overlay image-credit-mini'):''}</div>`;
+};
 
-function destinationTheme(trip, subject) {
-  const fallback={color:'#5f6b73',areas:[]};
-  if(!trip?.route) return fallback;
+function destinationStop(trip, subject) {
+  if(!trip?.route || !subject) return null;
   if(typeof subject==='string'){
-    return trip.route.find(x=>x.id===subject || x.theme?.areas?.includes(subject))?.theme || fallback;
+    return trip.route.find(x=>x.id===subject || x.theme?.areas?.includes(subject)) || null;
   }
-  if(!subject) return fallback;
-  if(subject.destinationId){
-    return trip.route.find(x=>x.id===subject.destinationId)?.theme || fallback;
-  }
-  if(subject.baseId){
-    return trip.route.find(x=>x.id===subject.baseId)?.theme || fallback;
-  }
+  if(subject.destinationId) return trip.route.find(x=>x.id===subject.destinationId) || null;
+  if(subject.baseId) return trip.route.find(x=>x.id===subject.baseId) || null;
   if(subject.id){
     const direct=trip.route.find(x=>x.id===subject.id);
-    if(direct) return direct.theme || fallback;
+    if(direct) return direct;
   }
-  if(subject.area){
-    return trip.route.find(x=>x.theme?.areas?.includes(subject.area))?.theme || fallback;
-  }
-  return fallback;
+  if(subject.area) return trip.route.find(x=>x.theme?.areas?.includes(subject.area)) || null;
+  return null;
 }
+function destinationTheme(trip, subject) {
+  return destinationStop(trip,subject)?.theme || {color:'#5f6b73',areas:[]};
+}
+const destinationId=(trip,subject)=>destinationStop(trip,subject)?.id||null;
 const themeStyle=(theme)=>`--area-color:${theme?.color||'#5f6b73'}`;
 const destinationColor=(trip,subject)=>destinationTheme(trip,subject).color;
 
@@ -122,36 +123,37 @@ function priorityBadge(priority){
   const cls = priority==='Må prøve' || priority==='Viktig' ? 'must' : priority==='Sterk kandidat' || priority==='Bør bestilles' ? 'strong' : 'optional';
   return `<span class="priority ${cls}">${priority}</span>`;
 }
+const relatedEntityCardHtml=({href,meta,title,subtitle,trip,subject})=>`<a class="related-card destination-themed" style="${themeStyle(destinationTheme(trip,subject))}" href="${href}"><span>${meta}</span><strong>${title}</strong><small>${subtitle}</small></a>`;
 
 async function renderHome() {
   nav('home'); footer();
   const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),loadFx()]);
+  const overview=trip.overview||{};
+  const placeById=new Map(places.map(p=>[p.id,p]));
   document.getElementById('status').textContent = trip.status;
   document.getElementById('window').textContent = trip.window;
-  const stationNote=document.getElementById('station-note');
-  if(stationNote) stationNote.textContent=`${transport.stationNote} Stoppmønsteret kan variere med konkret togavgang og fastsettes først når toget velges.`;
   document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
 
-  const himeji=places.find(p=>p.id==='himeji');
-  const hero=himeji?.image;
-  if(hero){
-    document.getElementById('hero-photo').innerHTML = `<img src="${hero.url}" alt="${hero.alt||'Himeji Castle'}"><div class="photo-overlay"><span>LEGO → spill → virkelighet</span><strong>Himeji Castle</strong></div>${imageCreditHtml(hero)}`;
+  const heroPlace=placeById.get(overview.hero?.placeId);
+  const hero=heroPlace?.image;
+  if(heroPlace && hero){
+    document.getElementById('hero-photo').innerHTML = `<div class="media-fallback" aria-hidden="true">${heroPlace.name}</div><img src="${hero.url}" alt="${hero.alt||heroPlace.name}" onerror="this.remove()"><div class="photo-overlay"><span>${overview.hero?.kicker||heroPlace.simple}</span><strong>${heroPlace.name}</strong></div>${imageCreditHtml(hero)}`;
   }
 
-  const route = document.getElementById('route-cards');
-  route.innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
-    const p=places.find(p=>p.id===x.id)||x;
-    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${cardImageHtml(p.image,p.name)}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${p.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
+  document.getElementById('route-cards').innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
+    const p=placeById.get(x.id);
+    if(!p) return '';
+    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p})}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${p.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
   }).join('');
 
-  const featureIds=['nintendo-museum','nara','himeji','usj'];
-  document.getElementById('family-hooks').innerHTML = featureIds.map(id=>{
-    const p=places.find(x=>x.id===id);
-    return `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${cardImageHtml(p.image,p.name,true)}<div class="visual-card-body"><div class="meta">${p.area}</div><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`;
-  }).join('');
+  const featureIds=overview.familyHookPlaceIds||[];
+  document.getElementById('family-hooks').innerHTML = featureIds.map(id=>placeById.get(id)).filter(Boolean).map(p=>
+    `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,compact:true})}<div class="visual-card-body"><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`
+  ).join('');
 
-  document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,3).map(x=>{
-    const p=places.find(p=>p.id===x.placeId);
+  const previewCount=Number.isInteger(overview.bookingPreviewCount)?overview.bookingPreviewCount:3;
+  document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,previewCount).map(x=>{
+    const p=placeById.get(x.placeId);
     const link=placePrimaryLink(p);
     return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${p?.name||x.placeId}</strong><span>${x.when}</span></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
   }).join('');
@@ -159,7 +161,7 @@ async function renderHome() {
 
 async function renderRoute() {
   nav('route'); footer();
-  const [trip,places,routeGeometry,transport,food,hotelsData,fx]=await Promise.all([
+  const [trip,places,routeGeometry,transport,foodData,hotelsData,fx]=await Promise.all([
     json('data/trip.json'),
     json('data/places.json'),
     json('data/route-geometry.json'),
@@ -168,6 +170,7 @@ async function renderRoute() {
     json('data/hotels.json'),
     loadFx()
   ]);
+  const food=foodData.restaurants||[];
 
   const formatMinutes = (mins) => {
     if (mins < 60) return `${mins} min`;
@@ -202,6 +205,13 @@ async function renderRoute() {
   };
 
   document.getElementById('window').textContent = trip.window;
+  const routePlaces=trip.route.map(x=>places.find(p=>p.id===x.id)).filter(Boolean);
+  const routeTitle=document.getElementById('route-title');
+  if(routeTitle && routePlaces.length) routeTitle.textContent=`Fra ${routePlaces[0].name} til ${routePlaces.at(-1).name}`;
+  const routeLogic=document.getElementById('route-transport-logic');
+  if(routeLogic) routeLogic.textContent=transport.strategy||'';
+  const stationNote=document.getElementById('station-note');
+  if(stationNote) stationNote.textContent=`${transport.stationNote} Stoppmønsteret kan variere med konkret togavgang og fastsettes først når toget velges.`;
   document.getElementById('route-list').innerHTML = trip.route.map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
     const img=p.image;
@@ -632,15 +642,7 @@ async function renderPlaces() {
     list.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>`
       <article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
         <a href="place.html?id=${encodeURIComponent(p.id)}">
-          <div class="place-list-media">
-            <div class="place-list-fallback" aria-hidden="true">${p.name}</div>
-            ${p.image?.url?`<img src="${p.image.url}" alt="${p.image.alt||p.name}" loading="lazy" onerror="this.remove()">`:''}
-            <div class="place-image-taxonomy">
-              <span class="area-pill" style="background:${destinationColor(trip,p)}">${p.area}</span>
-              <span class="type-pill">${p.type}</span>
-            </div>
-            ${p.image?imageCreditHtml(p.image,'image-credit-overlay image-credit-mini'):''}
-          </div>
+          ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
           <div class="place-list-copy">
             <h3>${p.name}</h3>
             <strong>${p.simple}</strong>
@@ -661,7 +663,8 @@ async function renderPlaces() {
 }
 async function renderPlace() {
   nav('places'); footer();
-  const [places,food,trip] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json')]);
+  const [places,foodData,trip] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json')]);
+  const food=foodData.restaurants||[];
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id);
   if(!p){
@@ -722,8 +725,13 @@ async function renderPlace() {
     mapRoot.innerHTML='<div class="map-error"><strong>Kartposisjon mangler.</strong></div>';
   }
 
-  const related=food.filter(x=>x.status==='active' && (x.area===p.area || (p.area==='Hiroshima'&&x.area==='Miyajima'))).slice(0,4);
-  document.getElementById('nearby-food').innerHTML = related.length ? related.map(x=>`<a class="mini-card restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}"><span>${x.role} · ${x.priority}</span><strong>${x.name}</strong><small>${x.dish}</small></a>`).join('') : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
+  const activeFood=food.filter(x=>x.status==='active');
+  const sameArea=activeFood.filter(x=>x.area===p.area);
+  const sameDestination=activeFood.filter(x=>x.area!==p.area && destinationId(trip,x)===destinationId(trip,p));
+  const related=[...sameArea,...sameDestination].slice(0,4);
+  document.getElementById('nearby-food').innerHTML = related.length
+    ? related.map(x=>relatedEntityCardHtml({href:`restaurant.html?id=${encodeURIComponent(x.id)}`,meta:`${x.role} · ${x.priority}`,title:x.name,subtitle:x.dish,trip,subject:x})).join('')
+    : '<p class="small">Ingen kuraterte restaurantvalg i dette området.</p>';
 }
 async function renderPrep() {
   nav('prep'); footer();
@@ -734,10 +742,11 @@ async function renderPrep() {
 
 async function renderFood() {
   nav('food'); footer();
-  const [food,fx,trip]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json')]);
+  const [foodData,fx,trip,places]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json'),json('data/places.json')]);
+  const food=foodData.restaurants||[];
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
-  const areaOrder=['Tokyo','Kyoto','Nara','Himeji','Hiroshima','Miyajima','Osaka'];
+  const areaOrder=[...new Set(trip.route.flatMap(x=>x.theme?.areas||[]))];
   const areas=['Alle',...areaOrder.filter(a=>active.some(x=>x.area===a))];
   const filters=document.getElementById('food-filters');
   const list=document.getElementById('food-list');
@@ -793,6 +802,26 @@ async function renderFood() {
   const summary=document.getElementById('food-summary');
   if(summary) summary.innerHTML=`<strong>${active.length} kuraterte kandidater</strong><span>${destinations} destinasjonsmåltider · detaljene ligger ett klikk ned</span>`;
 
+  const priceGuide=document.getElementById('food-price-guide');
+  if(priceGuide){
+    const bandText=(band)=>{
+      const lo=band.minYen, hi=band.maxYen;
+      if(Number.isFinite(lo)&&Number.isFinite(hi)) return `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
+      if(Number.isFinite(hi)) return `opptil ${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(hi,fx))}`;
+      if(Number.isFinite(lo)) return `over ${fmtJpy(lo)} · ca. ${fmtNok(nokFromJpy(lo,fx))}`;
+      return '';
+    };
+    priceGuide.innerHTML=`<strong>Familiepris:</strong>${(foodData.priceBands||[]).map(b=>`<span><b>${b.label}</b> ${bandText(b)}</span>`).join('')}`;
+  }
+  const planningNotes=document.getElementById('food-planning-notes');
+  if(planningNotes){
+    const placeById=new Map(places.map(p=>[p.id,p]));
+    planningNotes.innerHTML=(foodData.planningNotes||[]).map(note=>{
+      const place=note.placeId?placeById.get(note.placeId):null;
+      return `<article class="card ${place?'destination-themed':''}" ${place?`style="${themeStyle(destinationTheme(trip,place))}"`:''}><div class="eyebrow">${place?.name||note.label||''}</div><h2>${note.title}</h2><p>${note.body}</p></article>`;
+    }).join('');
+  }
+
   const watchlist=document.getElementById('food-watchlist');
   if(watchlist){
     watchlist.innerHTML=watch.length?watch.map(x=>`<a class="food-watch-card" href="restaurant.html?id=${encodeURIComponent(x.id)}"><div><span class="food-role">${x.role}</span><h3>${x.name}</h3><strong>${x.dish}</strong><p>${x.why}</p></div><span class="food-index-arrow" aria-hidden="true">→</span></a>`).join(''):'';
@@ -807,7 +836,8 @@ async function renderFood() {
 
 async function renderRestaurant() {
   nav('food'); footer();
-  const [food,fx,trip]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json')]);
+  const [foodData,fx,trip]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json')]);
+  const food=foodData.restaurants||[];
   const id=new URLSearchParams(location.search).get('id');
   const x=food.find(item=>item.id===id);
   if(!x){
@@ -885,7 +915,7 @@ async function renderRestaurant() {
 
   const alternatives=food.filter(item=>item.status==='active'&&item.id!==x.id&&item.area===x.area).slice(0,4);
   document.getElementById('restaurant-alternatives').innerHTML=alternatives.length
-    ? alternatives.map(item=>`<a class="restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,item))}" href="restaurant.html?id=${encodeURIComponent(item.id)}"><span>${item.role}</span><strong>${item.name}</strong><small>${item.dish}</small></a>`).join('')
+    ? alternatives.map(item=>relatedEntityCardHtml({href:`restaurant.html?id=${encodeURIComponent(item.id)}`,meta:item.role,title:item.name,subtitle:item.dish,trip,subject:item})).join('')
     : '<p class="small">Ingen andre aktive kandidater i dette området.</p>';
 }
 
@@ -964,7 +994,7 @@ async function renderHotel() {
   ].filter(Boolean);
   document.getElementById('hotel-links').innerHTML=links.join('');
   const alternatives=data.hotels.filter(h=>h.baseId===x.baseId&&h.id!==x.id);
-  document.getElementById('hotel-alternatives').innerHTML=alternatives.map(h=>`<a class="restaurant-alt destination-themed" style="${themeStyle(destinationTheme(trip,h.baseId))}" href="hotel.html?id=${encodeURIComponent(h.id)}"><span>${h.tier}</span><strong>${h.name}</strong><small>${h.familyOption}</small></a>`).join('');
+  document.getElementById('hotel-alternatives').innerHTML=alternatives.map(h=>relatedEntityCardHtml({href:`hotel.html?id=${encodeURIComponent(h.id)}`,meta:h.tier,title:h.name,subtitle:h.familyOption,trip,subject:h.baseId})).join('');
 }
 
 

@@ -27,7 +27,7 @@ const historyPatterns = [
   ['«ekstra kandidat»', /ekstra kandidat/i]
 ];
 
-for (const file of [...htmlFiles, ...publicDataFiles]) {
+for (const file of [...htmlFiles, ...publicDataFiles, 'docs/assets/app.js']) {
   const text = fs.readFileSync(file, 'utf8');
   for (const [label, pattern] of historyPatterns) {
     if (pattern.test(text)) errors.push(`${file}: offentlig tekst inneholder endringsloggspråk ${label}`);

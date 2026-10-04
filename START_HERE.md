@@ -18,9 +18,9 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 ## Kanoniske dataeiere
 
-- `docs/data/trip.json`: reisevindu, hovedrute, budsjett og destinasjonstemaer/farger. Destinasjonsfargen er én felles identitet for rute, steder, opplevelser og mat.
+- `docs/data/trip.json`: reisevindu, hovedrute, budsjett, oversiktskuratering og destinasjonstemaer/farger. Destinasjonsfargen er én felles identitet for rute, steder, opplevelser og mat.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon og eksterne lenker.
-- `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag.
+- `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
 - `docs/data/hotels.json`: hotellkandidater, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
 - `docs/data/transport.json`: intercity-etapper, tider, priser og stasjoner.
 - `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
@@ -45,6 +45,23 @@ Offentlig tekst skal kunne leses av en person som aldri har sett repoet eller en
 - Bilder må ha dokumentert gjenbruksrett, kreditering og lisens.
 - Prioritetsord er reiseprioriteringer for denne planen, ikke objektive kvalitetsdommer.
 
+## Ny chat eller konteksttap
+
+En ny chat skal ikke rekonstruere prosjektet fra samtalehistorikk. Bruk denne korte startinstruksen:
+
+> Arbeid videre i `MKarthum/japan-2027`. Hent siste `main`, les `START_HERE.md`, `AGENTS.md` og `PUBLIC_DATA_POLICY.md`, og behandle repoet som autoritativ state. Ikke bruk gammel chat som implementasjonsgrunnlag.
+
+Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
+
+## Visnings- og releasekontrakt
+
+- Domeneinnhold ligger i JSON. HTML/JavaScript bestemmer struktur og hvordan felt vises, ikke konkrete reisedetaljer.
+- Oversiktens kuraterte stedvalg ligger i `trip.json.overview`, ikke som hardkodede ID-er i JavaScript.
+- Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side.
+- Nettsiden skal leses som én aktuell utgave, ikke som en logg over tidligere utgaver.
+- `site.json` inneholder kun versjon og publiseringsdato. Versjonen bumpes ved hver publisert endring på `main`.
+- Releases til `main` skal være atomiske. Bruk arbeidsbranch og squash-merge når en endring berører flere filer.
+
 ## Før publisering
 
 Kjør:
@@ -53,6 +70,7 @@ Kjør:
 node scripts/check-public-content.mjs
 node scripts/check-data-integrity.mjs
 node scripts/check-content-style.mjs
+node scripts/check-release-discipline.mjs
 ```
 
 Alle tre skal passere. Hvis miljøet ikke kan kjøre Node, må tilsvarende validering gjøres eksplisitt før commit og begrensningen dokumenteres.

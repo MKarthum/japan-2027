@@ -31,6 +31,22 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Bildekreditering vises som en liten overlay nederst til venstre i bildet, ikke som egen rad under bildet. På stedskort ligger områdeetiketten øverst til venstre i selve bildet; type kan ligge øverst til høyre.
 - Ikke innfør rammeverk, database eller byggesteg uten et konkret behov.
 
+## Datagrense mellom data og visning
+
+- Offentlig HTML og JavaScript er visningslag. Det kan inneholde struktur, generiske UI-tekster, formatering og hvilke felt/komponenter som vises, men ikke hardkodede navn, beskrivelser, priser, koordinater eller kuraterte ID-lister for konkrete steder, restauranter, hoteller eller reiseetapper.
+- Kuratering for oversikten eies av `trip.json.overview`. Hvis et sted skal inn eller ut av hero/familiekroker, endres data – ikke en liste i `app.js`.
+- `food.json` eier både restaurantpostene og felles matmetadata som prisbånd og planleggingsnotater. `transport.json` eier rutens transportstrategi og etapper.
+- Samme visuelle konsept skal bruke samme renderer og samme CSS-primitiv. `entityMediaHtml()` er felles medieprimitiv for kort med bilde, område/type og kreditering. `relatedEntityCardHtml()` er felles relasjonskort for «andre alternativer» og «mat i området».
+- Ikke kopier markup for en eksisterende objekttype for å lage en ny variant. Utvid den delte helperen/klassen når semantikken er den samme. Hvis en delt visning endres visuelt, skal alle brukere av komponenten få endringen samtidig.
+
+## Publiseringsdisiplin
+
+- Den offentlige siden beskriver alltid **nåværende plan**, aldri endringshistorikken. En førstegangsleser skal ikke møte språk om hva som ble pushet, rettet, flyttet, beholdt, fjernet eller endret siden forrige versjon.
+- `docs/data/site.json` skal bare inneholde publisert `version` og `released`. Ikke legg release notes eller endringslogg i offentlig site-data.
+- Versjonen bumpes ved **hver repository-endring som publiseres til `main`**, og alle `docs/*.html` skal peke til samme CSS-/JS-versjon.
+- En release til `main` skal være atomisk: data, visning, assetversjoner og `site.json` skal lande i samme commit. Arbeidsbrancher kan ha mellomcommits; de squash-merges før publisering.
+- `node scripts/check-release-discipline.mjs` håndhever versjonsbump mot publisert baseline.
+
 ## Offentlig språk
 
 - Skriv for en ny leser, ikke for utvikleren som gjorde forrige endring.
@@ -60,6 +76,7 @@ Før publisering skal alle tre kontroller passere:
 node scripts/check-public-content.mjs
 node scripts/check-data-integrity.mjs
 node scripts/check-content-style.mjs
+node scripts/check-release-discipline.mjs
 ```
 
 Ved brukersynlige endringer bumpes `docs/data/site.json`. Når CSS eller JavaScript endres, skal alle `docs/*.html` peke til samme assetversjon.
