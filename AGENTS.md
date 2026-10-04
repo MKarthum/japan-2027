@@ -31,7 +31,13 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
 - Flypris er alltid en observasjon, ikke en varig sannhet. Lagre kilde, kontrolldato, om prisen er per person/total, turtype og om den er historisk, publisert fra-pris eller konkret søk. Ikke skaler voksenpris mekanisk til familiepris når barnetakst/billettvilkår er ukjent.
-- Flysøk som krever dynamisk søkemotor skal representeres som en manuell søkeoppgave med offentlig URL og instruksjon. Google Flights og FINN Reise er første søketrinn; direkte flyselskapssøk brukes etterpå for å verifisere et lovende alternativ. Ikke bruk «åpen kjeve» i offentlig tekst; skriv «inn én by / hjem fra en annen» eller verktøyets egen «Flere byer / Multi-city». Ikke lagre booking-session-URL, innlogget delingslenke, token, PNR eller annen bruker-/kontoidentifikator.
+- Flyresearch skal bruke reelle interaktive søk i Google Flights og FINN for standardfamilien fra `trip.json`: fire oppsett og hele reisen forskjøvet −3 til +3 dager. Undersøk én dag kortere/lengre ved store prishopp. Dokumenter tekniske feil uten å erstatte dem med søkeresultatsnutter.
+- `searchRuns` lagrer datert, kompakt søkeoversikt; `candidates` lagrer utvalgte detaljerte tilbud; `directChecks` skiller fullført prising fra mislykkede forsøk. Observerte datoer er historiske målepunkter, ikke ny autoritativ reiseplan. Datomatrisen skal bare koble priser til eksakt samsvarende datoer avledet fra `trip.json`.
+- Prisgrunnlag må angi konkret interaktiv pris, indeksert datert tilbud, publisert 2027-fra-pris, generell fra-pris eller historikk. Totalpris for 2+2 krever at tjenesten faktisk viser gruppetotalen; delpriser eller pris per person skal aldri multipliseres til en antatt familiepris. Bekreft datoer og reisefølge etter at søkeskjemaet har lastet ferdig.
+- For kandidater lagres flyplasser, markedsførende og eventuelt oppgitt opererende selskap, stopp, transferflyplasser/-lengder, total reisetid, bagasjegrunnlag, forbindelsesstatus, tjeneste og kontrolltid. Fravær av selv-transfer-varsel beviser ikke gjennomgående/beskyttet billett. Ukjent operatør eller bagasje skal ikke få oppdiktede verdier.
+- Direkte flyselskapsøk prioriteres etter konkurransedyktige funn. Angi om totalen ble vist etter flyvalg eller ved betaling; bruk konkrete billettvilkår, og merk generelle vilkår som generelle. Ikke gå videre til personopplysninger eller bestilling for research.
+- Ekstra returtransport i Japan eies av `transport.json`, inklusive pris, standardfamiliens togbillettkategorier, tidsgrunnlag og kilde. Fly, fly+hotell og organisert rundreise sammenlignes som ulike produkter.
+- Offentlige søke-URL-er må være stabile og uten session-/checkout-/konto-/token-/timestamp-parametre. Når resultatlenken ikke er trygg, lagres funnet med tjenestens offentlige inngangsside. Behold enkle Google Flights-/FINN-lenker som første trinn og direkte selskapssøk som andre trinn.
 - Strømmelenker skal peke direkte til tittelen via kanonisk HTTPS-format og åpnes som ekstern lenke slik at Japan-siden blir liggende. Stol på operativsystemets universal links for eventuell appåpning. Ikke bruk custom URL-scheme, tidsstyrt fallback, delingsparametre eller konto-/brukerparametre. De tillatte formatene valideres i `check-data-integrity.mjs`, slik at gamle lenkevarianter ikke sniker seg tilbake.
 - Bilder skal ha eksplisitt `type`. `licensed` krever lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. `ai` skal lagres lokalt i repoet, ha alt-tekst og genereringsdato og alltid merkes som AI-generert i UI-et. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Bildekreditering vises som en liten overlay nederst til venstre i bildet, ikke som egen rad under bildet. På stedskort ligger områdeetiketten øverst til venstre i selve bildet; type kan ligge øverst til høyre.
@@ -98,7 +104,7 @@ Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbe
 
 ## Verifisering
 
-Før publisering skal alle tre kontroller passere:
+Før publisering skal alle fire kontroller passere:
 
 ```bash
 node scripts/check-public-content.mjs

@@ -86,14 +86,20 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Målgruppe i `prep.json` er strukturert som `audience.id`, `audience.label` og valgfri `audience.note`. Bruk de fire nivåene `family`, `older-kids`, `teens` og `adults`. Innholdsadvarsel eller konkret aldersmerking er en separat merknad, ikke en del av selve målgruppen.
 - Språkvisningen skal vise romanisering og japanske tegn sammen. Uttaleknappen bruker nettleserens japanske tekst-til-tale-stemme; den utvidede fraselisten ligger på `phrases.html`.
 
-## Flyplanlegging per v0.24
+## Flyplanlegging
 
 - Fly er første datodrivende beslutning. Før hotell- og dagsdatoer låses, skal fire oppsett prises: Tokyo inn / Osaka hjem, Osaka inn / Tokyo hjem, Tokyo tur/retur og Osaka tur/retur. I offentlig tekst omtales de to første som «inn én by / hjem fra en annen» eller «Flere byer / Multi-city» der det er relevant for søkeverktøyet; ikke bruk «åpen kjeve».
 - Gjeldende datoer eies bare av `trip.json`. `flights.json` lagrer fleksibilitetsregelen (normalt ±3 dager) og datert markedsresearch; visningen avleder den konkrete datomatrisen fra `trip.json`.
 - Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. Tur/retur til samme by må vurderes mot ekstra innenlands transport, mulig hotellbehov og tapt reisetid.
 - Prisobservasjoner skal alltid angi hva tallet faktisk er: historisk nivå, publisert 2027-fra-pris, datert søkemotorfunn eller pakkereise. Ikke bland pris per person og totalpris for standardfamilien.
 - Sikkerhet deles i regulatorisk status, sekundære uavhengige signaler og tidsavhengig luftromsrisiko. Ikke presenter en privat rangering som objektiv fasit.
-- Dynamiske søk som siden ikke kan hente stabilt skal ligge som konkrete manuelle søkeoppgaver. Første søketrinn skal være brede sammenligningssøk i Google Flights og FINN Reise; direkte flyselskapssøk kommer etterpå når et konkret alternativ ser bra ut. Resultatmalen kan kopieres til chat og brukes til å oppdatere `flights.json`.
+- Flyresearch skal bruke reelle interaktive søk i Google Flights og FINN for standardfamilien fra `trip.json`: fire oppsett og hele reisen forskjøvet −3 til +3 dager. Undersøk én dag kortere/lengre ved store prishopp. Dokumenter tekniske feil uten å erstatte dem med søkeresultatsnutter.
+- `searchRuns` lagrer datert, kompakt søkeoversikt; `candidates` lagrer utvalgte detaljerte tilbud; `directChecks` skiller fullført prising fra mislykkede forsøk. Observerte datoer er historiske målepunkter, ikke ny autoritativ reiseplan. Datomatrisen skal bare koble priser til eksakt samsvarende datoer avledet fra `trip.json`.
+- Prisgrunnlag må angi konkret interaktiv pris, indeksert datert tilbud, publisert 2027-fra-pris, generell fra-pris eller historikk. Totalpris for 2+2 krever at tjenesten faktisk viser gruppetotalen; delpriser eller pris per person skal aldri multipliseres til en antatt familiepris. Bekreft datoer og reisefølge etter at søkeskjemaet har lastet ferdig.
+- For kandidater lagres flyplasser, markedsførende og eventuelt oppgitt opererende selskap, stopp, transferflyplasser/-lengder, total reisetid, bagasjegrunnlag, forbindelsesstatus, tjeneste og kontrolltid. Fravær av selv-transfer-varsel beviser ikke gjennomgående/beskyttet billett. Ukjent operatør eller bagasje skal ikke få oppdiktede verdier.
+- Direkte flyselskapsøk prioriteres etter konkurransedyktige funn. Angi om totalen ble vist etter flyvalg eller ved betaling; bruk konkrete billettvilkår, og merk generelle vilkår som generelle. Ikke gå videre til personopplysninger eller bestilling for research.
+- Ekstra returtransport i Japan eies av `transport.json`, inklusive pris, standardfamiliens togbillettkategorier, tidsgrunnlag og kilde. Fly, fly+hotell og organisert rundreise sammenlignes som ulike produkter.
+- Offentlige søke-URL-er må være stabile og uten session-/checkout-/konto-/token-/timestamp-parametre. Når resultatlenken ikke er trygg, lagres funnet med tjenestens offentlige inngangsside. Behold enkle Google Flights-/FINN-lenker som første trinn og direkte selskapssøk som andre trinn.
 - Offentlig repo skal aldri lagre booking-sessioner, innloggede delingslenker, PNR, flybilletter eller personlige pris-/konto-URL-er. Bruk offentlige søke-/destinasjonssider som lenkemål.
 
 ## Passvurdering per v0.21
@@ -117,7 +123,7 @@ node scripts/check-content-style.mjs
 node scripts/check-release-discipline.mjs
 ```
 
-Alle tre skal passere. Hvis miljøet ikke kan kjøre Node, må tilsvarende validering gjøres eksplisitt før commit og begrensningen dokumenteres.
+Alle fire skal passere. Hvis miljøet ikke kan kjøre Node, må tilsvarende validering gjøres eksplisitt før commit og begrensningen dokumenteres.
 
 Ved brukersynlige endringer bumpes `docs/data/site.json`, og CSS/JS-assetversjonen i alle `docs/*.html` skal samsvare med den versjonen. Versjon og sist oppdatert skal være synlig i bunnteksten på alle sider.
 

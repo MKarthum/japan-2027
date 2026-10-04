@@ -230,5 +230,25 @@
       "source": "https://ekitan.com/en/planner/shinkansen/section/hiroshima/shin-osaka"
     }
   ],
-  "stationNote": "Kartet viser utvalgte stopp på representative forbindelser. Tidene er omtrentlige reisetider fra starten av hver etappe."
+  "stationNote": "Kartet viser utvalgte stopp på representative forbindelser. Tidene er omtrentlige reisetider fra starten av hver etappe.",
+  "flightReturnComparisons": [
+    {
+      "id": "osaka-tokyo-flight-return",
+      "label": "Ekstra retur mellom Osaka og Tokyo",
+      "service": "Nozomi · reservert ordinært sete · Shin-Osaka–Tokyo",
+      "adultYen": 14520,
+      "childYen": 7260,
+      "standardFamilyYen": 50820,
+      "fastestTrainMin": 141,
+      "planningDoorToDoorHours": [
+        4,
+        6
+      ],
+      "checked": "2026-10-04",
+      "source": "https://smart-ex.jp/en/product/plan/service/pdf/service_fares_reserved.pdf",
+      "durationSource": "https://global.jr-central.co.jp/en/company/about_shinkansen/",
+      "childSource": "https://global.jr-central.co.jp/en/tickets/type/adults_children.html",
+      "note": "Ordinær sesongpris publisert fra 1. april 2025, ikke et konkret 2027-togtilbud. Sesongtillegg, lokaltransport, flyplasstransfer og mulig hotellnatt kommer i tillegg. 4–6 timer dør til dør er et plananslag. Samme ekstra intercity-kostnad er relevant i motsatt retning ved Kansai tur/retur."
+    }
+  ]
 }
