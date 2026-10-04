@@ -239,6 +239,40 @@ async function renderRoute() {
     detail.hidden=false;
     detail.innerHTML=legHtml(leg);
   };
+  const setMapDetail=(html)=>{
+    if(!detail) return;
+    detail.hidden=false;
+    detail.innerHTML=html;
+  };
+  const contextualLinksFor=(subject,primaryHref,primaryLabel)=>{
+    const stop=destinationStop(trip,subject);
+    const links=[`<a href="${primaryHref}">${primaryLabel}</a>`];
+    if(stop){
+      links.push(`<a href="places.html?base=${encodeURIComponent(stop.id)}">Steder</a>`);
+      if(food.some(x=>x.status!=='watch'&&destinationId(trip,x)===stop.id)) links.push(`<a href="food.html?base=${encodeURIComponent(stop.id)}">Mat</a>`);
+      if(stop.nights>0 && (hotelsData.hotels||[]).some(x=>x.baseId===stop.id)) links.push(`<a href="hotels.html?base=${encodeURIComponent(stop.id)}">Overnatting</a>`);
+    }
+    return `<div class="route-context-links">${links.join('')}</div>`;
+  };
+  const showPlaceDetail=(p)=>{
+    if(!p) return;
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3><p><strong>${p.simple}</strong></p><p class="small">${p.why}</p>${contextualLinksFor(p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet')}</div>`);
+  };
+  const showFoodDetail=(x)=>{
+    if(!x) return;
+    const price=Array.isArray(x.familyEstimateYen) ? familyFoodPrice(x) : '';
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">${x.role} · ${x.area}</div><h3>${x.name}</h3><p><strong>${x.dish}</strong> · ${x.priority}</p>${price?`<p class="small">2 voksne + 2 barn: ${price}</p>`:''}${contextualLinksFor(x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten')}</div>`);
+  };
+  const showHotelDetail=(x)=>{
+    if(!x) return;
+    const price=hotelFamilyPrice(x);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}"><div class="meta">${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}</div><h3>${x.name}</h3><p><strong>${x.familyOption}</strong></p>${price?`<p class="small">Familieestimat per natt: ${price}</p>`:''}${contextualLinksFor(x,`hotel.html?id=${encodeURIComponent(x.id)}`,'Se overnattingen')}</div>`);
+  };
+  const showStopDetail=(stop,p)=>{
+    if(!stop||!p) return;
+    const nextLeg=nextLegByRouteId.get(stop.id);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,stop))}"><div class="meta">Rutestopp</div><h3>${p.name}</h3><p><strong>${stop.label}</strong> · ${fmtDate(stop.from)}${stop.nights>0?`–${fmtDate(stop.to)} · ${stop.nights} ${stop.nights===1?'natt':'netter'}`:''}</p><p class="small">${stop.summary}</p>${routeContextLinksHtml(trip,stop,p,food,hotelsData)}${nextLeg?`<button class="route-inline-info" data-detail-leg="${nextLeg.id}">Neste etappe: ${formatMinutes(nextLeg.durationMin)} →</button>`:''}</div>`);
+  };
 
   document.getElementById('window').textContent = trip.window;
   const routePlaces=trip.route.map(x=>places.find(p=>p.id===x.id)).filter(Boolean);
@@ -253,7 +287,7 @@ async function renderRoute() {
     const img=p.image;
     const leg=nextLegByRouteId.get(x.id);
     return `<article class="route-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
-      ${img?`<a class="route-thumb-wrap" href="place.html?id=${encodeURIComponent(p.id)}" aria-label="Se ${p.name}"><img class="route-thumb" src="${img.url}" alt="" loading="lazy">${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</a>`:''}
+      ${img?`<div class="route-thumb-wrap"><a class="route-thumb-link" href="place.html?id=${encodeURIComponent(p.id)}" aria-label="Se ${p.name}"><img class="route-thumb" src="${img.url}" alt="" loading="lazy"></a>${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</div>`:''}
       <div class="route-item-main">
         <div class="route-item-top">
           <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
@@ -269,6 +303,10 @@ async function renderRoute() {
   document.getElementById('route-list').addEventListener('click',e=>{
     const btn=e.target.closest('[data-leg]');
     if(btn) showLegDetail(legById.get(btn.dataset.leg));
+  });
+  detail?.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-detail-leg]');
+    if(btn) showLegDetail(legById.get(btn.dataset.detailLeg));
   });
 
   const adultTotal=transport.legs.reduce((n,l)=>n+l.fare.adultYen,0);
@@ -489,6 +527,7 @@ async function renderRoute() {
           <p class="small">${p.why}</p>
           <a href="place.html?id=${encodeURIComponent(p.id)}">Se stedet →</a>
         </div>`);
+      el.addEventListener('click',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       markerGroups.experience.push(marker);
       if(layerState.experience) marker.addTo(map);
@@ -511,6 +550,7 @@ async function renderRoute() {
           ${family?`<p class="map-food-price"><span>2 voksne + 2 barn</span><strong>${family}</strong></p>`:''}
           <a href="restaurant.html?id=${encodeURIComponent(x.id)}">Se restaurantdetaljer →</a>
         </div>`);
+      el.addEventListener('click',()=>showFoodDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.food.push(marker);
       if(layerState.food) marker.addTo(map);
@@ -542,6 +582,7 @@ async function renderRoute() {
           <p class="small">${x.logistics}</p>
           <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se overnatting →</a>
         </div>`);
+      el.addEventListener('click',()=>showHotelDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.hotel.push(marker);
       if(layerState.hotel) marker.addTo(map);
@@ -627,7 +668,7 @@ async function renderRoute() {
       const nextSummary=nextLeg?`<p class="small">Neste: ${nextLeg.to} · ${formatMinutes(nextLeg.durationMin)}</p>`:'<p class="small">Siste hovedstopp på ruten.</p>';
       const popupHtml=`<div class="map-popup map-popup-stop destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><div class="meta">Stopp ${i+1}</div><h3>${p.name}</h3><p>${x.label} · ${fmtDate(x.from)}${x.nights>0?` · ${x.nights} ${x.nights===1?'natt':'netter'}`:''}</p>${nextSummary}${routeContextLinksHtml(trip,x,p,food,hotelsData)}</div>`;
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(new maplibregl.Popup({offset:24,maxWidth:'290px'}).setHTML(popupHtml)).addTo(map);
-      el.addEventListener('click',event=>{event.stopPropagation(); if(nextLeg) showLegDetail(nextLeg);});
+      el.addEventListener('click',event=>{event.stopPropagation(); showStopDetail(x,p);});
     });
 
     trip.dayTrips.forEach(x=>{
@@ -640,9 +681,10 @@ async function renderRoute() {
       el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',p.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${p.name}</span>`;
+      el.addEventListener('click',()=>showPlaceDetail(p));
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([p.map.lng,p.map.lat])
-        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`))
+        .setPopup(new maplibregl.Popup({offset:18}).setHTML(`<div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">Dagstur fra ${base?.name||x.baseId}</div><h3>${p.name}</h3><p>${p.simple}</p><a href="place.html?id=${p.id}">Se stedet →</a></div>`))
         .addTo(map);
     });
 
@@ -680,15 +722,13 @@ async function renderPlaces() {
     const visible=places.filter(p=>destination==='all'||destinationId(trip,p)===destination);
     list.innerHTML=visible.map(p=>`
       <article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
-        <a href="place.html?id=${encodeURIComponent(p.id)}">
-          ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
-          <div class="place-list-copy">
-            <h3>${p.name}</h3>
-            <strong>${p.simple}</strong>
-            <p>${p.description}</p>
-          </div>
-          <span class="place-list-arrow" aria-hidden="true">→</span>
-        </a>
+        ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
+        <div class="place-list-copy">
+          <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
+          <strong>${p.simple}</strong>
+          <p>${p.description}</p>
+        </div>
+        <span class="place-list-arrow" aria-hidden="true">→</span>
       </article>`).join('');
   };
 
