@@ -27,9 +27,10 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 - `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.
 - `docs/data/prep.json`: forberedelser før turen og deres kobling til steder via `placeIds`. Medie-/forberedelseskoblinger skal ikke dupliseres i `places.json` eller `guide.json`.
 - `docs/data/fx.json`: live valutakilde + lagret ECB-fallback. Alle omregninger skal gå gjennom den felles `loadFx()`-funksjonen.
+- `docs/data/pages.json`: offentlig sidebudskap og forklarende tekst som ikke tilhører et konkret domene. HTML peker på feltene med `data-copy`.
 - `docs/data/sources.json`: felles kildeliste.
 
-HTML og JavaScript er visninger av disse dataene. Ikke kopier domeneinformasjon inn i en ny fil bare fordi en ny visning trenger den. `trip.json` skal referere til steder med ID og ikke duplisere navn eller koordinater som eies av `places.json`.
+HTML og JavaScript er visninger av disse dataene. Sidebudskap skal også ligge i `pages.json`; HTML skal hovedsakelig beskrive struktur. Ikke kopier domeneinformasjon inn i en ny fil bare fordi en ny visning trenger den. `trip.json` skal referere til steder med ID og ikke duplisere navn eller koordinater som eies av `places.json`.
 
 ## Innholdskontrakt
 
@@ -60,8 +61,8 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Steder, Mat og Overnatting skal bruke samme destinasjons-/basefilter basert på `trip.json`, slik at Nara arver Kyoto, Miyajima arver Hiroshima osv. Filteret støtter `?base=<routeId>` for lenking mellom sider.
 - Rutesiden skal lenke videre fra hvert stopp til relevant stoppdetalj, Steder, Mat og Overnatting. Kart-popupene skal være korte; full prisdetalj hører hjemme i panelet under kartet.
 - Mobilvisningen av Steder skal følge den kompakte ruten: smalt bilde til venstre, tekst til høyre. Stor tom medieflate over bildet er en regresjon. Ikke pakk hele kortet i en `<a>` når bildekrediteringen også inneholder lenke.
-- Rutedetaljpanelet under kartet skal vise det som faktisk ble valgt på kartet. Strekning/pris vises bare når en rutelinje eller etappe velges.
-- Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side.
+- Rutedetaljpanelet under kartet skal vise det som faktisk ble valgt på kartet. Synkroniseringen skal følge popupens `open`-hendelse. Strekning/pris vises bare når en rutelinje eller etappe velges.
+- Felles visuelle objekter gjenbruker delte renderere/CSS-klasser. Endre komponenten én gang fremfor å rette samme mønster side for side. Ikke behold eldre CSS-varianter av samme komponent som overlappende override-lag.
 - Nettsiden skal leses som én aktuell utgave, ikke som en logg over tidligere utgaver.
 - `site.json` inneholder kun versjon og publiseringsdato. Versjonen bumpes ved hver publisert endring på `main`.
 - Releases til `main` skal være atomiske. Bruk arbeidsbranch og squash-merge når en endring berører flere filer.
