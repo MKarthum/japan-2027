@@ -53,7 +53,7 @@ function nav(active='') {
     ['route.html','Rute','route'],
     ['places.html','Steder','places'],
     ['food.html','Mat','food'],
-    ['hotels.html','Hotell','hotels'],
+    ['hotels.html','Overnatting','hotels'],
     ['prep.html','Før turen','prep'],
     ['practical.html','Praktisk','practical'],
     ['budget.html','Budsjett','budget']
@@ -125,38 +125,59 @@ function priorityBadge(priority){
 }
 const relatedEntityCardHtml=({href,meta,title,subtitle,trip,subject})=>`<a class="related-card destination-themed" style="${themeStyle(destinationTheme(trip,subject))}" href="${href}"><span>${meta}</span><strong>${title}</strong><small>${subtitle}</small></a>`;
 
+function setupChoiceFilters(root,options,onChange,{allLabel='Alle'}={}) {
+  if(!root) return;
+  const all=[{value:'all',label:allLabel},...options];
+  root.innerHTML=all.map((x,i)=>`<button class="${i===0?'active':''} ${x.theme?'destination-filter':''}" ${x.theme?`style="${themeStyle(x.theme)}"`:''} data-filter-value="${x.value}">${x.label}</button>`).join('');
+  root.addEventListener('click',e=>{
+    const btn=e.target.closest('button[data-filter-value]');
+    if(!btn) return;
+    [...root.querySelectorAll('button')].forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    onChange(btn.dataset.filterValue);
+  });
+}
+
+function setupJourneyFilters(root,trip,places,subjects,onChange,{overnightOnly=false}={}) {
+  const placeById=new Map(places.map(p=>[p.id,p]));
+  const stops=trip.route.filter(stop=>{
+    if(overnightOnly && stop.nights<=0) return false;
+    return subjects.some(subject=>destinationId(trip,subject)===stop.id);
+  });
+  setupChoiceFilters(root,stops.map(stop=>({
+    value:stop.id,
+    label:placeById.get(stop.id)?.name||stop.id,
+    theme:stop.theme
+  })),onChange);
+}
+
+
 async function renderHome() {
   nav('home'); footer();
-  const [trip,places,guide,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),json('data/guide.json'),loadFx()]);
+  const [trip,places,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),loadFx()]);
   const overview=trip.overview||{};
   const placeById=new Map(places.map(p=>[p.id,p]));
-  document.getElementById('status').textContent = trip.status;
-  document.getElementById('window').textContent = trip.window;
-  document.getElementById('budget').innerHTML = dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
+
+  document.getElementById('window').textContent=trip.window;
+  document.getElementById('status').textContent=trip.status;
+  document.getElementById('budget').innerHTML=dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
+  document.getElementById('home-eyebrow').textContent=overview.hero?.eyebrow||'Japan 2027';
+  document.getElementById('home-title').textContent=overview.hero?.title||trip.title;
+  document.getElementById('home-intro').textContent=overview.hero?.intro||trip.subtitle;
 
   const heroPlace=placeById.get(overview.hero?.placeId);
   const hero=heroPlace?.image;
   if(heroPlace && hero){
-    document.getElementById('hero-photo').innerHTML = `<div class="media-fallback" aria-hidden="true">${heroPlace.name}</div><img src="${hero.url}" alt="${hero.alt||heroPlace.name}" onerror="this.remove()"><div class="photo-overlay"><span>${overview.hero?.kicker||heroPlace.simple}</span><strong>${heroPlace.name}</strong></div>${imageCreditHtml(hero)}`;
+    document.getElementById('hero-photo').innerHTML=`<div class="media-fallback" aria-hidden="true">${heroPlace.name}</div><img src="${hero.url}" alt="${hero.alt||heroPlace.name}" onerror="this.remove()">${imageCreditHtml(hero)}`;
   }
 
-  document.getElementById('route-cards').innerHTML = trip.route.filter(x=>x.nights>0).map(x=>{
-    const p=placeById.get(x.id);
-    if(!p) return '';
-    return `<article class="visual-card destination-themed" style="${themeStyle(destinationTheme(trip,x))}"><a href="place.html?id=${x.id}">${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p})}<div class="visual-card-body"><div class="meta">${x.label}</div><h3>${p.name}</h3><p>${x.summary}</p><strong>${x.nights} ${x.nights===1?'natt':'netter'} →</strong></div></a></article>`;
-  }).join('');
-
-  const featureIds=overview.familyHookPlaceIds||[];
-  document.getElementById('family-hooks').innerHTML = featureIds.map(id=>placeById.get(id)).filter(Boolean).map(p=>
-    `<article class="visual-card compact destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><a href="place.html?id=${p.id}">${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,compact:true})}<div class="visual-card-body"><h3>${p.name}</h3><p>${p.simple}</p></div></a></article>`
-  ).join('');
-
-  const previewCount=Number.isInteger(overview.bookingPreviewCount)?overview.bookingPreviewCount:3;
-  document.getElementById('booking-preview').innerHTML = guide.bookingRadar.slice(0,previewCount).map(x=>{
-    const p=placeById.get(x.placeId);
-    const link=placePrimaryLink(p);
-    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${p?.name||x.placeId}</strong><span>${x.when}</span></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
-  }).join('');
+  document.getElementById('home-reasons').innerHTML=(overview.reasons||[]).map((x,i)=>`<article class="home-reason"><span>0${i+1}</span><h3>${x.title}</h3><p>${x.text}</p></article>`).join('');
+  document.getElementById('home-plan-title').textContent=overview.plan?.title||'Planen';
+  document.getElementById('home-plan-copy').textContent=overview.plan?.text||'';
+  document.getElementById('home-route-summary').innerHTML=trip.route.map(stop=>{
+    const p=placeById.get(stop.id);
+    return `<span class="home-route-stop destination-themed" style="${themeStyle(destinationTheme(trip,stop))}">${p?.name||stop.id}${stop.nights===0?' · stopp':''}</span>`;
+  }).join('<b aria-hidden="true">→</b>');
 }
 
 async function renderRoute() {
@@ -634,12 +655,12 @@ async function renderRoute() {
 async function renderPlaces() {
   nav('places'); footer();
   const [places,trip] = await Promise.all([json('data/places.json'),json('data/trip.json')]);
-  const areas = ['Alle', ...new Set(places.map(p=>p.area))];
-  const filters = document.getElementById('filters');
-  filters.innerHTML = areas.map((a,i)=>`<button class="${i===0?'active':''} ${a==='Alle'?'':'destination-filter'}" ${a==='Alle'?'':`style="${themeStyle(destinationTheme(trip,a))}"`} data-area="${a}">${a}</button>`).join('');
-  const list = document.getElementById('places-grid');
-  const draw = (area='Alle') => {
-    list.innerHTML = places.filter(p=>area==='Alle'||p.area===area).map(p=>`
+  const filters=document.getElementById('filters');
+  const list=document.getElementById('places-grid');
+
+  const draw=(destination='all')=>{
+    const visible=places.filter(p=>destination==='all'||destinationId(trip,p)===destination);
+    list.innerHTML=visible.map(p=>`
       <article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
         <a href="place.html?id=${encodeURIComponent(p.id)}">
           ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
@@ -647,23 +668,18 @@ async function renderPlaces() {
             <h3>${p.name}</h3>
             <strong>${p.simple}</strong>
             <p>${p.description}</p>
-            ${p.acShadows?'<span class="badge">AC Shadows</span>':''}
           </div>
           <span class="place-list-arrow" aria-hidden="true">→</span>
         </a>
       </article>`).join('');
   };
-  filters.addEventListener('click',e=>{
-    if(e.target.tagName!=='BUTTON') return;
-    [...filters.children].forEach(b=>b.classList.remove('active'));
-    e.target.classList.add('active');
-    draw(e.target.dataset.area);
-  });
+
+  setupJourneyFilters(filters,trip,places,places,draw);
   draw();
 }
 async function renderPlace() {
   nav('places'); footer();
-  const [places,foodData,trip] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json')]);
+  const [places,foodData,trip,prepData] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json')]);
   const food=foodData.restaurants||[];
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id);
@@ -682,8 +698,10 @@ async function renderPlace() {
   document.getElementById('description').textContent = p.description;
   document.getElementById('why').textContent = p.why;
   document.getElementById('highlights').innerHTML = p.highlights.map(x=>`<li>${x}</li>`).join('');
-  document.getElementById('prep').innerHTML = p.prep.length ? p.prep.map(x=>`<li>${x}</li>`).join('') : '<li>Ingen særskilt forberedelse anbefalt.</li>';
-  document.getElementById('ac').innerHTML = p.acShadows ? '<span class="badge accent">Finnes / er relevant i Assassin’s Creed Shadows</span>' : '';
+  const relatedPrep=prepData.flatMap(group=>group.items.map(item=>({...item,category:group.category}))).filter(item=>item.placeIds?.includes(p.id)).slice(0,5);
+  document.getElementById('prep').innerHTML = relatedPrep.length
+    ? relatedPrep.map(item=>`<li><strong>${item.title}</strong> <span class="small">· ${item.category}</span><br>${item.action}</li>`).join('')
+    : '<li>Ingen særskilt forberedelse anbefalt.</li>';
 
   const img=p.image;
   if(img?.url){
@@ -735,9 +753,8 @@ async function renderPlace() {
 }
 async function renderPrep() {
   nav('prep'); footer();
-  const [prep,guide]=await Promise.all([json('data/prep.json'),json('data/guide.json')]);
-  document.getElementById('connections').innerHTML = guide.connections.map(x=>`<article class="connection-card"><div class="meta">${x.type}</div><h3>${x.title}</h3><p>${x.text}</p><a href="place.html?id=${x.placeId}">Se stedet →</a></article>`).join('');
-  document.getElementById('prep-grid').innerHTML = prep.map(group=>`<section class="section"><h2>${group.category}</h2><div class="grid">${group.items.map(x=>`<article class="card"><div class="meta">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong></article>`).join('')}</div></section>`).join('');
+  const prep=await json('data/prep.json');
+  document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`<article class="card prep-card"><div class="meta">${x.for}</div><h3>${x.title}</h3><p>${x.why}</p><strong>${x.action}</strong>${x.url?`<div class="button-row"><a class="button" href="${x.url}" target="_blank" rel="noopener">Les mer ↗</a></div>`:''}</article>`).join('')}</div></section>`).join('');
 }
 
 async function renderFood() {
@@ -747,7 +764,6 @@ async function renderFood() {
   const active=food.filter(x=>x.status!=='watch');
   const watch=food.filter(x=>x.status==='watch');
   const areaOrder=[...new Set(trip.route.flatMap(x=>x.theme?.areas||[]))];
-  const areas=['Alle',...areaOrder.filter(a=>active.some(x=>x.area===a))];
   const filters=document.getElementById('food-filters');
   const list=document.getElementById('food-list');
   const order={'Må prøve':0,'Sterk kandidat':1,'Valgfri':2,'Følg med':3};
@@ -781,23 +797,16 @@ async function renderFood() {
     <span class="food-index-arrow" aria-hidden="true">→</span>
   </a>`;
 
-  const draw=(area='Alle')=>{
-    const visible=active.filter(x=>area==='Alle'||x.area===area);
-    const groups=area==='Alle'?areaOrder.filter(a=>visible.some(x=>x.area===a)):[area];
+  const draw=(destination='all')=>{
+    const visible=active.filter(x=>destination==='all'||destinationId(trip,x)===destination);
+    const groups=areaOrder.filter(area=>visible.some(x=>x.area===area));
     list.innerHTML=groups.map(group=>{
       const items=visible.filter(x=>x.area===group).sort((a,b)=>(order[a.priority]??9)-(order[b.priority]??9));
       return `<section class="food-area-group destination-themed" style="${themeStyle(destinationTheme(trip,group))}"><div class="food-area-head"><h2>${group}</h2><span>${items.length} ${items.length===1?'sted':'steder'}</span></div><div class="food-index-list">${items.map(row).join('')}</div></section>`;
     }).join('');
   };
 
-  filters.innerHTML=areas.map((a,i)=>`<button class="${i===0?'active':''} ${a==='Alle'?'':'destination-filter'}" ${a==='Alle'?'':`style="${themeStyle(destinationTheme(trip,a))}"`} data-area="${a}">${a}</button>`).join('');
-  filters.addEventListener('click',e=>{
-    if(e.target.tagName!=='BUTTON') return;
-    [...filters.children].forEach(b=>b.classList.remove('active'));
-    e.target.classList.add('active');
-    draw(e.target.dataset.area);
-  });
-
+  setupJourneyFilters(filters,trip,places,active,draw);
   const destinations=active.filter(x=>x.role==='Destinasjonsmåltid').length;
   const summary=document.getElementById('food-summary');
   if(summary) summary.innerHTML=`<strong>${active.length} kuraterte kandidater</strong><span>${destinations} destinasjonsmåltider · detaljene ligger ett klikk ned</span>`;
@@ -921,39 +930,61 @@ async function renderRestaurant() {
 
 async function renderHotels() {
   nav('hotels'); footer();
-  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),loadFx()]);
+  const [data,trip,places,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),json('data/places.json'),loadFx()]);
   const hotels=data.hotels;
+  const typeById=new Map((data.accommodationTypes||[]).map(x=>[x.id,x]));
   const tierOrder={'Verdi':0,'Mellomklasse':1,'Mellomklasse+':2,'Premium':3,'Splurge':4,'Splurge-opplevelse':4};
+  let activeBase='all', activeKind='all';
+
   const price=(x)=>{
     const [lo,hi]=x.planningFamilyNightYen;
     return `<strong>${fmtJpy(lo)}–${fmtJpy(hi)}</strong><small>ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))} / natt</small>`;
   };
-  const plannedNights=(x)=>{
-    if(Number.isFinite(x.recommendedNights)) return x.recommendedNights;
-    return trip.route.find(r=>r.id===x.baseId)?.nights||1;
-  };
+  const plannedNights=(x)=>Number.isFinite(x.recommendedNights)?x.recommendedNights:(trip.route.find(r=>r.id===x.baseId)?.nights||1);
   const totalPrice=(x)=>{
-    const nights=plannedNights(x);
-    const [lo,hi]=x.planningFamilyNightYen;
+    const nights=plannedNights(x), [lo,hi]=x.planningFamilyNightYen;
     return `${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)} · ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))}`;
   };
   const card=(x)=>`<a class="hotel-index-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="hotel.html?id=${encodeURIComponent(x.id)}">
-    <div class="hotel-index-top"><span class="hotel-tier">${x.tier}</span><span class="hotel-rating">${x.rating?.score?`${x.rating.platform} ${x.rating.score.toFixed(1)}`:''}</span></div>
+    <div class="hotel-index-top"><div><span class="hotel-tier">${x.tier}</span><span class="stay-kind">${typeById.get(x.kind)?.label||x.kind}</span></div><span class="hotel-rating">${x.rating?.score?`${x.rating.platform} ${x.rating.score.toFixed(1)}`:''}</span></div>
     <h3>${x.name}</h3>
     <p class="hotel-family">${x.familyOption}</p>
     <div class="hotel-index-price"><span>2 voksne + 2 barn</span>${price(x)}</div>
     <p class="hotel-logistics">${x.logistics}</p>
     <div class="hotel-total"><span>${plannedNights(x)} ${plannedNights(x)===1?'natt':'netter'} i planen</span><strong>${totalPrice(x)}</strong></div>
   </a>`;
-  const root=document.getElementById('hotel-bases');
-  root.innerHTML=data.bases.map(base=>{
-    const items=hotels.filter(x=>x.baseId===base.baseId).sort((a,b)=>(tierOrder[a.tier]??9)-(tierOrder[b.tier]??9));
-    return `<section class="hotel-base destination-themed" style="${themeStyle(destinationTheme(trip,base.baseId))}">
-      <div class="section-head hotel-base-head"><div><div class="eyebrow">${base.label}</div><h2>${base.strategy}</h2></div><p>${base.why}</p></div>
-      <div class="hotel-grid">${items.map(card).join('')}</div>
-    </section>`;
-  }).join('');
+
+  const draw=()=>{
+    const root=document.getElementById('hotel-bases');
+    root.innerHTML=data.bases.filter(base=>activeBase==='all'||base.baseId===activeBase).map(base=>{
+      const items=hotels.filter(x=>x.baseId===base.baseId && (activeKind==='all'||x.kind===activeKind)).sort((a,b)=>(tierOrder[a.tier]??9)-(tierOrder[b.tier]??9));
+      if(!items.length) return '';
+      return `<section class="hotel-base destination-themed" style="${themeStyle(destinationTheme(trip,base.baseId))}">
+        <div class="section-head hotel-base-head"><div><div class="eyebrow">${base.label}</div><h2>${base.strategy}</h2></div><p>${base.why}</p></div>
+        <div class="hotel-grid">${items.map(card).join('')}</div>
+      </section>`;
+    }).join('');
+  };
+
+  setupJourneyFilters(document.getElementById('stay-base-filters'),trip,places,hotels,value=>{activeBase=value;draw();},{overnightOnly:true});
+  const availableKinds=(data.accommodationTypes||[]).filter(t=>hotels.some(h=>h.kind===t.id)).map(t=>({value:t.id,label:t.label}));
+  setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();});
+
+  document.getElementById('stay-types').innerHTML=(data.accommodationTypes||[]).map(t=>`<article class="stay-type-card"><span>${hotels.filter(h=>h.kind===t.id).length||'—'} ${hotels.some(h=>h.kind===t.id)?'kandidater':'sammenligningsspor'}</span><h3>${t.label}</h3><p>${t.description}</p>${t.source?`<a href="${t.source}" target="_blank" rel="noopener">Regelgrunnlag ↗</a>`:''}</article>`).join('');
+  document.getElementById('stay-party-note').textContent=data.partyBasis||'';
+
+  const cheapestByBase=trip.route.filter(r=>r.nights>0).map(stop=>{
+    const candidates=hotels.filter(h=>h.baseId===stop.id);
+    return candidates.sort((a,b)=>((a.planningFamilyNightYen[0]+a.planningFamilyNightYen[1])/2)-((b.planningFamilyNightYen[0]+b.planningFamilyNightYen[1])/2))[0];
+  }).filter(Boolean);
+  const low=cheapestByBase.reduce((sum,h)=>sum+h.planningFamilyNightYen[0]*plannedNights(h),0);
+  const high=cheapestByBase.reduce((sum,h)=>sum+h.planningFamilyNightYen[1]*plannedNights(h),0);
+  document.getElementById('stay-cost-summary').innerHTML=`<span>Prisgrep med rimeligste listede kandidat per base</span><strong>${fmtJpy(low)}–${fmtJpy(high)} · ca. ${fmtNok(nokFromJpy(low,fx))}–${fmtNok(nokFromJpy(high,fx))}</strong><small>Planestimat for hele oppholdet; ikke et pristilbud.</small>`;
+
+  document.getElementById('stay-alternatives').innerHTML=(data.alternativeExamples||[]).map(x=>`<a class="stay-alt-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="${x.url}" target="_blank" rel="noopener"><span>${typeById.get(x.kind)?.label||x.kind}</span><h3>${x.name}</h3><p>${x.description}</p><strong>Offisiell side ↗</strong></a>`).join('');
+
   document.getElementById('hotel-price-note').textContent=`${data.priceNote} NOK-omregningen bruker ${fxStatusText(fx).toLowerCase()} fra ${fmtLongDate(fx.asOf)}.`;
+  draw();
 }
 
 async function renderHotel() {
@@ -973,7 +1004,8 @@ async function renderHotel() {
   const main=document.querySelector('main');
   main?.setAttribute('style',themeStyle(destinationTheme(trip,x.baseId)));
   main?.classList.add('destination-themed');
-  document.getElementById('hotel-area').textContent=`${base?.label||x.area} · ${x.tier}`;
+  const kindLabel=(data.accommodationTypes||[]).find(t=>t.id===x.kind)?.label||x.kind;
+  document.getElementById('hotel-area').textContent=`${base?.label||x.area} · ${kindLabel} · ${x.tier}`;
   document.getElementById('hotel-name').textContent=x.name;
   document.getElementById('hotel-family').textContent=x.familyOption;
   document.getElementById('hotel-why').textContent=x.why;
