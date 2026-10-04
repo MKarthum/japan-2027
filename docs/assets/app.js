@@ -316,8 +316,15 @@ async function renderFlights() {
   await applyPageCopy('flights');
   nav('flights'); footer();
   const [data,trip]=await Promise.all([json('data/flights.json'),json('data/trip.json')]);
-  const dateLabel=(iso)=>new Intl.DateTimeFormat('nb-NO',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(`${iso}T12:00:00Z`));
+  const dateLabel=(iso)=>new Intl.DateTimeFormat('nb-NO',{weekday:'short',day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(`${iso}T12:00:00Z`));
   const checkedLabel=(iso)=>fmtLongDate(iso);
+  const shiftDate=(iso,days)=>{ const d=new Date(`${iso}T12:00:00Z`); d.setUTCDate(d.getUTCDate()+days); return d.toISOString().slice(0,10); };
+  const baselineDepart=trip.route?.[0]?.from;
+  const baselineReturn=trip.route?.[trip.route.length-1]?.to;
+  const baselineNights=Math.round((Date.parse(baselineReturn)-Date.parse(baselineDepart))/86400000);
+  const datePairs=Array.from({length:data.planningWindow.flexDays*2+1},(_,i)=>{ const shift=i-data.planningWindow.flexDays; return {shift,depart:shiftDate(baselineDepart,shift),return:shiftDate(baselineReturn,shift),label:shift===0?'Baseline':`${Math.abs(shift)} ${Math.abs(shift)===1?'dag':'dager'} ${shift<0?'tidligere':'senere'}`}; });
+  const weeksUntil=Math.max(0,(Date.parse(baselineDepart)-Date.parse(data.asOf))/604800000);
+  const bookingTiming=`Baseline er ca. ${Math.round(weeksUntil)} uker unna. KAYAKs historikk peker mot rundt ${data.bookingSignals.tokyo.bestWeeksBefore} uker før Oslo–Tokyo og ${data.bookingSignals.osaka.bestWeeksBefore} uker før Oslo–Kansai som gunstige nivåer sammenlignet med siste liten. Det gjør dette til en naturlig periode for aktiv prissjekk.`;
   const flyBudget=(trip.budget?.items||[]).find(x=>x.label==='Fly')?.rangeNok;
   const external=(url,label,primary=false)=>`<a class="button${primary?' primary':''}" href="${url}" target="_blank" rel="noopener">${label} ↗</a>`;
 
@@ -328,12 +335,12 @@ async function renderFlights() {
       <h2>Pris fly før resten av datoene låses</h2>
       <p>${data.planningWindow.summary}</p>
       <div class="flight-decision-stats">
-        <div><span>Baseline</span><strong>${dateLabel(data.planningWindow.baselineDepart)} – ${dateLabel(data.planningWindow.baselineReturn)}</strong></div>
+        <div><span>Baseline</span><strong>${dateLabel(baselineDepart)} – ${dateLabel(baselineReturn)}</strong></div>
         <div><span>Fleks</span><strong>±${data.planningWindow.flexDays} dager</strong></div>
         <div><span>Flybudsjett</span><strong>${Array.isArray(flyBudget)?`${fmtNok(flyBudget[0])}–${fmtNok(flyBudget[1])}`:'Planramme'}</strong></div>
       </div>
     </div>
-    <aside><strong>Akkurat nå</strong><p>${data.planningWindow.bookingTiming}</p><a href="#flight-searches-anchor">Gå til søkene ↓</a></aside>`;
+    <aside><strong>Timing</strong><p>${bookingTiming}</p><a href="#flight-searches-anchor">Gå til søkene ↓</a></aside>`;
 
   document.getElementById('flight-patterns').innerHTML=data.itineraryPatterns.map(x=>`
     <article class="flight-pattern-card ${x.status==='Hovedspor'?'preferred':''}">
@@ -346,7 +353,7 @@ async function renderFlights() {
       ${x.evidenceUrl?external(x.evidenceUrl,'Se publisert eksempel'):''}
     </article>`).join('');
 
-  document.getElementById('flight-date-pairs').innerHTML=data.datePairs.map(x=>`
+  document.getElementById('flight-date-pairs').innerHTML=datePairs.map(x=>`
     <div class="flight-date-pair ${x.shift===0?'baseline':''}">
       <span>${x.label}</span>
       <strong>${dateLabel(x.depart)}</strong>
