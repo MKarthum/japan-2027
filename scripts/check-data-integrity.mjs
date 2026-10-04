@@ -89,6 +89,11 @@ for(const [page,keys] of Object.entries(requiredPageCopy)){
   else for(const key of keys) if(typeof pages[page][key]!=='string'||!pages[page][key].trim()) errors.push(`pages.json: ${page}.${key} mangler`);
 }
 
+if (!Number.isInteger(trip.planningParty?.adults) || trip.planningParty.adults < 1 ||
+    !Number.isInteger(trip.planningParty?.children) || trip.planningParty.children < 0) {
+  errors.push('trip.json: planningParty må angi gyldig antall voksne/barn');
+}
+
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
 const routeIds = new Set(trip.route.map(x => x.id));
@@ -189,7 +194,9 @@ for (let i=0;i<transport.legs.length;i++) {
   if (!from || !to || leg.fromRouteId!==from.id || leg.toRouteId!==to.id) {
     errors.push(`transport.json: etappe ${leg.id} følger ikke hovedrutens rekkefølge`);
   }
-  if (leg.fare?.family2a2cYen !== leg.fare?.adultYen*2 + leg.fare?.childYen*2) errors.push(`transport.json: familiepris stemmer ikke for ${leg.id}`);
+  const expectedPartyFare=leg.fare?.adultYen*trip.planningParty.adults + leg.fare?.childYen*trip.planningParty.children;
+  if (leg.fare?.planningPartyYen !== expectedPartyFare) errors.push(`transport.json: planlagt reisefølge-pris stemmer ikke for ${leg.id}`);
+  if ('family2a2cYen' in (leg.fare||{})) errors.push(`transport.json: ${leg.id} bruker gammel party-spesifikk fare-key`);
   const elapsed=(leg.stations||[]).map(s=>s.elapsedMin);
   if (elapsed.some((n,j)=>!Number.isFinite(n)||(j>0&&n<elapsed[j-1]))) errors.push(`transport.json: stasjonstidene er ugyldige for ${leg.id}`);
 }
