@@ -264,12 +264,13 @@ async function renderHome() {
   await applyPageCopy('home');
   nav('home'); footer();
   const [trip,places,fx] = await Promise.all([json('data/trip.json'),json('data/places.json'),loadFx()]);
+  renderPricePartySelector(trip);
   const overview=trip.overview||{};
   const placeById=new Map(places.map(p=>[p.id,p]));
 
   document.getElementById('window').textContent=trip.window;
   document.getElementById('status').textContent=trip.status;
-  document.getElementById('budget').innerHTML=dualMoneyHtml(fmtNok(trip.budget.targetNok),fmtJpy(jpyFromNok(trip.budget.targetNok,fx)));
+  document.getElementById('budget').innerHTML=dualMoneyHtml(fmtNok(trip.budget.targetNok*partyMultiplier(trip)),fmtJpy(jpyFromNok(trip.budget.targetNok*partyMultiplier(trip),fx)));
   document.getElementById('home-eyebrow').textContent=overview.hero?.eyebrow||'Japan 2027';
   document.getElementById('home-title').textContent=overview.hero?.title||trip.title;
   document.getElementById('home-intro').textContent=overview.hero?.intro||trip.subtitle;
@@ -302,6 +303,9 @@ async function renderRoute() {
     loadFx()
   ]);
   const food=foodData.restaurants||[];
+  renderPricePartySelector(trip);
+
+  const mapSelectionPopupHtml=(meta,title,subject=null)=>`<div class="map-popup map-popup-selection ${subject?'destination-themed':''}" ${subject?`style="${themeStyle(destinationTheme(trip,subject))}"`:''}><div class="meta">${meta}</div><h3>${title}</h3><a href="#route-detail">Detaljer under kartet ↓</a></div>`;
 
   const formatMinutes = (mins) => {
     if (mins < 60) return `${mins} min`;
@@ -315,7 +319,7 @@ async function renderRoute() {
     <div class="fare-grid">
       <div><span>Voksen</span><strong>${dualFromJpy(leg.fare.adultYen,fx)}</strong></div>
       <div><span>Barn</span><strong>${dualFromJpy(leg.fare.childYen,fx)}</strong></div>
-      <div class="family"><span>${planningPartyLabel(trip)}</span><strong>${dualFromJpy(leg.fare.standardFamilyYen,fx)}</strong></div>
+      <div class="family"><span>${planningPartyLabel(trip)}</span><strong>${dualFromJpy(scalePartyYen(leg.fare.standardFamilyYen,trip),fx)}</strong></div>
     </div>`;
 
   const legHtml=(leg,{compact=false}={}) => `
@@ -351,7 +355,7 @@ async function renderRoute() {
   };
   const showPlaceDetail=(p)=>{
     if(!p) return;
-    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3><p><strong>${p.simple}</strong></p><p class="small">${p.why}</p>${contextualLinksFor(p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet')}</div>`);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3><p><strong>${p.simple}</strong></p><p class="small">${p.why}</p>${placePriceSummaryHtml(p,trip,fx)}${contextualLinksFor(p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet')}</div>`);
   };
   const showFoodDetail=(x)=>{
     if(!x) return;
@@ -391,7 +395,7 @@ async function renderRoute() {
         <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
         <div class="route-item-copy"><span>${x.label}</span><p>${x.summary}</p></div>
         ${routeContextLinksHtml(trip,x,p,food,hotelsData)}
-        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.standardFamilyYen,fx)} for ${planningPartyShort(trip)}</button>`:''}
+        ${leg?`<button class="route-inline-info" data-leg="${leg.id}">Neste etappe: ${formatMinutes(leg.durationMin)} · ${dualFromJpy(scalePartyYen(leg.fare.standardFamilyYen,trip),fx)} for ${planningPartyShort(trip)}</button>`:''}
       </div>
     </article>`;
   }).join('');
@@ -406,7 +410,7 @@ async function renderRoute() {
 
   const adultTotal=transport.legs.reduce((n,l)=>n+l.fare.adultYen,0);
   const childTotal=transport.legs.reduce((n,l)=>n+l.fare.childYen,0);
-  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.standardFamilyYen,0);
+  const familyTotal=transport.legs.reduce((n,l)=>n+l.fare.standardFamilyYen,0)*partyMultiplier(trip);
   const summary=document.getElementById('map-price-summary');
   if(summary){
     summary.innerHTML=`<span>Etappene på kartet</span><strong>${dualFromJpy(familyTotal,fx)} for ${planningPartyShort(trip)}</strong><small>Voksen én vei summert: ${dualFromJpy(adultTotal,fx)} · Barn: ${dualFromJpy(childTotal,fx)} · ekskl. lokaltransport/dagsturer</small>`;
@@ -509,7 +513,7 @@ async function renderRoute() {
     showLegDetail(leg);
     new maplibregl.Popup({offset:10,maxWidth:'280px'})
       .setLngLat(lngLat)
-      .setHTML(`<div class="map-popup map-popup-compact destination-themed" style="${themeStyle(destinationTheme(trip,leg.toRouteId))}"><div class="meta">Reiseetappe</div><h3>${leg.from} → ${leg.to}</h3><p>${leg.service} · ca. <strong>${formatMinutes(leg.durationMin)}</strong></p><p class="small">${dualFromJpy(leg.fare.standardFamilyYen,fx)} for ${planningPartyShort(trip)}</p><a href="#route-detail">Detaljer under kartet ↓</a></div>`)
+      .setHTML(mapSelectionPopupHtml('Reiseetappe',`${leg.from} → ${leg.to}`,leg.toRouteId))
       .addTo(map);
   };
 
@@ -586,8 +590,7 @@ async function renderRoute() {
       el.setAttribute('aria-label',`${s.name} stasjon`);
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
-      const popup=new maplibregl.Popup({offset:12,maxWidth:'300px'}).setHTML(`
-        <div class="map-popup"><div class="meta">Utvalgt knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`);
+      const popup=new maplibregl.Popup({offset:12,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml('Knutepunkt',s.name));
       popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       markerGroups.stations.push(marker);
@@ -603,7 +606,7 @@ async function renderRoute() {
 
   const familyFoodPrice=(x)=>{
     if(!Array.isArray(x.standardFamilyEstimateYen)) return '';
-    const [lo,hi]=x.standardFamilyEstimateYen;
+    const [lo,hi]=scalePartyRange(x.standardFamilyEstimateYen,trip);
     return lo===hi ? dualFromJpy(lo,fx) : `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
   };
 
@@ -615,14 +618,7 @@ async function renderRoute() {
       el.style.setProperty('--area-color',destinationColor(trip,p));
       el.textContent=categoryMeta.experience.symbol;
       el.setAttribute('aria-label',p.name);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'310px'}).setHTML(`
-        <div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
-          <div class="meta">${p.type} · ${p.area}</div>
-          <h3>${p.name}</h3>
-          <p><strong>${p.simple}</strong></p>
-          <p class="small">${p.why}</p>
-          <a href="place.html?id=${encodeURIComponent(p.id)}">Se stedet →</a>
-        </div>`);
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${p.type} · ${p.area}`,p.name,p));
       popup.on('open',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       markerGroups.experience.push(marker);
@@ -637,15 +633,7 @@ async function renderRoute() {
       el.textContent=categoryMeta.food.symbol;
       el.setAttribute('aria-label',x.name);
       const family=familyFoodPrice(x);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'330px'}).setHTML(`
-        <div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
-          <div class="meta">${x.role} · ${x.area}</div>
-          <h3>${x.name}</h3>
-          <p><strong>${x.dish}</strong> · ${x.priority}</p>
-          <p class="small">${x.why}</p>
-          ${family?`<p class="map-food-price"><span>${planningPartyLabel(trip)}</span><strong>${family}</strong></p>`:''}
-          <a href="restaurant.html?id=${encodeURIComponent(x.id)}">Se restaurantdetaljer →</a>
-        </div>`);
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.role} · ${x.area}`,x.name,x));
       popup.on('open',()=>showFoodDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.food.push(marker);
@@ -655,7 +643,7 @@ async function renderRoute() {
 
 
   const hotelFamilyPrice=(x)=>{
-    const [lo,hi]=x.standardFamilyNightYen||[];
+    const [lo,hi]=scalePartyRange(x.standardFamilyNightYen,trip)||[];
     if(!Number.isFinite(lo)||!Number.isFinite(hi)) return '';
     return `${fmtJpy(lo)}–${fmtJpy(hi)} · ca. ${fmtNok(nokFromJpy(lo,fx))}–${fmtNok(nokFromJpy(hi,fx))}`;
   };
@@ -669,15 +657,7 @@ async function renderRoute() {
       el.textContent=categoryMeta.hotel.symbol;
       el.setAttribute('aria-label',x.name);
       const price=hotelFamilyPrice(x);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'340px'}).setHTML(`
-        <div class="map-popup destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}">
-          <div class="meta">${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}</div>
-          <h3>${x.name}</h3>
-          <p><strong>${x.familyOption}</strong></p>
-          ${price?`<p class="map-hotel-price"><span>Familieestimat per natt</span><strong>${price}</strong></p>`:''}
-          <p class="small">${x.logistics}</p>
-          <a href="hotel.html?id=${encodeURIComponent(x.id)}">Se overnatting →</a>
-        </div>`);
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}`,x.name,x.baseId));
       popup.on('open',()=>showHotelDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.hotel.push(marker);
@@ -742,7 +722,7 @@ async function renderRoute() {
       legend.innerHTML=[...journeyMap.values()].map(s=>{
         const leg=legById.get(s.journeyId);
         const color=destinationColor(trip,leg?.toRouteId);
-        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(leg.fare.standardFamilyYen,fx)} (${planningPartyShort(trip)})`:s.modes.join(' + ')}</small></span></button>`;
+        return `<button class="route-legend-item destination-themed" style="${themeStyle({color})}" type="button" data-leg="${s.journeyId}"><i></i><span><strong>${s.name}</strong><small>${leg?`ca. ${formatMinutes(leg.durationMin)} · ${dualFromJpy(scalePartyYen(leg.fare.standardFamilyYen,trip),fx)} (${planningPartyShort(trip)})`:s.modes.join(' + ')}</small></span></button>`;
       }).join('');
       legend.addEventListener('click',e=>{
         const btn=e.target.closest('[data-leg]');
