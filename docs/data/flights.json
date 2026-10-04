@@ -11,7 +11,7 @@
     "Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. En billigere tur/retur til samme by kan tape gevinsten hvis den krever ekstra hurtigtog, mulig hotellnatt og en halv reisedag tilbake.",
     "Pris begge retninger som åpen kjeve: Tokyo inn / Osaka hjem og Osaka inn / Tokyo hjem. Ruten i Japan kan snus hvis flyforskjellen er stor nok.",
     "Søk først samme 14-netters reiselengde på alle datoer ±3 dager. Deretter testes én dag kortere/lengre hvis prisbildet har tydelige hopp.",
-    "Foretrekk én gjennomgående billett med beskyttede forbindelser. Separate billetter eller selv-transfer er et eget risikonivå og skal merkes tydelig.",
+    "Foretrekk én gjennomgående billett med beskyttede forbindelser. Separate billetter – særlig der man selv må hente bagasje og sjekke inn på nytt – er et eget risikonivå og skal merkes tydelig.",
     "Når prisforskjellen er liten, er bestilling direkte hos flyselskapet normalt enklere ved endringer enn en ukjent tredjepart."
   ],
   "dateSignals": [
@@ -132,7 +132,7 @@
     {
       "id": "finnair",
       "airline": "Finnair",
-      "hub": "HEL",
+      "hub": "Helsinki (HEL)",
       "fit": "Svært sterk for begge ender",
       "tokyo": "HND og NRT",
       "osaka": "KIX",
@@ -143,7 +143,7 @@
     {
       "id": "turkish",
       "airline": "Turkish Airlines",
-      "hub": "IST",
+      "hub": "Istanbul (IST)",
       "fit": "Svært sterk for åpen kjeve",
       "tokyo": "HND og NRT",
       "osaka": "KIX",
@@ -154,7 +154,7 @@
     {
       "id": "lufthansa",
       "airline": "Lufthansa",
-      "hub": "FRA / MUC",
+      "hub": "Frankfurt / München (FRA / MUC)",
       "fit": "Sterk sammenligning",
       "tokyo": "HND",
       "osaka": "KIX",
@@ -165,7 +165,7 @@
     {
       "id": "klm-air-france",
       "airline": "KLM / Air France",
-      "hub": "AMS / CDG",
+      "hub": "Amsterdam / Paris (AMS / CDG)",
       "fit": "God europeisk reserve",
       "tokyo": "Tokyo",
       "osaka": "KIX",
@@ -176,7 +176,7 @@
     {
       "id": "qatar",
       "airline": "Qatar Airways",
-      "hub": "DOH",
+      "hub": "Doha (DOH)",
       "fit": "Pris og kvalitet må sammenlignes",
       "tokyo": "HND og NRT",
       "osaka": "KIX",
@@ -187,7 +187,7 @@
     {
       "id": "emirates",
       "airline": "Emirates",
-      "hub": "DXB",
+      "hub": "Dubai (DXB)",
       "fit": "Pris og kvalitet må sammenlignes",
       "tokyo": "HND / Tokyo",
       "osaka": "KIX",
@@ -198,7 +198,7 @@
     {
       "id": "thai",
       "airline": "Thai Airways",
-      "hub": "BKK",
+      "hub": "Bangkok (BKK)",
       "fit": "Lengre, men reell prisjoker",
       "tokyo": "HND og NRT",
       "osaka": "KIX",
@@ -209,7 +209,7 @@
     {
       "id": "sas",
       "airline": "SAS",
-      "hub": "CPH / ARN",
+      "hub": "København / Stockholm (CPH / ARN)",
       "fit": "Sterk på Tokyo-siden",
       "tokyo": "HND",
       "osaka": "Ikke tilsvarende enkel OSL–KIX-rute i den nåværende FlightConnections-listen",
@@ -270,7 +270,7 @@
       "dates": "23. mars 2027",
       "priceNok": 7078,
       "basis": "énveis per reisende, 1 stopp via Bangkok, ca. 33 t 50 min",
-      "use": "Viser at datoen har søkbar inventory og at en senere avreise kan gi prisalternativer; ikke direkte sammenlignbar med en gjennomgående åpen-kjeve-billett.",
+      "use": "Viser at datoen har søkbare billetter og at en senere avreise kan gi prisalternativer; ikke direkte sammenlignbar med en gjennomgående åpen-kjeve-billett.",
       "checked": "2026-10-04",
       "source": "https://www.momondo.no/flybilletter/oslo-airport-gardermoen-osl/osaka-prefektur"
     }
@@ -319,7 +319,7 @@
       "dates": "12. mars 2027 finnes som publisert avreise på en Asia/Japan-reise",
       "priceNok": null,
       "basis": "plasser på forespørsel i den publiserte bookingvisningen",
-      "signal": "Ikke samme reise, men nyttig som charter-/temareise-watchlist for 2027-inventory fra Oslo.",
+      "signal": "Ikke samme reise, men nyttig som charter-/temareise-watchlist for publiserte 2027-reiser fra Oslo.",
       "compareAs": "Temareise, ikke fly-only.",
       "url": "https://tema.apollo.no/booking/?btype=B&city=OSL&lang=no&tour_date_id=9236&tour_id=423",
       "checked": "2026-10-04"
@@ -350,7 +350,7 @@
       "id": "google-openjaw-current",
       "priority": "Start her",
       "title": "Google Flights · Tokyo inn / Osaka hjem",
-      "instruction": "Velg Multi-city: OSL → Tokyo 20.03.2027 og KIX → OSL 03.04.2027. Sett 2 voksne + 2 barn, Economy. Gjenta så hele 14-netters vinduet ±3 dager.",
+      "instruction": "Velg Flere byer / Multi-city: OSL → Tokyo 20.03.2027 og KIX → OSL 03.04.2027. Sett 2 voksne + 2 barn, Economy. Gjenta så hele 14-netters vinduet ±3 dager.",
       "url": "https://www.google.com/travel/flights?hl=no&curr=NOK",
       "captureKey": "open-jaw-east-west"
     },
@@ -358,7 +358,7 @@
       "id": "google-openjaw-reverse",
       "priority": "Obligatorisk sammenligning",
       "title": "Google Flights · Osaka inn / Tokyo hjem",
-      "instruction": "Velg Multi-city: OSL → KIX og Tokyo → OSL med samme dato-par. Sammenlign totalpris og reisetid mot hovedsporet.",
+      "instruction": "Velg Flere byer / Multi-city: OSL → KIX og Tokyo → OSL med samme dato-par. Sammenlign totalpris og reisetid mot hovedsporet.",
       "url": "https://www.google.com/travel/flights?hl=no&curr=NOK",
       "captureKey": "open-jaw-west-east"
     },
