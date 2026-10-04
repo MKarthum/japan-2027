@@ -702,7 +702,7 @@ async function renderRoute() {
   });
 
   detail.hidden=false;
-  detail.innerHTML=`<div class="route-detail-placeholder"><strong>Trykk på en rutelinje, et rutenummer eller en etappe under kartet.</strong><span>Da vises estimert reisetid og pris for voksen, barn og 2 voksne + 2 barn.</span><small>${transport.childNote}</small></div>`;
+  detail.innerHTML=`<div class="route-detail-placeholder"><strong>Velg noe på kartet.</strong><span>Stopp, opplevelser, mat, overnatting og knutepunkter viser valgt innhold her. Velger du en rutelinje eller etappe, vises reisetid og pris.</span><small>${transport.childNote}</small></div>`;
 
   let firstMapErrorShown=false;
   map.on('error',(event)=>{
