@@ -365,16 +365,19 @@ for (const group of prep) {
     if (['Film','TV og serier'].includes(group.category)) {
       const imdb=(item.links||[]).find(x=>x.kind==='imdb');
       const stream=(item.links||[]).find(x=>x.kind==='stream');
-      if (!item.streamingChecked || !imdb || !stream) {
-        errors.push(`prep.json: ${item.id} mangler IMDb, strømmetjeneste eller kontrolldato`);
+      const archiveReference=(item.links||[]).find(x=>x.kind==='reference');
+      if (!item.streamingChecked || !stream || (!imdb && !(item.archive===true && archiveReference))) {
+        errors.push(`prep.json: ${item.id} mangler IMDb/arkivreferanse, strømmetjeneste eller kontrolldato`);
       }
+      if (item.archive!=null && item.archive!==true) errors.push(`prep.json: ${item.id} har ugyldig archive-flagg`);
       if (stream) {
         const canonicalStreamUrl = {
           'Netflix': /^https:\/\/www\.netflix\.com\/title\/\d+$/,
           'Disney+': /^https:\/\/www\.disneyplus\.com\/browse\/entity-[0-9a-f-]+$/i,
           'Apple TV': /^https:\/\/tv\.apple\.com\/no\/(?:movie|show)\/[^/?#]+\/umc\.cmc\.[A-Za-z0-9]+$/,
           'Filmoteket (nett)': /^https:\/\/filmoteket\.no\/film\/\d+$/,
-          'NRK TV': /^https:\/\/tv\.nrk\.no\/serie\/[a-z0-9-]+\/sesong\/\d+$/i
+          'NRK TV': /^https:\/\/tv\.nrk\.no\/serie\/[a-z0-9-]+(?:\/sesong\/\d+)?$/i,
+          'Telia Play': /^https:\/\/www\.teliaplay\.no\/series\/s-[A-Za-z0-9-]+$/
         };
         const pattern=canonicalStreamUrl[stream.label];
         if (!pattern) errors.push(`prep.json: ${item.id} bruker ukjent strømmetjenesteformat ${stream.label}`);
