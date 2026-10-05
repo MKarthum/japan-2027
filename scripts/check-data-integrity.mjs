@@ -373,7 +373,8 @@ for (const group of prep) {
           'Netflix': /^https:\/\/www\.netflix\.com\/title\/\d+$/,
           'Disney+': /^https:\/\/www\.disneyplus\.com\/browse\/entity-[0-9a-f-]+$/i,
           'Apple TV': /^https:\/\/tv\.apple\.com\/no\/(?:movie|show)\/[^/?#]+\/umc\.cmc\.[A-Za-z0-9]+$/,
-          'Filmoteket (nett)': /^https:\/\/filmoteket\.no\/film\/\d+$/
+          'Filmoteket (nett)': /^https:\/\/filmoteket\.no\/film\/\d+$/,
+          'NRK TV': /^https:\/\/tv\.nrk\.no\/serie\/[a-z0-9-]+\/sesong\/\d+$/i
         };
         const pattern=canonicalStreamUrl[stream.label];
         if (!pattern) errors.push(`prep.json: ${item.id} bruker ukjent strømmetjenesteformat ${stream.label}`);
