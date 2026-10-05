@@ -244,6 +244,34 @@
         }
       },
       {
+        "id": "sivilisasjonane-som-fall-japan",
+        "title": "Sivilisasjonane som fall: Japan",
+        "why": "Dokumentarepisoden tar for seg Japan på 1850-tallet, da amerikanske krigsskip presset fram en åpning etter en lang periode med sterkt regulert kontakt med omverdenen. Den viser hvordan shogunatet, samuraiene og reformkreftene reagerte, og fyller et viktig historisk mellomrom mellom Shōgun og det moderne Japan.",
+        "action": "Se episoden etter Shōgun. Bruk den som bro fra Tokugawa-perioden til Meiji-moderniseringen: Hva måtte endres da Japan møtte de industrialiserte vestmaktene?",
+        "placeIds": [
+          "tokyo",
+          "kyoto"
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt38983231/"
+          },
+          {
+            "label": "NRK TV",
+            "kind": "stream",
+            "url": "https://tv.nrk.no/serie/sivilisasjonane-som-fall/sesong/1"
+          }
+        ],
+        "streamingChecked": "2026-10-05",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne",
+          "note": "Telia Play oppgir 9+."
+        }
+      },
+      {
         "id": "pokemon-concierge",
         "title": "Pokémon Concierge",
         "why": "Kort stop-motion-serie som viser en roligere side av Pokémon-universet og gir en annen inngang til japansk popkultur enn spill og storfilmer.",
