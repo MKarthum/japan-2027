@@ -272,6 +272,89 @@
         }
       },
       {
+        "id": "nye-billedbrev-japan",
+        "title": "Nye billedbrev: Japan med Erik Diesen",
+        "why": "Tre norske reiseprogrammer fra 1987–88 viser Tokyo, Shinkansen til Kyoto, kirsebærblomstring, teseremoni, kabuki og Takarazuka. Verdien er først og fremst som tidsbilde: hvordan Japan ble presentert for norske TV-seere for nesten førti år siden.",
+        "action": "Se episode 2–4 som et historisk reisetidsbilde, ikke som aktuell reiseinformasjon. Sammenlign Tokyo og Kyoto den gangen med det vi forventer å møte på turen.",
+        "placeIds": [
+          "tokyo",
+          "kyoto"
+        ],
+        "archive": true,
+        "links": [
+          {
+            "label": "Apple TV",
+            "kind": "reference",
+            "url": "https://tv.apple.com/no/show/nye-billedbrev/umc.cmc.4ht1v53tvlseezcegzfhvlzma"
+          },
+          {
+            "label": "Telia Play",
+            "kind": "stream",
+            "url": "https://www.teliaplay.no/series/s-491abd608e1db5da"
+          }
+        ],
+        "streamingChecked": "2026-10-05",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien",
+          "note": "Telia Play oppgir 0+. Innholdet bør leses som et tidsbilde fra 1980-tallet."
+        }
+      },
+      {
+        "id": "folk-felefrelst",
+        "title": "Folk: Felefrelst",
+        "why": "Norsk dokumentar om hardingfelemiljøet i Tokyo og to spelemenns reise fra Vestlandet til Japan. Den viser en uventet kulturforbindelse mellom Norge og Japan og gir Tokyo en helt annen inngang enn teknologi, anime og storbyliv.",
+        "action": "Se den som et kort avbrekk mellom de større seriene. Legg merke til hvordan en svært norsk tradisjon blir tatt imot og videreført i Japan.",
+        "placeIds": [
+          "tokyo"
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt15124480/"
+          },
+          {
+            "label": "NRK TV",
+            "kind": "stream",
+            "url": "https://tv.nrk.no/serie/folk"
+          }
+        ],
+        "streamingChecked": "2026-10-05",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
+      },
+      {
+        "id": "joanna-lumley-japan",
+        "title": "Joanna Lumley i Japan",
+        "why": "Tredelt reiseserie som følger Japan fra Hokkaido i nord til Okinawa i sør, med blant annet Tokyo, Kyoto, Shikoku, Kyushu og Nagasaki. Den gir et bredere geografisk og kulturelt bilde av landet enn hovedruten alene.",
+        "action": "Se gjerne hele serien, men episode 2 er mest direkte relevant for planen med Tokyo og Kyoto. Bruk serien til å legge merke til hvor forskjellig Japan kan være fra region til region.",
+        "placeIds": [
+          "tokyo",
+          "kyoto"
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt6028632/"
+          },
+          {
+            "label": "Telia Play",
+            "kind": "stream",
+            "url": "https://www.teliaplay.no/series/s-bbcnordic-198583712"
+          }
+        ],
+        "streamingChecked": "2026-10-05",
+        "audience": {
+          "id": "older-kids",
+          "label": "Eldre barn + voksne",
+          "note": "Telia Play oppgir 9+."
+        }
+      },
+      {
         "id": "pokemon-concierge",
         "title": "Pokémon Concierge",
         "why": "Kort stop-motion-serie som viser en roligere side av Pokémon-universet og gir en annen inngang til japansk popkultur enn spill og storfilmer.",
