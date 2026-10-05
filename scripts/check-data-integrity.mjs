@@ -525,9 +525,14 @@ for (const required of ['docs/flights.html','docs/data/flights.json','docs/place
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
 if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js')) errors.push('place.html mangler generisk kartvisning');
+if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kartfallback skal opprettes ved reell fatal kartfeil, ikke ligge skjult i HTML');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+if (!app.includes("fallback.id='place-map-fallback'") || !app.includes("document.getElementById('place-map-fallback')?.remove()")) {
+  errors.push('app.js: stedskartets fallback må opprettes ved fatal feil og fjernes når kartet blir brukbart');
+}
+if (!style.includes('.map-error[hidden]{display:none}')) errors.push('style.css: skjulte kartfeil må forbli skjult selv om .map-error setter display');
 if (!app.includes('async function renderFlights()') || !app.includes("json('data/flights.json')") || !app.includes("['flights.html','Fly','flights']")) errors.push('app.js mangler flyplanleggingsvisning eller navigasjon');
 if (!app.includes('flight-copy-template') || !app.includes('navigator.clipboard.writeText')) errors.push('app.js: flyfunn kan ikke kopieres tilbake til chat');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');

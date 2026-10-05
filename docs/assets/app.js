@@ -1083,13 +1083,16 @@ async function renderPlace() {
         .addTo(map);
       installMapLoadFallback(map,{
         onFatal:()=>{
-          const fallback=document.getElementById('place-map-fallback');
-          if(fallback) fallback.hidden=false;
+          let fallback=document.getElementById('place-map-fallback');
+          if(!fallback){
+            fallback=document.createElement('div');
+            fallback.id='place-map-fallback';
+            fallback.className='map-error place-map-fallback';
+            fallback.textContent='Kartet kunne ikke lastes. Bruk Kart-lenken øverst for å åpne stedet i Google Maps.';
+            mapRoot.insertAdjacentElement('afterend',fallback);
+          }
         },
-        onReady:()=>{
-          const fallback=document.getElementById('place-map-fallback');
-          if(fallback) fallback.hidden=true;
-        }
+        onReady:()=>document.getElementById('place-map-fallback')?.remove()
       });
     }
   } else if(mapRoot){
