@@ -112,6 +112,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   min-height:100%;padding:24px;color:#7a2922;background:#fff1ed;
   font-weight:650;
 }
+.map-error[hidden]{display:none}
 .map-error.floating{
   position:absolute;left:18px;right:18px;bottom:18px;min-height:0;
   z-index:10;border:1px solid #efb9b0;border-radius:12px;
