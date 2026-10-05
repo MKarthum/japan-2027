@@ -216,6 +216,34 @@
     "category": "TV og serier",
     "items": [
       {
+        "id": "team-bachstad-japan",
+        "title": "Team Bachstad i Japan (sesong 10)",
+        "why": "Øystein Bache og Rune Gokstad kjører gjennom Japan i ni episoder og møter både hverdagsliv, historie, mat og steder underveis. Det er en svært direkte norsk TV-introduksjon til reisen, og flere stopp overlapper med planen – blant annet Tokyo, Kyoto og Hiroshima.",
+        "action": "Se sesongen sammen før avreise. Bruk episodene som en uformell introduksjon og noter steder, mat eller situasjoner vi får lyst til å kjenne igjen på turen.",
+        "placeIds": [
+          "tokyo",
+          "kyoto",
+          "hiroshima"
+        ],
+        "links": [
+          {
+            "label": "IMDb",
+            "kind": "imdb",
+            "url": "https://www.imdb.com/title/tt7030294/"
+          },
+          {
+            "label": "NRK TV",
+            "kind": "stream",
+            "url": "https://tv.nrk.no/serie/team-bachstad/sesong/10"
+          }
+        ],
+        "streamingChecked": "2026-10-05",
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
+      },
+      {
         "id": "pokemon-concierge",
         "title": "Pokémon Concierge",
         "why": "Kort stop-motion-serie som viser en roligere side av Pokémon-universet og gir en annen inngang til japansk popkultur enn spill og storfilmer.",
