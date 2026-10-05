@@ -171,21 +171,49 @@ function footer() {
 
 const linkButton = (x) => `<a class="button ${x.kind==='ticket'?'primary':''}" href="${x.url}" target="_blank" rel="noopener">${x.label} ↗</a>`;
 const mapsButton = (name, area='Japan') => `<a class="button" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name+' '+area+' Japan')}" target="_blank" rel="noopener">Kart ↗</a>`;
-const installMapLoadFallback=(map,onFatal)=>{
-  let loaded=false;
+const installMapLoadFallback=(map,{onFatal,onReady=()=>{},graceMs=6000})=>{
+  let ready=false;
   let timer=null;
-  map.once('load',()=>{
-    loaded=true;
-    if(timer) clearTimeout(timer);
+  let fallbackShown=false;
+  const clearTimer=()=>{
+    if(timer){
+      clearTimeout(timer);
+      timer=null;
+    }
+  };
+  const styleIsUsable=()=>{
+    if(map.isStyleLoaded?.()) return true;
+    const style=map.getStyle?.();
+    return Boolean(style?.layers?.length);
+  };
+  const markReady=()=>{
+    if(ready) return;
+    ready=true;
+    clearTimer();
+    if(fallbackShown){
+      fallbackShown=false;
+      onReady();
+    }
+  };
+  map.once('load',markReady);
+  map.on('styledata',()=>{
+    if(styleIsUsable()) markReady();
   });
   map.on('error',(event)=>{
     console.warn('Kartressursfeil',event?.error||event);
-    if(loaded) return;
-    if(timer) clearTimeout(timer);
+    if(ready || styleIsUsable()){
+      markReady();
+      return;
+    }
+    clearTimer();
     timer=setTimeout(()=>{
-      if(loaded || map.isStyleLoaded?.()) return;
+      if(ready || styleIsUsable()){
+        markReady();
+        return;
+      }
+      fallbackShown=true;
       onFatal();
-    },4000);
+    },graceMs);
   });
 };
 
@@ -958,12 +986,15 @@ async function renderRoute() {
   detail.hidden=false;
   detail.innerHTML=`<div class="route-detail-placeholder"><strong>Velg noe på kartet.</strong><span>Stopp, opplevelser, mat, overnatting og knutepunkter viser valgt innhold her. Velger du en rutelinje eller etappe, vises reisetid og pris.</span><small>${transport.childNote}</small></div>`;
 
-  installMapLoadFallback(map,()=>{
-    if(document.querySelector('#map .map-error.floating')) return;
-    const el=document.createElement('div');
-    el.className='map-error floating';
-    el.innerHTML='<strong>Kartet kunne ikke lastes.</strong><br>Prøv å oppdatere siden.';
-    document.getElementById('map').appendChild(el);
+  installMapLoadFallback(map,{
+    onFatal:()=>{
+      if(document.querySelector('#map .map-error.floating')) return;
+      const el=document.createElement('div');
+      el.className='map-error floating';
+      el.innerHTML='<strong>Kartet kunne ikke lastes.</strong><br>Prøv å oppdatere siden.';
+      document.getElementById('map').appendChild(el);
+    },
+    onReady:()=>document.querySelector('#map .map-error.floating')?.remove()
   });
 }
 
@@ -1050,9 +1081,15 @@ async function renderPlace() {
         .setLngLat([p.map.lng,p.map.lat])
         .setPopup(new maplibregl.Popup({offset:18,maxWidth:'250px'}).setHTML(`<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3></div>`))
         .addTo(map);
-      installMapLoadFallback(map,()=>{
-        const fallback=document.getElementById('place-map-fallback');
-        if(fallback) fallback.hidden=false;
+      installMapLoadFallback(map,{
+        onFatal:()=>{
+          const fallback=document.getElementById('place-map-fallback');
+          if(fallback) fallback.hidden=false;
+        },
+        onReady:()=>{
+          const fallback=document.getElementById('place-map-fallback');
+          if(fallback) fallback.hidden=true;
+        }
       });
     }
   } else if(mapRoot){
