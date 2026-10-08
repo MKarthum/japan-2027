@@ -1215,5 +1215,57 @@
       "checked": "2026-10-04",
       "source": "https://osakacastle.net/"
     }
+  },
+  {
+    "id": "sumo-osaka",
+    "name": "Sumo – vårturneringen i Osaka",
+    "area": "Osaka",
+    "type": "opplevelse",
+    "simple": "Opplev en ekte sumokamp",
+    "description": "Sumo er japansk bryting med korte, intense kamper og tradisjonelle ritualer rundt ringen. Vårturneringen i Osaka er satt opp 14.–28. mars 2027 på EDION Arena Osaka. Med den foreløpige ruten kan en turneringsdag være mulig som utflukt fra Kyoto før turen fortsetter vestover.",
+    "why": "Å se profesjonell sumo er en opplevelse av japansk tradisjon som er helt annerledes enn templer, slott og museer. Dette er et ønske å ta hensyn til når datoene bestemmes, ikke en fast avtale eller grunn til å låse reiseruten.",
+    "highlights": [
+      "Ekte turneringskamper og seremonier",
+      "Mulig utflukt fra Kyoto",
+      "Offisielt billettslipp 6. februar 2027"
+    ],
+    "map": {
+      "lat": 34.6628,
+      "lng": 135.5002,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sumo%20Wrestling%20-%20Tokyo%20(cropped).jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Sumo_Wrestling_-_Tokyo_(cropped).jpg",
+      "credit": "ElHeineken",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Sumokamp under en turnering i Tokyo (illustrasjonsfoto)"
+    },
+    "links": [
+      {
+        "label": "Turneringskalender 2027",
+        "url": "https://www.sumo.or.jp/EnTicket/year_schedule",
+        "kind": "official"
+      },
+      {
+        "label": "Offisielle billetter",
+        "url": "https://sumo.pia.jp/en/",
+        "kind": "ticket"
+      },
+      {
+        "label": "Arena og adkomst",
+        "url": "https://www.sumo.or.jp/Watching/guide/Mar/access/640",
+        "kind": "info"
+      }
+    ],
+    "price": {
+      "status": "pending",
+      "standardFamilyRangeYen": null,
+      "note": "Billettprisene for turneringen i 2027 må kontrolleres når salget åpner. Ingen familiepris er forutsatt.",
+      "checked": "2026-10-08",
+      "source": "https://www.sumo.or.jp/EnTicket/year_schedule"
+    }
   }
 ]

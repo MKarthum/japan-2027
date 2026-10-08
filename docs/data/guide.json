@@ -1,6 +1,13 @@
 {
-  "updated": "2026-10-04",
+  "updated": "2026-10-08",
   "bookingRadar": [
+    {
+      "priority": "Viktig",
+      "when": "Billettsalget til Osakas vårturnering åpner 6. februar 2027",
+      "why": "Turneringen går 14.–28. mars 2027. Den foreløpige Kyoto-etappen overlapper med slutten av turneringen, men dato og kampdag velges først når fly og øvrig reiserute passer.",
+      "checked": "2026-10-08",
+      "placeId": "sumo-osaka"
+    },
     {
       "priority": "Viktig",
       "when": "Trekning åpner tre måneder før besøket",
