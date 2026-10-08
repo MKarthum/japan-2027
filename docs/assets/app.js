@@ -1061,7 +1061,7 @@ async function renderPlace() {
       <div class="section-head"><div><div class="eyebrow">Opplevelser</div><h2>${p.experienceOptionsTitle}</h2></div><p>${p.experienceOptionsIntro}</p></div>
       <div class="grid two">${p.experienceOptions.map(opt=>`
         <article class="card" id="experience-${opt.id}">
-          <span class="meta">${opt.kind}</span><h3>${opt.name}</h3>
+          <span class="meta">${opt.kind} · ${opt.areaLabel}</span><h3>${opt.name}</h3>
           <strong>${opt.status}</strong><p>${opt.description}</p>
           <p><strong>Passer reisen:</strong> ${opt.fit}</p>
           <p><strong>Følg med:</strong> ${opt.whenToCheck}</p>
@@ -1069,6 +1069,8 @@ async function renderPlace() {
           <div class="button-row">${(opt.links||[]).map(link=>`<a class="button" href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`).join('')}</div>
         </article>`).join('')}</div>`;
   }
+
+  if(location.hash.startsWith('#experience-')) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({block:'start'});
 
   const img=p.image;
   if(img?.url){
@@ -1511,7 +1513,7 @@ async function renderPractical() {
     const link=opt?.links?.[0] || placePrimaryLink(p);
     const title=opt ? opt.name : (p?.name||x.placeId);
     const local=opt ? `place.html?id=${encodeURIComponent(p.id)}#experience-${encodeURIComponent(opt.id)}` : null;
-    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${title}</strong><span>${p?.area||''} · ${x.when}</span><p>${x.why}</p>${local?`<a href="${local}">Se alternativet →</a>`:''}</div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
+    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${title}</strong><span>${opt?.areaLabel||p?.area||''} · ${x.when}</span><p>${x.why}</p>${local?`<a href="${local}">Se alternativet →</a>`:''}</div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
   }).join('');
   document.getElementById('place-words').innerHTML=guide.placeWords.map(languageRowHtml).join('');
   document.getElementById('phrases').innerHTML=guide.phrases.map(languageRowHtml).join('');

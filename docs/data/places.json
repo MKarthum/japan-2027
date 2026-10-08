@@ -1287,7 +1287,8 @@
             "url": "https://www.sumo.or.jp/EnJungyo/schedule"
           }
         ],
-        "checked": "2026-10-08"
+        "checked": "2026-10-08",
+        "areaLabel": "Kansai – sted avgjøres i 2027"
       },
       {
         "id": "hirakuza",
@@ -1315,7 +1316,8 @@
             "url": "https://hirakuza.net/osaka/calendar/"
           }
         ],
-        "checked": "2026-10-08"
+        "checked": "2026-10-08",
+        "areaLabel": "Osaka"
       },
       {
         "id": "kyoto-show",
@@ -1339,7 +1341,8 @@
             "url": "https://kyoto-sumo.com/"
           }
         ],
-        "checked": "2026-10-08"
+        "checked": "2026-10-08",
+        "areaLabel": "Kyoto"
       },
       {
         "id": "morning-practice",
@@ -1362,7 +1365,8 @@
             "url": "https://www.gotokyo.org/en/see-and-do/morning/index.html"
           }
         ],
-        "checked": "2026-10-08"
+        "checked": "2026-10-08",
+        "areaLabel": "Tokyo – dersom tilgjengelig"
       }
     ]
   }
