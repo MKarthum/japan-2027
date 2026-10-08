@@ -20,6 +20,7 @@ Hovednavigasjonen holdes bevisst liten:
 - Overnatting
 - Før turen
 - Praktisk
+- Droner
 - Budsjett
 
 Kilder og personvern ligger i bunnteksten.
@@ -35,6 +36,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/prep.json` – spill, film/TV, bøker, historie, mat og små oppgaver før turen, med tydelig målgruppe
 - `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
 - `docs/data/passes.json` – kompakt beslutningslogg for togpass, aktivitets-/transportpass og kombipakker
+- `docs/data/drones.json` – japanske droneregler, besøksforberedelser, modellvurdering og sjekklister for flyging
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 

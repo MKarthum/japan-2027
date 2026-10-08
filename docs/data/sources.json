@@ -358,5 +358,55 @@
     "title": "GO TOKYO – morning sumo practice",
     "url": "https://www.gotokyo.org/en/see-and-do/morning/index.html",
     "use": "Offisiell turistinformasjon om morgentrening i Tokyo."
+  },
+  {
+    "title": "MLIT – Flight Rules for Unmanned Aircraft",
+    "url": "https://www.mlit.go.jp/en/koku/uas.html",
+    "use": "Japanske regler, registrering, flyforbud, godkjenninger, loggbok og hendelser. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "MLIT – Drone Registration Portal",
+    "url": "https://www.mlit.go.jp/koku/drone/en/",
+    "use": "Japansk registrering, Remote ID og merkekrav, også for besøkende. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "DIPS 2.0 – offisiell portal",
+    "url": "https://www.ossportal.dips.mlit.go.jp/portal/top?lang=en",
+    "use": "Registrering, tillatelser og flyplaner for besøkende. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "MLIT – Flight Permission/Approval",
+    "url": "https://www.mlit.go.jp/koku/permitapproval/en/",
+    "use": "Særlige flymåter/luftrom og tillatelsesprosess. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "Japan National Police Agency – Drone Act",
+    "url": "https://www.npa.go.jp/english/uas/uas.html",
+    "use": "Utvidelse til om lag 1000 m 14. juli 2026, vektuavhengige sikkerhetssoner. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "Police – Drone Act procedures",
+    "url": "https://www.npa.go.jp/english/uas/procedures.html",
+    "use": "Samtykke og varsling minst 48 timer før ved lovlige unntak. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "Geospatial Information Authority of Japan – GSI Maps",
+    "url": "https://maps.gsi.go.jp/",
+    "use": "Offisielt kart for DID og andre restriksjoner. Relevante lag må aktiveres."
+  },
+  {
+    "title": "MLIT – Remote ID and registration technical requirements",
+    "url": "https://www.mlit.go.jp/koku/koku_ua_registration.html",
+    "use": "Japansk RID-standard og enhetskompatibilitet. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "Ministry of the Environment – drones in national parks",
+    "url": "https://kanto.env.go.jp/nature/mat/m_5_drone.html",
+    "use": "Nasjonalpark- og forvaltningsspørsmål, særlige lokale hensyn. Kontrollert 8. oktober 2026."
+  },
+  {
+    "title": "Kyoto Official Tourist Information – drones",
+    "url": "https://global.kyoto.travel/en/faq/detail.php?faq_id=5007",
+    "use": "Lokal veiledning om Kyoto sentrum og droneflyging. Kontrollert 8. oktober 2026."
   }
 ]

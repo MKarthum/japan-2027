@@ -1995,3 +1995,33 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 @media(max-width:620px){
   .flight-search-stage-head{grid-template-columns:1fr;gap:4px}
 }
+
+
+/* Droneguide: mobile-first flysjekk */
+.drone-hero h1{font-size:clamp(2.8rem,6vw,5rem)}.drone-hero{max-width:980px}
+.drone-highlight{max-width:950px;margin-top:19px;background:var(--paper);border:1px solid var(--line);padding:20px 23px;border-radius:18px}
+.drone-highlight strong{color:var(--accent2)}.drone-highlight p{margin:7px 0 0}
+.drone-live-panel{background:var(--ink);color:#fffdf8;border-radius:21px;padding:23px;display:grid;grid-template-columns:1fr .85fr;gap:22px}
+.drone-live-panel label{display:block;font-size:.83rem;margin-bottom:7px;font-weight:800}
+.drone-live-panel select{width:100%;padding:13px 12px;border-radius:10px;background:white;border:1px solid #cbd5d3;color:var(--ink);font:inherit}
+.drone-live-panel p{color:#d7e3e0}.drone-live-panel .button{background:#fffdf8;color:#162028}
+.drone-live-panel button.button{cursor:pointer;font:inherit;font-size:.88rem;font-weight:700}
+.drone-live-warning{border:1px solid #5c7371;border-radius:17px;padding:20px;background:#24343a}
+.drone-live-warning h3{color:#f5d38c}.drone-live-warning p{font-size:.92rem}
+.drone-step-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:16px}
+.drone-step{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;grid-template-columns:32px minmax(0,1fr);gap:11px}
+.drone-step-count{width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--accent2);font-weight:850;display:grid;place-items:center}
+.drone-step h3{font-size:1rem}.drone-step p{font-size:.88rem;color:var(--muted);margin:7px 0 12px}
+.drone-step .button,.drone-card .button{font-size:.78rem;padding:7px 10px}
+.drone-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.drone-card{background:var(--paper);border:1px solid var(--line);padding:20px;border-radius:18px;box-shadow:var(--shadow-sm)}
+.drone-card h3{font-size:1.25rem;margin:9px 0}
+.drone-card p{color:var(--muted);font-size:.93rem}.drone-card .drone-flight{color:var(--ink);border-top:1px solid var(--line);padding-top:13px}
+.drone-model-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}.drone-model-meta strong{color:var(--accent2);white-space:nowrap}
+.drone-checks{display:grid;gap:9px}
+.drone-check{display:flex;align-items:flex-start;gap:13px;background:var(--paper);border:1px solid var(--line);padding:14px 17px;border-radius:11px;cursor:pointer}
+.drone-check input{accent-color:var(--accent2);width:18px;height:18px;flex:none;margin-top:3px}
+.drone-source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.drone-source-grid a{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px 14px;display:block;font-size:.9rem}
+@media(max-width:900px){.drone-live-panel,.drone-step-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.drone-cards,.drone-source-grid{grid-template-columns:1fr}.drone-live-panel{padding:17px}.drone-card{padding:17px}}

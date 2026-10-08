@@ -12,7 +12,8 @@
     "navPrep": "Film, serier, spill, bøker, mat og små forberedelser.",
     "navPractical": "Transport, booking, språk og skikk og bruk.",
     "navBudget": "Planramme, kostnadsfordeling og usikkerhet.",
-    "navFlights": "Ruter, datoer, prisnivåer og alternativene som må landes før resten av planen."
+    "navFlights": "Ruter, datoer, prisnivåer og alternativene som må landes før resten av planen.",
+    "navDrones": "Droner, japanske flyregler, registrering og flysoner."
   },
   "route": {
     "eyebrow": "Rute",
@@ -148,5 +149,24 @@
     "sourcesEyebrow": "Kilder",
     "sourcesTitle": "Kontrollgrunnlag for flysiden",
     "sourcesIntro": "Flypriser og rutetabeller endrer seg raskt. Kildene under er grunnlaget for denne flyvurderingen og skal kontrolleres på nytt før bestilling."
+  },
+  "drones": {
+    "eyebrow": "Droneguide",
+    "title": "Droner i Japan",
+    "intro": "Velg hva det er verdt å ta med, planlegg registrering og tillatelser, og sjekk flysoner og lokale krav mens du er på tur.",
+    "liveTitle": "Kan jeg fly her nå?",
+    "liveIntro": "Velg et sted langs ruten eller bruk GPS-posisjonen din. Kartet åpner et område – du må selv kontrollere alle aktuelle kartlag og myndighetsregler.",
+    "takeoffTitle": "Sjekkliste på stedet",
+    "takeoffIntro": "Kontroller de samme punktene før hver flyging. Listen er bare en personlig huskeliste.",
+    "prepTitle": "Før avreise",
+    "prepIntro": "Det er registrering, Remote ID, radioforhold, forsikring og konkrete flysteder som avgjør om dronen er verdt bagasjeplassen.",
+    "modelsTitle": "Hvilken drone bør jeg ta med?",
+    "modelsIntro": "Modellene er eksempler basert på produsentens oppgitte standardvekter. Alle er over den japanske 100-gramsgrensen.",
+    "lawsTitle": "Reglene som gjelder",
+    "lawsIntro": "Japan har flere parallelle regelsett. Offisiell luftfartstillatelse kan ikke oppheve et separat flyforbud rundt viktige anlegg.",
+    "specialTitle": "Spørsmål som er viktige for norske turister",
+    "specialIntro": "Kjøpsland, radiosender, FPV, kompetanse og forsikring må vurderes hver for seg.",
+    "sourcesTitle": "Offisielle kart og kilder",
+    "sourcesIntro": "Kontrollert 8. oktober 2026. Et regelverk eller kart kan endres før 2027; kontroller originalkildene på nytt."
   }
 }

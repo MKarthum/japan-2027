@@ -1,0 +1,265 @@
+{
+  "checked": "2026-10-08",
+  "notice": "Siden gir støtte til planlegging, ikke flytillatelse. Ingen kart alene bekrefter lovlig flyging. Kartlag, midlertidige restriksjoner, flymåte og lokale regler må sjekkes hver gang.",
+  "summary": "Japan har registreringsplikt fra 100 g inkludert batteri. Alle fire aktuelle droner omfattes. Registrering i Japan, merking med japansk ID og japansk kompatibel Remote ID må være på plass før flyging. Europeisk operatørregistrering og CE/C-klasse erstatter ikke dette.",
+  "models": [
+    {
+      "name": "DJI Neo (1. generasjon)",
+      "weight": "135 g",
+      "kind": "Lett kameradrone",
+      "assessment": "Minst og enklest å pakke. Like fullt over Japans 100 g-grense; ingen generell dispensasjon.",
+      "flight": "Siktlinje må opprettholdes. FPV eller flyging uten direkte syn krever særskilt vurdering.",
+      "source": "https://www.dji.com/neo/specs"
+    },
+    {
+      "name": "DJI Mini 4 Pro",
+      "weight": "under 249 g",
+      "kind": "Kompakt kameradrone",
+      "assessment": "Mest fleksibel for vanlig foto/video med direkte visuell kontakt. EU C0/under-250 g gir ikke fritak i Japan.",
+      "flight": "Vekt med ekstrautstyr bør sjekkes; alle varianter her er uansett over 100 g.",
+      "source": "https://www.dji.com/mini-4-pro/specs"
+    },
+    {
+      "name": "DJI Avata 2",
+      "weight": "ca. 377 g",
+      "kind": "FPV",
+      "assessment": "Brilleflyging gjør juridisk avklaring vanskeligere. Ikke regn med vanlig spontan FPV-flyging uten nødvendig BVLOS-godkjenning.",
+      "flight": "En observatør er ikke automatisk nok etter japansk lov; dokumenter riktig flygemåte/tillatelse.",
+      "source": "https://www.dji.com/avata-2/specs"
+    },
+    {
+      "name": "DJI Avata 360",
+      "weight": "ca. 455 g",
+      "kind": "360°/FPV",
+      "assessment": "Med RC 2 og direkte visuell kontakt kan flyging være enklere å planlegge enn med FPV-briller. Samme registrerings- og sonekrav.",
+      "flight": "Bekreft at akkurat norsk/kinesisk/japansk utstyrsvariant er godkjent for Japans radiofrekvenser og Remote ID.",
+      "source": "https://www.dji.com/global/avata-360/specs"
+    }
+  ],
+  "prep": [
+    {
+      "title": "Bekreft modell, kjøpsvariant og radioutstyr",
+      "body": "Dronen trenger ikke være kjøpt i Japan. Kontroller eksakt drone- og kontrollerutgave, teknisk japansk radiogodkjenning (giteki), frekvensbånd og eventuelle lovlige besøksunntak. Ikke anta at EU-, norsk eller kinesisk variant er identisk.",
+      "url": "https://www.tele.soumu.go.jp/e/adm/monitoring/illegal/monitoring_qa/"
+    },
+    {
+      "title": "Opprett DIPS 2.0-konto fra Norge",
+      "body": "Det er mulig for utlendinger å bruke DIPS før ankomst. Se krav til pass og dokumentasjon på navn, adresse og fødselsdato for personer uten japansk bostedsregistrering.",
+      "url": "https://www.ossportal.dips.mlit.go.jp/portal/top?lang=en"
+    },
+    {
+      "title": "Registrer hver drone og merk den",
+      "body": "Japansk registrering for hver enkelt drone fra 100 g, betaling og fysisk merking med japansk registreringsnummer. Gyldighet normalt tre år.",
+      "url": "https://www.mlit.go.jp/koku/drone/en/"
+    },
+    {
+      "title": "Bekreft japansk Remote ID før du pakker",
+      "body": "Godkjent japansk RID-funksjon må kunne sende riktig japansk registrerings-ID. EU Remote ID er ikke nødvendigvis kompatibelt. Sjekk støttet modell og firmware eller om ekstern RID-modul kreves.",
+      "url": "https://www.mlit.go.jp/koku/koku_ua_registration.html"
+    },
+    {
+      "title": "Undersøk konkrete flysteder og tillatelser",
+      "body": "Velg realistiske flysteder langs turen. DID, flyplassluftrom, natt, uten direkte syn, under 30 m fra personer/eiendom, folkemengder og høyde 150 m+ kan kreve MLIT-approval. Søk i god tid, normalt minst ti arbeidsdager før.",
+      "url": "https://www.mlit.go.jp/koku/permitapproval/en/"
+    },
+    {
+      "title": "Kontroller ansvarsforsikring for Japan",
+      "body": "Ingen generelt påvist nasjonal obligatorisk ansvarsforsikring ved vanlig hobbyflyging med små droner. Få skriftlig bekreftelse fra forsikrer om dekning for drone, tredjepartsansvar, Japan, FPV og eventuelle særvilkår.",
+      "url": "https://www.mlit.go.jp/koku/koku_fr10_000042.html"
+    },
+    {
+      "title": "Sjekk flyselskapets batteriregler",
+      "body": "Løse litiumbatterier normalt i håndbagasje, beskyttet mot kortslutning. Se flyselskapets Wh-grenser og særregler før avreise. Undersøk skade- og tyveridekning separat.",
+      "url": "https://www.iata.org/en/programs/cargo/dgr/lithium-batteries/"
+    }
+  ],
+  "laws": [
+    {
+      "title": "Luftrom: MLIT",
+      "body": "Flyplassområder, tettbebygde områder (DID), nødluf­trom og 150 meter eller høyere over bakken/vann er regulert. Midlertidige nødsoner må kontrolleres like før flyging.",
+      "url": "https://www.mlit.go.jp/koku/koku_fr10_000041.html"
+    },
+    {
+      "title": "Flymåte: MLIT",
+      "body": "Utgangspunktet uten særskilt godkjenning: dagslys, direkte visuell sikt, 30 m til utenforstående personer/eiendom, ikke over arrangementer, ikke slippe gjenstander eller frakte farlig last. Forbud mot uforsvarlig flyging.",
+      "url": "https://www.mlit.go.jp/en/koku/uas.html"
+    },
+    {
+      "title": "Drone Act: viktige anlegg",
+      "body": "Eget regelverk uansett vekt. Fra 14. juli 2026 dekker røde soner og normalt ca. 1000 meter gul sone rundt utpekte anlegg. Særskilt samtykke og normalt politimelding minst 48 timer før ved lovlige unntak. En MLIT-tillatelse erstatter ikke dette.",
+      "url": "https://www.npa.go.jp/english/uas/uas.html"
+    },
+    {
+      "title": "Lokale regler og grunneier",
+      "body": "Byparker, slott, templer, helligdommer, nasjonalparker og privat grunn kan ha egne regler for start, landing eller opptak. Naturpark er ikke automatisk totalforbud, men forvalteren kan stille egne vilkår.",
+      "url": "https://kanto.env.go.jp/nature/mat/m_5_drone.html"
+    },
+    {
+      "title": "Tillatelse, plan, logg og avvik",
+      "body": "Ved flyging som krever MLIT-approval: søk på forhånd, meld flyplan i DIPS og før flylogg. Ulykker og alvorlige hendelser har egen meldeplikt også uten særskilt approval.",
+      "url": "https://www.mlit.go.jp/en/koku/uas.html"
+    },
+    {
+      "title": "Kurs, pilotsertifikat og import",
+      "body": "Japansk pilotsertifikat er ikke generelt påkrevd for lovlig ordinær hobbyflyging. Norsk A1/A3/A2 eller C0/C1 gir ikke automatisk japansk autorisasjon. Japansk sertifisering kan gi unntak i avgrensede kategorier.",
+      "url": "https://www.mlit.go.jp/koku/level4/license/en/"
+    }
+  ],
+  "regions": [
+    {
+      "name": "Tokyo",
+      "lat": 35.681,
+      "lon": 139.767,
+      "body": "Store sentrumsområder er DID, og viktige anlegg/flyplasser har separate soner."
+    },
+    {
+      "name": "Hakone",
+      "lat": 35.232,
+      "lon": 139.107,
+      "body": "Natur og fjell gir ikke automatisk adgang. Sjekk grunneier, nasjonalpark, luf­trom og helikoptertrafikk."
+    },
+    {
+      "name": "Kyoto",
+      "lat": 35.011,
+      "lon": 135.768,
+      "body": "Mye av sentrum omfattes av restriksjoner. Templer, parker og kulturminner kan ha egne regler."
+    },
+    {
+      "name": "Nara",
+      "lat": 34.685,
+      "lon": 135.805,
+      "body": "Sjekk tettbygd område, forvalter, besøkende, dyreliv og kulturminner."
+    },
+    {
+      "name": "Osaka",
+      "lat": 34.693,
+      "lon": 135.502,
+      "body": "Tett bebyggelse og flyplassområder gjør spontan flyging krevende."
+    },
+    {
+      "name": "Himeji",
+      "lat": 34.839,
+      "lon": 134.694,
+      "body": "Slott og park er forvaltet kulturmiljø; ikke ta av uten uttrykkelig tillatelse."
+    },
+    {
+      "name": "Hiroshima",
+      "lat": 34.395,
+      "lon": 132.454,
+      "body": "Fredsparken, minnesmerker og bysentrum egner seg ikke for spontan dronebruk."
+    },
+    {
+      "name": "Miyajima",
+      "lat": 34.299,
+      "lon": 132.319,
+      "body": "Helligdom, naturvern, besøkende og dyr: undersøk forvalter og restriksjoner."
+    }
+  ],
+  "live": [
+    {
+      "title": "GSI Maps: offisielle sonelag",
+      "body": "Aktiver manuelt relevante lag for DID (人口集中地区), flyplassområder og Drone Act røde/gule soner. Bakgrunnskart uten lag viser ikke alle forbud.",
+      "url": "https://maps.gsi.go.jp/"
+    },
+    {
+      "title": "MLIT: midlertidige soner og flyregler",
+      "body": "Sjekk oppdaterte nødluftrom, flyplassinformasjon og eventuell relevant luftfartsmelding.",
+      "url": "https://www.mlit.go.jp/koku/koku_fr10_000041.html"
+    },
+    {
+      "title": "Japansk politi: viktige anlegg",
+      "body": "Kontroller både røde og gule soner og eventuelle særskilte meldinger etter Drone Act.",
+      "url": "https://www.npa.go.jp/english/uas/uas.html"
+    },
+    {
+      "title": "DIPS: tillatelse og flyplan",
+      "body": "Hvis flygingen krever approval, kontroller riktig drone, flymåte, sted, dato, betingelser og planrapportering.",
+      "url": "https://www.ossportal.dips.mlit.go.jp/portal/top?lang=en"
+    },
+    {
+      "title": "Stedlig grunneier/forvalter",
+      "body": "Kontroller park-/kommuneregler, skilt og eventuell adgang til å ta av og lande. Et lovlig luftrom er ikke automatisk lovlig startsted.",
+      "url": "https://kanto.env.go.jp/nature/mat/m_5_drone.html"
+    }
+  ],
+  "takeoff": [
+    "Japansk registrering, ID-merking og kompatibel aktiv Remote ID er på plass.",
+    "GSI-sonelag, DID, flyplass, Drone Act og nødluftrom er kontrollert for posisjonen.",
+    "Eventuell MLIT-godkjenning, separat Drone Act-samtykke/melding og flyplan gjelder akkurat denne flygingen.",
+    "Grunneier, park/kommune, skilt og natur-/kulturvern er sjekket.",
+    "Flygingen følger dagslys, VLOS, høyde og avstandskrav; FPV/BVLOS er særskilt avklart.",
+    "Vær, vind, GNSS, batteri, lufttrafikk, mennesker, dyr og nødlanding er vurdert."
+  ],
+  "special": [
+    {
+      "title": "Kjøpt i Norge eller Kina?",
+      "body": "Det finnes ikke et generelt krav om japansk innkjøp. Radiokompatibilitet og japansk RID må likevel verifiseres for nøyaktig variant. Turistunntak for enkelte radioenheter må ikke antas å gjelde droner generelt."
+    },
+    {
+      "title": "FPV, briller og observatør",
+      "body": "Ved brilleflyging har ikke piloten direkte visuell sikt. Norsk praksis med observatør må ikke ukritisk overføres til Japan. Avklar konkret japansk BVLOS-regime/approval. RC 2 på Avata 360 med VLOS er enklere."
+    },
+    {
+      "title": "Forsikring og pilotsertifikat",
+      "body": "Norsk A1/A3/A2 er nyttig kompetanse, ikke et japansk sertifikat. For vanlig smådrone-fritidsflyging er verken japansk pilotskolebevis eller generell obligatorisk ansvarsforsikring dokumentert; ansvarsforsikring anbefales sterkt."
+    },
+    {
+      "title": "Praktisk dronevalg",
+      "body": "Mini 4 Pro er naturlig førstevalg for vanlig foto hvis konkrete flysteder er funnet. Neo er lett å bære; Avata 360 med RC 2 for 360-bilder. Ta ikke Avata 2 primært for FPV uten å ha avklart japansk regelverk og faktiske lovlige flysteder."
+    }
+  ],
+  "sources": [
+    {
+      "label": "MLIT: nasjonale droneregler",
+      "url": "https://www.mlit.go.jp/en/koku/uas.html"
+    },
+    {
+      "label": "DIPS: registrering, tillatelser og flyplan",
+      "url": "https://www.ossportal.dips.mlit.go.jp/portal/top?lang=en"
+    },
+    {
+      "label": "Registrering av utenlandske droner",
+      "url": "https://www.mlit.go.jp/koku/drone/en/"
+    },
+    {
+      "label": "MLIT: Remote ID",
+      "url": "https://www.mlit.go.jp/koku/koku_ua_registration.html"
+    },
+    {
+      "label": "MLIT: tillatelser",
+      "url": "https://www.mlit.go.jp/koku/permitapproval/en/"
+    },
+    {
+      "label": "Politiet: Drone Act 2026",
+      "url": "https://www.npa.go.jp/english/uas/uas.html"
+    },
+    {
+      "label": "Politiet: 48 timers varsel",
+      "url": "https://www.npa.go.jp/english/uas/procedures.html"
+    },
+    {
+      "label": "GSI Maps: kartlag",
+      "url": "https://maps.gsi.go.jp/"
+    },
+    {
+      "label": "MLIT: restriksjonsområder",
+      "url": "https://www.mlit.go.jp/koku/koku_fr10_000041.html"
+    },
+    {
+      "label": "DIPS: manualer",
+      "url": "https://www.ossportal.dips.mlit.go.jp/portal/manual?lang=en"
+    },
+    {
+      "label": "Miljømyndighetene: nasjonalparker",
+      "url": "https://kanto.env.go.jp/nature/mat/m_5_drone.html"
+    },
+    {
+      "label": "Kyoto: offisiell lokal veiledning",
+      "url": "https://global.kyoto.travel/en/faq/detail.php?faq_id=5007"
+    },
+    {
+      "label": "Dromap: uoffisielt sonekart",
+      "url": "https://www.dromap.jp/"
+    }
+  ]
+}

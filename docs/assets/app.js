@@ -155,6 +155,7 @@ function nav(active='') {
     ['hotels.html','Overnatting','hotels'],
     ['prep.html','Før turen','prep'],
     ['practical.html','Praktisk','practical'],
+    ['drones.html','Droner','drones'],
     ['budget.html','Budsjett','budget']
   ];
   document.querySelector('header').innerHTML = `<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a><nav>${items.map(([href,label,key])=>`<a href="${href}" ${active===key?'aria-current="page"':''}>${label}</a>`).join('')}</nav></div>`;
@@ -1592,3 +1593,54 @@ async function renderSources() {
 }
 
 function initPrivacy(){ nav(''); footer(); }
+
+const droneEsc=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const droneLink=(url,label)=>'<a class="button" href="'+droneEsc(url)+'" target="_blank" rel="noopener noreferrer">'+droneEsc(label)+' ↗</a>';
+function droneGsi(lat,lon){return 'https://maps.gsi.go.jp/#14/'+Number(lat).toFixed(5)+'/'+Number(lon).toFixed(5)+'/&base=std';}
+async function renderDrones(){
+  await renderStaticPage('drones','drones');
+  const data=await json('data/drones.json');
+  const byId=id=>document.getElementById(id);
+  byId('drone-updated').textContent=data.checked;
+  byId('drone-summary').textContent=data.summary;
+  byId('drone-notice').textContent=data.notice;
+  byId('drone-region').innerHTML=data.regions.map((r,i)=>'<option value="'+i+'">'+droneEsc(r.name)+'</option>').join('');
+  const setRegion=()=>{
+    const r=data.regions[Number(byId('drone-region').value)||0];
+    byId('drone-region-note').textContent=r.body;
+    byId('drone-map').href=droneGsi(r.lat,r.lon);
+  };
+  byId('drone-region').addEventListener('change',setRegion);
+  setRegion();
+  byId('drone-location').addEventListener('click',()=>{
+    if(!navigator.geolocation){byId('drone-location-status').textContent='Posisjonen er ikke tilgjengelig i nettleseren.';return;}
+    byId('drone-location-status').textContent='Ber om posisjonstilgang ...';
+    navigator.geolocation.getCurrentPosition(pos=>{
+      byId('drone-map').href=droneGsi(pos.coords.latitude,pos.coords.longitude);
+      byId('drone-location-status').textContent='Kartlenken er sentrert på posisjonen. Ingen posisjon sendes til denne nettsiden eller lagres her.';
+    },()=>{byId('drone-location-status').textContent='Posisjon er ikke tilgjengelig. Velg område fra listen.';},{enableHighAccuracy:true,maximumAge:0,timeout:12000});
+  });
+  const step=(x,i)=>'<article class="drone-step"><span class="drone-step-count">'+(i+1)+'</span><div><h3>'+droneEsc(x.title)+'</h3><p>'+droneEsc(x.body)+'</p>'+droneLink(x.url,'Sjekk kilden')+'</div></article>';
+  byId('drone-live-steps').innerHTML=data.live.map(step).join('');
+  byId('drone-prep').innerHTML=data.prep.map(step).join('');
+  byId('drone-models').innerHTML=data.models.map(x=>'<article class="drone-card"><div class="drone-model-meta"><span class="meta">'+droneEsc(x.kind)+'</span><strong>'+droneEsc(x.weight)+'</strong></div><h3>'+droneEsc(x.name)+'</h3><p>'+droneEsc(x.assessment)+'</p><p class="drone-flight">'+droneEsc(x.flight)+'</p>'+droneLink(x.source,'Produsentens spesifikasjoner')+'</article>').join('');
+  byId('drone-laws').innerHTML=data.laws.map(x=>'<article class="card"><h3>'+droneEsc(x.title)+'</h3><p>'+droneEsc(x.body)+'</p>'+droneLink(x.url,'Offisiell kilde')+'</article>').join('');
+  byId('drone-special').innerHTML=data.special.map(x=>'<article class="card"><h3>'+droneEsc(x.title)+'</h3><p>'+droneEsc(x.body)+'</p></article>').join('');
+  byId('drone-sources').innerHTML=data.sources.map(x=>'<a href="'+droneEsc(x.url)+'" target="_blank" rel="noopener noreferrer">'+droneEsc(x.label)+' ↗</a>').join('');
+  byId('drone-takeoff').innerHTML=data.takeoff.map((x,i)=>{
+    let checked=false;
+    try{checked=localStorage.getItem('japan2027-drone-check-'+i)==='1';}catch{}
+    return '<label class="drone-check"><input type="checkbox" data-drone-check="'+i+'" '+(checked?'checked':'')+'><span>'+droneEsc(x)+'</span></label>';
+  }).join('');
+  byId('drone-takeoff').addEventListener('change',event=>{
+    const el=event.target.closest('[data-drone-check]');
+    if(!el)return;
+    try{localStorage.setItem('japan2027-drone-check-'+el.dataset.droneCheck,el.checked?'1':'0');}catch{}
+  });
+  byId('drone-reset').addEventListener('click',()=>{
+    byId('drone-takeoff').querySelectorAll('input').forEach(el=>{
+      el.checked=false;
+      try{localStorage.removeItem('japan2027-drone-check-'+el.dataset.droneCheck);}catch{}
+    });
+  });
+}

@@ -29,6 +29,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 - `docs/data/prep.json`: forberedelser før turen og deres kobling til steder via `placeIds`. Inneholder familieinnhold, tydelig merket vokseninnhold og en egen historie-læringssti. Medie-/forberedelseskoblinger skal ikke dupliseres i `places.json` eller `guide.json`.
 - `docs/data/fx.json`: siste tilgjengelige ECB-kurs via nettendepunkt + lagret fallback. ECB oppdaterer kun virkedager; helgedato fra siste virkedag er forventet. Alle omregninger går gjennom `loadFx()`.
 - `docs/data/passes.json`: kandidater for togpass, aktivitets-/transportpass og kombipakker. Synlig side viser bare kort status og når de bør vurderes; detaljert match mot planen ligger i samme datafil for senere re-evaluering.
+- `docs/data/drones.json`: offisielt kontrollert droneguide for Japan, med modeller, regulering, turistkrav og område-/flysjekk. Registrerings-ID, serienummer og personopplysninger skal ikke publiseres.
 - `docs/data/pages.json`: offentlig sidebudskap og forklarende tekst som ikke tilhører et konkret domene. HTML peker på feltene med `data-copy`.
 - `docs/data/sources.json`: felles kildeliste.
 
