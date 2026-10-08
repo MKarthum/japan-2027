@@ -1218,16 +1218,16 @@
   },
   {
     "id": "sumo-osaka",
-    "name": "Sumo – vårturneringen i Osaka",
+    "name": "Sumo i Osaka – turnering og alternativer",
     "area": "Osaka",
     "type": "opplevelse",
-    "simple": "Opplev en ekte sumokamp",
-    "description": "Sumo er japansk bryting med korte, intense kamper og tradisjonelle ritualer rundt ringen. Vårturneringen i Osaka er satt opp 14.–28. mars 2027 på EDION Arena Osaka. Med den foreløpige ruten kan en turneringsdag være mulig som utflukt fra Kyoto før turen fortsetter vestover.",
-    "why": "Å se profesjonell sumo er en opplevelse av japansk tradisjon som er helt annerledes enn templer, slott og museer. Dette er et ønske å ta hensyn til når datoene bestemmes, ikke en fast avtale eller grunn til å låse reiseruten.",
+    "simple": "Turnering, profesjonell turné eller en kortere sumoopplevelse",
+    "description": "Sumo er tradisjonell japansk bryting. Den offisielle vårturneringen i Osaka går 14.–28. mars 2027 på EDION Arena Osaka, og den foreløpige Kyoto-etappen overlapper med avslutningen. Dersom turneringen ikke passer, finnes profesjonell vårturné, trening hos sumobrytere og flere mindre sumoshow. Kartet viser arenaen for hovedturneringen; alternativene kan foregå andre steder.",
+    "why": "Vi ønsker å oppleve sumo, men trenger ikke binde reiseruten til en stor turnering. Valget kan tas når vi kjenner flydatoene, vårturnéprogrammet og billetttilgangen.",
     "highlights": [
-      "Ekte turneringskamper og seremonier",
-      "Mulig utflukt fra Kyoto",
-      "Offisielt billettslipp 6. februar 2027"
+      "Offisiell turnering i Osaka 14.–28. mars 2027",
+      "Profesjonell vårturné kan passe Kansai-regionen",
+      "Show i Kyoto eller Osaka fungerer som fleksible alternativer"
     ],
     "map": {
       "lat": 34.6628,
@@ -1266,6 +1266,104 @@
       "note": "Billettprisene for turneringen i 2027 må kontrolleres når salget åpner. Ingen familiepris er forutsatt.",
       "checked": "2026-10-08",
       "source": "https://www.sumo.or.jp/EnTicket/year_schedule"
-    }
+    },
+    "experienceOptionsTitle": "Flere måter å se sumo på",
+    "experienceOptionsIntro": "Turneringen er én mulighet, ikke et krav. Under finner du alternative opplevelser med ulik grad av sportslig autentisitet og fleksibilitet. Ingen dato er bestilt eller låst.",
+    "experienceOptions": [
+      {
+        "id": "jungyo",
+        "name": "Vårturneen (jungyō)",
+        "kind": "Aktive profesjonelle brytere · oppvisningskamper",
+        "status": "2027-programmet avventes",
+        "description": "Sumoforbundets turné med trening, seremonier og oppvisningskamper. Det er de virkelige profesjonelle bryterne, men kampene teller ikke i den store turneringen.",
+        "fit": "Svært interessant hvis turneen har stopp i Osaka, Kyoto eller nærliggende byer etter 28. mars. I 2026 var det blant annet stopp i Neyagawa, Kobe, Takarazuka og Muko 30. mars–3. april; dette er ikke bekreftede datoer for 2027.",
+        "whenToCheck": "Sjekk offentliggjøring av vårturneen vinteren 2026/27 og billettslipp for aktuelle enkeltstopp.",
+        "price": {
+          "note": "Pris og billettsted avhenger av lokal arrangør og det konkrete stoppet."
+        },
+        "links": [
+          {
+            "label": "Offisiell turnékalender",
+            "url": "https://www.sumo.or.jp/EnJungyo/schedule"
+          }
+        ],
+        "checked": "2026-10-08"
+      },
+      {
+        "id": "hirakuza",
+        "name": "The Sumo Hall Hirakuza – Osaka",
+        "kind": "Kommersielt show · tidligere profesjonelle brytere",
+        "status": "2027-datoer må bekreftes",
+        "description": "Engelskspråklig sumoshow i Osaka med ritualer, demonstrasjonskamper og mulighet for publikumsdeltakelse. Et opplegg for besøkende, ikke offisielle konkurransekamper.",
+        "fit": "Fleksibelt reservevalg under Osaka-etappen 1.–3. april, uten at turen må tilpasses turneringen.",
+        "whenToCheck": "Se etter forestillinger på de aktuelle aprildatoene når kalenderen åpner; sjekk antall plasser og vilkår før kjøp.",
+        "price": {
+          "adultYen": 12500,
+          "childYen": 9000,
+          "childRule": "Barn 3–12 år; 13 år og eldre betaler voksenpris.",
+          "note": "Standardseter, publisert pris per oktober 2026. Servicegebyr kommer i tillegg; bekreft prisene for 2027.",
+          "checked": "2026-10-08",
+          "source": "https://hirakuza.net/osaka/tickets/"
+        },
+        "links": [
+          {
+            "label": "Show og billettpriser",
+            "url": "https://hirakuza.net/osaka/tickets/"
+          },
+          {
+            "label": "Forestillingskalender",
+            "url": "https://hirakuza.net/osaka/calendar/"
+          }
+        ],
+        "checked": "2026-10-08"
+      },
+      {
+        "id": "kyoto-show",
+        "name": "Kyoto Sumo Club",
+        "kind": "Kommersielt show · demonstrasjon og introduksjon",
+        "status": "2027-datoer må bekreftes",
+        "description": "Sumoopplevelse i Kyoto med forklaring av ritualer, teknikker og demonstrasjonskamper, med mulighet for mer aktiv deltakelse. Det er ikke en offisiell turnering.",
+        "fit": "Fleksibelt alternativ i Kyoto 26.–30. mars dersom vi ikke får passende turneringsbilletter eller ønsker en mer deltakende opplevelse.",
+        "whenToCheck": "Undersøk ledige forestillinger når Kyoto-datoene er bestemt; sammenlign med Hirakuza før bestilling.",
+        "price": {
+          "adultYen": 16000,
+          "childYen": 12000,
+          "childRule": "Sjekk aldersgrensen for barnebillett direkte hos arrangøren.",
+          "note": "Standardplass, publisert pris per oktober 2026. 2027-pris og eventuell tilgjengelighet må bekreftes.",
+          "checked": "2026-10-08",
+          "source": "https://kyoto-sumo.com/"
+        },
+        "links": [
+          {
+            "label": "Offisiell nettside og billetter",
+            "url": "https://kyoto-sumo.com/"
+          }
+        ],
+        "checked": "2026-10-08"
+      },
+      {
+        "id": "morning-practice",
+        "name": "Morgentrening i en sumostall (heya)",
+        "kind": "Ekte trening · aktive profesjonelle brytere",
+        "status": "Må avtales særskilt",
+        "description": "Besøk som observatør under virkelig trening hos en sumostall. Ikke show eller konkurransekamp; adgang avhenger av stallen og ofte en forhåndsavtale eller organisert omvisning.",
+        "fit": "Mest aktuelt i Tokyo hvis datoene endres. Tokyo-etappen overlapper nå med Osaka-turneringen, da mange brytere er på turneringsopphold, så dette er usikkert.",
+        "whenToCheck": "Undersøk seriøse besøkstilbud etter at reisedatoene er valgt; ikke møt opp uten avtale.",
+        "price": {
+          "note": "Pris avhenger av arrangør og omvisning; ingen fast billettpris."
+        },
+        "links": [
+          {
+            "label": "JNTOs introduksjon",
+            "url": "https://faq.japan-travel.jnto.go.jp/en/guide/experience-sumo/"
+          },
+          {
+            "label": "Tokyo turistkontor om morgentrening",
+            "url": "https://www.gotokyo.org/en/see-and-do/morning/index.html"
+          }
+        ],
+        "checked": "2026-10-08"
+      }
+    ]
   }
 ]

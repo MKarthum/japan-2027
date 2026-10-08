@@ -4,9 +4,41 @@
     {
       "priority": "Viktig",
       "when": "Billettsalget til Osakas vårturnering åpner 6. februar 2027",
-      "why": "Turneringen går 14.–28. mars 2027. Den foreløpige Kyoto-etappen overlapper med slutten av turneringen, men dato og kampdag velges først når fly og øvrig reiserute passer.",
+      "why": "Den offisielle turneringen går 14.–28. mars 2027. En kamp mot slutten kan passe som utflukt fra Kyoto, men kjøp først når datoene passer. Sammenlign med profesjonell turné og mindre show.",
       "checked": "2026-10-08",
       "placeId": "sumo-osaka"
+    },
+    {
+      "priority": "Viktig",
+      "when": "Vinteren 2026/27: sjekk publisering av vårturné og lokale billettslipp",
+      "why": "2027-ruten er ikke publisert. Undersøk om et stopp i Kansai passer bedre enn den offisielle Osaka-turneringen.",
+      "checked": "2026-10-08",
+      "placeId": "sumo-osaka",
+      "optionId": "jungyo"
+    },
+    {
+      "priority": "Kan bestilles",
+      "when": "Når aprildatoene i 2027 kan bestilles",
+      "why": "Forestillinger i Osaka kan være reservealternativ hvis vi ikke vil prioritere en kampdag i den store turneringen.",
+      "checked": "2026-10-08",
+      "placeId": "sumo-osaka",
+      "optionId": "hirakuza"
+    },
+    {
+      "priority": "Kan bestilles",
+      "when": "Når Kyoto-datoene er avklart",
+      "why": "Sammenlign tilbud, pris og opplegg med Hirakuza før dere velger et kommersielt show.",
+      "checked": "2026-10-08",
+      "placeId": "sumo-osaka",
+      "optionId": "kyoto-show"
+    },
+    {
+      "priority": "Kan bestilles",
+      "when": "Etter at eventuelle Tokyo-datoer er endelig bestemt",
+      "why": "Trening må avtales. Nåværende reisevindu faller i en periode der mange brytere er i Osaka, så dette er et mindre sannsynlig alternativ.",
+      "checked": "2026-10-08",
+      "placeId": "sumo-osaka",
+      "optionId": "morning-practice"
     },
     {
       "priority": "Viktig",
