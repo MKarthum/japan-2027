@@ -283,7 +283,7 @@ for (const item of places) {
   }
   if (!Array.isArray(item.highlights)) errors.push(`places.json: ${item.id} mangler highlights-liste`);
   const price=item.price;
-  if (!price || !['free','fixed','dynamic','from'].includes(price.status)) {
+  if (!price || !['free','fixed','dynamic','from','pending'].includes(price.status)) {
     errors.push(`places.json: ${item.id} mangler prisstatus`);
   } else {
     if (!price.checked || !/^https:\/\//.test(price.source||'')) errors.push(`places.json: ${item.id} mangler prisens checked/source`);

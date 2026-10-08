@@ -45,6 +45,7 @@ const placePriceValue = (place,trip,fx) => {
   const price=place?.price;
   if(!price) return {primary:'Pris mangler',secondary:''};
   if(price.status==='free') return {primary:'Gratis',secondary:''};
+  if(price.status==='pending') return {primary:'Pris ikke publisert',secondary:''};
   const range=scalePartyRange(price.standardFamilyRangeYen,trip);
   if(range) return {primary:range[0]===range[1]?fmtJpy(range[0]):`${fmtJpy(range[0])}–${fmtJpy(range[1])}`,secondary:range[0]===range[1]?fmtNok(nokFromJpy(range[0],fx)):`${fmtNok(nokFromJpy(range[0],fx))}–${fmtNok(nokFromJpy(range[1],fx))}`};
   if(Number.isFinite(price.adultFromYen)) return {primary:`Fra ${fmtJpy(price.adultFromYen)} per voksen`,secondary:`ca. ${fmtNok(nokFromJpy(price.adultFromYen,fx))}`};
