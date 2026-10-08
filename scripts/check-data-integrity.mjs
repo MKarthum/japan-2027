@@ -308,12 +308,26 @@ for (const item of places) {
   }
 }
 
+for (const place of places) {
+  if (place.experienceOptions) {
+    const ids=new Set();
+    for (const option of place.experienceOptions) {
+      if (!option.id || ids.has(option.id)) errors.push(`places.json: duplikat/ugyldig alternativ i ${place.id}`);
+      ids.add(option.id);
+      if (!option.name || !option.kind || !option.status || !option.description || !option.fit || !option.whenToCheck || !option.checked || !Array.isArray(option.links) || !option.links.every(link=>link.label && /^https:\/\//.test(link.url))) errors.push(`places.json: alternativet ${option.id} er ufullstendig`);
+      if (option.price && (!option.price.note || (option.price.adultYen && (!Number.isFinite(option.price.adultYen) || !/^https:\/\//.test(option.price.source||''))))) errors.push(`places.json: alternativet ${option.id} har ugyldig prisgrunnlag`);
+    }
+  }
+}
+
 if ('images' in guide || 'placeExtras' in guide) {
   errors.push('guide.json skal ikke eie stedsbilder eller placeExtras; dette hører til places.json');
 }
 for (const item of guide.bookingRadar || []) {
   const p=placeById.get(item.placeId);
   if (!p) errors.push(`guide.json: bookingRadar har ukjent placeId ${item.placeId}`);
+  if (item.optionId && !(p?.experienceOptions||[]).some(o=>o.id===item.optionId)) errors.push(`guide.json: bookingRadar har ukjent optionId ${item.optionId}`);
+
   for (const duplicateKey of ['title','area','url']) {
     if (duplicateKey in item) errors.push(`guide.json: bookingRadar ${item.placeId} dupliserer ${duplicateKey}; bruk places.json`);
   }

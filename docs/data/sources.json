@@ -328,5 +328,35 @@
     "title": "Ticket Oosumo – offisielt billettsalg",
     "url": "https://sumo.pia.jp/en/",
     "use": "Offisiell inngang for kjøp av sumobilletter når salget åpner."
+  },
+  {
+    "title": "Japan Sumo Association – Provincial Tour Schedule",
+    "url": "https://www.sumo.or.jp/EnJungyo/schedule",
+    "use": "Offisielt turnéprogram, og historisk sammenligning av 2026-stopp mens 2027 er uavklart."
+  },
+  {
+    "title": "Hirakuza Osaka – sumoshow og billetter",
+    "url": "https://hirakuza.net/osaka/tickets/",
+    "use": "Arrangørens opplegg, priser og alderskategorier."
+  },
+  {
+    "title": "Hirakuza Osaka – forestillingskalender",
+    "url": "https://hirakuza.net/osaka/calendar/",
+    "use": "Ledige showdatoer for det aktuelle reisevinduet."
+  },
+  {
+    "title": "Kyoto Sumo Club – offisiell nettside",
+    "url": "https://kyoto-sumo.com/",
+    "use": "Show, priser og tilgjengelighet i Kyoto."
+  },
+  {
+    "title": "JNTO – experience sumo and stable visits",
+    "url": "https://faq.japan-travel.jnto.go.jp/en/guide/experience-sumo/",
+    "use": "Generell informasjon om morgentrening og besøksordninger."
+  },
+  {
+    "title": "GO TOKYO – morning sumo practice",
+    "url": "https://www.gotokyo.org/en/see-and-do/morning/index.html",
+    "use": "Offisiell turistinformasjon om morgentrening i Tokyo."
   }
 ]

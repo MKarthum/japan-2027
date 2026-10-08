@@ -1054,6 +1054,24 @@ async function renderPlace() {
     ? relatedPrep.map(item=>`<li><strong>${item.title}</strong> <span class="small">· ${item.category}</span><br>${item.action}</li>`).join('')
     : '<li>Ingen særskilt forberedelse anbefalt.</li>';
 
+  const optionRoot=document.getElementById('place-options');
+  if(optionRoot && p.experienceOptions?.length){
+    optionRoot.hidden=false;
+    optionRoot.innerHTML=`
+      <div class="section-head"><div><div class="eyebrow">Opplevelser</div><h2>${p.experienceOptionsTitle}</h2></div><p>${p.experienceOptionsIntro}</p></div>
+      <div class="grid two">${p.experienceOptions.map(opt=>`
+        <article class="card" id="experience-${opt.id}">
+          <span class="meta">${opt.kind} · ${opt.areaLabel}</span><h3>${opt.name}</h3>
+          <strong>${opt.status}</strong><p>${opt.description}</p>
+          <p><strong>Passer reisen:</strong> ${opt.fit}</p>
+          <p><strong>Følg med:</strong> ${opt.whenToCheck}</p>
+          ${opt.price? `<p><strong>Pris:</strong> ${Number.isFinite(opt.price.adultYen)?`Voksen ${dualFromJpy(opt.price.adultYen,fx)}${Number.isFinite(opt.price.childYen)?` · barn ${dualFromJpy(opt.price.childYen,fx)}`:''}. `:''}${opt.price.childRule?opt.price.childRule+' ':''}${opt.price.note||''}</p>`:''}
+          <div class="button-row">${(opt.links||[]).map(link=>`<a class="button" href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`).join('')}</div>
+        </article>`).join('')}</div>`;
+  }
+
+  if(location.hash.startsWith('#experience-')) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({block:'start'});
+
   const img=p.image;
   if(img?.url){
     document.getElementById('place-photo').innerHTML = `<img src="${img.url}" alt="${img.alt||p.name}">${imageCreditHtml(img)}`;
@@ -1491,8 +1509,11 @@ async function renderPractical() {
     </article>`).join('');
   document.getElementById('booking-radar').innerHTML=guide.bookingRadar.map(x=>{
     const p=places.find(p=>p.id===x.placeId);
-    const link=placePrimaryLink(p);
-    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${p?.name||x.placeId}</strong><span>${p?.area||''} · ${x.when}</span><p>${x.why}</p></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
+    const opt=x.optionId ? p?.experienceOptions?.find(o=>o.id===x.optionId) : null;
+    const link=opt?.links?.[0] || placePrimaryLink(p);
+    const title=opt ? opt.name : (p?.name||x.placeId);
+    const local=opt ? `place.html?id=${encodeURIComponent(p.id)}#experience-${encodeURIComponent(opt.id)}` : null;
+    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${title}</strong><span>${opt?.areaLabel||p?.area||''} · ${x.when}</span><p>${x.why}</p>${local?`<a href="${local}">Se alternativet →</a>`:''}</div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
   }).join('');
   document.getElementById('place-words').innerHTML=guide.placeWords.map(languageRowHtml).join('');
   document.getElementById('phrases').innerHTML=guide.phrases.map(languageRowHtml).join('');
