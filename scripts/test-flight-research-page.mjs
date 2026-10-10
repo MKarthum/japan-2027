@@ -55,7 +55,7 @@ vm.runInNewContext(source,ctx,{filename:'docs/assets/flights-page.js'});
 await ctx.renderFlightsResearch();
 const picks=el('flight-r-pick-list').innerHTML;
 const results=el('flight-r-search-results').innerHTML;
-const countRows=text=>(text.match(/<tr>/g)||[]).length;
+const countRows=text=>((text.match(/<tbody>([\s\S]*?)<\/tbody>/)||[])[1]?.match(/<tr>/g)||[]).length;
 assert.equal((picks.match(/<article class="flight-r-pick"/g)||[]).length,7,'Seven candidate cards');
 assert.equal(countRows(results),35,'35 unique routes and date pairs');
 assert.match(el('flight-r-count').textContent,/35 av 35/);
