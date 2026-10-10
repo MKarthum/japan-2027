@@ -120,7 +120,7 @@ async function renderFlightsResearch() {
       '<p class="flight-r-timing">' + airline(c) + ' · ' + min(c.outbound?.durationMin) + ' ut / ' + min(c.inbound?.durationMin) + ' hjem</p>' +
       '<p class="flight-r-explanation">' + html(c.why) + '</p>' +
       (extraTrain ? '<p class="flight-r-caution">Tur/retur til samme by: ekstra reise gjennom Japan må med i totalen.</p>' : '') +
-      '<div class="flight-r-actions">' + link(c.publicUrl,'Gjenta samme datorsøk',true) +
+      '<div class="flight-r-actions">' + link(c.publicUrl,'Gjenta samme datosøk',true) +
       (carrier ? link(carrier.publicUrl,'Søk hos ' + carrier.service) : '') + '</div>' +
       '<details class="flight-r-details"><summary>Flytider, bagasje og risiko</summary>' +
       '<div><strong>Ut:</strong> ' + legs(c.outbound) + ' · ' + min(c.outbound?.durationMin) +
@@ -135,7 +135,24 @@ async function renderFlightsResearch() {
   }).join('') + '</div>';
 
   const controls = document.getElementById('flight-r-search-controls');
-  const runs = [...(round.searchRuns || [])];
+  const groupedRuns = new Map();
+  for (const run of round.searchRuns || []) {
+    const key = [run.routeType, run.departDate, run.returnDate].join('|');
+    if (!groupedRuns.has(key)) groupedRuns.set(key, {...run, observedOffers: []});
+    const grouped = groupedRuns.get(key);
+    for (const offer of run.observedOffers || []) {
+      if (!grouped.observedOffers.some(item =>
+        item.priceNok === offer.priceNok && item.provider === offer.provider &&
+        (item.airlines || []).join(',') === (offer.airlines || []).join(','))) {
+        grouped.observedOffers.push(offer);
+      }
+    }
+    if (run.checkedAt > grouped.checkedAt) {
+      grouped.checkedAt = run.checkedAt;
+      grouped.publicUrl = run.publicUrl;
+    }
+  }
+  const runs = [...groupedRuns.values()];
   const counts = Object.fromEntries(Object.keys(routeLabels).map(k => [k, runs.filter(run => run.routeType === k).length]));
   controls.innerHTML = '<div class="flight-r-filter-buttons" role="group" aria-label="Velg flyrute">' +
     '<button type="button" data-flight-route="ALL" aria-pressed="true">Alle ' + runs.length + '</button>' +
@@ -194,7 +211,7 @@ async function renderFlightsResearch() {
   const train = round.roundTripControls?.extraTransport;
   document.getElementById('flight-r-context').innerHTML =
     '<div class="flight-r-context-grid">' +
-    '<article><h3>Hva tallene betyr</h3><p>Prisene er datert ' + checked(round.asOf).toLowerCase() + ' og gjelder fire personer. ' +
+    '<article><h3>Hva tallene betyr</h3><p>Prisene er kontrollert ' + html(fmtLongDate(round.asOf)) + ' og gjelder fire personer. ' +
     'Priser fra flyselskap er kontrollert etter at flyvalg og billettype ble valgt, men før personopplysninger og betaling.</p>' +
     '<p>Flyselskapets bagasjetilbud kan være forskjellig fra et reisebyrås grunnpris. ' +
     'Sammenlign derfor pris med bagasje, full reisetid og praktiske forhold – ikke bare laveste beløp.</p></article>' +
