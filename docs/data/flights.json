@@ -2276,7 +2276,8 @@
             "holidayThrough": "2027-03-30",
             "resumes": "2027-03-31",
             "source": "https://www.oslo.kommune.no/skole-og-utdanning/ferie-og-fridager-i-skolen",
-            "checked": "2026-10-10"
+            "checked": "2026-10-10",
+            "recheckedAt": "2026-10-10T15:11:28.293Z"
           },
           "baerumComparison": {
             "holidayFrom": "2027-03-22",
@@ -4836,7 +4837,12 @@
               "calendarNights": 14,
               "fullCalendarDays": 13,
               "inCountryElapsedHours": 337.67,
-              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet."
+              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet.",
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                2.6,
+                3.25
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -4953,6 +4959,17 @@
               "stage": "Standard billett valgt; prisoversikt ved Informasjon om passasjerer, uten å skrive personopplysninger.",
               "protectionStatus": "unverified",
               "terms": "Standardbillettens endrings-/avbestillingsregler ble ikke konkret dokumentert. Tilvalg ikke valgt. Betalingsvalg og eventuelle sluttgebyrer ikke kontrollert."
+            },
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-21T13:20:00+01:00",
+              "toOslArrivalLocal": "2027-04-06T07:25:00+02:00",
+              "elapsedHours": 377.08,
+              "calendarDatesTouched": 17,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                0,
+                0
+              ]
             }
           },
           {
@@ -5101,7 +5118,12 @@
               "calendarNights": 10,
               "fullCalendarDays": 9,
               "inCountryElapsedHours": 241.67,
-              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet."
+              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet.",
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                3,
+                3
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -5136,7 +5158,18 @@
               "Opererende flyselskap og terminaler er ikke særskilt oppgitt/verifisert.",
               "Prisen er en tidsstemplet observasjon, ikke en reservasjon eller garantert betalingspris."
             ],
-            "longStopExperience": null
+            "longStopExperience": null,
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-22T13:20:00+01:00",
+              "toOslArrivalLocal": "2027-04-03T07:25:00+02:00",
+              "elapsedHours": 281.08,
+              "calendarDatesTouched": 13,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                0,
+                0
+              ]
+            }
           },
           {
             "id": "japan-easter-independent-dates-2026-10-10-b-thai-18mar-05apr",
@@ -5284,7 +5317,12 @@
               "calendarNights": 17,
               "fullCalendarDays": 16,
               "inCountryElapsedHours": 409.67,
-              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet."
+              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet.",
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                2.29,
+                2.67
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -5328,7 +5366,18 @@
               "Prisen er en tidsstemplet observasjon, ikke en reservasjon eller garantert betalingspris."
             ],
             "longStopExperience": null,
-            "additionalDirectCheckRef": "thai-direct-b-20270318-20270405-3a1c-20261010"
+            "additionalDirectCheckRef": "thai-direct-b-20270318-20270405-3a1c-20261010",
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-18T13:20:00+01:00",
+              "toOslArrivalLocal": "2027-04-06T07:25:00+02:00",
+              "elapsedHours": 449.08,
+              "calendarDatesTouched": 20,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                0,
+                0
+              ]
+            }
           },
           {
             "id": "japan-easter-independent-dates-2026-10-10-b-jal-iberia-17mar-06apr",
@@ -5478,7 +5527,12 @@
               "calendarNights": 19,
               "fullCalendarDays": 18,
               "inCountryElapsedHours": 465.33,
-              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet."
+              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet.",
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                2,
+                2
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -5519,7 +5573,18 @@
               "Opererende flyselskap og terminaler er ikke særskilt oppgitt/verifisert.",
               "Prisen er en tidsstemplet observasjon, ikke en reservasjon eller garantert betalingspris."
             ],
-            "longStopExperience": null
+            "longStopExperience": null,
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-17T12:30:00+01:00",
+              "toOslArrivalLocal": "2027-04-07T14:20:00+02:00",
+              "elapsedHours": 504.83,
+              "calendarDatesTouched": 22,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                0,
+                0
+              ]
+            }
           },
           {
             "id": "japan-easter-independent-dates-2026-10-10-a-klm-18mar-03apr",
@@ -5667,7 +5732,12 @@
               "calendarNights": 15,
               "fullCalendarDays": 14,
               "inCountryElapsedHours": 360.17,
-              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet."
+              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet.",
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                2.8,
+                2.8
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -5704,7 +5774,18 @@
               "Opererende flyselskap og terminaler er ikke særskilt oppgitt/verifisert.",
               "Prisen er en tidsstemplet observasjon, ikke en reservasjon eller garantert betalingspris."
             ],
-            "longStopExperience": null
+            "longStopExperience": null,
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-18T07:45:00+01:00",
+              "toOslArrivalLocal": "2027-04-03T22:35:00+02:00",
+              "elapsedHours": 397.83,
+              "calendarDatesTouched": 17,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                0,
+                0
+              ]
+            }
           },
           {
             "id": "japan-easter-independent-dates-2026-10-10-a-klm-21mar-03apr",
@@ -5852,7 +5933,12 @@
               "calendarNights": 12,
               "fullCalendarDays": 11,
               "inCountryElapsedHours": 288.17,
-              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet."
+              "note": "Hele kalenderdager ligger mellom faktisk Japan-ankomst og -avreise. Ankomst- og avreisedag er deldager. Kalendernetter er ikke reservasjoner eller dokumenterte hotellnetter. Flyplassreise og ankomstkontroll er ikke trukket fra tidsrommet.",
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                3.67,
+                3.67
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -5887,7 +5973,18 @@
               "Opererende flyselskap og terminaler er ikke særskilt oppgitt/verifisert.",
               "Prisen er en tidsstemplet observasjon, ikke en reservasjon eller garantert betalingspris."
             ],
-            "longStopExperience": null
+            "longStopExperience": null,
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-21T09:55:00+01:00",
+              "toOslArrivalLocal": "2027-04-03T22:35:00+02:00",
+              "elapsedHours": 323.67,
+              "calendarDatesTouched": 14,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                0,
+                0
+              ]
+            }
           },
           {
             "id": "japan-easter-independent-dates-2026-10-10-c-ana-18mar-05apr",
@@ -6035,7 +6132,12 @@
               "additionalReturnTransportHoursRange": [
                 4,
                 6
-              ]
+              ],
+              "wholeCalendarDaysPerLostSchoolDayRange": [
+                2.29,
+                2.67
+              ],
+              "experienceDaysNote": "Hele kalenderdager før intern transport og restitusjon. Jetlag og ordinære etapper mellom baser er ikke trukket fra; C krever i tillegg 4–6 timers returtransport, potensielt deler av én opplevelsesdag."
             },
             "schoolAbsence": {
               "municipality": "Oslo",
@@ -6098,6 +6200,17 @@
               "checked": "2026-10-10",
               "publishedFareAsOf": "2025-04-01",
               "note": "Ordinær reservert Nozomi-basis, Tokyo–Shin-Osaka: voksen 14 520 JPY, barn 7 260 JPY. Dette er datert planleggingsgrunnlag fra transport.json, ikke et endelig 2027-togtilbud. Sesongtillegg, lokal- og flyplasstransport, eventuell ekstra hotellnatt og oppdatert valutakurs mangler. Ingen mekanisk NOK-all-in-pris eller påstand om total billigere reise."
+            },
+            "totalTravel": {
+              "fromOslDepartureLocal": "2027-03-18T06:15:00+01:00",
+              "toOslArrivalLocal": "2027-04-06T00:05:00+02:00",
+              "elapsedHours": 448.83,
+              "calendarDatesTouched": 20,
+              "groundTransportOutsideJapanIncluded": false,
+              "extraSameCityReturnTransportHours": [
+                4,
+                6
+              ]
             }
           }
         ],
@@ -6254,7 +6367,14 @@
             },
             "requiredTwoCheckedBagsIncluded": true,
             "connectionStatus": "unverified-explicit-protection",
-            "note": "Direct carrier flow selected both connected flights. All-four total explicitly shown. No personal data entered. Does not by itself confirm contractual protection. Existing FINN quote preserved."
+            "note": "Direct carrier flow selected both connected flights. All-four total explicitly shown. No personal data entered. Does not by itself confirm contractual protection. Existing FINN quote preserved.",
+            "baggageDetailedCheck": {
+              "checkedAt": "2026-10-10T15:11:28.293Z",
+              "outbound": "2 × 23 kg checked and 7 kg carry-on; adult/child passenger tabs and TG significant carrier shown",
+              "inbound": "1 × 23 kg checked and 7 kg carry-on; adult/child passenger tabs and TG significant carrier shown",
+              "twoCheckedBagsTotalExtraNok": 0
+            },
+            "fareRulesCheck": "Fare rules dialog displayed minimum/maximum stay by connected segment for adults and child. Explicit missed-connection protection not displayed."
           }
         ],
         "roundTripControls": {
@@ -6359,7 +6479,27 @@
             "check-data-integrity": "passed; historical schema, supplemented by round-specific assertions",
             "check-content-style": "passed",
             "check-release-discipline": "expected-failure; unchanged published version 0.25.9 on research branch; no site rebuild permitted"
+          },
+          "resumeChecks": {
+            "jsonSyntax": "passed",
+            "uniqueIds": "passed",
+            "directTotalArithmetic": "passed: 40016 + 26858 = 66874",
+            "publicContent": "passed on recovered data; new records manually checked",
+            "dataIntegrity": "passed on recovered baseline; new fields checked separately",
+            "contentStyle": "passed",
+            "releaseDiscipline": "not a publication; site version unchanged"
           }
+        },
+        "completion": {
+          "status": "research-complete-with-provisional-candidates",
+          "priorityCoverage": "24/24 independent open-jaw route/date combinations; 6 round-trip controls; 5 extensions",
+          "newUniqueRouteDateCombinationsThisResume": 0,
+          "newDirectPriceChecksThisResume": 1,
+          "continuation": "Reprice selected finalists and explicitly confirm through-ticket protection before purchase. Do not repeat completed discovery matrix.",
+          "pushDiscipline": "Previous unpushed batch recovered and committed before follow-up. New direct search committed immediately on completion.",
+          "siteChanged": false,
+          "mergedToMain": false,
+          "bookingMade": false
         }
       }
     ],
