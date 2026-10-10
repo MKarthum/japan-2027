@@ -2264,8 +2264,8 @@
           "recordedFinnPriceObservations": 38,
           "retainedSearchOffers": 38,
           "sellerPriceChecks": 1,
-          "carrierFamilyPriceChecks": 1,
-          "priceObservationsIncludingSellerAndCarrier": 40,
+          "carrierFamilyPriceChecks": 2,
+          "priceObservationsIncludingSellerAndCarrier": 41,
           "selectedDetailedCandidates": 7,
           "confirmedQualifiedCandidates": 0,
           "liveApiCalls": 0
@@ -5327,7 +5327,8 @@
               "Opererende flyselskap og terminaler er ikke særskilt oppgitt/verifisert.",
               "Prisen er en tidsstemplet observasjon, ikke en reservasjon eller garantert betalingspris."
             ],
-            "longStopExperience": null
+            "longStopExperience": null,
+            "additionalDirectCheckRef": "thai-direct-b-20270318-20270405-3a1c-20261010"
           },
           {
             "id": "japan-easter-independent-dates-2026-10-10-b-jal-iberia-17mar-06apr",
@@ -6192,6 +6193,68 @@
             },
             "finding": "Interaktivt multi-city-søk 3 Adults + 1 Child, begge korte tosegmentsreisene valgt. Total trip price for all passengers inkludert skatter: 65 768 NOK. Direkte pris og billettvilkår observert, men gjennomgående reservasjon ikke eksplisitt bekreftet og videre prisstadium krever personopplysninger.",
             "protectionStatus": "unverified"
+          },
+          {
+            "id": "thai-direct-b-20270318-20270405-3a1c-20261010",
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-18mar-05apr",
+            "service": "Thai Airways",
+            "checkedAt": "2026-10-10T15:09:31.480Z",
+            "status": "priced",
+            "publicUrl": "https://www.thaiairways.com/en-no/",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "cabin": "economy"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-05",
+            "price": {
+              "amount": 66874,
+              "currency": "NOK",
+              "basis": "all-four-passengers-total",
+              "stage": "both-flights-selected-before-passenger-entry"
+            },
+            "priceBreakdown": {
+              "airTransportationCharge": 40016,
+              "taxesFeesCharges": 26858
+            },
+            "outbound": {
+              "from": "OSL",
+              "to": "KIX",
+              "departureLocal": "2027-03-18T13:20:00+01:00",
+              "arrivalLocal": "2027-03-19T15:45:00+09:00",
+              "durationMin": 1105,
+              "transferAirports": [
+                "BKK"
+              ],
+              "flightNumbers": [
+                "TG955",
+                "TG672"
+              ],
+              "fare": "Economy FLEXI (Q)",
+              "checkedPiecesPerPassenger": 2,
+              "checkedKgPerPiece": 23
+            },
+            "inbound": {
+              "from": "NRT",
+              "to": "OSL",
+              "departureLocal": "2027-04-05T17:25:00+09:00",
+              "arrivalLocal": "2027-04-06T07:25:00+02:00",
+              "durationMin": 1260,
+              "transferAirports": [
+                "BKK"
+              ],
+              "flightNumbers": [
+                "TG677",
+                "TG954"
+              ],
+              "fare": "Economy STANDARD (S)",
+              "checkedPiecesPerPassenger": 1,
+              "checkedKgPerPiece": 23
+            },
+            "requiredTwoCheckedBagsIncluded": true,
+            "connectionStatus": "unverified-explicit-protection",
+            "note": "Direct carrier flow selected both connected flights. All-four total explicitly shown. No personal data entered. Does not by itself confirm contractual protection. Existing FINN quote preserved."
           }
         ],
         "roundTripControls": {
