@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-04",
+  "asOf": "2026-10-10",
   "status": "research-active",
   "planningWindow": {
     "flexDays": 3,
@@ -2115,6 +2115,131 @@
           "inboundDurationMin": 995
         }
       }
+    },
+    {
+      "id": "2026-10-10-finn-a-0318-0403",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-03",
+      "partyRef": "family-3-adults-1-child-2026-10-10",
+      "party": {
+        "adults": 3,
+        "children": 1,
+        "childCategory": "2–11 år"
+      },
+      "service": "FINN Reise",
+      "evidence": "interactive-search-result",
+      "priceBasis": "family-total",
+      "currency": "NOK",
+      "checkedAt": "2026-10-10T12:00:45.667Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=03.04.2027&adults=3&children=1&cabinType=economy",
+      "scope": "A: OSL→Tokyo / KIX→OSL. Economy. Søkeflaten bekreftet 3 voksne, 1 barn. Resultatradene viste OSL-avgang; Tokyo-resultater HND/NRT. FINNs Oslo-filter kan omfatte Torp, men kandidatene registrert her viste OSL.",
+      "resultStatus": "offers-displayed-protection-unverified",
+      "summaries": {
+        "best": {
+          "priceNok": 69824,
+          "outboundDurationMin": 1200,
+          "inboundDurationMin": 1060
+        },
+        "cheapest": {
+          "priceNok": 69824,
+          "outboundDurationMin": 1200,
+          "inboundDurationMin": 1060
+        },
+        "fastest": {
+          "priceNok": 79470,
+          "outboundDurationMin": 1095,
+          "inboundDurationMin": 1060
+        }
+      },
+      "offers": [
+        {
+          "candidateId": "2026-10-10-a-0318-0403-klm-69824",
+          "priceNok": 69824,
+          "outboundDurationMin": 1200,
+          "inboundDurationMin": 1060,
+          "stopsOutbound": 1,
+          "stopsInbound": 1,
+          "checkedBagsPerPerson": 0,
+          "displayedLocalTimes": {
+            "outboundDeparture": "07:45",
+            "outboundArrival": "11:45",
+            "outboundArrivalDate": "2027-03-19",
+            "inboundDeparture": "11:55",
+            "inboundArrival": "22:35",
+            "inboundArrivalDate": "2027-04-03"
+          }
+        },
+        {
+          "candidateId": "2026-10-10-a-0318-0403-af-klm-74726",
+          "priceNok": 74726,
+          "outboundDurationMin": 1200,
+          "inboundDurationMin": 1060,
+          "stopsOutbound": 1,
+          "stopsInbound": 1,
+          "checkedBagsPerPerson": 0,
+          "displayedLocalTimes": {
+            "outboundDeparture": "15:55",
+            "outboundArrival": "19:55",
+            "outboundArrivalDate": "2027-03-19",
+            "inboundDeparture": "11:55",
+            "inboundArrival": "22:35",
+            "inboundArrivalDate": "2027-04-03"
+          }
+        },
+        {
+          "candidateId": "2026-10-10-a-0318-0403-klm-af-79470",
+          "priceNok": 79470,
+          "outboundDurationMin": 1095,
+          "inboundDurationMin": 1060,
+          "stopsOutbound": 1,
+          "stopsInbound": 1,
+          "checkedBagsPerPerson": 0,
+          "displayedLocalTimes": {
+            "outboundDeparture": "09:30",
+            "outboundArrival": "11:45",
+            "outboundArrivalDate": "2027-03-19",
+            "inboundDeparture": "11:55",
+            "inboundArrival": "22:35",
+            "inboundArrivalDate": "2027-04-03"
+          }
+        }
+      ],
+      "notes": [
+        "FINN-siden viste 3 voksne, 1 barn og konkrete familiepriser i resultatlisten; ingen sluttpris hos selger.",
+        "Alle tre oppførte treff viste 0 innsjekkede kolli; pris for 2 innsjekkede kolli er ukjent.",
+        "Ingen av de tre treffene er kvalifisert før beskyttet billett og bagasjepris bekreftes hos selger/flyselskap."
+      ]
+    },
+    {
+      "id": "2026-10-10-google-c-0318-0403",
+      "patternId": "roundtrip-tokyo",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-03",
+      "partyRef": "family-3-adults-1-child-2026-10-10",
+      "party": {
+        "adults": 3,
+        "children": 1,
+        "childCategory": "2–11 år"
+      },
+      "service": "Google Flights",
+      "evidence": "interactive-search",
+      "priceBasis": "calendar-price-unverified",
+      "currency": "NOK",
+      "checkedAt": "2026-10-10T12:00:45.667Z",
+      "publicUrl": "https://www.google.com/travel/flights?hl=no&curr=NOK",
+      "scope": "C: OSL↔Tokyo. Economy, 3 voksne + 1 barn valgt. Eksakt datopar forsøkt; resultatsiden viste teknisk feil ved første søk og etter én omlasting.",
+      "resultStatus": "technical-error-after-one-retry",
+      "calendarPriceNok": 68008,
+      "summaries": {
+        "best": null,
+        "cheapest": null,
+        "fastest": null
+      },
+      "notes": [
+        "Datokalenderen viste et «fra»-beløp 68 008 NOK før resultatvisningen feilet. Det regnes ikke som konkret billettpris eller reiserute.",
+        "Søket ble ikke kontrollert hos flyselskap; bagasje og billettbeskyttelse ukjent."
+      ]
     }
   ],
   "research": {
@@ -2134,7 +2259,77 @@
         "publicUrl": "https://www.google.com/travel/flights?hl=no&curr=NOK"
       }
     ],
-    "lengthNote": "For Osaka inn / Tokyo hjem 22. mars var én dag kortere eller lengre dyrere i FINNs brede søk enn 5. april-returen. For Tokyo tur/retur ga én dag lengre en Iberia-pris på 49 510 kr med bagasje, men 19 t 35 / 23 t 10 og en ekstra dag i Japan. Hotell og dagskostnad må legges til. For Tokyo inn / Osaka hjem 18. mars ga kortere/lengre reise ingen bedre rimelig forbindelse enn KLM på 14 dager; Best-treffene hadde selv-transfer og lengre reisetid. Osaka tur/retur 21. mars ble billigere med én ekstra dag i de brede søkene, men Best tok over ett døgn hver vei."
+    "lengthNote": "For Osaka inn / Tokyo hjem 22. mars var én dag kortere eller lengre dyrere i FINNs brede søk enn 5. april-returen. For Tokyo tur/retur ga én dag lengre en Iberia-pris på 49 510 kr med bagasje, men 19 t 35 / 23 t 10 og en ekstra dag i Japan. Hotell og dagskostnad må legges til. For Tokyo inn / Osaka hjem 18. mars ga kortere/lengre reise ingen bedre rimelig forbindelse enn KLM på 14 dager; Best-treffene hadde selv-transfer og lengre reisetid. Osaka tur/retur 21. mars ble billigere med én ekstra dag i de brede søkene, men Best tok over ett døgn hver vei.",
+    "searchRounds": [
+      {
+        "id": "japan-easter-2027-2026-10-10",
+        "title": "Nytt flysøk — Japan påsken 2027",
+        "party": {
+          "adults": 3,
+          "children": 1,
+          "childCategory": "2–11 år",
+          "cabin": "economy",
+          "familyCheckedBagsTarget": 2
+        },
+        "dateMatrix": {
+          "firstRoundDepartures": [
+            "2027-03-18",
+            "2027-03-19",
+            "2027-03-20",
+            "2027-03-21"
+          ],
+          "firstRoundReturns": [
+            "2027-04-03",
+            "2027-04-04",
+            "2027-04-05"
+          ],
+          "independentDateEndpoints": true,
+          "openJawPatterns": [
+            "different-airports-east-west",
+            "different-airports-west-east"
+          ],
+          "extensionsNotCompleted": {
+            "departures": [
+              "2027-03-17",
+              "2027-03-22"
+            ],
+            "returns": [
+              "2027-04-02",
+              "2027-04-06"
+            ]
+          }
+        },
+        "counts": {
+          "plannedFirstRoundOpenJawCombinations": 24,
+          "uniqueDatePairsActuallyInvestigated": 1,
+          "routeDateSourceCombinationsActuallyAttempted": 2,
+          "openJawCombinationsWithDisplayedResults": 1,
+          "concreteFourPassengerPriceOffersDisplayed": 3,
+          "qualifiedCandidates": 0
+        },
+        "coverage": {
+          "finn": "One A-direction query for 18 March–3 April returned results. FINN terms visible on page prohibit systematic data collection/compilation without explicit written permission; no bulk matrix was run.",
+          "googleFlights": "C-direction exact dates and 3-adult/1-child party were set; technical error persisted after the permitted single retry. Calendar displayed an unverified from-price only.",
+          "carrier": "KLM multi-city form accepted route and dates but passenger picker opened as a blank blocking overlay; search was not submitted and no carrier quote was produced.",
+          "extensions": "Not searched.",
+          "directionB": "Not searched.",
+          "roundTrips": "C attempted on Google Flights but failed; D and same-date round-trip comparisons not searched."
+        },
+        "candidateRule": "No displayed offer qualifies as confirmed or even provisionally qualified for recommendation: protected ticket not verified; two checked bags cost unknown. Three provisional observations remain as leads only; all three have one stop and displayed flying times below 24 hours each way.",
+        "decisionViews": {
+          "mostJapanTime": "No defensible winner: only one date pair was searched, and the visible fares do not include the required checked-bag total.",
+          "leastSchoolAbsence": "No defensible winner: only March 18 departures were searched and one offer's departure time may be after school.",
+          "lowestAcceptablePrice": "None established. The 69,824 NOK display is the lowest among three visible provisional offers but lacks two checked bags and verified through-ticket protection."
+        },
+        "blockers": [
+          "Google Flights technical error after one retry.",
+          "FINN terms bar systematic collection/compilation without written permission; remaining matrix was not run there.",
+          "KLM search was not submitted because the passenger picker displayed a blank overlay before passenger selection.",
+          "No seller/carrier price or protected-ticket confirmation."
+        ]
+      }
+    ],
+    "currentRoundNote": "The 2026-10-10 search round supersedes the historical fixed-14-day/shared-shift search procedure. The 2026-10-04 observations remain historical and unchanged. New observations are stored in research.searchRounds and appended records; all prices remain search-stage only."
   },
   "candidates": [
     {
@@ -2526,6 +2721,260 @@
       },
       "label": "Raskest blant kandidatene",
       "why": "Én kort mellomlanding hver vei og bagasje inkludert hos Sembo. Ticket viste samme forbindelse til 67 254 kr uten innsjekket bagasje; håndbagasje var ikke oppgitt der. Tur/retur Osaka krever at ruten i Japan ender tilbake ved Kansai."
+    },
+    {
+      "id": "2026-10-10-a-0318-0403-klm-69824",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-03",
+      "partyRef": "family-3-adults-1-child-2026-10-10",
+      "party": {
+        "adults": 3,
+        "children": 1,
+        "childCategory": "2–11 år"
+      },
+      "kind": "provisional-search-offer",
+      "evidence": "interactive-search-result",
+      "price": {
+        "amount": 69824,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer",
+        "includesAllFour": true
+      },
+      "service": "FINN Reise",
+      "provider": "KLM (vist hos FINN)",
+      "checkedAt": "2026-10-10T12:00:45.667Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=03.04.2027&adults=3&children=1&cabinType=economy",
+      "airlines": [
+        "KLM"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "unverified",
+        "stopsPerDirection": 1,
+        "transferAirports": [],
+        "transferMinutes": [],
+        "note": "FINN viste 1 stopp hver vei, men oppga ikke transferflyplass/tid her. Ingen advarsel er ikke bevis på beskyttet gjennomgående billett; selgerkontroll mangler."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "NRT",
+        "departureLocal": "07:45",
+        "arrivalLocal": "11:45",
+        "arrivalDateLocal": "2027-03-19",
+        "durationMin": 1200,
+        "stops": 1,
+        "transferAirports": [],
+        "transferMinutes": []
+      },
+      "inbound": {
+        "from": "KIX",
+        "to": "OSL",
+        "departureLocal": "11:55",
+        "departureDateLocal": "2027-04-03",
+        "arrivalLocal": "22:35",
+        "arrivalDateLocal": "2027-04-03",
+        "durationMin": 1060,
+        "stops": 1,
+        "transferAirports": [],
+        "transferMinutes": []
+      },
+      "japanStay": {
+        "arrivalLocal": "2027-03-19T11:45+09:00",
+        "departureLocal": "2027-04-03T11:55+09:00",
+        "nights": 14,
+        "fullCalendarDays": 14,
+        "method": "Beregnet fra viste lokale tider og flytid; ikke separat kontrollert hos flyselskap."
+      },
+      "schoolDaysLost": {
+        "count": 2,
+        "dates": [
+          "2027-03-18",
+          "2027-03-19"
+        ],
+        "basis": "Avgang 07:45 OSL og faktisk Japan-ankomst 19. mars; Oslo-skolen er i drift disse datoene."
+      },
+      "baggage": {
+        "checkedPiecesPerPerson": 0,
+        "checkedPiecesTotal": 0,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINN viste 0 innsjekkede kolli og 1 håndbagasje per person. Målet er 2 innsjekkede kolli for familien; tilleggskostnad ikke vist."
+      },
+      "fareCompleteness": "incomplete-baggage",
+      "fareRules": "Ikke vist.",
+      "label": "Foreløpig: FINN best/billigst",
+      "why": "Konkret 4-personers søketreff med én stopp hver vei og begge viste reisetider under 24 timer. Ikke kvalifisert: beskyttelse, transferdetaljer og pris for to innsjekkede kolli mangler."
+    },
+    {
+      "id": "2026-10-10-a-0318-0403-af-klm-74726",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-03",
+      "partyRef": "family-3-adults-1-child-2026-10-10",
+      "party": {
+        "adults": 3,
+        "children": 1,
+        "childCategory": "2–11 år"
+      },
+      "kind": "provisional-search-offer",
+      "evidence": "interactive-search-result",
+      "price": {
+        "amount": 74726,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer",
+        "includesAllFour": true
+      },
+      "service": "FINN Reise",
+      "provider": "Air France / KLM (vist hos FINN)",
+      "checkedAt": "2026-10-10T12:00:45.667Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=03.04.2027&adults=3&children=1&cabinType=economy",
+      "airlines": [
+        "Air France",
+        "KLM"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "unverified",
+        "stopsPerDirection": 1,
+        "transferAirports": [],
+        "transferMinutes": [],
+        "note": "FINN viste 1 stopp hver vei, men transferflyplass/tid og gjennomgående billett er ikke bekreftet."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "HND",
+        "departureLocal": "15:55",
+        "arrivalLocal": "19:55",
+        "arrivalDateLocal": "2027-03-19",
+        "durationMin": 1200,
+        "stops": 1,
+        "transferAirports": [],
+        "transferMinutes": []
+      },
+      "inbound": {
+        "from": "KIX",
+        "to": "OSL",
+        "departureLocal": "11:55",
+        "departureDateLocal": "2027-04-03",
+        "arrivalLocal": "22:35",
+        "arrivalDateLocal": "2027-04-03",
+        "durationMin": 1060,
+        "stops": 1,
+        "transferAirports": [],
+        "transferMinutes": []
+      },
+      "japanStay": {
+        "arrivalLocal": "2027-03-19T19:55+09:00",
+        "departureLocal": "2027-04-03T11:55+09:00",
+        "nights": 14,
+        "fullCalendarDays": 14,
+        "method": "Beregnet fra viste lokale tider og flytid; ikke separat kontrollert hos flyselskap."
+      },
+      "schoolDaysLost": {
+        "count": "1–2",
+        "dates": [
+          "2027-03-18",
+          "2027-03-19"
+        ],
+        "basis": "15:55-avgang kan være etter skoleslutt 18. mars; skoleslutten er ikke oppgitt/verifisert. 19. mars går tapt ved ankomst neste dag."
+      },
+      "baggage": {
+        "checkedPiecesPerPerson": 0,
+        "checkedPiecesTotal": 0,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINN viste 0 innsjekkede kolli og 1 håndbagasje per person. Kostnad for to innsjekkede kolli ikke vist."
+      },
+      "fareCompleteness": "incomplete-baggage",
+      "fareRules": "Ikke vist.",
+      "label": "Foreløpig: Air France ut / KLM hjem",
+      "why": "Konkret 4-personers søketreff med én stopp hver vei og viste reisetider under 24 timer. Ikke kvalifisert uten verifisert beskyttelse og full bagasjepris."
+    },
+    {
+      "id": "2026-10-10-a-0318-0403-klm-af-79470",
+      "patternId": "different-airports-east-west",
+      "departDate": "2027-03-18",
+      "returnDate": "2027-04-03",
+      "partyRef": "family-3-adults-1-child-2026-10-10",
+      "party": {
+        "adults": 3,
+        "children": 1,
+        "childCategory": "2–11 år"
+      },
+      "kind": "provisional-search-offer",
+      "evidence": "interactive-search-result",
+      "price": {
+        "amount": 79470,
+        "currency": "NOK",
+        "basis": "family-total",
+        "stage": "search-offer",
+        "includesAllFour": true
+      },
+      "service": "FINN Reise",
+      "provider": "KLM / Air France (vist hos FINN)",
+      "checkedAt": "2026-10-10T12:00:45.667Z",
+      "publicUrl": "https://www.finn.no/reise/flybilletter/resultat/?tripType=openjaw&requestedOrigin=OSL.METROPOLITAN_AREA&requestedDestination=TYO.METROPOLITAN_AREA&requestedOrigin2=KIX.AIRPORT&requestedDestination2=OSL.METROPOLITAN_AREA&requestedDepartureDate=18.03.2027&requestedReturnDate=03.04.2027&adults=3&children=1&cabinType=economy",
+      "airlines": [
+        "KLM",
+        "Air France"
+      ],
+      "operatingAirlines": null,
+      "connection": {
+        "status": "unverified",
+        "stopsPerDirection": 1,
+        "transferAirports": [],
+        "transferMinutes": [],
+        "note": "FINN viste 1 stopp hver vei. Transferdetaljer og beskyttet billett ikke dokumentert."
+      },
+      "outbound": {
+        "from": "OSL",
+        "to": "NRT",
+        "departureLocal": "09:30",
+        "arrivalLocal": "11:45",
+        "arrivalDateLocal": "2027-03-19",
+        "durationMin": 1095,
+        "stops": 1,
+        "transferAirports": [],
+        "transferMinutes": []
+      },
+      "inbound": {
+        "from": "KIX",
+        "to": "OSL",
+        "departureLocal": "11:55",
+        "departureDateLocal": "2027-04-03",
+        "arrivalLocal": "22:35",
+        "arrivalDateLocal": "2027-04-03",
+        "durationMin": 1060,
+        "stops": 1,
+        "transferAirports": [],
+        "transferMinutes": []
+      },
+      "japanStay": {
+        "arrivalLocal": "2027-03-19T11:45+09:00",
+        "departureLocal": "2027-04-03T11:55+09:00",
+        "nights": 14,
+        "fullCalendarDays": 14,
+        "method": "Beregnet fra viste lokale tider og flytid; ikke separat kontrollert hos flyselskap."
+      },
+      "schoolDaysLost": {
+        "count": 2,
+        "dates": [
+          "2027-03-18",
+          "2027-03-19"
+        ],
+        "basis": "Avgang 09:30 OSL; Oslo-skolen er i drift 18.–19. mars."
+      },
+      "baggage": {
+        "checkedPiecesPerPerson": 0,
+        "checkedPiecesTotal": 0,
+        "cabinPiecesPerPerson": 1,
+        "evidence": "FINN viste 0 innsjekkede kolli og 1 håndbagasje per person. Kostnad for to innsjekkede kolli ikke vist."
+      },
+      "fareCompleteness": "incomplete-baggage",
+      "fareRules": "Ikke vist.",
+      "label": "Foreløpig: raskeste viste treff",
+      "why": "Konkrete tider under 24 timer og én stopp hver vei i 4-personers søk. Høyere pris enn de øvrige viste alternativene; ikke kvalifisert uten beskyttelse og bagasjepris."
     }
   ],
   "directChecks": [
