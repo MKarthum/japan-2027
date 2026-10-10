@@ -120,8 +120,8 @@
   },
   "flights": {
     "eyebrow": "Flyreise",
-    "title": "Flyet bestemmer resten av datoene",
-    "intro": "Sammenlign konkrete familiepriser, datofleks og reisetid før datoene låses. Inn én by og hjem fra en annen kan spare både togkostnad og en ekstra reisedag.",
+    "title": "Flyalternativer for Japan våren 2027",
+    "intro": "Sammenlign reisedatoer uavhengig: total familiepris, faktisk tid i Japan, skolefravær og reisekomfort. Å fly inn til én by og hjem fra en annen kan spare intern transport.",
     "patternsEyebrow": "Reisetype",
     "patternsTitle": "Fire oppsett som må prises",
     "patternsIntro": "Å fly inn til én by og hjem fra en annen passer en lineær Japan-rute godt. I Google Flights gjøres dette med «Flere byer / Multi-city». Vanlig tur/retur brukes fortsatt som prisreferanse.",
@@ -148,7 +148,19 @@
     "captureIntro": "Siden lagrer ingen konto- eller bestillingsdata. Kopier malen, fyll inn resultatet fra søket og lim den inn i chatten; da kan den kuraterte flight-dataen oppdateres i repoet.",
     "sourcesEyebrow": "Kilder",
     "sourcesTitle": "Kontrollgrunnlag for flysiden",
-    "sourcesIntro": "Flypriser og rutetabeller endrer seg raskt. Kildene under er grunnlaget for denne flyvurderingen og skal kontrolleres på nytt før bestilling."
+    "sourcesIntro": "Flypriser og rutetabeller endrer seg raskt. Kildene under er grunnlaget for denne flyvurderingen og skal kontrolleres på nytt før bestilling.",
+    "shortlistEyebrow": "Aktuelle alternativer",
+    "shortlistTitle": "Sju reiser å vurdere",
+    "shortlistIntro": "Flyprisene gjelder tre voksne og ett barn. Direkte flyselskapspris skilles fra søketreff, og billettvilkårene forklares. Lenken på hvert kort gjentar datoparet.",
+    "matrixEyebrow": "Søk selv",
+    "matrixTitle": "Åpne de dokumenterte flysøkene",
+    "matrixIntro": "Filtrer på rute, dato og pris, og åpne nøyaktig det søket du vil kontrollere på nytt. Prisene er observasjoner fra 10. oktober 2026, ikke garanterte tilbud.",
+    "contextEyebrow": "Sammenlign riktig",
+    "contextTitle": "Det som avgjør mer enn flyprisen",
+    "contextIntro": "Flyet skal fungere for hele familien. Reiselengde, skolefravær, mellomlandinger, bagasje og eventuelt ekstra tog må ses i sammenheng.",
+    "directEyebrow": "Direkte hos flyselskap",
+    "directTitle": "Kontroller Thai-alternativene på nytt",
+    "directIntro": "Begge Thai-kandidatene har konkrete familiepriser fra flyselskapets egen bestillingsflyt. Kontroller pris og vilkår på nytt før dere bestemmer dere."
   },
   "drones": {
     "eyebrow": "Droneguide",
