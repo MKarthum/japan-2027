@@ -2783,7 +2783,7 @@
       "japanStay": {
         "arrivalLocal": "2027-03-19T11:45+09:00",
         "departureLocal": "2027-04-03T11:55+09:00",
-        "nights": 14,
+        "nights": 15,
         "fullCalendarDays": 14,
         "method": "Beregnet fra viste lokale tider og flytid; ikke separat kontrollert hos flyselskap."
       },
@@ -2868,7 +2868,7 @@
       "japanStay": {
         "arrivalLocal": "2027-03-19T19:55+09:00",
         "departureLocal": "2027-04-03T11:55+09:00",
-        "nights": 14,
+        "nights": 15,
         "fullCalendarDays": 14,
         "method": "Beregnet fra viste lokale tider og flytid; ikke separat kontrollert hos flyselskap."
       },
@@ -2953,7 +2953,7 @@
       "japanStay": {
         "arrivalLocal": "2027-03-19T11:45+09:00",
         "departureLocal": "2027-04-03T11:55+09:00",
-        "nights": 14,
+        "nights": 15,
         "fullCalendarDays": 14,
         "method": "Beregnet fra viste lokale tider og flytid; ikke separat kontrollert hos flyselskap."
       },
