@@ -1,0 +1,4 @@
+.local-flight-search/
+.env
+.env.*
+!.env.example
