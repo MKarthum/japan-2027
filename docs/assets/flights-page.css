@@ -114,3 +114,13 @@
 #flight-r-direct .button{font-size:.75rem;margin:4px 7px 4px 0}
 @media(max-width:810px){.flight-hub-branch-grid{grid-template-columns:1fr}.flight-hub-hero{grid-template-columns:1fr}}
 @media(max-width:480px){.flight-hub-branch{padding:15px}.flight-hub-branch-head{align-items:flex-start}.flight-hub-search-details{padding:12px}.flight-hub-picks .flight-r-metrics{gap:5px}}
+
+
+.flight-hub-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.flight-hub-preview{border-radius:14px;border:1px solid var(--line);background:var(--paper);padding:16px;text-decoration:none;display:flex;flex-direction:column;gap:8px;color:var(--ink);min-width:0}
+.flight-hub-preview:hover{border-color:var(--accent2);box-shadow:var(--shadow-sm)}
+.flight-hub-preview small{font-size:.69rem;color:var(--muted);font-weight:850}
+.flight-hub-preview strong{font-size:.96rem;line-height:1.3}
+.flight-hub-preview span{font-size:.83rem}
+.flight-hub-preview-note{font-size:.78rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
+@media(max-width:810px){.flight-hub-preview-grid{grid-template-columns:1fr}}
