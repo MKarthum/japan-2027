@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 17,
+          "completed": 18,
           "failed": 5,
           "restricted": 1
         },
@@ -7719,6 +7719,56 @@
               }
             ],
             "finding": "Tokyo after one Shanghai night: with Finnair arrival22Mar18:55 gives13h40; morningJuneyao gives24h45 and full22MarShanghai. Bagfareverifiedat sellerstage."
+          },
+          {
+            "id": "sha-20261011-024",
+            "checkedAt": "2026-10-11T15:19:14.234Z",
+            "service": "Trip.com regional roundtrip",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osa&ddate=2027-03-23&rdate=2027-04-04&dairport=pvg&aairport=kix&dcityid=2&acityid=219&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": "23Mar12:00PVG→15:15KIX",
+                "inbound": "4Apr13:10KIX→14:35PVG ChinaEastern",
+                "price": {
+                  "amount": 3003,
+                  "currency": "USD",
+                  "basis": "return-selection total4; initial outbound teaser2140didnotcorrespondto practical nonstopreturn"
+                },
+                "baggage": "includedindicatorsnotexpanded",
+                "verification": "bothflightsscreen, fare drawer notselected"
+              },
+              {
+                "carrier": "ANA",
+                "outbound": "23Mar19:05PVG→22:00KIX",
+                "price": {
+                  "amount": 1906,
+                  "currency": "USD",
+                  "basis": "outbound-list RTlead; return notselected"
+                },
+                "qualification": "provisional-not-complete"
+              }
+            ],
+            "finding": "No substantiated nonstop saving over separateOW: selectednoonANA1091+MU1912 equals3003. Lowinitial2140appears todependon otherreturn (not practicaldirectobserved); do not advertise2140 as complete fare. Lowest1906 eveningoutbound remains unverified. OsakaRT also entails extraJapanrail toclosemainroute."
           }
         ],
         "candidates": [
@@ -8038,7 +8088,8 @@
             "sha-20261011-020",
             "sha-20261011-021",
             "sha-20261011-022",
-            "sha-20261011-023"
+            "sha-20261011-023",
+            "sha-20261011-024"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
