@@ -12,4 +12,7 @@ Kontrollrunde 11. oktober 2026.
 
 ## Kontrollpunkt
 
-Interaktive flerbysøk er kontrollert i begge retninger og med alternative oppholdslengder. ANA har dokumenterte gruppetotaler og bagasje; flere kinesiske og lavprisselskaper har svakere prisgrunnlag eller høyere observerte priser i denne runden. Alle detaljer lagres privat. Direkte ANA-priskontroll, enveis- og tur/retur-benchmark pågår. Offisielt ordinært visumfritak for norske pass er bare bekreftet til utgangen av 2026; transittordningen vurderes separat. Nettsiden er uendret.
+
+- Separate one-way and next-day alternatives checked. Observed regional multicity fares remain stronger than the tested separate-ticket pair. Price levels are observations rather than payment-stage quotes.
+- Airline direct booking returned an ordinary system error; the error is preserved in the private working log. No personal information was entered.
+
