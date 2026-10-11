@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 0,
+          "completed": 1,
           "failed": 0,
           "restricted": 1
         },
@@ -6560,6 +6560,76 @@
             "status": "restricted-source-not-retained",
             "price": null,
             "finding": "Søkeskjema lastet og viste riktig 3 voksne, 1 barn og datoer. FINNs synlige footer begrenser regelmessig/systematisk innhenting, lagring og sammenstilling uten skriftlig tillatelse. Ingen tilbud lagret; systematisk research flyttes til andre kilder.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-002",
+            "checkedAt": "2026-10-11T14:53:46.634Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-20",
+            "returnDate": "2027-04-04",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-04%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "observedOffers": [
+              {
+                "price": {
+                  "amount": 34837,
+                  "currency": "NOK",
+                  "basis": "all-four-passengers-roundtrip",
+                  "stage": "departing-list"
+                },
+                "airlines": [
+                  "Finnair"
+                ],
+                "outbound": {
+                  "departureLocal": "2027-03-20T20:50:00+01:00",
+                  "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                  "durationMin": 2345,
+                  "stops": 1,
+                  "transferAirport": "HEL",
+                  "transferMin": 1525
+                },
+                "baggage": null,
+                "assessment": "25 h 25 transfer; poor Japan-time value"
+              },
+              {
+                "price": {
+                  "amount": 46469,
+                  "currency": "NOK",
+                  "basis": "all-four-passengers-roundtrip",
+                  "stage": "departing-list"
+                },
+                "airlines": [
+                  "Qatar Airways"
+                ],
+                "outbound": {
+                  "departureLocal": "2027-03-20T15:05:00+01:00",
+                  "arrivalLocal": "2027-03-21T14:40:00+08:00",
+                  "durationMin": 995,
+                  "stops": 1,
+                  "transferAirport": "DOH",
+                  "transferMin": 125
+                },
+                "baggage": null
+              }
+            ],
+            "dateSuggestion": {
+              "departure": "2027-03-21",
+              "return": "2027-04-06",
+              "amountNok": 25190,
+              "basis": "four-passenger date suggestion; itinerary not yet selected"
+            },
+            "verification": "Passenger dialog showed 3 Adults, 1 Child aged 2–11; results explicitly total for 4. Return flight and bag fees not selected.",
             "error": null
           }
         ],
@@ -6766,7 +6836,9 @@
           }
         ],
         "progress": {
-          "completedSearchIds": [],
+          "completedSearchIds": [
+            "sha-20261011-002"
+          ],
           "failedSearchIds": [],
           "remaining": [
             "Shanghai long-haul discovery",
