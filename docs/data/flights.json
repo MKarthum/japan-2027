@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 27,
+          "completed": 28,
           "failed": 7,
           "restricted": 1
         },
@@ -8442,6 +8442,105 @@
               }
             ],
             "finding": "PracticalBangkoklonghaul3540USD≈33850NOK, slightlyaboveJuneyao3503USD but longer15h15bothways. Regionalnextstep onlyoneopenjawscreen, thenstopifnotclearlybetter."
+          },
+          {
+            "id": "sha-20261011-036",
+            "checkedAt": "2026-10-11T15:45:23.520Z",
+            "service": "Trip.com regional multi-city A",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=sha&multacity0=tyo&dairport0=pvg&multddate0=2027-03-23&multdcity1=osa&multacity1=sha&dairport1=kix&aairport1=pvg&multddate1=2027-04-04&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA/Starflyer",
+                "outbound": {
+                  "flight": "NH972",
+                  "departure": "2027-03-23T08:35:00+08:00",
+                  "arrival": "2027-03-23T12:20:00+09:00",
+                  "from": "PVG T2",
+                  "to": "HND T3",
+                  "durationMinutes": 165
+                },
+                "inbound": {
+                  "flights": [
+                    "NH3828 operated Starflyer",
+                    "NH967"
+                  ],
+                  "departure": "2027-04-04T18:35:00+09:00",
+                  "arrival": "2027-04-05T00:45:00+08:00",
+                  "durationMinutes": 430,
+                  "stops": [
+                    "HND"
+                  ],
+                  "transferMinutes": 155,
+                  "segments": [
+                    {
+                      "from": "KIX",
+                      "to": "HND",
+                      "departure": "18:35",
+                      "arrival": "19:55"
+                    },
+                    {
+                      "from": "HND",
+                      "to": "PVG T2",
+                      "departure": "22:30",
+                      "arrival": "00:45+1"
+                    }
+                  ],
+                  "transferBaggage": "Collect & recheck baggage explicitlyshown; domestic/international terminaltransfer unverified; protectionone-ticket notindependentlyconfirmed"
+                },
+                "price": {
+                  "amount": 2361,
+                  "currency": "USD",
+                  "basis": "Bothlegsselected faretotal4,4left",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "notpermitted"
+                },
+                "returnBufferJuneyaoMinutes": 1960
+              },
+              {
+                "price": {
+                  "amount": 2199,
+                  "currency": "USD",
+                  "basis": "initiallowestreturnlist"
+                },
+                "inbound": "4Apr07:00KIX→5Apr00:45PVG17h45HND14h20; rejectedexcessivetime"
+              },
+              {
+                "price": {
+                  "amount": 3450,
+                  "currency": "USD",
+                  "basis": "initialnonstopreturntotal4notfareselected"
+                },
+                "inbound": "4Apr13:10KIX→14:35PVG"
+              }
+            ],
+            "finding": "RegionalA2361USD improves versus separateOW3388USD, but 7h10return/HND155min baggage recheck addsburden. B1719USD hasnonstopreturn and642USDsaving. Aiscompleteprice but operationallyprovisional at HND."
           }
         ],
         "candidates": [
@@ -8771,7 +8870,8 @@
             "sha-20261011-031",
             "sha-20261011-032",
             "sha-20261011-033",
-            "sha-20261011-035"
+            "sha-20261011-035",
+            "sha-20261011-036"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
