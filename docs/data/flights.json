@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 22,
+          "completed": 23,
           "failed": 6,
           "restricted": 1
         },
@@ -8033,6 +8033,85 @@
                 "verification": "Provider requires visit site for price. Do not rank as fully priced."
               }
             ]
+          },
+          {
+            "id": "sha-20261011-030",
+            "checkedAt": "2026-10-11T15:34:55.003Z",
+            "service": "Hainan Airlines direct",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4,
+              "verified": "Fare table Number3adult1child"
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.hainanairlines.com/OEC/GB/Home",
+            "repeatSearch": "OSL–PVG20Mar/5Apr2027,3adults1child,EconomyBasic,HU770/HU7613 andHU7614/HU769; homepage fresh search required",
+            "results": [
+              {
+                "carrier": "Hainan",
+                "price": {
+                  "amount": 32845,
+                  "currency": "NOK",
+                  "basis": "Direct Review Fare full total4 taxincluded; adult8544×3 andchild7213 in carrier table, not mechanical adultmultiplication",
+                  "stage": "carrier-review-fare-not-booked"
+                },
+                "outbound": {
+                  "flights": [
+                    "HU770",
+                    "HU7613"
+                  ],
+                  "departure": "2027-03-20T12:30:00+01:00",
+                  "arrival": "2027-03-21T13:20:00+08:00",
+                  "durationMinutes": 1070,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 385
+                },
+                "inbound": {
+                  "flights": [
+                    "HU7614",
+                    "HU769"
+                  ],
+                  "departure": "2027-04-05T11:05:00+08:00",
+                  "arrival": "2027-04-06T06:45:00+02:00",
+                  "durationMinutes": 1540,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 815
+                },
+                "baggage": {
+                  "checked": "1piece perperson included bothfarefamilies, weight notexpanded",
+                  "carryOn": "1×10kg perperson"
+                },
+                "terms": {
+                  "fare": "EconomyBasic",
+                  "changeNokPerPersonTransaction": 2037,
+                  "cancellationNok": 2573,
+                  "noShowNok": 2037,
+                  "fareDifference": "additional; lowernewfare difference notrefunded",
+                  "couponSequence": "All coupons must be used in order; cannot skip PVG/PEKsegments"
+                },
+                "protection": "Carrier states 2+segments connecting flight and single-ticket throughcheck at selected domestictransitports; exact through-bag eligibility notverified",
+                "returnBurden": "13h35 overnightPEK may warrantextraairporthotel allowance, notincluded32845"
+              }
+            ],
+            "finding": "Directsite successfully resolvesGooglewithdrawnprice; full3+1fare32845NOK. Usablelonghaul but muchslower thanJuneyao and needsregionalJapanreturn no later4Apr."
           }
         ],
         "candidates": [
@@ -8357,7 +8436,8 @@
             "sha-20261011-026",
             "sha-20261011-027",
             "sha-20261011-028",
-            "sha-20261011-029"
+            "sha-20261011-029",
+            "sha-20261011-030"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
