@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 20,
+          "completed": 21,
           "failed": 6,
           "restricted": 1
         },
@@ -7899,6 +7899,84 @@
             "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=sha&ddate=2027-03-20&rdate=2027-04-05&dairport=osl&aairport=pvg&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
             "price": null,
             "finding": "Correctdatesroutefourpassengers Roundtripverified; sellerreturned'Sorry,noavailableflightsfound'. Doesnotprove market unavailable; Juneyao calendar had adultteaser for same datepair, requires actualcarrierpartyselection."
+          },
+          {
+            "id": "sha-20261011-028",
+            "checkedAt": "2026-10-11T15:27:21.387Z",
+            "service": "Trip.com regional roundtrip",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=tyo&ddate=2027-03-23&rdate=2027-04-04&dairport=pvg&dcityid=2&acityid=228&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": {
+                  "flight": "NH972",
+                  "from": "PVG T2",
+                  "to": "HND T3",
+                  "departure": "2027-03-23T08:35:00+08:00",
+                  "arrival": "2027-03-23T12:20:00+09:00",
+                  "durationMinutes": 165
+                },
+                "inbound": {
+                  "flight": "NH919",
+                  "from": "NRT T1",
+                  "to": "PVG T2",
+                  "departure": "2027-04-04T09:20:00+09:00",
+                  "arrival": "2027-04-04T11:40:00+08:00",
+                  "durationMinutes": 200
+                },
+                "price": {
+                  "amount": 1780,
+                  "currency": "USD",
+                  "basis": "selected fare total4, repriced1779to1780",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2 ×23 kg displayed bothsegmentsfare"
+                },
+                "terms": {
+                  "fare": "EconomyLight",
+                  "refund": "Non-refundable partialtaxonly",
+                  "change": "Changesnotpermitted"
+                },
+                "returnBufferJuneyaoMinutes": 2745,
+                "returnBufferFinnairMinutes": 3430,
+                "extraJapanTransport": "RequiresOsaka→Tokyobacktrack before earlyNRTdeparture. Priorrepo3+1railestimate50820JPY+4–6hr; currenttrainprice not refreshed. HNDarrival andNRTdeparture atdifferentendsofJapantrip, no directsame-day airportchange assumed."
+              },
+              {
+                "price": {
+                  "amount": 1998,
+                  "currency": "USD",
+                  "basis": "sameflights selectedfare total4"
+                },
+                "terms": {
+                  "fare": "EconomyValue",
+                  "change": "fromUSD45"
+                },
+                "baggage": "same2×23kg"
+              }
+            ],
+            "finding": "RealRTsaving: USD1780versus TokyoOW1476+Jetstar1148=2624USD, savesUSD844≈8071NOK before extraJapanrail. Strongcontenderwhenrailcost/time included."
           }
         ],
         "candidates": [
@@ -8221,7 +8299,8 @@
             "sha-20261011-023",
             "sha-20261011-024",
             "sha-20261011-026",
-            "sha-20261011-027"
+            "sha-20261011-027",
+            "sha-20261011-028"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
