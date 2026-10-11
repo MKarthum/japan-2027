@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 1,
+          "completed": 2,
           "failed": 1,
           "restricted": 1
         },
@@ -6653,6 +6653,60 @@
             "error": "date-grid-loading-no-prices",
             "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-04%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
             "finding": "Interactive Date grid opened; all 49 cells remained Loading prices / 0000 across repeated state checks. No cell prices inferred."
+          },
+          {
+            "id": "sha-20261011-004",
+            "checkedAt": "2026-10-11T14:55:19.968Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-04",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 28819,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T08:40:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 1635,
+                "transferAirport": "HEL",
+                "transferMin": 815
+              },
+              {
+                "amountNok": 36075,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T20:50:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 905,
+                "transferAirport": "HEL",
+                "transferMin": 85
+              },
+              {
+                "amountNok": 36304,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Austrian",
+                "departureLocal": "2027-03-21T14:20:00+01:00",
+                "arrivalLocal": "2027-03-22T17:30:00+08:00",
+                "durationMin": 1210,
+                "transferAirport": "VIE",
+                "transferMin": 405
+              }
+            ],
+            "baggage": null,
+            "verification": "3+1 retained in UI; prices explicitly for four. Return and baggage not selected.",
+            "error": null
           }
         ],
         "candidates": [],
@@ -6859,7 +6913,8 @@
         ],
         "progress": {
           "completedSearchIds": [
-            "sha-20261011-002"
+            "sha-20261011-002",
+            "sha-20261011-004"
           ],
           "failedSearchIds": [
             "sha-20261011-003"
