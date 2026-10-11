@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 28,
+          "completed": 29,
           "failed": 7,
           "restricted": 1
         },
@@ -8541,6 +8541,58 @@
               }
             ],
             "finding": "RegionalA2361USD improves versus separateOW3388USD, but 7h10return/HND155min baggage recheck addsburden. B1719USD hasnonstopreturn and642USDsaving. Aiscompleteprice but operationallyprovisional at HND."
+          },
+          {
+            "id": "sha-20261011-037",
+            "checkedAt": "2026-10-11T15:46:35.151Z",
+            "service": "Trip.com Bangkok regional screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "BKK",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "BKK",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=bkk&multacity0=osa&dairport0=bkk&aairport0=kix&multddate0=2027-03-23&multdcity1=tyo&multacity1=bkk&aairport1=bkk&multddate1=2027-04-04&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "price": {
+                  "amount": 2461,
+                  "currency": "USD",
+                  "basis": "initialmulticitytotal4;returnnotselected,bagsunknown"
+                },
+                "outbound": "23Mar00:25BKK→07:55KIX5h30nonstop"
+              },
+              {
+                "price": {
+                  "amount": 2015,
+                  "currency": "USD",
+                  "basis": "lowestinitialmulti-citytotal4"
+                },
+                "outbound": "23Mar02:25BKK→24Mar11:25KIX31htotal,TAO23h50;rejectexcessivetime"
+              },
+              {
+                "price": {
+                  "amount": 2221,
+                  "currency": "USD",
+                  "basis": "initialmulti-citytotal4"
+                },
+                "outbound": "23Mar19:00BKK→24Mar06:55KIX9h55HAN4h"
+              }
+            ],
+            "finding": "No clearlybetterBangkoksolution: practicalnonstopregionalinitial2461USDalready975USDaboveANA PVGopenjaw1486, longhaul3540slightlymore and eachregionalflight5h30+. Screenedout withoutfurtherreturnselection. NotcompletepricedBangkokoption; DMKlowcostnotcovered."
           }
         ],
         "candidates": [
@@ -8871,7 +8923,8 @@
             "sha-20261011-032",
             "sha-20261011-033",
             "sha-20261011-035",
-            "sha-20261011-036"
+            "sha-20261011-036",
+            "sha-20261011-037"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
