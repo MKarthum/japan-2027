@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 8,
+          "completed": 9,
           "failed": 3,
           "restricted": 1
         },
@@ -7107,6 +7107,71 @@
             ],
             "verification": "Passenger dialog 3 Adults 1 Child aged 2–11; explicitly four-person total. Specific fares not selected.",
             "error": null
+          },
+          {
+            "id": "sha-20261011-013",
+            "checkedAt": "2026-10-11T15:02:17.070Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "PVG",
+            "to": "TYO (HND/NRT)",
+            "departDate": "2027-03-23",
+            "returnDate": "2027-04-04",
+            "tripType": "roundtrip",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 17929,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "ANA",
+                "from": "PVG",
+                "to": "HND",
+                "departureLocal": "2027-03-23T02:35:00+08:00",
+                "arrivalLocal": "2027-03-23T06:15:00+09:00",
+                "durationMin": 160,
+                "stops": 0
+              },
+              {
+                "amountNok": 19000,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "ANA",
+                "from": "PVG",
+                "to": "HND",
+                "departureLocal": "2027-03-23T08:35:00+08:00",
+                "arrivalLocal": "2027-03-23T12:20:00+09:00",
+                "durationMin": 165,
+                "stops": 0
+              },
+              {
+                "amountNok": 20177,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Jetstar",
+                "from": "PVG",
+                "to": "NRT",
+                "departureLocal": "2027-03-23T02:20:00+08:00",
+                "arrivalLocal": "2027-03-23T06:20:00+09:00",
+                "durationMin": 180,
+                "stops": 0,
+                "baggage": "Overhead-bin access excluded"
+              }
+            ],
+            "excludedOffers": [
+              {
+                "amountNok": 16911,
+                "reason": "Overnight Osaka plus KIX–ITM airport change; unsuitable for Tokyo arrival"
+              }
+            ],
+            "baggage": null,
+            "verification": "Dates confirmed in tracking text, 4-person total. Return not yet selected.",
+            "error": null
           }
         ],
         "candidates": [
@@ -7417,7 +7482,8 @@
             "sha-20261011-008",
             "sha-20261011-009",
             "sha-20261011-010",
-            "sha-20261011-012"
+            "sha-20261011-012",
+            "sha-20261011-013"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
