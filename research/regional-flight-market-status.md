@@ -9,3 +9,7 @@ Kontrollrunde 11. oktober 2026.
 - Offisielle kinesiske innreiseregler kontrolleres særskilt; 2026-regler skal ikke uten videre antas gyldige i 2027.
 - Nettsiden og publisert plan er ikke endret. Ingen kjøp.
 - Gjenstår: supplerende prising, bagasje, vilkår og rangering.
+
+## Kontrollpunkt
+
+Begge reiseretninger er undersøkt i interaktive flerbysøk. Gruppetotal og bagasje er dokumentert privat for flere ANA-kombinasjoner. Datoalternativer, separate enveisbilletter og direkte flyselskapskontroll gjenstår. Ingen personlige datoer, prislenker eller bestillingsdetaljer publiseres her.
