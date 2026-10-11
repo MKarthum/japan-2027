@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 29,
+          "completed": 30,
           "failed": 7,
           "restricted": 1
         },
@@ -8593,6 +8593,78 @@
               }
             ],
             "finding": "No clearlybetterBangkoksolution: practicalnonstopregionalinitial2461USDalready975USDaboveANA PVGopenjaw1486, longhaul3540slightlymore and eachregionalflight5h30+. Screenedout withoutfurtherreturnselection. NotcompletepricedBangkokoption; DMKlowcostnotcovered."
+          },
+          {
+            "id": "sha-20261011-038",
+            "checkedAt": "2026-10-11T15:48:46.395Z",
+            "service": "Trip.com combined four-leg multi-city",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=osl&multacity0=sha&dairport0=osl&aairport0=pvg&multddate0=2027-03-21&multdcity1=sha&multacity1=osa&dairport1=pvg&aairport1=kix&multddate1=2027-03-23&multdcity2=tyo&multacity2=sha&aairport2=pvg&multddate2=2027-04-04&multdcity3=sha&multacity3=osl&dairport3=pvg&aairport3=osl&multddate3=2027-04-06&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carriers": [
+                  "Finnair/Jettime",
+                  "Juneyao",
+                  "ANA"
+                ],
+                "price": {
+                  "amount": 5083,
+                  "currency": "USD",
+                  "basis": "Allfourlegsselected faretotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "componentsMatch": [
+                  "sha-20261011-019",
+                  "sha-20261011-033"
+                ],
+                "flights": [
+                  "AY914",
+                  "HO1608",
+                  "NH976",
+                  "NH919",
+                  "HO1607",
+                  "AY917"
+                ],
+                "baggage": {
+                  "carryOn": "Atleast1piece",
+                  "checked": "Atleast1×23kg"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "Non-changeable partialsegments"
+                },
+                "protection": "EXPLICIT: Itinerary will be split across multiple bookings and flight tickets. This is NOT protectedShanghai connection."
+              }
+            ],
+            "finding": "Combinedshoppingcost5083USD versus separate3503+1486=4989USD,94USD≈899NOKmore. No protectionbenefit. Regionallegs+longhaul considered separate evenwhenpurchased together."
           }
         ],
         "candidates": [
@@ -8924,7 +8996,8 @@
             "sha-20261011-033",
             "sha-20261011-035",
             "sha-20261011-036",
-            "sha-20261011-037"
+            "sha-20261011-037",
+            "sha-20261011-038"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
