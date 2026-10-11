@@ -59,7 +59,7 @@ assert.match(cards.replace(/\s/g,' '),/47 055 kr/);
 assert.match(cards.replace(/\s/g,' '),/47 706 kr/);
 assert.match(cards,/14/);
 assert.match(cards,/Risiko/);
-assert.match(archive,/sha-20261011-001/);
+assert.match(archive,/FINN Reise/);
 assert.match(archive,/Trip\.com/);
 assert.match(archive,/Eldre flyresearch/);
 assert.match(element('flight-r-count').textContent,/45 av 45/);
