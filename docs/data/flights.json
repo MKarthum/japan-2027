@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 35,
+          "completed": 36,
           "failed": 7,
           "restricted": 1
         },
@@ -8952,6 +8952,94 @@
               }
             ],
             "recheckRequired": "Beforebookingandbeforedeparture; obtainvisaif concreteitinerarydoesnotmeetapplicabletransitconditionsand30daywaivernotextended."
+          },
+          {
+            "id": "sha-20261011-044",
+            "checkedAt": "2026-10-11T15:56:52.945Z",
+            "service": "Trip.com same-day onward and one return-night",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-22"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=sha&multacity0=osa&dairport0=pvg&aairport0=kix&multddate0=2027-03-22&multdcity1=tyo&multacity1=sha&aairport1=pvg&multddate1=2027-04-05&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": {
+                  "flight": "NH976",
+                  "from": "PVG T2",
+                  "to": "KIX T1",
+                  "departure": "2027-03-22T19:05:00+08:00",
+                  "arrival": "2027-03-22T22:00:00+09:00",
+                  "durationMinutes": 115
+                },
+                "inbound": {
+                  "flight": "NH919",
+                  "from": "NRT T1",
+                  "to": "PVG T2",
+                  "departure": "2027-04-05T09:20:00+09:00",
+                  "arrival": "2027-04-05T11:40:00+08:00",
+                  "durationMinutes": 200
+                },
+                "price": {
+                  "amount": 2407,
+                  "currency": "USD",
+                  "basis": "Bothlegsselectedtotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "fare": "EconomyLight",
+                  "refund": "nonrefpartialtax",
+                  "change": "notpermitted"
+                },
+                "outwardBufferJuneyaoMinutes": 675,
+                "returnBufferJuneyaoMinutes": 1305,
+                "japanNights": 14,
+                "japanFullDays": 13,
+                "shanghaiHotelNights": 1,
+                "assessment": "Strong mostJapan option; nooutwardhotelbut11h15gap,1nightShanghai5Aprreturn21h45buffer. OutwardChinaentry/daytripoptional. KIXlatearrivalneedsairporthotel/latecheckinplan. Regionalprice913USDabove23Mar4Aprcheapbut saves2Shanghaihotelnights and gains2wholeJapan days."
+              },
+              {
+                "price": {
+                  "amount": 2531,
+                  "currency": "USD",
+                  "basis": "sameflightsEconomyValue total4"
+                },
+                "terms": {
+                  "change": "fromUSD45"
+                },
+                "baggage": "2×23kg"
+              },
+              {
+                "price": {
+                  "amount": 2399,
+                  "currency": "USD",
+                  "basis": "initialeveningreturn5AprHND22:30→6Apr00:45"
+                },
+                "returnBufferJuneyaoMinutes": 520,
+                "qualification": "only8h40returngap,notchosen"
+              }
+            ]
           }
         ],
         "candidates": [
@@ -9289,7 +9377,8 @@
             "sha-20261011-040",
             "sha-20261011-041",
             "sha-20261011-042",
-            "sha-20261011-043"
+            "sha-20261011-043",
+            "sha-20261011-044"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
