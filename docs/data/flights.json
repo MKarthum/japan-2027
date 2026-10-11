@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 9,
-          "failed": 3,
+          "failed": 4,
           "restricted": 1
         },
         "searchRuns": [
@@ -7172,6 +7172,29 @@
             "baggage": null,
             "verification": "Dates confirmed in tracking text, 4-person total. Return not yet selected.",
             "error": null
+          },
+          {
+            "id": "sha-20261011-014",
+            "checkedAt": "2026-10-11T15:03:07.479Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "PVG",
+            "to": "HND",
+            "departDate": "2027-03-23",
+            "returnDate": "2027-04-04",
+            "tripType": "roundtrip",
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": null,
+            "error": "regional-return-selection-oops",
+            "finding": "Selected ANA 08:35 outbound from 19 000 NOK four-person roundtrip result. Return selection returned Oops something went wrong; one Reload still failed. No selected-return price or baggage verified."
           }
         ],
         "candidates": [
@@ -7488,7 +7511,8 @@
           "failedSearchIds": [
             "sha-20261011-003",
             "sha-20261011-007",
-            "sha-20261011-011"
+            "sha-20261011-011",
+            "sha-20261011-014"
           ],
           "remaining": [
             "Shanghai long-haul discovery",
