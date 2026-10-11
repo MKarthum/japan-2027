@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 18,
-          "failed": 5,
+          "failed": 6,
           "restricted": 1
         },
         "searchRuns": [
@@ -7769,6 +7769,42 @@
               }
             ],
             "finding": "No substantiated nonstop saving over separateOW: selectednoonANA1091+MU1912 equals3003. Lowinitial2140appears todependon otherreturn (not practicaldirectobserved); do not advertise2140 as complete fare. Lowest1906 eveningoutbound remains unverified. OsakaRT also entails extraJapanrail toclosemainroute."
+          },
+          {
+            "id": "sha-20261011-025",
+            "checkedAt": "2026-10-11T15:23:40.548Z",
+            "service": "Juneyao direct",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4,
+              "adultCategory": "12+",
+              "childCategory": "2–11"
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "failed",
+            "publicUrl": "https://global.juneyaoair.com/",
+            "price": null,
+            "observations": {
+              "partyVerified": "3Adult1Child in actual resultsheader",
+              "outboundVerified": "AY91421Mar12:30 OSL→HEL14:55, HO1608HEL16:40→PVG22Mar07:50,12h20",
+              "adultRoundtripTeaserUsd": 825,
+              "basis": "site explicitly adultRTincludingtax; NOT familytotal, notmultiplied"
+            },
+            "error": "fare-selection-not-responsive",
+            "finding": "Directsearchreturnedcorrectdate/partyandflight. Clicking USD825twice(aftercookieAgree) didnotopenfare/returnselection; Loadingnowremained. One reload producedRuntime.evaluate timeout. No actualfour-person directtotal or directbaggagevalidated. Trip.com3503USD remains independent seller observation."
           }
         ],
         "candidates": [
@@ -8096,7 +8132,8 @@
             "sha-20261011-007",
             "sha-20261011-011",
             "sha-20261011-014",
-            "sha-20261011-015"
+            "sha-20261011-015",
+            "sha-20261011-025"
           ],
           "remaining": [
             "Shanghai long-haul discovery",
