@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 23,
+          "completed": 24,
           "failed": 6,
           "restricted": 1
         },
@@ -8112,6 +8112,61 @@
               }
             ],
             "finding": "Directsite successfully resolvesGooglewithdrawnprice; full3+1fare32845NOK. Usablelonghaul but muchslower thanJuneyao and needsregionalJapanreturn no later4Apr."
+          },
+          {
+            "id": "sha-20261011-031",
+            "checkedAt": "2026-10-11T15:35:15.298Z",
+            "service": "Google Flights Beijing screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PEK",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PEK",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PEK%20on%202027-03-20%20returning%202027-04-05%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "results": [
+              {
+                "carrier": "KLM",
+                "price": {
+                  "amount": 44109,
+                  "currency": "NOK",
+                  "basis": "initial RT total4; return notselected bagsunknown"
+                },
+                "outbound": "20Mar12:35OSL→21Mar09:55PEK14h20AMS85min"
+              },
+              {
+                "carrier": "AirFrance",
+                "price": {
+                  "amount": 44113,
+                  "currency": "NOK",
+                  "basis": "initialRTtotal4"
+                },
+                "outbound": "20Mar17:10→21Mar16:5516h45CDG160min"
+              },
+              {
+                "carrier": "Hainan",
+                "price": {
+                  "amount": 53160,
+                  "currency": "NOK",
+                  "basis": "initialRTtotal4"
+                },
+                "outbound": "20Mar12:30OSL→21Mar04:30PEK9h nonstop"
+              }
+            ],
+            "finding": "Screened out on thisdatepair: directPEK farefarabove throughPVG fare despite sameOSLPEKflight. Must notskipPVGcoupons onShanghai ticket. No regionalBeijingsearch justified yet; otherdatesnotcovered."
           }
         ],
         "candidates": [
@@ -8437,7 +8492,8 @@
             "sha-20261011-027",
             "sha-20261011-028",
             "sha-20261011-029",
-            "sha-20261011-030"
+            "sha-20261011-030",
+            "sha-20261011-031"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
