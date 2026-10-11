@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 21,
+          "completed": 22,
           "failed": 6,
           "restricted": 1
         },
@@ -7977,6 +7977,62 @@
               }
             ],
             "finding": "RealRTsaving: USD1780versus TokyoOW1476+Jetstar1148=2624USD, savesUSD844≈8071NOK before extraJapanrail. Strongcontenderwhenrailcost/time included."
+          },
+          {
+            "id": "sha-20261011-029",
+            "checkedAt": "2026-10-11T15:33:07.190Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-05%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "results": [
+              {
+                "carrier": "Hainan",
+                "price": {
+                  "amount": 33067,
+                  "currency": "NOK",
+                  "basis": "initial four-passenger roundtrip result",
+                  "stage": "WITHDRAWN: final provider screen hides price because it might be incorrect; not confirmed"
+                },
+                "outbound": {
+                  "departure": "2027-03-20T12:30:00+01:00",
+                  "arrival": "2027-03-21T13:20:00+08:00",
+                  "durationMinutes": 1070,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 385
+                },
+                "inbound": {
+                  "departure": "2027-04-05T11:05:00+08:00",
+                  "arrival": "2027-04-06T06:45:00+02:00",
+                  "durationMinutes": 1540,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 815
+                },
+                "baggage": "Google summary: first checked bag and one carry-on free per passenger, weight unverified",
+                "verification": "Provider requires visit site for price. Do not rank as fully priced."
+              }
+            ]
           }
         ],
         "candidates": [
@@ -8300,7 +8356,8 @@
             "sha-20261011-024",
             "sha-20261011-026",
             "sha-20261011-027",
-            "sha-20261011-028"
+            "sha-20261011-028",
+            "sha-20261011-029"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
