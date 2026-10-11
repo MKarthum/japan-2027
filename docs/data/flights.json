@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 7,
+          "completed": 8,
           "failed": 3,
           "restricted": 1
         },
@@ -7047,6 +7047,66 @@
             "price": null,
             "error": "selected-summary-getting-prices",
             "finding": "Selected Lufthansa itinerary remained Getting prices across state checks and one reload. No booking option or baggage price loaded. Previous return-list quote retained as preliminary."
+          },
+          {
+            "id": "sha-20261011-012",
+            "checkedAt": "2026-10-11T15:01:16.433Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "PVG",
+            "to": "TYO (HND/NRT)",
+            "departDate": "2027-03-23",
+            "tripType": "oneway",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=One%20way%20flights%20from%20PVG%20to%20Tokyo%20on%202027-03-23%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "observedOffers": [
+              {
+                "amountNok": 9685,
+                "basis": "four-passenger-oneway",
+                "airline": "Jetstar",
+                "from": "PVG",
+                "to": "NRT",
+                "departureLocal": "2027-03-23T02:20:00+08:00",
+                "arrivalLocal": "2027-03-23T06:20:00+09:00",
+                "durationMin": 180,
+                "stops": 0,
+                "baggage": "Overhead-bin access excluded; checked unverified",
+                "assessment": "7 h 25 after Finnair arrival; overnight airport wait, no practical full hotel night"
+              },
+              {
+                "amountNok": 10865,
+                "basis": "four-passenger-oneway",
+                "airline": "Spring",
+                "from": "PVG",
+                "to": "NRT",
+                "departureLocal": "2027-03-23T15:00:00+08:00",
+                "arrivalLocal": "2027-03-23T18:40:00+09:00",
+                "durationMin": 160,
+                "stops": 0,
+                "baggage": null
+              },
+              {
+                "amountNok": 13660,
+                "basis": "four-passenger-oneway",
+                "airline": "ANA",
+                "from": "PVG",
+                "to": "HND",
+                "departureLocal": "2027-03-23T08:35:00+08:00",
+                "arrivalLocal": "2027-03-23T12:20:00+09:00",
+                "durationMin": 165,
+                "stops": 0,
+                "baggage": null
+              }
+            ],
+            "verification": "Passenger dialog 3 Adults 1 Child aged 2–11; explicitly four-person total. Specific fares not selected.",
+            "error": null
           }
         ],
         "candidates": [
@@ -7356,7 +7416,8 @@
             "sha-20261011-006",
             "sha-20261011-008",
             "sha-20261011-009",
-            "sha-20261011-010"
+            "sha-20261011-010",
+            "sha-20261011-012"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
