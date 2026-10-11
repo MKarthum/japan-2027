@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 5,
+          "completed": 6,
           "failed": 2,
           "restricted": 1
         },
@@ -6927,6 +6927,59 @@
             "baggage": null,
             "verification": "Track prices and fields confirm both dates; four-person total. Initial transient Oops resolved without reload.",
             "error": null
+          },
+          {
+            "id": "sha-20261011-009",
+            "checkedAt": "2026-10-11T14:59:31.354Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-19",
+            "returnDate": "2027-04-05",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 36850,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Lufthansa",
+                "departureLocal": "2027-03-19T09:35:00+01:00",
+                "arrivalLocal": "2027-03-20T10:05:00+08:00",
+                "durationMin": 1050,
+                "transferAirport": "FRA",
+                "transferMin": 200
+              },
+              {
+                "amountNok": 43232,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "British Airways",
+                "departureLocal": "2027-03-19T06:45:00+01:00",
+                "arrivalLocal": "2027-03-20T09:10:00+08:00",
+                "durationMin": 1165,
+                "transferAirport": "LHR",
+                "transferMin": 235
+              },
+              {
+                "amountNok": 45230,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Emirates",
+                "departureLocal": "2027-03-19T14:00:00+01:00",
+                "arrivalLocal": "2027-03-20T15:05:00+08:00",
+                "durationMin": 1085,
+                "transferAirport": "DXB",
+                "transferMin": 195
+              }
+            ],
+            "baggage": null,
+            "error": null
           }
         ],
         "candidates": [
@@ -7234,7 +7287,8 @@
             "sha-20261011-004",
             "sha-20261011-005",
             "sha-20261011-006",
-            "sha-20261011-008"
+            "sha-20261011-008",
+            "sha-20261011-009"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
