@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 3,
+          "completed": 4,
           "failed": 1,
           "restricted": 1
         },
@@ -6771,9 +6771,152 @@
             "baggage": null,
             "verification": "Correct dates in Track prices; total for 4. Return and baggage not selected.",
             "error": null
+          },
+          {
+            "id": "sha-20261011-006",
+            "checkedAt": "2026-10-11T14:57:09.463Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": {
+              "amount": 32437,
+              "currency": "NOK",
+              "basis": "all-four-roundtrip",
+              "stage": "both-flights-selected"
+            },
+            "airlines": [
+              "Finnair"
+            ],
+            "outbound": {
+              "departureLocal": "2027-03-21T20:50:00+01:00",
+              "arrivalLocal": "2027-03-22T18:55:00+08:00",
+              "durationMin": 905,
+              "transferAirport": "HEL",
+              "transferMin": 85,
+              "flightNumbers": [
+                "AY918",
+                "AY87"
+              ]
+            },
+            "inbound": {
+              "departureLocal": "2027-04-06T20:50:00+08:00",
+              "arrivalLocal": "2027-04-07T07:50:00+02:00",
+              "durationMin": 1020,
+              "transferAirport": "HEL",
+              "transferMin": 90
+            },
+            "baggage": {
+              "cabinPiecesPerPassenger": 1,
+              "checkedBagCostPerPassengerWholeTripRangeNok": [
+                0,
+                1930
+              ],
+              "specificCheckedAllowance": null
+            },
+            "providerOffers": [
+              {
+                "provider": "Finnair",
+                "amountNok": 32437
+              },
+              {
+                "provider": "lastminute.com",
+                "amountNok": 35756
+              }
+            ],
+            "verification": "Google itinerary summary explicitly total for 4; selected outbound/return; concrete carrier tariff not yet verified. Price changed from 32449 to 32437 during selection.",
+            "connection": {
+              "status": "carrier-connection-not-contractually-confirmed",
+              "separateRegionalTicketsRequired": true
+            },
+            "error": null
           }
         ],
-        "candidates": [],
+        "candidates": [
+          {
+            "id": "sha-longhaul-finnair-21mar-06apr",
+            "checkedAt": "2026-10-11T14:57:09.463Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": {
+              "amount": 32437,
+              "currency": "NOK",
+              "basis": "all-four-roundtrip",
+              "stage": "both-flights-selected"
+            },
+            "airlines": [
+              "Finnair"
+            ],
+            "outbound": {
+              "departureLocal": "2027-03-21T20:50:00+01:00",
+              "arrivalLocal": "2027-03-22T18:55:00+08:00",
+              "durationMin": 905,
+              "transferAirport": "HEL",
+              "transferMin": 85,
+              "flightNumbers": [
+                "AY918",
+                "AY87"
+              ]
+            },
+            "inbound": {
+              "departureLocal": "2027-04-06T20:50:00+08:00",
+              "arrivalLocal": "2027-04-07T07:50:00+02:00",
+              "durationMin": 1020,
+              "transferAirport": "HEL",
+              "transferMin": 90
+            },
+            "baggage": {
+              "cabinPiecesPerPassenger": 1,
+              "checkedBagCostPerPassengerWholeTripRangeNok": [
+                0,
+                1930
+              ],
+              "specificCheckedAllowance": null
+            },
+            "providerOffers": [
+              {
+                "provider": "Finnair",
+                "amountNok": 32437
+              },
+              {
+                "provider": "lastminute.com",
+                "amountNok": 35756
+              }
+            ],
+            "verification": "Google itinerary summary explicitly total for 4; selected outbound/return; concrete carrier tariff not yet verified. Price changed from 32449 to 32437 during selection.",
+            "connection": {
+              "status": "carrier-connection-not-contractually-confirmed",
+              "separateRegionalTicketsRequired": true
+            },
+            "error": null,
+            "qualificationStatus": "provisional",
+            "priceCompleteness": "checked-baggage-unverified"
+          }
+        ],
         "directChecks": [],
         "completeOptions": [],
         "baselineReferences": [
@@ -6979,7 +7122,8 @@
           "completedSearchIds": [
             "sha-20261011-002",
             "sha-20261011-004",
-            "sha-20261011-005"
+            "sha-20261011-005",
+            "sha-20261011-006"
           ],
           "failedSearchIds": [
             "sha-20261011-003"
@@ -6993,6 +7137,30 @@
             "Selective other hubs",
             "Total-cost and risk comparison"
           ]
+        },
+        "schoolCalendar": {
+          "holidayFrom": "2027-03-22",
+          "holidayThrough": "2027-03-30",
+          "resumes": "2027-03-31",
+          "checked": "2026-10-11",
+          "source": "https://stig.osloskolen.no/kalender/",
+          "note": "Official Oslo school calendar confirms shared municipal Easter dates; no private school identity recorded."
+        },
+        "entryRules": {
+          "checked": "2026-10-11",
+          "ordinaryNorwegianPassport": true,
+          "unilateral30DayWaiver": {
+            "validThrough": "2026-12-31",
+            "coversSpring2027Confirmed": false,
+            "source": "https://no.china-embassy.gov.cn/eng/lsfw_0/zytz_133966/202511/t20251105_11747172.htm"
+          },
+          "transit240Hours": {
+            "norwayEligible": true,
+            "required": "Confirmed onward ticket/date/seat to third country or region, permitted entry port and area; ordinary passport",
+            "source": "https://en.nia.gov.cn/n147418/n147463/c183412/content.html",
+            "itineraryAssessment": "HEL–PVG–Japan outward and Japan–PVG–HEL homeward appear to satisfy third-country routing. This is inference; each entry assessed separately. Port eligibility, passport validity and acceptance of separately purchased onward evidence must be checked before booking; no automatic approval.",
+            "recheck": "Before booking and before departure"
+          }
         }
       }
     ],
