@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 2,
+          "completed": 3,
           "failed": 1,
           "restricted": 1
         },
@@ -6706,6 +6706,70 @@
             ],
             "baggage": null,
             "verification": "3+1 retained in UI; prices explicitly for four. Return and baggage not selected.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-005",
+            "checkedAt": "2026-10-11T14:55:50.198Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 25190,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T08:40:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 1635,
+                "transferAirport": "HEL",
+                "transferMin": 815
+              },
+              {
+                "amountNok": 32449,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T20:50:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 905,
+                "transferAirport": "HEL",
+                "transferMin": 85
+              },
+              {
+                "amountNok": 35520,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Austrian",
+                "departureLocal": "2027-03-21T14:20:00+01:00",
+                "arrivalLocal": "2027-03-22T17:30:00+08:00",
+                "durationMin": 1210,
+                "transferAirport": "VIE",
+                "transferMin": 405
+              },
+              {
+                "amountNok": 39278,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "British Airways",
+                "departureLocal": "2027-03-21T07:15:00+01:00",
+                "arrivalLocal": "2027-03-22T09:10:00+08:00",
+                "durationMin": 1135,
+                "transferAirport": "LHR",
+                "transferMin": 205
+              }
+            ],
+            "baggage": null,
+            "verification": "Correct dates in Track prices; total for 4. Return and baggage not selected.",
             "error": null
           }
         ],
@@ -6914,7 +6978,8 @@
         "progress": {
           "completedSearchIds": [
             "sha-20261011-002",
-            "sha-20261011-004"
+            "sha-20261011-004",
+            "sha-20261011-005"
           ],
           "failedSearchIds": [
             "sha-20261011-003"
