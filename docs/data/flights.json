@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 31,
+          "completed": 32,
           "failed": 7,
           "restricted": 1
         },
@@ -8755,6 +8755,59 @@
                 "verification": "returnnotselected"
               }
             ]
+          },
+          {
+            "id": "sha-20261011-040",
+            "checkedAt": "2026-10-11T15:51:28.274Z",
+            "service": "Trip.com next-day regional replacement proxy",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2026-10-12"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osa&ddate=2026-10-12&dairport=pvg&aairport=kix&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Juneyao",
+                "flight": "HO1505",
+                "departure": "2026-10-12T08:20:00+08:00",
+                "arrival": "2026-10-12T11:40:00+09:00",
+                "price": {
+                  "amount": 1101,
+                  "currency": "USD",
+                  "basis": "selectedfaretotal4 nextday",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "carryOn": "1×5kg",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "cancellation": "fromUSD179",
+                  "change": "fromUSD75"
+                },
+                "ticketing": "Within2hoursafterpayment"
+              },
+              {
+                "carrier": "Spring",
+                "price": {
+                  "amount": 730,
+                  "currency": "USD",
+                  "basis": "initialtotal4withoutverifiedbag"
+                },
+                "departure": "12Oct15:10PVG→18:30KIX"
+              }
+            ],
+            "finding": "Actualnextdaybagincluded4passengerproxy1101USD≈10528NOK. This isOctober2026market, NOTguarantee/same-dayMarch2027emergencyquote. Lostregionalfareplusnewticket/hotel/lostdaypossible; noassumedprobabilityorautomaticriskpenalty."
           }
         ],
         "candidates": [
@@ -9088,7 +9141,8 @@
             "sha-20261011-036",
             "sha-20261011-037",
             "sha-20261011-038",
-            "sha-20261011-039"
+            "sha-20261011-039",
+            "sha-20261011-040"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
