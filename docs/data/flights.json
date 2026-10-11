@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 4,
-          "failed": 1,
+          "failed": 2,
           "restricted": 1
         },
         "searchRuns": [
@@ -6841,6 +6841,28 @@
               "separateRegionalTicketsRequired": true
             },
             "error": null
+          },
+          {
+            "id": "sha-20261011-007",
+            "checkedAt": "2026-10-11T14:57:46.343Z",
+            "service": "Finnair",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "failed",
+            "publicUrl": "https://www.finnair.com/no-en",
+            "price": null,
+            "error": "carrier-flight-details-fetch-error",
+            "finding": "Google Continue reached Finnair flight selection with correct 3 adults / 1 child and 21 March–6 April. Site said couldn't fetch flight details due to issue on our end; one Reload this page did not resolve. No direct fare or checked-bag price verified."
           }
         ],
         "candidates": [
@@ -6917,7 +6939,31 @@
             "priceCompleteness": "checked-baggage-unverified"
           }
         ],
-        "directChecks": [],
+        "directChecks": [
+          {
+            "id": "sha-20261011-007",
+            "checkedAt": "2026-10-11T14:57:46.343Z",
+            "service": "Finnair",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "failed",
+            "publicUrl": "https://www.finnair.com/no-en",
+            "price": null,
+            "error": "carrier-flight-details-fetch-error",
+            "finding": "Google Continue reached Finnair flight selection with correct 3 adults / 1 child and 21 March–6 April. Site said couldn't fetch flight details due to issue on our end; one Reload this page did not resolve. No direct fare or checked-bag price verified.",
+            "candidateId": "sha-longhaul-finnair-21mar-06apr"
+          }
+        ],
         "completeOptions": [],
         "baselineReferences": [
           {
@@ -7126,7 +7172,8 @@
             "sha-20261011-006"
           ],
           "failedSearchIds": [
-            "sha-20261011-003"
+            "sha-20261011-003",
+            "sha-20261011-007"
           ],
           "remaining": [
             "Shanghai long-haul discovery",
