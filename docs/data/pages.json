@@ -15,8 +15,8 @@
     "navFlights": "Sammenlign videreflyvninger fra Shanghai, pris og reiseretning gjennom Japan.",
     "navDrones": "Droner, japanske flyregler, registrering og flysoner.",
     "flightTeaserEyebrow": "Flyplanlegging",
-    "flightTeaserTitle": "Neste valg: videre fra Shanghai",
-    "flightTeaserIntro": "Shanghai er utgangspunktet for sammenligning av fly til Tokyo og Osaka. Detaljene undersøkes på flysiden."
+    "flightTeaserTitle": "Flyalternativene fra Shanghai",
+    "flightTeaserIntro": "To hovedretninger gjennom Japan er priset for fire personer. Se forskjeller og vurdering av andre japanske flyplasser."
   },
   "route": {
     "eyebrow": "Rute",
@@ -124,7 +124,7 @@
   "flights": {
     "eyebrow": "Flyreise",
     "title": "Fly mellom Shanghai og Japan",
-    "intro": "Shanghai er knutepunktet for videre flyplanlegging. Det som skal undersøkes nå, er regionale flybilletter til og fra Tokyo og Osaka. Konkrete billett- og bestillingsopplysninger publiseres ikke.",
+    "intro": "Shanghai er utgangspunktet for videre flysøk. De kontrollerte regionale prisene sammenligner to veier gjennom Japan, med flere mulige flyplasser dersom transporten samlet blir bedre.",
     "patternsEyebrow": "Reisetype",
     "patternsTitle": "Fire oppsett som må prises",
     "patternsIntro": "Å fly inn til én by og hjem fra en annen passer en lineær Japan-rute godt. I Google Flights gjøres dette med «Flere byer / Multi-city». Vanlig tur/retur brukes fortsatt som prisreferanse.",
@@ -152,21 +152,24 @@
     "sourcesEyebrow": "Kilder",
     "sourcesTitle": "Kontrollgrunnlag for flysiden",
     "sourcesIntro": "Flypriser og rutetabeller endrer seg raskt. Kildene under er grunnlaget for denne flyvurderingen og skal kontrolleres på nytt før bestilling.",
-    "shortlistEyebrow": "Flysegmentene som gjenstår",
-    "shortlistTitle": "Regionalfly mellom Shanghai og Japan",
-    "shortlistIntro": "De konkrete prisene må kontrolleres for aktuelle datoer. Historiske langdistansealternativer er ikke lenger aktive anbefalinger.",
+    "shortlistEyebrow": "Observerte flypriser",
+    "shortlistTitle": "Hva kostet regionale flerbybilletter?",
+    "shortlistIntro": "Prisene er fra billettvalget hos selger i en datert kontrollrunde. De er ikke bestillinger eller tilbud med garantert tilgjengelighet.",
     "matrixEyebrow": "Søkearkiv",
     "matrixTitle": "Historiske flysøk",
     "matrixIntro": "Tidligere markedsresearch er bevart som et søkbart arkiv, men har ikke status som bestilling eller aktuell billettpris.",
     "contextEyebrow": "Beslutningskriterier",
-    "contextTitle": "Pris, antall Japan-dager og overgangsrisiko",
-    "contextIntro": "Begge reisemønstrene skal vurderes med bagasje, reisetid, sikkerhetsmarginer og mulighet for et kort opphold i Shanghai.",
+    "contextTitle": "Vurder den samlede reisen",
+    "contextIntro": "Bagasje, reisetid, ekstra tog og reell tid på reisemålene kan være viktigere enn en liten forskjell i flypris.",
     "directEyebrow": "Åpne søkeverktøy",
     "directTitle": "Kontroller regionale flypriser",
     "directIntro": "Søk oppdaterte priser hos flyselskapene og relevante bestillingstjenester før valg av fly.",
-    "hubEyebrow": "To reiseretninger",
-    "hubTitle": "Hvilken vei skal vi reise gjennom Japan?",
-    "hubIntro": "Sammenlign flyprisene for Osaka først og Tokyo først før de øvrige oppholdene tilpasses."
+    "hubEyebrow": "To reisemønstre",
+    "hubTitle": "Osaka først eller Tokyo først?",
+    "hubIntro": "Begge mønstrene er undersøkt for fire reisende. Valget styres av samlet flypris, oppholdstid og hvordan man reiser videre i Japan.",
+    "airportEyebrow": "Muligheter utenfor hovedsøket",
+    "airportTitle": "Bør vi sjekke flere flyplasser?",
+    "airportIntro": "Kyoto og Osaka dekkes allerede godt av Kansai. Et begrenset søk etter andre japanske innfallsporter kan likevel være nyttig, særlig Kobe og Nagoya."
   },
   "drones": {
     "eyebrow": "Droneguide",
