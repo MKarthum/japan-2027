@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 26,
-          "failed": 6,
+          "failed": 7,
           "restricted": 1
         },
         "searchRuns": [
@@ -8335,6 +8335,33 @@
               }
             ],
             "finding": "Fullypriced cheapestregionalopenjaw1486USD: saves233USD≈2228NOK versusnoon1719, reachesKIX22:00. Needlateairporttransport/hotelcheck-inplan; noJapanactivityonarrivalday. AllowsmoreShanghaioutwardtimewithoutadditionalhotelnight."
+          },
+          {
+            "id": "sha-20261011-034",
+            "checkedAt": "2026-10-11T15:42:21.092Z",
+            "service": "Google Flights Bangkok screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "BKK",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "BKK",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20BKK%20on%202027-03-21%20returning%202027-04-06%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "error": "Focusednaturalquerynotapplied; pageemptyroute/date1adult. No validfarecollected. AlternativeTrip.com next.",
+            "results": []
           }
         ],
         "candidates": [
@@ -8671,7 +8698,8 @@
             "sha-20261011-011",
             "sha-20261011-014",
             "sha-20261011-015",
-            "sha-20261011-025"
+            "sha-20261011-025",
+            "sha-20261011-034"
           ],
           "remaining": [
             "Shanghai long-haul discovery",
