@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 10,
+          "completed": 11,
           "failed": 5,
           "restricted": 1
         },
@@ -7314,6 +7314,81 @@
               }
             ],
             "finding": "Traditional ANA with checked baggage cheaper than observed nonstop Spring fares; earliest Spring08:05 gives13h10 after22Mar18:55 longhaul arrival, ANA noon gives17h05. Overnight hotel buffer feasible; no airport change."
+          },
+          {
+            "id": "sha-20261011-017",
+            "checkedAt": "2026-10-11T15:12:28.702Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=tyo&acity=sha&ddate=2027-04-04&rdate=2027-04-07&aairport=pvg&dcityid=228&acityid=2&triptype=ow&class=y&lowpricesource=searchform&quantity=3&childqty=1&searchboxarg=t&nonstoponly=off&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Jetstar Japan",
+                "flight": "GK035",
+                "from": "NRT T3",
+                "to": "PVG T2",
+                "departure": "2027-04-04T22:25:00+09:00",
+                "arrival": "2027-04-05T00:50:00+08:00",
+                "durationMinutes": 205,
+                "stops": 0,
+                "price": {
+                  "amount": 1148,
+                  "currency": "USD",
+                  "basis": "Selected fare drawer actual total for4 including displayed20kg baggage option",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "basePrice": {
+                  "amount": 1036,
+                  "currency": "USD",
+                  "checkedBaggage": false
+                },
+                "baggage": {
+                  "checked": "20 kg shown in selected fare; per-traveler attribution not separately expanded",
+                  "personalItem": "Included",
+                  "carryOn": "1 piece; weight not expanded"
+                },
+                "terms": {
+                  "refund": "Non-refundable",
+                  "change": "from USD58"
+                },
+                "connectionTo": "sha-longhaul-finnair-21mar-06apr",
+                "returnBufferMinutes": 2640,
+                "stopover": "Arrival after midnight5Apr: book room from4Apr if immediate check-in needed; one full Shanghai day5Apr and partial6Apr, two hotel nights4/5Apr.",
+                "unverified": [
+                  "direct carrier price",
+                  "checkout repricing",
+                  "child baggage attribution"
+                ]
+              },
+              {
+                "carrier": "Juneyao",
+                "from": "NRT T2",
+                "to": "PVG T2",
+                "departure": "2027-04-04T13:20:00+09:00",
+                "arrival": "2027-04-04T15:25:00+08:00",
+                "durationMinutes": 185,
+                "price": {
+                  "amount": 1857,
+                  "currency": "USD",
+                  "basis": "results-list total4"
+                },
+                "baggage": "checked and cabin indicated included, exact allowance not expanded"
+              }
+            ],
+            "finding": "Cheap regional return with documented bag fare. 44hr buffer before6Apr20:50 Finnair; late arrival weakens city comfort. Juneyao earlier arrival costsUSD709 more but allows two daytime stopover periods."
           }
         ],
         "candidates": [
@@ -7626,7 +7701,8 @@
             "sha-20261011-010",
             "sha-20261011-012",
             "sha-20261011-013",
-            "sha-20261011-016"
+            "sha-20261011-016",
+            "sha-20261011-017"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
