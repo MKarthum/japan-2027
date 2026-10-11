@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 6,
+          "completed": 7,
           "failed": 2,
           "restricted": 1
         },
@@ -6980,6 +6980,51 @@
             ],
             "baggage": null,
             "error": null
+          },
+          {
+            "id": "sha-20261011-010",
+            "checkedAt": "2026-10-11T15:00:11.759Z",
+            "service": "Google Flights return selection",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-19",
+            "returnDate": "2027-04-05",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": {
+              "amount": 36672,
+              "currency": "NOK",
+              "basis": "four-passenger-roundtrip",
+              "stage": "return-list-after-outbound-selected"
+            },
+            "airlines": [
+              "Lufthansa"
+            ],
+            "outbound": {
+              "departureLocal": "2027-03-19T09:35:00+01:00",
+              "arrivalLocal": "2027-03-20T10:05:00+08:00",
+              "durationMin": 1050,
+              "transferAirport": "FRA",
+              "transferMin": 200
+            },
+            "inbound": {
+              "departureLocal": "2027-04-05T10:55:00+08:00",
+              "arrivalLocal": "2027-04-06T00:05:00+02:00",
+              "durationMin": 1150,
+              "transferAirport": "FRA",
+              "transferMin": 205
+            },
+            "baggage": null,
+            "verification": "Selected return; itinerary summary still Getting prices. Not carrier verified.",
+            "error": null
           }
         ],
         "candidates": [
@@ -7288,7 +7333,8 @@
             "sha-20261011-005",
             "sha-20261011-006",
             "sha-20261011-008",
-            "sha-20261011-009"
+            "sha-20261011-009",
+            "sha-20261011-010"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
