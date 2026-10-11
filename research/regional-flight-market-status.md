@@ -12,4 +12,4 @@ Kontrollrunde 11. oktober 2026.
 
 ## Kontrollpunkt
 
-Begge reiseretninger er undersøkt i interaktive flerbysøk. Gruppetotal og bagasje er dokumentert privat for flere ANA-kombinasjoner. Datoalternativer, separate enveisbilletter og direkte flyselskapskontroll gjenstår. Ingen personlige datoer, prislenker eller bestillingsdetaljer publiseres her.
+Interaktive flerbysøk er kontrollert i begge retninger og med alternative oppholdslengder. ANA har dokumenterte gruppetotaler og bagasje; flere kinesiske og lavprisselskaper har svakere prisgrunnlag eller høyere observerte priser i denne runden. Alle detaljer lagres privat. Direkte ANA-priskontroll, enveis- og tur/retur-benchmark pågår. Offisielt ordinært visumfritak for norske pass er bare bekreftet til utgangen av 2026; transittordningen vurderes separat. Nettsiden er uendret.
