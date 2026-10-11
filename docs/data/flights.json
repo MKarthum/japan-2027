@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 19,
+          "completed": 20,
           "failed": 6,
           "restricted": 1
         },
@@ -7871,6 +7871,34 @@
               }
             ],
             "finding": "Oneadditional Japan day almostsameJetstarprice, but8h35 overnightbeforecostlylonghaul materiallylessbuffer than32h35from4AprJetstar. 5AprdaytimeJuneyao gives18hr andonehotel night, fare notfullyexpanded."
+          },
+          {
+            "id": "sha-20261011-027",
+            "checkedAt": "2026-10-11T15:25:41.639Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "resultStatus": "no-results",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=sha&ddate=2027-03-20&rdate=2027-04-05&dairport=osl&aairport=pvg&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "price": null,
+            "finding": "Correctdatesroutefourpassengers Roundtripverified; sellerreturned'Sorry,noavailableflightsfound'. Doesnotprove market unavailable; Juneyao calendar had adultteaser for same datepair, requires actualcarrierpartyselection."
           }
         ],
         "candidates": [
@@ -8192,7 +8220,8 @@
             "sha-20261011-022",
             "sha-20261011-023",
             "sha-20261011-024",
-            "sha-20261011-026"
+            "sha-20261011-026",
+            "sha-20261011-027"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
