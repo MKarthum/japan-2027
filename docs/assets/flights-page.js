@@ -4,6 +4,10 @@ async function renderFlightsResearch() {
   const [data, trip, fx] = await Promise.all([json('data/flights.json'), json('data/trip.json'), loadFx()]);
   const round = data.research?.searchRounds?.find(r => r.id === data.research.currentRoundRef);
   const overview = document.getElementById('flight-r-overview');
+  if (data.nextFlightFocus?.stage === 'regional-japan-search') {
+    renderRegionalJapanFocus(data.nextFlightFocus, data);
+    return;
+  }
   if (!round?.completeOptions?.length) {
     overview.textContent = 'Det finnes ennå ingen sammenstilte flyalternativer.';
     return;
@@ -167,6 +171,15 @@ async function renderHomeFlightTeaser() {
   try {
     const [data,fx]=await Promise.all([json('data/flights.json'),loadFx()]);
     const round=data.research?.searchRounds?.find(r=>r.id===data.research.currentRoundRef);
+    if(data.nextFlightFocus?.stage === 'regional-japan-search') {
+      const focus=data.nextFlightFocus;
+      const esc=t=>String(t??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+      root.innerHTML='<div class="flight-hub-preview-grid">'+focus.patterns.map(p=>
+        '<a class="flight-hub-preview" href="flights.html#flight-r-picks"><small>'+esc(focus.statusLabel)+'</small><strong>'+esc(p.name)+
+        '</strong><span>'+esc(p.outbound)+' · '+esc(p.inbound)+'</span></a>'
+      ).join('')+'</div><p class="flight-hub-preview-note">'+esc(focus.statusNote)+'</p>';
+      return;
+    }
     if(!round?.completeOptions?.length)return;
     const picks=round.completeOptions.filter(o=>o.hub==='shanghai').slice(0,3);
     const esc=t=>String(t??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
@@ -176,4 +189,71 @@ async function renderHomeFlightTeaser() {
     ).join('')+'</div><p class="flight-hub-preview-note">Observerte flypriser for fire, før hotell og transport. '+
       'Alternativene har separate billetter; se prisforutsetninger og risiko på flysiden.</p>';
   }catch(error){console.error('Flyoversikt på forsiden kunne ikke lastes:',error);}
+}
+
+
+/* Offentlig planleggingsstatus uten informasjon om kjøpte billetter. */
+function renderRegionalJapanFocus(focus, data) {
+  const esc = t => String(t ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  const safe = raw => {
+    try {
+      const u = new URL(raw);
+      if (u.protocol !== 'https:' || [...u.searchParams.keys()].some(k => /token|session|booking|checkout|pnr|auth|email|password/i.test(k))) return '';
+      return esc(u.href);
+    } catch { return ''; }
+  };
+  const link = (raw, label) => {
+    const url = safe(raw);
+    return url ? '<a class="button" href="' + url + '" target="_blank" rel="noopener noreferrer">' + esc(label) + ' ↗</a>' : '';
+  };
+  document.getElementById('flight-r-overview').innerHTML =
+    '<div class="flight-r-hero flight-hub-hero"><div><div class="flight-r-hero-kicker">Flyreise · planleggingsstatus</div>'+
+    '<h2>'+esc(focus.publicTitle)+'</h2><p>'+esc(focus.publicSummary)+'</p>'+
+    '<div class="flight-r-stats"><div><strong>2</strong><span>reiseveier i Japan</span></div>'+
+    '<div><strong>PVG</strong><span>knutepunkt i Shanghai</span></div>'+
+    '<div><strong>4</strong><span>passasjerer i prissammenligning</span></div></div></div>'+
+    '<aside><span class="flight-r-aside-title">Neste beslutning</span>'+
+    '<strong>'+esc(focus.statusLabel)+'</strong><p>Tokyo og Osaka vurderes som alternative start- og sluttpunkter.</p>'+
+    '<a class="flight-r-aside-link" href="#flight-r-picks">Se rutevalgene ↓</a></aside></div>'+
+    '<p class="flight-r-scope">'+esc(focus.statusNote)+'</p>';
+  document.getElementById('flight-hub-branches').innerHTML =
+    '<div class="flight-hub-branch-grid">'+focus.patterns.map(p=>
+      '<article class="flight-hub-branch"><h3>'+esc(p.name)+'</h3><p>'+esc(p.summary)+'</p></article>'
+    ).join('')+'</div>';
+  document.getElementById('flight-hub-selected').textContent='Regionalflyene som skal undersøkes';
+  document.getElementById('flight-hub-reset').hidden=true;
+  document.getElementById('flight-r-pick-list').innerHTML =
+    '<div class="flight-r-picks">'+focus.patterns.map(p=>
+      '<article class="flight-r-pick"><div class="flight-r-pick-top"><span>Under vurdering</span></div>'+
+      '<h3>'+esc(p.name)+'</h3>'+
+      '<p class="flight-r-timing"><b>Ut:</b> '+esc(p.outbound)+'</p>'+
+      '<p class="flight-r-timing"><b>Hjem:</b> '+esc(p.inbound)+'</p>'+
+      '<p class="flight-r-explanation">'+esc(p.summary)+'</p>'+
+      '<div class="flight-r-actions">'+link(p.searchUrl,'Søk i Google Flights')+'</div></article>'
+    ).join('')+'</div>';
+  document.getElementById('flight-r-context').innerHTML =
+    '<div class="flight-r-context-grid">'+
+    '<article><h3>Sammenlign reisetid og pris</h3><ul>'+focus.evaluation.slice(0,3).map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul></article>'+
+    '<article><h3>Vurder risiko</h3><ul>'+focus.evaluation.slice(3).map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul></article></div>';
+  document.getElementById('flight-r-direct').innerHTML =
+    '<p>Dette er planleggingsalternativer, ikke opplysninger om kjøpte flybilletter. Historiske priser må søkes på nytt.</p>'+
+    focus.sources.map((u,i)=>link(u,i===0?'Google Flights':'Trip.com')).join(' ');
+  const records=(data.research?.searchRounds||[]).flatMap(r=>(r.searchRuns||[]).map(s=>({
+    service:s.service,from:s.from,to:s.to,legs:s.requestedLegs,checkedAt:s.checkedAt,publicUrl:s.publicUrl
+  })));
+  const query=document.getElementById('flight-r-query');
+  const draw=()=>{
+    const q=(query.value||'').trim().toLocaleLowerCase('nb-NO');
+    const rows=records.filter(r=>!q||JSON.stringify(r).toLocaleLowerCase('nb-NO').includes(q));
+    document.getElementById('flight-r-count').textContent=rows.length+' av '+records.length+' arkiverte søk';
+    document.getElementById('flight-r-search-results').innerHTML=
+      '<div class="flight-matrix-scroll" role="region" tabindex="0" aria-label="Historiske flysøk"><table class="flight-r-table">'+
+      '<thead><tr><th>Kilde</th><th>Rute</th><th>Dato kontrollert</th><th>Søk</th></tr></thead><tbody>'+
+      rows.map(r=>'<tr><td>'+esc(r.service||'Research')+'</td><td>'+
+        esc(r.legs?.map(l=>[l.from,l.to].filter(Boolean).join('–')).join(' / ') || [r.from,r.to].filter(Boolean).join('–') || 'Flyresearch')+
+        '</td><td>'+esc(r.checkedAt?.slice(0,10)||'')+'</td><td>'+link(r.publicUrl,'Åpne')+'</td></tr>').join('')+
+      '</tbody></table></div>';
+  };
+  query.addEventListener('input',draw);
+  draw();
 }
