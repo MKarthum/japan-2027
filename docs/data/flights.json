@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 11,
+          "completed": 12,
           "failed": 5,
           "restricted": 1
         },
@@ -7389,6 +7389,62 @@
               }
             ],
             "finding": "Cheap regional return with documented bag fare. 44hr buffer before6Apr20:50 Finnair; late arrival weakens city comfort. Juneyao earlier arrival costsUSD709 more but allows two daytime stopover periods."
+          },
+          {
+            "id": "sha-20261011-018",
+            "checkedAt": "2026-10-11T15:13:17.627Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osa&acity=sha&ddate=2027-04-04&dairport=kix&aairport=pvg&dcityid=219&acityid=2&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD&midpolicyid=1%3AOSA-SHA%3AMU226",
+            "results": [
+              {
+                "carrier": "China Eastern",
+                "flight": "MU226",
+                "from": "KIX T1",
+                "to": "PVG T1",
+                "departure": "2027-04-04T13:10:00+09:00",
+                "arrival": "2027-04-04T14:35:00+08:00",
+                "durationMinutes": 145,
+                "stops": 0,
+                "price": {
+                  "amount": 1912,
+                  "currency": "USD",
+                  "basis": "Selected fare drawer total4",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1 × 8 kg",
+                  "checked": "2 × 23 kg shown"
+                },
+                "terms": {
+                  "fare": "Economy Standard",
+                  "refund": "Cancellation fee from USD158",
+                  "change": "from USD82"
+                },
+                "returnBufferMinutes": 3255,
+                "connectionTo": "sha-longhaul-finnair-21mar-06apr",
+                "unverified": [
+                  "direct carrier price",
+                  "checkout repricing",
+                  "per-child allowance detail"
+                ]
+              }
+            ],
+            "finding": "Current Japan direction viable with two Shanghai nights4/5Apr, but nonstop return USD764 dearer than Jetstar NRT bag fare. Cheaper Jetstar KIX→NRT→PVG USD1324 base has18h15 travel and13h20 Tokyo layover, rejected as burdensome; bags unpriced."
           }
         ],
         "candidates": [
@@ -7702,7 +7758,8 @@
             "sha-20261011-012",
             "sha-20261011-013",
             "sha-20261011-016",
-            "sha-20261011-017"
+            "sha-20261011-017",
+            "sha-20261011-018"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
