@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 12,
+          "completed": 13,
           "failed": 5,
           "restricted": 1
         },
@@ -7445,6 +7445,99 @@
               }
             ],
             "finding": "Current Japan direction viable with two Shanghai nights4/5Apr, but nonstop return USD764 dearer than Jetstar NRT bag fare. Cheaper Jetstar KIX→NRT→PVG USD1324 base has18h15 travel and13h20 Tokyo layover, rejected as burdensome; bags unpriced."
+          },
+          {
+            "id": "sha-20261011-019",
+            "checkedAt": "2026-10-11T15:14:52.163Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=sha&ddate=2027-03-21&rdate=2027-04-06&dairport=osl&aairport=pvg&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "id": "sha-longhaul-juneyao-21mar-06apr",
+                "carriers": [
+                  "Finnair",
+                  "Juneyao"
+                ],
+                "price": {
+                  "amount": 3503,
+                  "currency": "USD",
+                  "basis": "Actual total4 in both-flights-selected fare drawer",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "outbound": {
+                  "departure": "2027-03-21T12:30:00+01:00",
+                  "arrival": "2027-03-22T07:50:00+08:00",
+                  "durationMinutes": 740,
+                  "stops": 1,
+                  "transfer": "HEL",
+                  "transferMinutes": 105,
+                  "flights": [
+                    "AY914 operated Jettime",
+                    "HO1608"
+                  ]
+                },
+                "inbound": {
+                  "departure": "2027-04-06T09:25:00+08:00",
+                  "arrival": "2027-04-06T19:45:00+02:00",
+                  "durationMinutes": 980,
+                  "stops": 1,
+                  "transfer": "HEL",
+                  "transferMinutes": 320,
+                  "flights": [
+                    "HO1607",
+                    "AY917"
+                  ]
+                },
+                "baggage": {
+                  "carryOn": "1 ×5 kg displayed fare",
+                  "checked": "1 ×23 kg displayed fare",
+                  "transfer": "No need to collect and recheck baggage in HEL bothways explicitly displayed"
+                },
+                "terms": {
+                  "refund": "Non-refundable (partial tax refund only)",
+                  "change": "No change fees; fare difference unspecified"
+                },
+                "protection": "Combined seller itinerary and through baggage evidenced; one ticket/PNR contractual protection not independently verified",
+                "unverified": [
+                  "carrier direct price",
+                  "checkout repricing",
+                  "child allowance expanded"
+                ]
+              }
+            ],
+            "otherLeads": [
+              {
+                "priceUsd": 2857,
+                "outbound": "21Mar20:50→23Mar07:50 28h HEL17h25",
+                "baggage": "results included",
+                "qualification": "poorJapanTime"
+              },
+              {
+                "priceUsd": 3649,
+                "outbound": "Finnair21Mar20:50→22Mar18:55 15h05",
+                "baggage": "notincludedindicator"
+              }
+            ],
+            "finding": "Strong new bag-included longhaul: arrives22Mar morning, saving almost full day over FinnairAY87; returnsOslo6Apr evening one day earlier. Can continueJapan22Mar only after substantial self-transfer margin, or overnight and23Mar regional. Lowprice2857 loses one day and exposes HELovernight cost."
           }
         ],
         "candidates": [
@@ -7759,7 +7852,8 @@
             "sha-20261011-013",
             "sha-20261011-016",
             "sha-20261011-017",
-            "sha-20261011-018"
+            "sha-20261011-018",
+            "sha-20261011-019"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
