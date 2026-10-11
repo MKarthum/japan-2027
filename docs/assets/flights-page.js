@@ -175,10 +175,13 @@ async function renderHomeFlightTeaser() {
     if(data.nextFlightFocus?.stage === 'regional-japan-search') {
       const focus=data.nextFlightFocus;
       const esc=t=>String(t??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-      root.innerHTML='<div class="flight-hub-preview-grid">'+focus.patterns.map(p=>
-        '<a class="flight-hub-preview" href="flights.html#flight-r-picks"><small>'+esc(focus.statusLabel)+'</small><strong>'+esc(p.name)+
-        '</strong><span>'+esc(p.outbound)+' · '+esc(p.inbound)+'</span></a>'
-      ).join('')+'</div><p class="flight-hub-preview-note">'+esc(focus.statusNote)+'</p>';
+      const marketRound=data.research?.searchRounds?.find(r=>r.id===focus.archivedRoundId);
+      const usdRate=marketRound?.fxReference?.nokPerUsd;
+      root.innerHTML='<div class="flight-hub-preview-grid">'+focus.patterns.map(p=>{
+        const nok=Number.isFinite(usdRate)&&Number.isFinite(p.marketPriceUsd)?p.marketPriceUsd*usdRate:null;
+        return '<a class="flight-hub-preview" href="flights.html#flight-r-picks"><small>'+esc(p.relativeStatus||focus.statusLabel)+'</small><strong>'+esc(p.name)+
+          '</strong><span>'+(nok!=null?fmtNok(nok)+' · ca. '+fmtJpy(jpyFromNok(nok,fx)):esc(p.outbound))+'</span></a>';
+      }).join('')+'</div><p class="flight-hub-preview-note">'+esc(focus.marketObservation?.caveat||focus.statusNote)+'</p>';
       return;
     }
     if(!round?.completeOptions?.length)return;
