@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 30,
+          "completed": 31,
           "failed": 7,
           "restricted": 1
         },
@@ -8665,6 +8665,96 @@
               }
             ],
             "finding": "Combinedshoppingcost5083USD versus separate3503+1486=4989USD,94USD≈899NOKmore. No protectionbenefit. Regionallegs+longhaul considered separate evenwhenpurchased together."
+          },
+          {
+            "id": "sha-20261011-039",
+            "checkedAt": "2026-10-11T15:50:20.458Z",
+            "service": "Trip.com Japan baseline refresh",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "KIX",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "NRT",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=osl&multacity0=osa&dairport0=osl&aairport0=kix&multddate0=2027-03-21&multdcity1=tyo&multacity1=osl&dairport1=nrt&aairport1=osl&multddate1=2027-04-05&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Thai",
+                "price": {
+                  "amount": 6742,
+                  "currency": "USD",
+                  "basis": "Bothlegsselected total4 repriced6900to6742",
+                  "stage": "seller-fare-selection"
+                },
+                "outbound": {
+                  "flights": [
+                    "TG955",
+                    "TG672"
+                  ],
+                  "departure": "2027-03-21T13:20:00+01:00",
+                  "arrival": "2027-03-22T15:45:00+09:00",
+                  "durationMinutes": 1105,
+                  "transfer": "BKK",
+                  "transferMinutes": 115
+                },
+                "inbound": {
+                  "flights": [
+                    "TG641",
+                    "TG954"
+                  ],
+                  "departure": "2027-04-05T10:50:00+09:00",
+                  "arrival": "2027-04-06T07:25:00+02:00",
+                  "durationMinutes": 1655,
+                  "transfer": "BKK",
+                  "transferMinutes": 525
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1×7kg",
+                  "checked": "Atleast1×23kg",
+                  "transfer": "No collect/recheck BKKbothdirections"
+                },
+                "terms": {
+                  "refund": "Non-refundable",
+                  "change": "fromUSD150"
+                },
+                "protection": "Seller itinerary through-baggage evidenced, contractone-ticket notindependentlyverified. Priorcarrierchecksamewindow65768NOK usedreference."
+              },
+              {
+                "price": {
+                  "amount": 6900,
+                  "currency": "USD",
+                  "basis": "sameflights alternativefaretotal4"
+                },
+                "terms": {
+                  "refund": "fromUSD200",
+                  "change": "fromUSD100"
+                },
+                "baggage": "sameatleast1×23kg"
+              }
+            ],
+            "finding": "RefreshedThai6742USD≈64469NOK bagincluded,1299NOK belowpriorcarrier65768 but differentfareconditions/nonrefund and sellerpricing. Usebothreferences; do notinflateShanghaisavings againstoldbestonly.",
+            "otherLeads": [
+              {
+                "carrier": "Juneyao/Finnair",
+                "priceUsd": 6511,
+                "outbound": "21Mar12:30OSL→22Mar12:50KIXHEL125min",
+                "verification": "returnnotselected"
+              }
+            ]
           }
         ],
         "candidates": [
@@ -8997,7 +9087,8 @@
             "sha-20261011-035",
             "sha-20261011-036",
             "sha-20261011-037",
-            "sha-20261011-038"
+            "sha-20261011-038",
+            "sha-20261011-039"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
