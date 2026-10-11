@@ -13,7 +13,10 @@
     "navPractical": "Transport, booking, språk og skikk og bruk.",
     "navBudget": "Planramme, kostnadsfordeling og usikkerhet.",
     "navFlights": "Ruter, datoer, prisnivåer og alternativene som må landes før resten av planen.",
-    "navDrones": "Droner, japanske flyregler, registrering og flysoner."
+    "navDrones": "Droner, japanske flyregler, registrering og flysoner.",
+    "flightTeaserEyebrow": "Flyreisen først",
+    "flightTeaserTitle": "Tre aktuelle Shanghai-alternativer",
+    "flightTeaserIntro": "Vi sammenligner faktisk flypris, netter i Japan og behovet for ekstra hotell. Detaljene ligger på flysiden."
   },
   "route": {
     "eyebrow": "Rute",
