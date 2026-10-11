@@ -10186,5 +10186,44 @@
       }
     ],
     "note": "Prisforskjeller mellom ulike datoer og selskaper er ikke en ren pristest av ruteretningen. Sammenlign identisk reisefølge, bagasje og rimelig tidsbruk. Det finnes ikke grunnlag her for å si at tur/retur alltid er billigst."
+  },
+  "nextFlightFocus": {
+    "stage": "regional-japan-search",
+    "hub": "Shanghai",
+    "hubAirport": "PVG",
+    "publicTitle": "Neste flyvalg: Shanghai–Japan",
+    "publicSummary": "Shanghai er hovedknutepunktet i videre planlegging. Nå skal fly mellom Shanghai og Japan undersøkes. Tidligere langdistansepriser og ruteforslag er historisk research, ikke aktive kjøpsanbefalinger.",
+    "statusLabel": "Regionale flybilletter undersøkes",
+    "patterns": [
+      {
+        "id": "osaka-in",
+        "name": "Osaka inn · Tokyo hjem",
+        "outbound": "Shanghai (PVG) → Osaka (KIX)",
+        "inbound": "Tokyo (HND/NRT) → Shanghai (PVG)",
+        "summary": "Følg Japan-ruten østover: Kansai, Kyoto og videre mot Tokyo. Kan gjøre flybillettene rimeligere uten ekstra tilbakereise innenlands.",
+        "searchUrl": "https://www.google.com/travel/flights"
+      },
+      {
+        "id": "tokyo-in",
+        "name": "Tokyo inn · Osaka hjem",
+        "outbound": "Shanghai (PVG) → Tokyo (HND/NRT)",
+        "inbound": "Osaka (KIX) → Shanghai (PVG)",
+        "summary": "Passer den opprinnelige reiseretningen gjennom Japan og bør sammenlignes direkte med Osaka-først.",
+        "searchUrl": "https://www.google.com/travel/flights"
+      }
+    ],
+    "evaluation": [
+      "Sammenlign totalpris for fire med innsjekket bagasje, ikke bare billigste enkeltbillett.",
+      "Søk både to enveisbilletter og regionale flerbybilletter.",
+      "Vurder faktisk oppholdstid i Japan og plass til et kort Shanghai-opphold.",
+      "Skill mellom regionale flybilletter og den separate langdistansereisen ved vurdering av forbindelsesrisiko.",
+      "Kontroller visum- og transittvilkår for Kina på nytt før billettkjøp."
+    ],
+    "statusNote": "Offentlig planleggingsstatus. Ingen bekreftede reisedatoer, avgangstider, flynumre eller billettopplysninger publiseres.",
+    "archivedRoundId": "japan-shanghai-flight-options-2026-10-11",
+    "sources": [
+      "https://www.google.com/travel/flights",
+      "https://www.trip.com/flights"
+    ]
   }
 }
