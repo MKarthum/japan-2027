@@ -124,3 +124,23 @@
 .flight-hub-preview span{font-size:.83rem}
 .flight-hub-preview-note{font-size:.78rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
 @media(max-width:810px){.flight-hub-preview-grid{grid-template-columns:1fr}}
+
+
+.flight-regional-price{display:flex;flex-direction:column;gap:3px;min-width:0}
+.flight-regional-price strong{font-size:1.45rem;letter-spacing:-.02em;color:var(--ink)}
+.flight-regional-price small{font-size:.76rem;color:var(--muted);font-weight:550;letter-spacing:0}
+.flight-r-details .flight-regional-price{display:inline-flex;vertical-align:middle;margin-left:6px}
+.flight-r-details .flight-regional-price strong{font-size:1rem}
+.flight-regional-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:14px}
+.flight-regional-compare p{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;line-height:1.45}
+.flight-regional-compare p>strong{display:block;font-size:.85rem;margin-bottom:4px}
+.flight-regional-compare p>span:last-child{display:block;font-size:.78rem;color:var(--muted);margin-top:7px}
+.flight-regional-compare .flight-regional-price{margin-left:0}
+.flight-airport-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.flight-airport-card{border:1px solid var(--line);border-radius:13px;padding:15px;background:var(--paper);min-width:0}
+.flight-airport-card h3{font-size:1rem;margin:0}
+.flight-airport-card p{font-size:.84rem;line-height:1.55;margin:12px 0}
+.flight-airport-card>small{display:block;color:var(--muted);font-size:.74rem}
+.flight-airport-card .flight-r-actions{padding-top:0;margin-top:10px}
+.flight-airport-card .button{font-size:.72rem;line-height:1.3;white-space:normal;text-align:center}
+@media(max-width:810px){.flight-airport-grid,.flight-regional-compare{grid-template-columns:1fr}}
