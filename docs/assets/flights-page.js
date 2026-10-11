@@ -159,3 +159,21 @@ async function renderFlightsResearch() {
     '<p>Beijing direkte og Bangkok er dokumenterte hypoteser, ikke komplett prisede forslag på disse datoene. ' +
     'Se hovedsporene og søkearkivet for hva som faktisk er undersøkt.</p>' + quote;
 }
+
+/* Kompakt inngang på forsiden, avledet av de samme flydataene. */
+async function renderHomeFlightTeaser() {
+  const root=document.getElementById('home-flight-options');
+  if(!root)return;
+  try {
+    const [data,fx]=await Promise.all([json('data/flights.json'),loadFx()]);
+    const round=data.research?.searchRounds?.find(r=>r.id===data.research.currentRoundRef);
+    if(!round?.completeOptions?.length)return;
+    const picks=round.completeOptions.filter(o=>o.hub==='shanghai').slice(0,3);
+    const esc=t=>String(t??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+    root.innerHTML='<div class="flight-hub-preview-grid">'+picks.map(o=>
+      '<a class="flight-hub-preview" href="flights.html#flight-r-picks"><small>'+esc(o.tag)+'</small><strong>'+esc(o.name)+
+      '</strong><span>'+esc(fmtNok(o.flightTotalNok))+' · '+esc(o.japanNights)+' Japan-netter</span></a>'
+    ).join('')+'</div><p class="flight-hub-preview-note">Observerte flypriser for fire, før hotell og transport. '+
+      'Alternativene har separate billetter; se prisforutsetninger og risiko på flysiden.</p>';
+  }catch(error){console.error('Flyoversikt på forsiden kunne ikke lastes:',error);}
+}
