@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-10",
+  "asOf": "2026-10-11",
   "status": "research-active",
   "planningWindow": {
     "flexDays": 3,
@@ -2122,7 +2122,7 @@
   ],
   "research": {
     "title": "Flyalternativer for påsken 2027",
-    "summary": "35 rute- og datokombinasjoner er undersøkt med 3 voksne og 1 barn. To Thai-alternativer har separat prisobservasjon hos flyselskapet med bagasje inkludert; øvrige priser er søkeresultater. Alle forbindelsesbeskyttelser må kontrolleres før kjøp.",
+    "summary": "Research 11. oktober: 45 operasjoner og prioriterte komplette flykombinasjoner via Shanghai. Pris- og risikoanalyse er foreløpig; se datert observasjon per søk.",
     "partyNote": "Flypriser gjelder 3 voksne og 1 barn i flyselskapenes billettkategorier. Familiens øvrige planleggingsvisninger bruker 2 voksne + 2 barn. Prisene er for fire personer og skal ikke skaleres automatisk.",
     "matrixTitle": "Uavhengige datoer og fire rutetyper · 35 observerte søk",
     "matrixNote": "Hvert resultat er en datert prisobservasjon for akkurat den ruten og datoene. Trykk på lenken for å gjenta søket; pris, flytid og bagasje kan ha endret seg.",
@@ -2138,7 +2138,7 @@
       }
     ],
     "lengthNote": "For Osaka inn / Tokyo hjem 22. mars var én dag kortere eller lengre dyrere i FINNs brede søk enn 5. april-returen. For Tokyo tur/retur ga én dag lengre en Iberia-pris på 49 510 kr med bagasje, men 19 t 35 / 23 t 10 og en ekstra dag i Japan. Hotell og dagskostnad må legges til. For Tokyo inn / Osaka hjem 18. mars ga kortere/lengre reise ingen bedre rimelig forbindelse enn KLM på 14 dager; Best-treffene hadde selv-transfer og lengre reisetid. Osaka tur/retur 21. mars ble billigere med én ekstra dag i de brede søkene, men Best tok over ett døgn hver vei.",
-    "currentRoundRef": "japan-easter-independent-dates-2026-10-10",
+    "currentRoundRef": "japan-shanghai-flight-options-2026-10-11",
     "searchRounds": [
       {
         "id": "japan-easter-2027-2026-10-10",
@@ -6503,6 +6503,3232 @@
           "mergedToMain": false,
           "bookingMade": false
         }
+      },
+      {
+        "id": "japan-shanghai-flight-options-2026-10-11",
+        "asOf": "2026-10-11T14:53:04.244Z",
+        "status": "consolidated-provisional",
+        "sourceBranch": "research/japan-shanghai-flight-options-20261011",
+        "authoritativeBaseline": "main v0.26.0; trip.window 20. mars–3. april 2027",
+        "searchCriteria": {
+          "party": {
+            "adults": 3,
+            "children": 1,
+            "adultCategory": "12+",
+            "childCategory": "2–11",
+            "total": 4
+          },
+          "cabin": "economy",
+          "requestedCheckedPiecesTotal": 2,
+          "departureDates": [
+            "2027-03-18",
+            "2027-03-19",
+            "2027-03-20",
+            "2027-03-21"
+          ],
+          "returnDates": [
+            "2027-04-03",
+            "2027-04-04",
+            "2027-04-05",
+            "2027-04-06"
+          ],
+          "datesIndependent": true,
+          "primaryHub": "PVG",
+          "noSiteChanges": true
+        },
+        "counts": {
+          "completed": 37,
+          "failed": 7,
+          "restricted": 1
+        },
+        "searchRuns": [
+          {
+            "id": "sha-20261011-001",
+            "checkedAt": "2026-10-11T14:53:04.245Z",
+            "service": "FINN Reise",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-20",
+            "returnDate": "2027-04-04",
+            "publicUrl": "https://www.finn.no/reise/flybilletter/",
+            "status": "restricted-source-not-retained",
+            "price": null,
+            "finding": "Søkeskjema lastet og viste riktig 3 voksne, 1 barn og datoer. FINNs synlige footer begrenser regelmessig/systematisk innhenting, lagring og sammenstilling uten skriftlig tillatelse. Ingen tilbud lagret; systematisk research flyttes til andre kilder.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-002",
+            "checkedAt": "2026-10-11T14:53:46.634Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-20",
+            "returnDate": "2027-04-04",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-04%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "observedOffers": [
+              {
+                "price": {
+                  "amount": 34837,
+                  "currency": "NOK",
+                  "basis": "all-four-passengers-roundtrip",
+                  "stage": "departing-list"
+                },
+                "airlines": [
+                  "Finnair"
+                ],
+                "outbound": {
+                  "departureLocal": "2027-03-20T20:50:00+01:00",
+                  "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                  "durationMin": 2345,
+                  "stops": 1,
+                  "transferAirport": "HEL",
+                  "transferMin": 1525
+                },
+                "baggage": null,
+                "assessment": "25 h 25 transfer; poor Japan-time value"
+              },
+              {
+                "price": {
+                  "amount": 46469,
+                  "currency": "NOK",
+                  "basis": "all-four-passengers-roundtrip",
+                  "stage": "departing-list"
+                },
+                "airlines": [
+                  "Qatar Airways"
+                ],
+                "outbound": {
+                  "departureLocal": "2027-03-20T15:05:00+01:00",
+                  "arrivalLocal": "2027-03-21T14:40:00+08:00",
+                  "durationMin": 995,
+                  "stops": 1,
+                  "transferAirport": "DOH",
+                  "transferMin": 125
+                },
+                "baggage": null
+              }
+            ],
+            "dateSuggestion": {
+              "departure": "2027-03-21",
+              "return": "2027-04-06",
+              "amountNok": 25190,
+              "basis": "four-passenger date suggestion; itinerary not yet selected"
+            },
+            "verification": "Passenger dialog showed 3 Adults, 1 Child aged 2–11; results explicitly total for 4. Return flight and bag fees not selected.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-003",
+            "checkedAt": "2026-10-11T14:54:31.933Z",
+            "service": "Google Flights date grid",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDates": "2027-03-17..2027-03-23",
+            "returnDates": "2027-04-01..2027-04-07",
+            "status": "failed",
+            "price": null,
+            "error": "date-grid-loading-no-prices",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-04%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "finding": "Interactive Date grid opened; all 49 cells remained Loading prices / 0000 across repeated state checks. No cell prices inferred."
+          },
+          {
+            "id": "sha-20261011-004",
+            "checkedAt": "2026-10-11T14:55:19.968Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-04",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 28819,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T08:40:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 1635,
+                "transferAirport": "HEL",
+                "transferMin": 815
+              },
+              {
+                "amountNok": 36075,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T20:50:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 905,
+                "transferAirport": "HEL",
+                "transferMin": 85
+              },
+              {
+                "amountNok": 36304,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Austrian",
+                "departureLocal": "2027-03-21T14:20:00+01:00",
+                "arrivalLocal": "2027-03-22T17:30:00+08:00",
+                "durationMin": 1210,
+                "transferAirport": "VIE",
+                "transferMin": 405
+              }
+            ],
+            "baggage": null,
+            "verification": "3+1 retained in UI; prices explicitly for four. Return and baggage not selected.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-005",
+            "checkedAt": "2026-10-11T14:55:50.198Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 25190,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T08:40:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 1635,
+                "transferAirport": "HEL",
+                "transferMin": 815
+              },
+              {
+                "amountNok": 32449,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Finnair",
+                "departureLocal": "2027-03-21T20:50:00+01:00",
+                "arrivalLocal": "2027-03-22T18:55:00+08:00",
+                "durationMin": 905,
+                "transferAirport": "HEL",
+                "transferMin": 85
+              },
+              {
+                "amountNok": 35520,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Austrian",
+                "departureLocal": "2027-03-21T14:20:00+01:00",
+                "arrivalLocal": "2027-03-22T17:30:00+08:00",
+                "durationMin": 1210,
+                "transferAirport": "VIE",
+                "transferMin": 405
+              },
+              {
+                "amountNok": 39278,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "British Airways",
+                "departureLocal": "2027-03-21T07:15:00+01:00",
+                "arrivalLocal": "2027-03-22T09:10:00+08:00",
+                "durationMin": 1135,
+                "transferAirport": "LHR",
+                "transferMin": 205
+              }
+            ],
+            "baggage": null,
+            "verification": "Correct dates in Track prices; total for 4. Return and baggage not selected.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-006",
+            "checkedAt": "2026-10-11T14:57:09.463Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": {
+              "amount": 32437,
+              "currency": "NOK",
+              "basis": "all-four-roundtrip",
+              "stage": "both-flights-selected"
+            },
+            "airlines": [
+              "Finnair"
+            ],
+            "outbound": {
+              "departureLocal": "2027-03-21T20:50:00+01:00",
+              "arrivalLocal": "2027-03-22T18:55:00+08:00",
+              "durationMin": 905,
+              "transferAirport": "HEL",
+              "transferMin": 85,
+              "flightNumbers": [
+                "AY918",
+                "AY87"
+              ]
+            },
+            "inbound": {
+              "departureLocal": "2027-04-06T20:50:00+08:00",
+              "arrivalLocal": "2027-04-07T07:50:00+02:00",
+              "durationMin": 1020,
+              "transferAirport": "HEL",
+              "transferMin": 90
+            },
+            "baggage": {
+              "cabinPiecesPerPassenger": 1,
+              "checkedBagCostPerPassengerWholeTripRangeNok": [
+                0,
+                1930
+              ],
+              "specificCheckedAllowance": null
+            },
+            "providerOffers": [
+              {
+                "provider": "Finnair",
+                "amountNok": 32437
+              },
+              {
+                "provider": "lastminute.com",
+                "amountNok": 35756
+              }
+            ],
+            "verification": "Google itinerary summary explicitly total for 4; selected outbound/return; concrete carrier tariff not yet verified. Price changed from 32449 to 32437 during selection.",
+            "connection": {
+              "status": "carrier-connection-not-contractually-confirmed",
+              "separateRegionalTicketsRequired": true
+            },
+            "error": null
+          },
+          {
+            "id": "sha-20261011-007",
+            "checkedAt": "2026-10-11T14:57:46.343Z",
+            "service": "Finnair",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "failed",
+            "publicUrl": "https://www.finnair.com/no-en",
+            "price": null,
+            "error": "carrier-flight-details-fetch-error",
+            "finding": "Google Continue reached Finnair flight selection with correct 3 adults / 1 child and 21 March–6 April. Site said couldn't fetch flight details due to issue on our end; one Reload this page did not resolve. No direct fare or checked-bag price verified."
+          },
+          {
+            "id": "sha-20261011-008",
+            "checkedAt": "2026-10-11T14:58:57.058Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-03",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 40741,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airlines": [
+                  "SAS",
+                  "Lufthansa"
+                ],
+                "departureLocal": "2027-03-18T17:00:00+01:00",
+                "arrivalLocal": "2027-03-19T16:50:00+08:00",
+                "durationMin": 1010,
+                "transferAirports": [
+                  "ARN",
+                  "MUC"
+                ],
+                "transferMinutes": [
+                  35,
+                  85
+                ],
+                "assessment": "35 minute first transfer; prefer one-stop alternatives"
+              },
+              {
+                "amountNok": 43622,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Lufthansa",
+                "departureLocal": "2027-03-18T18:25:00+01:00",
+                "arrivalLocal": "2027-03-19T16:50:00+08:00",
+                "durationMin": 925,
+                "transferAirport": "MUC",
+                "transferMin": 90
+              },
+              {
+                "amountNok": 45342,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Qatar Airways",
+                "departureLocal": "2027-03-18T15:05:00+01:00",
+                "arrivalLocal": "2027-03-19T14:40:00+08:00",
+                "durationMin": 995,
+                "transferAirport": "DOH",
+                "transferMin": 125
+              }
+            ],
+            "baggage": null,
+            "verification": "Track prices and fields confirm both dates; four-person total. Initial transient Oops resolved without reload.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-009",
+            "checkedAt": "2026-10-11T14:59:31.354Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-19",
+            "returnDate": "2027-04-05",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 36850,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Lufthansa",
+                "departureLocal": "2027-03-19T09:35:00+01:00",
+                "arrivalLocal": "2027-03-20T10:05:00+08:00",
+                "durationMin": 1050,
+                "transferAirport": "FRA",
+                "transferMin": 200
+              },
+              {
+                "amountNok": 43232,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "British Airways",
+                "departureLocal": "2027-03-19T06:45:00+01:00",
+                "arrivalLocal": "2027-03-20T09:10:00+08:00",
+                "durationMin": 1165,
+                "transferAirport": "LHR",
+                "transferMin": 235
+              },
+              {
+                "amountNok": 45230,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Emirates",
+                "departureLocal": "2027-03-19T14:00:00+01:00",
+                "arrivalLocal": "2027-03-20T15:05:00+08:00",
+                "durationMin": 1085,
+                "transferAirport": "DXB",
+                "transferMin": 195
+              }
+            ],
+            "baggage": null,
+            "error": null
+          },
+          {
+            "id": "sha-20261011-010",
+            "checkedAt": "2026-10-11T15:00:11.759Z",
+            "service": "Google Flights return selection",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-19",
+            "returnDate": "2027-04-05",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": {
+              "amount": 36672,
+              "currency": "NOK",
+              "basis": "four-passenger-roundtrip",
+              "stage": "return-list-after-outbound-selected"
+            },
+            "airlines": [
+              "Lufthansa"
+            ],
+            "outbound": {
+              "departureLocal": "2027-03-19T09:35:00+01:00",
+              "arrivalLocal": "2027-03-20T10:05:00+08:00",
+              "durationMin": 1050,
+              "transferAirport": "FRA",
+              "transferMin": 200
+            },
+            "inbound": {
+              "departureLocal": "2027-04-05T10:55:00+08:00",
+              "arrivalLocal": "2027-04-06T00:05:00+02:00",
+              "durationMin": 1150,
+              "transferAirport": "FRA",
+              "transferMin": 205
+            },
+            "baggage": null,
+            "verification": "Selected return; itinerary summary still Getting prices. Not carrier verified.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-011",
+            "checkedAt": "2026-10-11T15:00:40.180Z",
+            "service": "Google Flights booking summary",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-19",
+            "returnDate": "2027-04-05",
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": null,
+            "error": "selected-summary-getting-prices",
+            "finding": "Selected Lufthansa itinerary remained Getting prices across state checks and one reload. No booking option or baggage price loaded. Previous return-list quote retained as preliminary."
+          },
+          {
+            "id": "sha-20261011-012",
+            "checkedAt": "2026-10-11T15:01:16.433Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "PVG",
+            "to": "TYO (HND/NRT)",
+            "departDate": "2027-03-23",
+            "tripType": "oneway",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=One%20way%20flights%20from%20PVG%20to%20Tokyo%20on%202027-03-23%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "observedOffers": [
+              {
+                "amountNok": 9685,
+                "basis": "four-passenger-oneway",
+                "airline": "Jetstar",
+                "from": "PVG",
+                "to": "NRT",
+                "departureLocal": "2027-03-23T02:20:00+08:00",
+                "arrivalLocal": "2027-03-23T06:20:00+09:00",
+                "durationMin": 180,
+                "stops": 0,
+                "baggage": "Overhead-bin access excluded; checked unverified",
+                "assessment": "7 h 25 after Finnair arrival; overnight airport wait, no practical full hotel night"
+              },
+              {
+                "amountNok": 10865,
+                "basis": "four-passenger-oneway",
+                "airline": "Spring",
+                "from": "PVG",
+                "to": "NRT",
+                "departureLocal": "2027-03-23T15:00:00+08:00",
+                "arrivalLocal": "2027-03-23T18:40:00+09:00",
+                "durationMin": 160,
+                "stops": 0,
+                "baggage": null
+              },
+              {
+                "amountNok": 13660,
+                "basis": "four-passenger-oneway",
+                "airline": "ANA",
+                "from": "PVG",
+                "to": "HND",
+                "departureLocal": "2027-03-23T08:35:00+08:00",
+                "arrivalLocal": "2027-03-23T12:20:00+09:00",
+                "durationMin": 165,
+                "stops": 0,
+                "baggage": null
+              }
+            ],
+            "verification": "Passenger dialog 3 Adults 1 Child aged 2–11; explicitly four-person total. Specific fares not selected.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-013",
+            "checkedAt": "2026-10-11T15:02:17.070Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "PVG",
+            "to": "TYO (HND/NRT)",
+            "departDate": "2027-03-23",
+            "returnDate": "2027-04-04",
+            "tripType": "roundtrip",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 17929,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "ANA",
+                "from": "PVG",
+                "to": "HND",
+                "departureLocal": "2027-03-23T02:35:00+08:00",
+                "arrivalLocal": "2027-03-23T06:15:00+09:00",
+                "durationMin": 160,
+                "stops": 0
+              },
+              {
+                "amountNok": 19000,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "ANA",
+                "from": "PVG",
+                "to": "HND",
+                "departureLocal": "2027-03-23T08:35:00+08:00",
+                "arrivalLocal": "2027-03-23T12:20:00+09:00",
+                "durationMin": 165,
+                "stops": 0
+              },
+              {
+                "amountNok": 20177,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Jetstar",
+                "from": "PVG",
+                "to": "NRT",
+                "departureLocal": "2027-03-23T02:20:00+08:00",
+                "arrivalLocal": "2027-03-23T06:20:00+09:00",
+                "durationMin": 180,
+                "stops": 0,
+                "baggage": "Overhead-bin access excluded"
+              }
+            ],
+            "excludedOffers": [
+              {
+                "amountNok": 16911,
+                "reason": "Overnight Osaka plus KIX–ITM airport change; unsuitable for Tokyo arrival"
+              }
+            ],
+            "baggage": null,
+            "verification": "Dates confirmed in tracking text, 4-person total. Return not yet selected.",
+            "error": null
+          },
+          {
+            "id": "sha-20261011-014",
+            "checkedAt": "2026-10-11T15:03:07.479Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "PVG",
+            "to": "HND",
+            "departDate": "2027-03-23",
+            "returnDate": "2027-04-04",
+            "tripType": "roundtrip",
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": null,
+            "error": "regional-return-selection-oops",
+            "finding": "Selected ANA 08:35 outbound from 19 000 NOK four-person roundtrip result. Return selection returned Oops something went wrong; one Reload still failed. No selected-return price or baggage verified."
+          },
+          {
+            "id": "sha-20261011-015",
+            "checkedAt": "2026-10-11T15:04:07.777Z",
+            "service": "Google Flights multi-city",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": null,
+            "error": "multicity-form-interaction-failure",
+            "finding": "Changing trip type produced Multi-city form, but second origin remained Tokyo; fill and click on visible second-origin combobox timed out. Requested KIX could not be selected. No actual requested multi-city price returned."
+          },
+          {
+            "id": "sha-20261011-016",
+            "checkedAt": "2026-10-11T15:10:03.879Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osa&ddate=2027-03-23&rdate=2027-03-26&dairport=pvg&aairport=kix&dcityid=2&acityid=219&triptype=ow&class=y&lowpricesource=searchform&quantity=3&childqty=1&searchboxarg=t&nonstoponly=off&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "flight": "NH974",
+                "departure": "2027-03-23T12:00:00+08:00",
+                "arrival": "2027-03-23T15:15:00+09:00",
+                "from": "PVG T2",
+                "to": "KIX T1",
+                "durationMinutes": 135,
+                "stops": 0,
+                "price": {
+                  "amount": 1091,
+                  "currency": "USD",
+                  "basis": "UI total for 3 adults and 1 child; selected fare drawer",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1 piece",
+                  "checked": "2 × 23 kg displayed in selected fare; per-person attribution not separately expanded"
+                },
+                "terms": {
+                  "refund": "Non-refundable (partial tax refund only)",
+                  "change": "from USD45",
+                  "partyAvailability": "Bookings of 1–5 passengers; UI total for4"
+                },
+                "connectionTo": "sha-longhaul-finnair-21mar-06apr",
+                "bufferMinutes": 1025,
+                "verified": [
+                  "local flight times",
+                  "flight number",
+                  "seller total",
+                  "fare baggage display"
+                ],
+                "unverified": [
+                  "carrier direct price",
+                  "checkout repricing",
+                  "fare rules per child"
+                ]
+              },
+              {
+                "carrier": "ANA",
+                "departure": "2027-03-23T19:05:00+08:00",
+                "arrival": "2027-03-23T22:00:00+09:00",
+                "from": "PVG T2",
+                "to": "KIX T1",
+                "durationMinutes": 115,
+                "price": {
+                  "amount": 1004,
+                  "currency": "USD",
+                  "basis": "results-list total for4"
+                },
+                "baggage": "results indicate checked and carry-on included, exact allowance not expanded"
+              },
+              {
+                "carrier": "Spring Airlines",
+                "departure": "2027-03-23T08:05:00+08:00",
+                "arrival": "2027-03-23T11:20:00+09:00",
+                "price": {
+                  "amount": 1133,
+                  "currency": "USD",
+                  "basis": "results-list total for4"
+                },
+                "baggage": "Carry-on included; checked not priced"
+              }
+            ],
+            "finding": "Traditional ANA with checked baggage cheaper than observed nonstop Spring fares; earliest Spring08:05 gives13h10 after22Mar18:55 longhaul arrival, ANA noon gives17h05. Overnight hotel buffer feasible; no airport change."
+          },
+          {
+            "id": "sha-20261011-017",
+            "checkedAt": "2026-10-11T15:12:28.702Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=tyo&acity=sha&ddate=2027-04-04&rdate=2027-04-07&aairport=pvg&dcityid=228&acityid=2&triptype=ow&class=y&lowpricesource=searchform&quantity=3&childqty=1&searchboxarg=t&nonstoponly=off&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Jetstar Japan",
+                "flight": "GK035",
+                "from": "NRT T3",
+                "to": "PVG T2",
+                "departure": "2027-04-04T22:25:00+09:00",
+                "arrival": "2027-04-05T00:50:00+08:00",
+                "durationMinutes": 205,
+                "stops": 0,
+                "price": {
+                  "amount": 1148,
+                  "currency": "USD",
+                  "basis": "Selected fare drawer actual total for4 including displayed20kg baggage option",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "basePrice": {
+                  "amount": 1036,
+                  "currency": "USD",
+                  "checkedBaggage": false
+                },
+                "baggage": {
+                  "checked": "20 kg shown in selected fare; per-traveler attribution not separately expanded",
+                  "personalItem": "Included",
+                  "carryOn": "1 piece; weight not expanded"
+                },
+                "terms": {
+                  "refund": "Non-refundable",
+                  "change": "from USD58"
+                },
+                "connectionTo": "sha-longhaul-finnair-21mar-06apr",
+                "returnBufferMinutes": 2640,
+                "stopover": "Arrival after midnight5Apr: book room from4Apr if immediate check-in needed; one full Shanghai day5Apr and partial6Apr, two hotel nights4/5Apr.",
+                "unverified": [
+                  "direct carrier price",
+                  "checkout repricing",
+                  "child baggage attribution"
+                ]
+              },
+              {
+                "carrier": "Juneyao",
+                "from": "NRT T2",
+                "to": "PVG T2",
+                "departure": "2027-04-04T13:20:00+09:00",
+                "arrival": "2027-04-04T15:25:00+08:00",
+                "durationMinutes": 185,
+                "price": {
+                  "amount": 1857,
+                  "currency": "USD",
+                  "basis": "results-list total4"
+                },
+                "baggage": "checked and cabin indicated included, exact allowance not expanded"
+              }
+            ],
+            "finding": "Cheap regional return with documented bag fare. 44hr buffer before6Apr20:50 Finnair; late arrival weakens city comfort. Juneyao earlier arrival costsUSD709 more but allows two daytime stopover periods."
+          },
+          {
+            "id": "sha-20261011-018",
+            "checkedAt": "2026-10-11T15:13:17.627Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osa&acity=sha&ddate=2027-04-04&dairport=kix&aairport=pvg&dcityid=219&acityid=2&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD&midpolicyid=1%3AOSA-SHA%3AMU226",
+            "results": [
+              {
+                "carrier": "China Eastern",
+                "flight": "MU226",
+                "from": "KIX T1",
+                "to": "PVG T1",
+                "departure": "2027-04-04T13:10:00+09:00",
+                "arrival": "2027-04-04T14:35:00+08:00",
+                "durationMinutes": 145,
+                "stops": 0,
+                "price": {
+                  "amount": 1912,
+                  "currency": "USD",
+                  "basis": "Selected fare drawer total4",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1 × 8 kg",
+                  "checked": "2 × 23 kg shown"
+                },
+                "terms": {
+                  "fare": "Economy Standard",
+                  "refund": "Cancellation fee from USD158",
+                  "change": "from USD82"
+                },
+                "returnBufferMinutes": 3255,
+                "connectionTo": "sha-longhaul-finnair-21mar-06apr",
+                "unverified": [
+                  "direct carrier price",
+                  "checkout repricing",
+                  "per-child allowance detail"
+                ]
+              }
+            ],
+            "finding": "Current Japan direction viable with two Shanghai nights4/5Apr, but nonstop return USD764 dearer than Jetstar NRT bag fare. Cheaper Jetstar KIX→NRT→PVG USD1324 base has18h15 travel and13h20 Tokyo layover, rejected as burdensome; bags unpriced."
+          },
+          {
+            "id": "sha-20261011-019",
+            "checkedAt": "2026-10-11T15:14:52.163Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=sha&ddate=2027-03-21&rdate=2027-04-06&dairport=osl&aairport=pvg&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "id": "sha-longhaul-juneyao-21mar-06apr",
+                "carriers": [
+                  "Finnair",
+                  "Juneyao"
+                ],
+                "price": {
+                  "amount": 3503,
+                  "currency": "USD",
+                  "basis": "Actual total4 in both-flights-selected fare drawer",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "outbound": {
+                  "departure": "2027-03-21T12:30:00+01:00",
+                  "arrival": "2027-03-22T07:50:00+08:00",
+                  "durationMinutes": 740,
+                  "stops": 1,
+                  "transfer": "HEL",
+                  "transferMinutes": 105,
+                  "flights": [
+                    "AY914 operated Jettime",
+                    "HO1608"
+                  ]
+                },
+                "inbound": {
+                  "departure": "2027-04-06T09:25:00+08:00",
+                  "arrival": "2027-04-06T19:45:00+02:00",
+                  "durationMinutes": 980,
+                  "stops": 1,
+                  "transfer": "HEL",
+                  "transferMinutes": 320,
+                  "flights": [
+                    "HO1607",
+                    "AY917"
+                  ]
+                },
+                "baggage": {
+                  "carryOn": "1 ×5 kg displayed fare",
+                  "checked": "1 ×23 kg displayed fare",
+                  "transfer": "No need to collect and recheck baggage in HEL bothways explicitly displayed"
+                },
+                "terms": {
+                  "refund": "Non-refundable (partial tax refund only)",
+                  "change": "No change fees; fare difference unspecified"
+                },
+                "protection": "Combined seller itinerary and through baggage evidenced; one ticket/PNR contractual protection not independently verified",
+                "unverified": [
+                  "carrier direct price",
+                  "checkout repricing",
+                  "child allowance expanded"
+                ]
+              }
+            ],
+            "otherLeads": [
+              {
+                "priceUsd": 2857,
+                "outbound": "21Mar20:50→23Mar07:50 28h HEL17h25",
+                "baggage": "results included",
+                "qualification": "poorJapanTime"
+              },
+              {
+                "priceUsd": 3649,
+                "outbound": "Finnair21Mar20:50→22Mar18:55 15h05",
+                "baggage": "notincludedindicator"
+              }
+            ],
+            "finding": "Strong new bag-included longhaul: arrives22Mar morning, saving almost full day over FinnairAY87; returnsOslo6Apr evening one day earlier. Can continueJapan22Mar only after substantial self-transfer margin, or overnight and23Mar regional. Lowprice2857 loses one day and exposes HELovernight cost."
+          },
+          {
+            "id": "sha-20261011-020",
+            "checkedAt": "2026-10-11T15:15:31.355Z",
+            "service": "Official carrier policy / ECB reference lookup via web",
+            "party": null,
+            "cabin": null,
+            "requestedLegs": [],
+            "status": "completed",
+            "queries": [
+              "ECB USD/NOK 9 October2026",
+              "Juneyao official booking",
+              "Finnair extra checked baggage Asia",
+              "Peach fees"
+            ],
+            "price": null,
+            "sources": [
+              {
+                "url": "https://www.finnair.com/ie-en/baggage-on-finnair-flights/extra-baggage-fees",
+                "finding": "Asia EconomyLight first23kg bagEUR75–100 eachdirection. Two travelers eachonebag bothdirections totalEUR300–400 estimated addition, exact itinerary price unverified. Classic includesfirstbag."
+              },
+              {
+                "url": "https://global.juneyaoair.com/",
+                "finding": "Official carrier homepage accessible via web; interactive pricing not yet attempted."
+              }
+            ],
+            "errors": [
+              {
+                "source": "https://api.frankfurter.dev/v2/rate/USD/NOK?providers=ecb",
+                "error": "web open Internal Error; no exchange rate verified"
+              },
+              {
+                "source": "ECB date search",
+                "error": "No relevant primary FX result"
+              }
+            ],
+            "finding": "Policy supplements saved, no generic route fare used. Current USD→NOK conversion remains unverified."
+          },
+          {
+            "id": "sha-20261011-021",
+            "checkedAt": "2026-10-11T15:15:56.873Z",
+            "service": "Norges Bank / ECB currency reference",
+            "status": "completed",
+            "requestedLegs": [],
+            "party": null,
+            "cabin": null,
+            "publicUrl": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/",
+            "price": null,
+            "findings": {
+              "asOf": "2026-10-09",
+              "nokPerUsd": 9.5623,
+              "nokPerEur": 10.7155,
+              "source": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/",
+              "dataSource": "https://data.norges-bank.no/api/data/EXR/B.USD%2BEUR%2BGBP%2BDKK%2BSEK.NOK.SP?endPeriod=2026-10-11&format=sdmx-json&locale=no&startPeriod=2026-09-27",
+              "basis": "Norges Bank ECB concertation reference observation9 index9; USD series0:1:0:0, EUR0:3:0:0. Conversion is estimate, not sellerNOKcharge. CardFX fees unpriced."
+            },
+            "errors": [
+              "ECB XML unsupported by web parser",
+              "Norges Bank CSV unsupported; JSON succeeded"
+            ]
+          },
+          {
+            "id": "sha-20261011-022",
+            "checkedAt": "2026-10-11T15:17:15.684Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-22"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=tyo&ddate=2027-03-22&dairport=pvg&dcityid=2&acityid=228&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "flight": "NH920",
+                "from": "PVG T2",
+                "to": "NRT T1",
+                "departure": "2027-03-22T13:35:00+08:00",
+                "arrival": "2027-03-22T17:25:00+09:00",
+                "durationMinutes": 170,
+                "stops": 0,
+                "price": {
+                  "amount": 1707,
+                  "currency": "USD",
+                  "basis": "seller-selected fare total4",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "carryOn": "1 piece",
+                  "checked": "2 ×23 kg"
+                },
+                "terms": {
+                  "fare": "Economy Value",
+                  "refund": "Non-refundable(partialtaxonly)",
+                  "change": "fromUSD45"
+                },
+                "outboundBufferMinutes": 345,
+                "connectionTo": "sha-longhaul-juneyao-21mar-06apr",
+                "risk": "5h45 selftransfer at samePVG terminalT2; workable planning margin, no guarantee. Budget immigration/bags2h, newcheckin/security1h30 plusreserve2h15. Not safeafterFinnair22Mar18:55arrival."
+              },
+              {
+                "carrier": "Spring Airlines",
+                "flight": "9C6217",
+                "departure": "2027-03-22T15:00:00+08:00",
+                "arrival": "2027-03-22T18:40:00+09:00",
+                "price": {
+                  "amount": 1133,
+                  "currency": "USD",
+                  "basis": "fare total4 withoutchecked"
+                },
+                "baggage": "7kg cabin; checkednotincluded",
+                "upgrade": {
+                  "amount": 1204,
+                  "currency": "USD",
+                  "checked": "20kg",
+                  "restriction": "12yrsoldandover explicitlyshown; doNOTtreatasverified3+1offer"
+                },
+                "outboundBufferMinutes": 430
+              }
+            ],
+            "finding": "Same-day Tokyo arrival from morningJuneyao possible; ANA bagfareUSD1707 fully seller-priced. Spring attractivebutage-restrictedupgrade childbagcostunverified, excludedfromcompletecost."
+          },
+          {
+            "id": "sha-20261011-023",
+            "checkedAt": "2026-10-11T15:18:04.639Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=tyo&ddate=2027-03-23&dairport=pvg&dcityid=2&acityid=228&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "flight": "NH972",
+                "from": "PVG T2",
+                "to": "HND T3",
+                "departure": "2027-03-23T08:35:00+08:00",
+                "arrival": "2027-03-23T12:20:00+09:00",
+                "durationMinutes": 165,
+                "stops": 0,
+                "price": {
+                  "amount": 1476,
+                  "currency": "USD",
+                  "basis": "selected fare drawer total4, resultlist1474repriced1476",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2 ×23 kg displayed"
+                },
+                "terms": {
+                  "fare": "Economy Value",
+                  "refund": "Non-refundable partialtaxonly",
+                  "change": "fromUSD45"
+                },
+                "bufferMinutesFromFinnair": 820,
+                "bufferMinutesFromJuneyao": 1485
+              }
+            ],
+            "finding": "Tokyo after one Shanghai night: with Finnair arrival22Mar18:55 gives13h40; morningJuneyao gives24h45 and full22MarShanghai. Bagfareverifiedat sellerstage."
+          },
+          {
+            "id": "sha-20261011-024",
+            "checkedAt": "2026-10-11T15:19:14.234Z",
+            "service": "Trip.com regional roundtrip",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osa&ddate=2027-03-23&rdate=2027-04-04&dairport=pvg&aairport=kix&dcityid=2&acityid=219&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": "23Mar12:00PVG→15:15KIX",
+                "inbound": "4Apr13:10KIX→14:35PVG ChinaEastern",
+                "price": {
+                  "amount": 3003,
+                  "currency": "USD",
+                  "basis": "return-selection total4; initial outbound teaser2140didnotcorrespondto practical nonstopreturn"
+                },
+                "baggage": "includedindicatorsnotexpanded",
+                "verification": "bothflightsscreen, fare drawer notselected"
+              },
+              {
+                "carrier": "ANA",
+                "outbound": "23Mar19:05PVG→22:00KIX",
+                "price": {
+                  "amount": 1906,
+                  "currency": "USD",
+                  "basis": "outbound-list RTlead; return notselected"
+                },
+                "qualification": "provisional-not-complete"
+              }
+            ],
+            "finding": "No substantiated nonstop saving over separateOW: selectednoonANA1091+MU1912 equals3003. Lowinitial2140appears todependon otherreturn (not practicaldirectobserved); do not advertise2140 as complete fare. Lowest1906 eveningoutbound remains unverified. OsakaRT also entails extraJapanrail toclosemainroute."
+          },
+          {
+            "id": "sha-20261011-025",
+            "checkedAt": "2026-10-11T15:23:40.548Z",
+            "service": "Juneyao direct",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4,
+              "adultCategory": "12+",
+              "childCategory": "2–11"
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "failed",
+            "publicUrl": "https://global.juneyaoair.com/",
+            "price": null,
+            "observations": {
+              "partyVerified": "3Adult1Child in actual resultsheader",
+              "outboundVerified": "AY91421Mar12:30 OSL→HEL14:55, HO1608HEL16:40→PVG22Mar07:50,12h20",
+              "adultRoundtripTeaserUsd": 825,
+              "basis": "site explicitly adultRTincludingtax; NOT familytotal, notmultiplied"
+            },
+            "error": "fare-selection-not-responsive",
+            "finding": "Directsearchreturnedcorrectdate/partyandflight. Clicking USD825twice(aftercookieAgree) didnotopenfare/returnselection; Loadingnowremained. One reload producedRuntime.evaluate timeout. No actualfour-person directtotal or directbaggagevalidated. Trip.com3503USD remains independent seller observation."
+          },
+          {
+            "id": "sha-20261011-026",
+            "checkedAt": "2026-10-11T15:24:40.375Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=tyo&acity=sha&ddate=2027-04-05&aairport=pvg&dcityid=228&acityid=2&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Jetstar Japan",
+                "flight": "GK035",
+                "from": "NRT T3",
+                "to": "PVG T2",
+                "departure": "2027-04-05T22:25:00+09:00",
+                "arrival": "2027-04-06T00:50:00+08:00",
+                "durationMinutes": 205,
+                "stops": 0,
+                "price": {
+                  "amount": 1137,
+                  "currency": "USD",
+                  "basis": "selected20kgfare total4",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "20kg"
+                },
+                "terms": {
+                  "refund": "Non-refundable",
+                  "change": "fromUSD58"
+                },
+                "bufferMinutesJuneyao": 515,
+                "bufferMinutesFinnair": 1200,
+                "risk": "8h35 before Juneyao6Apr09:25; dayboundary is not fullnightguarantee, highlonghaulexposure ifmajorovernightdelay. Use4Aprreturn forlowerexposure. Finnair20h margin permitspart6Aprcityday but arrivesOslo7Apr."
+              },
+              {
+                "carrier": "Juneyao",
+                "from": "NRT T2",
+                "to": "PVG T2",
+                "departure": "2027-04-05T13:20:00+09:00",
+                "arrival": "2027-04-05T15:25:00+08:00",
+                "durationMinutes": 185,
+                "price": {
+                  "amount": 1857,
+                  "currency": "USD",
+                  "basis": "resultslist total4"
+                },
+                "baggage": "includedindicators notexpanded",
+                "bufferMinutesJuneyao": 1080
+              }
+            ],
+            "finding": "Oneadditional Japan day almostsameJetstarprice, but8h35 overnightbeforecostlylonghaul materiallylessbuffer than32h35from4AprJetstar. 5AprdaytimeJuneyao gives18hr andonehotel night, fare notfullyexpanded."
+          },
+          {
+            "id": "sha-20261011-027",
+            "checkedAt": "2026-10-11T15:25:41.639Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "resultStatus": "no-results",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=sha&ddate=2027-03-20&rdate=2027-04-05&dairport=osl&aairport=pvg&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "price": null,
+            "finding": "Correctdatesroutefourpassengers Roundtripverified; sellerreturned'Sorry,noavailableflightsfound'. Doesnotprove market unavailable; Juneyao calendar had adultteaser for same datepair, requires actualcarrierpartyselection."
+          },
+          {
+            "id": "sha-20261011-028",
+            "checkedAt": "2026-10-11T15:27:21.387Z",
+            "service": "Trip.com regional roundtrip",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=tyo&ddate=2027-03-23&rdate=2027-04-04&dairport=pvg&dcityid=2&acityid=228&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": {
+                  "flight": "NH972",
+                  "from": "PVG T2",
+                  "to": "HND T3",
+                  "departure": "2027-03-23T08:35:00+08:00",
+                  "arrival": "2027-03-23T12:20:00+09:00",
+                  "durationMinutes": 165
+                },
+                "inbound": {
+                  "flight": "NH919",
+                  "from": "NRT T1",
+                  "to": "PVG T2",
+                  "departure": "2027-04-04T09:20:00+09:00",
+                  "arrival": "2027-04-04T11:40:00+08:00",
+                  "durationMinutes": 200
+                },
+                "price": {
+                  "amount": 1780,
+                  "currency": "USD",
+                  "basis": "selected fare total4, repriced1779to1780",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2 ×23 kg displayed bothsegmentsfare"
+                },
+                "terms": {
+                  "fare": "EconomyLight",
+                  "refund": "Non-refundable partialtaxonly",
+                  "change": "Changesnotpermitted"
+                },
+                "returnBufferJuneyaoMinutes": 2745,
+                "returnBufferFinnairMinutes": 3430,
+                "extraJapanTransport": "RequiresOsaka→Tokyobacktrack before earlyNRTdeparture. Priorrepo3+1railestimate50820JPY+4–6hr; currenttrainprice not refreshed. HNDarrival andNRTdeparture atdifferentendsofJapantrip, no directsame-day airportchange assumed."
+              },
+              {
+                "price": {
+                  "amount": 1998,
+                  "currency": "USD",
+                  "basis": "sameflights selectedfare total4"
+                },
+                "terms": {
+                  "fare": "EconomyValue",
+                  "change": "fromUSD45"
+                },
+                "baggage": "same2×23kg"
+              }
+            ],
+            "finding": "RealRTsaving: USD1780versus TokyoOW1476+Jetstar1148=2624USD, savesUSD844≈8071NOK before extraJapanrail. Strongcontenderwhenrailcost/time included."
+          },
+          {
+            "id": "sha-20261011-029",
+            "checkedAt": "2026-10-11T15:33:07.190Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-05%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "results": [
+              {
+                "carrier": "Hainan",
+                "price": {
+                  "amount": 33067,
+                  "currency": "NOK",
+                  "basis": "initial four-passenger roundtrip result",
+                  "stage": "WITHDRAWN: final provider screen hides price because it might be incorrect; not confirmed"
+                },
+                "outbound": {
+                  "departure": "2027-03-20T12:30:00+01:00",
+                  "arrival": "2027-03-21T13:20:00+08:00",
+                  "durationMinutes": 1070,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 385
+                },
+                "inbound": {
+                  "departure": "2027-04-05T11:05:00+08:00",
+                  "arrival": "2027-04-06T06:45:00+02:00",
+                  "durationMinutes": 1540,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 815
+                },
+                "baggage": "Google summary: first checked bag and one carry-on free per passenger, weight unverified",
+                "verification": "Provider requires visit site for price. Do not rank as fully priced."
+              }
+            ]
+          },
+          {
+            "id": "sha-20261011-030",
+            "checkedAt": "2026-10-11T15:34:55.003Z",
+            "service": "Hainan Airlines direct",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4,
+              "verified": "Fare table Number3adult1child"
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.hainanairlines.com/OEC/GB/Home",
+            "repeatSearch": "OSL–PVG20Mar/5Apr2027,3adults1child,EconomyBasic,HU770/HU7613 andHU7614/HU769; homepage fresh search required",
+            "results": [
+              {
+                "carrier": "Hainan",
+                "price": {
+                  "amount": 32845,
+                  "currency": "NOK",
+                  "basis": "Direct Review Fare full total4 taxincluded; adult8544×3 andchild7213 in carrier table, not mechanical adultmultiplication",
+                  "stage": "carrier-review-fare-not-booked"
+                },
+                "outbound": {
+                  "flights": [
+                    "HU770",
+                    "HU7613"
+                  ],
+                  "departure": "2027-03-20T12:30:00+01:00",
+                  "arrival": "2027-03-21T13:20:00+08:00",
+                  "durationMinutes": 1070,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 385
+                },
+                "inbound": {
+                  "flights": [
+                    "HU7614",
+                    "HU769"
+                  ],
+                  "departure": "2027-04-05T11:05:00+08:00",
+                  "arrival": "2027-04-06T06:45:00+02:00",
+                  "durationMinutes": 1540,
+                  "stops": [
+                    "PEK"
+                  ],
+                  "layoverMinutes": 815
+                },
+                "baggage": {
+                  "checked": "1piece perperson included bothfarefamilies, weight notexpanded",
+                  "carryOn": "1×10kg perperson"
+                },
+                "terms": {
+                  "fare": "EconomyBasic",
+                  "changeNokPerPersonTransaction": 2037,
+                  "cancellationNok": 2573,
+                  "noShowNok": 2037,
+                  "fareDifference": "additional; lowernewfare difference notrefunded",
+                  "couponSequence": "All coupons must be used in order; cannot skip PVG/PEKsegments"
+                },
+                "protection": "Carrier states 2+segments connecting flight and single-ticket throughcheck at selected domestictransitports; exact through-bag eligibility notverified",
+                "returnBurden": "13h35 overnightPEK may warrantextraairporthotel allowance, notincluded32845"
+              }
+            ],
+            "finding": "Directsite successfully resolvesGooglewithdrawnprice; full3+1fare32845NOK. Usablelonghaul but muchslower thanJuneyao and needsregionalJapanreturn no later4Apr."
+          },
+          {
+            "id": "sha-20261011-031",
+            "checkedAt": "2026-10-11T15:35:15.298Z",
+            "service": "Google Flights Beijing screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PEK",
+                "date": "2027-03-20"
+              },
+              {
+                "from": "PEK",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PEK%20on%202027-03-20%20returning%202027-04-05%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "results": [
+              {
+                "carrier": "KLM",
+                "price": {
+                  "amount": 44109,
+                  "currency": "NOK",
+                  "basis": "initial RT total4; return notselected bagsunknown"
+                },
+                "outbound": "20Mar12:35OSL→21Mar09:55PEK14h20AMS85min"
+              },
+              {
+                "carrier": "AirFrance",
+                "price": {
+                  "amount": 44113,
+                  "currency": "NOK",
+                  "basis": "initialRTtotal4"
+                },
+                "outbound": "20Mar17:10→21Mar16:5516h45CDG160min"
+              },
+              {
+                "carrier": "Hainan",
+                "price": {
+                  "amount": 53160,
+                  "currency": "NOK",
+                  "basis": "initialRTtotal4"
+                },
+                "outbound": "20Mar12:30OSL→21Mar04:30PEK9h nonstop"
+              }
+            ],
+            "finding": "Screened out on thisdatepair: directPEK farefarabove throughPVG fare despite sameOSLPEKflight. Must notskipPVGcoupons onShanghai ticket. No regionalBeijingsearch justified yet; otherdatesnotcovered."
+          },
+          {
+            "id": "sha-20261011-032",
+            "checkedAt": "2026-10-11T15:40:00.095Z",
+            "service": "Trip.com regional multi-city",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=sha&multacity0=osa&dairport0=pvg&aairport0=kix&multddate0=2027-03-23&multdcityid0=2&multacityid0=219&multdcity1=tyo&multacity1=sha&aairport1=pvg&multddate1=2027-04-04&multdcityid1=228&multacityid1=2&triptype=mt&class=y&lowpricesource=searchform&quantity=3&childqty=1&searchboxarg=t&nonstoponly=off&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": {
+                  "flight": "NH974",
+                  "from": "PVG T2",
+                  "to": "KIX T1",
+                  "departure": "2027-03-23T12:00:00+08:00",
+                  "arrival": "2027-03-23T15:15:00+09:00",
+                  "durationMinutes": 135
+                },
+                "inbound": {
+                  "flight": "NH919",
+                  "from": "NRT T1",
+                  "to": "PVG T2",
+                  "departure": "2027-04-04T09:20:00+09:00",
+                  "arrival": "2027-04-04T11:40:00+08:00",
+                  "durationMinutes": 200
+                },
+                "price": {
+                  "amount": 1719,
+                  "currency": "USD",
+                  "basis": "Full selected twolegfare total4;5seatsleft",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "fare": "EconomyLight",
+                  "refund": "Non-refundable partialtaxonly",
+                  "change": "Changesnotpermitted"
+                },
+                "returnBufferJuneyaoMinutes": 2745,
+                "returnBufferFinnairMinutes": 3430,
+                "returnBufferHainanMinutes": 1405,
+                "protection": "Regionaltwolegs soldtogether; separate fromlonghaul, notprotectedtoOSL"
+              },
+              {
+                "price": {
+                  "amount": 1956,
+                  "currency": "USD",
+                  "basis": "sameflights total4EconomyValue"
+                },
+                "terms": {
+                  "change": "fromUSD45",
+                  "refund": "nonrefpartialtax"
+                },
+                "baggage": "same2×23kg"
+              },
+              {
+                "price": {
+                  "amount": 1486,
+                  "currency": "USD",
+                  "basis": "initialmulti-citytotal4evening23Mar19:05PVG→22:00KIX;returnfare notselected"
+                },
+                "verification": "provisional evening lead, no fullfare yet"
+              }
+            ],
+            "finding": "BestpracticalreverseJapanroute: regionalopenjaw1719USD is520USD below ANA1091+Jetstar1148 and61USD belowTokyoRT1780, avoidsOsakaTokyobacktracking and offers daytimeShanghaiarrival. Majorimprovement."
+          },
+          {
+            "id": "sha-20261011-033",
+            "checkedAt": "2026-10-11T15:41:31.517Z",
+            "service": "Trip.com regional multi-city",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=sha&multacity0=osa&dairport0=pvg&aairport0=kix&multddate0=2027-03-23&multdcityid0=2&multacityid0=219&multdcity1=tyo&multacity1=sha&aairport1=pvg&multddate1=2027-04-04&multdcityid1=228&multacityid1=2&triptype=mt&class=y&lowpricesource=searchform&quantity=3&childqty=1&searchboxarg=t&nonstoponly=off&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": {
+                  "flight": "NH976",
+                  "from": "PVG T2",
+                  "to": "KIX T1",
+                  "departure": "2027-03-23T19:05:00+08:00",
+                  "arrival": "2027-03-23T22:00:00+09:00",
+                  "durationMinutes": 115
+                },
+                "inbound": {
+                  "flight": "NH919",
+                  "from": "NRT T1",
+                  "to": "PVG T2",
+                  "departure": "2027-04-04T09:20:00+09:00",
+                  "arrival": "2027-04-04T11:40:00+08:00",
+                  "durationMinutes": 200
+                },
+                "price": {
+                  "amount": 1486,
+                  "currency": "USD",
+                  "basis": "Bothlegsselected total4 actualfare drawer",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "fare": "EconomyLight",
+                  "refund": "Non-refundable partialtaxonly",
+                  "change": "Changesnotpermitted"
+                },
+                "returnBufferJuneyaoMinutes": 2745,
+                "returnBufferFinnairMinutes": 3430,
+                "returnBufferHainanMinutes": 1405,
+                "protection": "Regionaltwolegs soldtogether; separate fromlonghaul, notprotectedtoOSL",
+                "outwardBufferJuneyaoMinutes": 2115,
+                "outwardBufferFinnairMinutes": 1450
+              },
+              {
+                "price": {
+                  "amount": 1748,
+                  "currency": "USD",
+                  "basis": "sameflightsEconomyValue total4"
+                },
+                "terms": {
+                  "change": "fromUSD45",
+                  "refund": "Nonrefundpartialtax"
+                },
+                "baggage": "2×23kg"
+              }
+            ],
+            "finding": "Fullypriced cheapestregionalopenjaw1486USD: saves233USD≈2228NOK versusnoon1719, reachesKIX22:00. Needlateairporttransport/hotelcheck-inplan; noJapanactivityonarrivalday. AllowsmoreShanghaioutwardtimewithoutadditionalhotelnight."
+          },
+          {
+            "id": "sha-20261011-034",
+            "checkedAt": "2026-10-11T15:42:21.092Z",
+            "service": "Google Flights Bangkok screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "BKK",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "BKK",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20BKK%20on%202027-03-21%20returning%202027-04-06%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "error": "Focusednaturalquerynotapplied; pageemptyroute/date1adult. No validfarecollected. AlternativeTrip.com next.",
+            "results": []
+          },
+          {
+            "id": "sha-20261011-035",
+            "checkedAt": "2026-10-11T15:43:23.959Z",
+            "service": "Trip.com Bangkok screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "BKK",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "BKK",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=bkk&ddate=2027-03-21&rdate=2027-04-06&dairport=osl&aairport=bkk&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carriers": [
+                  "Iberia marketed/Qatar operated",
+                  "Qatar"
+                ],
+                "price": {
+                  "amount": 3540,
+                  "currency": "USD",
+                  "basis": "selectedfareRTtotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "outbound": {
+                  "flights": [
+                    "IB8414",
+                    "IB6250"
+                  ],
+                  "departure": "2027-03-21T09:00:00+01:00",
+                  "arrival": "2027-03-22T06:15:00+07:00",
+                  "durationMinutes": 915,
+                  "transfer": "DOH",
+                  "transferMinutes": 140
+                },
+                "inbound": {
+                  "flights": [
+                    "QR829",
+                    "QR179"
+                  ],
+                  "departure": "2027-04-06T21:05:00+07:00",
+                  "arrival": "2027-04-07T07:20:00+02:00",
+                  "durationMinutes": 915,
+                  "transfer": "DOH",
+                  "transferMinutes": 90
+                },
+                "baggage": {
+                  "carryOn": "1piece",
+                  "checked": "Included,weight/piecesnotexpanded",
+                  "transfer": "No collect/recheck DOHbothways"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "fromUSD190"
+                }
+              },
+              {
+                "price": {
+                  "amount": 3100,
+                  "currency": "USD",
+                  "basis": "selectedout initialRTreturnlist"
+                },
+                "inbound": "6Apr09:15BKK→7Apr07:20OSL DOH13h15;28h05 total",
+                "qualification": "rejectpoorreturnovernight"
+              }
+            ],
+            "finding": "PracticalBangkoklonghaul3540USD≈33850NOK, slightlyaboveJuneyao3503USD but longer15h15bothways. Regionalnextstep onlyoneopenjawscreen, thenstopifnotclearlybetter."
+          },
+          {
+            "id": "sha-20261011-036",
+            "checkedAt": "2026-10-11T15:45:23.520Z",
+            "service": "Trip.com regional multi-city A",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=sha&multacity0=tyo&dairport0=pvg&multddate0=2027-03-23&multdcity1=osa&multacity1=sha&dairport1=kix&aairport1=pvg&multddate1=2027-04-04&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA/Starflyer",
+                "outbound": {
+                  "flight": "NH972",
+                  "departure": "2027-03-23T08:35:00+08:00",
+                  "arrival": "2027-03-23T12:20:00+09:00",
+                  "from": "PVG T2",
+                  "to": "HND T3",
+                  "durationMinutes": 165
+                },
+                "inbound": {
+                  "flights": [
+                    "NH3828 operated Starflyer",
+                    "NH967"
+                  ],
+                  "departure": "2027-04-04T18:35:00+09:00",
+                  "arrival": "2027-04-05T00:45:00+08:00",
+                  "durationMinutes": 430,
+                  "stops": [
+                    "HND"
+                  ],
+                  "transferMinutes": 155,
+                  "segments": [
+                    {
+                      "from": "KIX",
+                      "to": "HND",
+                      "departure": "18:35",
+                      "arrival": "19:55"
+                    },
+                    {
+                      "from": "HND",
+                      "to": "PVG T2",
+                      "departure": "22:30",
+                      "arrival": "00:45+1"
+                    }
+                  ],
+                  "transferBaggage": "Collect & recheck baggage explicitlyshown; domestic/international terminaltransfer unverified; protectionone-ticket notindependentlyconfirmed"
+                },
+                "price": {
+                  "amount": 2361,
+                  "currency": "USD",
+                  "basis": "Bothlegsselected faretotal4,4left",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "notpermitted"
+                },
+                "returnBufferJuneyaoMinutes": 1960
+              },
+              {
+                "price": {
+                  "amount": 2199,
+                  "currency": "USD",
+                  "basis": "initiallowestreturnlist"
+                },
+                "inbound": "4Apr07:00KIX→5Apr00:45PVG17h45HND14h20; rejectedexcessivetime"
+              },
+              {
+                "price": {
+                  "amount": 3450,
+                  "currency": "USD",
+                  "basis": "initialnonstopreturntotal4notfareselected"
+                },
+                "inbound": "4Apr13:10KIX→14:35PVG"
+              }
+            ],
+            "finding": "RegionalA2361USD improves versus separateOW3388USD, but 7h10return/HND155min baggage recheck addsburden. B1719USD hasnonstopreturn and642USDsaving. Aiscompleteprice but operationallyprovisional at HND."
+          },
+          {
+            "id": "sha-20261011-037",
+            "checkedAt": "2026-10-11T15:46:35.151Z",
+            "service": "Trip.com Bangkok regional screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "BKK",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "BKK",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=bkk&multacity0=osa&dairport0=bkk&aairport0=kix&multddate0=2027-03-23&multdcity1=tyo&multacity1=bkk&aairport1=bkk&multddate1=2027-04-04&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "price": {
+                  "amount": 2461,
+                  "currency": "USD",
+                  "basis": "initialmulticitytotal4;returnnotselected,bagsunknown"
+                },
+                "outbound": "23Mar00:25BKK→07:55KIX5h30nonstop"
+              },
+              {
+                "price": {
+                  "amount": 2015,
+                  "currency": "USD",
+                  "basis": "lowestinitialmulti-citytotal4"
+                },
+                "outbound": "23Mar02:25BKK→24Mar11:25KIX31htotal,TAO23h50;rejectexcessivetime"
+              },
+              {
+                "price": {
+                  "amount": 2221,
+                  "currency": "USD",
+                  "basis": "initialmulti-citytotal4"
+                },
+                "outbound": "23Mar19:00BKK→24Mar06:55KIX9h55HAN4h"
+              }
+            ],
+            "finding": "No clearlybetterBangkoksolution: practicalnonstopregionalinitial2461USDalready975USDaboveANA PVGopenjaw1486, longhaul3540slightlymore and eachregionalflight5h30+. Screenedout withoutfurtherreturnselection. NotcompletepricedBangkokoption; DMKlowcostnotcovered."
+          },
+          {
+            "id": "sha-20261011-038",
+            "checkedAt": "2026-10-11T15:48:46.395Z",
+            "service": "Trip.com combined four-leg multi-city",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-04"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=osl&multacity0=sha&dairport0=osl&aairport0=pvg&multddate0=2027-03-21&multdcity1=sha&multacity1=osa&dairport1=pvg&aairport1=kix&multddate1=2027-03-23&multdcity2=tyo&multacity2=sha&aairport2=pvg&multddate2=2027-04-04&multdcity3=sha&multacity3=osl&dairport3=pvg&aairport3=osl&multddate3=2027-04-06&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carriers": [
+                  "Finnair/Jettime",
+                  "Juneyao",
+                  "ANA"
+                ],
+                "price": {
+                  "amount": 5083,
+                  "currency": "USD",
+                  "basis": "Allfourlegsselected faretotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "componentsMatch": [
+                  "sha-20261011-019",
+                  "sha-20261011-033"
+                ],
+                "flights": [
+                  "AY914",
+                  "HO1608",
+                  "NH976",
+                  "NH919",
+                  "HO1607",
+                  "AY917"
+                ],
+                "baggage": {
+                  "carryOn": "Atleast1piece",
+                  "checked": "Atleast1×23kg"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "Non-changeable partialsegments"
+                },
+                "protection": "EXPLICIT: Itinerary will be split across multiple bookings and flight tickets. This is NOT protectedShanghai connection."
+              }
+            ],
+            "finding": "Combinedshoppingcost5083USD versus separate3503+1486=4989USD,94USD≈899NOKmore. No protectionbenefit. Regionallegs+longhaul considered separate evenwhenpurchased together."
+          },
+          {
+            "id": "sha-20261011-039",
+            "checkedAt": "2026-10-11T15:50:20.458Z",
+            "service": "Trip.com Japan baseline refresh",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "KIX",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "NRT",
+                "to": "OSL",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=osl&multacity0=osa&dairport0=osl&aairport0=kix&multddate0=2027-03-21&multdcity1=tyo&multacity1=osl&dairport1=nrt&aairport1=osl&multddate1=2027-04-05&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Thai",
+                "price": {
+                  "amount": 6742,
+                  "currency": "USD",
+                  "basis": "Bothlegsselected total4 repriced6900to6742",
+                  "stage": "seller-fare-selection"
+                },
+                "outbound": {
+                  "flights": [
+                    "TG955",
+                    "TG672"
+                  ],
+                  "departure": "2027-03-21T13:20:00+01:00",
+                  "arrival": "2027-03-22T15:45:00+09:00",
+                  "durationMinutes": 1105,
+                  "transfer": "BKK",
+                  "transferMinutes": 115
+                },
+                "inbound": {
+                  "flights": [
+                    "TG641",
+                    "TG954"
+                  ],
+                  "departure": "2027-04-05T10:50:00+09:00",
+                  "arrival": "2027-04-06T07:25:00+02:00",
+                  "durationMinutes": 1655,
+                  "transfer": "BKK",
+                  "transferMinutes": 525
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1×7kg",
+                  "checked": "Atleast1×23kg",
+                  "transfer": "No collect/recheck BKKbothdirections"
+                },
+                "terms": {
+                  "refund": "Non-refundable",
+                  "change": "fromUSD150"
+                },
+                "protection": "Seller itinerary through-baggage evidenced, contractone-ticket notindependentlyverified. Priorcarrierchecksamewindow65768NOK usedreference."
+              },
+              {
+                "price": {
+                  "amount": 6900,
+                  "currency": "USD",
+                  "basis": "sameflights alternativefaretotal4"
+                },
+                "terms": {
+                  "refund": "fromUSD200",
+                  "change": "fromUSD100"
+                },
+                "baggage": "sameatleast1×23kg"
+              }
+            ],
+            "finding": "RefreshedThai6742USD≈64469NOK bagincluded,1299NOK belowpriorcarrier65768 but differentfareconditions/nonrefund and sellerpricing. Usebothreferences; do notinflateShanghaisavings againstoldbestonly.",
+            "otherLeads": [
+              {
+                "carrier": "Juneyao/Finnair",
+                "priceUsd": 6511,
+                "outbound": "21Mar12:30OSL→22Mar12:50KIXHEL125min",
+                "verification": "returnnotselected"
+              }
+            ]
+          },
+          {
+            "id": "sha-20261011-040",
+            "checkedAt": "2026-10-11T15:51:28.274Z",
+            "service": "Trip.com next-day regional replacement proxy",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2026-10-12"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osa&ddate=2026-10-12&dairport=pvg&aairport=kix&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Juneyao",
+                "flight": "HO1505",
+                "departure": "2026-10-12T08:20:00+08:00",
+                "arrival": "2026-10-12T11:40:00+09:00",
+                "price": {
+                  "amount": 1101,
+                  "currency": "USD",
+                  "basis": "selectedfaretotal4 nextday",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "carryOn": "1×5kg",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "cancellation": "fromUSD179",
+                  "change": "fromUSD75"
+                },
+                "ticketing": "Within2hoursafterpayment"
+              },
+              {
+                "carrier": "Spring",
+                "price": {
+                  "amount": 730,
+                  "currency": "USD",
+                  "basis": "initialtotal4withoutverifiedbag"
+                },
+                "departure": "12Oct15:10PVG→18:30KIX"
+              }
+            ],
+            "finding": "Actualnextdaybagincluded4passengerproxy1101USD≈10528NOK. This isOctober2026market, NOTguarantee/same-dayMarch2027emergencyquote. Lostregionalfareplusnewticket/hotel/lostdaypossible; noassumedprobabilityorautomaticriskpenalty."
+          },
+          {
+            "id": "sha-20261011-041",
+            "checkedAt": "2026-10-11T15:52:29.544Z",
+            "service": "Trip.com next-day longhaul replacement proxy",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2026-10-12"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osl&ddate=2026-10-12&dairport=pvg&aairport=osl&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carriers": [
+                  "Juneyao",
+                  "Finnair"
+                ],
+                "flights": [
+                  "HO1607",
+                  "AY917"
+                ],
+                "departure": "2026-10-12T09:05:00+08:00",
+                "arrival": "2026-10-12T19:45:00+02:00",
+                "durationMinutes": 1000,
+                "transfer": "HEL",
+                "transferMinutes": 320,
+                "price": {
+                  "amount": 2120,
+                  "currency": "USD",
+                  "basis": "selectednextdayfaretotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "carryOn": "1×5kg",
+                  "checked": "1×23kg"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "nochangefees,faredifferenceunspecified"
+                },
+                "ticketing": "Within2hoursafterpayment"
+              },
+              {
+                "carrier": "Thai",
+                "price": {
+                  "amount": 2105,
+                  "currency": "USD",
+                  "basis": "initialtotal4bagnotexpanded"
+                },
+                "departure": "12Oct17:25PVG→13Oct07:25OSLviaBKK195min"
+              }
+            ],
+            "finding": "Actualnext-daylonghaul4-passengerbagincludedproxy2120USD≈20272NOK. Largerexposurethanregional10528NOK, but notassumeautomaticlossentireoriginalRTprice. Aprilavailability maybemuchworse/better; rebooking/no-showterms/airlineassistance affectactualcost. No probabilisticriskpremiumadded."
+          },
+          {
+            "id": "sha-20261011-042",
+            "checkedAt": "2026-10-11T15:53:46.206Z",
+            "service": "Official airport/airline transport checks",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [],
+            "status": "completed",
+            "scope": "Necessarygroundtransport for quotedregionaltimings, notnewflightfare",
+            "results": [
+              {
+                "topic": "PVG–downtown",
+                "source": "https://english.shanghai.gov.cn/en-Transportation/20231214/649e06ea38f74aaeb573fa2debbe97d3.html",
+                "confirmed": "AirportAuthorityguideupdated4Jun2026:metroabout7CNY/person1hour, taxiabout180CNY50min,freePVGT1T2shuttle24hr10–15min. Taxi isindicativereferencefare, not2027quote."
+              },
+              {
+                "topic": "PVG–SHA",
+                "source": "https://english.shanghai.gov.cn/en-Transportation/20241231/f66f14bbd4b549ab88e6f3aec375790c.html",
+                "confirmed": "AirportLink40min26CNY/personPVGT1/T2→SHAT2; lastPVG22:15. Additionalterminal/walk/waitrequired. AllretainedoptionsusePVG soairportchange0."
+              },
+              {
+                "topic": "Shanghai nighttransport",
+                "source": "https://english.shanghai.gov.cn/en-Transportation/20240102/44f499a17b324b25996f2d58fcbf5f23.html",
+                "confirmed": "Nighttaxi30%surcharge23:00–05:00. For00:45/00:50PVGarrivalsplantaxi/nearbyairporthotel, do notassumenormalmetro."
+              },
+              {
+                "topic": "KIX22:00arrival",
+                "source": "https://www.howto-osaka.com/th/access-timetable/",
+                "confirmed": "OfficialNankaiweekdaytimetablelastAirportExpressKIX23:55→Namba00:39; nominal115minutes after22:00landing",
+                "assessment": "60–90minimmigration/bags+10–20minstationwalk leaves5–45minforlasttrain. Delaycanrequireairporthotel; chooseairport/RinkuhotelinplaceoffirstOsakahotelnight andtransfernextmorning. Latecheck-inrequired.2027timetablerecheck."
+              },
+              {
+                "topic": "HND155minAconnection",
+                "source": "https://www.ana.co.jp/en/jp/guide/boarding-procedures/checkin/domestic/transit/",
+                "confirmed": "ANA states StarflyerHNDTerminal1; ANAinternationalT2/T3. PublishedANA domestic→internationalminimum55minT2/70minT3; partner-specific minimumdependscarrier,contactANA. Itinerarysellerwarnscollect/recheck.",
+                "assessment": "155minisabovegeneric70,but Starflyer/T1recheckandthrough-ticketeligibility notconfirmed; cannotdeclareprotected. No HND/NRTairportchange."
+              }
+            ],
+            "errors": [
+              {
+                "source": "https://www.howto-osaka.com/",
+                "detail": "EnglishlanguageclickInternalError; usedofficialThai-languagepagewithEnglishtimetablelabels instead. Old2019PDFnotused."
+              }
+            ]
+          },
+          {
+            "id": "sha-20261011-043",
+            "checkedAt": "2026-10-11T15:54:30.435Z",
+            "service": "Official China entry and school calendar recheck",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [],
+            "status": "completed",
+            "scope": "Rules andcalendarfor retainedproposeditineraries",
+            "results": [
+              {
+                "source": "https://no.china-embassy.gov.cn/eng/lsfw_0/zytz_133966/202511/t20251105_11747172.htm",
+                "finding": "Norwayordinarypassport30daywaiverdocumentedonlythrough31Dec2026. Do notassumevalidspring2027."
+              },
+              {
+                "source": "https://en.nia.gov.cn/n147418/n147463/c183412/content.html",
+                "finding": "NIA20Aug2026Norwayeligible240hthird-countrytransit, confirmedonwardticketseat/date,designatedportsareas. Eachentryseparate."
+              },
+              {
+                "source": "https://english.shanghai.gov.cn/en-240-hourtransfer-stayinShanghai/20240104/05e535a37f4c41db802e842247425848.html",
+                "finding": "Shanghai12May2026passport>=3monthvalidity,arrivalcardandentryauthorityassessment. SeparatePNRnotexplicitlyaddressed; noautomaticadmissionguarantee."
+              },
+              {
+                "source": "https://stig.osloskolen.no/kalender/",
+                "finding": "22–30Mar2027Easterholiday.21Marout/6Apreveningreturnloses31Mar,1Apr,2Apr,5Apr,6Apr=5days;20Marout/6Aprmorning4–5days;7Aprmorning5–6days."
+              }
+            ],
+            "recheckRequired": "Beforebookingandbeforedeparture; obtainvisaif concreteitinerarydoesnotmeetapplicabletransitconditionsand30daywaivernotextended."
+          },
+          {
+            "id": "sha-20261011-044",
+            "checkedAt": "2026-10-11T15:56:52.945Z",
+            "service": "Trip.com same-day onward and one return-night",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-22"
+              },
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?multdcity0=sha&multacity0=osa&dairport0=pvg&aairport0=kix&multddate0=2027-03-22&multdcity1=tyo&multacity1=sha&aairport1=pvg&multddate1=2027-04-05&triptype=mt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "outbound": {
+                  "flight": "NH976",
+                  "from": "PVG T2",
+                  "to": "KIX T1",
+                  "departure": "2027-03-22T19:05:00+08:00",
+                  "arrival": "2027-03-22T22:00:00+09:00",
+                  "durationMinutes": 115
+                },
+                "inbound": {
+                  "flight": "NH919",
+                  "from": "NRT T1",
+                  "to": "PVG T2",
+                  "departure": "2027-04-05T09:20:00+09:00",
+                  "arrival": "2027-04-05T11:40:00+08:00",
+                  "durationMinutes": 200
+                },
+                "price": {
+                  "amount": 2407,
+                  "currency": "USD",
+                  "basis": "Bothlegsselectedtotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2×23kg"
+                },
+                "terms": {
+                  "fare": "EconomyLight",
+                  "refund": "nonrefpartialtax",
+                  "change": "notpermitted"
+                },
+                "outwardBufferJuneyaoMinutes": 675,
+                "returnBufferJuneyaoMinutes": 1305,
+                "japanNights": 14,
+                "japanFullDays": 13,
+                "shanghaiHotelNights": 1,
+                "assessment": "Strong mostJapan option; nooutwardhotelbut11h15gap,1nightShanghai5Aprreturn21h45buffer. OutwardChinaentry/daytripoptional. KIXlatearrivalneedsairporthotel/latecheckinplan. Regionalprice913USDabove23Mar4Aprcheapbut saves2Shanghaihotelnights and gains2wholeJapan days."
+              },
+              {
+                "price": {
+                  "amount": 2531,
+                  "currency": "USD",
+                  "basis": "sameflightsEconomyValue total4"
+                },
+                "terms": {
+                  "change": "fromUSD45"
+                },
+                "baggage": "2×23kg"
+              },
+              {
+                "price": {
+                  "amount": 2399,
+                  "currency": "USD",
+                  "basis": "initialeveningreturn5AprHND22:30→6Apr00:45"
+                },
+                "returnBufferJuneyaoMinutes": 520,
+                "qualification": "only8h40returngap,notchosen"
+              }
+            ]
+          },
+          {
+            "id": "sha-20261011-045",
+            "checkedAt": "2026-10-11T16:05:12.456Z",
+            "service": "Google Flights slow Finnair fare validation",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights+from+OSL+to+PVG+on+2027-03-21+returning+2027-04-06+for+3+adults+and+1+child+economy&curr=NOK",
+            "results": [
+              {
+                "carrier": "Finnair",
+                "initialPrice": {
+                  "amount": 25190,
+                  "currency": "NOK",
+                  "basis": "round-trip 4 passengers initial result and return selection"
+                },
+                "price": {
+                  "amount": 32437,
+                  "currency": "NOK",
+                  "basis": "all 4 selected flights provider summary",
+                  "stage": "metasearch-provider-offer"
+                },
+                "outbound": {
+                  "departure": "2027-03-21T08:40:00+01:00",
+                  "arrival": "2027-03-22T18:55:00+08:00",
+                  "durationMinutes": 1635,
+                  "stops": [
+                    {
+                      "airport": "HEL",
+                      "durationMinutes": 815
+                    }
+                  ]
+                },
+                "inbound": {
+                  "departure": "2027-04-06T20:50:00+08:00",
+                  "arrival": "2027-04-07T19:45:00+02:00",
+                  "durationMinutes": 1735,
+                  "stops": [
+                    {
+                      "airport": "HEL",
+                      "durationMinutes": 805
+                    }
+                  ]
+                },
+                "baggage": {
+                  "carryOn": "1 free per passenger",
+                  "checked": "First checked bag NOK1930 per passenger for entire trip; 2 passengers would cost NOK3860, provider not checked"
+                },
+                "qualification": "Price changed visibly from25190 to32437. Do not use25190 as available fare. Slow itinerary dominated by rapid Finnair006 at same32437 price; no additional carrier request needed."
+              }
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "id": "sha-longhaul-finnair-21mar-06apr",
+            "checkedAt": "2026-10-11T14:57:09.463Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": {
+              "amount": 32437,
+              "currency": "NOK",
+              "basis": "all-four-roundtrip",
+              "stage": "both-flights-selected"
+            },
+            "airlines": [
+              "Finnair"
+            ],
+            "outbound": {
+              "departureLocal": "2027-03-21T20:50:00+01:00",
+              "arrivalLocal": "2027-03-22T18:55:00+08:00",
+              "durationMin": 905,
+              "transferAirport": "HEL",
+              "transferMin": 85,
+              "flightNumbers": [
+                "AY918",
+                "AY87"
+              ]
+            },
+            "inbound": {
+              "departureLocal": "2027-04-06T20:50:00+08:00",
+              "arrivalLocal": "2027-04-07T07:50:00+02:00",
+              "durationMin": 1020,
+              "transferAirport": "HEL",
+              "transferMin": 90
+            },
+            "baggage": {
+              "cabinPiecesPerPassenger": 1,
+              "checkedBagCostPerPassengerWholeTripRangeNok": [
+                0,
+                1930
+              ],
+              "specificCheckedAllowance": null
+            },
+            "providerOffers": [
+              {
+                "provider": "Finnair",
+                "amountNok": 32437
+              },
+              {
+                "provider": "lastminute.com",
+                "amountNok": 35756
+              }
+            ],
+            "verification": "Google itinerary summary explicitly total for 4; selected outbound/return; concrete carrier tariff not yet verified. Price changed from 32449 to 32437 during selection.",
+            "connection": {
+              "status": "carrier-connection-not-contractually-confirmed",
+              "separateRegionalTicketsRequired": true
+            },
+            "error": null,
+            "qualificationStatus": "provisional",
+            "priceCompleteness": "checked-baggage-unverified"
+          }
+        ],
+        "directChecks": [
+          {
+            "id": "sha-20261011-007",
+            "checkedAt": "2026-10-11T14:57:46.343Z",
+            "service": "Finnair",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-06",
+            "status": "failed",
+            "publicUrl": "https://www.finnair.com/no-en",
+            "price": null,
+            "error": "carrier-flight-details-fetch-error",
+            "finding": "Google Continue reached Finnair flight selection with correct 3 adults / 1 child and 21 March–6 April. Site said couldn't fetch flight details due to issue on our end; one Reload this page did not resolve. No direct fare or checked-bag price verified.",
+            "candidateId": "sha-longhaul-finnair-21mar-06apr"
+          }
+        ],
+        "completeOptions": [
+          {
+            "id": "shanghai-hainan",
+            "hub": "shanghai",
+            "tag": "Lavest flypris",
+            "name": "Shanghai via Beijing · Hainan og ANA",
+            "checked": "2026-10-11",
+            "flightTotalNok": 47055,
+            "longhaul": {
+              "nok": 32845,
+              "id": "sha-20261011-030"
+            },
+            "regional": {
+              "usd": 1486,
+              "id": "sha-20261011-033"
+            },
+            "extraNightsShanghai": 3,
+            "japanNights": 12,
+            "flightDates": [
+              "2027-03-20",
+              "2027-03-23",
+              "2027-04-04",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–PEK–PVG",
+              "PVG–KIX",
+              "NRT–PVG",
+              "PVG–PEK–OSL"
+            ],
+            "summary": "To netter i Shanghai på vei ut og én på vei hjem. Billigst i de utvalgte kombinasjonene.",
+            "risk": "Separate billetter. 23 t 25 min returmargin; lang returreise med 13 t 35 min venting i Beijing.",
+            "hotelTransportEstimateNok": [
+              3100,
+              5800
+            ],
+            "extraHotelJapan": null,
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          },
+          {
+            "id": "shanghai-helsinki",
+            "hub": "shanghai",
+            "tag": "God pris og reisetid",
+            "name": "Shanghai via Helsinki · Finnair/Juneyao og ANA",
+            "checked": "2026-10-11",
+            "flightTotalNok": 47706,
+            "longhaul": {
+              "usd": 3503,
+              "id": "sha-20261011-019"
+            },
+            "regional": {
+              "usd": 1486,
+              "id": "sha-20261011-033"
+            },
+            "extraNightsShanghai": 3,
+            "japanNights": 12,
+            "flightDates": [
+              "2027-03-21",
+              "2027-03-23",
+              "2027-04-04",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–HEL–PVG",
+              "PVG–KIX",
+              "NRT–PVG",
+              "PVG–HEL–OSL"
+            ],
+            "summary": "Raskere og mer komfortabel langdistanse enn Hainan-alternativet, uten stor prisforskjell.",
+            "risk": "Separate billetter. God returmargin på 45 t 45 min i Shanghai, men ikke juridisk beskyttet.",
+            "hotelTransportEstimateNok": [
+              3100,
+              5800
+            ],
+            "extraHotelJapan": null,
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          },
+          {
+            "id": "shanghai-japan-time",
+            "hub": "shanghai",
+            "tag": "Mest tid i Japan via Shanghai",
+            "name": "Shanghai med 14 Japan-netter",
+            "checked": "2026-10-11",
+            "flightTotalNok": 56513,
+            "longhaul": {
+              "usd": 3503,
+              "id": "sha-20261011-019"
+            },
+            "regional": {
+              "usd": 2407,
+              "id": "sha-20261011-044"
+            },
+            "extraNightsShanghai": 1,
+            "japanNights": 14,
+            "flightDates": [
+              "2027-03-21",
+              "2027-03-22",
+              "2027-04-05",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–HEL–PVG",
+              "PVG–KIX",
+              "NRT–PVG",
+              "PVG–HEL–OSL"
+            ],
+            "summary": "To netter mer i Japan enn de billigste Shanghai-alternativene, og bare én hotellnatt i Shanghai.",
+            "risk": "Separate billetter, 11 t 15 min på utreisen og 21 t 45 min returmargin. Sen ankomst Osaka kl. 22 kan kreve flyplasshotell.",
+            "hotelTransportEstimateNok": [
+              1300,
+              2600
+            ],
+            "extraHotelJapan": "Mulig ekstrautgift ved sen KIX-ankomst er ikke priset",
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          },
+          {
+            "id": "japan-thai",
+            "hub": "japan",
+            "tag": "Sammenligningsgrunnlag",
+            "name": "Japan direkte som reisemål · Thai Airways",
+            "checked": "2026-10-11",
+            "flightTotalNok": 64469,
+            "longhaul": {
+              "usd": 6742,
+              "id": "sha-20261011-039"
+            },
+            "regional": null,
+            "extraNightsShanghai": 0,
+            "japanNights": 14,
+            "flightDates": [
+              "2027-03-21",
+              "2027-03-22",
+              "2027-04-05",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–BKK–KIX",
+              "NRT–BKK–OSL"
+            ],
+            "summary": "Ingen ekstra Shanghai-billetter eller Shanghai-hotell, 14 netter i Japan.",
+            "risk": "Reisen ble solgt som multi-city hos selger; gjennomgående billett og kontraktsmessig beskyttelse er ikke uavhengig verifisert.",
+            "hotelTransportEstimateNok": [
+              0,
+              0
+            ],
+            "extraHotelJapan": null,
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          }
+        ],
+        "baselineReferences": [
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-21mar-05apr",
+            "price": {
+              "amount": 64408,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "selectedCarrierPrice": {
+              "amount": 65768,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "carrier-selected-total"
+            },
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-05",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-22mar-02apr",
+            "price": {
+              "amount": 65573,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-22",
+            "returnDate": "2027-04-02",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-18mar-05apr",
+            "price": {
+              "amount": 65498,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-05",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-jal-iberia-17mar-06apr",
+            "price": {
+              "amount": 57486,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-17",
+            "returnDate": "2027-04-06",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-a-klm-18mar-03apr",
+            "price": {
+              "amount": 69824,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-03",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 0,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": false,
+              "additionalCheckedBagCostNok": null,
+              "alternativeObservedFareWithCheckedBaggageNok": 75752
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-a-klm-21mar-03apr",
+            "price": {
+              "amount": 74722,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-03",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 0,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": false,
+              "additionalCheckedBagCostNok": null,
+              "alternativeObservedFareWithCheckedBaggageNok": 80710
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-c-ana-18mar-05apr",
+            "price": {
+              "amount": 56752,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-05",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          }
+        ],
+        "progress": {
+          "completedSearchIds": [
+            "sha-20261011-002",
+            "sha-20261011-004",
+            "sha-20261011-005",
+            "sha-20261011-006",
+            "sha-20261011-008",
+            "sha-20261011-009",
+            "sha-20261011-010",
+            "sha-20261011-012",
+            "sha-20261011-013",
+            "sha-20261011-016",
+            "sha-20261011-017",
+            "sha-20261011-018",
+            "sha-20261011-019",
+            "sha-20261011-020",
+            "sha-20261011-021",
+            "sha-20261011-022",
+            "sha-20261011-023",
+            "sha-20261011-024",
+            "sha-20261011-026",
+            "sha-20261011-027",
+            "sha-20261011-028",
+            "sha-20261011-029",
+            "sha-20261011-030",
+            "sha-20261011-031",
+            "sha-20261011-032",
+            "sha-20261011-033",
+            "sha-20261011-035",
+            "sha-20261011-036",
+            "sha-20261011-037",
+            "sha-20261011-038",
+            "sha-20261011-039",
+            "sha-20261011-040",
+            "sha-20261011-041",
+            "sha-20261011-042",
+            "sha-20261011-043",
+            "sha-20261011-044",
+            "sha-20261011-045"
+          ],
+          "failedSearchIds": [
+            "sha-20261011-003",
+            "sha-20261011-007",
+            "sha-20261011-011",
+            "sha-20261011-014",
+            "sha-20261011-015",
+            "sha-20261011-025",
+            "sha-20261011-034"
+          ],
+          "remaining": [
+            "Få sluttpriser/kapasitet hos flyselskap eller selger på anbefalte billettkombinasjoner",
+            "Pris og reserver passende Shanghai-hotell og flyplasstransport",
+            "Beijing-direkte OSL–PEK og regionale Japan-billetter på flere datopar",
+            "Kontroller kinesiske innreisevilkår for 2027 før bestilling"
+          ]
+        },
+        "schoolCalendar": {
+          "holidayFrom": "2027-03-22",
+          "holidayThrough": "2027-03-30",
+          "resumes": "2027-03-31",
+          "checked": "2026-10-11",
+          "source": "https://stig.osloskolen.no/kalender/",
+          "note": "Official Oslo school calendar confirms shared municipal Easter dates; no private school identity recorded."
+        },
+        "entryRules": {
+          "checked": "2026-10-11",
+          "ordinaryNorwegianPassport": true,
+          "unilateral30DayWaiver": {
+            "validThrough": "2026-12-31",
+            "coversSpring2027Confirmed": false,
+            "source": "https://no.china-embassy.gov.cn/eng/lsfw_0/zytz_133966/202511/t20251105_11747172.htm"
+          },
+          "transit240Hours": {
+            "norwayEligible": true,
+            "required": "Confirmed onward ticket/date/seat to third country or region, permitted entry port and area; ordinary passport",
+            "source": "https://en.nia.gov.cn/n147418/n147463/c183412/content.html",
+            "itineraryAssessment": "HEL–PVG–Japan outward and Japan–PVG–HEL homeward appear to satisfy third-country routing. This is inference; each entry assessed separately. Port eligibility, passport validity and acceptance of separately purchased onward evidence must be checked before booking; no automatic approval.",
+            "recheck": "Before booking and before departure"
+          }
+        },
+        "consolidatedAt": "2026-10-11",
+        "fxReference": {
+          "nokPerUsd": 9.5623,
+          "date": "2026-10-09",
+          "source": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/"
+        },
+        "comparisonAssumptions": {
+          "hotelPerShanghaiNightNok": [
+            900,
+            1600
+          ],
+          "groundTotalNok": [
+            400,
+            1000
+          ],
+          "sourceType": "illustrative-allowances-not-offers",
+          "note": "Uverifiserte plananslag for familieovernatting og flyplasstransport. Må erstattes med faktiske priser før bestilling. Mat og aktiviteter er ikke med."
+        },
+        "directRouteCheck": {
+          "checked": "2026-10-11",
+          "finding": "Hainan flyr Oslo–Beijing (PEK) direkte, ikke Oslo–Shanghai (PVG). Oslo–Shanghai har ikke direkte passasjerfly; OSL–PEK–PVG innebærer ett stopp.",
+          "sources": [
+            "https://kommunikasjon.ntb.no/pressemelding/18592252/utvider-beijing-tilbudet-blir-helarsrute?lang=no&publisherId=17421123",
+            "https://www.flightconnections.com/flights-from-osl-to-pvg"
+          ]
+        },
+        "hypotheses": [
+          {
+            "id": "shanghai",
+            "name": "Shanghai",
+            "status": "Best dokumentert",
+            "summary": "Billigste komplette flykombinasjoner observert; via Helsinki eller Beijing, med separate billetter til Japan.",
+            "sourceIds": [
+              "sha-20261011-019",
+              "sha-20261011-030",
+              "sha-20261011-033",
+              "sha-20261011-044"
+            ]
+          },
+          {
+            "id": "beijing",
+            "name": "Beijing direkte",
+            "status": "Ikke ferdig priset",
+            "summary": "Direkte Oslo–Beijing med Hainan, men bare ett 2027-datopar undersøkt. Foreløpig tur/retur 53 160 kr kun for langdistansen, uten valg av retur og bagasjekontroll. Japan-etapper ikke priset.",
+            "sourceIds": [
+              "sha-20261011-031"
+            ]
+          },
+          {
+            "id": "bangkok",
+            "name": "Bangkok",
+            "status": "Svakere i kontrollsøket",
+            "summary": "Langdistanse ca. 33 850 kr, men de undersøkte Japan-etappene var dyrere og lengre. Ingen komplett og validert totalpris.",
+            "sourceIds": [
+              "sha-20261011-035",
+              "sha-20261011-037"
+            ]
+          },
+          {
+            "id": "japan",
+            "name": "Vanlig Japan-billett",
+            "status": "Referanse",
+            "summary": "Multi-city Oslo–Osaka / Tokyo–Oslo via Bangkok rundt 64 500 kr med bagasje, uten uavhengige billettkjøp i Shanghai.",
+            "sourceIds": [
+              "sha-20261011-039"
+            ]
+          }
+        ]
       }
     ],
     "recovery": {
