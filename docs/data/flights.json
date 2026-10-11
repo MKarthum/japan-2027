@@ -6503,6 +6503,281 @@
           "mergedToMain": false,
           "bookingMade": false
         }
+      },
+      {
+        "id": "japan-shanghai-flight-options-2026-10-11",
+        "asOf": "2026-10-11T14:53:04.244Z",
+        "status": "in-progress",
+        "sourceBranch": "research/japan-shanghai-flight-options-20261011",
+        "authoritativeBaseline": "main v0.26.0; trip.window 20. mars–3. april 2027",
+        "searchCriteria": {
+          "party": {
+            "adults": 3,
+            "children": 1,
+            "adultCategory": "12+",
+            "childCategory": "2–11",
+            "total": 4
+          },
+          "cabin": "economy",
+          "requestedCheckedPiecesTotal": 2,
+          "departureDates": [
+            "2027-03-18",
+            "2027-03-19",
+            "2027-03-20",
+            "2027-03-21"
+          ],
+          "returnDates": [
+            "2027-04-03",
+            "2027-04-04",
+            "2027-04-05",
+            "2027-04-06"
+          ],
+          "datesIndependent": true,
+          "primaryHub": "PVG",
+          "noSiteChanges": true
+        },
+        "counts": {
+          "completed": 0,
+          "failed": 0,
+          "restricted": 1
+        },
+        "searchRuns": [
+          {
+            "id": "sha-20261011-001",
+            "checkedAt": "2026-10-11T14:53:04.245Z",
+            "service": "FINN Reise",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-20",
+            "returnDate": "2027-04-04",
+            "publicUrl": "https://www.finn.no/reise/flybilletter/",
+            "status": "restricted-source-not-retained",
+            "price": null,
+            "finding": "Søkeskjema lastet og viste riktig 3 voksne, 1 barn og datoer. FINNs synlige footer begrenser regelmessig/systematisk innhenting, lagring og sammenstilling uten skriftlig tillatelse. Ingen tilbud lagret; systematisk research flyttes til andre kilder.",
+            "error": null
+          }
+        ],
+        "candidates": [],
+        "directChecks": [],
+        "completeOptions": [],
+        "baselineReferences": [
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-21mar-05apr",
+            "price": {
+              "amount": 64408,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "selectedCarrierPrice": {
+              "amount": 65768,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "carrier-selected-total"
+            },
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-05",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-22mar-02apr",
+            "price": {
+              "amount": 65573,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-22",
+            "returnDate": "2027-04-02",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-18mar-05apr",
+            "price": {
+              "amount": 65498,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-05",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-b-jal-iberia-17mar-06apr",
+            "price": {
+              "amount": 57486,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-17",
+            "returnDate": "2027-04-06",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-a-klm-18mar-03apr",
+            "price": {
+              "amount": 69824,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-03",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 0,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": false,
+              "additionalCheckedBagCostNok": null,
+              "alternativeObservedFareWithCheckedBaggageNok": 75752
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-a-klm-21mar-03apr",
+            "price": {
+              "amount": 74722,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-21",
+            "returnDate": "2027-04-03",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 0,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": false,
+              "additionalCheckedBagCostNok": null,
+              "alternativeObservedFareWithCheckedBaggageNok": 80710
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          },
+          {
+            "candidateId": "japan-easter-independent-dates-2026-10-10-c-ana-18mar-05apr",
+            "price": {
+              "amount": 56752,
+              "currency": "NOK",
+              "basis": "family-total",
+              "stage": "search-offer"
+            },
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-05",
+            "baggage": {
+              "cabinPiecesPerPerson": 1,
+              "checkedPiecesPerPerson": 1,
+              "evidence": "FINN prisrad; vekter og billettregler ikke kontrollert hos selger for denne observasjonen",
+              "requestedCheckedPiecesTotal": 2,
+              "requestedCabinBaggage": true,
+              "meetsRequestedAllowanceAtObservedStage": true,
+              "additionalCheckedBagCostNok": 0
+            },
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "childCategory": "2–11 år",
+              "adultCategory": "voksen / 12+",
+              "total": 4
+            }
+          }
+        ],
+        "progress": {
+          "completedSearchIds": [],
+          "failedSearchIds": [],
+          "remaining": [
+            "Shanghai long-haul discovery",
+            "Regional A/B pricing",
+            "Regional return/multi-city pricing",
+            "Carrier validation",
+            "China entry and school calendar checks",
+            "Selective other hubs",
+            "Total-cost and risk comparison"
+          ]
+        }
       }
     ],
     "recovery": {
