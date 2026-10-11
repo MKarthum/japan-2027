@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 14,
+          "completed": 15,
           "failed": 5,
           "restricted": 1
         },
@@ -7575,6 +7575,29 @@
               }
             ],
             "finding": "Policy supplements saved, no generic route fare used. Current USD→NOK conversion remains unverified."
+          },
+          {
+            "id": "sha-20261011-021",
+            "checkedAt": "2026-10-11T15:15:56.873Z",
+            "service": "Norges Bank / ECB currency reference",
+            "status": "completed",
+            "requestedLegs": [],
+            "party": null,
+            "cabin": null,
+            "publicUrl": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/",
+            "price": null,
+            "findings": {
+              "asOf": "2026-10-09",
+              "nokPerUsd": 9.5623,
+              "nokPerEur": 10.7155,
+              "source": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/",
+              "dataSource": "https://data.norges-bank.no/api/data/EXR/B.USD%2BEUR%2BGBP%2BDKK%2BSEK.NOK.SP?endPeriod=2026-10-11&format=sdmx-json&locale=no&startPeriod=2026-09-27",
+              "basis": "Norges Bank ECB concertation reference observation9 index9; USD series0:1:0:0, EUR0:3:0:0. Conversion is estimate, not sellerNOKcharge. CardFX fees unpriced."
+            },
+            "errors": [
+              "ECB XML unsupported by web parser",
+              "Norges Bank CSV unsupported; JSON succeeded"
+            ]
           }
         ],
         "candidates": [
@@ -7891,7 +7914,8 @@
             "sha-20261011-017",
             "sha-20261011-018",
             "sha-20261011-019",
-            "sha-20261011-020"
+            "sha-20261011-020",
+            "sha-20261011-021"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
