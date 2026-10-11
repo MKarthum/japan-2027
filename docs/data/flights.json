@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 32,
+          "completed": 33,
           "failed": 7,
           "restricted": 1
         },
@@ -8808,6 +8808,68 @@
               }
             ],
             "finding": "Actualnextdaybagincluded4passengerproxy1101USD≈10528NOK. This isOctober2026market, NOTguarantee/same-dayMarch2027emergencyquote. Lostregionalfareplusnewticket/hotel/lostdaypossible; noassumedprobabilityorautomaticriskpenalty."
+          },
+          {
+            "id": "sha-20261011-041",
+            "checkedAt": "2026-10-11T15:52:29.544Z",
+            "service": "Trip.com next-day longhaul replacement proxy",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2026-10-12"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osl&ddate=2026-10-12&dairport=pvg&aairport=osl&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carriers": [
+                  "Juneyao",
+                  "Finnair"
+                ],
+                "flights": [
+                  "HO1607",
+                  "AY917"
+                ],
+                "departure": "2026-10-12T09:05:00+08:00",
+                "arrival": "2026-10-12T19:45:00+02:00",
+                "durationMinutes": 1000,
+                "transfer": "HEL",
+                "transferMinutes": 320,
+                "price": {
+                  "amount": 2120,
+                  "currency": "USD",
+                  "basis": "selectednextdayfaretotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "baggage": {
+                  "carryOn": "1×5kg",
+                  "checked": "1×23kg"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "nochangefees,faredifferenceunspecified"
+                },
+                "ticketing": "Within2hoursafterpayment"
+              },
+              {
+                "carrier": "Thai",
+                "price": {
+                  "amount": 2105,
+                  "currency": "USD",
+                  "basis": "initialtotal4bagnotexpanded"
+                },
+                "departure": "12Oct17:25PVG→13Oct07:25OSLviaBKK195min"
+              }
+            ],
+            "finding": "Actualnext-daylonghaul4-passengerbagincludedproxy2120USD≈20272NOK. Largerexposurethanregional10528NOK, but notassumeautomaticlossentireoriginalRTprice. Aprilavailability maybemuchworse/better; rebooking/no-showterms/airlineassistance affectactualcost. No probabilisticriskpremiumadded."
           }
         ],
         "candidates": [
@@ -9142,7 +9204,8 @@
             "sha-20261011-037",
             "sha-20261011-038",
             "sha-20261011-039",
-            "sha-20261011-040"
+            "sha-20261011-040",
+            "sha-20261011-041"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
