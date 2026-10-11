@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 18,
+          "completed": 19,
           "failed": 6,
           "restricted": 1
         },
@@ -7805,6 +7805,72 @@
             },
             "error": "fare-selection-not-responsive",
             "finding": "Directsearchreturnedcorrectdate/partyandflight. Clicking USD825twice(aftercookieAgree) didnotopenfare/returnselection; Loadingnowremained. One reload producedRuntime.evaluate timeout. No actualfour-person directtotal or directbaggagevalidated. Trip.com3503USD remains independent seller observation."
+          },
+          {
+            "id": "sha-20261011-026",
+            "checkedAt": "2026-10-11T15:24:40.375Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "TYO",
+                "to": "PVG",
+                "date": "2027-04-05"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=tyo&acity=sha&ddate=2027-04-05&aairport=pvg&dcityid=228&acityid=2&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "Jetstar Japan",
+                "flight": "GK035",
+                "from": "NRT T3",
+                "to": "PVG T2",
+                "departure": "2027-04-05T22:25:00+09:00",
+                "arrival": "2027-04-06T00:50:00+08:00",
+                "durationMinutes": 205,
+                "stops": 0,
+                "price": {
+                  "amount": 1137,
+                  "currency": "USD",
+                  "basis": "selected20kgfare total4",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "20kg"
+                },
+                "terms": {
+                  "refund": "Non-refundable",
+                  "change": "fromUSD58"
+                },
+                "bufferMinutesJuneyao": 515,
+                "bufferMinutesFinnair": 1200,
+                "risk": "8h35 before Juneyao6Apr09:25; dayboundary is not fullnightguarantee, highlonghaulexposure ifmajorovernightdelay. Use4Aprreturn forlowerexposure. Finnair20h margin permitspart6Aprcityday but arrivesOslo7Apr."
+              },
+              {
+                "carrier": "Juneyao",
+                "from": "NRT T2",
+                "to": "PVG T2",
+                "departure": "2027-04-05T13:20:00+09:00",
+                "arrival": "2027-04-05T15:25:00+08:00",
+                "durationMinutes": 185,
+                "price": {
+                  "amount": 1857,
+                  "currency": "USD",
+                  "basis": "resultslist total4"
+                },
+                "baggage": "includedindicators notexpanded",
+                "bufferMinutesJuneyao": 1080
+              }
+            ],
+            "finding": "Oneadditional Japan day almostsameJetstarprice, but8h35 overnightbeforecostlylonghaul materiallylessbuffer than32h35from4AprJetstar. 5AprdaytimeJuneyao gives18hr andonehotel night, fare notfullyexpanded."
           }
         ],
         "candidates": [
@@ -8125,7 +8191,8 @@
             "sha-20261011-021",
             "sha-20261011-022",
             "sha-20261011-023",
-            "sha-20261011-024"
+            "sha-20261011-024",
+            "sha-20261011-026"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
