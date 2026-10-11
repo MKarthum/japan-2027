@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 34,
+          "completed": 35,
           "failed": 7,
           "restricted": 1
         },
@@ -8919,6 +8919,39 @@
                 "detail": "EnglishlanguageclickInternalError; usedofficialThai-languagepagewithEnglishtimetablelabels instead. Old2019PDFnotused."
               }
             ]
+          },
+          {
+            "id": "sha-20261011-043",
+            "checkedAt": "2026-10-11T15:54:30.435Z",
+            "service": "Official China entry and school calendar recheck",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [],
+            "status": "completed",
+            "scope": "Rules andcalendarfor retainedproposeditineraries",
+            "results": [
+              {
+                "source": "https://no.china-embassy.gov.cn/eng/lsfw_0/zytz_133966/202511/t20251105_11747172.htm",
+                "finding": "Norwayordinarypassport30daywaiverdocumentedonlythrough31Dec2026. Do notassumevalidspring2027."
+              },
+              {
+                "source": "https://en.nia.gov.cn/n147418/n147463/c183412/content.html",
+                "finding": "NIA20Aug2026Norwayeligible240hthird-countrytransit, confirmedonwardticketseat/date,designatedportsareas. Eachentryseparate."
+              },
+              {
+                "source": "https://english.shanghai.gov.cn/en-240-hourtransfer-stayinShanghai/20240104/05e535a37f4c41db802e842247425848.html",
+                "finding": "Shanghai12May2026passport>=3monthvalidity,arrivalcardandentryauthorityassessment. SeparatePNRnotexplicitlyaddressed; noautomaticadmissionguarantee."
+              },
+              {
+                "source": "https://stig.osloskolen.no/kalender/",
+                "finding": "22–30Mar2027Easterholiday.21Marout/6Apreveningreturnloses31Mar,1Apr,2Apr,5Apr,6Apr=5days;20Marout/6Aprmorning4–5days;7Aprmorning5–6days."
+              }
+            ],
+            "recheckRequired": "Beforebookingandbeforedeparture; obtainvisaif concreteitinerarydoesnotmeetapplicabletransitconditionsand30daywaivernotextended."
           }
         ],
         "candidates": [
@@ -9255,7 +9288,8 @@
             "sha-20261011-039",
             "sha-20261011-040",
             "sha-20261011-041",
-            "sha-20261011-042"
+            "sha-20261011-042",
+            "sha-20261011-043"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
