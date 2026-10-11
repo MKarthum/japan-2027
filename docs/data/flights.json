@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-10",
+  "asOf": "2026-10-11",
   "status": "research-active",
   "planningWindow": {
     "flexDays": 3,
@@ -2122,7 +2122,7 @@
   ],
   "research": {
     "title": "Flyalternativer for påsken 2027",
-    "summary": "35 rute- og datokombinasjoner er undersøkt med 3 voksne og 1 barn. To Thai-alternativer har separat prisobservasjon hos flyselskapet med bagasje inkludert; øvrige priser er søkeresultater. Alle forbindelsesbeskyttelser må kontrolleres før kjøp.",
+    "summary": "Research 11. oktober: 45 operasjoner og prioriterte komplette flykombinasjoner via Shanghai. Pris- og risikoanalyse er foreløpig; se datert observasjon per søk.",
     "partyNote": "Flypriser gjelder 3 voksne og 1 barn i flyselskapenes billettkategorier. Familiens øvrige planleggingsvisninger bruker 2 voksne + 2 barn. Prisene er for fire personer og skal ikke skaleres automatisk.",
     "matrixTitle": "Uavhengige datoer og fire rutetyper · 35 observerte søk",
     "matrixNote": "Hvert resultat er en datert prisobservasjon for akkurat den ruten og datoene. Trykk på lenken for å gjenta søket; pris, flytid og bagasje kan ha endret seg.",
@@ -2138,7 +2138,7 @@
       }
     ],
     "lengthNote": "For Osaka inn / Tokyo hjem 22. mars var én dag kortere eller lengre dyrere i FINNs brede søk enn 5. april-returen. For Tokyo tur/retur ga én dag lengre en Iberia-pris på 49 510 kr med bagasje, men 19 t 35 / 23 t 10 og en ekstra dag i Japan. Hotell og dagskostnad må legges til. For Tokyo inn / Osaka hjem 18. mars ga kortere/lengre reise ingen bedre rimelig forbindelse enn KLM på 14 dager; Best-treffene hadde selv-transfer og lengre reisetid. Osaka tur/retur 21. mars ble billigere med én ekstra dag i de brede søkene, men Best tok over ett døgn hver vei.",
-    "currentRoundRef": "japan-easter-independent-dates-2026-10-10",
+    "currentRoundRef": "japan-shanghai-flight-options-2026-10-11",
     "searchRounds": [
       {
         "id": "japan-easter-2027-2026-10-10",
@@ -6507,7 +6507,7 @@
       {
         "id": "japan-shanghai-flight-options-2026-10-11",
         "asOf": "2026-10-11T14:53:04.244Z",
-        "status": "in-progress",
+        "status": "consolidated-provisional",
         "sourceBranch": "research/japan-shanghai-flight-options-20261011",
         "authoritativeBaseline": "main v0.26.0; trip.window 20. mars–3. april 2027",
         "searchCriteria": {
@@ -9209,7 +9209,179 @@
             "candidateId": "sha-longhaul-finnair-21mar-06apr"
           }
         ],
-        "completeOptions": [],
+        "completeOptions": [
+          {
+            "id": "shanghai-hainan",
+            "hub": "shanghai",
+            "tag": "Lavest flypris",
+            "name": "Shanghai via Beijing · Hainan og ANA",
+            "checked": "2026-10-11",
+            "flightTotalNok": 47055,
+            "longhaul": {
+              "nok": 32845,
+              "id": "sha-20261011-030"
+            },
+            "regional": {
+              "usd": 1486,
+              "id": "sha-20261011-033"
+            },
+            "extraNightsShanghai": 3,
+            "japanNights": 12,
+            "flightDates": [
+              "2027-03-20",
+              "2027-03-23",
+              "2027-04-04",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–PEK–PVG",
+              "PVG–KIX",
+              "NRT–PVG",
+              "PVG–PEK–OSL"
+            ],
+            "summary": "To netter i Shanghai på vei ut og én på vei hjem. Billigst i de utvalgte kombinasjonene.",
+            "risk": "Separate billetter. 23 t 25 min returmargin; lang returreise med 13 t 35 min venting i Beijing.",
+            "hotelTransportEstimateNok": [
+              3100,
+              5800
+            ],
+            "extraHotelJapan": null,
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          },
+          {
+            "id": "shanghai-helsinki",
+            "hub": "shanghai",
+            "tag": "God pris og reisetid",
+            "name": "Shanghai via Helsinki · Finnair/Juneyao og ANA",
+            "checked": "2026-10-11",
+            "flightTotalNok": 47706,
+            "longhaul": {
+              "usd": 3503,
+              "id": "sha-20261011-019"
+            },
+            "regional": {
+              "usd": 1486,
+              "id": "sha-20261011-033"
+            },
+            "extraNightsShanghai": 3,
+            "japanNights": 12,
+            "flightDates": [
+              "2027-03-21",
+              "2027-03-23",
+              "2027-04-04",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–HEL–PVG",
+              "PVG–KIX",
+              "NRT–PVG",
+              "PVG–HEL–OSL"
+            ],
+            "summary": "Raskere og mer komfortabel langdistanse enn Hainan-alternativet, uten stor prisforskjell.",
+            "risk": "Separate billetter. God returmargin på 45 t 45 min i Shanghai, men ikke juridisk beskyttet.",
+            "hotelTransportEstimateNok": [
+              3100,
+              5800
+            ],
+            "extraHotelJapan": null,
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          },
+          {
+            "id": "shanghai-japan-time",
+            "hub": "shanghai",
+            "tag": "Mest tid i Japan via Shanghai",
+            "name": "Shanghai med 14 Japan-netter",
+            "checked": "2026-10-11",
+            "flightTotalNok": 56513,
+            "longhaul": {
+              "usd": 3503,
+              "id": "sha-20261011-019"
+            },
+            "regional": {
+              "usd": 2407,
+              "id": "sha-20261011-044"
+            },
+            "extraNightsShanghai": 1,
+            "japanNights": 14,
+            "flightDates": [
+              "2027-03-21",
+              "2027-03-22",
+              "2027-04-05",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–HEL–PVG",
+              "PVG–KIX",
+              "NRT–PVG",
+              "PVG–HEL–OSL"
+            ],
+            "summary": "To netter mer i Japan enn de billigste Shanghai-alternativene, og bare én hotellnatt i Shanghai.",
+            "risk": "Separate billetter, 11 t 15 min på utreisen og 21 t 45 min returmargin. Sen ankomst Osaka kl. 22 kan kreve flyplasshotell.",
+            "hotelTransportEstimateNok": [
+              1300,
+              2600
+            ],
+            "extraHotelJapan": "Mulig ekstrautgift ved sen KIX-ankomst er ikke priset",
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          },
+          {
+            "id": "japan-thai",
+            "hub": "japan",
+            "tag": "Sammenligningsgrunnlag",
+            "name": "Japan direkte som reisemål · Thai Airways",
+            "checked": "2026-10-11",
+            "flightTotalNok": 64469,
+            "longhaul": {
+              "usd": 6742,
+              "id": "sha-20261011-039"
+            },
+            "regional": null,
+            "extraNightsShanghai": 0,
+            "japanNights": 14,
+            "flightDates": [
+              "2027-03-21",
+              "2027-03-22",
+              "2027-04-05",
+              "2027-04-06"
+            ],
+            "legs": [
+              "OSL–BKK–KIX",
+              "NRT–BKK–OSL"
+            ],
+            "summary": "Ingen ekstra Shanghai-billetter eller Shanghai-hotell, 14 netter i Japan.",
+            "risk": "Reisen ble solgt som multi-city hos selger; gjennomgående billett og kontraktsmessig beskyttelse er ikke uavhengig verifisert.",
+            "hotelTransportEstimateNok": [
+              0,
+              0
+            ],
+            "extraHotelJapan": null,
+            "party": {
+              "adults": 3,
+              "children": 1
+            },
+            "state": "observed-seller-prices-not-checkout",
+            "schoolAbsence": "Omtrent 5 skoledager",
+            "hotelEstimateBasis": "Illustrativt plananslag, ikke hotelltilbud"
+          }
+        ],
         "baselineReferences": [
           {
             "candidateId": "japan-easter-independent-dates-2026-10-10-b-thai-21mar-05apr",
@@ -9459,13 +9631,10 @@
             "sha-20261011-034"
           ],
           "remaining": [
-            "Shanghai long-haul discovery",
-            "Regional A/B pricing",
-            "Regional return/multi-city pricing",
-            "Carrier validation",
-            "China entry and school calendar checks",
-            "Selective other hubs",
-            "Total-cost and risk comparison"
+            "Få sluttpriser/kapasitet hos flyselskap eller selger på anbefalte billettkombinasjoner",
+            "Pris og reserver passende Shanghai-hotell og flyplasstransport",
+            "Beijing-direkte OSL–PEK og regionale Japan-billetter på flere datopar",
+            "Kontroller kinesiske innreisevilkår for 2027 før bestilling"
           ]
         },
         "schoolCalendar": {
@@ -9491,7 +9660,75 @@
             "itineraryAssessment": "HEL–PVG–Japan outward and Japan–PVG–HEL homeward appear to satisfy third-country routing. This is inference; each entry assessed separately. Port eligibility, passport validity and acceptance of separately purchased onward evidence must be checked before booking; no automatic approval.",
             "recheck": "Before booking and before departure"
           }
-        }
+        },
+        "consolidatedAt": "2026-10-11",
+        "fxReference": {
+          "nokPerUsd": 9.5623,
+          "date": "2026-10-09",
+          "source": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/"
+        },
+        "comparisonAssumptions": {
+          "hotelPerShanghaiNightNok": [
+            900,
+            1600
+          ],
+          "groundTotalNok": [
+            400,
+            1000
+          ],
+          "sourceType": "illustrative-allowances-not-offers",
+          "note": "Uverifiserte plananslag for familieovernatting og flyplasstransport. Må erstattes med faktiske priser før bestilling. Mat og aktiviteter er ikke med."
+        },
+        "directRouteCheck": {
+          "checked": "2026-10-11",
+          "finding": "Hainan flyr Oslo–Beijing (PEK) direkte, ikke Oslo–Shanghai (PVG). Oslo–Shanghai har ikke direkte passasjerfly; OSL–PEK–PVG innebærer ett stopp.",
+          "sources": [
+            "https://kommunikasjon.ntb.no/pressemelding/18592252/utvider-beijing-tilbudet-blir-helarsrute?lang=no&publisherId=17421123",
+            "https://www.flightconnections.com/flights-from-osl-to-pvg"
+          ]
+        },
+        "hypotheses": [
+          {
+            "id": "shanghai",
+            "name": "Shanghai",
+            "status": "Best dokumentert",
+            "summary": "Billigste komplette flykombinasjoner observert; via Helsinki eller Beijing, med separate billetter til Japan.",
+            "sourceIds": [
+              "sha-20261011-019",
+              "sha-20261011-030",
+              "sha-20261011-033",
+              "sha-20261011-044"
+            ]
+          },
+          {
+            "id": "beijing",
+            "name": "Beijing direkte",
+            "status": "Ikke ferdig priset",
+            "summary": "Direkte Oslo–Beijing med Hainan, men bare ett 2027-datopar undersøkt. Foreløpig tur/retur 53 160 kr kun for langdistansen, uten valg av retur og bagasjekontroll. Japan-etapper ikke priset.",
+            "sourceIds": [
+              "sha-20261011-031"
+            ]
+          },
+          {
+            "id": "bangkok",
+            "name": "Bangkok",
+            "status": "Svakere i kontrollsøket",
+            "summary": "Langdistanse ca. 33 850 kr, men de undersøkte Japan-etappene var dyrere og lengre. Ingen komplett og validert totalpris.",
+            "sourceIds": [
+              "sha-20261011-035",
+              "sha-20261011-037"
+            ]
+          },
+          {
+            "id": "japan",
+            "name": "Vanlig Japan-billett",
+            "status": "Referanse",
+            "summary": "Multi-city Oslo–Osaka / Tokyo–Oslo via Bangkok rundt 64 500 kr med bagasje, uten uavhengige billettkjøp i Shanghai.",
+            "sourceIds": [
+              "sha-20261011-039"
+            ]
+          }
+        ]
       }
     ],
     "recovery": {
