@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 33,
+          "completed": 34,
           "failed": 7,
           "restricted": 1
         },
@@ -8870,6 +8870,55 @@
               }
             ],
             "finding": "Actualnext-daylonghaul4-passengerbagincludedproxy2120USD≈20272NOK. Largerexposurethanregional10528NOK, but notassumeautomaticlossentireoriginalRTprice. Aprilavailability maybemuchworse/better; rebooking/no-showterms/airlineassistance affectactualcost. No probabilisticriskpremiumadded."
+          },
+          {
+            "id": "sha-20261011-042",
+            "checkedAt": "2026-10-11T15:53:46.206Z",
+            "service": "Official airport/airline transport checks",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [],
+            "status": "completed",
+            "scope": "Necessarygroundtransport for quotedregionaltimings, notnewflightfare",
+            "results": [
+              {
+                "topic": "PVG–downtown",
+                "source": "https://english.shanghai.gov.cn/en-Transportation/20231214/649e06ea38f74aaeb573fa2debbe97d3.html",
+                "confirmed": "AirportAuthorityguideupdated4Jun2026:metroabout7CNY/person1hour, taxiabout180CNY50min,freePVGT1T2shuttle24hr10–15min. Taxi isindicativereferencefare, not2027quote."
+              },
+              {
+                "topic": "PVG–SHA",
+                "source": "https://english.shanghai.gov.cn/en-Transportation/20241231/f66f14bbd4b549ab88e6f3aec375790c.html",
+                "confirmed": "AirportLink40min26CNY/personPVGT1/T2→SHAT2; lastPVG22:15. Additionalterminal/walk/waitrequired. AllretainedoptionsusePVG soairportchange0."
+              },
+              {
+                "topic": "Shanghai nighttransport",
+                "source": "https://english.shanghai.gov.cn/en-Transportation/20240102/44f499a17b324b25996f2d58fcbf5f23.html",
+                "confirmed": "Nighttaxi30%surcharge23:00–05:00. For00:45/00:50PVGarrivalsplantaxi/nearbyairporthotel, do notassumenormalmetro."
+              },
+              {
+                "topic": "KIX22:00arrival",
+                "source": "https://www.howto-osaka.com/th/access-timetable/",
+                "confirmed": "OfficialNankaiweekdaytimetablelastAirportExpressKIX23:55→Namba00:39; nominal115minutes after22:00landing",
+                "assessment": "60–90minimmigration/bags+10–20minstationwalk leaves5–45minforlasttrain. Delaycanrequireairporthotel; chooseairport/RinkuhotelinplaceoffirstOsakahotelnight andtransfernextmorning. Latecheck-inrequired.2027timetablerecheck."
+              },
+              {
+                "topic": "HND155minAconnection",
+                "source": "https://www.ana.co.jp/en/jp/guide/boarding-procedures/checkin/domestic/transit/",
+                "confirmed": "ANA states StarflyerHNDTerminal1; ANAinternationalT2/T3. PublishedANA domestic→internationalminimum55minT2/70minT3; partner-specific minimumdependscarrier,contactANA. Itinerarysellerwarnscollect/recheck.",
+                "assessment": "155minisabovegeneric70,but Starflyer/T1recheckandthrough-ticketeligibility notconfirmed; cannotdeclareprotected. No HND/NRTairportchange."
+              }
+            ],
+            "errors": [
+              {
+                "source": "https://www.howto-osaka.com/",
+                "detail": "EnglishlanguageclickInternalError; usedofficialThai-languagepagewithEnglishtimetablelabels instead. Old2019PDFnotused."
+              }
+            ]
           }
         ],
         "candidates": [
@@ -9205,7 +9254,8 @@
             "sha-20261011-038",
             "sha-20261011-039",
             "sha-20261011-040",
-            "sha-20261011-041"
+            "sha-20261011-041",
+            "sha-20261011-042"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
