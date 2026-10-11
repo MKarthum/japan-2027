@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 26,
+          "completed": 27,
           "failed": 7,
           "restricted": 1
         },
@@ -8362,6 +8362,86 @@
             "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20BKK%20on%202027-03-21%20returning%202027-04-06%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
             "error": "Focusednaturalquerynotapplied; pageemptyroute/date1adult. No validfarecollected. AlternativeTrip.com next.",
             "results": []
+          },
+          {
+            "id": "sha-20261011-035",
+            "checkedAt": "2026-10-11T15:43:23.959Z",
+            "service": "Trip.com Bangkok screening",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "BKK",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "BKK",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=osl&acity=bkk&ddate=2027-03-21&rdate=2027-04-06&dairport=osl&aairport=bkk&triptype=rt&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carriers": [
+                  "Iberia marketed/Qatar operated",
+                  "Qatar"
+                ],
+                "price": {
+                  "amount": 3540,
+                  "currency": "USD",
+                  "basis": "selectedfareRTtotal4",
+                  "stage": "seller-fare-selection"
+                },
+                "outbound": {
+                  "flights": [
+                    "IB8414",
+                    "IB6250"
+                  ],
+                  "departure": "2027-03-21T09:00:00+01:00",
+                  "arrival": "2027-03-22T06:15:00+07:00",
+                  "durationMinutes": 915,
+                  "transfer": "DOH",
+                  "transferMinutes": 140
+                },
+                "inbound": {
+                  "flights": [
+                    "QR829",
+                    "QR179"
+                  ],
+                  "departure": "2027-04-06T21:05:00+07:00",
+                  "arrival": "2027-04-07T07:20:00+02:00",
+                  "durationMinutes": 915,
+                  "transfer": "DOH",
+                  "transferMinutes": 90
+                },
+                "baggage": {
+                  "carryOn": "1piece",
+                  "checked": "Included,weight/piecesnotexpanded",
+                  "transfer": "No collect/recheck DOHbothways"
+                },
+                "terms": {
+                  "refund": "nonrefpartialtax",
+                  "change": "fromUSD190"
+                }
+              },
+              {
+                "price": {
+                  "amount": 3100,
+                  "currency": "USD",
+                  "basis": "selectedout initialRTreturnlist"
+                },
+                "inbound": "6Apr09:15BKK→7Apr07:20OSL DOH13h15;28h05 total",
+                "qualification": "rejectpoorreturnovernight"
+              }
+            ],
+            "finding": "PracticalBangkoklonghaul3540USD≈33850NOK, slightlyaboveJuneyao3503USD but longer15h15bothways. Regionalnextstep onlyoneopenjawscreen, thenstopifnotclearlybetter."
           }
         ],
         "candidates": [
@@ -8690,7 +8770,8 @@
             "sha-20261011-030",
             "sha-20261011-031",
             "sha-20261011-032",
-            "sha-20261011-033"
+            "sha-20261011-033",
+            "sha-20261011-035"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
