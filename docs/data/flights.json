@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 16,
+          "completed": 17,
           "failed": 5,
           "restricted": 1
         },
@@ -7668,6 +7668,57 @@
               }
             ],
             "finding": "Same-day Tokyo arrival from morningJuneyao possible; ANA bagfareUSD1707 fully seller-priced. Spring attractivebutage-restrictedupgrade childbagcostunverified, excludedfromcompletecost."
+          },
+          {
+            "id": "sha-20261011-023",
+            "checkedAt": "2026-10-11T15:18:04.639Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=tyo&ddate=2027-03-23&dairport=pvg&dcityid=2&acityid=228&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "flight": "NH972",
+                "from": "PVG T2",
+                "to": "HND T3",
+                "departure": "2027-03-23T08:35:00+08:00",
+                "arrival": "2027-03-23T12:20:00+09:00",
+                "durationMinutes": 165,
+                "stops": 0,
+                "price": {
+                  "amount": 1476,
+                  "currency": "USD",
+                  "basis": "selected fare drawer total4, resultlist1474repriced1476",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1piece",
+                  "checked": "2 ×23 kg displayed"
+                },
+                "terms": {
+                  "fare": "Economy Value",
+                  "refund": "Non-refundable partialtaxonly",
+                  "change": "fromUSD45"
+                },
+                "bufferMinutesFromFinnair": 820,
+                "bufferMinutesFromJuneyao": 1485
+              }
+            ],
+            "finding": "Tokyo after one Shanghai night: with Finnair arrival22Mar18:55 gives13h40; morningJuneyao gives24h45 and full22MarShanghai. Bagfareverifiedat sellerstage."
           }
         ],
         "candidates": [
@@ -7986,7 +8037,8 @@
             "sha-20261011-019",
             "sha-20261011-020",
             "sha-20261011-021",
-            "sha-20261011-022"
+            "sha-20261011-022",
+            "sha-20261011-023"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
