@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 7,
-          "failed": 2,
+          "failed": 3,
           "restricted": 1
         },
         "searchRuns": [
@@ -7025,6 +7025,28 @@
             "baggage": null,
             "verification": "Selected return; itinerary summary still Getting prices. Not carrier verified.",
             "error": null
+          },
+          {
+            "id": "sha-20261011-011",
+            "checkedAt": "2026-10-11T15:00:40.180Z",
+            "service": "Google Flights booking summary",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-19",
+            "returnDate": "2027-04-05",
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": null,
+            "error": "selected-summary-getting-prices",
+            "finding": "Selected Lufthansa itinerary remained Getting prices across state checks and one reload. No booking option or baggage price loaded. Previous return-list quote retained as preliminary."
           }
         ],
         "candidates": [
@@ -7338,7 +7360,8 @@
           ],
           "failedSearchIds": [
             "sha-20261011-003",
-            "sha-20261011-007"
+            "sha-20261011-007",
+            "sha-20261011-011"
           ],
           "remaining": [
             "Shanghai long-haul discovery",
