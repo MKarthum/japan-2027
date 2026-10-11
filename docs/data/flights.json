@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 4,
+          "completed": 5,
           "failed": 2,
           "restricted": 1
         },
@@ -6863,6 +6863,70 @@
             "price": null,
             "error": "carrier-flight-details-fetch-error",
             "finding": "Google Continue reached Finnair flight selection with correct 3 adults / 1 child and 21 March–6 April. Site said couldn't fetch flight details due to issue on our end; one Reload this page did not resolve. No direct fare or checked-bag price verified."
+          },
+          {
+            "id": "sha-20261011-008",
+            "checkedAt": "2026-10-11T14:58:57.058Z",
+            "service": "Google Flights",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDate": "2027-03-18",
+            "returnDate": "2027-04-03",
+            "status": "result-observed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "observedOffers": [
+              {
+                "amountNok": 40741,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airlines": [
+                  "SAS",
+                  "Lufthansa"
+                ],
+                "departureLocal": "2027-03-18T17:00:00+01:00",
+                "arrivalLocal": "2027-03-19T16:50:00+08:00",
+                "durationMin": 1010,
+                "transferAirports": [
+                  "ARN",
+                  "MUC"
+                ],
+                "transferMinutes": [
+                  35,
+                  85
+                ],
+                "assessment": "35 minute first transfer; prefer one-stop alternatives"
+              },
+              {
+                "amountNok": 43622,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Lufthansa",
+                "departureLocal": "2027-03-18T18:25:00+01:00",
+                "arrivalLocal": "2027-03-19T16:50:00+08:00",
+                "durationMin": 925,
+                "transferAirport": "MUC",
+                "transferMin": 90
+              },
+              {
+                "amountNok": 45342,
+                "basis": "four-passenger-roundtrip-departing-list",
+                "airline": "Qatar Airways",
+                "departureLocal": "2027-03-18T15:05:00+01:00",
+                "arrivalLocal": "2027-03-19T14:40:00+08:00",
+                "durationMin": 995,
+                "transferAirport": "DOH",
+                "transferMin": 125
+              }
+            ],
+            "baggage": null,
+            "verification": "Track prices and fields confirm both dates; four-person total. Initial transient Oops resolved without reload.",
+            "error": null
           }
         ],
         "candidates": [
@@ -7169,7 +7233,8 @@
             "sha-20261011-002",
             "sha-20261011-004",
             "sha-20261011-005",
-            "sha-20261011-006"
+            "sha-20261011-006",
+            "sha-20261011-008"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
