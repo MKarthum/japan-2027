@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 9,
+          "completed": 10,
           "failed": 5,
           "restricted": 1
         },
@@ -7225,6 +7225,95 @@
             "price": null,
             "error": "multicity-form-interaction-failure",
             "finding": "Changing trip type produced Multi-city form, but second origin remained Tokyo; fill and click on visible second-origin combobox timed out. Requested KIX could not be selected. No actual requested multi-city price returned."
+          },
+          {
+            "id": "sha-20261011-016",
+            "checkedAt": "2026-10-11T15:10:03.879Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "KIX",
+                "date": "2027-03-23"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=osa&ddate=2027-03-23&rdate=2027-03-26&dairport=pvg&aairport=kix&dcityid=2&acityid=219&triptype=ow&class=y&lowpricesource=searchform&quantity=3&childqty=1&searchboxarg=t&nonstoponly=off&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "flight": "NH974",
+                "departure": "2027-03-23T12:00:00+08:00",
+                "arrival": "2027-03-23T15:15:00+09:00",
+                "from": "PVG T2",
+                "to": "KIX T1",
+                "durationMinutes": 135,
+                "stops": 0,
+                "price": {
+                  "amount": 1091,
+                  "currency": "USD",
+                  "basis": "UI total for 3 adults and 1 child; selected fare drawer",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "personalItem": "Included",
+                  "carryOn": "1 piece",
+                  "checked": "2 × 23 kg displayed in selected fare; per-person attribution not separately expanded"
+                },
+                "terms": {
+                  "refund": "Non-refundable (partial tax refund only)",
+                  "change": "from USD45",
+                  "partyAvailability": "Bookings of 1–5 passengers; UI total for4"
+                },
+                "connectionTo": "sha-longhaul-finnair-21mar-06apr",
+                "bufferMinutes": 1025,
+                "verified": [
+                  "local flight times",
+                  "flight number",
+                  "seller total",
+                  "fare baggage display"
+                ],
+                "unverified": [
+                  "carrier direct price",
+                  "checkout repricing",
+                  "fare rules per child"
+                ]
+              },
+              {
+                "carrier": "ANA",
+                "departure": "2027-03-23T19:05:00+08:00",
+                "arrival": "2027-03-23T22:00:00+09:00",
+                "from": "PVG T2",
+                "to": "KIX T1",
+                "durationMinutes": 115,
+                "price": {
+                  "amount": 1004,
+                  "currency": "USD",
+                  "basis": "results-list total for4"
+                },
+                "baggage": "results indicate checked and carry-on included, exact allowance not expanded"
+              },
+              {
+                "carrier": "Spring Airlines",
+                "departure": "2027-03-23T08:05:00+08:00",
+                "arrival": "2027-03-23T11:20:00+09:00",
+                "price": {
+                  "amount": 1133,
+                  "currency": "USD",
+                  "basis": "results-list total for4"
+                },
+                "baggage": "Carry-on included; checked not priced"
+              }
+            ],
+            "finding": "Traditional ANA with checked baggage cheaper than observed nonstop Spring fares; earliest Spring08:05 gives13h10 after22Mar18:55 longhaul arrival, ANA noon gives17h05. Overnight hotel buffer feasible; no airport change."
           }
         ],
         "candidates": [
@@ -7536,7 +7625,8 @@
             "sha-20261011-009",
             "sha-20261011-010",
             "sha-20261011-012",
-            "sha-20261011-013"
+            "sha-20261011-013",
+            "sha-20261011-016"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
