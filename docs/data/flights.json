@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 1,
-          "failed": 0,
+          "failed": 1,
           "restricted": 1
         },
         "searchRuns": [
@@ -6631,6 +6631,28 @@
             },
             "verification": "Passenger dialog showed 3 Adults, 1 Child aged 2–11; results explicitly total for 4. Return flight and bag fees not selected.",
             "error": null
+          },
+          {
+            "id": "sha-20261011-003",
+            "checkedAt": "2026-10-11T14:54:31.933Z",
+            "service": "Google Flights date grid",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "from": "OSL",
+            "to": "PVG",
+            "departDates": "2027-03-17..2027-03-23",
+            "returnDates": "2027-04-01..2027-04-07",
+            "status": "failed",
+            "price": null,
+            "error": "date-grid-loading-no-prices",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights%20from%20OSL%20to%20PVG%20on%202027-03-20%20returning%202027-04-04%20for%203%20adults%20and%201%20child%20economy&curr=NOK",
+            "finding": "Interactive Date grid opened; all 49 cells remained Loading prices / 0000 across repeated state checks. No cell prices inferred."
           }
         ],
         "candidates": [],
@@ -6839,7 +6861,9 @@
           "completedSearchIds": [
             "sha-20261011-002"
           ],
-          "failedSearchIds": [],
+          "failedSearchIds": [
+            "sha-20261011-003"
+          ],
           "remaining": [
             "Shanghai long-haul discovery",
             "Regional A/B pricing",
