@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 36,
+          "completed": 37,
           "failed": 7,
           "restricted": 1
         },
@@ -9040,6 +9040,74 @@
                 "qualification": "only8h40returngap,notchosen"
               }
             ]
+          },
+          {
+            "id": "sha-20261011-045",
+            "checkedAt": "2026-10-11T16:05:12.456Z",
+            "service": "Google Flights slow Finnair fare validation",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "OSL",
+                "to": "PVG",
+                "date": "2027-03-21"
+              },
+              {
+                "from": "PVG",
+                "to": "OSL",
+                "date": "2027-04-06"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.google.com/travel/flights?hl=en&q=Flights+from+OSL+to+PVG+on+2027-03-21+returning+2027-04-06+for+3+adults+and+1+child+economy&curr=NOK",
+            "results": [
+              {
+                "carrier": "Finnair",
+                "initialPrice": {
+                  "amount": 25190,
+                  "currency": "NOK",
+                  "basis": "round-trip 4 passengers initial result and return selection"
+                },
+                "price": {
+                  "amount": 32437,
+                  "currency": "NOK",
+                  "basis": "all 4 selected flights provider summary",
+                  "stage": "metasearch-provider-offer"
+                },
+                "outbound": {
+                  "departure": "2027-03-21T08:40:00+01:00",
+                  "arrival": "2027-03-22T18:55:00+08:00",
+                  "durationMinutes": 1635,
+                  "stops": [
+                    {
+                      "airport": "HEL",
+                      "durationMinutes": 815
+                    }
+                  ]
+                },
+                "inbound": {
+                  "departure": "2027-04-06T20:50:00+08:00",
+                  "arrival": "2027-04-07T19:45:00+02:00",
+                  "durationMinutes": 1735,
+                  "stops": [
+                    {
+                      "airport": "HEL",
+                      "durationMinutes": 805
+                    }
+                  ]
+                },
+                "baggage": {
+                  "carryOn": "1 free per passenger",
+                  "checked": "First checked bag NOK1930 per passenger for entire trip; 2 passengers would cost NOK3860, provider not checked"
+                },
+                "qualification": "Price changed visibly from25190 to32437. Do not use25190 as available fare. Slow itinerary dominated by rapid Finnair006 at same32437 price; no additional carrier request needed."
+              }
+            ]
           }
         ],
         "candidates": [
@@ -9378,7 +9446,8 @@
             "sha-20261011-041",
             "sha-20261011-042",
             "sha-20261011-043",
-            "sha-20261011-044"
+            "sha-20261011-044",
+            "sha-20261011-045"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
