@@ -10191,9 +10191,9 @@
     "stage": "regional-japan-search",
     "hub": "Shanghai",
     "hubAirport": "PVG",
-    "publicTitle": "Neste flyvalg: Shanghai–Japan",
-    "publicSummary": "Shanghai er hovedknutepunktet i videre planlegging. Nå skal fly mellom Shanghai og Japan undersøkes. Tidligere langdistansepriser og ruteforslag er historisk research, ikke aktive kjøpsanbefalinger.",
-    "statusLabel": "Regionale flybilletter undersøkes",
+    "publicTitle": "Shanghai–Japan: flyalternativene",
+    "publicSummary": "Flerbybilletter til ulike japanske byer har gitt de mest interessante prisene i kontrollsøket. Valget bør vurderes sammen med reiseruten i Japan, bagasje, reisetid og romslige marginer mellom separate billetter.",
+    "statusLabel": "Regionalfly: prisalternativer undersøkt",
     "patterns": [
       {
         "id": "osaka-in",
@@ -10201,7 +10201,12 @@
         "outbound": "Shanghai (PVG) → Osaka (KIX)",
         "inbound": "Tokyo (HND/NRT) → Shanghai (PVG)",
         "summary": "Følg Japan-ruten østover: Kansai, Kyoto og videre mot Tokyo. Kan gjøre flybillettene rimeligere uten ekstra tilbakereise innenlands.",
-        "searchUrl": "https://www.google.com/travel/flights"
+        "searchUrl": "https://www.google.com/travel/flights",
+        "marketPriceUsd": 1295,
+        "otherObservedUsd": 1727,
+        "marketEvidence": "Valgt, bagasjeinkludert flerbybillett for fire. Den rimeligste observerte løsningen kombinerte Osaka inn og Tokyo hjem.",
+        "tradeoff": "Lav flypris, men sen ankomst til Kansai kan gi ekstra transportkostnad eller overnatting ved flyplassen.",
+        "relativeStatus": "Lavest observert"
       },
       {
         "id": "tokyo-in",
@@ -10209,7 +10214,12 @@
         "outbound": "Shanghai (PVG) → Tokyo (HND/NRT)",
         "inbound": "Osaka (KIX) → Shanghai (PVG)",
         "summary": "Passer den opprinnelige reiseretningen gjennom Japan og bør sammenlignes direkte med Osaka-først.",
-        "searchUrl": "https://www.google.com/travel/flights"
+        "searchUrl": "https://www.google.com/travel/flights",
+        "marketPriceUsd": 1801,
+        "otherObservedUsd": 2066,
+        "marketEvidence": "Valgt flerbybillett for fire med bagasje. Gir en alternativ reiseretning, men var dyrere i kontrollsøket.",
+        "tradeoff": "Kortere tid ved en selvstendig forbindelse på utreisen i undersøkt mønster; lavere margin enn Osaka først.",
+        "relativeStatus": "Alternativ reiseretning"
       }
     ],
     "evaluation": [
@@ -10219,11 +10229,103 @@
       "Skill mellom regionale flybilletter og den separate langdistansereisen ved vurdering av forbindelsesrisiko.",
       "Kontroller visum- og transittvilkår for Kina på nytt før billettkjøp."
     ],
-    "statusNote": "Offentlig planleggingsstatus. Ingen bekreftede reisedatoer, avgangstider, flynumre eller billettopplysninger publiseres.",
+    "statusNote": "Dette er offentlige markedsobservasjoner, ikke familiens konkrete billetter. Private reisedatoer, flynummer og bestillingsopplysninger inngår ikke.",
     "archivedRoundId": "japan-shanghai-flight-options-2026-10-11",
     "sources": [
       "https://www.google.com/travel/flights",
       "https://www.trip.com/flights"
+    ],
+    "researchStatus": "regional-prices-observed-not-bookable-until-rechecked",
+    "marketObservation": {
+      "checked": "2026-10-11",
+      "category": "interaktivt flerbysøk – valgt billettype hos selger, ikke betalingssteg",
+      "partyDescription": "Fire passasjerer: tre i voksenpriskategori og ett barn",
+      "currency": "USD",
+      "airfareOnly": true,
+      "baggage": "I undersøkte ANA Economy Light-alternativer viste selgeren innsjekket bagasje (2 × 23 kg per reisende) og ett håndbagasjekolli. Dette må bekreftes før kjøp.",
+      "terms": "ANA Economy Light var ikke refunderbar, og billettendring var ikke tillatt i de kontrollerte tilbudene.",
+      "caveat": "Priser er datert markedsresearch. Endelig tilgjengelighet, alderskategorier, tillegg og billettvilkår må kontrolleres på nytt.",
+      "sourceName": "Trip.com",
+      "sourceUrl": "https://www.trip.com/flights/",
+      "buyerNote": "Ingen regionale flybilletter er bestilt i denne researchen.",
+      "comparison": [
+        {
+          "id": "separate-oneway",
+          "name": "To separate enveisbilletter",
+          "observedUsd": 2469,
+          "note": "Laveste testede direkte enveispar; bagasje på returen var ikke ferdig kontrollert, så beløpet er en nedre sammenligningspris."
+        },
+        {
+          "id": "osaka-roundtrip",
+          "name": "Osaka tur/retur",
+          "observedUsd": 1235,
+          "note": "Krever ekstra returtransport fra Tokyo dersom Japan-turen går østover; bare 60 USD lavere enn beste flerbypris."
+        }
+      ]
+    },
+    "regionalResearchSummary": {
+      "headline": "Flerby med Osaka inn og Tokyo hjem er beste dokumenterte utgangspunkt",
+      "reason": "Markedsresearchen peker mot regional flerbybillett fremfor to separate enveisbilletter. Differansen mot Oslo–Asia-flyene er ikke relevant når disse allerede er utenfor den gjenstående flybeslutningen.",
+      "timeInJapan": "Planlegg minst 14 netter i Japan, samtidig som et opphold i Shanghai skal gi reell tid i byen.",
+      "shanghaiTime": "Et kort opphold på retur kan være praktisk både for sightseeing og buffer før en uavhengig langdistansereise.",
+      "limitations": "Andre japanske flyplasser var ikke systematisk priset i regionalrunden. Direkte flyselskapssøk feilet teknisk og gir ikke en bekreftet sluttpris."
+    },
+    "airportExpansion": {
+      "checked": "2026-10-11",
+      "title": "Flere japanske flyplasser kan være verdt et målrettet søk",
+      "summary": "Kansai dekker allerede Kyoto og Osaka godt. Kobe og Nagoya kan være alternative innfallsporter, mens Hiroshima og Fukuoka først gir mening hvis den japanske reiseruten også bruker disse områdene. Sammenlign total transporttid, pris og faktisk antall opplevelsesdager.",
+      "items": [
+        {
+          "code": "KIX",
+          "name": "Kansai – Kyoto og Osaka",
+          "priority": "Hovedvalg",
+          "note": "Kansai er naturlig flyplass for begge byer. Haruka-toget til Kyoto tar omtrent 75 minutter.",
+          "source": "https://www.kansai-airport.or.jp/en/access/from-airport/train",
+          "routeConfidence": "Flyplass- og kollektivgrunnlag kontrollert; 2027-avgang ikke garantert."
+        },
+        {
+          "code": "UKB",
+          "name": "Kobe – alternativ til Kansai",
+          "priority": "Sjekk først",
+          "note": "Kobe har hatt forbindelse til Shanghai med Juneyao. Kan passe som inngang til Kansai-regionen, men avgangstilbud og pris for ønsket periode må bekreftes.",
+          "source": "https://www.kairport.co.jp/en/flight/airlines",
+          "scheduleSource": "https://www.kairport.co.jp/sites/ukb/files/2026-01/202510_en.pdf",
+          "routeConfidence": "Dokumentert i publisert 2025/26-plan, ikke kontrollert for våren 2027."
+        },
+        {
+          "code": "NGO",
+          "name": "Nagoya – øst for Kyoto",
+          "priority": "Aktuell reserve",
+          "note": "Direkteruter mellom Shanghai og Nagoya finnes. Interessant dersom ruten legges via Nagoya eller flypris og togtransport samlet blir bedre.",
+          "source": "https://www.centrair.jp/en/flight/schedule/international-arrival-01.html",
+          "routeConfidence": "Direkteruter dokumentert i 2026; ingen prissjekk for 2027."
+        },
+        {
+          "code": "HIJ",
+          "name": "Hiroshima – vestlig innfallsport",
+          "priority": "Ruteavhengig",
+          "note": "Shanghai–Hiroshima er dokumentert med begrenset frekvens. Gir mest mening dersom turen også inkluderer Hiroshima og deretter beveger seg østover.",
+          "source": "https://www.hij.airport.jp/en/flight/kokusai/shanghai.html",
+          "routeConfidence": "Offisiell 2026-rutetabell, avgangsfrekvens og 2027-pris må bekreftes."
+        },
+        {
+          "code": "FUK",
+          "name": "Fukuoka – dersom Kyushu prioriteres",
+          "priority": "Kun ved rutebehov",
+          "note": "Direkte Shanghai-ruter finnes, men Fukuoka gir ekstra reisevei hvis hovedoppholdet er Kyoto, Osaka og Tokyo.",
+          "source": "https://www.flightconnections.com/flights-from-pvg-to-fuk",
+          "routeConfidence": "Rutereferanse kontrollert i 2026; ingen pris undersøkt for denne reisen."
+        }
+      ],
+      "notPrioritized": "Osaka Itami (ITM) er innenriksflyplass. Okayama og Shizuoka har ikke et dokumentert aktivt direktetilbud til Shanghai i kontrollgrunnlaget.",
+      "conclusion": "Anbefaling: Sjekk Kobe og Nagoya mot Kansai i en kort tilleggsrunde. Utvid deretter til Hiroshima eller Fukuoka bare om det passer den ønskede ruten gjennom Japan.",
+      "comparisonRule": "Vurder billettpris for fire med bagasje + flyplasstransport + ekstra tog + reisetid + risiko. Ikke sammenlign kun flyprisen."
+    },
+    "nextActions": [
+      "Repris beste regionale flerbybillett for korrekt reisefølge og bagasje hos selger.",
+      "Sjekk Kobe og Nagoya som målrettet alternativ til Kansai med samme grunnkrav.",
+      "Sjekk Hiroshima og Fukuoka kun hvis endret rute gjennom Japan kan gi merverdi.",
+      "Avklar innreise/transitt Kina for aktuell reise og separate billetter før kjøp."
     ]
   }
 }
