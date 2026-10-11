@@ -6538,7 +6538,7 @@
         },
         "counts": {
           "completed": 9,
-          "failed": 4,
+          "failed": 5,
           "restricted": 1
         },
         "searchRuns": [
@@ -7195,6 +7195,36 @@
             "price": null,
             "error": "regional-return-selection-oops",
             "finding": "Selected ANA 08:35 outbound from 19 000 NOK four-person roundtrip result. Return selection returned Oops something went wrong; one Reload still failed. No selected-return price or baggage verified."
+          },
+          {
+            "id": "sha-20261011-015",
+            "checkedAt": "2026-10-11T15:04:07.777Z",
+            "service": "Google Flights multi-city",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "adultCategory": "12+",
+              "childCategory": "2–11",
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-23"
+              },
+              {
+                "from": "KIX",
+                "to": "PVG",
+                "date": "2027-04-04"
+              }
+            ],
+            "status": "failed",
+            "publicUrl": "https://www.google.com/travel/flights",
+            "price": null,
+            "error": "multicity-form-interaction-failure",
+            "finding": "Changing trip type produced Multi-city form, but second origin remained Tokyo; fill and click on visible second-origin combobox timed out. Requested KIX could not be selected. No actual requested multi-city price returned."
           }
         ],
         "candidates": [
@@ -7512,7 +7542,8 @@
             "sha-20261011-003",
             "sha-20261011-007",
             "sha-20261011-011",
-            "sha-20261011-014"
+            "sha-20261011-014",
+            "sha-20261011-015"
           ],
           "remaining": [
             "Shanghai long-haul discovery",
