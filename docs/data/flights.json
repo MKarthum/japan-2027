@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 15,
+          "completed": 16,
           "failed": 5,
           "restricted": 1
         },
@@ -7598,6 +7598,76 @@
               "ECB XML unsupported by web parser",
               "Norges Bank CSV unsupported; JSON succeeded"
             ]
+          },
+          {
+            "id": "sha-20261011-022",
+            "checkedAt": "2026-10-11T15:17:15.684Z",
+            "service": "Trip.com",
+            "party": {
+              "adults": 3,
+              "children": 1,
+              "total": 4
+            },
+            "cabin": "economy",
+            "requestedLegs": [
+              {
+                "from": "PVG",
+                "to": "TYO",
+                "date": "2027-03-22"
+              }
+            ],
+            "status": "completed",
+            "publicUrl": "https://www.trip.com/flights/showfarefirst?dcity=sha&acity=tyo&ddate=2027-03-22&dairport=pvg&dcityid=2&acityid=228&triptype=ow&class=y&quantity=3&childqty=1&locale=en-XX&curr=USD",
+            "results": [
+              {
+                "carrier": "ANA",
+                "flight": "NH920",
+                "from": "PVG T2",
+                "to": "NRT T1",
+                "departure": "2027-03-22T13:35:00+08:00",
+                "arrival": "2027-03-22T17:25:00+09:00",
+                "durationMinutes": 170,
+                "stops": 0,
+                "price": {
+                  "amount": 1707,
+                  "currency": "USD",
+                  "basis": "seller-selected fare total4",
+                  "stage": "seller-fare-selection-not-checkout"
+                },
+                "baggage": {
+                  "carryOn": "1 piece",
+                  "checked": "2 ×23 kg"
+                },
+                "terms": {
+                  "fare": "Economy Value",
+                  "refund": "Non-refundable(partialtaxonly)",
+                  "change": "fromUSD45"
+                },
+                "outboundBufferMinutes": 345,
+                "connectionTo": "sha-longhaul-juneyao-21mar-06apr",
+                "risk": "5h45 selftransfer at samePVG terminalT2; workable planning margin, no guarantee. Budget immigration/bags2h, newcheckin/security1h30 plusreserve2h15. Not safeafterFinnair22Mar18:55arrival."
+              },
+              {
+                "carrier": "Spring Airlines",
+                "flight": "9C6217",
+                "departure": "2027-03-22T15:00:00+08:00",
+                "arrival": "2027-03-22T18:40:00+09:00",
+                "price": {
+                  "amount": 1133,
+                  "currency": "USD",
+                  "basis": "fare total4 withoutchecked"
+                },
+                "baggage": "7kg cabin; checkednotincluded",
+                "upgrade": {
+                  "amount": 1204,
+                  "currency": "USD",
+                  "checked": "20kg",
+                  "restriction": "12yrsoldandover explicitlyshown; doNOTtreatasverified3+1offer"
+                },
+                "outboundBufferMinutes": 430
+              }
+            ],
+            "finding": "Same-day Tokyo arrival from morningJuneyao possible; ANA bagfareUSD1707 fully seller-priced. Spring attractivebutage-restrictedupgrade childbagcostunverified, excludedfromcompletecost."
           }
         ],
         "candidates": [
@@ -7915,7 +7985,8 @@
             "sha-20261011-018",
             "sha-20261011-019",
             "sha-20261011-020",
-            "sha-20261011-021"
+            "sha-20261011-021",
+            "sha-20261011-022"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
