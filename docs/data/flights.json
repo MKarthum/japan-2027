@@ -6537,7 +6537,7 @@
           "noSiteChanges": true
         },
         "counts": {
-          "completed": 13,
+          "completed": 14,
           "failed": 5,
           "restricted": 1
         },
@@ -7538,6 +7538,43 @@
               }
             ],
             "finding": "Strong new bag-included longhaul: arrives22Mar morning, saving almost full day over FinnairAY87; returnsOslo6Apr evening one day earlier. Can continueJapan22Mar only after substantial self-transfer margin, or overnight and23Mar regional. Lowprice2857 loses one day and exposes HELovernight cost."
+          },
+          {
+            "id": "sha-20261011-020",
+            "checkedAt": "2026-10-11T15:15:31.355Z",
+            "service": "Official carrier policy / ECB reference lookup via web",
+            "party": null,
+            "cabin": null,
+            "requestedLegs": [],
+            "status": "completed",
+            "queries": [
+              "ECB USD/NOK 9 October2026",
+              "Juneyao official booking",
+              "Finnair extra checked baggage Asia",
+              "Peach fees"
+            ],
+            "price": null,
+            "sources": [
+              {
+                "url": "https://www.finnair.com/ie-en/baggage-on-finnair-flights/extra-baggage-fees",
+                "finding": "Asia EconomyLight first23kg bagEUR75–100 eachdirection. Two travelers eachonebag bothdirections totalEUR300–400 estimated addition, exact itinerary price unverified. Classic includesfirstbag."
+              },
+              {
+                "url": "https://global.juneyaoair.com/",
+                "finding": "Official carrier homepage accessible via web; interactive pricing not yet attempted."
+              }
+            ],
+            "errors": [
+              {
+                "source": "https://api.frankfurter.dev/v2/rate/USD/NOK?providers=ecb",
+                "error": "web open Internal Error; no exchange rate verified"
+              },
+              {
+                "source": "ECB date search",
+                "error": "No relevant primary FX result"
+              }
+            ],
+            "finding": "Policy supplements saved, no generic route fare used. Current USD→NOK conversion remains unverified."
           }
         ],
         "candidates": [
@@ -7853,7 +7890,8 @@
             "sha-20261011-016",
             "sha-20261011-017",
             "sha-20261011-018",
-            "sha-20261011-019"
+            "sha-20261011-019",
+            "sha-20261011-020"
           ],
           "failedSearchIds": [
             "sha-20261011-003",
