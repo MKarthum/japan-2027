@@ -17,7 +17,11 @@ Dette repoet og GitHub Pages-siden er **offentlige**. Alt innhold skal kunne les
 
 ## Datoer og reiserute
 
-Det er tillatt å vise **foreløpige planleggingsdatoer**, offentlige markedspriser/fra-priser og en foreslått reiserute. Flyresearch skal beskrive offentlig tilgjengelige ruter, priser og søkemønstre – ikke en konkret persons bestilling.  Når konkrete bestillinger er gjort, skal nettsiden fortsatt bare vise avrundede planleggingsdata – ikke flynummer, eksakte avgangstider, hotellnavn, rom, bestillingsnumre eller annen sanntidslogistikk.
+Det er tillatt å vise **foreløpige planleggingsdatoer**, offentlige markedspriser/fra-priser og en foreslått reiserute.
+
+**Ikke-bestilte, offentlig søkbare flyalternativer** kan dokumenteres med søkedato, flynummer, avgangs- og ankomsttid, flyplassnavn, IATA-kode, pris, bagasje og offentlig gjenskapbar søkelenke. Hvert slikt funn skal være tydelig merket som **markedsresearch, ikke bestilling**, med kontrolldato og prisgrunnlag. Åpent søk er ikke bevis på at billetten fortsatt er tilgjengelig. Unngå alle innloggede, tokenbaserte eller personlige søkelenker.
+
+**Faktisk kjøpte billetter, bekreftede reisedatoer, flynumre og klokkeslett for familiens bestillinger skal aldri publiseres**, heller ikke indirekte som en «bekreftet reiserute». Det samme gjelder hotellreservasjoner, bookingreferanser og andre private opplysninger. Flyresearch skal ikke omtale observasjonene som familiens valgte eller bestilte billetter.
 
 ## Før publisering
 

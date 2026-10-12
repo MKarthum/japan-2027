@@ -40,7 +40,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 
-`docs/flights.html` er beslutningssiden for fly og skal brukes før datoene i resten av planen låses. Den avleder konkrete søkedatoer fra `trip.json`, mens research og søkereglene kommer fra `flights.json`. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
+`docs/flights.html` er beslutningssiden for fly og skal brukes før datoene i resten av planen låses. Foreløpig reisevindu eies av `trip.json`, mens dokumenterte flysøksobservasjoner med egne historiske søkedatoer og flytider ligger i `flights.json`. Søkeknapper for et observert tilbud bruker observasjonens datoer, mens endrede datoer håndteres som et nytt søk uten prisgaranti. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
 
 ## Prinsipper
 

@@ -159,3 +159,41 @@
 .flight-leg-window small{font-size:.75rem;color:var(--muted)}
 .flight-r-actions [aria-disabled=true]{opacity:.5;pointer-events:none}
 @media(max-width:480px){.flight-date-fields{flex-direction:column}.flight-date-fields label,.flight-date-fields input{width:100%}}
+
+/* Mobile-first flight observation cards and seasonal direction comparison. */
+.flight-research-card .flight-r-price{margin:4px 0 2px}
+.flight-research-card .flight-r-price strong{font-size:1.55rem}
+.flight-leg-detail{border-top:1px solid var(--line);padding:12px 0;display:grid;gap:10px}
+.flight-leg-head{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between;align-items:baseline;font-size:.72rem}
+.flight-leg-head strong{color:var(--ink)}
+.flight-leg-head span{color:var(--muted)}
+.flight-leg-route{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);align-items:start;gap:6px}
+.flight-leg-end{display:flex;flex-direction:column;gap:3px;min-width:0}
+.flight-leg-end:last-child{text-align:right}
+.flight-leg-end span{font-size:.73rem;line-height:1.38;color:var(--ink);overflow-wrap:anywhere}
+.flight-leg-clock{font-size:1.45rem;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
+.flight-leg-arrow{text-align:center;color:var(--muted);padding-top:4px}
+.flight-research-card .flight-r-actions{display:flex;align-items:stretch;flex-direction:column}
+.flight-research-card .flight-r-actions .button{text-align:center;white-space:normal}
+.flight-inline-link{font-size:.76rem;font-weight:800;padding:5px 0}
+.flight-date-custom-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.flight-date-custom-links .button{font-size:.76rem}
+.flight-sakura-section>p{font-size:.84rem;line-height:1.55}
+.flight-sakura-norms{overflow-x:auto;max-width:100%;margin:13px 0 18px;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+.flight-sakura-norms table{width:100%;border-collapse:collapse;min-width:450px}
+.flight-sakura-norms th,.flight-sakura-norms td{padding:11px;text-align:left;font-size:.76rem;border-bottom:1px solid var(--line)}
+.flight-sakura-norms tr:last-child td,.flight-sakura-norms tr:last-child th{border-bottom:0}
+.flight-sakura-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:13px 0}
+.flight-sakura-card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:18px}
+.flight-sakura-card h3{margin:0 0 7px;font-size:1.08rem}
+.flight-sakura-status{font-size:.75rem;color:var(--muted);display:block;margin-bottom:12px}
+.flight-sakura-stops{display:grid;gap:0}
+.flight-sakura-stops>div{display:grid;grid-template-columns:90px minmax(0,1fr);column-gap:10px;border-top:1px solid var(--line);padding:9px 0}
+.flight-sakura-stops strong,.flight-sakura-stops span{font-size:.79rem}
+.flight-sakura-stops small{font-size:.73rem;color:var(--muted);grid-column:2;line-height:1.4}
+.flight-sakura-card p{font-size:.79rem;line-height:1.55;margin:9px 0 0}
+.flight-sakura-verdict{font-weight:800}
+.flight-sakura-sources{font-size:.71rem!important;color:var(--muted)}
+.flight-sakura-sources a{display:inline-block;margin:3px 5px}
+@media(max-width:810px){.flight-sakura-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.flight-research-card .flight-r-pick-top span:last-child{white-space:normal}.flight-leg-clock{font-size:1.4rem}.flight-leg-end span{font-size:.7rem}.flight-sakura-card{padding:15px}}

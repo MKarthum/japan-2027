@@ -77,7 +77,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Personvern
 
-Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbeidssted, bookingreferanser, eksakte flydetaljer, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som identifiserer eller lokaliserer konkrete personer.
+Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbeidssted, bookingreferanser, **detaljer fra kjøpte/virkelige flybilletter**, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som identifiserer eller lokaliserer konkrete personer. Rene, ubestilte markedsobservasjoner av offentlig tilgjengelige rutefly kan vise søkedato, flightnummer og tid dersom de er tydelig merket som historisk research, ikke faktisk bestilling. Se `PUBLIC_DATA_POLICY.md`.
 
 ## Pass og pakkeløsninger
 
