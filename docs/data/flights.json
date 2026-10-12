@@ -10777,7 +10777,7 @@
           "conclusion": "Gode muligheter i Tokyo, men flere av de vestlige stoppene kommer før normal blomstring. Lavere flypris og tryggere utreise."
         }
       ],
-      "note": "Disse datoene viser kun to illustrative reiseretninger for flybeslutningen. Ingen hotellbaser, overnattinger eller dagsplaner endres her.",
+      "note": "Disse datoene viser kun to illustrative reiseretninger for flybeslutningen. Ingen hotellbaser, overnattinger eller dagsplaner endres her. Osaka har også en offisielt planlagt sumoturnering 14.–28. mars 2027. Kansai først gir lettest tilgang, men også Tokyo først kan gi en dagstur fra Kyoto før turneringen slutter. Dette er en opplevelsesmessig motvekt til sakuraargumentet.",
       "verdict": "Sakura isolert sett taler svakt til moderat for Tokyo først. Flypris og sikkerhetsmargin taler for Kansai først. Ingen av retningene er garantert best før 2027-prognosene kommer.",
       "sources": [
         {
@@ -10795,6 +10795,14 @@
         {
           "label": "JNTO – sakura og sesongvariasjon",
           "url": "https://www.japan.travel/en/guide/march/"
+        },
+        {
+          "label": "JMA – observert full blomstring 2021–2026",
+          "url": "https://www.data.jma.go.jp/sakura/data/sakura004_07.html"
+        },
+        {
+          "label": "Japan Sumo Association – turnering 2027",
+          "url": "https://sumo.or.jp/EnTicket/year_schedule"
         }
       ]
     }
