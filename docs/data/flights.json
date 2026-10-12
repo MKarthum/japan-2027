@@ -10191,16 +10191,16 @@
     "stage": "regional-japan-search",
     "hub": "Shanghai",
     "hubAirport": "PVG",
-    "publicTitle": "Shanghai–Japan: flyalternativer",
-    "publicSummary": "Kansai inn og Tokyo hjem gir best kombinasjon av reisetid, samlet pris og enkel rute. Valget står særlig mellom mer tid i Tokyo med Haneda-retur og en rimeligere, tidlig Narita-retur.",
-    "statusLabel": "Sluttkontroll gjennomført",
+    "publicTitle": "Fly mellom Shanghai og Japan – to retninger",
+    "publicSummary": "Kansai først har lavest kontrollert flypris. Tokyo først treffer sannsynligvis kirsebærblomstringen bedre i flere byer. Begge retningene sammenlignes derfor på opplevelse, kostnad og forbindelsesrisiko.",
+    "statusLabel": "Flyretningen er ikke bestemt",
     "patterns": [
       {
         "id": "osaka-in",
         "name": "Osaka inn · Tokyo hjem",
         "outbound": "Shanghai (PVG) → Osaka (KIX)",
         "inbound": "Tokyo (HND/NRT) → Shanghai (PVG)",
-        "summary": "Følg Japan-ruten østover: Kansai, Kyoto og videre mot Tokyo. Kan gjøre flybillettene rimeligere uten ekstra tilbakereise innenlands.",
+        "summary": "Kansai inn og Tokyo hjem gir lavest dokumentert flypris og mer romslig forbindelse fra Shanghai. Sakura-treffet er særlig godt i Tokyo sent i oppholdet.",
         "searchUrl": "https://www.google.com/travel/flights",
         "marketPriceUsd": 1295,
         "otherObservedUsd": 1727,
@@ -10213,7 +10213,7 @@
         "name": "Tokyo inn · Osaka hjem",
         "outbound": "Shanghai (PVG) → Tokyo (HND/NRT)",
         "inbound": "Osaka (KIX) → Shanghai (PVG)",
-        "summary": "Passer den opprinnelige reiseretningen gjennom Japan og bør sammenlignes direkte med Osaka-først.",
+        "summary": "Tokyo inn og Kansai hjem har høyere flypris i de trygge kveldsalternativene, men bedre historisk blomstringssamsvar for Kyoto, Hiroshima og Osaka.",
         "searchUrl": "https://www.google.com/travel/flights",
         "marketPriceUsd": 1801,
         "otherObservedUsd": 2066,
@@ -10229,7 +10229,7 @@
       "Skill mellom regionale flybilletter og den separate langdistansereisen ved vurdering av forbindelsesrisiko.",
       "Kontroller visum- og transittvilkår for Kina på nytt før billettkjøp."
     ],
-    "statusNote": "Anonymiserte markedsobservasjoner; ikke reserverte billetter. Private reisedatoer, flynummer og eksakte klokkeslett er ikke offentliggjort.",
+    "statusNote": "Alle detaljer nedenfor gjelder offentlige flysøk, ikke kjøpte billetter. Ingen bekreftede private flybestillinger er publisert.",
     "archivedRoundId": "japan-shanghai-flight-options-2026-10-11",
     "sources": [
       "https://www.google.com/travel/flights",
@@ -10322,16 +10322,75 @@
       "comparisonRule": "Vurder billettpris for fire med bagasje + flyplasstransport + ekstra tog + reisetid + risiko. Ikke sammenlign kun flyprisen."
     },
     "nextActions": [
-      "Repris hovedalternativene for fire med innsjekket bagasje og fullstendige vilkår.",
-      "Sammenlign mer Japan-tid via Haneda mot lavere pris fra Narita.",
-      "Kontroller transport fra Kansai ved sen ankomst og Kina-transitt før kjøp."
+      "Vei forventet sakuraopplevelse i begge retninger mot de dokumenterte flyforskjellene. Ingen reiseretning er valgt.",
+      "Gjenta pris og bagasje for ønsket flerbybillett hos selger og, hvis mulig, direkte hos flyselskapet.",
+      "Avklar separate billetter, kinesisk innreise, sen Kansai-transport og tidlig Narita-transfer før billettkjøp."
     ],
     "finalReview": {
       "checked": "2026-10-12",
-      "basis": "Observerte totalpriser for fire med skatter og bagasje i valgt billettpakke hos selger, ikke bekreftet ved siste betalingssteg.",
-      "searchHelp": "Velg datoer. Lenken fyller ut begge flystrekningene og tre voksenpriskategorier pluss ett barn. Avgang og billettype velges deretter hos selger.",
-      "privacy": "Datoer settes og huskes bare lokalt i nettleseren. De foreløpige datoene på siden er ikke en offentliggjøring av faktiske bestillinger.",
+      "basis": "Prisobservasjon for fire (tre voksenpriskategorier og ett barn), med skatter og angitt bagasje i valgt billettpakke hos selger – ikke bekreftet ved betaling. Flynummer, dato og lokal tid gjelder søkt og ikke bestilt fly.",
+      "searchHelp": "Hvert flykort har sitt opprinnelige dokumenterte søk, med datoer og reisefølge. En egen datovelger gir nye søk på andre datoer; resultatprisen kan da være forskjellig.",
+      "privacy": "Dette er anonymisert markedsresearch for ubestilte billetter. Ingen detaljer om familiens kjøpte flyvninger er publisert.",
       "choices": [
+        {
+          "id": "jal-kix",
+          "tag": "Tokyo først",
+          "title": "Tokyo inn · Kansai hjem",
+          "company": "Japan Airlines",
+          "to": "PVG → HND",
+          "back": "KIX → PVG",
+          "outWindow": "Kveld → sen kveld",
+          "backWindow": "Morgen → formiddag",
+          "toCity": "tyo",
+          "toAirport": "hnd",
+          "backCity": "osa",
+          "backAirport": "kix",
+          "usd": 2535,
+          "sourceDate": "2026-10-12",
+          "jp": 15,
+          "sh": 2,
+          "bag": "2 × 23 kg per person",
+          "good": "Passer opprinnelig reiseretning og en mulig sen sakura-periode i Kansai.",
+          "tradeoff": "808 USD dyrere enn anbefalt Haneda-alternativ. Sen hotellankomst i Tokyo.",
+          "legs": [
+            {
+              "from": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "to": {
+                "city": "Tokyo",
+                "name": "Haneda lufthavn",
+                "code": "HND"
+              },
+              "date": "2027-03-19",
+              "depart": "18.30",
+              "arrive": "22.20",
+              "number": "JL086",
+              "duration": "2 t 50 min"
+            },
+            {
+              "from": {
+                "city": "Osaka",
+                "name": "Kansai internasjonale lufthavn",
+                "code": "KIX"
+              },
+              "to": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "date": "2027-04-03",
+              "depart": "10.15",
+              "arrive": "11.45",
+              "number": "JL891",
+              "duration": "2 t 30 min"
+            }
+          ],
+          "evidence": "Valgt billettpakke hos Trip.com, ikke betalingssteg",
+          "searchDateSource": "Datoer og avgangstider fra prisobservasjonen 2026-10-12"
+        },
         {
           "id": "ana-hnd",
           "tag": "Beste helhet",
@@ -10351,7 +10410,45 @@
           "sh": 2,
           "bag": "2 × 23 kg per person",
           "good": "Mer tid i Tokyo på avreisedagen, med god sikkerhetsmargin på utreisen.",
-          "tradeoff": "432 USD dyrere enn den tidlige Narita-returen. Sen ankomst i Shanghai."
+          "tradeoff": "432 USD dyrere enn den tidlige Narita-returen. Sen ankomst i Shanghai.",
+          "legs": [
+            {
+              "from": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "to": {
+                "city": "Osaka",
+                "name": "Kansai internasjonale lufthavn",
+                "code": "KIX"
+              },
+              "date": "2027-03-19",
+              "depart": "19.05",
+              "arrive": "22.00",
+              "number": "NH976",
+              "duration": "1 t 55 min"
+            },
+            {
+              "from": {
+                "city": "Tokyo",
+                "name": "Haneda lufthavn",
+                "code": "HND"
+              },
+              "to": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "date": "2027-04-03",
+              "depart": "18.35",
+              "arrive": "20.40",
+              "number": "NH971",
+              "duration": "3 t 05 min"
+            }
+          ],
+          "evidence": "Valgt billettpakke hos Trip.com, ikke betalingssteg",
+          "searchDateSource": "Datoer og avgangstider fra prisobservasjonen 2026-10-12"
         },
         {
           "id": "ana-nrt",
@@ -10372,7 +10469,104 @@
           "sh": 2,
           "bag": "2 × 23 kg per person",
           "good": "Lavest kontrollert totalpris, og mer tid i Shanghai etter Japan.",
-          "tradeoff": "Svært tidlig hotellavreise fra Tokyo, eventuelt behov for flyplasshotell."
+          "tradeoff": "Svært tidlig hotellavreise fra Tokyo, eventuelt behov for flyplasshotell.",
+          "legs": [
+            {
+              "from": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "to": {
+                "city": "Osaka",
+                "name": "Kansai internasjonale lufthavn",
+                "code": "KIX"
+              },
+              "date": "2027-03-19",
+              "depart": "19.05",
+              "arrive": "22.00",
+              "number": "NH976",
+              "duration": "1 t 55 min"
+            },
+            {
+              "from": {
+                "city": "Tokyo",
+                "name": "Narita internasjonale lufthavn",
+                "code": "NRT"
+              },
+              "to": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "date": "2027-04-03",
+              "depart": "09.20",
+              "arrive": "11.40",
+              "number": "NH919",
+              "duration": "3 t 20 min"
+            }
+          ],
+          "evidence": "Valgt billettpakke hos Trip.com, ikke betalingssteg",
+          "searchDateSource": "Datoer og avgangstider fra prisobservasjonen 2026-10-12"
+        },
+        {
+          "id": "ana-tokyo-early",
+          "tag": "Billigere Tokyo-først, kort transfer",
+          "title": "Tokyo inn · Kansai hjem (ANA)",
+          "company": "ANA",
+          "to": "PVG → NRT",
+          "back": "KIX → PVG",
+          "outWindow": "Tidlig ettermiddag → ettermiddag",
+          "backWindow": "Morgen → formiddag",
+          "toCity": "tyo",
+          "toAirport": "nrt",
+          "backCity": "osa",
+          "backAirport": "kix",
+          "usd": 1801,
+          "sourceDate": "2026-10-11",
+          "jp": 15,
+          "sh": 2,
+          "bag": "2 × 23 kg per person",
+          "good": "Mindre prisforskjell fra Kansai-først og en reiseretning som kan passe sakura.",
+          "tradeoff": "Bare 5 t 45 min mellom ankomst Shanghai og flyet til Tokyo på separate billetter. Dette er en vesentlig ulempe.",
+          "evidence": "Billettpakke 11. oktober – senere gjenfunnet i resultatliste",
+          "legs": [
+            {
+              "from": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "to": {
+                "city": "Tokyo",
+                "name": "Narita internasjonale lufthavn",
+                "code": "NRT"
+              },
+              "date": "2027-03-19",
+              "depart": "13.35",
+              "arrive": "17.25",
+              "number": "NH920",
+              "duration": "2 t 50 min"
+            },
+            {
+              "from": {
+                "city": "Osaka",
+                "name": "Kansai internasjonale lufthavn",
+                "code": "KIX"
+              },
+              "to": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "date": "2027-04-03",
+              "depart": "09.00",
+              "arrive": "10.35",
+              "number": "NH973",
+              "duration": "2 t 35 min"
+            }
+          ],
+          "searchDateSource": "Kontrollert i privat markedsresearch 11. oktober 2026"
         },
         {
           "id": "ana-shanghai",
@@ -10393,28 +10587,45 @@
           "sh": 3,
           "bag": "2 × 23 kg per person",
           "good": "To hele dager i Shanghai.",
-          "tradeoff": "Én færre Japan-natt. Tidligere prisobservasjon; velg en tidligere returdato ved nytt søk."
-        },
-        {
-          "id": "jal-kix",
-          "tag": "Tokyo først",
-          "title": "Tokyo inn · Kansai hjem",
-          "company": "Japan Airlines",
-          "to": "PVG → HND",
-          "back": "KIX → PVG",
-          "outWindow": "Kveld → sen kveld",
-          "backWindow": "Morgen → formiddag",
-          "toCity": "tyo",
-          "toAirport": "hnd",
-          "backCity": "osa",
-          "backAirport": "kix",
-          "usd": 2535,
-          "sourceDate": "2026-10-12",
-          "jp": 15,
-          "sh": 2,
-          "bag": "2 × 23 kg per person",
-          "good": "Passer opprinnelig reiseretning og en mulig sen sakura-periode i Kansai.",
-          "tradeoff": "808 USD dyrere enn anbefalt Haneda-alternativ. Sen hotellankomst i Tokyo."
+          "tradeoff": "Én færre Japan-natt. Tidligere prisobservasjon; velg en tidligere returdato ved nytt søk.",
+          "legs": [
+            {
+              "from": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "to": {
+                "city": "Osaka",
+                "name": "Kansai internasjonale lufthavn",
+                "code": "KIX"
+              },
+              "date": "2027-03-19",
+              "depart": "19.05",
+              "arrive": "22.00",
+              "number": "NH976",
+              "duration": "1 t 55 min"
+            },
+            {
+              "from": {
+                "city": "Tokyo",
+                "name": "Haneda lufthavn",
+                "code": "HND"
+              },
+              "to": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "date": "2027-04-02",
+              "depart": "18.35",
+              "arrive": "20.40",
+              "number": "NH971",
+              "duration": "3 t 05 min"
+            }
+          ],
+          "evidence": "Valgt billettpakke hos Trip.com, ikke betalingssteg",
+          "searchDateSource": "Datoer og avgangstider fra prisobservasjonen 2026-10-11"
         },
         {
           "id": "mu-hij",
@@ -10435,7 +10646,155 @@
           "sh": 3,
           "bag": "1 × 23 kg per person",
           "good": "Kan avslutte i Hiroshima uten returtog til Kansai.",
-          "tradeoff": "Vesentlig dyrere og lav direktefrekvens. Velg tidligere returdato ved nytt søk."
+          "tradeoff": "Vesentlig dyrere og lav direktefrekvens. Velg tidligere returdato ved nytt søk.",
+          "legs": [
+            {
+              "from": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "to": {
+                "city": "Tokyo",
+                "name": "Haneda lufthavn",
+                "code": "HND"
+              },
+              "date": "2027-03-19",
+              "depart": "17.25",
+              "arrive": "20.50",
+              "number": "MU575",
+              "duration": "2 t 25 min"
+            },
+            {
+              "from": {
+                "city": "Hiroshima",
+                "name": "Hiroshima lufthavn",
+                "code": "HIJ"
+              },
+              "to": {
+                "city": "Shanghai",
+                "name": "Pudong internasjonale lufthavn",
+                "code": "PVG"
+              },
+              "date": "2027-04-02",
+              "depart": "13.30",
+              "arrive": "14.55",
+              "number": "MU294",
+              "duration": "2 t 25 min"
+            }
+          ],
+          "evidence": "Valgt billettpakke hos Trip.com, ikke betalingssteg",
+          "searchDateSource": "Datoer og avgangstider fra prisobservasjonen 2026-10-12"
+        }
+      ]
+    },
+    "sakuraComparison": {
+      "checked": "2026-10-12",
+      "title": "Sakura kan endre hvilken flyretning som er best",
+      "intro": "Japans offisielle normalverdier tilsier full blomstring i Tokyo omtrent 31. mars, og i Hiroshima, Kyoto og Osaka omtrent 3.–4. april. Det gjør det relevant å besøke Tokyo tidlig og Kansai sent, selv om flyalternativene i den retningen var dyrere.",
+      "uncertainty": "Dette er en sammenligning med normalverdier for 1991–2020, ikke en 2027-prognose. Blomstringen kan forskyves mange dager. I 2026 var full blomstring eksempelvis 28. mars i Tokyo og 30. mars i Kyoto/Hiroshima.",
+      "cityNormals": [
+        {
+          "city": "Tokyo",
+          "first": "24. mars",
+          "peak": "31. mars",
+          "peak2026": "28. mars"
+        },
+        {
+          "city": "Hiroshima",
+          "first": "25. mars",
+          "peak": "3. april",
+          "peak2026": "30. mars"
+        },
+        {
+          "city": "Kyoto",
+          "first": "26. mars",
+          "peak": "4. april",
+          "peak2026": "30. mars"
+        },
+        {
+          "city": "Osaka",
+          "first": "27. mars",
+          "peak": "4. april",
+          "peak2026": "3. april"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "tokyo-first",
+          "title": "Tokyo først · Kansai sist",
+          "status": "Sterkest for sakura ved normal blomstring",
+          "visits": [
+            {
+              "city": "Tokyo",
+              "window": "19.–24. mars",
+              "rating": "Tidlig – kan være før hovedblomstringen"
+            },
+            {
+              "city": "Kyoto",
+              "window": "25.–29. mars",
+              "rating": "Begynnende eller økende blomstring"
+            },
+            {
+              "city": "Hiroshima",
+              "window": "29.–31. mars",
+              "rating": "Nærmere full blomstring"
+            },
+            {
+              "city": "Osaka",
+              "window": "31. mars–3. april",
+              "rating": "God mulighet for hovedblomstring"
+            }
+          ],
+          "conclusion": "Gir flere områder sent i sesongen, men Tokyo kommer tidlig. Kan være verdt å betale mer for dersom sakura er en av hovedopplevelsene."
+        },
+        {
+          "id": "kansai-first",
+          "title": "Kansai først · Tokyo sist",
+          "status": "Sterkest for Tokyo-blomstring",
+          "visits": [
+            {
+              "city": "Osaka",
+              "window": "19.–22. mars",
+              "rating": "Trolig før første blomstring"
+            },
+            {
+              "city": "Hiroshima",
+              "window": "22.–24. mars",
+              "rating": "Trolig før eller helt i starten"
+            },
+            {
+              "city": "Kyoto",
+              "window": "24.–28. mars",
+              "rating": "Tidlig til økende blomstring"
+            },
+            {
+              "city": "Tokyo",
+              "window": "29. mars–3. april",
+              "rating": "God mulighet for hovedblomstring"
+            }
+          ],
+          "conclusion": "Gode muligheter i Tokyo, men flere av de vestlige stoppene kommer før normal blomstring. Lavere flypris og tryggere utreise."
+        }
+      ],
+      "note": "Disse datoene viser kun to illustrative reiseretninger for flybeslutningen. Ingen hotellbaser, overnattinger eller dagsplaner endres her.",
+      "verdict": "Sakura isolert sett taler svakt til moderat for Tokyo først. Flypris og sikkerhetsmargin taler for Kansai først. Ingen av retningene er garantert best før 2027-prognosene kommer.",
+      "sources": [
+        {
+          "label": "Japan Meteorological Agency – Tokyo",
+          "url": "https://www.data.jma.go.jp/tokyo/shosai/kanyoho/sakura/sakura.html"
+        },
+        {
+          "label": "Japan Meteorological Agency – Kyoto og Osaka",
+          "url": "https://www.data.jma.go.jp/cpd/j_climate/kinki/main.html"
+        },
+        {
+          "label": "Japan Meteorological Agency – Hiroshima",
+          "url": "https://www.jma-net.go.jp/hiroshima/seibutu.html"
+        },
+        {
+          "label": "JNTO – sakura og sesongvariasjon",
+          "url": "https://www.japan.travel/en/guide/march/"
         }
       ]
     }

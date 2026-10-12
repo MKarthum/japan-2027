@@ -124,7 +124,7 @@
   "flights": {
     "eyebrow": "Flyreise",
     "title": "Fly mellom Shanghai og Japan",
-    "intro": "Sammenlign fly mellom Shanghai og Japan, med priser for fire, bagasje og realistiske tidsvinduer. Datoer for nye søk kan velges direkte på siden.",
+    "intro": "To mulige reiseretninger fra Shanghai vurderes ut fra kirsebærblomstring, dokumenterte flyavganger, pris for fire og forbindelsesrisiko. Ingen regionale fly er bestemt.",
     "patternsEyebrow": "Reisetype",
     "patternsTitle": "Fire oppsett som må prises",
     "patternsIntro": "Å fly inn til én by og hjem fra en annen passer en lineær Japan-rute godt. I Google Flights gjøres dette med «Flere byer / Multi-city». Vanlig tur/retur brukes fortsatt som prisreferanse.",
@@ -153,8 +153,8 @@
     "sourcesTitle": "Kontrollgrunnlag for flysiden",
     "sourcesIntro": "Flypriser og rutetabeller endrer seg raskt. Kildene under er grunnlaget for denne flyvurderingen og skal kontrolleres på nytt før bestilling.",
     "shortlistEyebrow": "Observerte flypriser",
-    "shortlistTitle": "Dokumenterte flyalternativer",
-    "shortlistIntro": "Historiske priser fra billettpakke hos selger, ikke løpende tilbud. Tidspunkter vises avrundet av personvernhensyn.",
+    "shortlistTitle": "Faktiske flysøk – sammenlign tidspunkt og pris",
+    "shortlistIntro": "Hver observasjon viser søkt dato, faktisk avgangstid, flyplassens navn, flynummer, bagasje og pris for fire. Prisen kan endre seg ved nytt søk.",
     "matrixEyebrow": "Søkearkiv",
     "matrixTitle": "Historiske flysøk",
     "matrixIntro": "Tidligere markedsresearch er bevart som et søkbart arkiv, men har ikke status som bestilling eller aktuell billettpris.",
@@ -163,13 +163,13 @@
     "contextIntro": "Bagasje, reisetid, ekstra tog og reell tid på reisemålene kan være viktigere enn en liten forskjell i flypris.",
     "directEyebrow": "Åpne søkeverktøy",
     "directTitle": "Kontroller regionale flypriser",
-    "directIntro": "Søk oppdaterte priser hos flyselskapene og relevante bestillingstjenester før valg av fly.",
+    "directIntro": "Åpne de dokumenterte søkene fra flykortene, sammenlign manuelt i Google Flights eller hos flyselskapet, og kontroller totalpris og vilkår før kjøp.",
     "hubEyebrow": "To reisemønstre",
     "hubTitle": "Kansai først eller Tokyo først?",
-    "hubIntro": "Kansai først er sterkest på pris og sikkerhetsmargin. Begge retninger kan gi sakura, og blomstringen i 2027 er ikke kjent.",
+    "hubIntro": "Tokyo først kan gi sakura på flere stopp ved normal blomstring; Kansai først gir bedre kontrollert flypris og en romsligere separat utreiseforbindelse.",
     "airportEyebrow": "Muligheter utenfor hovedsøket",
     "airportTitle": "Alternative flyplasser – beslutning",
-    "airportIntro": "Kansai og Tokyo gir best logistikk. Andre flyplasser er undersøkt der de kunne endre reiseruten."
+    "airportIntro": "Kansai, Kobe, Nagoya og Hiroshima er vurdert i sammenheng med den mulige reiseretningen. Flyplassene vises med både by, navn og IATA-kode."
   },
   "drones": {
     "eyebrow": "Droneguide",
