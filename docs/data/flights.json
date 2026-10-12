@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-11",
+  "asOf": "2026-10-12",
   "status": "research-active",
   "planningWindow": {
     "flexDays": 3,
@@ -10191,9 +10191,9 @@
     "stage": "regional-japan-search",
     "hub": "Shanghai",
     "hubAirport": "PVG",
-    "publicTitle": "Shanghai–Japan: flyalternativene",
-    "publicSummary": "Flerbybilletter til ulike japanske byer har gitt de mest interessante prisene i kontrollsøket. Valget bør vurderes sammen med reiseruten i Japan, bagasje, reisetid og romslige marginer mellom separate billetter.",
-    "statusLabel": "Regionalfly: prisalternativer undersøkt",
+    "publicTitle": "Shanghai–Japan: flyalternativer",
+    "publicSummary": "Kansai inn og Tokyo hjem gir best kombinasjon av reisetid, samlet pris og enkel rute. Valget står særlig mellom mer tid i Tokyo med Haneda-retur og en rimeligere, tidlig Narita-retur.",
+    "statusLabel": "Sluttkontroll gjennomført",
     "patterns": [
       {
         "id": "osaka-in",
@@ -10229,13 +10229,13 @@
       "Skill mellom regionale flybilletter og den separate langdistansereisen ved vurdering av forbindelsesrisiko.",
       "Kontroller visum- og transittvilkår for Kina på nytt før billettkjøp."
     ],
-    "statusNote": "Dette er offentlige markedsobservasjoner, ikke familiens konkrete billetter. Private reisedatoer, flynummer og bestillingsopplysninger inngår ikke.",
+    "statusNote": "Anonymiserte markedsobservasjoner; ikke reserverte billetter. Private reisedatoer, flynummer og eksakte klokkeslett er ikke offentliggjort.",
     "archivedRoundId": "japan-shanghai-flight-options-2026-10-11",
     "sources": [
       "https://www.google.com/travel/flights",
       "https://www.trip.com/flights"
     ],
-    "researchStatus": "regional-prices-observed-not-bookable-until-rechecked",
+    "researchStatus": "regional-check-completed-2026-10-12",
     "marketObservation": {
       "checked": "2026-10-11",
       "category": "interaktivt flerbysøk – valgt billettype hos selger, ikke betalingssteg",
@@ -10273,59 +10273,171 @@
     "airportExpansion": {
       "checked": "2026-10-11",
       "title": "Flere japanske flyplasser kan være verdt et målrettet søk",
-      "summary": "Kansai dekker allerede Kyoto og Osaka godt. Kobe og Nagoya kan være alternative innfallsporter, mens Hiroshima og Fukuoka først gir mening hvis den japanske reiseruten også bruker disse områdene. Sammenlign total transporttid, pris og faktisk antall opplevelsesdager.",
+      "summary": "Kansai er det sterkeste inngangspunktet. Kobe hadde ingen tilgjengelige direktefly til eller fra Shanghai i kontrollvinduet. Hiroshima var mulig, men betydelig dyrere. Nagoya er en upriset reserve.",
       "items": [
         {
           "code": "KIX",
           "name": "Kansai – Kyoto og Osaka",
           "priority": "Hovedvalg",
-          "note": "Kansai er naturlig flyplass for begge byer. Haruka-toget til Kyoto tar omtrent 75 minutter.",
+          "note": "Direkte Shanghai-forbindelse kombinert med Tokyo som utreiseby. Sen ankomst gjør Osaka praktisk som første hotellbase.",
           "source": "https://www.kansai-airport.or.jp/en/access/from-airport/train",
-          "routeConfidence": "Flyplass- og kollektivgrunnlag kontrollert; 2027-avgang ikke garantert."
+          "routeConfidence": "Familietotal og bagasje kontrollert i billettvalg 12. oktober 2026, ikke betalingssteg."
         },
         {
           "code": "UKB",
           "name": "Kobe – alternativ til Kansai",
-          "priority": "Sjekk først",
-          "note": "Kobe har hatt forbindelse til Shanghai med Juneyao. Kan passe som inngang til Kansai-regionen, men avgangstilbud og pris for ønsket periode må bekreftes.",
+          "priority": "Ingen tilgjengelig direkterute",
+          "note": "Søkene ga ingen direkte Shanghai–Kobe eller Kobe–Shanghai i undersøkt planleggingsvindu; enkelte søk utvidet resultatene til Kansai.",
           "source": "https://www.kairport.co.jp/en/flight/airlines",
           "scheduleSource": "https://www.kairport.co.jp/sites/ukb/files/2026-01/202510_en.pdf",
-          "routeConfidence": "Dokumentert i publisert 2025/26-plan, ikke kontrollert for våren 2027."
+          "routeConfidence": "Observasjon 12. oktober 2026, ikke en påstand om fremtidige flyruter."
         },
         {
           "code": "NGO",
           "name": "Nagoya – øst for Kyoto",
-          "priority": "Aktuell reserve",
-          "note": "Direkteruter mellom Shanghai og Nagoya finnes. Interessant dersom ruten legges via Nagoya eller flypris og togtransport samlet blir bedre.",
+          "priority": "Upriset reserve",
+          "note": "Ingen konkret tids- eller prisgevinst dokumentert, og derfor ingen komplett prising gjennomført.",
           "source": "https://www.centrair.jp/en/flight/schedule/international-arrival-01.html",
-          "routeConfidence": "Direkteruter dokumentert i 2026; ingen prissjekk for 2027."
+          "routeConfidence": "Upriset, ikke et negativt prisfunn."
         },
         {
           "code": "HIJ",
           "name": "Hiroshima – vestlig innfallsport",
-          "priority": "Ruteavhengig",
-          "note": "Shanghai–Hiroshima er dokumentert med begrenset frekvens. Gir mest mening dersom turen også inkluderer Hiroshima og deretter beveger seg østover.",
+          "priority": "Dyrt alternativ",
+          "note": "En direkte retur til Shanghai var tilgjengelig, men den samlede flerbyprisen ble mye høyere enn med retur fra Tokyo.",
           "source": "https://www.hij.airport.jp/en/flight/kokusai/shanghai.html",
-          "routeConfidence": "Offisiell 2026-rutetabell, avgangsfrekvens og 2027-pris må bekreftes."
+          "routeConfidence": "Selgerpris kontrollert 12. oktober 2026. Offisiell rutetabell er fra 2026."
         },
         {
           "code": "FUK",
           "name": "Fukuoka – dersom Kyushu prioriteres",
-          "priority": "Kun ved rutebehov",
-          "note": "Direkte Shanghai-ruter finnes, men Fukuoka gir ekstra reisevei hvis hovedoppholdet er Kyoto, Osaka og Tokyo.",
+          "priority": "Ikke nødvendig",
+          "note": "Relevant bare hvis Kyushu prioriteres for opplevelsene. Ingen dokumentert flyprisgevinst på den planlagte hovedruten.",
           "source": "https://www.flightconnections.com/flights-from-pvg-to-fuk",
-          "routeConfidence": "Rutereferanse kontrollert i 2026; ingen pris undersøkt for denne reisen."
+          "routeConfidence": "Ikke fullstendig priset."
         }
       ],
       "notPrioritized": "Osaka Itami (ITM) er innenriksflyplass. Okayama og Shizuoka har ikke et dokumentert aktivt direktetilbud til Shanghai i kontrollgrunnlaget.",
-      "conclusion": "Anbefaling: Sjekk Kobe og Nagoya mot Kansai i en kort tilleggsrunde. Utvid deretter til Hiroshima eller Fukuoka bare om det passer den ønskede ruten gjennom Japan.",
+      "conclusion": "Prioriter Kansai inn og Tokyo ut. Kobe kan besøkes fra Kansai uten egen hotellbase. Nye flyplasser gir ikke dokumentert gevinst som forsvarer mer kompleksitet.",
       "comparisonRule": "Vurder billettpris for fire med bagasje + flyplasstransport + ekstra tog + reisetid + risiko. Ikke sammenlign kun flyprisen."
     },
     "nextActions": [
-      "Repris beste regionale flerbybillett for korrekt reisefølge og bagasje hos selger.",
-      "Sjekk Kobe og Nagoya som målrettet alternativ til Kansai med samme grunnkrav.",
-      "Sjekk Hiroshima og Fukuoka kun hvis endret rute gjennom Japan kan gi merverdi.",
-      "Avklar innreise/transitt Kina for aktuell reise og separate billetter før kjøp."
-    ]
+      "Repris hovedalternativene for fire med innsjekket bagasje og fullstendige vilkår.",
+      "Sammenlign mer Japan-tid via Haneda mot lavere pris fra Narita.",
+      "Kontroller transport fra Kansai ved sen ankomst og Kina-transitt før kjøp."
+    ],
+    "finalReview": {
+      "checked": "2026-10-12",
+      "basis": "Observerte totalpriser for fire med skatter og bagasje i valgt billettpakke hos selger, ikke bekreftet ved siste betalingssteg.",
+      "searchHelp": "Velg datoer. Lenken fyller ut begge flystrekningene og tre voksenpriskategorier pluss ett barn. Avgang og billettype velges deretter hos selger.",
+      "privacy": "Datoer settes og huskes bare lokalt i nettleseren. De foreløpige datoene på siden er ikke en offentliggjøring av faktiske bestillinger.",
+      "choices": [
+        {
+          "id": "ana-hnd",
+          "tag": "Beste helhet",
+          "title": "Kansai inn · Haneda hjem",
+          "company": "ANA",
+          "to": "PVG → KIX",
+          "back": "HND → PVG",
+          "outWindow": "Kveld → sen kveld",
+          "backWindow": "Sen ettermiddag → kveld",
+          "toCity": "osa",
+          "toAirport": "kix",
+          "backCity": "tyo",
+          "backAirport": "hnd",
+          "usd": 1727,
+          "sourceDate": "2026-10-12",
+          "jp": 15,
+          "sh": 2,
+          "bag": "2 × 23 kg per person",
+          "good": "Mer tid i Tokyo på avreisedagen, med god sikkerhetsmargin på utreisen.",
+          "tradeoff": "432 USD dyrere enn den tidlige Narita-returen. Sen ankomst i Shanghai."
+        },
+        {
+          "id": "ana-nrt",
+          "tag": "Laveste pris",
+          "title": "Kansai inn · Narita hjem",
+          "company": "ANA",
+          "to": "PVG → KIX",
+          "back": "NRT → PVG",
+          "outWindow": "Kveld → sen kveld",
+          "backWindow": "Tidlig morgen → formiddag",
+          "toCity": "osa",
+          "toAirport": "kix",
+          "backCity": "tyo",
+          "backAirport": "nrt",
+          "usd": 1295,
+          "sourceDate": "2026-10-12",
+          "jp": 15,
+          "sh": 2,
+          "bag": "2 × 23 kg per person",
+          "good": "Lavest kontrollert totalpris, og mer tid i Shanghai etter Japan.",
+          "tradeoff": "Svært tidlig hotellavreise fra Tokyo, eventuelt behov for flyplasshotell."
+        },
+        {
+          "id": "ana-shanghai",
+          "tag": "Mer Shanghai",
+          "title": "Kansai inn · Haneda hjem, kortere opphold",
+          "company": "ANA",
+          "to": "PVG → KIX",
+          "back": "HND → PVG",
+          "outWindow": "Kveld → sen kveld",
+          "backWindow": "Sen ettermiddag → kveld",
+          "toCity": "osa",
+          "toAirport": "kix",
+          "backCity": "tyo",
+          "backAirport": "hnd",
+          "usd": 1727,
+          "sourceDate": "2026-10-11",
+          "jp": 14,
+          "sh": 3,
+          "bag": "2 × 23 kg per person",
+          "good": "To hele dager i Shanghai.",
+          "tradeoff": "Én færre Japan-natt. Tidligere prisobservasjon; velg en tidligere returdato ved nytt søk."
+        },
+        {
+          "id": "jal-kix",
+          "tag": "Tokyo først",
+          "title": "Tokyo inn · Kansai hjem",
+          "company": "Japan Airlines",
+          "to": "PVG → HND",
+          "back": "KIX → PVG",
+          "outWindow": "Kveld → sen kveld",
+          "backWindow": "Morgen → formiddag",
+          "toCity": "tyo",
+          "toAirport": "hnd",
+          "backCity": "osa",
+          "backAirport": "kix",
+          "usd": 2535,
+          "sourceDate": "2026-10-12",
+          "jp": 15,
+          "sh": 2,
+          "bag": "2 × 23 kg per person",
+          "good": "Passer opprinnelig reiseretning og en mulig sen sakura-periode i Kansai.",
+          "tradeoff": "808 USD dyrere enn anbefalt Haneda-alternativ. Sen hotellankomst i Tokyo."
+        },
+        {
+          "id": "mu-hij",
+          "tag": "Alternativ sluttby",
+          "title": "Tokyo inn · Hiroshima hjem",
+          "company": "China Eastern",
+          "to": "PVG → HND",
+          "back": "HIJ → PVG",
+          "outWindow": "Sen ettermiddag → kveld",
+          "backWindow": "Tidlig ettermiddag → ettermiddag",
+          "toCity": "tyo",
+          "toAirport": "hnd",
+          "backCity": "hij",
+          "backAirport": "hij",
+          "usd": 3583,
+          "sourceDate": "2026-10-12",
+          "jp": 14,
+          "sh": 3,
+          "bag": "1 × 23 kg per person",
+          "good": "Kan avslutte i Hiroshima uten returtog til Kansai.",
+          "tradeoff": "Vesentlig dyrere og lav direktefrekvens. Velg tidligere returdato ved nytt søk."
+        }
+      ]
+    }
   }
 }

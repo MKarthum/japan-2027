@@ -144,3 +144,18 @@
 .flight-airport-card .flight-r-actions{padding-top:0;margin-top:10px}
 .flight-airport-card .button{font-size:.72rem;line-height:1.3;white-space:normal;text-align:center}
 @media(max-width:810px){.flight-airport-grid,.flight-regional-compare{grid-template-columns:1fr}}
+
+/* Datoer og flyvinduer i den regionale beslutningsflaten. */
+.flight-date-search{margin:0 0 18px;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:15px;display:grid;gap:10px}
+.flight-date-search h3{margin:0}
+.flight-date-search p{margin:0;font-size:.8rem;line-height:1.5;color:var(--muted)}
+.flight-date-fields{display:flex;gap:14px;flex-wrap:wrap}
+.flight-date-fields label{display:flex;flex-direction:column;gap:5px;font-size:.78rem;font-weight:800}
+.flight-date-fields input{font:inherit;padding:10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+.flight-date-fields input:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+.flight-leg-window{display:flex;flex-direction:column;gap:4px;padding:11px 0;border-top:1px solid var(--line)}
+.flight-leg-window b{font-size:.73rem;color:var(--muted)}
+.flight-leg-window strong{font-size:.91rem}
+.flight-leg-window small{font-size:.75rem;color:var(--muted)}
+.flight-r-actions [aria-disabled=true]{opacity:.5;pointer-events:none}
+@media(max-width:480px){.flight-date-fields{flex-direction:column}.flight-date-fields label,.flight-date-fields input{width:100%}}

@@ -124,7 +124,7 @@
   "flights": {
     "eyebrow": "Flyreise",
     "title": "Fly mellom Shanghai og Japan",
-    "intro": "Shanghai er utgangspunktet for videre flysøk. De kontrollerte regionale prisene sammenligner to veier gjennom Japan, med flere mulige flyplasser dersom transporten samlet blir bedre.",
+    "intro": "Sammenlign fly mellom Shanghai og Japan, med priser for fire, bagasje og realistiske tidsvinduer. Datoer for nye søk kan velges direkte på siden.",
     "patternsEyebrow": "Reisetype",
     "patternsTitle": "Fire oppsett som må prises",
     "patternsIntro": "Å fly inn til én by og hjem fra en annen passer en lineær Japan-rute godt. I Google Flights gjøres dette med «Flere byer / Multi-city». Vanlig tur/retur brukes fortsatt som prisreferanse.",
@@ -153,8 +153,8 @@
     "sourcesTitle": "Kontrollgrunnlag for flysiden",
     "sourcesIntro": "Flypriser og rutetabeller endrer seg raskt. Kildene under er grunnlaget for denne flyvurderingen og skal kontrolleres på nytt før bestilling.",
     "shortlistEyebrow": "Observerte flypriser",
-    "shortlistTitle": "Hva kostet regionale flerbybilletter?",
-    "shortlistIntro": "Prisene er fra billettvalget hos selger i en datert kontrollrunde. De er ikke bestillinger eller tilbud med garantert tilgjengelighet.",
+    "shortlistTitle": "Dokumenterte flyalternativer",
+    "shortlistIntro": "Historiske priser fra billettpakke hos selger, ikke løpende tilbud. Tidspunkter vises avrundet av personvernhensyn.",
     "matrixEyebrow": "Søkearkiv",
     "matrixTitle": "Historiske flysøk",
     "matrixIntro": "Tidligere markedsresearch er bevart som et søkbart arkiv, men har ikke status som bestilling eller aktuell billettpris.",
@@ -165,11 +165,11 @@
     "directTitle": "Kontroller regionale flypriser",
     "directIntro": "Søk oppdaterte priser hos flyselskapene og relevante bestillingstjenester før valg av fly.",
     "hubEyebrow": "To reisemønstre",
-    "hubTitle": "Osaka først eller Tokyo først?",
-    "hubIntro": "Begge mønstrene er undersøkt for fire reisende. Valget styres av samlet flypris, oppholdstid og hvordan man reiser videre i Japan.",
+    "hubTitle": "Kansai først eller Tokyo først?",
+    "hubIntro": "Kansai først er sterkest på pris og sikkerhetsmargin. Begge retninger kan gi sakura, og blomstringen i 2027 er ikke kjent.",
     "airportEyebrow": "Muligheter utenfor hovedsøket",
-    "airportTitle": "Bør vi sjekke flere flyplasser?",
-    "airportIntro": "Kyoto og Osaka dekkes allerede godt av Kansai. Et begrenset søk etter andre japanske innfallsporter kan likevel være nyttig, særlig Kobe og Nagoya."
+    "airportTitle": "Alternative flyplasser – beslutning",
+    "airportIntro": "Kansai og Tokyo gir best logistikk. Andre flyplasser er undersøkt der de kunne endre reiseruten."
   },
   "drones": {
     "eyebrow": "Droneguide",
