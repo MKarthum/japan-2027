@@ -6,7 +6,7 @@ async function renderFlightsResearch() {
   const overview = document.getElementById('flight-r-overview');
   if (data.nextFlightFocus?.stage === 'regional-japan-search') {
     renderRegionalJapanFocus(data.nextFlightFocus, data);
-    renderRegionalMarketInsights(data.nextFlightFocus, data, fx);
+    renderRegionalMarketInsights(data.nextFlightFocus, data, fx, trip);
     return;
   }
   if (!round?.completeOptions?.length) {
@@ -177,11 +177,11 @@ async function renderHomeFlightTeaser() {
       const esc=t=>String(t??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
       const marketRound=data.research?.searchRounds?.find(r=>r.id===focus.archivedRoundId);
       const usdRate=marketRound?.fxReference?.nokPerUsd;
-      root.innerHTML='<div class="flight-hub-preview-grid">'+focus.patterns.map(p=>{
-        const nok=Number.isFinite(usdRate)&&Number.isFinite(p.marketPriceUsd)?p.marketPriceUsd*usdRate:null;
-        return '<a class="flight-hub-preview" href="flights.html#flight-r-picks"><small>'+esc(p.relativeStatus||focus.statusLabel)+'</small><strong>'+esc(p.name)+
-          '</strong><span>'+(nok!=null?fmtNok(nok)+' · ca. '+fmtJpy(jpyFromNok(nok,fx)):esc(p.outbound))+'</span></a>';
-      }).join('')+'</div><p class="flight-hub-preview-note">'+esc(focus.marketObservation?.caveat||focus.statusNote)+'</p>';
+      root.innerHTML='<div class="flight-hub-preview-grid">'+(focus.finalReview?.choices||[]).slice(0,3).map(p=>{
+        const nok=Number.isFinite(usdRate)?p.usd*usdRate:null;
+        return '<a class="flight-hub-preview" href="flights.html#flight-r-picks"><small>'+esc(p.tag)+'</small><strong>'+esc(p.title)+
+          '</strong><span>'+(nok!=null?fmtNok(nok)+' · ca. '+fmtJpy(jpyFromNok(nok,fx)):esc(p.to))+'</span></a>';
+      }).join('')+'</div><p class="flight-hub-preview-note">'+esc(focus.finalReview?.basis||focus.statusNote)+'</p>';
       return;
     }
     if(!round?.completeOptions?.length)return;
@@ -263,59 +263,70 @@ function renderRegionalJapanFocus(focus, data) {
 }
 
 
-/* Publiserte, anonymiserte markedsobservasjoner og supplerende flyplasser. */
-function renderRegionalMarketInsights(focus, data, fx) {
-  const html = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const r = data.research?.searchRounds?.find(x=>x.id===focus.archivedRoundId);
-  const usdNok = r?.fxReference?.nokPerUsd;
-  const prices = usd => {
-    if(!Number.isFinite(usd)||!Number.isFinite(usdNok)) return 'Pris må sjekkes';
-    const nok=usd*usdNok;
-    return '<span class="flight-regional-price"><strong>'+fmtNok(nok)+'</strong><small>ca. '+fmtJpy(jpyFromNok(nok,fx))+' · '+html(usd)+' USD</small></span>';
-  };
-  const safe = raw => {
-    try{
-      const u=new URL(raw);
-      if(u.protocol!=='https:' || [...u.searchParams.keys()].some(k=>/token|session|booking|checkout|pnr|auth|email|password/i.test(k)))return '';
-      return html(u.href);
-    }catch{return ''}
-  };
-  const link = (url,label) => safe(url) ? '<a class="button" href="'+safe(url)+'" rel="noopener noreferrer" target="_blank">'+html(label)+' ↗</a>' : '';
-  const market=focus.marketObservation;
-  if(!market)return;
-  document.getElementById('flight-hub-selected').textContent = market.category;
-  document.getElementById('flight-r-pick-list').innerHTML =
-    '<div class="flight-r-picks flight-hub-picks">'+focus.patterns.map(p=>
-      '<article class="flight-r-pick"><div class="flight-r-pick-top"><span>'+html(p.relativeStatus)+'</span><span>'+html(market.checked)+'</span></div>'+
-      '<h3>'+html(p.name)+'</h3><div class="flight-r-price">'+prices(p.marketPriceUsd)+'</div>'+
-      '<p class="flight-r-price-note">'+html(market.partyDescription)+' · valgt billettype, før betaling</p>'+
-      '<p class="flight-r-timing">'+html(p.outbound)+' · '+html(p.inbound)+'</p>'+
-      '<p class="flight-r-explanation">'+html(p.marketEvidence)+'</p>'+
-      '<details class="flight-r-details"><summary>Andre priser, bagasje og risiko</summary>'+
-      '<p>En alternativ avgangskombinasjon ble observert til '+prices(p.otherObservedUsd)+'.</p>'+
-      '<p>'+html(p.tradeoff)+'</p><p>'+html(market.baggage)+'</p>'+
-      '<p>'+html(market.terms)+'</p><p>'+html(market.caveat)+'</p></details>'+
-      '<div class="flight-r-actions">'+link(market.sourceUrl,'Kontroller pris hos selger')+
-      link(p.searchUrl,'Søk andre fly')+'</div></article>'
-    ).join('')+'</div>';
-  const context=document.getElementById('flight-r-context');
-  context.innerHTML += '<details class="flight-hub-search-details"><summary>Andre prismønstre i kontrollsøket</summary>'+
-    '<div class="flight-regional-compare">'+market.comparison.map(p=>
-      '<p><strong>'+html(p.name)+'</strong>'+prices(p.observedUsd)+'<span>'+html(p.note)+'</span></p>'
-    ).join('')+'</div></details>';
-  const scope=focus.airportExpansion;
-  const airports=document.getElementById('flight-r-airport-results');
-  if(airports && scope){
-    airports.innerHTML='<p class="flight-r-explanation">'+html(scope.summary)+'</p>'+
-      '<p class="flight-r-caution">'+html(scope.conclusion)+'</p>'+
-      '<details class="flight-hub-search-details"><summary>Se flyplassene og kildene</summary>'+
-      '<div class="flight-airport-grid">'+scope.items.map(p=>
-        '<article class="flight-airport-card"><div class="flight-hub-branch-head"><h3>'+html(p.code)+' · '+html(p.name)+'</h3>'+
-        '<small>'+html(p.priority)+'</small></div><p>'+html(p.note)+'</p>'+
-        '<small>'+html(p.routeConfidence)+'</small><div class="flight-r-actions">'+
-        link(p.source,'Offisiell rute-/transportkilde')+
-        (p.scheduleSource?link(p.scheduleSource,'Publisert rutetabell'):'')+'</div></article>'
-      ).join('')+'</div><p class="flight-r-scope">'+html(scope.notPrioritized)+'</p></details>'+
-      '<p class="flight-hub-preview-note">'+html(scope.comparisonRule)+'</p>';
-  }
+/* Anonymisert regionalresearch med datoer valgt lokalt. */
+function renderRegionalMarketInsights(focus,data,fx,trip){
+ const r=focus.finalReview;if(!r)return;
+ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const historical=data.research?.searchRounds?.find(x=>x.id===focus.archivedRoundId);
+ const usdNok=historical?.fxReference?.nokPerUsd;
+ const money=usd=>'<span class="flight-regional-price"><strong>'+esc(usd.toLocaleString('nb-NO'))+' USD</strong>'+
+   (Number.isFinite(usdNok)?'<small>ca. '+esc(fmtNok(usd*usdNok))+' · '+esc(fmtJpy(jpyFromNok(usd*usdNok,fx)))+'</small>':'')+'</span>';
+ let saved={};try{saved=JSON.parse(localStorage.getItem('japan-regional-search')||'{}')||{};}catch{}
+ const dateOK=v=>/^\d{4}-\d{2}-\d{2}$/.test(v||'')&&!Number.isNaN(Date.parse(v));
+ const depart=dateOK(saved.depart)?saved.depart:trip.route?.[0]?.from||'';
+ const back=dateOK(saved.back)?saved.back:trip.route?.at(-1)?.to||'';
+ document.getElementById('flight-hub-selected').textContent='Søkeresultater kontrollert '+r.checked;
+ const root=document.getElementById('flight-r-pick-list');
+ root.innerHTML='<div class="flight-date-search"><h3>Søk disse rutene på nytt</h3><p>'+esc(r.searchHelp)+'</p>'+
+ '<div class="flight-date-fields"><label>Fly til Japan<input id="flight-regional-out" type="date" value="'+esc(depart)+'"></label>'+
+ '<label>Fly tilbake til Shanghai<input id="flight-regional-back" type="date" value="'+esc(back)+'"></label></div>'+
+ '<p>'+esc(r.privacy)+'</p><p class="flight-r-caution" id="flight-regional-warning" aria-live="polite"></p></div>'+
+ '<div class="flight-r-picks flight-hub-picks">'+r.choices.map(c=>
+ '<article class="flight-r-pick"><div class="flight-r-pick-top"><span>'+esc(c.tag)+'</span><span>'+esc(c.sourceDate)+'</span></div>'+
+ '<h3>'+esc(c.title)+'</h3><div class="flight-r-price">'+money(c.usd)+'</div>'+
+ '<p class="flight-r-price-note">'+esc(c.company)+' · fire reisende · '+esc(c.bag)+'</p>'+
+ '<div class="flight-leg-window"><b>Til Japan</b><strong>'+esc(c.to)+'</strong><small>'+esc(c.outWindow)+'</small></div>'+
+ '<div class="flight-leg-window"><b>Til Shanghai</b><strong>'+esc(c.back)+'</strong><small>'+esc(c.backWindow)+'</small></div>'+
+ '<p class="flight-r-timing">'+esc(c.jp)+' Japan-netter · '+esc(c.sh)+' Shanghai-netter</p>'+
+ '<p class="flight-r-explanation">'+esc(c.good)+'</p>'+
+ '<details class="flight-r-details"><summary>Ulemper og prisgrunnlag</summary><p>'+esc(c.tradeoff)+'</p><p>'+esc(r.basis)+'</p></details>'+
+ '<div class="flight-r-actions"><a class="button primary" data-flight-choice="'+esc(c.id)+'" rel="noopener noreferrer" target="_blank">Gjenta flerbysøket ↗</a></div></article>').join('')+'</div>';
+ const from=document.getElementById('flight-regional-out'),to=document.getElementById('flight-regional-back');
+ const warning=document.getElementById('flight-regional-warning');
+ const search=(c,a,b)=>{
+  const p=new URLSearchParams();
+  p.set('multdcity0','sha');p.set('multacity0',c.toCity);p.set('dairport0','pvg');
+  if(!['hnd','nrt'].includes(c.toAirport))p.set('aairport0',c.toAirport);
+  p.set('multddate0',a);p.set('multdcity1',c.backCity);p.set('multacity1','sha');
+  if(!['hnd','nrt'].includes(c.backAirport))p.set('dairport1',c.backAirport);
+  p.set('aairport1','pvg');p.set('multddate1',b);
+  p.set('triptype','mt');p.set('class','y');p.set('quantity','3');p.set('childqty','1');
+  p.set('locale','en-XX');p.set('curr','USD');
+  return 'https://www.trip.com/flights/showfarefirst?'+p.toString();
+ };
+ function refresh(){
+  const a=from.value,b=to.value,ok=dateOK(a)&&dateOK(b)&&a<b;
+  warning.textContent=ok?'':'Velg gyldige datoer i riktig rekkefølge.';
+  root.querySelectorAll('[data-flight-choice]').forEach(el=>{
+   const c=r.choices.find(x=>x.id===el.dataset.flightChoice);
+   if(!ok||!c){el.removeAttribute('href');el.setAttribute('aria-disabled','true');return;}
+   el.href=search(c,a,b);el.removeAttribute('aria-disabled');
+  });
+  if(ok)try{localStorage.setItem('japan-regional-search',JSON.stringify({depart:a,back:b}));}catch{}
+ }
+ from.addEventListener('change',refresh);to.addEventListener('change',refresh);refresh();
+ document.getElementById('flight-r-context').innerHTML='<div class="flight-r-context-grid">'+
+ '<article><h3>Hva er kontrollert?</h3><p>'+esc(r.basis)+'</p><p>Priser, innsjekket bagasje og rutemønster ble sett hos selger. Betalingsgebyrer og siste tilgjengelighet må bekreftes.</p></article>'+
+ '<article><h3>Velg datoer først</h3><p>'+esc(r.searchHelp)+'</p><p>Søk på andre datoer kan gi en annen pris. Eksakte flyvninger velges i resultatlisten.</p></article></div>';
+ const scope=focus.airportExpansion;
+ if(scope){
+  const link=u=>{try{const url=new URL(u);return url.protocol==='https:'?'<a class="button" href="'+esc(url.href)+'" target="_blank" rel="noopener noreferrer">Offisiell kilde ↗</a>':'';}catch{return '';}};
+  document.getElementById('flight-r-airport-results').innerHTML='<p class="flight-r-explanation">'+esc(scope.summary)+'</p>'+
+  '<p class="flight-r-caution">'+esc(scope.conclusion)+'</p><div class="flight-airport-grid">'+scope.items.map(a=>
+   '<article class="flight-airport-card"><div class="flight-hub-branch-head"><h3>'+esc(a.code)+' · '+esc(a.name)+'</h3><small>'+esc(a.priority)+'</small></div>'+
+   '<p>'+esc(a.note)+'</p><small>'+esc(a.routeConfidence)+'</small><div class="flight-r-actions">'+link(a.source)+'</div></article>').join('')+'</div>';
+ }
+ document.getElementById('flight-r-direct').innerHTML='<p>Velg datoer over og åpne flerbysøket for ønsket rute. Søket fyller ut flyplasser og reisefølge, men ikke en garantert pris eller bestemt avgang.</p>'+
+ '<a class="button" href="https://www.google.com/travel/flights" target="_blank" rel="noopener noreferrer">Google Flights ↗</a>'+
+ '<a class="button" href="https://aswbe.ana.co.jp/webapps/reservation/flight-search?CONNECTION_KIND=CHN&amp;LANG=en" target="_blank" rel="noopener noreferrer">ANA – søk ↗</a>';
 }
