@@ -81,8 +81,18 @@
         "hakone"
       ],
       "optionalPlaceIds": [],
-      "logic": "Det verdifulle med én natt på ryokan i Hakone er overnattingen, et rolig bad og omgivelsene. Ha en enkel ettermiddag og en fleksibel morgen.",
-      "watch": "Ikke forutsett at hele sightseeing-rundturen i Hakone også får plass. Sjekk reisevei og innsjekking."
+      "logic": "Én natt i Hakone gir tid til et privat familiebad og en roligere overnatting. De konkrete hotellbadene og et mulig separat badebesøk er samlet under Hakone, uten at noe er valgt.",
+      "watch": "Sjekk rom som passer fire, vilkår for privatbadet og innsjekking før dere bestemmer overnatting. Ikke planlegg omfattende sightseeing i tillegg.",
+      "links": [
+        {
+          "label": "Se fire onsenalternativer",
+          "url": "place.html?id=hakone#place-onsen-options"
+        },
+        {
+          "label": "Sammenlign overnatting i Hakone",
+          "url": "hotels.html?base=hakone#hakone-onsen-options"
+        }
+      ]
     },
     {
       "id": "kyoto-higashiyama",
