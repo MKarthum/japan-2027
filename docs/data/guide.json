@@ -1,42 +1,51 @@
 {
-  "updated": "2026-10-08",
+  "updated": "2026-10-20",
   "bookingRadar": [
     {
-      "priority": "Viktig",
-      "when": "Billettsalget til Osakas vårturnering åpner 6. februar 2027",
-      "why": "Den offisielle turneringen går 14.–28. mars 2027. En kamp mot slutten kan passe som utflukt fra Kyoto, men kjøp først når datoene passer. Sammenlign med profesjonell turné og mindre show.",
-      "checked": "2026-10-08",
-      "placeId": "sumo-osaka"
-    },
-    {
-      "priority": "Viktig",
-      "when": "Vinteren 2026/27: sjekk publisering av vårturné og lokale billettslipp",
-      "why": "2027-ruten er ikke publisert. Undersøk om et stopp i Kansai passer bedre enn den offisielle Osaka-turneringen.",
-      "checked": "2026-10-08",
+      "priority": "Vurder senere",
+      "when": "Fra 6. februar 2027",
+      "why": "Offisielle konkurransekamper kan oppleves med et kort ettermiddagsbesøk, men en tur fra Kyoto koster reisetid. Velg bare dersom dere vil prioritere dette.",
+      "checked": "2026-10-20",
       "placeId": "sumo-osaka",
-      "optionId": "jungyo"
+      "optionId": "honbasho"
     },
     {
-      "priority": "Kan bestilles",
-      "when": "Når aprildatoene i 2027 kan bestilles",
-      "why": "Forestillinger i Osaka kan være reservealternativ hvis vi ikke vil prioritere en kampdag i den store turneringen.",
-      "checked": "2026-10-08",
+      "priority": "Vurder senere",
+      "when": "Når dagsprogrammet for Osaka er klart",
+      "why": "Kaminari Ichimon tilbyr 90 minutter med tidligere profesjonelle brytere, engelsk innføring og mulighet for deltakelse. Demonstrasjonene er ikke konkurransekamper.",
+      "checked": "2026-10-20",
+      "placeId": "sumo-osaka",
+      "optionId": "kaminari"
+    },
+    {
+      "priority": "Vurder senere",
+      "when": "Se marskalenderen for 2027 og kontroller tilgjengelig dato",
+      "why": "Hirakuza er et to timers show med tidligere profesjonelle brytere, lyd og lys. Passer om et underholdningsopplegg prioriteres.",
+      "checked": "2026-10-20",
       "placeId": "sumo-osaka",
       "optionId": "hirakuza"
     },
     {
-      "priority": "Kan bestilles",
-      "when": "Når Kyoto-datoene er avklart",
-      "why": "Sammenlign tilbud, pris og opplegg med Hirakuza før dere velger et kommersielt show.",
-      "checked": "2026-10-08",
+      "priority": "Vurder senere",
+      "when": "Når vårturnéprogrammet for 2027 offentliggjøres",
+      "why": "Sumoforbundets profesjonelle turné kan være interessant dersom et stopp i Kansai passer, men skal ikke styre hovedruten.",
+      "checked": "2026-10-20",
+      "placeId": "sumo-osaka",
+      "optionId": "jungyo"
+    },
+    {
+      "priority": "Vurder senere",
+      "when": "Når Kyoto-oppholdet er planlagt",
+      "why": "Et lokalt sumoshow kan være lettere å kombinere med de andre attraksjonene enn turneringsutflukt til Osaka.",
+      "checked": "2026-10-20",
       "placeId": "sumo-osaka",
       "optionId": "kyoto-show"
     },
     {
-      "priority": "Kan bestilles",
-      "when": "Etter at eventuelle Tokyo-datoer er endelig bestemt",
-      "why": "Trening må avtales. Nåværende reisevindu faller i en periode der mange brytere er i Osaka, så dette er et mindre sannsynlig alternativ.",
-      "checked": "2026-10-08",
+      "priority": "Vurder senere",
+      "when": "Når en anerkjent arrangør bekrefter adgang",
+      "why": "Besøk på ekte trening er mest interessant om det lar seg arrangere uten å flytte rundt på annet program. Adgang er usikker under turneringsperioden.",
+      "checked": "2026-10-20",
       "placeId": "sumo-osaka",
       "optionId": "morning-practice"
     },
@@ -136,8 +145,8 @@
     {
       "icon": "✈️",
       "title": "Flyplasser",
-      "short": "Inn i Tokyo og hjem fra Osaka kan spare en lang returreise.",
-      "body": "«Open-jaw» betyr ganske enkelt at man flyr inn til én by og hjem fra en annen i samme flybestilling. For denne ruten betyr det innreise i Tokyo og hjemreise fra Osaka dersom prisen er fornuftig. Haneda er enklest inn til Tokyo; Narita fungerer også. Fra Osaka er Kansai International Airport (KIX) det naturlige internasjonale utgangspunktet.",
+      "short": "Lokaltransport mellom internasjonale flyplasser og bysentrum.",
+      "body": "Tokyo har to store internasjonale flyplasser: Haneda og Narita. I Kansai-regionen er Kansai International Airport (KIX) en hovedflyplass. Sammenlign hvor i byen dere skal bo, reisetid og pris for transport til stasjon eller hotell.",
       "links": [
         {
           "label": "Haneda-access",
