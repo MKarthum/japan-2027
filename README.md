@@ -27,7 +27,7 @@ Kilder og personvern ligger i bunnteksten.
 ## Datamodell
 
 - `docs/data/trip.json` – rute med nummererte reisedager, budsjett, oversiktskuratering, destinasjonstemaer/farger og prisscenarier
-- `docs/data/flights.json` – generell flysøksguide med illustrative reiseoppsett, sammenligningssjekkliste og åpne søkekilder
+- `docs/data/flights.json` – fire klikkbare, illustrative flysøkoppsett, metodikk, datovariasjoner, knutepunkter, sammenligningssjekkliste og åpne søkekilder
 - `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
@@ -39,7 +39,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 
-`docs/flights.html` gir en generell veiledning i flysøk uten faktiske søk, priser eller bookingdetaljer. `trip.json` beskriver ruten med dagnumre og antall netter, ikke bekreftede reisedatoer. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale.
+`docs/flights.html` er en integrert flysøkside med eksempler på hvordan søkene utføres, ikke en side med faktiske søkeresultater. Den er utformet slik at søkefunksjonaliteten på sikt kan gjenbrukes i en separat åpen guide, mens den personlige reiseplanleggeren eventuelt flyttes til en privat løsning. Ingen slik deling er gjennomført nå. `trip.json` beskriver ruten med dagnumre og antall netter, ikke bekreftede reisedatoer. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale.
 
 ## Prinsipper
 
