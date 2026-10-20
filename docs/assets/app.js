@@ -1368,7 +1368,7 @@ async function renderRestaurant() {
 function renderOnsenOptionsHtml(onsenData, {hotels=[]}={}) {
   if(!onsenData?.options?.length)return '';
   const h=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const hotelIds=new Set(hotels.map(x=>x.id));
+  const hotelById=new Map(hotels.map(x=>[x.id,x]));
   return `<div class="onsen-overview">
     <div class="onsen-overview-intro">
       <div class="eyebrow">Hakone · en natt · ingen beslutning tatt</div>
@@ -1378,14 +1378,14 @@ function renderOnsenOptionsHtml(onsenData, {hotels=[]}={}) {
     <div class="onsen-options-grid">
       ${onsenData.options.map(opt=>`<article class="onsen-option-card">
         <div class="onsen-option-kicker">${opt.kind==='dagbesok'?'Alternativ uten overnatting':'Onsen på overnattingssted'} · <span>Ikke valgt</span></div>
-        <h3>${h(opt.name)}</h3>
+        <h3>${h(hotelById.get(opt.hotelId)?.name || opt.name)}</h3>
         <strong class="onsen-option-subtitle">${h(opt.subtitle)}</strong>
         <p>${h(opt.description)}</p>
         <p><strong>Avveining:</strong> ${h(opt.tradeoff)}</p>
         <p><strong>For familien:</strong> ${h(opt.familyNote)}</p>
         <p class="onsen-option-price"><strong>Pris og vilkår:</strong> ${h(opt.priceNote)}</p>
         <div class="onsen-option-actions">
-          ${opt.hotelId&&hotelIds.has(opt.hotelId)?`<a class="button" href="hotel.html?id=${encodeURIComponent(opt.hotelId)}">Se overnattingsalternativ →</a>`:''}
+          ${opt.hotelId&&hotelById.has(opt.hotelId)?`<a class="button" href="hotel.html?id=${encodeURIComponent(opt.hotelId)}">Se overnattingsalternativ →</a>`:''}
           <a class="button" href="${h(opt.officialUrl)}" target="_blank" rel="noopener">Offisiell informasjon ↗</a>
         </div>
       </article>`).join('')}
