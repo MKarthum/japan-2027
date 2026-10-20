@@ -30,7 +30,7 @@
   "places": {
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
-    "intro": "Opplevelsene er samlet etter reiseruten: Tokyo først, deretter Hakone, Kyoto, Himeji, Hiroshima og Osaka. Dagsturer vises under basen de hører til. Innenfor hvert reisested er listen alfabetisk, ikke en rangering av hva som er viktigst.",
+    "intro": "Stedene følger reiseruten. Under Kyoto er Nara og Tōdai-ji samlet som én dagstur, og under Hiroshima er Miyajima og Itsukushima samlet. Innenfor hvert område vises forslagene alfabetisk, uten rangering.",
     "filterLabel": "Vis steder fra"
   },
   "food": {
