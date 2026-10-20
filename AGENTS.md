@@ -15,7 +15,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Språk for hele familien
 
-Når et japansk fag- eller kulturord brukes i en overskrift, undertittel eller kort på Steder, Mat, Overnatting eller Dagidéer, skal ordet få en kort, forståelig norsk forklaring i samme visning eller umiddelbar beskrivelse (f.eks. «hanami – å nyte kirsebærblomstringen»). Det er ikke nok at forklaringen ligger i en separat ordliste. Forklar begrepet første gang det brukes i selvstendige deler av nettsiden; unngå gjentakelser i hvert avsnitt. Behold japanske navn når de hjelper brukeren å kjenne dem igjen i Japan.
+Japanske fag-/kulturord får én gjenbrukbar forklaring via klikk/tapp på stiplet understreket ord. All **betydning, japansk skrivemåte, synonymer og aktivering** tilhører `docs/data/guide.json` → `placeWords`, ikke frontend eller kopiert innhold i kort. `inline:true` gjør ordet interaktivt, mens `showInGuide:false` skjuler detaljerte ord fra den korte ordlistevisningen under Praktisk. `docs/assets/glossary.js` har bare generisk DOM-, posisjonering- og tastatur-/mobilfunksjonalitet. Unngå repeterende parentesforklaringer; forklar kun med vanlig prosa der det tilfører noe ut over definisjonen. Ikke gjør vanlige ord og alle stedsnavn interaktive. Behold japanske uttrykk for gjenkjenning i Japan.
 
 ## Arbeidsregler
 
