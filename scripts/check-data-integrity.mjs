@@ -77,7 +77,7 @@ uniqueIds(hotels, 'hotels.json');
 
 const requiredPageCopy={
   home:['whyEyebrow','whyTitle','whyIntro','useEyebrow','useTitle','useIntro','navFlights'],
-  flights:['eyebrow','title','intro','patternsTitle','checklistTitle','sourcesTitle','privacyTitle'],
+  flights:['eyebrow','title','intro','patternsEyebrow','patternsTitle','patternsIntro','methodEyebrow','methodTitle','methodIntro','flexEyebrow','flexTitle','flexIntro','hubsEyebrow','hubsTitle','hubsIntro','checksEyebrow','checksTitle','checksIntro','sourcesEyebrow','sourcesTitle','sourcesIntro','privacyTitle','privacyIntro'],
   route:['eyebrow','listEyebrow','listTitle','listIntro','transportTitle','mapNote'],
   places:['eyebrow','title','intro','filterLabel'],
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
@@ -101,7 +101,11 @@ for (const [key,min] of [['examples',3],['checklist',5],['sources',3]]) {
   if (!Array.isArray(flights[key]) || flights[key].length < min) errors.push(`flights.json: ${key} mangler`);
   else if (key==='examples') uniqueIds(flights[key], 'flights.json examples');
 }
-for (const x of flights.examples||[]) if (!x.title||!x.route||!x.description) errors.push('flights.json: ufullstendig søkeeksempel');
+for (const x of flights.examples||[]) if (!x.title||!x.route||!x.description||!x.setup||!x.tradeoff||!Array.isArray(x.steps)||x.steps.length<3||x.steps.some(step=>!step)) errors.push('flights.json: søkeeksempel mangler konkrete trinn og vurderinger');
+if ((flights.examples||[]).length!==4 || (flights.workflow||[]).length<5 || (flights.variations||[]).length<2 || (flights.hubExamples||[]).length<3) errors.push('flights.json: eksemplene må dekke fire reiseoppsett, metode, datofleks og knutepunkter');
+for (const x of flights.workflow||[]) if(!Number.isInteger(x.number)||!x.title||!x.detail) errors.push('flights.json: metode mangler');
+for (const x of flights.variations||[]) if(!x.label||!Array.isArray(x.shifts)||x.shifts.length<3||!x.description) errors.push('flights.json: datomatrise mangler');
+for (const x of flights.hubExamples||[]) if(!x.title||!x.setup||!x.check) errors.push('flights.json: knutepunkteksempel mangler');
 for (const x of flights.checklist||[]) if (!x.title||!x.detail) errors.push('flights.json: ufullstendig sjekkliste');
 for (const x of flights.sources||[]) if (!x.title||!x.description||!/^https:\/\//.test(x.url||'')||/[?&](token|session|pnr|user)=/.test(x.url)) errors.push('flights.json: ugyldig åpen søkelenke');
 if (!flights.privacy) errors.push('flights.json: personverninformasjon mangler');
@@ -471,7 +475,9 @@ try {
   errors.push(`docs/assets/app.js: syntaksfeil ${error.message}`);
 }
 const flightHtml=fs.readFileSync('docs/flights.html','utf8');
-if (!flightHtml.includes('renderFlightGuide()') || !flightHtml.includes('id="flight-examples"') ||
+if (!flightHtml.includes('renderFlightGuide()') || !flightHtml.includes('id="flight-pattern-list"') ||
+    !flightHtml.includes('id="flight-pattern-detail"') || !flightHtml.includes('id="flight-workflow"') ||
+    !flightHtml.includes('id="flight-variations"') || !flightHtml.includes('id="flight-hub-examples"') ||
     !flightHtml.includes('id="flight-checklist"') || !flightHtml.includes('id="flight-sources"')) {
   errors.push('flights.html: guiden mangler visningskomponenter');
 }
@@ -488,6 +494,7 @@ if (!app.includes("fallback.id='place-map-fallback'") || !app.includes("document
 }
 if (!style.includes('.map-error[hidden]{display:none}')) errors.push('style.css: skjulte kartfeil må forbli skjult selv om .map-error setter display');
 if (!app.includes('async function renderFlightGuide()') || !app.includes("json('data/flights.json')")) errors.push('app.js mangler åpen flysøksguide');
+if (!app.includes("['flights.html','Flysøk','flights']") || !app.includes('data-pattern-id')) errors.push('app.js mangler synlig navigasjon eller interaktive flysøkoppsett');
 if (app.includes('renderFlightsResearch')||app.includes('flight-copy-template')) errors.push('app.js skal ikke ha historisk flyresearchvisning');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
