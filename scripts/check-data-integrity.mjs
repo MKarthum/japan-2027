@@ -530,12 +530,12 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
-if (!app.includes("trip.route") || !app.includes('places-destination-group') ||
-  !app.includes('sortWithinDestination') || !app.includes('localeCompare') ||
+if (!app.includes("trip.route") || !app.includes('place-destination-group') ||
+  !app.includes("sort((a,b)=>a.name.localeCompare(b.name,'nb'))") ||
   !app.includes('setupJourneyFilters(filters,trip,places,places,draw)')) {
   errors.push('Steder: sortering etter reiserute, nøytral alfabetisering eller filter mangler');
 }
-if (!style.includes('.places-destination-heading') || !style.includes('.places-destination-items')) {
+if (!style.includes('.place-destination-heading') || !style.includes('.place-destination-items')) {
   errors.push('Steder: destinasjonsgrupper mangler felles styling');
 }
 
