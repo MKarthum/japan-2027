@@ -5,7 +5,7 @@
     "area": "Tokyo",
     "type": "base",
     "simple": "Fremtidens Japan",
-    "description": "Japans største storby er første base og den tydeligste introduksjonen til kontrastene i landet: høyhus, tog og popkultur side om side med templer, små gater og hverdagsliv. Fem netter gir rom for både de kjente bydelene og dager uten et tett sightseeingprogram.",
+    "description": "Japans største storby er første base og den tydeligste introduksjonen til kontrastene i landet: høyhus, tog og popkultur side om side med templer, små gater og hverdagsliv. Fire netter gir tre hele dager, så det lønner seg å samle opplevelser geografisk og reservere de mest populære på forhånd.",
     "why": "Tokyo gir reisen en moderne start og gjør forskjellen til Kyoto, Hakone og Hiroshima mye tydeligere. Det er også den beste basen for å la alle finne minst én egen interesse – spill, mat, kunst, byliv eller tradisjonelle bydeler.",
     "highlights": [
       "Shibuya",
@@ -1221,13 +1221,14 @@
     "name": "Sumo i Osaka – turnering og alternativer",
     "area": "Osaka",
     "type": "opplevelse",
-    "simple": "Turnering, profesjonell turné eller en kortere sumoopplevelse",
-    "description": "Sumo er tradisjonell japansk bryting. Den offisielle vårturneringen i Osaka går 14.–28. mars 2027 på EDION Arena Osaka, og den foreløpige Kyoto-etappen overlapper med avslutningen. Dersom turneringen ikke passer, finnes profesjonell vårturné, trening hos sumobrytere og flere mindre sumoshow. Kartet viser arenaen for hovedturneringen; alternativene kan foregå andre steder.",
-    "why": "Vi ønsker å oppleve sumo, men trenger ikke binde reiseruten til en stor turnering. Valget kan tas når vi kjenner flydatoene, vårturnéprogrammet og billetttilgangen.",
+    "simple": "Ekte turneringskamper, demonstrasjoner med tidligere proffer eller sumotrening",
+    "description": "Sumo er japansk bryting med sterke tradisjoner. Den offisielle vårturneringen i Osaka går 14.–28. mars 2027, men en dagsbillett kan brukes til en kort ettermiddagsøkt på omtrent 2–3 timer i arenaen. Kortere opplevelser med tidligere profesjonelle brytere gir innføring, teknikker og deltakelse, men kampene er oppvisninger der resultatet ikke teller. Besøk til ekte morgentrening er en annen mulighet, med begrenset tilgang. Kartet markerer turneringsarenaen; de andre opplevelsene har egne adresser.",
+    "why": "Målet er en morsom og forholdsvis autentisk introduksjon til sumo uten å bruke en hel feriedag eller la sumo styre reiseruten. Det finnes flere gode alternativer som kan vurderes når billetter og øvrig dagsprogram er klarere.",
     "highlights": [
-      "Offisiell turnering i Osaka 14.–28. mars 2027",
-      "Profesjonell vårturné kan passe Kansai-regionen",
-      "Show i Kyoto eller Osaka fungerer som fleksible alternativer"
+      "Offisiell turnering: konkurransekamper, besøk gjerne bare ettermiddagen",
+      "Kaminari Ichimon: 90 minutter med tidligere profesjonelle brytere og mulighet til å prøve",
+      "Hirakuza: to timer med sumo, engelsk forklaring og mer scenepreg",
+      "Morgentrening og profesjonell turné dersom tilgang og tidspunkt passer"
     ],
     "map": {
       "lat": 34.6628,
@@ -1264,19 +1265,63 @@
       "status": "pending",
       "standardFamilyRangeYen": null,
       "note": "Billettprisene for turneringen i 2027 må kontrolleres når salget åpner. Ingen familiepris er forutsatt.",
-      "checked": "2026-10-08",
+      "checked": "2026-10-20",
       "source": "https://www.sumo.or.jp/EnTicket/year_schedule"
     },
     "experienceOptionsTitle": "Flere måter å se sumo på",
-    "experienceOptionsIntro": "Turneringen er én mulighet, ikke et krav. Under finner du alternative opplevelser med ulik grad av sportslig autentisitet og fleksibilitet. Ingen dato er bestilt eller låst.",
+    "experienceOptionsIntro": "Treffene har ulik grad av autentisitet og underholdning. En turneringsbillett gir ekte kamper, mens kommersielle show bruker demonstrasjoner, og oppvisningene har ikke konkurranseresultat. Ingen av alternativene er prioritert som et fast stopp.",
     "experienceOptions": [
+      {
+        "id": "honbasho",
+        "name": "Offisiell vårturnering (honbasho)",
+        "kind": "Aktive toppbrytere · ekte konkurransekamper",
+        "status": "Billettsalget åpner 6. februar 2027",
+        "description": "Turneringen i Osaka 14.–28. mars 2027. Man kan komme bare på ettermiddagen og se toppdivisjonen i omtrent 2–3 timer i stedet for en hel turneringsdag. Det kommer likevel reise til og fra arenaen i tillegg.",
+        "fit": "Mest autentisk, men krever en separat utflukt fra Kyoto dersom det skal passe inn i en rute som ellers kommer til Osaka senere. Velges bare dersom kampen oppveier tidsbruken.",
+        "whenToCheck": "Sammenlign aktuelle dagers billetter og setetyper fra 6. februar 2027; besøkstid og dagsprogram bør kontrolleres.",
+        "price": {
+          "note": "Billettpriser og tilgjengelighet avhenger av dag og sitteplass; ingen familiepris forutsatt."
+        },
+        "links": [
+          {
+            "label": "Offisiell turneringskalender",
+            "url": "https://www.sumo.or.jp/EnTicket/year_schedule"
+          },
+          {
+            "label": "Offisielt billettsalg",
+            "url": "https://sumo.pia.jp/en/"
+          }
+        ],
+        "checked": "2026-10-20",
+        "areaLabel": "Osaka · EDION Arena"
+      },
+      {
+        "id": "kaminari",
+        "name": "Osaka Sumo Kaminari Ichimon",
+        "kind": "Kort introduksjon · tidligere profesjonelle brytere",
+        "status": "Kontroller ledige forestillinger",
+        "description": "90 minutter med engelskspråklig forklaring av historien, ritualene og teknikkene. Tidligere profesjonelle brytere demonstrerer sumo tett på publikum, som kan prøve seg i ringen. Det er reell sumoteknikk, men ikke ordinære konkurransekamper.",
+        "fit": "Særlig god kombinasjon av lav tidsbruk, læring og deltakelse for en familie. Mer nedtonet enn et stort lyd- og lysshow, men fortsatt en kommersiell opplevelse.",
+        "whenToCheck": "Se at valgt dato, starttid, språk og barnevilkår finnes før bestilling.",
+        "price": {
+          "note": "Pris oppgis av arrangør i USD og varierer med pakke. Kontroller totalpris og vilkår før bestilling."
+        },
+        "links": [
+          {
+            "label": "Arrangørens program og informasjon",
+            "url": "https://lp.sumoshow.jp/en.html"
+          }
+        ],
+        "checked": "2026-10-20",
+        "areaLabel": "Osaka · ved JR Imamiya"
+      },
       {
         "id": "jungyo",
         "name": "Vårturneen (jungyō)",
         "kind": "Aktive profesjonelle brytere · oppvisningskamper",
         "status": "2027-programmet avventes",
         "description": "Sumoforbundets turné med trening, seremonier og oppvisningskamper. Det er de virkelige profesjonelle bryterne, men kampene teller ikke i den store turneringen.",
-        "fit": "Svært interessant hvis turneen har stopp i Osaka, Kyoto eller nærliggende byer etter 28. mars. I 2026 var det blant annet stopp i Neyagawa, Kobe, Takarazuka og Muko 30. mars–3. april; dette er ikke bekreftede datoer for 2027.",
+        "fit": "Aktive profesjonelle brytere og reell sumotradisjon, men oppvisningskampene teller ikke. 2027-turnéprogrammet må publiseres før et Kansai-stopp kan vurderes.",
         "whenToCheck": "Sjekk offentliggjøring av vårturneen vinteren 2026/27 og billettslipp for aktuelle enkeltstopp.",
         "price": {
           "note": "Pris og billettsted avhenger av lokal arrangør og det konkrete stoppet."
@@ -1287,17 +1332,17 @@
             "url": "https://www.sumo.or.jp/EnJungyo/schedule"
           }
         ],
-        "checked": "2026-10-08",
+        "checked": "2026-10-20",
         "areaLabel": "Kansai – sted avgjøres i 2027"
       },
       {
         "id": "hirakuza",
         "name": "The Sumo Hall Hirakuza – Osaka",
         "kind": "Kommersielt show · tidligere profesjonelle brytere",
-        "status": "2027-datoer må bekreftes",
-        "description": "Engelskspråklig sumoshow i Osaka med ritualer, demonstrasjonskamper og mulighet for publikumsdeltakelse. Et opplegg for besøkende, ikke offisielle konkurransekamper.",
-        "fit": "Fleksibelt reservevalg under Osaka-etappen 1.–3. april, uten at turen må tilpasses turneringen.",
-        "whenToCheck": "Se etter forestillinger på de aktuelle aprildatoene når kalenderen åpner; sjekk antall plasser og vilkår før kjøp.",
+        "status": "Marsprogrammet 2027 er publisert",
+        "description": "To timers engelskspråklig show i Namba Parks med tidligere profesjonelle brytere, ritualer, teknikker og demonstrasjonskamper. Lys, lyd og video gjør dette til et tydelig iscenesatt underholdningsopplegg, ikke ekte turnering.",
+        "fit": "Praktisk alternativ som kan legges til en kveld i Osaka. Arrangøren viser forestillinger i slutten av mars 2027, men dato og inngang må sjekkes ved kjøp.",
+        "whenToCheck": "Kontroller den konkrete forestillingsdagen i arrangørens 2027-kalender; aprilprogrammet er ikke bekreftet av marskalenderen.",
         "price": {
           "adultYen": 12500,
           "childYen": 9000,
@@ -1308,15 +1353,15 @@
         },
         "links": [
           {
-            "label": "Show og billettpriser",
+            "label": "Billetter og priser",
             "url": "https://hirakuza.net/osaka/tickets/"
           },
           {
-            "label": "Forestillingskalender",
-            "url": "https://hirakuza.net/osaka/calendar/"
+            "label": "Marsprogram 2027",
+            "url": "https://hirakuza.net/osaka/calendar/202703/"
           }
         ],
-        "checked": "2026-10-08",
+        "checked": "2026-10-20",
         "areaLabel": "Osaka"
       },
       {
@@ -1325,8 +1370,8 @@
         "kind": "Kommersielt show · demonstrasjon og introduksjon",
         "status": "2027-datoer må bekreftes",
         "description": "Sumoopplevelse i Kyoto med forklaring av ritualer, teknikker og demonstrasjonskamper, med mulighet for mer aktiv deltakelse. Det er ikke en offisiell turnering.",
-        "fit": "Fleksibelt alternativ i Kyoto 26.–30. mars dersom vi ikke får passende turneringsbilletter eller ønsker en mer deltakende opplevelse.",
-        "whenToCheck": "Undersøk ledige forestillinger når Kyoto-datoene er bestemt; sammenlign med Hirakuza før bestilling.",
+        "fit": "Mulig alternativ dersom Kyoto-dagene egner seg bedre enn et arrangement i Osaka. Sammenlign innholdet med Kaminari og Hirakuza.",
+        "whenToCheck": "Kontroller konkrete datoer og om tidligere profesjonelle brytere opptrer, samt varighet og barnepris.",
         "price": {
           "adultYen": 16000,
           "childYen": 12000,
@@ -1341,7 +1386,7 @@
             "url": "https://kyoto-sumo.com/"
           }
         ],
-        "checked": "2026-10-08",
+        "checked": "2026-10-20",
         "areaLabel": "Kyoto"
       },
       {
@@ -1350,7 +1395,7 @@
         "kind": "Ekte trening · aktive profesjonelle brytere",
         "status": "Må avtales særskilt",
         "description": "Besøk som observatør under virkelig trening hos en sumostall. Ikke show eller konkurransekamp; adgang avhenger av stallen og ofte en forhåndsavtale eller organisert omvisning.",
-        "fit": "Mest aktuelt i Tokyo hvis datoene endres. Tokyo-etappen overlapper nå med Osaka-turneringen, da mange brytere er på turneringsopphold, så dette er usikkert.",
+        "fit": "Interessant hvis en anerkjent arrangør faktisk tilbyr observasjon under de aktuelle Japan-dagene. Under Osaka-turneringen er mange brytere på turneringsopphold, så tilgjengeligheten er usikker.",
         "whenToCheck": "Undersøk seriøse besøkstilbud etter at reisedatoene er valgt; ikke møt opp uten avtale.",
         "price": {
           "note": "Pris avhenger av arrangør og omvisning; ingen fast billettpris."
@@ -1365,7 +1410,7 @@
             "url": "https://www.gotokyo.org/en/see-and-do/morning/index.html"
           }
         ],
-        "checked": "2026-10-08",
+        "checked": "2026-10-20",
         "areaLabel": "Tokyo – dersom tilgjengelig"
       }
     ]
