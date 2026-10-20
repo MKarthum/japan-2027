@@ -25,6 +25,10 @@ Den offentlige ruten viser destinasjoner, rekkefølge og antall netter med numme
 
 Historiske commits kan inneholde eldre offentlige markedsobservasjoner. Fjern dem ikke ved å omskrive historikken uten sikkerhetskopi, vurdering av andre grener og plan for GitHub Pages samt kloner og GitHub-cacher.
 
+## Lokale vurderinger i Dagidéer
+
+Knapper for «Aktuell» og «Legg bort» skal bare lagre en lokal nettleservurdering i `localStorage`. Vurderingene sendes ikke til GitHub, en server eller andre besøkende, synkroniseres ikke mellom enheter og forsvinner dersom nettleserens lokale data slettes. Kopiering av vurderingene skjer kun ved brukerhandling til utklippstavlen. Aldri skriv private vurderinger, valgte dager eller faktisk bookingstatus tilbake til offentlig JSON.
+
 ## Før publisering
 
 Spør alltid: «Ville jeg vært komfortabel med at en tilfeldig person fant dette via Google?» Hvis svaret ikke er et klart ja, skal innholdet ikke inn i repoet.
