@@ -193,7 +193,7 @@ for (const term of familyGlossaryTerms) {
   }
 }
 const hanamiPlace=placeById.get('shinjuku-gyoen');
-if (!hanamiPlace?.simple?.includes('kirsebær') || !/hanami.{0,75}(?:tradisjon|nyte)/i.test(hanamiPlace.description||'')) {
+if (!hanamiPlace?.simple?.toLowerCase().includes('kirsebær') || !/hanami.{0,75}(?:tradisjon|nyte)/i.test(hanamiPlace.description||'')) {
   errors.push('Steder: hanami må forklares ved første synlige parkbeskrivelse, ikke bare i ordlisten');
 }
 if (!/torii.{0,60}(?:symbolske|helligdom)/i.test(placeById.get('fushimi-inari')?.description||'')) {
