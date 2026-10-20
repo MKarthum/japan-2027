@@ -13,7 +13,7 @@
     "reasons": [
       {
         "title": "Kontrastene",
-        "text": "Noen dager handler om Tokyo, neonlys og teknologi. Andre om ryokan (tradisjonelt japansk vertshus), onsen (varme kildebad), gamle gater, slott og helligdommer. Poenget er variasjonen, ikke å rekke flest mulig severdigheter."
+        "text": "Noen dager handler om Tokyo, neonlys og teknologi. Andre om ryokan, onsen, gamle gater, slott og helligdommer. Poenget er variasjonen, ikke å rekke flest mulig severdigheter."
       },
       {
         "title": "Opplevelsene sammen",
@@ -103,8 +103,8 @@
       "from": 5,
       "to": 6,
       "nights": 1,
-      "label": "Tradisjonelt vertshus og varme kildebad",
-      "summary": "Én roligere natt på ryokan (japansk vertshus) med onsen (bad med varmt kildevann) og mulig utsikt mot Fuji.",
+      "label": "Ryokan og onsen",
+      "summary": "Én roligere natt på ryokan med onsen og mulig utsikt mot Fuji.",
       "theme": {
         "color": "#216D61",
         "areas": [
@@ -150,7 +150,7 @@
       "to": 12,
       "nights": 2,
       "label": "Historie og øyliv",
-      "summary": "Fredsminnesmerket og museum, kombinert med Miyajima og den store røde helligdomsporten (torii).",
+      "summary": "Fredsminnesmerket og museum, kombinert med Miyajima og den store røde torii-porten.",
       "theme": {
         "color": "#2A649D",
         "areas": [
