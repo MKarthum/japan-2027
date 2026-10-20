@@ -45,7 +45,7 @@
   "hotels": {
     "eyebrow": "Overnatting",
     "title": "Overnatting langs ruten",
-    "intro": "Sammenlign hotell, leilighetshotell, ryokan og feriebolig ut fra plass, opplevelse og pris.",
+    "intro": "Sammenlign hotell, leilighetshotell, ryokan og feriebolig ut fra plass, opplevelse og pris. De konkrete onsenalternativene er samlet under Hakone.",
     "typesEyebrow": "Overnattingsformer",
     "typesTitle": "Velg løsning før nivå",
     "typesIntro": "Den beste løsningen kan være en annen type overnatting enn et vanlig hotell, særlig hvis reisefølget blir større.",
@@ -55,7 +55,8 @@
     "alternativesTitle": "Alternativer verdt å sammenligne",
     "alternativesIntro": "Eksempler som viser hvorfor større enheter eller hele boliger kan være interessante når reisefølget og datoene er kjent.",
     "noticeTitle": "Prisene er planleggingstall.",
-    "noticeBody": "Intervallene er ikke konkrete tilbud. Kapasitet og totalpris må sjekkes på nytt for den ønskede overnattingsperioden."
+    "noticeBody": "Intervallene er ikke konkrete tilbud. Kapasitet og totalpris må sjekkes på nytt for den ønskede overnattingsperioden.",
+    "onsenShortcut": "Se fire muligheter for privat onsen i Hakone →"
   },
   "prep": {
     "eyebrow": "Før turen",
