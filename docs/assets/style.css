@@ -2025,3 +2025,37 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .drone-source-grid a{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px 14px;display:block;font-size:.9rem}
 @media(max-width:900px){.drone-live-panel,.drone-step-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.drone-cards,.drone-source-grid{grid-template-columns:1fr}.drone-live-panel{padding:17px}.drone-card{padding:17px}}
+
+
+/* Flight search examples: reusable patterns without historical offers. */
+.flight-guide-jump{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px;overflow:visible}
+.flight-guide-jump a{display:inline-flex;align-items:center;padding:9px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:.84rem;font-weight:700;color:var(--ink);text-decoration:none}
+.flight-guide-jump a:hover{border-color:var(--accent2);color:var(--accent2)}
+.flight-guide-pattern-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.flight-guide-pattern-list button{font:inherit;cursor:pointer;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:16px;color:var(--ink);min-width:0;box-shadow:var(--shadow-sm)}
+.flight-guide-pattern-list button strong{display:block;font-size:1rem;line-height:1.3}
+.flight-guide-pattern-list button small{display:block;margin-top:7px;line-height:1.5;color:var(--muted)}
+.flight-guide-pattern-list button:hover{border-color:var(--accent2)}
+.flight-guide-pattern-list button.active{border:2px solid var(--accent2);padding:15px;background:#edf6f0}
+.flight-guide-pattern-detail{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:var(--shadow-sm)}
+.flight-guide-detail-head{display:flex;justify-content:space-between;align-items:start;gap:28px}
+.flight-guide-detail-head h3{font-size:clamp(1.4rem,2.3vw,1.9rem);margin-top:8px}
+.flight-guide-detail-head p{color:var(--muted)}
+.flight-guide-route{font-weight:800;color:var(--accent2)!important;font-size:1.09rem}
+.flight-guide-detail-actions{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:206px}
+.flight-guide-detail-actions .button{justify-content:center;cursor:pointer;font:inherit;font-size:.86rem;font-weight:750}
+.flight-guide-detail-actions .small{font-size:.76rem}
+.flight-guide-steps{border-top:1px solid var(--line);margin-top:18px;padding-top:20px;display:grid;grid-template-columns:1fr 1.4fr;gap:28px}
+.flight-guide-steps h4{margin:0 0 8px;font-size:1rem}
+.flight-guide-steps p{margin:0;color:var(--muted)}
+.flight-guide-steps ol{padding-left:21px;margin:0}
+.flight-guide-steps li{margin-bottom:9px;padding-left:2px}
+.flight-guide-tradeoff{background:var(--soft);padding:13px 15px;border-radius:12px;margin-top:20px}
+.flight-guide-workflow .meta{display:block;margin-bottom:10px}
+.flight-guide-shifts{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.flight-guide-shifts span{padding:6px 10px;border-radius:9px;border:1px solid var(--line);background:var(--soft);font-size:.88rem;font-weight:700}
+.flight-guide-source{display:block;color:inherit;text-decoration:none}
+.flight-guide-source:hover{border-color:var(--accent2)}
+.flight-guide-privacy h2{font-size:1.5rem}
+@media(max-width:950px){.flight-guide-pattern-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.flight-guide-pattern-list{grid-template-columns:1fr}.flight-guide-detail-head,.flight-guide-steps{display:block}.flight-guide-detail-actions{margin-top:20px}.flight-guide-steps>div+div{margin-top:18px}.flight-guide-pattern-detail{padding:16px}.flight-guide-jump{gap:6px}}
