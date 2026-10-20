@@ -565,6 +565,22 @@ if (!style.includes('.place-destination-heading') || !style.includes('.place-des
   errors.push('Steder: destinasjonsgrupper mangler felles styling');
 }
 
+if (!app.includes('class="place-destination-heading-link"') ||
+    !app.includes('aria-label="Les om ${base.name}:') ||
+    !app.includes('class="place-destination-overview-label"') ||
+    !app.includes('class="place-destination-heading-arrow"')) {
+  errors.push('Steder: stedsnavn og tydelig om-stedet-lenke må være samlet i en stor klikkbar overskrift');
+}
+if (!style.includes('.place-destination-heading-link:focus-visible') ||
+    !style.includes('.place-destination-heading-link:hover') ||
+    !style.includes('.place-destination-overview-label') ||
+    !style.includes('.place-destination-overview{')) {
+  errors.push('Steder: synlig og tastaturtilgjengelig lenke til stedsoversikt mangler styling');
+}
+if (app.includes('class="place-destination-overview">Om ${base.name} →')) {
+  errors.push('Steder: liten isolert oversiktsknapp ytterst til høyre må ikke gjeninnføres');
+}
+
 try {
   new Script(app,{filename:'docs/assets/app.js'});
 } catch (error) {
