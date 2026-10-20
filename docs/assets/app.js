@@ -1055,6 +1055,7 @@ async function renderPlace() {
   if(onsenRoot && p.id===hotelData.onsenOptions?.baseId){
     onsenRoot.hidden=false;
     onsenRoot.innerHTML=renderOnsenOptionsHtml(hotelData.onsenOptions,{hotels:hotelData.hotels});
+    if(location.hash==='#place-onsen-options') onsenRoot.scrollIntoView({block:'start'});
   }
 
   if(location.hash.startsWith('#experience-')) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({block:'start'});
@@ -1455,6 +1456,7 @@ async function renderHotels() {
 
   document.getElementById('hotel-price-note').textContent=`${data.priceNote} NOK-omregningen bruker ${fxStatusText(fx).toLowerCase()} fra ${fmtLongDate(fx.asOf)}.`;
   draw();
+  if(location.hash==='#hakone-onsen-options') document.getElementById('hakone-onsen-options')?.scrollIntoView({block:'start'});
 }
 
 async function renderHotel() {
