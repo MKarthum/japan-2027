@@ -2059,3 +2059,16 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .flight-guide-privacy h2{font-size:1.5rem}
 @media(max-width:950px){.flight-guide-pattern-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.flight-guide-pattern-list{grid-template-columns:1fr}.flight-guide-detail-head,.flight-guide-steps{display:block}.flight-guide-detail-actions{margin-top:20px}.flight-guide-steps>div+div{margin-top:18px}.flight-guide-pattern-detail{padding:16px}.flight-guide-jump{gap:6px}}
+
+
+/* Route-specific flight search links for each example. */
+.flight-guide-route-links{border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
+.flight-guide-route-links h4{margin:0 0 6px;font-size:1rem}
+.flight-guide-route-links>p{margin:0 0 14px}
+.flight-guide-link-list{display:grid;gap:10px}
+.flight-guide-link-leg{display:grid;grid-template-columns:minmax(145px,1fr) minmax(0,2fr);align-items:center;gap:18px;padding:13px 15px;background:var(--bg);border:1px solid var(--line);border-radius:12px}
+.flight-guide-link-label small{display:block;color:var(--muted);font-size:.75rem}
+.flight-guide-link-label strong{display:block;margin-top:3px}
+.flight-guide-link-actions{display:flex;flex-wrap:wrap;gap:8px}
+.flight-guide-link-actions .button{justify-content:center;font-size:.79rem;text-align:center}
+@media(max-width:720px){.flight-guide-link-leg{display:block}.flight-guide-link-actions{margin-top:12px}.flight-guide-link-actions .button{width:100%}}

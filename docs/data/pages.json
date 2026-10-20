@@ -124,7 +124,7 @@
     "intro": "Praktiske, illustrative søk du kan gjennomføre selv: fire reiseoppsett, fleksible datoer, knutepunkter og kontroll av totalpris. Eksemplene inneholder ikke faktiske søk eller bestillinger.",
     "patternsEyebrow": "Eksempler",
     "patternsTitle": "Fire søkeoppsett – prøv alle",
-    "patternsIntro": "Velg et oppsett og se nøyaktig hvordan du kan søke, hvilke variasjoner du bør teste og hva du bør sammenligne.",
+    "patternsIntro": "Velg et oppsett for å se konkrete søketrinn og åpne rutespesifikke lenker til Google Flights og FINN. For flerbyreiser vises hver flystrekning separat, slik at du kan sette dem sammen i søketjenesten.",
     "methodEyebrow": "Metode",
     "methodTitle": "Søk steg for steg",
     "methodIntro": "Samme sammenligningsgrunnlag gjør det lettere å skille reelle besparelser fra kortere opphold, mer bagasje eller vanskeligere forbindelser.",
@@ -139,9 +139,9 @@
     "checksIntro": "Gjør denne sjekken på de mest aktuelle alternativene før bestilling.",
     "sourcesEyebrow": "Gå videre",
     "sourcesTitle": "Start søket i en relevant tjeneste",
-    "sourcesIntro": "Lenkene går til åpne søkesider uten forhåndsutfylte personlige datoer eller bookinginformasjon.",
+    "sourcesIntro": "Under hvert av de fire søkeoppsettene finner du lenker for de konkrete flystrekningene. Disse er generelle innganger for flere søketjenester.",
     "privacyTitle": "Eksempler – ikke faktisk reisehistorikk",
-    "privacyIntro": "Ruter og fremgangsmåter på denne siden er illustrative. Søk og kontrollér selv med egne datoer og passasjerdata."
+    "privacyIntro": "Ruteeksemplene og lenkene angir avreise- og ankomststed, men ingen personlige reisedatoer, priser eller historiske flysøk."
   },
   "drones": {
     "eyebrow": "Droneguide",

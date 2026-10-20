@@ -39,7 +39,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 
-`docs/flights.html` er en integrert flysøkside med eksempler på hvordan søkene utføres, ikke en side med faktiske søkeresultater. Den er utformet slik at søkefunksjonaliteten på sikt kan gjenbrukes i en separat åpen guide, mens den personlige reiseplanleggeren eventuelt flyttes til en privat løsning. Ingen slik deling er gjennomført nå. `trip.json` beskriver ruten med dagnumre og antall netter, ikke bekreftede reisedatoer. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale.
+`docs/flights.html` er en integrert flysøkside med eksempler på hvordan søkene utføres, rutespesifikke lenker for hver strekning og ingen faktiske søkeresultater. Den er utformet slik at søkefunksjonaliteten på sikt kan gjenbrukes i en separat åpen guide, mens den personlige reiseplanleggeren eventuelt flyttes til en privat løsning. Ingen slik deling er gjennomført nå. `trip.json` beskriver ruten med dagnumre og antall netter, ikke bekreftede reisedatoer. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale.
 
 ## Prinsipper
 

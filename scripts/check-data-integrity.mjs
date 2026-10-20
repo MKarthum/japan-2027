@@ -102,6 +102,31 @@ for (const [key,min] of [['examples',3],['checklist',5],['sources',3]]) {
   else if (key==='examples') uniqueIds(flights[key], 'flights.json examples');
 }
 for (const x of flights.examples||[]) if (!x.title||!x.route||!x.description||!x.setup||!x.tradeoff||!Array.isArray(x.steps)||x.steps.length<3||x.steps.some(step=>!step)) errors.push('flights.json: søkeeksempel mangler konkrete trinn og vurderinger');
+
+const flightRouteCodes={
+  'multi-east-west':['OSL-TYO','OSA-OSL'],
+  'multi-west-east':['OSL-OSA','TYO-OSL'],
+  'roundtrip-tokyo':['OSL-TYO'],
+  'roundtrip-osaka':['OSL-OSA']
+};
+for(const x of flights.examples||[]){
+  const expected=flightRouteCodes[x.id]||[];
+  if(!x.linkHelp||!Array.isArray(x.searchLegs)||x.searchLegs.length!==expected.length||!expected.length){
+    errors.push(`flights.json: ${x.id} mangler komplette rutespesifikke lenker`);
+    continue;
+  }
+  x.searchLegs.forEach((leg,i)=>{
+    if(!leg.code||leg.code!==expected[i]||!leg.label) errors.push(`flights.json: ${x.id} har feil flystrekning ${i+1}`);
+    for(const [provider,host] of [['googleUrl','www.google.com'],['finnUrl','www.finn.no']]){
+      try{
+        const url=new URL(leg[provider]);
+        if(url.protocol!=='https:'||url.hostname!==host||!url.pathname.includes('flights-from-')&&provider==='googleUrl'||!url.pathname.includes('/reise/flybilletter/')&&provider==='finnUrl') errors.push(`flights.json: ${x.id} har ikke rutespesifikk lenke til ${provider}`);
+        if(url.search||url.hash||url.username||url.password) errors.push(`flights.json: ${x.id} har unødige søkeparametre/privat informasjon i ${provider}`);
+      }catch{errors.push(`flights.json: ${x.id} mangler gyldig ${provider}`);}
+    }
+  });
+}
+
 if ((flights.examples||[]).length!==4 || (flights.workflow||[]).length<5 || (flights.variations||[]).length<2 || (flights.hubExamples||[]).length<3) errors.push('flights.json: eksemplene må dekke fire reiseoppsett, metode, datofleks og knutepunkter');
 for (const x of flights.workflow||[]) if(!Number.isInteger(x.number)||!x.title||!x.detail) errors.push('flights.json: metode mangler');
 for (const x of flights.variations||[]) if(!x.label||!Array.isArray(x.shifts)||x.shifts.length<3||!x.description) errors.push('flights.json: datomatrise mangler');
@@ -495,6 +520,7 @@ if (!app.includes("fallback.id='place-map-fallback'") || !app.includes("document
 if (!style.includes('.map-error[hidden]{display:none}')) errors.push('style.css: skjulte kartfeil må forbli skjult selv om .map-error setter display');
 if (!app.includes('async function renderFlightGuide()') || !app.includes("json('data/flights.json')")) errors.push('app.js mangler åpen flysøksguide');
 if (!app.includes("['flights.html','Flysøk','flights']") || !app.includes('data-pattern-id')) errors.push('app.js mangler synlig navigasjon eller interaktive flysøkoppsett');
+if (!app.includes('leg.googleUrl')||!app.includes('leg.finnUrl')||!app.includes('flight-guide-link-list')) errors.push('app.js: hver søkekandidat skal vise rutespesifikke Google Flights- og FINN-lenker');
 if (app.includes('renderFlightsResearch')||app.includes('flight-copy-template')) errors.push('app.js skal ikke ha historisk flyresearchvisning');
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');

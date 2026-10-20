@@ -91,7 +91,7 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 
 - Offentlig rute i `trip.json` bruker heltall for `from` og `to`: dag 1–15 for 14 overnattinger. `nights = to - from`; dagsturer bruker `suggestedDay` innenfor vertsstoppets reisedager.
 - Den offentlige reiseplanen skal ikke lagre kjøpte flyselskaper, eksakte fly-/ankomstdatoer, klokkeslett eller bookingopplysninger; heller ikke rekonstruere dem fra samtalehistorikken.
-- `docs/flights.html` er en integrert, interaktiv flysøkside i reiseplanleggeren. Vis fire klikkbare søkeoppsett med konkret fremgangsmåte, søkematrise, alternativer og sjekkliste. Ikke vis faktisk søkehistorikk, private billetter, priser eller personlige søkedatoer. Utformingen kan gjenbrukes på en eventuell åpen nettside senere, uten å flytte eller dele løsningen nå.
+- `docs/flights.html` er en integrert, interaktiv flysøkside i reiseplanleggeren. Vis fire klikkbare søkeoppsett med konkret fremgangsmåte, søkematrise, alternativer og sjekkliste. Hvert oppsett har rutespesifikke, åpne Google Flights- og FINN-lenker for alle relevante delstrekninger. Ikke erstatt disse med generiske startsider. For flerby, forklar at begge delstrekningene må settes sammen hos søketjenesten. Ikke vis faktisk søkehistorikk, private billetter, priser eller personlige søkedatoer. Utformingen kan gjenbrukes på en eventuell åpen nettside senere, uten å flytte eller dele løsningen nå.
 - Private arbeidsnotater og konkrete flysøk hører hjemme utenfor det offentlige repositoryet. Historiske commits kan fortsatt inneholde eldre offentlige søkeobservasjoner inntil en separat, kontrollert historikkrevisjon blir gjennomført.
 
 ## Passvurdering per v0.21
