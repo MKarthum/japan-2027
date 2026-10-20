@@ -152,6 +152,7 @@ function nav(active='') {
     ['flights.html','Flysøk','flights'],
     ['route.html','Rute','route'],
     ['places.html','Steder','places'],
+    ['day-ideas.html','Dagidéer','dayIdeas'],
     ['food.html','Mat','food'],
     ['hotels.html','Overnatting','hotels'],
     ['prep.html','Før turen','prep'],
@@ -941,6 +942,7 @@ async function renderPlaces() {
         <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.type==='base'?'Om '+p.name:p.name}</h3></a>
         <strong>${p.simple}</strong>
         ${placePriceSummaryHtml(p,trip,fx)}
+        ${p.planInterest&&p.planInterest!=='context' ? `<span class="place-interest-tag place-interest-${p.planInterest}" title="Redaksjonell vurdering – ikke fast plan">${{strong:'Særlig interessant',candidate:'God kandidat',extra:'Ekstra idé'}[p.planInterest]}</span>` : ''}
         <p>${p.description}</p>
       </div>
       <span class="place-list-arrow" aria-hidden="true">→</span>
@@ -985,6 +987,7 @@ async function renderPlaces() {
               </span>
             </a>
           </div>
+          <p class="place-idea-link"><a href="day-ideas.html?base=${encodeURIComponent(stop.id)}">Se mulige dagkombinasjoner →</a></p>
           <div class="place-destination-items">${localItems.map(p=>placeCard(p,base)).join('')}</div>
           ${dayTripGroups.map(({destination,items})=>`
             <div class="place-daytrip-group" aria-label="Samlet dagstur til ${destination.name}">

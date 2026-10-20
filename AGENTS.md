@@ -15,6 +15,8 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Arbeidsregler
 
+- `docs/day-ideas.html` er en enkel inspirasjonsside. `docs/data/day-ideas.json` eier mulige geografiske dagskombinasjoner, ikke faste reisedager. Et billettanker kan utløse omgruppering senere. Ikke bygg drag-and-drop-kalender, serverdatabase eller bookingstatus.
+- Redaksjonell interesse (`planInterest`) i `places.json` er et forslag og noe annet enn brukerens valg. «Aktuell»/«Legg bort» er rene lokale nettleservalg i `localStorage`, ikke offentlige data og ikke synkronisert mellom enheter; det skal stå tydelig på siden.
 - Nye steder går i `docs/data/places.json` og vises via `place.html?id=<id>`. Stedet skal eie navn, beskrivelse, kart, bilde/illustrasjon og eksterne lenker i samme objekt.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
 - Overnattingskandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Filen eier også overnattingsformer og alternative sammenligningsspor. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.

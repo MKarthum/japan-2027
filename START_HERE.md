@@ -20,6 +20,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 - `docs/data/trip.json`: reiselengde og nummererte reisedager, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
 - `docs/data/flights.json`: fire illustrative og konkrete søkeoppsett, trinnvis søkemetode, datofleksibilitet, knutepunktvurderinger, sammenligningskriterier og åpne kilder. Aldri faktiske historiske søk eller private flydata.
+- `docs/data/day-ideas.json`: fleksible kombinasjoner per reisebase, med kjerne-/tilleggssteder som kun refererer til ID-er fra `places.json`. Ikke kalender, datoer eller faktisk bookingstatus.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris. Hvert sted skal ha eksplisitt `price`, også når prisen er «Gratis».
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
 - `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.

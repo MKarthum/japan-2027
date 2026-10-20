@@ -1,0 +1,213 @@
+{
+  "updated": "2026-10-20",
+  "status": "Illustrative kombinasjoner, ikke vedtatte reisedager",
+  "intro": "Dette er geografisk logiske forslag. De viser hva som kan kombineres – ikke oppgaver som skal gjennomføres. Ved billetter, vær eller dagsform flyttes forslagene enkelt.",
+  "choicePolicy": {
+    "none": "Ikke vurdert",
+    "interested": "Aktuell",
+    "dismissed": "Legg bort",
+    "note": "Vurderinger lagres bare i denne nettleseren på denne enheten og er ikke en del av den offentlige reiseplanen. De synkroniseres ikke mellom enheter."
+  },
+  "interestLabels": {
+    "strong": "Særlig interessant",
+    "candidate": "God kandidat",
+    "extra": "Ekstra idé",
+    "context": "Om destinasjonen"
+  },
+  "ideas": [
+    {
+      "id": "tokyo-west",
+      "baseId": "tokyo",
+      "title": "Vestlige Tokyo – storby og grønt",
+      "effort": "Halv til hel dag",
+      "corePlaceIds": [
+        "shibuya",
+        "meiji-jingu"
+      ],
+      "optionalPlaceIds": [
+        "shinjuku-gyoen",
+        "shinjuku"
+      ],
+      "logic": "Meiji Jingū, Harajuku og Shibuya ligger i samme vestlige korridor. Shinjuku passer som kveld hvis det er energi igjen.",
+      "watch": "Parkbesøk kan byttes inn når sakura og været passer. Shinjuku er også en enkel kveld nær mulig hotellbase."
+    },
+    {
+      "id": "tokyo-east",
+      "baseId": "tokyo",
+      "title": "Gamle gater og spillkultur",
+      "effort": "Ca. 4–7 timer",
+      "corePlaceIds": [
+        "asakusa",
+        "akihabara"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Asakusa og Akihabara ligger i østre/indre Tokyo med praktisk kollektivforbindelse. Begynn gjerne historisk og avslutt med spilling og butikker.",
+      "watch": "Tiden i Akihabara kan lett bli lengre enn planlagt. Sett ikke flere store museer på denne dagen."
+    },
+    {
+      "id": "tokyo-minato",
+      "baseId": "tokyo",
+      "title": "Digital kunst og klassisk landemerke",
+      "effort": "Ca. 3–5 timer",
+      "corePlaceIds": [
+        "teamlab",
+        "tokyo-tower"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "teamLab Borderless i Azabudai Hills og Tokyo Tower i Minato ligger nær hverandre. Ettermiddag på museet kan kombineres med tårnet i skumringen.",
+      "watch": "teamLab har tidsbestemte billetter. Tårnet er fint fra bakken; det er ikke nødvendig med enda et betalt utsiktsdekk."
+    },
+    {
+      "id": "tokyo-ghibli",
+      "baseId": "tokyo",
+      "title": "Ghibli som ankeropplevelse",
+      "effort": "Ca. 4–6 timer inkludert transport",
+      "corePlaceIds": [
+        "ghibli-museum"
+      ],
+      "optionalPlaceIds": [
+        "shinjuku"
+      ],
+      "logic": "Museet ligger i Mitaka og tar tid med transport. Legg eventuelt Shinjuku/kveldsmat etter hjemreisen, men la resten av dagen være åpen.",
+      "bookingAnchorId": "ghibli-museum",
+      "watch": "Velg faktisk besøksdag etter hvilken Ghibli-billett dere får. Dette er et alternativ til andre Tokyo-opplegg, ikke en ekstra fjerde heldag."
+    },
+    {
+      "id": "hakone-ryokan",
+      "baseId": "hakone",
+      "title": "Ryokan, onsen og fjellro",
+      "effort": "Reise og overnatting",
+      "corePlaceIds": [
+        "hakone"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Det verdifulle med én natt i Hakone er overnattingen, et rolig bad og omgivelsene. Ha en enkel ettermiddag og en fleksibel morgen.",
+      "watch": "Ikke forutsett at hele sightseeing-rundturen i Hakone også får plass. Sjekk reisevei og innsjekking."
+    },
+    {
+      "id": "kyoto-higashiyama",
+      "baseId": "kyoto",
+      "title": "Gamle Kyoto til fots",
+      "effort": "Ca. 4–7 timer",
+      "corePlaceIds": [
+        "kiyomizu-dera",
+        "gion"
+      ],
+      "optionalPlaceIds": [
+        "maruyama-park",
+        "kyoto-tea-experience"
+      ],
+      "logic": "Kiyomizu-dera, gatene i Higashiyama, Maruyama Park og Gion danner en naturlig gåtur. En teseremoni kan byttes inn hvis en passende tid blir ledig.",
+      "watch": "Dette er en fyldig dag. Teseremoni og kirsebærblomstring er valg, ikke nødvendige ekstrastopp."
+    },
+    {
+      "id": "kyoto-south-uji",
+      "baseId": "kyoto",
+      "title": "Røde porter og Nintendo",
+      "effort": "Ca. 4–7 timer",
+      "corePlaceIds": [
+        "fushimi-inari"
+      ],
+      "optionalPlaceIds": [
+        "nintendo-museum"
+      ],
+      "logic": "Fushimi Inari ligger i sør-Kyoto på vei mot Uji. Nintendo Museum kan kombineres på denne retningslinjen hvis billetten passer.",
+      "bookingAnchorId": "nintendo-museum",
+      "watch": "Nintendo Museum krever datert billett/trekning. Hvis billettdagen passer dårlig, flytt Fushimi Inari til en annen Kyoto-dag."
+    },
+    {
+      "id": "kyoto-arashiyama",
+      "baseId": "kyoto",
+      "title": "Grønnere Kyoto eller et ekstra tempel",
+      "effort": "Ca. 3–6 timer",
+      "corePlaceIds": [
+        "arashiyama"
+      ],
+      "optionalPlaceIds": [
+        "kinkakuji"
+      ],
+      "logic": "Arashiyama kan fylle en rolig halvdag med bambus, hager og elv. Kinkaku-ji ligger ikke rett ved og er bare et tillegg med ekstra transport.",
+      "watch": "Med få hele Kyoto-dager kan denne ideen måtte vike for Nintendo, Nara eller Higashiyama."
+    },
+    {
+      "id": "kyoto-nara",
+      "baseId": "kyoto",
+      "title": "Én samlet dagstur til Nara",
+      "effort": "Ca. 5–7 timer inkludert transport",
+      "corePlaceIds": [
+        "nara",
+        "todaiji"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Hjorteparken, byen og Tōdai-ji er del av samme utflukt fra Kyoto, ikke to separate dagsturer.",
+      "watch": "Dette bruker mesteparten av en dag. Hvis Kyoto blir for tett, er Nara et bevisst valg opp mot flere Kyoto-templer."
+    },
+    {
+      "id": "himeji-castle",
+      "baseId": "himeji",
+      "title": "Slottstopp på vei vestover",
+      "effort": "Ca. 2–4 timer i Himeji pluss togreise",
+      "corePlaceIds": [
+        "himeji"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Bruk et togstopp i Himeji for slottet før dere fortsetter vestover. Det er ingen hotellnatt her.",
+      "watch": "Tidsbruk ved billettkø, trappene i slottet og bagasjeoppbevaring avgjør om det passer på reisedagen."
+    },
+    {
+      "id": "hiroshima-peace",
+      "baseId": "hiroshima",
+      "title": "Historie og samtaler",
+      "effort": "Ca. 3–5 timer",
+      "corePlaceIds": [
+        "peace-memorial-museum"
+      ],
+      "optionalPlaceIds": [
+        "hiroshima"
+      ],
+      "logic": "Fredsparken, Atomic Bomb Dome og museet hører naturlig sammen. Selve museet og samtaler underveis krever en roligere rytme.",
+      "watch": "Med Himeji-stopp på ankomstdagen må dere kontrollere museumsåpning før dere antar at besøket kan skje samme ettermiddag."
+    },
+    {
+      "id": "hiroshima-miyajima",
+      "baseId": "hiroshima",
+      "title": "Én samlet øydag",
+      "effort": "Ca. 5–7 timer inkludert ferge og transport",
+      "corePlaceIds": [
+        "miyajima",
+        "itsukushima-shrine"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Miyajima, helligdommen og torii-porten er én tur. Sett av tid til tidevann, mat og litt utforsking i stedet for flere separate punkter.",
+      "watch": "Sjekk tidevannstidene når besøksdagen er kjent. Ikke planlegg enda en stor sightseeingdag samme dag."
+    },
+    {
+      "id": "osaka-usj",
+      "baseId": "osaka",
+      "title": "Én stor parkdag",
+      "effort": "Heldag, gjerne 8–11 timer",
+      "corePlaceIds": [
+        "usj"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Super Nintendo World og resten av Universal Studios Japan er best som én hovedopplevelse. Det er ingen grunn til å presse inn mer den dagen.",
+      "bookingAnchorId": "usj",
+      "watch": "Studio Pass og eventuell tidsstyrt områdeadgang bør styre denne dagen. Legg Dōtonbori til en annen kveld."
+    },
+    {
+      "id": "osaka-city",
+      "baseId": "osaka",
+      "title": "Mat og Osaka-stemning",
+      "effort": "Ca. 4–7 timer",
+      "corePlaceIds": [
+        "dotonbori"
+      ],
+      "optionalPlaceIds": [
+        "osaka-castle",
+        "sumo-osaka"
+      ],
+      "logic": "Bruk tiden i byen på mat, kanalen og litt shopping. Osaka Castle og et kort sumoshow er alternativer som kan passe dersom de faktisk matcher tidspunktet.",
+      "watch": "Den offisielle sumoturneringen er et eget tidsbundet alternativ og kan kreve tur fra Kyoto. Ikke tell den automatisk som mulig fra Osaka-oppholdet."
+    }
+  ]
+}

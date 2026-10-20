@@ -1,0 +1,19 @@
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dagidéer · Japan 2027</title>
+<meta name="description" content="Fleksible forslag til hva som kan passe sammen på en dag i Japan, uten å låse datoer eller reiserute.">
+<link rel="stylesheet" href="assets/style.css?v=0.29.0"></head><body><header></header><main>
+<div class="eyebrow" data-copy="eyebrow"></div><h1 data-copy="title"></h1>
+<p class="lede" data-copy="intro"></p>
+<section class="idea-howto" aria-label="Slik brukes dagidéene">
+<p data-copy="principle"></p>
+<p data-copy="flexibility"></p>
+</section>
+<div class="filter-block"><span data-copy="filterLabel"></span><div id="idea-filters" class="filters journey-filters"></div></div>
+<div class="idea-user-summary">
+<div><strong id="idea-choices-summary" aria-live="polite">Dine valg er ikke registrert ennå.</strong><p class="small" id="idea-storage-note"></p></div>
+<div><button type="button" class="button" id="idea-copy-choices">Kopier vurderingene mine</button><span id="idea-copy-status" class="small" role="status"></span></div>
+</div>
+<div id="day-ideas-list" class="day-ideas-list"></div>
+</main><footer></footer>
+<script src="assets/app.js?v=0.29.0"></script><script src="assets/day-ideas.js?v=0.29.0"></script>
+<script>renderDayIdeas().catch(error=>{console.error(error);document.getElementById('day-ideas-list').textContent='Kunne ikke laste dagidéene.';})</script>
+</body></html>

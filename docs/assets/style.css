@@ -2131,3 +2131,44 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .place-daytrip-heading h3{margin:5px 0 0;font-size:clamp(1.12rem,2vw,1.35rem)}
 .place-daytrip-group>.place-destination-items{display:grid;gap:12px}
 @media(max-width:620px){.place-daytrip-group{margin-top:19px}.place-daytrip-heading{margin-bottom:10px}.place-daytrip-group>.place-destination-items{gap:9px}}
+
+
+/* v0.29: lightweight trip inspiration, not a dated itinerary */
+.place-interest-tag{display:inline-flex;align-items:center;margin:5px 0 7px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-size:.68rem;font-weight:750;color:var(--muted);width:max-content;max-width:100%}
+.place-interest-strong{border-color:color-mix(in srgb,var(--area-color) 35%,var(--line));color:var(--area-color)}
+.place-interest-extra{opacity:.82}
+.place-idea-link{margin:0 0 12px;padding:0 0 0 16px;font-size:.85rem;font-weight:750}
+.place-idea-link a{color:var(--area-color);text-underline-offset:3px}
+.idea-howto{display:grid;gap:6px;margin:20px 0 23px;padding:16px 18px;border-left:3px solid var(--accent2);background:var(--soft);border-radius:0 12px 12px 0}
+.idea-howto p{margin:0;font-size:.9rem;line-height:1.55}
+.idea-user-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:20px 0 30px;padding:15px 17px;border:1px solid var(--line);border-radius:15px;background:var(--paper)}
+.idea-user-summary .small{display:block;max-width:620px;margin:5px 0 0}
+.idea-user-summary button{cursor:pointer}
+.idea-user-summary>div:last-child{display:grid;gap:5px}
+.day-ideas-list{display:grid;gap:28px}
+.day-ideas-destination{--area-color:#5f6b73;border:1px solid color-mix(in srgb,var(--area-color) 20%,var(--line));background:color-mix(in srgb,var(--area-color) 4%,var(--paper));border-radius:19px;padding:18px}
+.day-ideas-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0 3px 13px;border-bottom:1px solid var(--line)}
+.day-ideas-heading h2{font-size:1.55rem;margin:3px 0 0}
+.day-ideas-heading .meta{color:var(--area-color)}
+.day-ideas-heading a{color:var(--area-color);font-size:.84rem;font-weight:750;white-space:nowrap}
+.day-idea-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.day-idea-card{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:16px;min-width:0}
+.day-idea-card h3{font-size:1.13rem;margin:4px 0 8px}
+.day-idea-card>p{font-size:.84rem;line-height:1.55;color:var(--muted)}
+.day-idea-items{display:grid;gap:13px;margin:17px 0 0}
+.day-idea-items>div>strong{display:block;font-size:.8rem;color:var(--area-color);margin-bottom:7px}
+.day-idea-items ul{padding:0;margin:0;display:grid;gap:8px;list-style:none}
+.idea-place-choice{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:11px;background:var(--soft);border:1px solid transparent}
+.idea-place-choice[data-choice-state="interested"]{border-color:color-mix(in srgb,var(--area-color) 45%,var(--line))}
+.idea-place-choice[data-choice-state="dismissed"]{opacity:.62}
+.idea-place-info{min-width:0}
+.idea-place-info a{display:block;font-size:.86rem;line-height:1.35;font-weight:750;color:var(--ink)}
+.idea-place-info small{display:block;margin-top:3px;font-size:.68rem;color:var(--muted)}
+.idea-choice-buttons{display:flex;gap:4px;flex-shrink:0}
+.idea-choice-buttons button{font:inherit;font-size:.68rem;font-weight:750;padding:6px 7px;cursor:pointer;background:var(--paper);border:1px solid var(--line);border-radius:7px;color:var(--muted)}
+.idea-choice-buttons button[aria-pressed="true"]{color:var(--area-color);border-color:var(--area-color);background:color-mix(in srgb,var(--area-color) 9%,var(--paper))}
+.idea-choice-buttons button[data-set-choice="dismissed"][aria-pressed="true"]{color:var(--muted);border-color:var(--muted)}
+.idea-choice-buttons button:focus-visible{outline:2px solid var(--area-color);outline-offset:2px}
+.day-idea-caution{border-top:1px solid var(--line);padding-top:10px;margin-top:15px}
+@media(max-width:960px){.day-idea-cards{grid-template-columns:1fr}}
+@media(max-width:620px){.day-ideas-list{gap:20px}.day-ideas-destination{padding:11px;border-radius:16px}.day-idea-card{padding:13px}.day-ideas-heading h2{font-size:1.28rem}.idea-place-choice{align-items:flex-start;flex-direction:column}.idea-choice-buttons{width:100%}.idea-choice-buttons button{flex:1}.idea-user-summary{padding:12px}.idea-howto{padding:12px}}

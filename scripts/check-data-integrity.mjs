@@ -6,6 +6,7 @@ const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const foodData = readJson('docs/data/food.json');
 const food = foodData.restaurants || [];
 const places = readJson('docs/data/places.json');
+const dayIdeas=readJson('docs/data/day-ideas.json');
 const prep = readJson('docs/data/prep.json');
 const trip = readJson('docs/data/trip.json');
 const routeGeometry = readJson('docs/data/route-geometry.json');
@@ -80,6 +81,7 @@ const requiredPageCopy={
   flights:['eyebrow','title','intro','patternsEyebrow','patternsTitle','patternsIntro','methodEyebrow','methodTitle','methodIntro','flexEyebrow','flexTitle','flexIntro','hubsEyebrow','hubsTitle','hubsIntro','checksEyebrow','checksTitle','checksIntro','sourcesEyebrow','sourcesTitle','sourcesIntro','privacyTitle','privacyIntro'],
   route:['eyebrow','listEyebrow','listTitle','listIntro','transportTitle','mapNote'],
   places:['eyebrow','title','intro','filterLabel'],
+  dayIdeas:['eyebrow','title','intro','principle','flexibility','filterLabel'],
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
   hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],
   prep:['eyebrow','title','intro','audienceEyebrow','audienceTitle','audienceIntro'],
@@ -182,6 +184,37 @@ if(/20(?:26|27)-\\d{2}-\\d{2}/.test(JSON.stringify(trip.route)) || /20(?:26|27)-
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
+
+const interestValues=new Set(['strong','candidate','extra','context']);
+for(const p of places){
+  if(!interestValues.has(p.planInterest)) errors.push(`places.json: ${p.id} mangler gyldig redaksjonell interessekategori`);
+}
+if(places.filter(p=>p.planInterest==='strong').length>15) errors.push('Steder: redaksjonelle høydepunkter kan ikke omfatte nesten alt');
+uniqueIds(dayIdeas.ideas||[],'day-ideas.json');
+if(!Array.isArray(dayIdeas.ideas)||dayIdeas.ideas.length<10||!dayIdeas.interestLabels||!dayIdeas.choicePolicy?.note){
+  errors.push('day-ideas.json mangler forslag eller forklaring på lokal lagring');
+}
+const ideaBases=new Set();
+for(const idea of dayIdeas.ideas||[]){
+  const stop=trip.route.find(x=>x.id===idea.baseId);
+  if(!stop||!idea.title||!idea.logic||!idea.effort||!idea.watch) errors.push(`day-ideas.json: ufullstendig idé ${idea.id}`);
+  if(!Array.isArray(idea.corePlaceIds)||idea.corePlaceIds.length<1||!Array.isArray(idea.optionalPlaceIds)) errors.push(`day-ideas.json: ${idea.id} mangler core/optional`);
+  const allIds=[...(idea.corePlaceIds||[]),...(idea.optionalPlaceIds||[])];
+  if(new Set(allIds).size!==allIds.length) errors.push(`day-ideas.json: ${idea.id} har gjentatte steder`);
+  for(const id of allIds){
+    const place=placeById.get(id);
+    if(!place) errors.push(`day-ideas.json: ukjent sted ${id} i ${idea.id}`);
+    else if(stop && place.id!==stop.id && place.destinationId!==stop.id && place.baseId!==stop.id && !(stop.theme?.areas||[]).includes(place.area)){
+      errors.push(`day-ideas.json: ${id} ligger ikke i ${stop.id}`);
+    }
+  }
+  if(idea.bookingAnchorId&&!allIds.includes(idea.bookingAnchorId)) errors.push(`day-ideas.json: ${idea.id} har anker som ikke inngår i idéen`);
+  if(stop)ideaBases.add(stop.id);
+}
+for(const stop of trip.route)if(!ideaBases.has(stop.id))errors.push(`day-ideas.json: mangler eksempler under ${stop.id}`);
+if(dayIdeas.ideas?.filter(x=>x.baseId==='tokyo').length < 4)errors.push('day-ideas.json: Tokyo trenger valgmuligheter, ikke bare én fast dagsplan');
+if(/\\b(?:confirmedFlight|bookingRef|passenger|flightNumber)\\b/i.test(JSON.stringify(dayIdeas)))errors.push('day-ideas.json: private bookingopplysninger');
+
 
 const placesForStop=(stop)=>places.filter(p=>p.destinationId===stop.id || p.baseId===stop.id ||
   p.id===stop.id || (!p.destinationId && !p.baseId && (stop.theme?.areas||[]).includes(p.area)));
@@ -527,7 +560,7 @@ for (const item of sources) {
 }
 
 const htmlFiles=fs.readdirSync('docs').filter(name=>name.endsWith('.html'));
-const copyDrivenPages=new Set(['index.html','flights.html','route.html','places.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html','phrases.html']);
+const copyDrivenPages=new Set(['index.html','flights.html','route.html','places.html','day-ideas.html','food.html','hotels.html','prep.html','practical.html','budget.html','sources.html','privacy.html','phrases.html']);
 for (const name of htmlFiles) {
   const file=`docs/${name}`;
   const html=fs.readFileSync(file,'utf8');
@@ -547,7 +580,7 @@ for (const name of htmlFiles) {
 }
 
 if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
-for (const required of ['docs/flights.html','docs/data/flights.json','docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
+for (const required of ['docs/day-ideas.html','docs/data/day-ideas.json','docs/assets/day-ideas.js','docs/flights.html','docs/data/flights.json','docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
@@ -556,6 +589,21 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+const ideaJs=fs.readFileSync('docs/assets/day-ideas.js','utf8');
+try{new Script(ideaJs,{filename:'docs/assets/day-ideas.js'});}catch(error){errors.push(`day-ideas.js: syntaksfeil ${error.message}`);}
+const ideaHtml=fs.readFileSync('docs/day-ideas.html','utf8');
+for(const token of ['renderDayIdeas()','id="day-ideas-list"','id="idea-choices-summary"','id="idea-copy-choices"','data-copy=','day-ideas.js?v=']){
+  if(!ideaHtml.includes(token))errors.push(`day-ideas.html: mangler ${token}`);
+}
+if(!app.includes("['day-ideas.html','Dagidéer','dayIdeas']") || !app.includes('place-interest-tag') || !app.includes('day-ideas.html?base=')){
+  errors.push('app.js: Steder og navigasjon peker ikke til Dagidéer');
+}
+if(!ideaJs.includes("localStorage.setItem(key,JSON.stringify(decisions))") || !ideaJs.includes('idea-copy-choices') || !ideaJs.includes("button.dataset.setChoice")){
+  errors.push('Dagidéer: lokal enkel beslutningsfunksjon eller kopiering mangler');
+}
+if(ideaJs.includes('bookingRef') || ideaJs.includes('navigator.sendBeacon')) errors.push('Dagidéer må ikke overføre private vurderinger');
+if(!style.includes('.day-idea-cards') || !style.includes('.idea-choice-buttons')) errors.push('Dagidéer mangler responsiv visning');
+
 if (!app.includes("trip.route") || !app.includes('place-destination-group') ||
   !app.includes("sort((a,b)=>a.name.localeCompare(b.name,'nb'))") ||
   !app.includes('setupJourneyFilters(filters,trip,places,places,draw)')) {

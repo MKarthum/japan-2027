@@ -14,6 +14,7 @@ Hovednavigasjonen holdes bevisst liten:
 
 - Oversikt
 - Rute
+- Dagidéer – geografisk logiske, uforpliktende kombinasjoner med lokale vurderingsvalg
 - Steder
 - Mat
 - Overnatting
