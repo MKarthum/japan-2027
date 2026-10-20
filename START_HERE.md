@@ -18,8 +18,8 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 ## Kanoniske dataeiere
 
-- `docs/data/trip.json`: reisevindu, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
-- `docs/data/flights.json`: flyresearch, rutetyper, datofleks-regler, prisobservasjoner, flyselskaper/huber, sikkerhetsgrunnlag, pakkereisebenchmarker og manuelle søkeoppgaver. Den skal ikke duplisere de faktiske reisedatoene som eies av `trip.json`.
+- `docs/data/trip.json`: reiselengde og nummererte reisedager, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
+- `docs/data/flights.json`: generiske eksempler på flysøk, sammenligningskriterier og åpne kilder. Aldri faktiske historiske søk eller private flydata.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris. Hvert sted skal ha eksplisitt `price`, også når prisen er «Gratis».
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
 - `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
@@ -87,23 +87,12 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 - Målgruppe i `prep.json` er strukturert som `audience.id`, `audience.label` og valgfri `audience.note`. Bruk de fire nivåene `family`, `older-kids`, `teens` og `adults`. Innholdsadvarsel eller konkret aldersmerking er en separat merknad, ikke en del av selve målgruppen.
 - Språkvisningen skal vise romanisering og japanske tegn sammen. Uttaleknappen bruker nettleserens japanske tekst-til-tale-stemme; den utvidede fraselisten ligger på `phrases.html`.
 
-## Flyplanlegging
+## Reisedager og åpen flysøksguide
 
-- Fly er første datodrivende beslutning. Før hotell- og dagsdatoer låses, skal fire oppsett prises: Tokyo inn / Osaka hjem, Osaka inn / Tokyo hjem, Tokyo tur/retur og Osaka tur/retur. I offentlig tekst omtales de to første som «inn én by / hjem fra en annen» eller «Flere byer / Multi-city» der det er relevant for søkeverktøyet; ikke bruk «åpen kjeve».
-- Gjeldende datoer eies bare av `trip.json`. `flights.json` lagrer fleksibilitetsregelen (normalt ±3 dager) og datert markedsresearch; visningen avleder den konkrete datomatrisen fra `trip.json`.
-- Sammenlign total reisekostnad og tidsbruk, ikke bare flyprisen. Tur/retur til samme by må vurderes mot ekstra innenlands transport, mulig hotellbehov og tapt reisetid.
-- Prisobservasjoner skal alltid angi hva tallet faktisk er: historisk nivå, publisert 2027-fra-pris, datert søkemotorfunn eller pakkereise. Ikke bland pris per person og totalpris for standardfamilien.
-- Ubestilte, offentlig søkbare flyobservasjoner kan vise dato, flynummer, klokkeslett og navngitte flyplasser når de er tydelig merket research og har kontrolltid. Disse er historiske søkedata, ikke familiens faktiske reiserute. Kjøpte flybilletter og alle bekreftede private reisedetaljer publiseres aldri, selv om tilsvarende markedssøk finnes offentlig.
-- Direkte søkelenker skal bruke de **observerte** datoene for et datert tilbud, ikke automatisk planleggingsdatoene i `trip.json`. Eventuelle nye søkedatoer velges separat; observasjonens pris må da ikke følge med som om det var en ny pris.
-- Sikkerhet deles i regulatorisk status, sekundære uavhengige signaler og tidsavhengig luftromsrisiko. Ikke presenter en privat rangering som objektiv fasit.
-- Flyresearch skal bruke reelle interaktive søk i Google Flights og FINN for standardfamilien fra `trip.json`: fire oppsett og hele reisen forskjøvet −3 til +3 dager. Undersøk én dag kortere/lengre ved store prishopp. Dokumenter tekniske feil uten å erstatte dem med søkeresultatsnutter.
-- `searchRuns` lagrer datert, kompakt søkeoversikt; `candidates` lagrer utvalgte detaljerte tilbud; `directChecks` skiller fullført prising fra mislykkede forsøk. Observerte datoer er historiske målepunkter, ikke ny autoritativ reiseplan. Datomatrisen skal bare koble priser til eksakt samsvarende datoer avledet fra `trip.json`.
-- Prisgrunnlag må angi konkret interaktiv pris, indeksert datert tilbud, publisert 2027-fra-pris, generell fra-pris eller historikk. Totalpris for 2+2 krever at tjenesten faktisk viser gruppetotalen; delpriser eller pris per person skal aldri multipliseres til en antatt familiepris. Bekreft datoer og reisefølge etter at søkeskjemaet har lastet ferdig.
-- For kandidater lagres flyplasser, markedsførende og eventuelt oppgitt opererende selskap, stopp, transferflyplasser/-lengder, total reisetid, bagasjegrunnlag, forbindelsesstatus, tjeneste og kontrolltid. Fravær av selv-transfer-varsel beviser ikke gjennomgående/beskyttet billett. Ukjent operatør eller bagasje skal ikke få oppdiktede verdier.
-- Direkte flyselskapsøk prioriteres etter konkurransedyktige funn. Angi om totalen ble vist etter flyvalg eller ved betaling; bruk konkrete billettvilkår, og merk generelle vilkår som generelle. Ikke gå videre til personopplysninger eller bestilling for research.
-- Ekstra returtransport i Japan eies av `transport.json`, inklusive pris, standardfamiliens togbillettkategorier, tidsgrunnlag og kilde. Fly, fly+hotell og organisert rundreise sammenlignes som ulike produkter.
-- Offentlige søke-URL-er må være stabile og uten session-/checkout-/konto-/token-/timestamp-parametre. Når resultatlenken ikke er trygg, lagres funnet med tjenestens offentlige inngangsside. Behold enkle Google Flights-/FINN-lenker som første trinn og direkte selskapssøk som andre trinn.
-- Offentlig repo skal aldri lagre booking-sessioner, innloggede delingslenker, PNR, flybilletter eller personlige pris-/konto-URL-er. Bruk offentlige søke-/destinasjonssider som lenkemål.
+- Offentlig rute i `trip.json` bruker heltall for `from` og `to`: dag 1–15 for 14 overnattinger. `nights = to - from`; dagsturer bruker `suggestedDay` innenfor vertsstoppets reisedager.
+- Den offentlige reiseplanen skal ikke lagre kjøpte flyselskaper, eksakte fly-/ankomstdatoer, klokkeslett eller bookingopplysninger; heller ikke rekonstruere dem fra samtalehistorikken.
+- `docs/flights.html` er en gjenbrukbar guide til søkemønstre, bagasje, mellomlandinger, kombinasjoner og sammenligningskriterier. Bruk illustrative ruter uten observerte priser, søkehistorikk, personlige bestillinger eller spesifikke søkedatoer.
+- Private arbeidsnotater og konkrete flysøk hører hjemme utenfor det offentlige repositoryet. Historiske commits kan fortsatt inneholde eldre offentlige søkeobservasjoner inntil en separat, kontrollert historikkrevisjon blir gjennomført.
 
 ## Passvurdering per v0.21
 

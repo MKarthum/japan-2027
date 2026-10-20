@@ -15,13 +15,15 @@ Dette repoet og GitHub Pages-siden er **offentlige**. Alt innhold skal kunne les
 - personlige notater som ikke er nødvendige for selve reiseplanleggingen
 - innloggede flysøks-/delingslenker, booking-session-URL-er, handlekurver, kundekonto-parametre eller andre lenker som kan være knyttet til en personlig sesjon
 
-## Datoer og reiserute
+## Datoer, reisedager og fly
 
-Det er tillatt å vise **foreløpige planleggingsdatoer**, offentlige markedspriser/fra-priser og en foreslått reiserute.
+Den offentlige ruten viser destinasjoner, rekkefølge og antall netter med nummererte reisedager. Ingen eksakte datoer for familiens bestilte reiser eller hotellopphold publiseres.
 
-**Ikke-bestilte, offentlig søkbare flyalternativer** kan dokumenteres med søkedato, flynummer, avgangs- og ankomsttid, flyplassnavn, IATA-kode, pris, bagasje og offentlig gjenskapbar søkelenke. Hvert slikt funn skal være tydelig merket som **markedsresearch, ikke bestilling**, med kontrolldato og prisgrunnlag. Åpent søk er ikke bevis på at billetten fortsatt er tilgjengelig. Unngå alle innloggede, tokenbaserte eller personlige søkelenker.
+`docs/flights.html` er en generell guide med **illustrative flysøk**, ikke historiske søkeobservasjoner. Ikke publiser datoer, flynumre, klokkeslett, pristilbud, søkematriser, faktisk gjennomførte søk eller lenker til brukerens søkesesjoner som del av guiden.
 
-**Faktisk kjøpte billetter, bekreftede reisedatoer, flynumre og klokkeslett for familiens bestillinger skal aldri publiseres**, heller ikke indirekte som en «bekreftet reiserute». Det samme gjelder hotellreservasjoner, bookingreferanser og andre private opplysninger. Flyresearch skal ikke omtale observasjonene som familiens valgte eller bestilte billetter.
+**Kjøpte billetter, bekreftede reisedatoer, bookingreferanser, flynumre og klokkeslett skal aldri publiseres**, heller ikke indirekte. Offentlige datoer for arrangementer (som en sumoturnering) kan omtales når de er hentet fra arrangøren, uten å koble dem til bekreftede personlige reisedatoer.
+
+Historiske commits kan inneholde eldre offentlige markedsobservasjoner. Fjern dem ikke ved å omskrive historikken uten sikkerhetskopi, vurdering av andre grener og plan for GitHub Pages samt kloner og GitHub-cacher.
 
 ## Før publisering
 
