@@ -29,7 +29,7 @@
         "shinjuku"
       ],
       "logic": "Meiji Jingū, Harajuku og Shibuya ligger i samme vestlige korridor. Shinjuku passer som kveld hvis det er energi igjen.",
-      "watch": "Parkbesøk kan byttes inn når sakura og været passer. Shinjuku er også en enkel kveld nær mulig hotellbase."
+      "watch": "Parkbesøk kan byttes inn når kirsebærblomstringen og været passer. Shinjuku er også en enkel kveld nær mulig hotellbase."
     },
     {
       "id": "tokyo-east",
@@ -75,13 +75,13 @@
     {
       "id": "hakone-ryokan",
       "baseId": "hakone",
-      "title": "Ryokan, onsen og fjellro",
+      "title": "Japansk vertshus, varme kilder og fjellro",
       "effort": "Reise og overnatting",
       "corePlaceIds": [
         "hakone"
       ],
       "optionalPlaceIds": [],
-      "logic": "Det verdifulle med én natt i Hakone er overnattingen, et rolig bad og omgivelsene. Ha en enkel ettermiddag og en fleksibel morgen.",
+      "logic": "Det verdifulle med én natt på ryokan (tradisjonelt vertshus) i Hakone er overnattingen, et rolig bad og omgivelsene. Ha en enkel ettermiddag og en fleksibel morgen.",
       "watch": "Ikke forutsett at hele sightseeing-rundturen i Hakone også får plass. Sjekk reisevei og innsjekking."
     },
     {
@@ -178,7 +178,7 @@
         "itsukushima-shrine"
       ],
       "optionalPlaceIds": [],
-      "logic": "Miyajima, helligdommen og torii-porten er én tur. Sett av tid til tidevann, mat og litt utforsking i stedet for flere separate punkter.",
+      "logic": "Miyajima, helligdommen og røde helligdomsporten (torii) er én tur. Sett av tid til tidevann, mat og litt utforsking i stedet for flere separate punkter.",
       "watch": "Sjekk tidevannstidene når besøksdagen er kjent. Ikke planlegg enda en stor sightseeingdag samme dag."
     },
     {
@@ -192,7 +192,7 @@
       "optionalPlaceIds": [],
       "logic": "Super Nintendo World og resten av Universal Studios Japan er best som én hovedopplevelse. Det er ingen grunn til å presse inn mer den dagen.",
       "bookingAnchorId": "usj",
-      "watch": "Studio Pass og eventuell tidsstyrt områdeadgang bør styre denne dagen. Legg Dōtonbori til en annen kveld."
+      "watch": "Studio Pass (parkbillett) og eventuell tidsstyrt områdeadgang bør styre denne dagen. Legg Dōtonbori til en annen kveld."
     },
     {
       "id": "osaka-city",
