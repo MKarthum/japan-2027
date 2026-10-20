@@ -8,7 +8,7 @@
     "useIntro": "Rute, steder, mat, overnatting, forberedelser og budsjett har egne sider. Flysøk viser konkrete, illustrative måter å finne og sammenligne billetter på.",
     "navPlaces": "Bydeler, templer, slott, museer og dagsturer.",
     "navFood": "Restauranter, regionale retter og måltider det kan være verdt å planlegge.",
-    "navHotels": "Hotell, leilighetshotell, tradisjonelle japanske vertshus (ryokan) og ferieboliger.",
+    "navHotels": "Hotell, leilighetshotell, ryokan og feriebolig.",
     "navPrep": "Film, serier, spill, bøker, mat og små forberedelser.",
     "navPractical": "Transport, booking, språk og skikk og bruk.",
     "navBudget": "Planramme, kostnadsfordeling og usikkerhet.",
@@ -45,7 +45,7 @@
   "hotels": {
     "eyebrow": "Overnatting",
     "title": "Overnatting langs ruten",
-    "intro": "Sammenlign hotell, leilighetshotell, tradisjonelle japanske vertshus (ryokan) og ferieboliger ut fra plass, opplevelse og pris.",
+    "intro": "Sammenlign hotell, leilighetshotell, ryokan og feriebolig ut fra plass, opplevelse og pris.",
     "typesEyebrow": "Overnattingsformer",
     "typesTitle": "Velg løsning før nivå",
     "typesIntro": "Den beste løsningen kan være en annen type overnatting enn et vanlig hotell, særlig hvis reisefølget blir større.",
