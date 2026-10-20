@@ -2260,3 +2260,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .day-idea-extra-links .button{font-size:.79rem}
 @media(max-width:850px){.onsen-options-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.onsen-option-card{padding:14px}.onsen-option-actions .button{flex:1;justify-content:center}.onsen-overview-intro h2{font-size:1.45rem}}
+
+.stay-onsen-shortcut{margin:12px 0 22px;font-size:.9rem;font-weight:750}
+.stay-onsen-shortcut a{color:var(--accent2);text-underline-offset:3px}
+.stay-onsen-shortcut a:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
