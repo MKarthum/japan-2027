@@ -947,52 +947,30 @@ async function renderPlaces() {
     </article>`;
   };
 
-  // Reiseruten, ikke rekkefølgen i places.json eller subjektiv viktighet,
-  // bestemmer grupperekkefølgen. Destinasjonstemaet knytter dagsturer
-  // (Nara/Miyajima) til riktig base uten duplisert gruppetilhørighet.
-
-  const placeCard=(p)=>`
-      <article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
-        ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
-        <div class="place-list-copy">
-          <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
-          <strong>${p.simple}</strong>
-          ${placePriceSummaryHtml(p,trip,fx)}
-          <p>${p.description}</p>
-        </div>
-        <span class="place-list-arrow" aria-hidden="true">→</span>
-      </article>`;
-  const sortWithinDestination=(a,b)=>{
-    // An overview entry is a destination description, not a priority ranking.
-    if(a.type==='base' && b.type!=='base') return -1;
-    if(b.type==='base' && a.type!=='base') return 1;
-    return a.name.localeCompare(b.name,'nb');
-  };
   const draw=(destination='all')=>{
-    const grouped=trip.route
+    // Grupper i reiserutens rekkefølge. Attraksjoner sorteres nøytralt,
+    // og dagsturer arver riktig reisebase via destinationId().
+    const groups=trip.route
       .filter(stop=>destination==='all'||destination===stop.id)
-      .map(stop=>({
-        stop,
-        items:places.filter(p=>destinationId(trip,p)===stop.id).sort(sortWithinDestination)
-      }))
-      .filter(group=>group.items.length);
-    list.innerHTML=grouped.map(({stop,items})=>{
-      const home=places.find(p=>p.id===stop.id);
-      const nights=stop.nights===0?'Stopp underveis':`${stop.nights} ${stop.nights===1?'natt':'netter'}`;
-      const from=stop.from===stop.to?`Dag ${stop.from}`:`Dag ${stop.from}–${stop.to}`;
-      return `
-        <section class="places-destination-group destination-themed" style="${themeStyle(destinationTheme(trip,stop))}" aria-label="${stop.filterLabel||home?.name||stop.id}">
-          <div class="places-destination-heading">
-            <div class="places-destination-heading-copy">
-              <span class="places-destination-sequence">${from} · ${nights}</span>
-              <h2>${stop.filterLabel||home?.name||stop.id}</h2>
-              <p>${items.length} ${items.length===1?'sted':'steder'} og opplevelser samlet her</p>
+      .map(stop=>{
+        const base=placeById.get(stop.id);
+        if(!base)return null;
+        const members=places.filter(p=>destinationId(trip,p)===stop.id);
+        const attractions=members.filter(p=>p.id!==stop.id).sort((a,b)=>a.name.localeCompare(b.name,'nb'));
+        const items=attractions.length?attractions:members.filter(p=>p.id===stop.id);
+        const label=stop.nights===0?'Stopp på veien':`${stop.nights} ${stop.nights===1?'natt':'netter'}`;
+        return `<section class="place-destination-group destination-themed" id="places-${stop.id}" style="${themeStyle(destinationTheme(trip,stop))}">
+          <div class="place-destination-heading">
+            <div>
+              <span class="meta">Ruten · ${label}</span>
+              <h2>${base.name}</h2><p>${stop.label}</p>
             </div>
-            <a class="places-destination-route-link" href="route.html">Se ruten →</a>
+            <a href="place.html?id=${encodeURIComponent(base.id)}" class="place-destination-overview">Om ${base.name} →</a>
           </div>
-          <div class="places-destination-items">${items.map(placeCard).join('')}</div>
+          <div class="place-destination-items">${items.map(p=>placeCard(p,base)).join('')}</div>
         </section>`;
-    }).join('');
+      }).filter(Boolean);
+    list.innerHTML=groups.length?groups.join(''):'<p>Ingen steder i denne delen av reisen.</p>';
   };
   const initial=setupJourneyFilters(filters,trip,places,places,draw);
   draw(initial);
