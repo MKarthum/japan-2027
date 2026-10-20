@@ -30,7 +30,7 @@
   "places": {
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
-    "intro": "Stedene følger reiseruten. Under Kyoto er Nara og Tōdai-ji samlet som én dagstur, og under Hiroshima er Miyajima og Itsukushima samlet. Innenfor hvert område vises forslagene alfabetisk, uten rangering.",
+    "intro": "Stedene følger reiseruten og er samlet per by. Små merker viser redaksjonelle forslag, ikke avgjørelser. På «Dagidéer» kan dere se hvilke steder som kan passe sammen og markere egne valg, uten å fastsette datoer.",
     "filterLabel": "Vis steder fra"
   },
   "food": {
@@ -161,5 +161,13 @@
     "specialIntro": "Kjøpsland, radiosender, FPV, kompetanse og forsikring må vurderes hver for seg.",
     "sourcesTitle": "Offisielle kart og kilder",
     "sourcesIntro": "Kontrollert 8. oktober 2026. Et regelverk eller kart kan endres før 2027; kontroller originalkildene på nytt."
+  },
+  "dayIdeas": {
+    "eyebrow": "Planlegg uten å låse",
+    "title": "Hva kan passe sammen på en dag?",
+    "intro": "En idébank med geografisk naturlige kombinasjoner, tidsanslag og mulige tillegg. Dette er flere alternativer enn dere rekker – poenget er å kunne velge og ombestemme seg.",
+    "principle": "Start med det som faktisk krever billett, for eksempel Ghibli eller Nintendo Museum. Når en dato er kjent, kan dere vurdere hvilke nærliggende opplevelser som passer rundt den. Ingen kombinasjoner er bundet til kalenderdager.",
+    "flexibility": "«Særlig interessant», «God kandidat» og «Ekstra idé» er våre foreløpige forslag. Trykk «Aktuell» eller «Legg bort» på steder dere diskuterer; trykk igjen for å angre. Dagidéene endrer ikke reisen automatisk.",
+    "filterLabel": "Se dagidéer for"
   }
 }
