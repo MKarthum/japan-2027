@@ -1008,7 +1008,7 @@ async function renderPlaces() {
 }
 async function renderPlace() {
   nav('places'); footer();
-  const [places,foodData,trip,prepData,fx] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json'),loadFx()]);
+  const [places,foodData,trip,prepData,hotelData,fx] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json'),json('data/hotels.json'),loadFx()]);
   const food=foodData.restaurants||[];
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id);
@@ -1049,6 +1049,12 @@ async function renderPlace() {
           ${opt.price? `<p><strong>Pris:</strong> ${Number.isFinite(opt.price.adultYen)?`Voksen ${dualFromJpy(opt.price.adultYen,fx)}${Number.isFinite(opt.price.childYen)?` · barn ${dualFromJpy(opt.price.childYen,fx)}`:''}. `:''}${opt.price.childRule?opt.price.childRule+' ':''}${opt.price.note||''}</p>`:''}
           <div class="button-row">${(opt.links||[]).map(link=>`<a class="button" href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`).join('')}</div>
         </article>`).join('')}</div>`;
+  }
+
+  const onsenRoot=document.getElementById('place-onsen-options');
+  if(onsenRoot && p.id===hotelData.onsenOptions?.baseId){
+    onsenRoot.hidden=false;
+    onsenRoot.innerHTML=renderOnsenOptionsHtml(hotelData.onsenOptions,{hotels:hotelData.hotels});
   }
 
   if(location.hash.startsWith('#experience-')) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({block:'start'});
@@ -1359,6 +1365,35 @@ async function renderRestaurant() {
     : '<p class="small">Ingen andre aktive kandidater i dette området.</p>';
 }
 
+function renderOnsenOptionsHtml(onsenData, {hotels=[]}={}) {
+  if(!onsenData?.options?.length)return '';
+  const h=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const hotelIds=new Set(hotels.map(x=>x.id));
+  return `<div class="onsen-overview">
+    <div class="onsen-overview-intro">
+      <div class="eyebrow">Hakone · en natt · ingen beslutning tatt</div>
+      <h2>${h(onsenData.title)}</h2>
+      <p>${h(onsenData.intro)}</p>
+    </div>
+    <div class="onsen-options-grid">
+      ${onsenData.options.map(opt=>`<article class="onsen-option-card">
+        <div class="onsen-option-kicker">${opt.kind==='dagbesok'?'Alternativ uten overnatting':'Onsen på overnattingssted'} · <span>Ikke valgt</span></div>
+        <h3>${h(opt.name)}</h3>
+        <strong class="onsen-option-subtitle">${h(opt.subtitle)}</strong>
+        <p>${h(opt.description)}</p>
+        <p><strong>Avveining:</strong> ${h(opt.tradeoff)}</p>
+        <p><strong>For familien:</strong> ${h(opt.familyNote)}</p>
+        <p class="onsen-option-price"><strong>Pris og vilkår:</strong> ${h(opt.priceNote)}</p>
+        <div class="onsen-option-actions">
+          ${opt.hotelId&&hotelIds.has(opt.hotelId)?`<a class="button" href="hotel.html?id=${encodeURIComponent(opt.hotelId)}">Se overnattingsalternativ →</a>`:''}
+          <a class="button" href="${h(opt.officialUrl)}" target="_blank" rel="noopener">Offisiell informasjon ↗</a>
+        </div>
+      </article>`).join('')}
+    </div>
+    <p class="onsen-options-note">${h(onsenData.planningNote)}</p>
+  </div>`;
+}
+
 async function renderHotels() {
   await applyPageCopy('hotels');
   nav('hotels'); footer();
@@ -1395,6 +1430,7 @@ async function renderHotels() {
       return `<section class="hotel-base destination-themed" style="${themeStyle(destinationTheme(trip,base.baseId))}">
         <div class="section-head hotel-base-head"><div><div class="eyebrow">${base.label}</div><h2>${base.strategy}</h2></div><p>${base.why}</p></div>
         <div class="hotel-grid">${items.map(card).join('')}</div>
+        ${base.baseId===data.onsenOptions?.baseId && activeKind==='all'?`<div id="hakone-onsen-options" class="hotel-onsen-options">${renderOnsenOptionsHtml(data.onsenOptions,{hotels})}</div>`:''}
       </section>`;
     }).join('');
   };
