@@ -12,7 +12,7 @@
       "Asakusa og Sensō-ji",
       "Akihabara",
       "teamLab",
-      "Tokyo Tower"
+      "Tokyo Tower ved Zōjō-ji"
     ],
     "image": {
       "type": "licensed",
@@ -177,7 +177,7 @@
       "credit": "Joe Jones",
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-      "alt": "Tokyo Tower opplyst om kvelden sett fra Zōjō-ji"
+      "alt": "Tokyo Tower opplyst om natten, sett fra Zōjō-ji-tempelet"
     },
     "links": [
       {
@@ -222,8 +222,8 @@
         },
         "links": [
           {
-            "label": "Adkomst og fotoområder",
-            "url": "https://ticket.tokyotower.co.jp/en/"
+            "label": "Tokyo Tower – offisiell side",
+            "url": "https://en.tokyotower.co.jp/"
           }
         ],
         "checked": "2026-10-20",
