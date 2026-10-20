@@ -2172,3 +2172,67 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .day-idea-caution{border-top:1px solid var(--line);padding-top:10px;margin-top:15px}
 @media(max-width:960px){.day-idea-cards{grid-template-columns:1fr}}
 @media(max-width:620px){.day-ideas-list{gap:20px}.day-ideas-destination{padding:11px;border-radius:16px}.day-idea-card{padding:13px}.day-ideas-heading h2{font-size:1.28rem}.idea-place-choice{align-items:flex-start;flex-direction:column}.idea-choice-buttons{width:100%}.idea-choice-buttons button{flex:1}.idea-user-summary{padding:12px}.idea-howto{padding:12px}}
+
+
+/* Reusable tap/keyboard glossary – term text is always provided by guide.json. */
+.glossary-term{
+  appearance:none;
+  display:inline;
+  border:0;
+  border-radius:2px;
+  margin:0;
+  padding:0 1px;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  font-weight:inherit;
+  line-height:inherit;
+  cursor:help;
+  text-align:inherit;
+  text-decoration:underline dotted;
+  text-decoration-thickness:1.5px;
+  text-underline-offset:4px;
+  text-decoration-color:var(--accent2);
+  -webkit-tap-highlight-color:transparent;
+}
+.glossary-term:hover,.glossary-term[aria-expanded="true"]{color:var(--accent2);background:color-mix(in srgb,var(--accent2) 9%,transparent)}
+.glossary-term:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+.glossary-popover{
+  position:fixed;
+  z-index:3500;
+  width:340px;
+  max-height:calc(100dvh - 24px);
+  overflow-y:auto;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--paper);
+  color:var(--ink);
+  box-shadow:0 12px 32px rgba(16,25,32,.23);
+  font-size:.9rem;
+  line-height:1.5;
+  text-align:left;
+}
+.glossary-popover[hidden]{display:none}
+.glossary-popover-header{display:flex;align-items:baseline;gap:9px;padding-right:25px}
+.glossary-popover-title{font-weight:800;font-size:1.07rem}
+.glossary-popover-japanese{font-size:1rem;color:var(--muted)}
+.glossary-popover p{margin:7px 0 0}
+.glossary-popover-close{
+  position:absolute;
+  right:9px;
+  top:7px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  font-size:1.6rem;
+  line-height:1;
+  padding:3px 8px;
+  border-radius:6px;
+  cursor:pointer;
+}
+.glossary-popover-close:focus-visible{outline:2px solid var(--accent2)}
+@media(max-width:620px){
+  .glossary-term{min-height:24px}
+  .glossary-popover{padding:14px 15px;font-size:.94rem}
+}
