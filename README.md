@@ -13,7 +13,6 @@ GitHub Pages publiserer fra repoet, og rotens `index.html` sender videre til `/d
 Hovednavigasjonen holdes bevisst liten:
 
 - Oversikt
-- Fly
 - Rute
 - Steder
 - Mat
@@ -27,8 +26,8 @@ Kilder og personvern ligger i bunnteksten.
 
 ## Datamodell
 
-- `docs/data/trip.json` – rute, planleggingsdatoer, budsjett, oversiktskuratering, destinasjonstemaer/farger og prisscenarier
-- `docs/data/flights.json` – flyresearch: ulik inn-/utreiseby og tur/retur, datofleks, ruter/selskaper, prisobservasjoner, sikkerhetsgrunnlag, pakkesjekker og manuelle søkeoppgaver
+- `docs/data/trip.json` – rute med nummererte reisedager, budsjett, oversiktskuratering, destinasjonstemaer/farger og prisscenarier
+- `docs/data/flights.json` – generell flysøksguide med illustrative reiseoppsett, sammenligningssjekkliste og åpne søkekilder
 - `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
@@ -40,7 +39,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider
 - `docs/data/sources.json` – kilder
 
-`docs/flights.html` er beslutningssiden for fly og skal brukes før datoene i resten av planen låses. Foreløpig reisevindu eies av `trip.json`, mens dokumenterte flysøksobservasjoner med egne historiske søkedatoer og flytider ligger i `flights.json`. Søkeknapper for et observert tilbud bruker observasjonens datoer, mens endrede datoer håndteres som et nytt søk uten prisgaranti. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale. Nye steder og restauranter trenger derfor normalt bare dataendringer, ikke ny HTML.
+`docs/flights.html` gir en generell veiledning i flysøk uten faktiske søk, priser eller bookingdetaljer. `trip.json` beskriver ruten med dagnumre og antall netter, ikke bekreftede reisedatoer. `docs/place.html?id=<id>` er generisk detaljside for steder, `docs/restaurant.html?id=<id>` for restauranter og `docs/hotel.html?id=<id>` for overnattingsalternativer. `docs/prep-item.html?id=<id>` gir ekstra forklaring når et lite forberedelsesmål trenger mer plass, og `docs/phrases.html` viser den utvidede fraselisten med japanske tegn og uttale.
 
 ## Prinsipper
 
@@ -55,7 +54,7 @@ Kilder og personvern ligger i bunnteksten.
 - Restaurantprioriteringer betyr **planprioritet for denne turen**, ikke en objektiv rangering av restaurantkvalitet.
 - Bilder skal ha gjenbrukbar lisens og synlig kreditering.
 - Fakta som kan endre seg skal ha kilde og konkret kontroll-dato; offentlig tekst skal ikke bruke relative formuleringer som «dagens regel».
-- Ingen privat reiseinformasjon skal inn i repoet. Flyfunn skal være offentlig markedsresearch; aldri lagre booking-sessioner, PNR, billettdata eller innloggede/brukerspesifikke lenker.
+- Ingen privat reiseinformasjon skal inn i repoet. Ikke lagre faktiske flysøk, datohistorikk, flybestillinger, PNR, billettdata eller innloggede/brukerspesifikke lenker.
 - Alle priser vises i både NOK og JPY via én felles kursfunksjon. Ved sidelasting hentes siste tilgjengelige ECB-referansekurs; ECB publiserer kun virkedager, så helger viser siste virkedag. `fx.json` er dokumentert fallback. Budsjett er primært i NOK.
 
 ## Pass og pakkeløsninger
