@@ -13,7 +13,23 @@
         "Bytt Tokyo-flyplass mellom Haneda (HND) og Narita (NRT) dersom søket tillater det.",
         "Sjekk billetten direkte hos flyselskapet, inkludert bagasje og byttetider."
       ],
-      "tradeoff": "Fordelen er å slippe en lang reise tilbake til startbyen. En vanlig tur/retur-kampanje kan likevel være billigere."
+      "tradeoff": "Fordelen er å slippe en lang reise tilbake til startbyen. En vanlig tur/retur-kampanje kan likevel være billigere.",
+      "searchType": "multi-city",
+      "searchLegs": [
+        {
+          "code": "OSL-TYO",
+          "label": "Oslo → Tokyo",
+          "googleUrl": "https://www.google.com/travel/flights/flights-from-oslo-airport-to-tokyo.html",
+          "finnUrl": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/tokyo/"
+        },
+        {
+          "code": "OSA-OSL",
+          "label": "Osaka → Oslo",
+          "googleUrl": "https://www.google.com/travel/flights/flights-from-osaka-to-oslo.html",
+          "finnUrl": "https://www.finn.no/reise/flybilletter/japan/osaka/norge/oslo/"
+        }
+      ],
+      "linkHelp": "Åpne ruten for hver delstrekning. Velg deretter «Flere byer / Multi-city» i søketjenesten og legg inn begge delene i én bestilling. Rutesidene åpner ikke automatisk et komplett flerbysøk."
     },
     {
       "id": "multi-west-east",
@@ -27,7 +43,23 @@
         "Vurder om rekkefølgen påvirker sesongopplevelser, arrangementer eller videre transport.",
         "Sammenlign prisen etter transport til og fra hotell, ikke bare flybilletten."
       ],
-      "tradeoff": "En lavere flypris hjelper lite dersom du mister store deler av en feriedag eller må endre ønskede stopp."
+      "tradeoff": "En lavere flypris hjelper lite dersom du mister store deler av en feriedag eller må endre ønskede stopp.",
+      "searchType": "multi-city",
+      "searchLegs": [
+        {
+          "code": "OSL-OSA",
+          "label": "Oslo → Osaka",
+          "googleUrl": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html",
+          "finnUrl": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/osaka/"
+        },
+        {
+          "code": "TYO-OSL",
+          "label": "Tokyo → Oslo",
+          "googleUrl": "https://www.google.com/travel/flights/flights-from-tokyo-to-oslo.html",
+          "finnUrl": "https://www.finn.no/reise/flybilletter/japan/tokyo/norge/oslo/"
+        }
+      ],
+      "linkHelp": "Åpne ruten for hver delstrekning. Velg deretter «Flere byer / Multi-city» i søketjenesten og legg inn begge delene i én bestilling. Rutesidene åpner ikke automatisk et komplett flerbysøk."
     },
     {
       "id": "roundtrip-tokyo",
@@ -41,7 +73,17 @@
         "Legg til pris og tidsbruk for en eventuell retur fra Osaka til Tokyo.",
         "Sammenlign den reelle totalsummen og tapte opplevelsestimer."
       ],
-      "tradeoff": "Kan gi lav flypris, men returtransport med Shinkansen eller ekstra overnatting kan gjøre totalen mindre attraktiv."
+      "tradeoff": "Kan gi lav flypris, men returtransport med Shinkansen eller ekstra overnatting kan gjøre totalen mindre attraktiv.",
+      "searchType": "roundtrip",
+      "searchLegs": [
+        {
+          "code": "OSL-TYO",
+          "label": "Oslo → Tokyo",
+          "googleUrl": "https://www.google.com/travel/flights/flights-from-oslo-airport-to-tokyo.html",
+          "finnUrl": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/tokyo/"
+        }
+      ],
+      "linkHelp": "Lenkene åpner den aktuelle ruten hos Google Flights eller FINN. Velg tur/retur og ønskede datoer før du sammenligner flybilletter."
     },
     {
       "id": "roundtrip-osaka",
@@ -55,7 +97,17 @@
         "Regn inn innenlands transport som blir nødvendig for ønsket reiserute.",
         "Sjekk fleksible datoer og om prisen fortsatt er bedre når alle tillegg tas med."
       ],
-      "tradeoff": "Gir en annen prisreferanse, men kan medføre mer innenlands transport enn en rute inn én by og hjem fra en annen."
+      "tradeoff": "Gir en annen prisreferanse, men kan medføre mer innenlands transport enn en rute inn én by og hjem fra en annen.",
+      "searchType": "roundtrip",
+      "searchLegs": [
+        {
+          "code": "OSL-OSA",
+          "label": "Oslo → Osaka",
+          "googleUrl": "https://www.google.com/travel/flights/flights-from-oslo-to-osaka.html",
+          "finnUrl": "https://www.finn.no/reise/flybilletter/norge/oslo/japan/osaka/"
+        }
+      ],
+      "linkHelp": "Lenkene åpner den aktuelle ruten hos Google Flights eller FINN. Velg tur/retur og ønskede datoer før du sammenligner flybilletter."
     }
   ],
   "checklist": [
@@ -111,7 +163,7 @@
       "description": "Bruk aktuell operatørs offisielle side for å kontrollere den konkrete billettypen. ANA er bare et eksempel."
     }
   ],
-  "privacy": "Dette er søkemetoder med illustrative ruter. Det vises ingen faktiske flypriser, søkehistorikk, kjøpte billetter eller datoer fra noen konkret reise.",
+  "privacy": "Eksempellenkene viser bare offentlige flystrekninger med avreise- og ankomststed. De inneholder ikke datoer, faktisk søkehistorikk, priser eller bestillingsinformasjon.",
   "workflow": [
     {
       "number": 1,
