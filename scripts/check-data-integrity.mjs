@@ -185,6 +185,22 @@ if(/20(?:26|27)-\\d{2}-\\d{2}/.test(JSON.stringify(trip.route)) || /20(?:26|27)-
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
 
+const familyGlossaryTerms=['hanami','sakura','matcha','shinto','tatami','ryokan','onsen','torii','shinkansen'];
+for (const term of familyGlossaryTerms) {
+  const entry=(guide.placeWords||[]).find(item=>item.term===term);
+  if (!entry?.meaning || !entry.japanese || !entry.speech) {
+    errors.push(`Praktisk ordliste: ${term} mangler forklaring og japansk skrivemåte`);
+  }
+}
+const hanamiPlace=placeById.get('shinjuku-gyoen');
+if (!hanamiPlace?.simple?.includes('kirsebær') || !/hanami.{0,75}(?:tradisjon|nyte)/i.test(hanamiPlace.description||'')) {
+  errors.push('Steder: hanami må forklares ved første synlige parkbeskrivelse, ikke bare i ordlisten');
+}
+if (!/torii.{0,60}(?:symbolske|helligdom)/i.test(placeById.get('fushimi-inari')?.description||'')) {
+  errors.push('Steder: torii trenger forklaring ved Fushimi Inari');
+}
+
+
 const interestValues=new Set(['strong','candidate','extra','context']);
 for(const p of places){
   if(!interestValues.has(p.planInterest)) errors.push(`places.json: ${p.id} mangler gyldig redaksjonell interessekategori`);
