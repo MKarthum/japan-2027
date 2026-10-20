@@ -52,6 +52,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Publiseringsdisiplin
 
+- Steder-siden grupperer steder i reiserutens rekkefølge og samler alle relevante attraksjoner under riktig base. Innen hver base vises attraksjoner alfabetisk uten «primærvalg»/«sekundærvalg». Dagsturer (Nara/Miyajima) arver sin reisebase. Bevar filtreringen og stedsdetaljene.
 - Den offentlige siden beskriver alltid **nåværende plan**, aldri endringshistorikken. En førstegangsleser skal ikke møte språk om hva som ble pushet, rettet, flyttet, beholdt, fjernet eller endret siden forrige versjon.
 - `docs/data/site.json` skal bare inneholde publisert `version` og `released`. Ikke legg release notes eller endringslogg i offentlig site-data.
 - Versjonen bumpes ved **hver repository-endring som publiseres til `main`**, og alle `docs/*.html` skal peke til samme CSS-/JS-versjon.
