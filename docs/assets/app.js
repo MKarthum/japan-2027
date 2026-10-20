@@ -981,11 +981,11 @@ async function renderPlaces() {
       const nights=stop.nights===0?'Stopp underveis':`${stop.nights} ${stop.nights===1?'natt':'netter'}`;
       const from=stop.from===stop.to?`Dag ${stop.from}`:`Dag ${stop.from}–${stop.to}`;
       return `
-        <section class="places-destination-group destination-themed" style="${themeStyle(destinationTheme(trip,stop))}" aria-label="${home?.name||stop.filterLabel||stop.id}">
+        <section class="places-destination-group destination-themed" style="${themeStyle(destinationTheme(trip,stop))}" aria-label="${stop.filterLabel||home?.name||stop.id}">
           <div class="places-destination-heading">
             <div class="places-destination-heading-copy">
               <span class="places-destination-sequence">${from} · ${nights}</span>
-              <h2>${home?.name||stop.filterLabel||stop.id}</h2>
+              <h2>${stop.filterLabel||home?.name||stop.id}</h2>
               <p>${items.length} ${items.length===1?'sted':'steder'} og opplevelser samlet her</p>
             </div>
             <a class="places-destination-route-link" href="route.html">Se ruten →</a>
