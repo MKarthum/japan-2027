@@ -193,6 +193,12 @@ for (const term of familyGlossaryTerms) {
   }
 }
 const hanamiPlace=placeById.get('shinjuku-gyoen');
+const hanamiVisibleOnBothPages=hanamiPlace?.simple==='Stor park og fleksibel mulighet for hanami';
+const hanamiEntry=guide.placeWords.find(x=>x.term==='hanami');
+if(!hanamiVisibleOnBothPages||hanamiEntry?.inline!==true||!hanamiEntry.meaning){
+  errors.push('Hanami skal fortsatt stå i Shinjuku Gyoens opprinnelige undertittel og ha en aktiv forklaring i datalaget');
+}
+
 if (!/hanami/i.test(hanamiPlace?.simple||'') || !/torii/i.test(placeById.get('fushimi-inari')?.description||'')) {
   errors.push('Steder: hanami/torii må fremdeles vises som ord for den felles klikkbare ordforklaringen');
 }
@@ -618,6 +624,12 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
 const glossaryJs=fs.readFileSync('docs/assets/glossary.js','utf8');
+const shinjukuDetail=fs.readFileSync('docs/place.html','utf8');
+if(!shinjukuDetail.includes('id="simple" class="kicker" data-glossary-text')||
+   !glossaryJs.includes("td,small,[data-glossary-text]")){
+  errors.push('Hanami-popup må fungere i en dynamisk detalj-undertittel (div.kicker), ikke bare i vanlige paragrafer');
+}
+
 try { new Script(glossaryJs,{filename:'docs/assets/glossary.js'}); }
 catch(error){errors.push(`glossary.js: syntaksfeil ${error.message}`);}
 for(const token of ["json('data/guide.json')","x.inline===true","MutationObserver","NodeFilter.SHOW_TEXT","aria-expanded","aria-controls","keydown","Escape","pointerdown","getBoundingClientRect"]){
