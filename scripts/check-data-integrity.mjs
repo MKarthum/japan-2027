@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { Script } from 'node:vm';
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const foodData = readJson('docs/data/food.json');
@@ -464,6 +465,24 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+try {
+  new Script(app,{filename:'docs/assets/app.js'});
+} catch (error) {
+  errors.push(`docs/assets/app.js: syntaksfeil ${error.message}`);
+}
+const flightHtml=fs.readFileSync('docs/flights.html','utf8');
+if (!flightHtml.includes('renderFlightGuide()') || !flightHtml.includes('id="flight-examples"') ||
+    !flightHtml.includes('id="flight-checklist"') || !flightHtml.includes('id="flight-sources"')) {
+  errors.push('flights.html: guiden mangler visningskomponenter');
+}
+if (flightHtml.includes('flights-page.js') || flightHtml.includes('flights-page.css') ||
+    fs.existsSync('docs/assets/flights-page.js') || fs.existsSync('docs/assets/flights-page.css')) {
+  errors.push('Flyresearchens gamle sideressurser skal ikke være aktive');
+}
+if (/\\b(?:renderFlightsResearch|flight-copy-template|flight-r-matrix)\\b/.test(app + flightHtml)) {
+  errors.push('Spor fra historiske flysøkegrensesnitt er fortsatt i aktiv kode');
+}
+
 if (!app.includes("fallback.id='place-map-fallback'") || !app.includes("document.getElementById('place-map-fallback')?.remove()")) {
   errors.push('app.js: stedskartets fallback må opprettes ved fatal feil og fjernes når kartet blir brukbart');
 }
