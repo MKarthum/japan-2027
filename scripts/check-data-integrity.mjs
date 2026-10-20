@@ -564,6 +564,12 @@ if (!app.includes("trip.route") || !app.includes('place-destination-group') ||
 if (!style.includes('.place-destination-heading') || !style.includes('.place-destination-items')) {
   errors.push('Steder: destinasjonsgrupper mangler felles styling');
 }
+if (!style.includes('#places-grid.place-list{gap:30px}') ||
+    !style.includes('border:1px solid color-mix(in srgb,var(--area-color) 22%,var(--line))') ||
+    !style.includes('background:color-mix(in srgb,var(--area-color) 5%,var(--paper))') ||
+    !style.includes('.place-destination-group{padding:11px;border-radius:17px}')) {
+  errors.push('Steder: lett innramming rundt hver destinasjon og mobiltilpasning mangler');
+}
 
 if (!app.includes('class="place-destination-heading-link"') ||
     !app.includes('aria-label="Les om ${base.name}:') ||
