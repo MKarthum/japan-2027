@@ -1,23 +1,61 @@
 {
-  "version": 1,
+  "version": 2,
   "examples": [
     {
-      "id": "one-city",
-      "title": "Tur/retur samme by",
-      "route": "Oslo ↔ Tokyo",
-      "description": "Start med én destinasjon og mål totalprisen for hele reisefølget. Bruk dette som sammenligningsgrunnlag."
-    },
-    {
-      "id": "multi-city",
-      "title": "Inn én by, hjem fra en annen",
+      "id": "multi-east-west",
+      "title": "Tokyo inn – Osaka hjem",
       "route": "Oslo → Tokyo / Osaka → Oslo",
-      "description": "Prøv flere byer / multi-city i søkefeltet. Regn også med togreiser som ellers ville vært nødvendige for å komme tilbake til startbyen."
+      "description": "Søk på to flystrekninger i én flerbybestilling. En naturlig sammenligning når turen gjennom Japan går én vei.",
+      "setup": "Velg «Flere byer / Multi-city». Legg inn Oslo–Tokyo som første strekning og Osaka–Oslo som den andre. Velg hele reisefølget før prisene sammenlignes.",
+      "steps": [
+        "Søk på hoveddatoene og notér beste sammenlignbare totalpris.",
+        "Gjenta søket med én til tre dager tidligere og senere avreise, men samme reiselengde.",
+        "Bytt Tokyo-flyplass mellom Haneda (HND) og Narita (NRT) dersom søket tillater det.",
+        "Sjekk billetten direkte hos flyselskapet, inkludert bagasje og byttetider."
+      ],
+      "tradeoff": "Fordelen er å slippe en lang reise tilbake til startbyen. En vanlig tur/retur-kampanje kan likevel være billigere."
     },
     {
-      "id": "hub",
-      "title": "Reise via et annet knutepunkt",
-      "route": "Europa ↔ større asiatisk knutepunkt + videre til Japan",
-      "description": "Sammenlign én gjennomgående billett med separate billetter via en mellomliggende storby. Ta med bagasje, ekstra hotell, mulig visum og sikkerhetsmargin."
+      "id": "multi-west-east",
+      "title": "Osaka inn – Tokyo hjem",
+      "route": "Oslo → Osaka / Tokyo → Oslo",
+      "description": "Samme flerbystrategi i motsatt retning. Test dette før du låser rekkefølgen på byene.",
+      "setup": "Velg «Flere byer / Multi-city». Legg inn Oslo–Osaka og Tokyo–Oslo med tilsvarende oppholdslengde.",
+      "steps": [
+        "Gjenta de samme dato- og passasjervalgenene som i motsatt retning.",
+        "Sjekk hvilke flyplasser og ankomsttidspunkter du faktisk får.",
+        "Vurder om rekkefølgen påvirker sesongopplevelser, arrangementer eller videre transport.",
+        "Sammenlign prisen etter transport til og fra hotell, ikke bare flybilletten."
+      ],
+      "tradeoff": "En lavere flypris hjelper lite dersom du mister store deler av en feriedag eller må endre ønskede stopp."
+    },
+    {
+      "id": "roundtrip-tokyo",
+      "title": "Tokyo tur/retur",
+      "route": "Oslo ↔ Tokyo",
+      "description": "Bruk samme reiselengde som en prisreferanse mot flerbyalternativene.",
+      "setup": "Velg «Tur/retur». Søk Oslo–Tokyo og sammenlign Haneda og Narita med samme passasjerer og bagasje.",
+      "steps": [
+        "Søk tur/retur på de samme datoene som flerbyalternativet.",
+        "Utvid til ±3 dager uten å endre antall netter.",
+        "Legg til pris og tidsbruk for en eventuell retur fra Osaka til Tokyo.",
+        "Sammenlign den reelle totalsummen og tapte opplevelsestimer."
+      ],
+      "tradeoff": "Kan gi lav flypris, men returtransport med Shinkansen eller ekstra overnatting kan gjøre totalen mindre attraktiv."
+    },
+    {
+      "id": "roundtrip-osaka",
+      "title": "Osaka tur/retur",
+      "route": "Oslo ↔ Osaka (KIX)",
+      "description": "En fjerde prisreferanse som bør sjekkes før man bestemmer flyretning.",
+      "setup": "Velg «Tur/retur» og søk Oslo–Osaka, gjerne mot Kansai (KIX). Bruk samme datoer og reisefølge.",
+      "steps": [
+        "Søk samme antall netter og reisefølge som i de øvrige alternativene.",
+        "Kontroller flyplasser og samlede forbindelsestider.",
+        "Regn inn innenlands transport som blir nødvendig for ønsket reiserute.",
+        "Sjekk fleksible datoer og om prisen fortsatt er bedre når alle tillegg tas med."
+      ],
+      "tradeoff": "Gir en annen prisreferanse, men kan medføre mer innenlands transport enn en rute inn én by og hjem fra en annen."
     }
   ],
   "checklist": [
@@ -43,7 +81,7 @@
     },
     {
       "title": "Familie og betingelser",
-      "detail": "Undersøk alderstariffer, setereservasjon, refusjon/endring og antall kolli, særlig ved bestilling hos en tredjepartsformidler."
+      "detail": "Søk på korrekt alder og billettkategori, setereservasjon, refusjon/endring og antall kolli. Barnets flytakst og togtakst kan være forskjellige."
     }
   ],
   "sources": [
@@ -63,10 +101,83 @@
       "description": "Søk alternative flyplasser og datoer."
     },
     {
-      "title": "Flyoperatørens egen nettside",
+      "title": "KAYAK",
+      "url": "https://www.kayak.no/flights",
+      "description": "Prøv fleksible datoer og alternative ruter som ekstra kontroll."
+    },
+    {
+      "title": "Flyselskapenes nettsider",
       "url": "https://www.ana.co.jp/en/",
-      "description": "Eksempel på direktekontroll av bagasje, regler og totalsum etter at et interessant alternativ er funnet."
+      "description": "Bruk aktuell operatørs offisielle side for å kontrollere den konkrete billettypen. ANA er bare et eksempel."
     }
   ],
-  "privacy": "Ingen konkrete flysøksresultater, historiske pristabeller, bestillingsdatoer, flynummer, personopplysninger eller lenker til private søk lagres i denne åpne guiden."
+  "privacy": "Dette er søkemetoder med illustrative ruter. Det vises ingen faktiske flypriser, søkehistorikk, kjøpte billetter eller datoer fra noen konkret reise.",
+  "workflow": [
+    {
+      "number": 1,
+      "title": "Definer samme sammenligningsgrunnlag",
+      "detail": "Bestem reisefølge, billettklasse, innsjekket bagasje, ønsket antall netter og et utgangspunkt for datoene. Dette må holdes konstant mellom søkene."
+    },
+    {
+      "number": 2,
+      "title": "Søk fire grunnoppsett",
+      "detail": "Test begge retninger med flere byer og tur/retur til begge endepunktene. Skriv ned hvilke ekstra togreiser de ulike løsningene krever."
+    },
+    {
+      "number": 3,
+      "title": "Bygg en enkel datomatrise",
+      "detail": "Søk samme lengde på reisen med avreise fra tre dager før til tre dager etter utgangspunktet. Test deretter én natt kortere eller lengre der forskjellene er store."
+    },
+    {
+      "number": 4,
+      "title": "Test andre flyplasser og knutepunkter",
+      "detail": "Sammenlign for eksempel HND/NRT, KIX og andre relevante japanske flyplasser, samt ulike internasjonale transferbyer. Ikke anta at nærmeste flyplass alltid er billigst."
+    },
+    {
+      "number": 5,
+      "title": "Pris finalistene på nytt",
+      "detail": "Åpne selve flyvalget hos operatør eller formidler. Kontroller totalpris, vilkår, bagasje, transfer, tidsbruk og om det er én sammenhengende billett før du konkluderer."
+    }
+  ],
+  "variations": [
+    {
+      "label": "Samme lengde, fleksible datoer",
+      "shifts": [
+        "−3",
+        "−2",
+        "−1",
+        "0",
+        "+1",
+        "+2",
+        "+3"
+      ],
+      "description": "Flytt ut- og hjemreise like mange dager. Da sammenlignes den samme lengden på oppholdet, ikke en annen ferie."
+    },
+    {
+      "label": "Kortere/lengre opphold",
+      "shifts": [
+        "−1 natt",
+        "Standard",
+        "+1 natt"
+      ],
+      "description": "Test dette separat hvis pris eller flytid endres vesentlig. Marker tydelig at oppholdslengden er forskjellig."
+    }
+  ],
+  "hubExamples": [
+    {
+      "title": "Én gjennomgående billett",
+      "setup": "Søk Oslo–Japan med valgt transfer, for eksempel via Helsinki, Istanbul eller Doha.",
+      "check": "Sammenlign totalpris, forbindelsestid og hva flyselskapet faktisk gjør ved en forsinkelse."
+    },
+    {
+      "title": "Separate billetter via et knutepunkt",
+      "setup": "Sammenlign Oslo–et knutepunkt i Asia tur/retur med egne fly til og fra Japan.",
+      "check": "Regn med bagasje, eventuell innreise, bytte av terminal og en realistisk overnattingsbuffer ved selv-transfer."
+    },
+    {
+      "title": "Flere japanske endepunkter",
+      "setup": "Søk Tokyo, Osaka og eventuelt Nagoya, Hiroshima eller Fukuoka dersom reiseruten gjør dem aktuelle.",
+      "check": "Regn inn lokal transport, ekstra togtid og konsekvens for hvilke destinasjoner dere får med."
+    }
+  ]
 }
