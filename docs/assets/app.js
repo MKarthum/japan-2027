@@ -929,22 +929,53 @@ async function renderPlaces() {
   renderPricePartySelector(trip);
   const filters=document.getElementById('filters');
   const list=document.getElementById('places-grid');
+  const placeById=new Map(places.map(p=>[p.id,p]));
 
-  const draw=(destination='all')=>{
-    const visible=places.filter(p=>destination==='all'||destinationId(trip,p)===destination);
-    list.innerHTML=visible.map(p=>`
-      <article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
-        ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
-        <div class="place-list-copy">
-          <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
-          <strong>${p.simple}</strong>
-          ${placePriceSummaryHtml(p,trip,fx)}
-          <p>${p.description}</p>
-        </div>
-        <span class="place-list-arrow" aria-hidden="true">→</span>
-      </article>`).join('');
+  const placeCard=(p,base)=>{
+    const areaNote=p.area!==base.area && p.id!==base.id
+      ? `<span class="place-list-area-note">${p.area} · dagstur/utflukt</span>`:'';
+    return `<article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
+      ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
+      <div class="place-list-copy">
+        ${areaNote}
+        <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
+        <strong>${p.simple}</strong>
+        ${placePriceSummaryHtml(p,trip,fx)}
+        <p>${p.description}</p>
+      </div>
+      <span class="place-list-arrow" aria-hidden="true">→</span>
+    </article>`;
   };
 
+  // Reiseruten, ikke rekkefølgen i places.json eller subjektiv viktighet,
+  // bestemmer grupperekkefølgen. Destinasjonstemaet knytter dagsturer
+  // (Nara/Miyajima) til riktig base uten duplisert gruppetilhørighet.
+  const draw=(destination='all')=>{
+    const groups=trip.route
+      .filter(stop=>destination==='all'||destination===stop.id)
+      .map(stop=>{
+        const base=placeById.get(stop.id);
+        if(!base)return null;
+        const members=places.filter(p=>destinationId(trip,p)===stop.id);
+        const attractions=members.filter(p=>p.id!==stop.id).sort((a,b)=>a.name.localeCompare(b.name,'nb'));
+        // Hakone har ennå ingen egne attraksjonsposter: vis basekortet der.
+        const items=attractions.length ? attractions : members.filter(p=>p.id===stop.id);
+        const label=stop.nights===0?'Stopp på veien':`${stop.nights} ${stop.nights===1?'natt':'netter'}`;
+        return `<section class="place-destination-group destination-themed" id="places-${stop.id}" style="${themeStyle(destinationTheme(trip,stop))}">
+          <div class="place-destination-heading">
+            <div><span class="meta">Ruten · ${label}</span>
+              <h2>${base.name}</h2>
+              <p>${stop.label}</p>
+            </div>
+            <a href="place.html?id=${encodeURIComponent(base.id)}" class="place-destination-overview">Om ${base.name} →</a>
+          </div>
+          <div class="place-destination-items">${items.map(p=>placeCard(p,base)).join('')}</div>
+        </section>`;
+      }).filter(Boolean);
+    list.innerHTML=groups.length
+      ?groups.join('')
+      :'<p>Ingen steder i denne delen av reisen.</p>';
+  };
   const initial=setupJourneyFilters(filters,trip,places,places,draw);
   draw(initial);
 }
