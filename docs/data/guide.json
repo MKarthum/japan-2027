@@ -173,7 +173,8 @@
       "aliases": [
         "torii-port",
         "torii-porter"
-      ]
+      ],
+      "referenceUrl": "https://www.japan.travel/en/guide/shrine-and-temple-traditions/"
     },
     {
       "term": "-ji / -dera",
@@ -216,14 +217,16 @@
       "meaning": "Et tradisjonelt japansk vertshus der selve overnattingen er en kulturopplevelse. Man sover ofte på en madrass lagt på gulvmatter, tar av skoene innendørs og kan få servert japansk middag og frokost. Noen har også varme kildebad.",
       "japanese": "旅館",
       "speech": "りょかん",
-      "inline": true
+      "inline": true,
+      "referenceUrl": "https://faq.japan-travel.jnto.go.jp/en/guide/japanese-ryokan/"
     },
     {
       "term": "onsen",
       "meaning": "Et japansk bad med naturlig varmt vann fra en varm kilde. Før man går i vannet, vasker man seg grundig. I fellesbad bader man som regel uten badetøy, ofte i atskilte avdelinger for kvinner og menn.",
       "japanese": "温泉",
       "speech": "おんせん",
-      "inline": true
+      "inline": true,
+      "referenceUrl": "https://faq.japan-travel.jnto.go.jp/en/guide/how-to-best-enjoy-onsen/"
     },
     {
       "term": "konbini",
@@ -265,7 +268,8 @@
       "meaning": "En tradisjonell japansk religion der naturen, steder og guddommelige krefter står sentralt. Folk besøker helligdommer for å be, takke og delta i ritualer eller festivaler.",
       "japanese": "神道",
       "speech": "しんとう",
-      "inline": true
+      "inline": true,
+      "referenceUrl": "https://www.japan.travel/en/guide/shrine-and-temple-traditions/"
     },
     {
       "term": "tatami",
@@ -286,7 +290,8 @@
       "meaning": "En tradisjonell japansk middag med flere små retter som serveres i en gjennomtenkt rekkefølge. Ingredienser, årstid og presentasjon er viktige deler av opplevelsen. Det er en type måltid, ikke en bestemt restaurant.",
       "japanese": "懐石",
       "inline": true,
-      "showInGuide": false
+      "showInGuide": false,
+      "referenceUrl": "https://faq.japan-travel.jnto.go.jp/en/guide/japanese-kaiseki-cuisine/"
     },
     {
       "term": "nigiri",
@@ -307,21 +312,24 @@
       "meaning": "En måte å bestille mat på der man lar kokken velge rettene, gjerne ut fra dagens råvarer og egne ønsker. Ordet brukes ofte om sushi, men beskriver hvem som velger menyen – ikke en bestemt matrett.",
       "japanese": "お任せ",
       "inline": true,
-      "showInGuide": false
+      "showInGuide": false,
+      "referenceUrl": "https://guide.michelin.com/en/article/travel/kaiseki-omakase-the-difference"
     },
     {
       "term": "geiko",
       "meaning": "I Kyoto er geiko navnet på en profesjonell utøver av tradisjonell japansk dans, musikk og vertskapskunst. I andre deler av Japan brukes ofte betegnelsen geisha.",
       "japanese": "芸妓",
       "inline": true,
-      "showInGuide": false
+      "showInGuide": false,
+      "referenceUrl": "https://faq.japan-travel.jnto.go.jp/en/guide/luxury-travel-in-japan/"
     },
     {
       "term": "maiko",
       "meaning": "En maiko er en lærling i Kyoto som lærer tradisjonell japansk dans, musikk og vertskapskunst med mål om å bli en profesjonell geisha, som i Kyoto kalles geiko.",
       "japanese": "舞妓",
       "inline": true,
-      "showInGuide": false
+      "showInGuide": false,
+      "referenceUrl": "https://faq.japan-travel.jnto.go.jp/en/guide/luxury-travel-in-japan/"
     },
     {
       "term": "tsukemen",
