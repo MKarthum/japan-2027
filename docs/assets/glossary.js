@@ -89,7 +89,7 @@
         if(!node.nodeValue?.trim())return NodeFilter.FILTER_REJECT;
         const parent=node.parentElement;
         if(!parent||parent.closest(excluded))return NodeFilter.FILTER_REJECT;
-        if(!parent.closest('p,li,strong,h1,h2,h3,h4,blockquote,span,td,small'))return NodeFilter.FILTER_REJECT;
+        if(!parent.closest('p,li,strong,h1,h2,h3,h4,blockquote,span,td,small,[data-glossary-text]'))return NodeFilter.FILTER_REJECT;
         pattern.lastIndex=0;
         return pattern.test(node.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
       }
