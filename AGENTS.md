@@ -19,6 +19,14 @@ Japanske fag-/kulturord får én gjenbrukbar forklaring via klikk/tapp på stipl
 
 **Fast regel for forklaringskrevende begreper:** På alle nye eller endrede sider med faguttrykk, forkortelser eller kulturelle ord vurderes selektivt interaktiv forklaring med den eksisterende datadrevne ordlistekomponenten – ikke bare japanske ord. Definisjonen skal ha én kanonisk JSON-eier; frontend skal aldri inneholde egne definisjoner. Behold ordet og den opprinnelige meningen i primærteksten når parentesforklaringer fjernes: en forklaring skal ikke føre til at selve begrepet forsvinner. Merk innholdsblokker som ikke bruker p/strong/span (for eksempel `<div class="kicker">`) med `data-glossary-text`; ikke plasser en popup-knapp inne i en lenke, en annen knapp eller et inputfelt. Aktiver bare utvalgte ord, og unngå gjentatt understrek i samme selvstendige kort. Kontroller minst ett faktisk begrep i både liste- og detaljvisning etter endring, inkludert mobil/tastatur/fokus.
 
+### Redaksjonell kvalitetsregel for popover-forklaringer
+
+Dette er et **innholdskrav**, ikke bare en UI-funksjon. Før et ord aktiveres med `inline:true` i `docs/data/guide.json`, svar i vanlig norsk på: **Hva er dette? Hvordan kjenner jeg det igjen, bruker jeg det eller opplever jeg det?** Skriv 1–3 selvstendige setninger, normalt omtrent 90–300 tegn. Forklaringen skal fungere når den åpnes alene i en mobil-popup, uten at leseren kjenner andre japanske termer, trykker videre eller må lese siden rundt. Forklar jargon med vanlige ord; eksempler og stedsnavn er tillegg, aldri erstatning for definisjon. Konkrete ritualer, matretter, togbilletter og arrangementsformer skal forklares presist, og kildehenvisning (`referenceUrl`) kan ligge i data for faglig kontroll.
+
+Før nye oppslagsord opprettes: skann faktisk innhold, identifiser uttrykk som trenger hjelp, unngå ordinære ord, stedsnavn og begreper som får feil betydning i en bestemt sammenheng. Søk også etter begreper som brukes i kortoverskrifter, prisbokser, detaljer og dagidéer. Test at hele uttrykket treffes korrekt, ikke et tilfeldig ordfragment. Eksempel: «nikutama-soba» er en Hiroshima-rett med hvetenudler, og må ikke automatisk forklares som bokhvetenudler. Oppslagsord som ikke forekommer på nettstedet, trenger ikke aktiveres.
+
+Ved ordlisteendringer: gjennomgå **alle** `inline:true`-forklaringene redaksjonelt, ikke bare den konkrete feilen; kontroller JSON-eierskap, norsk klarhet og betydning i sammenheng. Ikke bruk forklaringsfeltet til vag reklame, huskeregler eller henvisninger som forutsetter ny forklaring. Visningen skal fortsette å ha én kort popup uten lenkekjede eller repetert forklaring i hvert kort. 
+
 ## Arbeidsregler
 
 - `docs/day-ideas.html` er en enkel inspirasjonsside. `docs/data/day-ideas.json` eier mulige geografiske dagskombinasjoner, ikke faste reisedager. Et billettanker kan utløse omgruppering senere. Ikke bygg drag-and-drop-kalender, serverdatabase eller bookingstatus.
