@@ -1,8 +1,8 @@
 {
   "title": "Japan 2027",
-  "subtitle": "Plan for ca. to uker i Japan",
-  "status": "Reisen planlegges",
-  "window": "20. mars – 3. april 2027",
+  "subtitle": "En familievennlig rute gjennom Japan på 14 netter",
+  "status": "Reiseplan under utforming",
+  "window": "14 netter i Japan · våren 2027",
   "overview": {
     "hero": {
       "placeId": "tokyo",
@@ -26,7 +26,7 @@
     ],
     "plan": {
       "title": "En enkel hovedidé",
-      "text": "Ruten går i hovedsak vestover gjennom noen få baser. Detaljene om steder, mat, overnatting og praktiske valg ligger på egne sider, slik at oversikten kan være enkel."
+      "text": "Ruten går vestover gjennom fem overnattingsbaser og et stopp ved Himeji. Dagene er nummerert for å vise rekkefølge og varighet uten en offentlig detaljkalender."
     }
   },
   "budget": {
@@ -85,11 +85,11 @@
   "route": [
     {
       "id": "tokyo",
-      "from": "2027-03-20",
-      "to": "2027-03-25",
-      "nights": 5,
+      "from": 1,
+      "to": 5,
+      "nights": 4,
       "label": "Moderne Japan",
-      "summary": "Storby, neonlys, spill, teknologi, gamle bydeler og en myk start på Japan.",
+      "summary": "Fire netter som gir tre hele dager til storby, spill, teknologi, gamle bydeler og en god start på Japan.",
       "theme": {
         "color": "#B6473D",
         "areas": [
@@ -100,8 +100,8 @@
     },
     {
       "id": "hakone",
-      "from": "2027-03-25",
-      "to": "2027-03-26",
+      "from": 5,
+      "to": 6,
       "nights": 1,
       "label": "Ryokan og onsen",
       "summary": "Én roligere natt med tradisjonelt vertshus, varmt kildebad og mulig utsikt mot Fuji.",
@@ -115,8 +115,8 @@
     },
     {
       "id": "kyoto",
-      "from": "2027-03-26",
-      "to": "2027-03-30",
+      "from": 6,
+      "to": 10,
       "nights": 4,
       "label": "Templer, hager og gamle gater",
       "summary": "Templer, gamle gater, røde porter, hager og dagstur til Nara.",
@@ -131,8 +131,8 @@
     },
     {
       "id": "himeji",
-      "from": "2027-03-30",
-      "to": "2027-03-30",
+      "from": 10,
+      "to": 10,
       "nights": 0,
       "label": "Historisk stopp på vei vestover",
       "summary": "Stopp på vei vestover for å se det originale hvite samuraislottet.",
@@ -146,8 +146,8 @@
     },
     {
       "id": "hiroshima",
-      "from": "2027-03-30",
-      "to": "2027-04-01",
+      "from": 10,
+      "to": 12,
       "nights": 2,
       "label": "Historie og øyliv",
       "summary": "Fredsminnesmerket og museum, kombinert med Miyajima og den store torii-porten.",
@@ -162,11 +162,11 @@
     },
     {
       "id": "osaka",
-      "from": "2027-04-01",
-      "to": "2027-04-03",
-      "nights": 2,
+      "from": 12,
+      "to": 15,
+      "nights": 3,
       "label": "Mat og Nintendo",
-      "summary": "Dōtonbori, god mat og mulig heldag i Universal Studios / Super Nintendo World.",
+      "summary": "Tre netter med plass til Universal Studios og en egen dag for mat, byliv og opplevelser i Osaka.",
       "theme": {
         "color": "#B84D78",
         "areas": [
@@ -179,13 +179,13 @@
   "dayTrips": [
     {
       "id": "nara",
-      "suggestedDate": "2027-03-28",
-      "baseId": "kyoto"
+      "baseId": "kyoto",
+      "suggestedDay": 8
     },
     {
       "id": "miyajima",
-      "suggestedDate": "2027-03-31",
-      "baseId": "hiroshima"
+      "baseId": "hiroshima",
+      "suggestedDay": 11
     }
   ],
   "priceParties": {
