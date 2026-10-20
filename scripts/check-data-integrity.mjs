@@ -408,7 +408,7 @@ if ('connections' in guide) {
   errors.push('guide.json: connections skal ikke finnes; forberedelser og stedskoblinger eies av prep.json');
 }
 for (const item of guide.placeWords || []) {
-  if (!item.term || !item.meaning || !item.japanese || !item.speech) errors.push('guide.json: stedsord mangler romanisering, japanske tegn eller uttale');
+  if (!item.term || !item.meaning || (item.showInGuide!==false && (!item.japanese || !item.speech))) errors.push('guide.json: oppslagsord mangler norsk forklaring eller nødvendig japansk skrift/uttale for uttaleguiden');
 }
 for (const item of guide.phrases || []) {
   if (!item.jp || !item.no || !item.japanese || !item.speech) errors.push('guide.json: hovedfrase mangler romanisering, japanske tegn eller uttale');
