@@ -957,7 +957,20 @@ async function renderPlaces() {
         if(!base)return null;
         const members=places.filter(p=>destinationId(trip,p)===stop.id);
         const attractions=members.filter(p=>p.id!==stop.id).sort((a,b)=>a.name.localeCompare(b.name,'nb'));
-        const items=attractions.length?attractions:members.filter(p=>p.id===stop.id);
+        // Dagsturer er én samlet utflukt fra basen – alle steder i samme
+        // dagstursområde skal vises sammen, ikke flettet inn alfabetisk.
+        const dayTripGroups=(trip.dayTrips||[])
+          .filter(dayTrip=>dayTrip.baseId===stop.id)
+          .map(dayTrip=>{
+            const destination=placeById.get(dayTrip.id);
+            const items=attractions.filter(p=>p.id===dayTrip.id ||
+              (destination && destination.area!==base.area && p.area===destination.area));
+            return {dayTrip,destination,items};
+          }).filter(group=>group.destination && group.items.length);
+        const dayTripItemIds=new Set(dayTripGroups.flatMap(group=>group.items.map(p=>p.id)));
+        const localAttractions=attractions.filter(p=>!dayTripItemIds.has(p.id));
+        const localItems=localAttractions.length?localAttractions:
+          attractions.length?[]:members.filter(p=>p.id===stop.id);
         const label=stop.nights===0?'Stopp på veien':`${stop.nights} ${stop.nights===1?'natt':'netter'}`;
         return `<section class="place-destination-group destination-themed" id="places-${stop.id}" style="${themeStyle(destinationTheme(trip,stop))}">
           <div class="place-destination-heading">
@@ -967,7 +980,17 @@ async function renderPlaces() {
             </div>
             <a href="place.html?id=${encodeURIComponent(base.id)}" class="place-destination-overview">Om ${base.name} →</a>
           </div>
-          <div class="place-destination-items">${items.map(p=>placeCard(p,base)).join('')}</div>
+          <div class="place-destination-items">${localItems.map(p=>placeCard(p,base)).join('')}</div>
+          ${dayTripGroups.map(({destination,items})=>`
+            <div class="place-daytrip-group" aria-label="Samlet dagstur til ${destination.name}">
+              <div class="place-daytrip-heading">
+                <div>
+                  <span class="meta">Dagstur fra ${base.name} · samme utflukt</span>
+                  <h3>${destination.name}</h3>
+                </div>
+              </div>
+              <div class="place-destination-items">${items.map(p=>placeCard(p,base)).join('')}</div>
+            </div>`).join('')}
         </section>`;
       }).filter(Boolean);
     list.innerHTML=groups.length?groups.join(''):'<p>Ingen steder i denne delen av reisen.</p>';
