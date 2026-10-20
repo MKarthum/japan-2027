@@ -187,6 +187,32 @@ const placesForStop=(stop)=>places.filter(p=>p.destinationId===stop.id || p.base
   p.id===stop.id || (!p.destinationId && !p.baseId && (stop.theme?.areas||[]).includes(p.area)));
 const routeGroups=trip.route.map(stop=>({stop,items:placesForStop(stop)}));
 const groupedPlaceIds=routeGroups.flatMap(group=>group.items.map(p=>p.id));
+
+// Day-trip attractions must form one contiguous subsection below their base,
+// rather than be interleaved with the main city's alphabetically sorted places.
+const nestedDayTripPlaceIds=new Set();
+for (const dayTrip of trip.dayTrips||[]) {
+  const dayTripPlace=placeById.get(dayTrip.id);
+  const baseStop=trip.route.find(stop=>stop.id===dayTrip.baseId);
+  const basePlace=placeById.get(dayTrip.baseId);
+  if (!dayTripPlace || !baseStop || !basePlace) {
+    errors.push(`Steder: dagsturen ${dayTrip.id} mangler sted eller base`);
+    continue;
+  }
+  if (dayTripPlace.area===basePlace.area) errors.push(`Steder: dagsturen ${dayTrip.id} mangler eget område`);
+  const members=placesForStop(baseStop);
+  const nested=members.filter(p=>p.id===dayTrip.id || p.area===dayTripPlace.area);
+  if (!nested.some(p=>p.id===dayTrip.id)) errors.push(`Steder: dagsturen ${dayTrip.id} vises ikke under ${baseStop.id}`);
+  for (const p of nested) {
+    if (nestedDayTripPlaceIds.has(p.id)) errors.push(`Steder: ${p.id} er knyttet til flere dagsturer`);
+    nestedDayTripPlaceIds.add(p.id);
+  }
+  if (nested.length<2) errors.push(`Steder: dagsturen ${dayTrip.id} må samle både hovedstedet og minst én tilhørende attraksjon`);
+}
+if (!nestedDayTripPlaceIds.has('todaiji') || !nestedDayTripPlaceIds.has('itsukushima-shrine')) {
+  errors.push('Steder: Tōdai-ji skal ligge under Nara, og Itsukushima Shrine under Miyajima');
+}
+
 if (groupedPlaceIds.length!==places.length || new Set(groupedPlaceIds).size!==places.length) {
   errors.push('Steder: alle kuraterte steder må vises nøyaktig én gang i riktig reiserutegruppe');
 }
@@ -577,6 +603,8 @@ if (directFxLoads !== 1) errors.push('app.js skal bare lese fx.json inne i loadF
 if (!app.includes('footer-version') || !app.includes("json('data/site.json')")) errors.push('footer mangler versjon/sist oppdatert');
 if (!app.includes('1 NOK =') || !app.includes('1 JPY =')) errors.push('footer viser ikke kurs begge veier');
 if (!app.includes('place-list-card')) errors.push('Steder bruker ikke kompakt kortliste');
+if (!app.includes('const dayTripGroups=(trip.dayTrips||[])') || !app.includes('const dayTripItemIds=new Set(') || !app.includes('localAttractions=attractions.filter(') || !app.includes('place-daytrip-group')) errors.push('Steder: dagsturer er ikke samlet i egne undergrupper under basen');
+if (!style.includes('.place-daytrip-group') || !style.includes('.place-daytrip-heading')) errors.push('Steder: undergrupper for dagsturer mangler styling');
 if (!app.includes('setupJourneyFilters')) errors.push('app.js mangler felles filter for del av reisen');
 if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=') || !app.includes('food.html?base=') || !app.includes('hotels.html?base=')) {
   errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
