@@ -149,6 +149,7 @@ const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs (virkedager)':'Lagret 
 function nav(active='') {
   const items = [
     ['index.html','Oversikt','home'],
+    ['flights.html','Flysøk','flights'],
     ['route.html','Rute','route'],
     ['places.html','Steder','places'],
     ['food.html','Mat','food'],
@@ -344,16 +345,73 @@ async function renderHome() {
 
 async function renderFlightGuide() {
   await applyPageCopy('flights');
-  nav(); footer();
+  nav('flights'); footer();
   const data=await json('data/flights.json');
-  const examples=document.getElementById('flight-examples');
-  if(examples)examples.innerHTML=data.examples.map(x=>`<article class="card"><h3>${x.title}</h3><p><strong>${x.route}</strong></p><p>${x.description}</p></article>`).join('');
-  const checklist=document.getElementById('flight-checklist');
-  if(checklist)checklist.innerHTML=data.checklist.map(x=>`<article class="card"><h3>${x.title}</h3><p>${x.detail}</p></article>`).join('');
-  const links=document.getElementById('flight-sources');
-  if(links)links.innerHTML=data.sources.map(x=>`<a class="card" href="${x.url}" target="_blank" rel="noopener"><h3>${x.title} ↗</h3><p>${x.description}</p></a>`).join('');
-  const privacy=document.getElementById('flight-privacy-note');
-  if(privacy)privacy.textContent=data.privacy;
+  const escapeHtml=(s)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const patterns=document.getElementById('flight-pattern-list');
+  const detail=document.getElementById('flight-pattern-detail');
+  const google=data.sources.find(x=>x.title==='Google Flights');
+  const finn=data.sources.find(x=>x.title==='FINN Reise');
+  const setPattern=(id)=>{
+    const x=data.examples.find(item=>item.id===id)||data.examples[0];
+    if(!x)return;
+    patterns.querySelectorAll('[data-pattern-id]').forEach(button=>{
+      const active=button.dataset.patternId===x.id;
+      button.classList.toggle('active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+    const lines=[x.title,x.route,'Slik søker du:',x.setup,...x.steps.map((step,i)=>String(i+1)+'. '+step),'Vurder:',x.tradeoff];
+    detail.innerHTML=`
+      <div class="flight-guide-detail-head">
+        <div><span class="meta">Illustrativt eksempel · ingen faktisk søkepris</span>
+        <h3>${escapeHtml(x.title)}</h3><p class="flight-guide-route">${escapeHtml(x.route)}</p>
+        <p>${escapeHtml(x.description)}</p></div>
+        <div class="flight-guide-detail-actions">
+          <a class="button primary" href="${escapeHtml(google?.url||'https://www.google.com/travel/flights')}" target="_blank" rel="noopener">Åpne Google Flights ↗</a>
+          <a class="button" href="${escapeHtml(finn?.url||'https://www.finn.no/reise/flybilletter/')}" target="_blank" rel="noopener">Åpne FINN ↗</a>
+          <button class="button flight-guide-copy" type="button">Kopier fremgangsmåten</button>
+          <span id="flight-copy-feedback" class="small" role="status"></span>
+        </div>
+      </div>
+      <div class="flight-guide-steps">
+        <div><h4>Søk dette</h4><p>${escapeHtml(x.setup)}</p></div>
+        <div><h4>Prøv disse variasjonene</h4><ol>${x.steps.map(t=>`<li>${escapeHtml(t)}</li>`).join('')}</ol></div>
+      </div>
+      <p class="flight-guide-tradeoff"><strong>Hva bør du sammenligne?</strong> ${escapeHtml(x.tradeoff)}</p>`;
+    detail.querySelector('.flight-guide-copy')?.addEventListener('click',async()=>{
+      const note=detail.querySelector('#flight-copy-feedback');
+      try{
+        if(!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(lines.join('\\n'));
+        if(note)note.textContent='Fremgangsmåten er kopiert.';
+      }catch{
+        if(note)note.textContent='Kunne ikke kopiere automatisk. Du kan markere teksten på siden.';
+      }
+    });
+  };
+  patterns.innerHTML=(data.examples||[]).map(x=>`<button type="button" data-pattern-id="${escapeHtml(x.id)}" aria-pressed="false">
+    <strong>${escapeHtml(x.title)}</strong><small>${escapeHtml(x.route)}</small></button>`).join('');
+  patterns.addEventListener('click',e=>{
+    const button=e.target.closest('[data-pattern-id]');
+    if(button) setPattern(button.dataset.patternId);
+  });
+  setPattern(data.examples[0]?.id);
+  document.getElementById('flight-workflow').innerHTML=(data.workflow||[]).map(x=>`<article class="card flight-guide-workflow">
+    <span class="meta">Steg ${escapeHtml(x.number)}</span>
+    <h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.detail)}</p></article>`).join('');
+  document.getElementById('flight-variations').innerHTML=(data.variations||[]).map(x=>`<article class="card">
+    <h3>${escapeHtml(x.label)}</h3>
+    <div class="flight-guide-shifts">${x.shifts.map(v=>`<span>${escapeHtml(v)}</span>`).join('')}</div>
+    <p>${escapeHtml(x.description)}</p></article>`).join('');
+  document.getElementById('flight-hub-examples').innerHTML=(data.hubExamples||[]).map(x=>`<article class="card">
+    <h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.setup)}</p>
+    <p><strong>Sjekk også:</strong> ${escapeHtml(x.check)}</p></article>`).join('');
+  document.getElementById('flight-checklist').innerHTML=(data.checklist||[]).map(x=>`<article class="card">
+    <h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.detail)}</p></article>`).join('');
+  document.getElementById('flight-sources').innerHTML=(data.sources||[]).map(x=>`<a class="card flight-guide-source"
+    href="${escapeHtml(x.url)}" target="_blank" rel="noopener"><h3>${escapeHtml(x.title)} ↗</h3>
+    <p>${escapeHtml(x.description)}</p></a>`).join('');
+  document.getElementById('flight-privacy-note').textContent=data.privacy||'';
 }
 
 async function renderRoute() {
