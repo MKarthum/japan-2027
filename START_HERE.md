@@ -31,7 +31,7 @@ Skriv slik at både barn og voksne uten Japan-kunnskap forstår innholdet. Forkl
 - `docs/data/day-ideas.json`: fleksible kombinasjoner per reisebase, med kjerne-/tilleggssteder som kun refererer til ID-er fra `places.json`. Ikke kalender, datoer eller faktisk bookingstatus.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris. Hvert sted skal ha eksplisitt `price`, også når prisen er «Gratis».
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
-- `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
+- `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner. `onsenOptions` i samme fil eier åpne onsenalternativer for Hakone, inkludert én separat badedag uten overnatting; eksisterende hotellnavn hentes fra `hotelId`. De samme dataene vises både i Hakones stedsdetalj og under Overnatting, og lenkes fra Dagidéer. Ikke opprett dubletter som egne `places.json`-steder bare for ny visning.
 - `docs/data/transport.json`: intercity-etapper, tider, priser og stasjoner.
 - `docs/data/route-geometry.json`: kun fysisk rutegeometri og visuelle spor-offsets for parallelle/overlappende jernbanestrekninger. Farger skal ikke lagres her.
 - `docs/data/guide.json`: praktiske råd, bookingradar, ord og mediekoblinger. Bookingradar refererer til `placeId`; den skal ikke kopiere navn, område eller lenker fra stedet.

@@ -2236,3 +2236,31 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   .glossary-term{min-height:24px}
   .glossary-popover{padding:14px 15px;font-size:.94rem}
 }
+
+
+/* Family onsen short-list: one data-driven component on Hakone and accommodation pages. */
+.onsen-overview{--onsen-color:#216d61;scroll-margin-top:30px}
+.onsen-overview-intro{margin-bottom:17px}
+.onsen-overview-intro h2{margin:5px 0 8px;font-size:clamp(1.5rem,2.4vw,2rem)}
+.onsen-overview-intro p{max-width:750px;color:var(--muted);line-height:1.6}
+.onsen-options-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.onsen-option-card{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--onsen-color);border-radius:16px;padding:18px;min-width:0;display:flex;flex-direction:column;gap:9px}
+.onsen-option-card h3{margin:0;font-size:1.18rem}
+.onsen-option-card p{margin:0;font-size:.88rem;line-height:1.56;color:var(--muted)}
+.onsen-option-card p strong{color:var(--ink)}
+.onsen-option-kicker{font-size:.75rem;font-weight:760;letter-spacing:.015em;color:var(--onsen-color)}
+.onsen-option-kicker span{color:var(--muted);font-weight:600}
+.onsen-option-subtitle{display:block;font-size:.89rem}
+.onsen-option-card .onsen-option-price{padding:10px 12px;background:var(--soft);border-radius:10px}
+.onsen-option-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:10px}
+.onsen-option-actions .button{font-size:.81rem}
+.onsen-options-note{font-size:.85rem;line-height:1.55;color:var(--muted);margin:17px 0 0}
+.hotel-onsen-options{margin-top:30px}
+.day-idea-extra-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.day-idea-extra-links .button{font-size:.79rem}
+@media(max-width:850px){.onsen-options-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.onsen-option-card{padding:14px}.onsen-option-actions .button{flex:1;justify-content:center}.onsen-overview-intro h2{font-size:1.45rem}}
+
+.stay-onsen-shortcut{margin:12px 0 22px;font-size:.9rem;font-weight:750}
+.stay-onsen-shortcut a{color:var(--accent2);text-underline-offset:3px}
+.stay-onsen-shortcut a:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}

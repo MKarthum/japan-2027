@@ -12,7 +12,7 @@
       "baseId": "hakone",
       "label": "Hakone · Gora",
       "strategy": "Gjør overnattingen til en del av opplevelsen",
-      "why": "Dette er bare én natt. Prioriter onsen (varme kilder), ro og et godt familieoppsett fremfor å spare en liten sum på et ordinært byhotell. Gora er en praktisk base for å komme videre rundt i Hakone."
+      "why": "Dette er én natt der varme kildebad er selve opplevelsen. Sammenlign privat bad på rommet, privat familiebad på hotellet og et eget badebesøk før overnatting velges. Ingen onsenalternativer er bestilt."
     },
     {
       "baseId": "kyoto",
@@ -626,5 +626,61 @@
       "description": "Leilighetspregede familieenheter nær Hiroshima Station, med kjøkken og romtyper for fire eller flere. Interessant som mulig pris-/plassalternativ til de dyrere stasjonshotellene.",
       "url": "https://grand-base.jp/hotel/gb-hiroshimaekimae/"
     }
-  ]
+  ],
+  "onsenOptions": {
+    "baseId": "hakone",
+    "title": "Onsen i Hakone – fire alternativer å vurdere",
+    "intro": "En natt i Hakone er satt av til varme kildebad. Her er tre muligheter der badet inngår i overnattingen, pluss et separat badebesøk dersom hotellet ikke har et egnet bad. Ingen er valgt eller bestilt.",
+    "planningNote": "Familien bør senere kontrollere at et privat bad har plass til alle fire, hvilke romtyper som gir privat onsen, om badet kan brukes sammen, tilgang for barn, reservasjonsvilkår og samlet pris. Et privat bad er et alternativ til kjønnsdelte fellesbad, hvor man normalt bader uten badetøy.",
+    "options": [
+      {
+        "id": "hakone-yutowa-private",
+        "kind": "overnatting",
+        "hotelId": "hakone-yutowa",
+        "subtitle": "Privat familiebad på hotellet",
+        "description": "To separate, private kildebad som hotellgjestene kan bruke. Én økt på 30 minutter er gratis for overnattende gjester; badene brukes uten forhåndsreservasjon når de er ledige.",
+        "tradeoff": "Kan være et rimeligere alternativ, men privatbadet er tidsbegrenset og ikke garantert tilgjengelig akkurat når dere ønsker.",
+        "familyNote": "Bekreft rom til fire og praktisk tilgang til familiebadet før overnatting velges.",
+        "priceNote": "Privatbad: én inkludert økt på 30 minutter for overnattingsgjester; overnatting prises separat.",
+        "officialUrl": "https://www.hakoneyutowa-hotel.jp/en/spa/",
+        "checked": "2026-10-20"
+      },
+      {
+        "id": "hakone-tenyu-room-bath",
+        "kind": "overnatting",
+        "hotelId": "hakone-kowakien-tenyu",
+        "subtitle": "Eget utendørs kildebad på rommet",
+        "description": "Hotellet har private utendørs kildebad på gjesterommene. Superior-rom har kapasitet til fire personer og bad på balkongen, slik at familien kan bade når det passer i oppholdet.",
+        "tradeoff": "Mer fleksibelt og komfortabelt enn et tidsbegrenset felles familiebad, men overnattingen er vesentlig dyrere.",
+        "familyNote": "Velg en romtype som faktisk kan ta fire. Kontroller totalpris, måltider og betingelser før bestilling.",
+        "priceNote": "Privat bad inngår i aktuell romtype; overnatting prises separat.",
+        "officialUrl": "https://www.ten-yu.com/en/superior.html",
+        "checked": "2026-10-20"
+      },
+      {
+        "id": "hakone-mikawaya-villa",
+        "kind": "overnatting",
+        "name": "Hakone Kowakien Mikawaya Ryokan",
+        "subtitle": "Historisk vertshus med privat utendørsbad i villa",
+        "description": "Et tradisjonelt vertshus fra 1884. De separate villaene har privat kildebad ute i hagen og plass til opptil seks voksne; andre romtyper har lavere kapasitet.",
+        "tradeoff": "Spennende dersom tradisjonell atmosfære betyr mye. Villa med eget bad må velges spesifikt; ikke alle rom har plass til fire.",
+        "familyNote": "Sjekk villa-tilgjengelighet for fire, måltider, pris og barnevilkår. Ingen konkret pris for denne reisens opphold er kontrollert.",
+        "priceNote": "Pris og tilgjengelighet for relevant villa må undersøkes; ingen familietotal er antatt.",
+        "officialUrl": "https://www.hakonekowakien-mikawaya.jp/en/ro_cottages.html",
+        "checked": "2026-10-20"
+      },
+      {
+        "id": "hakone-yuryo-private",
+        "kind": "dagbesok",
+        "name": "Hakone Yuryo",
+        "subtitle": "Separat privat familiebad – uten hotellovernatting",
+        "description": "Et eget badeanlegg ved Hakone-Yumoto med private utendørsbad. Type 2 og 3 har plass til opptil fire og leies i minst to timer. Dette er et alternativ hvis dere velger et hotell uten godt familiebad.",
+        "tradeoff": "Mer valgfrihet i hotellvalg, men krever ekstra transport og avsatt tid til badet.",
+        "familyNote": "Privatbad for fire krever riktig romkategori. Bestilling kan gjøres fra én måned før etter anleggets gjeldende regler.",
+        "priceNote": "Type 2: ¥12 400 på hverdager / ¥13 400 i helg for 120 minutter; type 3 fra ¥14 400. Publiserte 2026-priser, ikke tilbud for 2027.",
+        "officialUrl": "https://www.hakoneyuryo.jp/english/spa/hotspring/",
+        "checked": "2026-10-20"
+      }
+    ]
+  }
 }
