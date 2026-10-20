@@ -168,7 +168,12 @@
       "term": "torii",
       "meaning": "Porten ved en shinto-helligdom. Fushimi Inari og Miyajima gjør dette ordet lett å huske.",
       "japanese": "鳥居",
-      "speech": "とりい"
+      "speech": "とりい",
+      "inline": true,
+      "aliases": [
+        "torii-port",
+        "torii-porter"
+      ]
     },
     {
       "term": "-ji / -dera",
@@ -210,55 +215,236 @@
       "term": "ryokan",
       "meaning": "Tradisjonelt japansk vertshus, ofte med tatami, futon og måltider.",
       "japanese": "旅館",
-      "speech": "りょかん"
+      "speech": "りょかん",
+      "inline": true
     },
     {
       "term": "onsen",
       "meaning": "Varm kilde / bad med naturlig varmt kildevann.",
       "japanese": "温泉",
-      "speech": "おんせん"
+      "speech": "おんせん",
+      "inline": true
     },
     {
       "term": "konbini",
       "meaning": "Convenience store – f.eks. 7-Eleven, Lawson og FamilyMart.",
       "japanese": "コンビニ",
-      "speech": "コンビニ"
+      "speech": "コンビニ",
+      "inline": true
     },
     {
       "term": "shinkansen",
       "meaning": "Japans høyhastighetstog – «bullet train».",
       "japanese": "新幹線",
-      "speech": "しんかんせん"
+      "speech": "しんかんせん",
+      "inline": true
     },
     {
       "term": "hanami",
       "meaning": "Å nyte blomstringen om våren, særlig kirsebærblomster (sakura), ofte med tur eller piknik under trærne.",
       "japanese": "花見",
-      "speech": "はなみ"
+      "speech": "はなみ",
+      "inline": true
     },
     {
       "term": "sakura",
       "meaning": "Japansk for kirsebærblomster; symbol på den korte og vakre vårblomstringen.",
       "japanese": "桜",
-      "speech": "さくら"
+      "speech": "さくら",
+      "inline": true
     },
     {
       "term": "matcha",
       "meaning": "Finmalt pulver av grønn te, brukt blant annet i japansk teseremoni og desserter.",
       "japanese": "抹茶",
-      "speech": "まっちゃ"
+      "speech": "まっちゃ",
+      "inline": true
     },
     {
       "term": "shinto",
       "meaning": "Japansk religion og tradisjoner knyttet til helligdommer, naturen og hellige ånder.",
       "japanese": "神道",
-      "speech": "しんとう"
+      "speech": "しんとう",
+      "inline": true
     },
     {
       "term": "tatami",
       "meaning": "Tradisjonell japansk gulvmatte, ofte av vevd igusa-gress.",
       "japanese": "畳",
-      "speech": "たたみ"
+      "speech": "たたみ",
+      "inline": true
+    },
+    {
+      "term": "futon",
+      "meaning": "Tynn japansk madrass som legges på gulvet, ofte på tatami-matter.",
+      "japanese": "布団",
+      "inline": true
+    },
+    {
+      "term": "kaiseki",
+      "meaning": "Tradisjonelt japansk flerettersmåltid med små, sesongbaserte retter.",
+      "japanese": "懐石",
+      "inline": true
+    },
+    {
+      "term": "nigiri",
+      "meaning": "Sushi med en liten risbit formet for hånd og fisk eller annet på toppen.",
+      "japanese": "握り",
+      "inline": true
+    },
+    {
+      "term": "Edomae",
+      "meaning": "Klassisk sushistil fra Edo, det gamle Tokyo, med vekt på fisk og tradisjonell tilberedning.",
+      "japanese": "江戸前",
+      "inline": true
+    },
+    {
+      "term": "omakase",
+      "meaning": "«Jeg overlater det til deg»: kokken velger og serverer rettene.",
+      "japanese": "お任せ",
+      "inline": true
+    },
+    {
+      "term": "geiko",
+      "meaning": "Kyotos betegnelse på en profesjonell geisha som opptrer med musikk, dans og samtalekunst.",
+      "japanese": "芸妓",
+      "inline": true
+    },
+    {
+      "term": "maiko",
+      "meaning": "Lærling under opplæring til geiko i Kyoto.",
+      "japanese": "舞妓",
+      "inline": true
+    },
+    {
+      "term": "tsukemen",
+      "meaning": "Nudler som serveres separat og dyppes i en kraftig buljong.",
+      "japanese": "つけ麺",
+      "inline": true
+    },
+    {
+      "term": "takoyaki",
+      "meaning": "Små stekte boller med biter av blekksprut, særlig kjent fra Osaka.",
+      "japanese": "たこ焼き",
+      "inline": true
+    },
+    {
+      "term": "okonomiyaki",
+      "meaning": "Japansk stekt kålpannekake med saus og topping; Osaka og Hiroshima har ulike varianter.",
+      "japanese": "お好み焼き",
+      "inline": true
+    },
+    {
+      "term": "kushikatsu",
+      "meaning": "Frityrstekte og panerte små spyd med kjøtt, sjømat eller grønnsaker.",
+      "japanese": "串カツ",
+      "inline": true
+    },
+    {
+      "term": "gyukatsu",
+      "meaning": "Panert, sprøstekt storfekjøtt, ofte servert med en varm stein til videre steking.",
+      "japanese": "牛カツ",
+      "inline": true
+    },
+    {
+      "term": "tonkatsu",
+      "meaning": "Panert og frityrstekt svinekotelett.",
+      "japanese": "豚カツ",
+      "inline": true
+    },
+    {
+      "term": "wagyu",
+      "meaning": "Storfekjøtt fra japanske storferaser, ofte kjent for fettmarmorering.",
+      "japanese": "和牛",
+      "inline": true
+    },
+    {
+      "term": "sukiyaki",
+      "meaning": "Japansk gryterett med tynne kjøttskiver og grønnsaker kokt i søtlig saus.",
+      "japanese": "すき焼き",
+      "inline": true
+    },
+    {
+      "term": "shabu-shabu",
+      "meaning": "Japansk gryterett der tynne kjøttskiver raskt dyppes i varm kraft.",
+      "japanese": "しゃぶしゃぶ",
+      "inline": true
+    },
+    {
+      "term": "udon",
+      "meaning": "Tykke nudler laget av hvetemel.",
+      "japanese": "うどん",
+      "inline": true
+    },
+    {
+      "term": "ramen",
+      "meaning": "Nudelsuppe med kraft, nudler og ulike typer topping.",
+      "japanese": "ラーメン",
+      "inline": true
+    },
+    {
+      "term": "Daibutsu",
+      "meaning": "«Stor Buddha», særlig brukt om store buddhastatuer, som i Nara.",
+      "japanese": "大仏",
+      "inline": true
+    },
+    {
+      "term": "honbasho",
+      "meaning": "En av de offisielle profesjonelle sumoturneringene der resultatene teller.",
+      "japanese": "本場所",
+      "inline": true
+    },
+    {
+      "term": "jungyō",
+      "meaning": "Sumobryternes omreisende oppvisningsturné, uten tellende konkurransekamper.",
+      "japanese": "巡業",
+      "inline": true,
+      "aliases": [
+        "jungyo"
+      ]
+    },
+    {
+      "term": "heya",
+      "meaning": "Sumostall: stedet hvor bryterne bor og trener.",
+      "japanese": "部屋",
+      "inline": true
+    },
+    {
+      "term": "gachapon",
+      "meaning": "Maskin hvor man kjøper et tilfeldig lite leketøy eller samleobjekt i en kapsel.",
+      "japanese": "ガチャポン",
+      "inline": true
+    },
+    {
+      "term": "Studio Pass",
+      "meaning": "Vanlig inngangsbillett til Universal Studios Japan, ikke et Express Pass for raskere kø.",
+      "inline": true,
+      "aliases": [
+        "studio-pass"
+      ]
+    },
+    {
+      "term": "Express Pass",
+      "meaning": "Ekstra betalt pass som kan gi kortere kø ved utvalgte attraksjoner på Universal Studios Japan.",
+      "inline": true,
+      "aliases": [
+        "express-pass"
+      ]
+    },
+    {
+      "term": "IC-kort",
+      "meaning": "Kontaktløst reisekort som kan brukes på lokaltransport og i mange butikker i Japan.",
+      "japanese": "ICカード",
+      "inline": true,
+      "aliases": [
+        "IC kort"
+      ]
+    },
+    {
+      "term": "Nozomi",
+      "meaning": "En av de raskeste Shinkansen-togtypene på Tōkaidō- og San'yō-linjene.",
+      "japanese": "のぞみ",
+      "inline": true
     }
   ],
   "phrases": [
