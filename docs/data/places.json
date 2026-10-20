@@ -11,7 +11,8 @@
       "Shibuya",
       "Asakusa og Sensō-ji",
       "Akihabara",
-      "teamLab"
+      "teamLab",
+      "Tokyo Tower ved Zōjō-ji"
     ],
     "image": {
       "type": "licensed",
@@ -149,6 +150,132 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/"
     }
+  },
+  {
+    "id": "tokyo-tower",
+    "name": "Tokyo Tower",
+    "area": "Tokyo",
+    "type": "utsiktspunkt",
+    "simple": "Tokyos ikoniske røde tårn – flott også fra bakken",
+    "description": "Tokyo Tower er et 333 meter høyt landemerke i Minato. Den mest karakteristiske opplevelsen er ofte selve synet av det opplyste tårnet, særlig fra Zōjō-ji og Shiba Park. Man kan også kjøpe billett til utsiktsdekkene på 150 og 250 meter. Det ligger nær teamLab Borderless i Azabudai Hills, så disse kan vurderes på samme Tokyo-dag.",
+    "why": "Et av de mest gjenkjennelige symbolene på Tokyo. Med en forholdsvis kort Tokyo-etappe er det verdt å se tårnet utenfra; om familien også vil opp, avhenger av tid, vær og om man ønsker flere utsiktspunkter.",
+    "highlights": [
+      "333 meter høyt landemerke",
+      "Kveldsutsikt fra Zōjō-ji og Shiba Park",
+      "Main Deck 150 m (mot billett)",
+      "Top Deck 250 m (mot billett)"
+    ],
+    "map": {
+      "lat": 35.65858,
+      "lng": 139.74544,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Tower%20night.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Tokyo_Tower_night.jpg",
+      "credit": "Joe Jones",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "alt": "Tokyo Tower opplyst om natten, sett fra Zōjō-ji-tempelet"
+    },
+    "links": [
+      {
+        "label": "Tokyo Tower – offisiell side",
+        "url": "https://en.tokyotower.co.jp/",
+        "kind": "official"
+      },
+      {
+        "label": "Billetter og priser",
+        "url": "https://en.tokyotower.co.jp/fee/",
+        "kind": "ticket"
+      },
+      {
+        "label": "Offisiell bestilling",
+        "url": "https://ticket.tokyotower.co.jp/en/",
+        "kind": "info"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Å se Tokyo Tower og området rundt fra bakken er gratis. Utsiktsdekkene krever egen billett.",
+      "checked": "2026-10-20",
+      "source": "https://en.tokyotower.co.jp/fee/"
+    },
+    "experienceOptionsTitle": "Se tårnet utenfra eller gå opp?",
+    "experienceOptionsIntro": "Et besøk til tårnet trenger ikke ta en stor del av dagen. Selve utsikten mot tårnet er gratis; det er valgfritt å betale for utsiktsdekk.",
+    "experienceOptions": [
+      {
+        "id": "tokyo-tower-outside",
+        "name": "Tårnet fra Zōjō-ji og Shiba Park",
+        "kind": "Utendørs · utsikt mot landemerket",
+        "status": "Ingen billett nødvendig",
+        "description": "Gå en runde ved tempelet og parken, spesielt fint rundt skumring eller etter mørkets frembrudd. Å se Tokyo Tower fra bakken kan være mer ikonisk enn utsikten fra innsiden.",
+        "fit": "Godt valg med knapp Tokyo-tid: gir mye opplevelse uten ekstra billettkostnad.",
+        "whenToCheck": "Ingen reservasjon; velg tidspunkt etter dagsprogram og vær.",
+        "price": {
+          "note": "Gratis fra offentlige områder."
+        },
+        "links": [
+          {
+            "label": "Tokyo Tower – offisiell side",
+            "url": "https://en.tokyotower.co.jp/"
+          }
+        ],
+        "checked": "2026-10-20",
+        "areaLabel": "Minato, Tokyo"
+      },
+      {
+        "id": "tokyo-tower-main-deck",
+        "name": "Main Deck (150 meter)",
+        "kind": "Betalt utsiktsdekk",
+        "status": "Billetter selges",
+        "description": "360-graders utsikt over Tokyo fra tårnets hoveddekk. Et alternativ hvis man har lyst på utsikten, men trenger ikke prioriteres dersom man allerede planlegger et annet utsiktspunkt.",
+        "fit": "Passer fint dersom dere ønsker å komme opp, og været er klart. Fra bakken er tårnet i seg selv mer synlig.",
+        "whenToCheck": "Sjekk åpningstid, tilgjengelighet, vær og barnas billettkategorier før kjøp.",
+        "price": {
+          "adultYen": 1500,
+          "childYen": 900,
+          "note": "Publisert voksenpris ¥1 500 og barn i skolealder ¥900 per person. Familiepris varierer med alderskategorier.",
+          "source": "https://en.tokyotower.co.jp/fee/"
+        },
+        "links": [
+          {
+            "label": "Billetter og priser",
+            "url": "https://en.tokyotower.co.jp/fee/"
+          }
+        ],
+        "checked": "2026-10-20",
+        "areaLabel": "Tokyo Tower"
+      },
+      {
+        "id": "tokyo-tower-top-deck",
+        "name": "Top Deck Tour (250 meter)",
+        "kind": "Betalt utsiktstur",
+        "status": "Billetter selges",
+        "description": "En dyrere, guidet opplevelse som inkluderer hoveddekket og toppdekket. Ikke nødvendig for å få sett tårnet; vurderes bare dersom utsikten oppleves som et høydepunkt.",
+        "fit": "Aktuelt hvis dere ønsker en spesiell utsiktstur, men kan lett velges bort på en kort Tokyo-etappe.",
+        "whenToCheck": "Kontroller priser, tidspunkt og vær; toppdekket kan stenge ved dårlig vær.",
+        "price": {
+          "adultYen": 3300,
+          "childYen": 2100,
+          "note": "Offisielle nettpriser fra ¥3 300 per voksen og ¥2 100 per skolebarn. Familietotal avhenger av alderskategorier.",
+          "source": "https://en.tokyotower.co.jp/fee/"
+        },
+        "links": [
+          {
+            "label": "Top Deck Tour",
+            "url": "https://ticket.tokyotower.co.jp/en/"
+          }
+        ],
+        "checked": "2026-10-20",
+        "areaLabel": "Tokyo Tower"
+      }
+    ]
   },
   {
     "id": "hakone",

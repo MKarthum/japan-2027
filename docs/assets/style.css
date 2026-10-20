@@ -2072,3 +2072,29 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .flight-guide-link-actions{display:flex;flex-wrap:wrap;gap:8px}
 .flight-guide-link-actions .button{justify-content:center;font-size:.79rem;text-align:center}
 @media(max-width:720px){.flight-guide-link-leg{display:block}.flight-guide-link-actions{margin-top:12px}.flight-guide-link-actions .button{width:100%}}
+
+
+/* Places grouped by actual route; no invented priority ranking. */
+#places-grid.place-list{display:grid;gap:40px}
+.place-destination-group{--area-color:#5f6b73;min-width:0}
+.place-destination-heading{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:0 0 14px;padding:0 0 14px 16px;border-left:5px solid var(--area-color);border-bottom:1px solid var(--line)}
+.place-destination-heading .meta{color:var(--area-color);font-size:.75rem}
+.place-destination-heading h2{margin:3px 0 0;font-size:clamp(1.5rem,2.7vw,2.2rem);line-height:1.2}
+.place-destination-heading p{margin:4px 0 0;color:var(--muted);font-size:.86rem}
+.place-destination-overview{display:inline-flex;align-items:center;white-space:nowrap;font-size:.85rem;font-weight:750;text-decoration:none;color:var(--area-color);border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--paper)}
+.place-destination-overview:hover{border-color:var(--area-color)}
+.place-destination-items{display:grid;gap:12px}
+.place-list-area-note{display:block;color:var(--muted);font-size:.72rem;font-weight:700;margin-bottom:4px}
+@media(max-width:620px){#places-grid.place-list{gap:30px}.place-destination-items{gap:9px}.place-destination-heading{align-items:start}.place-destination-overview{font-size:.8rem}}
+
+
+/* Places: itinerary order first, no artificial priority ranking. */
+.places-destination-group{display:block;min-width:0}
+.places-destination-group+.places-destination-group{margin-top:32px}
+.places-destination-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px 15px;border-left:5px solid var(--area-color);background:color-mix(in srgb,var(--area-color) 9%,var(--paper));border-radius:13px;margin-bottom:12px}
+.places-destination-heading h2{margin:2px 0 3px;font-size:clamp(1.3rem,2.5vw,1.8rem);line-height:1.15}
+.places-destination-heading p{font-size:.83rem;color:var(--muted);margin:4px 0 0}
+.places-destination-sequence{font-size:.73rem;letter-spacing:.05em;font-weight:780;text-transform:uppercase;color:var(--area-color)}
+.places-destination-route-link{font-size:.83rem;font-weight:750;white-space:nowrap;color:var(--area-color);text-underline-offset:3px}
+.places-destination-items{display:grid;gap:12px}
+@media(max-width:620px){.places-destination-group+.places-destination-group{margin-top:23px}.places-destination-heading{padding:13px 14px}.places-destination-route-link{font-size:.76rem}.places-destination-items{gap:9px}}

@@ -30,8 +30,8 @@
   "places": {
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
-    "intro": "Bydeler, templer, slott, museer og dagsturer samlet ett sted. Filtrer etter del av reisen og åpne et sted for bakgrunn, hva som gjør det interessant, mat i nærheten, kart og offisielle lenker.",
-    "filterLabel": "Del av reisen"
+    "intro": "Opplevelsene er samlet etter reiseruten: Tokyo først, deretter Hakone, Kyoto, Himeji, Hiroshima og Osaka. Dagsturer vises under basen de hører til. Innenfor hvert reisested er listen alfabetisk, ikke en rangering av hva som er viktigst.",
+    "filterLabel": "Vis steder fra"
   },
   "food": {
     "eyebrow": "Mat",

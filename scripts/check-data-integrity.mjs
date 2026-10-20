@@ -182,6 +182,42 @@ if(/20(?:26|27)-\\d{2}-\\d{2}/.test(JSON.stringify(trip.route)) || /20(?:26|27)-
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
+
+const placesForStop=(stop)=>places.filter(p=>p.destinationId===stop.id || p.baseId===stop.id ||
+  p.id===stop.id || (!p.destinationId && !p.baseId && (stop.theme?.areas||[]).includes(p.area)));
+const routeGroups=trip.route.map(stop=>({stop,items:placesForStop(stop)}));
+const groupedPlaceIds=routeGroups.flatMap(group=>group.items.map(p=>p.id));
+if (groupedPlaceIds.length!==places.length || new Set(groupedPlaceIds).size!==places.length) {
+  errors.push('Steder: alle kuraterte steder må vises nøyaktig én gang i riktig reiserutegruppe');
+}
+if (!places.some(p=>p.id==='tokyo-tower' && p.area==='Tokyo' && p.map?.showOnRouteMap)) {
+  errors.push('Steder: Tokyo Tower skal være et kartvisbart Tokyo-sted');
+}
+if (places.some(p=>p.priority || p.primaryChoice || p.secondaryChoice || p.rank)) {
+  errors.push('Steder: unaturlig primær-/sekundærrangering skal ikke brukes');
+}
+
+// The grouped Places view must map every place into exactly one existing route group.
+const placesByDestination=new Map(trip.route.map(stop=>[stop.id,[]]));
+for (const place of places) {
+  const possible=trip.route.filter(stop=>stop.id===place.id || stop.theme?.areas?.includes(place.area));
+  // Direct route match always wins, including the Himeji pass-through.
+  const direct=trip.route.find(stop=>stop.id===place.id);
+  const matched=direct || trip.route.find(stop=>stop.theme?.areas?.includes(place.area));
+  if(!matched) errors.push(`places.json: ${place.id} has no route destination group`);
+  else placesByDestination.get(matched.id).push(place);
+}
+for (const stop of trip.route) {
+  if(!(placesByDestination.get(stop.id)||[]).length) errors.push(`trip.json: route group ${stop.id} is empty`);
+}
+const tower=placeById.get('tokyo-tower');
+if (!tower || tower.area!=='Tokyo' || tower.type!=='utsiktspunkt' ||
+    !tower.links?.some(x=>x.kind==='official') ||
+    !tower.experienceOptions?.some(x=>x.id==='tokyo-tower-main-deck') ||
+    !tower.experienceOptions?.some(x=>x.id==='tokyo-tower-top-deck')) {
+  errors.push('places.json: Tokyo Tower needs official info and separate outdoor/observation options');
+}
+
 const routeIds = new Set(trip.route.map(x => x.id));
 const themedAreas = new Set();
 
@@ -494,6 +530,15 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+if (!app.includes("trip.route") || !app.includes('place-destination-group') ||
+  !app.includes("sort((a,b)=>a.name.localeCompare(b.name,'nb'))") ||
+  !app.includes('setupJourneyFilters(filters,trip,places,places,draw)')) {
+  errors.push('Steder: sortering etter reiserute, nøytral alfabetisering eller filter mangler');
+}
+if (!style.includes('.place-destination-heading') || !style.includes('.place-destination-items')) {
+  errors.push('Steder: destinasjonsgrupper mangler felles styling');
+}
+
 try {
   new Script(app,{filename:'docs/assets/app.js'});
 } catch (error) {
@@ -525,6 +570,7 @@ if (app.includes('renderFlightsResearch')||app.includes('flight-copy-template'))
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
 if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
+if (!app.includes('places.filter(p=>destinationId(trip,p)===stop.id)') || !app.includes("sort((a,b)=>a.name.localeCompare(b.name,'nb'))") || !app.includes('place-destination-group')) errors.push('app.js: steder må grupperes etter reiserute og sorteres nøytralt alfabetisk');
 if (!app.includes('async function loadFx()') || !app.includes('providers=ecb')) errors.push('app.js mangler live ECB-kurs');
 const directFxLoads=[...app.matchAll(/json\('data\/fx\.json'\)/g)].length;
 if (directFxLoads !== 1) errors.push('app.js skal bare lese fx.json inne i loadFx()');
