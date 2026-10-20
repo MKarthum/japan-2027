@@ -2077,15 +2077,23 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 /* Places grouped by actual route; no invented priority ranking. */
 #places-grid.place-list{display:grid;gap:40px}
 .place-destination-group{--area-color:#5f6b73;min-width:0}
-.place-destination-heading{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:0 0 14px;padding:0 0 14px 16px;border-left:5px solid var(--area-color);border-bottom:1px solid var(--line)}
+.place-destination-heading{display:block;margin:0 0 14px;border-left:5px solid var(--area-color);border-bottom:1px solid var(--line);border-radius:0 12px 12px 0}
+.place-destination-heading-link{display:block;width:100%;padding:13px 16px 16px;color:var(--ink);text-decoration:none;border-radius:0 12px 12px 0;transition:background-color .15s ease}
+.place-destination-heading-link:hover{background:color-mix(in srgb,var(--area-color) 7%,var(--paper))}
+.place-destination-heading-link:focus-visible{outline:3px solid var(--area-color);outline-offset:3px}
 .place-destination-heading .meta{color:var(--area-color);font-size:.75rem}
-.place-destination-heading h2{margin:3px 0 0;font-size:clamp(1.5rem,2.7vw,2.2rem);line-height:1.2}
-.place-destination-heading p{margin:4px 0 0;color:var(--muted);font-size:.86rem}
-.place-destination-overview{display:inline-flex;align-items:center;white-space:nowrap;font-size:.85rem;font-weight:750;text-decoration:none;color:var(--area-color);border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--paper)}
-.place-destination-overview:hover{border-color:var(--area-color)}
+.place-destination-heading h2{margin:4px 0 0;font-size:clamp(1.5rem,2.7vw,2.2rem);line-height:1.2}
+.place-destination-heading-arrow{display:inline-block;font-size:.6em;margin-left:7px;vertical-align:12%;color:var(--area-color);transition:transform .15s ease}
+.place-destination-heading-link:hover .place-destination-heading-arrow{transform:translate(2px,-2px)}
+.place-destination-heading p{margin:5px 0 0;color:var(--muted);font-size:.88rem}
+.place-destination-overview{display:flex;align-items:center;gap:10px;width:max-content;max-width:100%;min-height:46px;margin-top:15px;padding:10px 14px;border:1px solid var(--area-color);border-radius:12px;background:var(--paper);color:var(--area-color);box-shadow:var(--shadow-sm)}
+.place-destination-overview-label{font-size:.98rem;font-weight:800;white-space:nowrap}
+.place-destination-overview-description{font-size:.79rem;color:var(--muted);line-height:1.35}
+.place-destination-overview-arrow{font-size:1.1rem;font-weight:800;white-space:nowrap}
+.place-destination-heading-link:hover .place-destination-overview{background:color-mix(in srgb,var(--area-color) 10%,var(--paper));box-shadow:var(--shadow)}
 .place-destination-items{display:grid;gap:12px}
 .place-list-area-note{display:block;color:var(--muted);font-size:.72rem;font-weight:700;margin-bottom:4px}
-@media(max-width:620px){#places-grid.place-list{gap:30px}.place-destination-items{gap:9px}.place-destination-heading{align-items:start}.place-destination-overview{font-size:.8rem}}
+@media(max-width:620px){#places-grid.place-list{gap:30px}.place-destination-items{gap:9px}.place-destination-heading-link{padding:13px 12px 14px}.place-destination-overview{width:100%;gap:8px;padding:10px 11px}.place-destination-overview-description{font-size:.74rem}}
 
 
 /* Places: itinerary order first, no artificial priority ranking. */

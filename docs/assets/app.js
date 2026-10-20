@@ -974,11 +974,16 @@ async function renderPlaces() {
         const label=stop.nights===0?'Stopp på veien':`${stop.nights} ${stop.nights===1?'natt':'netter'}`;
         return `<section class="place-destination-group destination-themed" id="places-${stop.id}" style="${themeStyle(destinationTheme(trip,stop))}">
           <div class="place-destination-heading">
-            <div>
+            <a href="place.html?id=${encodeURIComponent(base.id)}" class="place-destination-heading-link" aria-label="Les om ${base.name}: oversikt, høydepunkter og praktisk informasjon">
               <span class="meta">Ruten · ${label}</span>
-              <h2>${base.name}</h2><p>${stop.label}</p>
-            </div>
-            <a href="place.html?id=${encodeURIComponent(base.id)}" class="place-destination-overview">Om ${base.name} →</a>
+              <h2>${base.name} <span class="place-destination-heading-arrow" aria-hidden="true">↗</span></h2>
+              <p>${stop.label}</p>
+              <span class="place-destination-overview">
+                <span class="place-destination-overview-label">Les om ${base.name}</span>
+                <span class="place-destination-overview-description">Oversikt, høydepunkter og praktisk informasjon</span>
+                <span class="place-destination-overview-arrow" aria-hidden="true">→</span>
+              </span>
+            </a>
           </div>
           <div class="place-destination-items">${localItems.map(p=>placeCard(p,base)).join('')}</div>
           ${dayTripGroups.map(({destination,items})=>`
