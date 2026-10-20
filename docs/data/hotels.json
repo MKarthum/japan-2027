@@ -6,7 +6,7 @@
       "baseId": "tokyo",
       "label": "Tokyo · Shinjuku",
       "strategy": "Bo i Shinjuku",
-      "why": "Fem netter gjør leilighetsfølelse og plass verdifullt. Shinjuku passer både de vestlige Tokyo-dagene og avreisen til Hakone."
+      "why": "Fire netter gjør god beliggenhet og lett transport viktig. Shinjuku passer både de vestlige Tokyo-dagene og videre reise til Hakone."
     },
     {
       "baseId": "hakone",
@@ -30,7 +30,7 @@
       "baseId": "osaka",
       "label": "Osaka · Namba",
       "strategy": "Bo i Namba",
-      "why": "Namba gir Dōtonbori til fots og direkte Nankai-tog mot Kansai International Airport (KIX). Universal Studios blir en egen kollektivdag uansett."
+      "why": "Tre netter gir plass til både Universal Studios og en egen dag i byen. Namba gir Dōtonbori til fots og direkte Nankai-tog mot Kansai International Airport (KIX)."
     }
   ],
   "hotels": [
@@ -42,7 +42,7 @@
       "tier": "Verdi",
       "priceClass": "¥¥",
       "familyOption": "Adjoining Room A kombinerer to rom til 43 m² for opptil fire personer, med vaskemaskin/tørketrommel, mikrobølgeovn og kjøkkenkrok.",
-      "why": "Et pragmatisk femnettersvalg når plass, klesvask og enkel egenmat betyr mer enn hotell-luksus.",
+      "why": "Et pragmatisk firenettersvalg når plass, klesvask og enkel egenmat betyr mer enn hotell-luksus.",
       "logistics": "Higashi-Shinjuku / Shinjuku-sanchome. God bybase og fortsatt praktisk mot Shinjuku Station før Hakone.",
       "tradeoff": "Mindre «spesiell Japan-opplevelse» enn de dyrere alternativene, og ikke like nær hovedstasjonen som MIMARU West.",
       "rating": {
@@ -78,7 +78,7 @@
       "tier": "Mellomklasse",
       "priceClass": "¥¥¥",
       "familyOption": "Family Apartment er 40 m² med to enkeltsenger + køyeseng, kjøkken og spiseplass; dimensjonert for fire voksne.",
-      "why": "Det mest balanserte Tokyo-valget for en familie på fire over fem netter: ordentlig plass, kjøkken og en romløsning som faktisk er laget for familien.",
+      "why": "Det mest balanserte Tokyo-valget for en familie på fire over fire netter: ordentlig plass, kjøkken og en romløsning som faktisk er laget for familien.",
       "logistics": "Ca. 10 minutters gange fra Shinjuku Station South Exit og 8 minutter fra Tochomae.",
       "tradeoff": "Dyrere enn et vanlig businesshotell, men man kjøper seg mye mer brukbar plass og slipper to små rom.",
       "rating": {
@@ -116,7 +116,7 @@
       "familyOption": "Premier Suite er 61 m² og oppgitt for opptil fire gjester; Japanese Suite gir samme størrelse med mer japansk uttrykk.",
       "why": "Velg dette dersom Tokyo-hotellet også skal være en opplevelse: høy etasje, storbyutsikt og mer hotellfølelse enn leilighetshotellene.",
       "logistics": "Kabukicho Tower i Shinjuku, tett på mat, underholdning og transport.",
-      "tradeoff": "Man betaler mye for utsikt og hotellnivå; MIMARU er mer praktisk som familiebase over fem netter.",
+      "tradeoff": "Man betaler mye for utsikt og hotellnivå; MIMARU er mer praktisk som familiebase over fire netter.",
       "rating": {
         "platform": "Google",
         "score": 4.5,
