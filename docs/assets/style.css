@@ -2098,3 +2098,12 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .places-destination-route-link{font-size:.83rem;font-weight:750;white-space:nowrap;color:var(--area-color);text-underline-offset:3px}
 .places-destination-items{display:grid;gap:12px}
 @media(max-width:620px){.places-destination-group+.places-destination-group{margin-top:23px}.places-destination-heading{padding:13px 14px}.places-destination-route-link{font-size:.76rem}.places-destination-items{gap:9px}}
+
+
+/* A day trip is one subsection of its overnight base, not another itinerary stop. */
+.place-daytrip-group{margin-top:22px}
+.place-daytrip-heading{display:flex;align-items:flex-end;justify-content:space-between;padding:13px 0 10px;margin-bottom:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.place-daytrip-heading .meta{font-size:.75rem;letter-spacing:.06em;color:var(--area-color)}
+.place-daytrip-heading h3{margin:5px 0 0;font-size:clamp(1.12rem,2vw,1.35rem)}
+.place-daytrip-group>.place-destination-items{display:grid;gap:12px}
+@media(max-width:620px){.place-daytrip-group{margin-top:19px}.place-daytrip-heading{margin-bottom:10px}.place-daytrip-group>.place-destination-items{gap:9px}}
