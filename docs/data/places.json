@@ -942,7 +942,7 @@
   {
     "id": "miyajima",
     "name": "Miyajima",
-    "area": "Hiroshima",
+    "area": "Miyajima",
     "type": "dagstur",
     "simple": "Øya med den røde porten i sjøen",
     "description": "Miyajima er øya utenfor Hiroshima der Itsukushima-helligdommen og den store torii-porten møter en liten bebyggelse, hjort, skog og kystlandskap. Fergeturen er kort nok til en dagstur, men øya føles likevel klart annerledes enn byen.",
@@ -1251,7 +1251,7 @@
   {
     "id": "itsukushima-shrine",
     "name": "Itsukushima Shrine",
-    "area": "Hiroshima",
+    "area": "Miyajima",
     "type": "helligdom",
     "simple": "Helligdommen bak den ikoniske torii-porten i sjøen",
     "description": "Itsukushima Shrine er helligdomsanlegget på Miyajima som står over tidevannssonen og henger visuelt sammen med den store torii-porten ute i sjøen. Høy- og lavvann endrer både utsikten og hvordan området oppleves.",

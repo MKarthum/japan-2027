@@ -73,7 +73,7 @@ HTML og JavaScript er et tynt visningslag over de kanoniske JSON-filene. Konkret
 - `trip.json.overview` eier budskapet på oversikten. Oversikten skal forklare hvorfor reisen og hvordan siden brukes, ikke gjengi innholdet fra alle undersidene.
 - `food.json` er ett samlet matdomene med metadata + `restaurants`.
 - `app.js` har små delte visningsprimitiver i stedet for side-spesifikke kopier av samme komponent.
-- Steder, Mat og Overnatting bruker samme reise-/basefilter slik at innhold kan avgrenses etter del av reisen. Filtertilstanden kan åpnes via `?base=<routeId>`, og rutesiden bruker dette for navigasjon videre.
+- Steder, Mat og Overnatting bruker samme reise-/basefilter slik at innhold kan avgrenses etter del av reisen. Steder vises i ruteorden, med lokale attraksjoner først og hver dagstur samlet under sin overnattingsbase. Filtertilstanden kan åpnes via `?base=<routeId>`, og rutesiden bruker dette for navigasjon videre.
 - Rutekartet bruker minimale popup-kort (kategori + navn + detaljlenke). Panelet under kartet følger popupen som faktisk åpnes og eier beskrivelse, pris og kontekst; reisepriser vises når en rutelinje/etappe velges. Mobilkort for steder er kompakte rader med fast bildekolonne og gyldig HTML uten nested anchors. Mediekort bruker `entityMediaHtml()`; relaterte alternativer bruker `relatedEntityCardHtml()`.
 - Endres et delt visuelt mønster, endres helperen/CSS-primitiven slik at alle tilsvarende visninger følger med. CSS skal konsolideres i én kanonisk regel per delt komponent, ikke bygges opp som versjonsvise override-lag.
 - Offentlig tekst beskriver nåværende plan. Release-/endringshistorikk hører ikke hjemme i siden eller `site.json`.
