@@ -182,6 +182,21 @@ if(/20(?:26|27)-\\d{2}-\\d{2}/.test(JSON.stringify(trip.route)) || /20(?:26|27)-
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
+
+const placesForStop=(stop)=>places.filter(p=>p.destinationId===stop.id || p.baseId===stop.id ||
+  p.id===stop.id || (!p.destinationId && !p.baseId && (stop.theme?.areas||[]).includes(p.area)));
+const routeGroups=trip.route.map(stop=>({stop,items:placesForStop(stop)}));
+const groupedPlaceIds=routeGroups.flatMap(group=>group.items.map(p=>p.id));
+if (groupedPlaceIds.length!==places.length || new Set(groupedPlaceIds).size!==places.length) {
+  errors.push('Steder: alle kuraterte steder må vises nøyaktig én gang i riktig reiserutegruppe');
+}
+if (!places.some(p=>p.id==='tokyo-tower' && p.area==='Tokyo' && p.map?.showOnRouteMap)) {
+  errors.push('Steder: Tokyo Tower skal være et kartvisbart Tokyo-sted');
+}
+if (places.some(p=>p.priority || p.primaryChoice || p.secondaryChoice || p.rank)) {
+  errors.push('Steder: unaturlig primær-/sekundærrangering skal ikke brukes');
+}
+
 // The grouped Places view must map every place into exactly one existing route group.
 const placesByDestination=new Map(trip.route.map(stop=>[stop.id,[]]));
 for (const place of places) {
@@ -515,6 +530,15 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+if (!app.includes("trip.route") || !app.includes('places-destination-group') ||
+  !app.includes('sortWithinDestination') || !app.includes('localeCompare') ||
+  !app.includes('setupJourneyFilters(filters,trip,places,places,draw)')) {
+  errors.push('Steder: sortering etter reiserute, nøytral alfabetisering eller filter mangler');
+}
+if (!style.includes('.places-destination-heading') || !style.includes('.places-destination-items')) {
+  errors.push('Steder: destinasjonsgrupper mangler felles styling');
+}
+
 try {
   new Script(app,{filename:'docs/assets/app.js'});
 } catch (error) {
