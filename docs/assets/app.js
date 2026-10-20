@@ -350,8 +350,6 @@ async function renderFlightGuide() {
   const escapeHtml=(s)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const patterns=document.getElementById('flight-pattern-list');
   const detail=document.getElementById('flight-pattern-detail');
-  const google=data.sources.find(x=>x.title==='Google Flights');
-  const finn=data.sources.find(x=>x.title==='FINN Reise');
   const setPattern=(id)=>{
     const x=data.examples.find(item=>item.id===id)||data.examples[0];
     if(!x)return;
@@ -360,17 +358,31 @@ async function renderFlightGuide() {
       button.classList.toggle('active',active);
       button.setAttribute('aria-pressed',String(active));
     });
-    const lines=[x.title,x.route,'Slik søker du:',x.setup,...x.steps.map((step,i)=>String(i+1)+'. '+step),'Vurder:',x.tradeoff];
+    const lines=[x.title,x.route,'Søk disse delstrekningene:',...(x.searchLegs||[]).map(leg=>leg.label),'Slik søker du:',x.setup,...x.steps.map((step,i)=>String(i+1)+'. '+step),'Vurder:',x.tradeoff];
     detail.innerHTML=`
       <div class="flight-guide-detail-head">
         <div><span class="meta">Illustrativt eksempel · ingen faktisk søkepris</span>
         <h3>${escapeHtml(x.title)}</h3><p class="flight-guide-route">${escapeHtml(x.route)}</p>
         <p>${escapeHtml(x.description)}</p></div>
         <div class="flight-guide-detail-actions">
-          <a class="button primary" href="${escapeHtml(google?.url||'https://www.google.com/travel/flights')}" target="_blank" rel="noopener">Åpne Google Flights ↗</a>
-          <a class="button" href="${escapeHtml(finn?.url||'https://www.finn.no/reise/flybilletter/')}" target="_blank" rel="noopener">Åpne FINN ↗</a>
-          <button class="button flight-guide-copy" type="button">Kopier fremgangsmåten</button>
+          <button class="button flight-guide-copy" type="button">Kopier søkeoppsettet</button>
           <span id="flight-copy-feedback" class="small" role="status"></span>
+        </div>
+      </div>
+      <div class="flight-guide-route-links">
+        <h4>Åpne rutene hos flysøketjenesten</h4>
+        <p class="small">${escapeHtml(x.linkHelp)}</p>
+        <div class="flight-guide-link-list">
+          ${(x.searchLegs||[]).map((leg,i)=>`<article class="flight-guide-link-leg">
+            <div class="flight-guide-link-label">
+              <small>${x.searchType==='multi-city'?'Strekning '+(i+1):'Søk tur/retur'}</small>
+              <strong>${escapeHtml(leg.label)}</strong>
+            </div>
+            <div class="flight-guide-link-actions">
+              <a class="button primary" href="${escapeHtml(leg.googleUrl)}" target="_blank" rel="noopener">Google Flights: ${escapeHtml(leg.label)} ↗</a>
+              <a class="button" href="${escapeHtml(leg.finnUrl)}" target="_blank" rel="noopener">FINN: ${escapeHtml(leg.label)} ↗</a>
+            </div>
+          </article>`).join('')}
         </div>
       </div>
       <div class="flight-guide-steps">
