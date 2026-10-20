@@ -19,7 +19,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 ## Kanoniske dataeiere
 
 - `docs/data/trip.json`: reiselengde og nummererte reisedager, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
-- `docs/data/flights.json`: generiske eksempler på flysøk, sammenligningskriterier og åpne kilder. Aldri faktiske historiske søk eller private flydata.
+- `docs/data/flights.json`: fire illustrative og konkrete søkeoppsett, trinnvis søkemetode, datofleksibilitet, knutepunktvurderinger, sammenligningskriterier og åpne kilder. Aldri faktiske historiske søk eller private flydata.
 - `docs/data/places.json`: komplett master for steder: navn, tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris. Hvert sted skal ha eksplisitt `price`, også når prisen er «Gratis».
 - `docs/data/food.json`: restauranter, priser, kartposisjoner, ratinger, lenker og bestillingsforslag, samt felles matmetadata som prisbånd og planleggingsnotater.
 - `docs/data/hotels.json`: overnattingskandidater, overnattingsformer, basevalg, familieoppsett, planpriser, kilder og kartposisjoner.
@@ -91,7 +91,7 @@ Hvis noe i en gammel chat avviker fra repoet, gjelder repoet.
 
 - Offentlig rute i `trip.json` bruker heltall for `from` og `to`: dag 1–15 for 14 overnattinger. `nights = to - from`; dagsturer bruker `suggestedDay` innenfor vertsstoppets reisedager.
 - Den offentlige reiseplanen skal ikke lagre kjøpte flyselskaper, eksakte fly-/ankomstdatoer, klokkeslett eller bookingopplysninger; heller ikke rekonstruere dem fra samtalehistorikken.
-- `docs/flights.html` er en gjenbrukbar guide til søkemønstre, bagasje, mellomlandinger, kombinasjoner og sammenligningskriterier. Bruk illustrative ruter uten observerte priser, søkehistorikk, personlige bestillinger eller spesifikke søkedatoer.
+- `docs/flights.html` er en integrert, interaktiv flysøkside i reiseplanleggeren. Vis fire klikkbare søkeoppsett med konkret fremgangsmåte, søkematrise, alternativer og sjekkliste. Ikke vis faktisk søkehistorikk, private billetter, priser eller personlige søkedatoer. Utformingen kan gjenbrukes på en eventuell åpen nettside senere, uten å flytte eller dele løsningen nå.
 - Private arbeidsnotater og konkrete flysøk hører hjemme utenfor det offentlige repositoryet. Historiske commits kan fortsatt inneholde eldre offentlige søkeobservasjoner inntil en separat, kontrollert historikkrevisjon blir gjennomført.
 
 ## Passvurdering per v0.21

@@ -1,12 +1,49 @@
 <!doctype html>
-<html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flysøk – guide · Japan 2027</title>
-<meta name="description" content="Slik sammenligner du flyruter, bagasje, reisetid og totalpris uten å dele konkrete søk.">
-<link rel="stylesheet" href="assets/style.css?v=0.28.0"></head><body>
-<header></header><main>
-<div class="eyebrow" data-copy="eyebrow"></div><h1 data-copy="title"></h1><p class="lede" data-copy="intro"></p>
-<section class="section"><div class="section-head"><div><h2 data-copy="patternsTitle"></h2></div></div><div id="flight-examples" class="grid three"></div></section>
-<section class="section"><div class="section-head"><div><h2 data-copy="checklistTitle"></h2></div></div><div id="flight-checklist" class="grid two"></div></section>
-<section class="section"><h2 data-copy="privacyTitle"></h2><p>Separate billetter kan ha svakere beskyttelse ved forsinkelser enn én gjennomgående billett. Kontroller vilkårene, og ha god tid mellom flyvningene.</p><p class="small" id="flight-privacy-note"></p></section>
-<section class="section"><h2 data-copy="sourcesTitle"></h2><div id="flight-sources" class="grid two"></div></section>
-</main><footer></footer><script src="assets/app.js?v=0.28.0"></script><script>renderFlightGuide().catch(error=>{console.error(error);document.getElementById('flight-examples').textContent='Kunne ikke laste veiledningen.';})</script></body></html>
+<html lang="nb">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flysøk · Japan 2027</title>
+<meta name="description" content="Praktiske eksempler på hvordan du søker etter fly, sammenligner reiseoppsett og vurderer totalpris og reisetid.">
+<link rel="stylesheet" href="assets/style.css?v=0.28.1"></head>
+<body><header></header><main>
+<div class="eyebrow" data-copy="eyebrow"></div>
+<h1 data-copy="title"></h1>
+<p class="lede" data-copy="intro"></p>
+<nav class="flight-guide-jump" aria-label="På denne siden">
+<a href="#flight-patterns">Fire søkeoppsett</a>
+<a href="#flight-method">Søk steg for steg</a>
+<a href="#flight-flex">Datofleksibilitet</a>
+<a href="#flight-hubs">Knutepunkter</a>
+<a href="#flight-checks">Kontrollpunkter</a>
+</nav>
+<section class="section" id="flight-patterns">
+<div class="section-head"><div><div class="eyebrow" data-copy="patternsEyebrow"></div><h2 data-copy="patternsTitle"></h2></div><p data-copy="patternsIntro"></p></div>
+<div id="flight-pattern-list" class="flight-guide-pattern-list" aria-label="Velg søkeoppsett"></div>
+<div id="flight-pattern-detail" class="flight-guide-pattern-detail" aria-live="polite"></div>
+</section>
+<section class="section" id="flight-method">
+<div class="section-head"><div><div class="eyebrow" data-copy="methodEyebrow"></div><h2 data-copy="methodTitle"></h2></div><p data-copy="methodIntro"></p></div>
+<div id="flight-workflow" class="grid three"></div>
+</section>
+<section class="section" id="flight-flex">
+<div class="section-head"><div><div class="eyebrow" data-copy="flexEyebrow"></div><h2 data-copy="flexTitle"></h2></div><p data-copy="flexIntro"></p></div>
+<div id="flight-variations" class="grid two"></div>
+</section>
+<section class="section" id="flight-hubs">
+<div class="section-head"><div><div class="eyebrow" data-copy="hubsEyebrow"></div><h2 data-copy="hubsTitle"></h2></div><p data-copy="hubsIntro"></p></div>
+<div id="flight-hub-examples" class="grid three"></div>
+</section>
+<section class="section" id="flight-checks">
+<div class="section-head"><div><div class="eyebrow" data-copy="checksEyebrow"></div><h2 data-copy="checksTitle"></h2></div><p data-copy="checksIntro"></p></div>
+<div id="flight-checklist" class="grid two"></div>
+</section>
+<section class="section">
+<div class="section-head"><div><div class="eyebrow" data-copy="sourcesEyebrow"></div><h2 data-copy="sourcesTitle"></h2></div><p data-copy="sourcesIntro"></p></div>
+<div id="flight-sources" class="grid three"></div>
+</section>
+<section class="section card flight-guide-privacy"><h2 data-copy="privacyTitle"></h2>
+<p data-copy="privacyIntro"></p>
+<p class="small" id="flight-privacy-note"></p></section>
+</main><footer></footer>
+<script src="assets/app.js?v=0.28.1"></script>
+<script>renderFlightGuide().catch(error=>{console.error(error);document.getElementById('flight-pattern-detail').textContent='Kunne ikke laste søkeeksemplene.';})</script>
+</body></html>
