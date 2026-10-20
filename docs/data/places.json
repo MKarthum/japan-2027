@@ -154,7 +154,7 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/"
     },
-    "planInterest": "strong"
+    "planInterest": "candidate"
   },
   {
     "id": "tokyo-tower",
@@ -438,7 +438,7 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/kyoto/gion-and-higashiyama/"
     },
-    "planInterest": "strong"
+    "planInterest": "candidate"
   },
   {
     "id": "fushimi-inari",
@@ -751,7 +751,7 @@
       "checked": "2026-10-04",
       "source": "https://www.todaiji.or.jp/information/haikan/"
     },
-    "planInterest": "strong"
+    "planInterest": "candidate"
   },
   {
     "id": "himeji",
@@ -1064,7 +1064,7 @@
       "checked": "2026-10-04",
       "source": "https://museum.nintendo.com/en/guide/index.html"
     },
-    "planInterest": "strong"
+    "planInterest": "candidate"
   },
   {
     "id": "ghibli-museum",
@@ -1321,7 +1321,7 @@
       "checked": "2026-10-04",
       "source": "https://itsukushimajinja.jp/en/admission.html"
     },
-    "planInterest": "strong"
+    "planInterest": "candidate"
   },
   {
     "id": "osaka-castle",
@@ -1662,7 +1662,7 @@
       "source": "https://www.gotokyo.org/en/destinations/western-tokyo/shinjuku/index.html",
       "checked": "2026-10-20"
     },
-    "planInterest": "strong"
+    "planInterest": "candidate"
   },
   {
     "id": "shinjuku-gyoen",
@@ -1854,6 +1854,6 @@
       "checked": "2026-10-20",
       "source": "https://kyoto.travel/en/activities"
     },
-    "planInterest": "candidate"
+    "planInterest": "extra"
   }
 ]
