@@ -18,9 +18,9 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Nye steder går i `docs/data/places.json` og vises via `place.html?id=<id>`. Stedet skal eie navn, beskrivelse, kart, bilde/illustrasjon og eksterne lenker i samme objekt.
 - Restauranter går i `docs/data/food.json` og vises via `restaurant.html?id=<id>`.
 - Overnattingskandidater går i `docs/data/hotels.json` og vises via `hotel.html?id=<id>`. Filen eier også overnattingsformer og alternative sammenligningsspor. Prisene er brede planleggingsintervaller, ikke 2027-tilbud.
-- Flyresearch går i `docs/data/flights.json`. Filen eier rutetyper, fleksibilitetsregler, prisobservasjoner, flyselskap/hub-spor, sikkerhetsgrunnlag, pakkereisebenchmarker og manuelle søkeoppgaver. De faktiske reisedatoene eies fortsatt av `trip.json` og skal avledes derfra i flyvisningen.
+- Den åpne flysøksguiden har illustrative eksempler i `docs/data/flights.json`. Historiske søk og faktiske flybestillinger skal ikke lagres i offentlig repo.
 - Reiseetapper inne i Japan, priser og stasjoner går i `docs/data/transport.json`. `standardFamilyYen` er basisprisen for standardfamilien; valgt prisscenario skaleres i visningslaget.
-- Rute og dagsturer refererer til steder med ID. Ikke lagre navn eller koordinater i `trip.json` når de allerede finnes i `places.json`.
+- Rute og dagsturer refererer til steder med ID. Ikke lagre navn eller koordinater i `trip.json` når de allerede finnes i `places.json`. Offentlig rute skal bare vise dagnummer (dag 1–15), ikke bekreftede reisedatoer.
 - Destinasjonsfarger og hvilke områder som arver dem eies av `docs/data/trip.json`. Steder, restaurantkort, kartmarkører og rutelinjer skal avlede fargen derfra.
 - `docs/data/route-geometry.json` eier bare fysisk linjegeometri og spor-offset. Ikke legg destinasjonsfarger eller annen domenedata i geometrifilen.
 - Når to ruter deler samme fysiske spor i motsatt retning, skal de tegnes som parallelle spor. MapLibre `line-offset` er retningsrelativ: motsatt rettede linjer bruker samme fortegn for å havne på hver sin fysiske side.
@@ -30,14 +30,6 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - Felles kilder går i `docs/data/sources.json`.
 - Offisielle sider foretrekkes for billetter, menyer, regler og reservasjon.
 - Opplysninger som kan endres skal ha konkret kontroll-dato i data.
-- Flypris er alltid en observasjon, ikke en varig sannhet. Lagre kilde, kontrolldato, om prisen er per person/total, turtype og om den er historisk, publisert fra-pris eller konkret søk. Ikke skaler voksenpris mekanisk til familiepris når barnetakst/billettvilkår er ukjent.
-- Flyresearch skal bruke reelle interaktive søk i Google Flights og FINN for standardfamilien fra `trip.json`: fire oppsett og hele reisen forskjøvet −3 til +3 dager. Undersøk én dag kortere/lengre ved store prishopp. Dokumenter tekniske feil uten å erstatte dem med søkeresultatsnutter.
-- `searchRuns` lagrer datert, kompakt søkeoversikt; `candidates` lagrer utvalgte detaljerte tilbud; `directChecks` skiller fullført prising fra mislykkede forsøk. Observerte datoer er historiske målepunkter, ikke ny autoritativ reiseplan. Datomatrisen skal bare koble priser til eksakt samsvarende datoer avledet fra `trip.json`.
-- Prisgrunnlag må angi konkret interaktiv pris, indeksert datert tilbud, publisert 2027-fra-pris, generell fra-pris eller historikk. Totalpris for 2+2 krever at tjenesten faktisk viser gruppetotalen; delpriser eller pris per person skal aldri multipliseres til en antatt familiepris. Bekreft datoer og reisefølge etter at søkeskjemaet har lastet ferdig.
-- For kandidater lagres flyplasser, markedsførende og eventuelt oppgitt opererende selskap, stopp, transferflyplasser/-lengder, total reisetid, bagasjegrunnlag, forbindelsesstatus, tjeneste og kontrolltid. Fravær av selv-transfer-varsel beviser ikke gjennomgående/beskyttet billett. Ukjent operatør eller bagasje skal ikke få oppdiktede verdier.
-- Direkte flyselskapsøk prioriteres etter konkurransedyktige funn. Angi om totalen ble vist etter flyvalg eller ved betaling; bruk konkrete billettvilkår, og merk generelle vilkår som generelle. Ikke gå videre til personopplysninger eller bestilling for research.
-- Ekstra returtransport i Japan eies av `transport.json`, inklusive pris, standardfamiliens togbillettkategorier, tidsgrunnlag og kilde. Fly, fly+hotell og organisert rundreise sammenlignes som ulike produkter.
-- Offentlige søke-URL-er må være stabile og uten session-/checkout-/konto-/token-/timestamp-parametre. Når resultatlenken ikke er trygg, lagres funnet med tjenestens offentlige inngangsside. Behold enkle Google Flights-/FINN-lenker som første trinn og direkte selskapssøk som andre trinn.
 - Strømmelenker skal peke direkte til tittelen via kanonisk HTTPS-format og åpnes som ekstern lenke slik at Japan-siden blir liggende. Stol på operativsystemets universal links for eventuell appåpning. Ikke bruk custom URL-scheme, tidsstyrt fallback, delingsparametre eller konto-/brukerparametre. De tillatte formatene valideres i `check-data-integrity.mjs`, slik at gamle lenkevarianter ikke sniker seg tilbake.
 - Bilder skal ha eksplisitt `type`. `licensed` krever lovlig gjenbruk, kilde, kreditering, lisens og lisenslenke. `ai` skal lagres lokalt i repoet, ha alt-tekst og genereringsdato og alltid merkes som AI-generert i UI-et. Ikke bruk bilder fra Google Maps, Booking.com, Tripadvisor, sosiale medier eller kommersielle/offisielle nettsider uten eksplisitt gjenbrukstillatelse. Foretrekk Wikimedia Commons, CC0/public domain eller prosjektets egne bilder. Hvert sted skal normalt ha et eget representativt bilde.
 - Bildekreditering vises som en liten overlay nederst til venstre i bildet, ikke som egen rad under bildet. På stedskort ligger områdeetiketten øverst til venstre i selve bildet; type kan ligge øverst til høyre.
@@ -77,7 +69,7 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 ## Personvern
 
-Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, skole/arbeidssted, bookingreferanser, **detaljer fra kjøpte/virkelige flybilletter**, hotellreservasjoner, passdata, betalingsdata eller andre opplysninger som identifiserer eller lokaliserer konkrete personer. Rene, ubestilte markedsobservasjoner av offentlig tilgjengelige rutefly kan vise søkedato, flightnummer og tid dersom de er tydelig merket som historisk research, ikke faktisk bestilling. Se `PUBLIC_DATA_POLICY.md`.
+Aldri legg inn navn på reisende, kontaktinformasjon, privat adresse, bookingreferanser, faktiske flysøk eller flybilletter, bekreftede reisedatoer, hotellreservasjoner, passdata eller betalingsdata. Det offentlige repoet er en generell reiseguide med nummererte reisedager og illustrative flysøksmetoder. Se `PUBLIC_DATA_POLICY.md`.
 
 ## Pass og pakkeløsninger
 
