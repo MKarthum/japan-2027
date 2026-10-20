@@ -2076,7 +2076,23 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 
 /* Places grouped by actual route; no invented priority ranking. */
 #places-grid.place-list{display:grid;gap:40px}
-.place-destination-group{--area-color:#5f6b73;min-width:0}
+/* Soft destination containers keep all city activities visibly together. */
+#places-grid.place-list{gap:30px}
+.place-destination-group{
+  --area-color:#5f6b73;
+  min-width:0;
+  padding:18px;
+  border:1px solid color-mix(in srgb,var(--area-color) 22%,var(--line));
+  border-radius:22px;
+  background:color-mix(in srgb,var(--area-color) 5%,var(--paper));
+  box-shadow:0 8px 25px rgba(22,32,40,.055);
+}
+.place-destination-group .place-destination-heading{
+  border-bottom-color:color-mix(in srgb,var(--area-color) 18%,var(--line));
+}
+.place-destination-group .place-list-card{
+  background:var(--paper);
+}
 .place-destination-heading{display:block;margin:0 0 14px;border-left:5px solid var(--area-color);border-bottom:1px solid var(--line);border-radius:0 12px 12px 0}
 .place-destination-heading-link{display:block;width:100%;padding:13px 16px 16px;color:var(--ink);text-decoration:none;border-radius:0 12px 12px 0;transition:background-color .15s ease}
 .place-destination-heading-link:hover{background:color-mix(in srgb,var(--area-color) 7%,var(--paper))}
@@ -2093,7 +2109,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .place-destination-heading-link:hover .place-destination-overview{background:color-mix(in srgb,var(--area-color) 10%,var(--paper));box-shadow:var(--shadow)}
 .place-destination-items{display:grid;gap:12px}
 .place-list-area-note{display:block;color:var(--muted);font-size:.72rem;font-weight:700;margin-bottom:4px}
-@media(max-width:620px){#places-grid.place-list{gap:30px}.place-destination-items{gap:9px}.place-destination-heading-link{padding:13px 12px 14px}.place-destination-overview{width:100%;gap:8px;padding:10px 11px}.place-destination-overview-description{font-size:.74rem}}
+@media(max-width:620px){#places-grid.place-list{gap:20px}.place-destination-group{padding:11px;border-radius:17px}.place-destination-items{gap:9px}.place-destination-heading-link{padding:13px 12px 14px}.place-destination-overview{width:100%;gap:8px;padding:10px 11px}.place-destination-overview-description{font-size:.74rem}}
 
 
 /* Places: itinerary order first, no artificial priority ranking. */
