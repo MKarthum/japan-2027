@@ -1496,7 +1496,7 @@ async function renderPractical() {
     const local=opt ? `place.html?id=${encodeURIComponent(p.id)}#experience-${encodeURIComponent(opt.id)}` : null;
     return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${title}</strong><span>${opt?.areaLabel||p?.area||''} · ${x.when}</span><p>${x.why}</p>${local?`<a href="${local}">Se alternativet →</a>`:''}</div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
   }).join('');
-  document.getElementById('place-words').innerHTML=guide.placeWords.map(languageRowHtml).join('');
+  document.getElementById('place-words').innerHTML=guide.placeWords.filter(x=>x.showInGuide!==false).map(languageRowHtml).join('');
   document.getElementById('phrases').innerHTML=guide.phrases.map(languageRowHtml).join('');
   document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
   document.getElementById('etiquette').innerHTML=guide.etiquette.map(x=>`<article class="mini-card"><h3>${x.title}</h3><p>${x.body}</p></article>`).join('');

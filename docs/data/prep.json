@@ -545,7 +545,7 @@
     "items": [
       {
         "id": "history-sengoku",
-        "title": "Sengoku-perioden – Japans lange borgerkrigstid",
+        "title": "Sengoku-perioden og samlingen av Japan",
         "why": "Forklarer hvorfor shōgun, samuraier, Osaka og slottene er så sentrale – og setter Assassin’s Creed Shadows og Shōgun i en historisk ramme.",
         "action": "Bruk FX-tidslinjen som kort introduksjon før Himeji og Osaka.",
         "placeIds": [
@@ -561,7 +561,7 @@
       },
       {
         "id": "history-modern",
-        "title": "Meiji-tiden – Japan blir et moderne industriland",
+        "title": "Fra Meiji til moderne Japan",
         "why": "Moderniseringen fra 1800-tallet forklarer mye av kontrasten mellom templer, keisertid, storby, teknologi og dagens samfunn.",
         "action": "Les de moderne kapitlene i A Short History of Japan.",
         "placeIds": [

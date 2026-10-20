@@ -34,7 +34,8 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
 - `docs/data/prep.json` – spill, film/TV, bøker, historie, mat og små oppgaver før turen, med tydelig målgruppe
-- `docs/data/guide.json` – bookingradar, praktiske råd, ordbok, etikette og mediekoblinger; stedsspesifikk info refereres med ID
+- `docs/data/guide.json` – bookingradar, praktiske råd og kanonisk ordbok (`placeWords` med `inline`, `aliases`, `meaning`, valgfri `showInGuide`); stedsspesifikk info refereres med ID
+- `docs/assets/glossary.js` – én gjenbrukbar frontend-funksjon som understreker ord diskret og viser små klikkbare forklaringsbokser på mobil og desktop; ingen definisjoner hardkodes her
 - `docs/data/passes.json` – kompakt beslutningslogg for togpass, aktivitets-/transportpass og kombipakker
 - `docs/data/drones.json` – japanske droneregler, besøksforberedelser, modellvurdering og sjekklister for flyging
 - `docs/data/pages.json` – sidebudskap og forklarende tekst for oversikts-/indekssider

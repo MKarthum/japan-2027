@@ -1,7 +1,7 @@
 {
   "asOf": "2026-10-03",
   "currency": "JPY",
-  "strategy": "Shinkansen (Japans høyhastighetstog) og regionaltog er ryggraden mellom hovedstoppene. På reisedager med sightseeing eller omveier kan bagasjefrakt brukes for å gjøre logistikken enklere.",
+  "strategy": "Shinkansen og regionaltog er ryggraden mellom hovedstoppene. På reisedager med sightseeing eller omveier kan bagasjefrakt brukes for å gjøre logistikken enklere.",
   "fareBasis": "Representative pris- og tidsanslag for de planlagte etappene, kontrollert 3. oktober 2026. Bekreft pris og avgang før bestilling.",
   "childNote": "JR bruker normalt barnepris for 6–11 år og voksenpris fra 12 år. Standardfamilien prises derfor med riktig voksen-/barnebillettmiks, uten å publisere personlige aldersopplysninger.",
   "legs": [
@@ -46,7 +46,7 @@
       "toRouteId": "kyoto",
       "from": "Hakone-Yumoto",
       "to": "Kyoto",
-      "service": "Hakone Tozan-tog + Hikari Shinkansen (hurtigtog) via Odawara",
+      "service": "Hakone Tozan-tog + Hikari Shinkansen via Odawara",
       "durationMin": 155,
       "fare": {
         "adultYen": 12660,
@@ -100,7 +100,7 @@
       "toRouteId": "himeji",
       "from": "Kyoto",
       "to": "Himeji",
-      "service": "Hikari Shinkansen (hurtigtog)",
+      "service": "Hikari Shinkansen",
       "durationMin": 43,
       "fare": {
         "adultYen": 5270,
@@ -182,7 +182,7 @@
       "toRouteId": "osaka",
       "from": "Hiroshima",
       "to": "Osaka Station",
-      "service": "Nozomi Shinkansen (hurtigste togtype på strekningen) til Shin-Osaka + lokalt JR-tog til Osaka",
+      "service": "Nozomi Shinkansen til Shin-Osaka + lokalt JR-tog til Osaka",
       "durationMin": 90,
       "fare": {
         "adultYen": 11130,

@@ -40,7 +40,7 @@
       "role": "Destinasjonsmåltid",
       "status": "active",
       "name": "Ginza Kyubey – Ginza Main",
-      "dish": "Edomae-sushi (klassisk Tokyo-stil) med nigiri – små risbiter toppet med fisk eller sjømat.",
+      "dish": "Edomae-sushi med nigiri og sesongråvarer",
       "why": "Et bevisst «stor restaurant»-valg: klassisk sushihåndverk og en kjent Ginza-institusjon, ikke bare enda et sted å spise sushi.",
       "fit": "Ginza / Marunouchi-dag eller en egen god lunsj",
       "priceClass": "¥¥¥",
@@ -477,7 +477,7 @@
       },
       "orderRecommendations": [
         {
-          "title": "Shigure-bento (japansk måltid i matboks)",
+          "title": "Shigure-bento/lunsjen",
           "why": "Dette er den naturlige inngangen til Kikunoi-universet uten full Honten-pris."
         },
         {
@@ -1065,7 +1065,7 @@
       "orderRecommendations": [
         {
           "title": "Ajinoya Special A Set for fire",
-          "why": "Settet er laget for fire personer og gir okonomiyaki, yakisoba (stekte nudler), takoyaki (blekksprutboller), negiyaki (kålpannekake med vårløk) og mochi-cheese (seig riskake med ost) i én bestilling."
+          "why": "Settet er laget for fire personer og gir okonomiyaki, yakisoba, takoyaki, negiyaki og mochi-cheese i én bestilling."
         },
         {
           "title": "Oppgrader til premium bare hvis alle er sultne",
@@ -1282,7 +1282,7 @@
       "role": "Destinasjonsmåltid",
       "status": "active",
       "name": "Harijyu Dōtonbori Honten",
-      "dish": "Sukiyaki og shabu-shabu – to japanske gryteretter med wagyu (storfekjøtt fra japanske storferaser) som tilberedes ved bordet",
+      "dish": "Sukiyaki / shabu-shabu med wagyu som tilberedes ved bordet",
       "why": "Et tradisjonelt kjøttmåltid som gir et annet splurge-alternativ enn sushi og kaiseki, rett i Dōtonbori.",
       "fit": "Dōtonbori-kveld",
       "priceClass": "¥¥¥",

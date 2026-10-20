@@ -290,10 +290,10 @@
     "type": "base",
     "simple": "Fjellpause mellom storbyene",
     "description": "Hakone er et fjell- og ferieområde mellom Tokyo og Kyoto, kjent for varme kilder, tradisjonelle vertshus og mulig utsikt mot Fuji når været spiller på lag. Her er overnattingen, badet og landskapet en større del av poenget enn en lang liste med attraksjoner.",
-    "why": "Dette er den bevisste pausen i reisen: én roligere natt på ryokan (tradisjonelt japansk vertshus) med onsen (bad i naturlig varmt kildevann) før storby- og tempeltempoet fortsetter. Samtidig bryter Hakone opp reisen vestover på en naturlig måte.",
+    "why": "Dette er den bevisste pausen i reisen: én roligere natt på ryokan med onsen før storby- og tempeltempoet fortsetter. Samtidig bryter Hakone opp reisen vestover på en naturlig måte.",
     "highlights": [
-      "Ryokan – tradisjonelt vertshus",
-      "Onsen – varme kildebad",
+      "Ryokan",
+      "Onsen",
       "Mulig Fuji-utsikt"
     ],
     "image": {
@@ -446,7 +446,7 @@
     "area": "Kyoto",
     "type": "helligdom",
     "simple": "Tusenvis av røde porter opp fjellsiden",
-    "description": "Fushimi Inari er en stor helligdom i shinto, en japansk religion med helligdommer og naturånder. Tusenvis av røde torii-porter – symbolske inngangsporter til helligdommer – danner lange passasjer oppover den skogkledde fjellsiden. Man kan gå en kort del av ruten eller gjøre turen til en lengre vandring.",
+    "description": "Fushimi Inari er en stor helligdom i shinto-tradisjonen. Tusenvis av røde torii-porter danner lange passasjer oppover den skogkledde fjellsiden. Man kan gå en kort del av ruten eller gjøre turen til en lengre vandring.",
     "why": "Dette er et av Japans mest gjenkjennelige motiver, men også en fysisk opplevelse der landskap, porter og stier henger sammen. Det skiller seg tydelig fra Kyotos buddhistiske templer og egner seg godt tidlig på dagen.",
     "highlights": [
       "Torii-portene",
@@ -966,7 +966,7 @@
     "area": "Miyajima",
     "type": "dagstur",
     "simple": "Øya med den røde porten i sjøen",
-    "description": "Miyajima er øya utenfor Hiroshima der Itsukushima-helligdommen og den store torii-porten (helligdomsporten) møter en liten bebyggelse, hjort, skog og kystlandskap. Fergeturen er kort nok til en dagstur, men øya føles likevel klart annerledes enn byen.",
+    "description": "Miyajima er øya utenfor Hiroshima der Itsukushima-helligdommen og den store torii-porten møter en liten bebyggelse, hjort, skog og kystlandskap. Fergeturen er kort nok til en dagstur, men øya føles likevel klart annerledes enn byen.",
     "why": "Dette er den lyse motvekten til den alvorlige Hiroshima-dagen og samler flere sterke Japan-motiver i én rolig utflukt. Poenget er ikke bare porten i sjøen, men kombinasjonen av helligdom, tidevann, natur og øystemning.",
     "highlights": [
       "Itsukushima",
@@ -1215,7 +1215,7 @@
       "status": "from",
       "standardFamilyRangeYen": null,
       "adultFromYen": 8400,
-      "note": "Studio Pass (vanlig inngangsbillett til Universal Studios Japan) har dynamisk dato-pris. Komplett familiepris for våren 2027 settes når datoen er i salg.",
+      "note": "Studio Pass har dynamisk dato-pris. Komplett familiepris for våren 2027 settes når datoen er i salg.",
       "checked": "2026-10-04",
       "source": "https://www.usjticketing.com/"
     },
@@ -1280,9 +1280,9 @@
     "name": "Itsukushima Shrine",
     "area": "Miyajima",
     "type": "helligdom",
-    "simple": "Helligdommen bak den ikoniske røde helligdomsporten (torii)",
-    "description": "Itsukushima Shrine er helligdomsanlegget på Miyajima som står over tidevannssonen og henger visuelt sammen med den store torii-porten, en symbolsk port til helligdommen, ute i sjøen. Høy- og lavvann endrer både utsikten og hvordan området oppleves.",
-    "why": "Dette er hovedmålet på Miyajima og forklarer hvorfor øya er mer enn natur og hjort. Besøket gir et tydelig møte med shinto-arkitektur (tradisjonell japansk helligdomsbygging) og kan kombineres naturlig med resten av øya samme dag.",
+    "simple": "Helligdommen ved den ikoniske torii-porten",
+    "description": "Itsukushima Shrine er helligdomsanlegget på Miyajima som står over tidevannssonen og henger visuelt sammen med den store torii-porten ute i sjøen. Høy- og lavvann endrer både utsikten og hvordan området oppleves.",
+    "why": "Dette er hovedmålet på Miyajima og forklarer hvorfor øya er mer enn natur og hjort. Besøket gir et tydelig møte med shinto-arkitektur og kan kombineres naturlig med resten av øya samme dag.",
     "highlights": [
       "Den store torii-porten",
       "Helligdommen over vannet",
@@ -1669,9 +1669,9 @@
     "name": "Shinjuku Gyoen",
     "area": "Tokyo",
     "type": "hage",
-    "simple": "Kirsebærblomstring og hanami i en stor park",
-    "description": "Shinjuku Gyoen er en stor park med japanske og vestlige hageområder og mange kirsebærtrær. Hanami er den japanske tradisjonen med å nyte blomstringen, ofte på tur eller piknik under trærne. Det er et fint avbrekk fra Tokyo-byen. Blomstring og adgangsregler kan endre seg fra år til år; i 2026 var det tidsreservasjoner enkelte vårdager.",
-    "why": "En god kandidat for sakura (japansk for kirsebærblomster) hvis blomstringen og dagsprogrammet passer. En rolig parkpause kan fungere også uten full blomstring.",
+    "simple": "Hanami i en stor park med kirsebærtrær",
+    "description": "Shinjuku Gyoen er en stor park med japanske og vestlige hageområder og mange kirsebærtrær. Det er et fint avbrekk fra Tokyo-byen. Blomstring og adgangsregler kan endre seg fra år til år; i 2026 var det tidsreservasjoner enkelte vårdager.",
+    "why": "En god kandidat for sakura hvis blomstringen og dagsprogrammet passer. En rolig parkpause kan fungere også uten full blomstring.",
     "highlights": [
       "Kirsebærtrær og piknikstemning",
       "Japansk landskapshage",
@@ -1768,8 +1768,8 @@
     "name": "Maruyama Park",
     "area": "Kyoto",
     "type": "park",
-    "simple": "Kirsebærblomstring og hanami ved Gion",
-    "description": "Maruyama Park ligger rett ved Yasaka-helligdommen og Gion/Higashiyama. Den er kjent for kirsebærtrær, særlig et stort hengende tre som ofte lyssettes i sesongen. Hanami er å nyte vårblomstringen, gjerne på tur eller piknik. Parken kan enkelt inngå i en spasertur mellom historiske gater og templer.",
+    "simple": "Hanami og kirsebærtrær ved Gion",
+    "description": "Maruyama Park ligger rett ved Yasaka-helligdommen og Gion/Higashiyama. Den er kjent for kirsebærtrær, særlig et stort hengende tre som ofte lyssettes i sesongen. Parken kan enkelt inngå i en spasertur mellom historiske gater og templer.",
     "why": "Dette er et naturlig stopp hvis dere ønsker å oppleve kirsebærblomstringen uten å bruke en egen halvdag på blomstring. Den faktiske toppen i 2027 er ikke kjent ennå.",
     "highlights": [
       "Hengende kirsebærtre",
@@ -1815,11 +1815,11 @@
     "area": "Kyoto",
     "type": "opplevelse",
     "simple": "Prøve japansk te-kultur i praksis",
-    "description": "En kort, tilrettelagt teseremoni eller matcha-opplevelse (med finmalt grønt tepulver) gir mulighet til å prøve en tradisjon selv, i stedet for bare å se templer. Arrangøren bør velges når en relevant Kyoto-dag er klar; noen tilbyr familietilpassede opplegg på engelsk.",
+    "description": "En kort, tilrettelagt teseremoni eller matcha-opplevelse gir mulighet til å prøve en tradisjon selv, i stedet for bare å se templer. Arrangøren bør velges når en relevant Kyoto-dag er klar; noen tilbyr familietilpassede opplegg på engelsk.",
     "why": "En aktiv kulturopplevelse som kan fungere som kontrast til flere tempelbesøk. Ingen bestemt leverandør, tidspunkt eller reservasjon er valgt.",
     "highlights": [
       "Kort innføring i ritualet",
-      "Lage eller smake matcha (pulverisert grønn te)",
+      "Lage eller smake matcha",
       "Velg familievennlig arrangør nær dagens øvrige stopp"
     ],
     "map": {

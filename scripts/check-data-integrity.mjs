@@ -193,12 +193,22 @@ for (const term of familyGlossaryTerms) {
   }
 }
 const hanamiPlace=placeById.get('shinjuku-gyoen');
-if (!hanamiPlace?.simple?.toLowerCase().includes('kirsebær') || !/hanami.{0,75}(?:tradisjon|nyte)/i.test(hanamiPlace.description||'')) {
-  errors.push('Steder: hanami må forklares ved første synlige parkbeskrivelse, ikke bare i ordlisten');
+if (!/hanami/i.test(hanamiPlace?.simple||'') || !/torii/i.test(placeById.get('fushimi-inari')?.description||'')) {
+  errors.push('Steder: hanami/torii må fremdeles vises som ord for den felles klikkbare ordforklaringen');
 }
-if (!/torii.{0,60}(?:symbolske|helligdom)/i.test(placeById.get('fushimi-inari')?.description||'')) {
-  errors.push('Steder: torii trenger forklaring ved Fushimi Inari');
+const activated=guide.placeWords.filter(x=>x.inline===true);
+if(activated.length<25)errors.push('Praktisk: den interaktive ordlisten mangler sentrale japanske fagord');
+const allAliases=new Set();
+for(const entry of guide.placeWords){
+  if(!entry.term||!entry.meaning)errors.push('Praktisk: ordlistepost mangler begrep/betydning');
+  if(entry.inline===true){
+    for(const alias of [entry.term,...(entry.aliases||[])]){
+      if(!alias?.trim()||allAliases.has(alias.toLocaleLowerCase('nb-NO')))errors.push(`Praktisk: duplisert eller tomt oppslagsord ${alias}`);
+      allAliases.add(alias.toLocaleLowerCase('nb-NO'));
+    }
+  }
 }
+if(activated.some(x=>/booking|pnr|kontakt/i.test(x.term)))errors.push('Praktisk: privat bookingbegrep må ikke være interaktivt');
 
 
 const interestValues=new Set(['strong','candidate','extra','context']);
@@ -398,7 +408,7 @@ if ('connections' in guide) {
   errors.push('guide.json: connections skal ikke finnes; forberedelser og stedskoblinger eies av prep.json');
 }
 for (const item of guide.placeWords || []) {
-  if (!item.term || !item.meaning || !item.japanese || !item.speech) errors.push('guide.json: stedsord mangler romanisering, japanske tegn eller uttale');
+  if (!item.term || !item.meaning || (item.showInGuide!==false && (!item.japanese || !item.speech))) errors.push('guide.json: oppslagsord mangler norsk forklaring eller nødvendig japansk skrift/uttale for uttaleguiden');
 }
 for (const item of guide.phrases || []) {
   if (!item.jp || !item.no || !item.japanese || !item.speech) errors.push('guide.json: hovedfrase mangler romanisering, japanske tegn eller uttale');
@@ -584,6 +594,8 @@ for (const name of htmlFiles) {
   if (!/<meta name="viewport"/.test(html)) errors.push(`${file}: mangler viewport`);
   if (copyDrivenPages.has(name) && !html.includes('data-copy=')) errors.push(`${file}: sidebudskap skal komme fra pages.json via data-copy`);
   const assetVersions=[...html.matchAll(/assets\/(?:style\.css|app\.js)\?v=([0-9.]+)/g)].map(m=>m[1]);
+  if(!html.includes(`<script src="assets/glossary.js?v=${site.version}"></script>`))errors.push(`${file}: felles ordlistekomponent mangler eller har feil versjon`);
+
   if (!assetVersions.length || assetVersions.some(v=>v!==site.version)) errors.push(`${file}: assetversjon samsvarer ikke med site.json (${site.version})`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const ref=match[1];
@@ -605,6 +617,17 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
+const glossaryJs=fs.readFileSync('docs/assets/glossary.js','utf8');
+try { new Script(glossaryJs,{filename:'docs/assets/glossary.js'}); }
+catch(error){errors.push(`glossary.js: syntaksfeil ${error.message}`);}
+for(const token of ["json('data/guide.json')","x.inline===true","MutationObserver","NodeFilter.SHOW_TEXT","aria-expanded","aria-controls","keydown","Escape","pointerdown","getBoundingClientRect"]){
+  if(!glossaryJs.includes(token))errors.push(`glossary.js: mangler ${token}`);
+}
+if(glossaryJs.includes('const definitions=')||glossaryJs.includes('const glossaryTerms='))errors.push('glossary.js: ordforklaringer skal bare ligge i datalaget');
+for(const token of ['.glossary-term{','.glossary-popover[hidden]{display:none}','.glossary-term:focus-visible','.glossary-popover-close:focus-visible']){
+  if(!style.includes(token))errors.push(`style.css: tilgjengelig ordlisteutseende mangler ${token}`);
+}
+
 const ideaJs=fs.readFileSync('docs/assets/day-ideas.js','utf8');
 try{new Script(ideaJs,{filename:'docs/assets/day-ideas.js'});}catch(error){errors.push(`day-ideas.js: syntaksfeil ${error.message}`);}
 const ideaHtml=fs.readFileSync('docs/day-ideas.html','utf8');
