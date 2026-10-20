@@ -274,7 +274,7 @@
       {
         "id": "nye-billedbrev-japan",
         "title": "Nye billedbrev: Japan med Erik Diesen",
-        "why": "Tre norske reiseprogrammer fra 1987–88 viser Tokyo, Shinkansen til Kyoto, kirsebærblomstring, teseremoni, kabuki og Takarazuka. Verdien er først og fremst som tidsbilde: hvordan Japan ble presentert for norske TV-seere for nesten førti år siden.",
+        "why": "Tre norske reiseprogrammer fra 1987–88 viser Tokyo, Shinkansen til Kyoto, kirsebærblomstring, teseremoni, kabuki (klassisk japansk teater) og Takarazuka (musikkteater med kvinnelige skuespillere). Verdien er først og fremst som tidsbilde: hvordan Japan ble presentert for norske TV-seere for nesten førti år siden.",
         "action": "Se episode 2–4 som et historisk reisetidsbilde, ikke som aktuell reiseinformasjon. Sammenlign Tokyo og Kyoto den gangen med det vi forventer å møte på turen.",
         "placeIds": [
           "tokyo",
@@ -545,7 +545,7 @@
     "items": [
       {
         "id": "history-sengoku",
-        "title": "Sengoku-perioden og samlingen av Japan",
+        "title": "Sengoku-perioden – Japans lange borgerkrigstid",
         "why": "Forklarer hvorfor shōgun, samuraier, Osaka og slottene er så sentrale – og setter Assassin’s Creed Shadows og Shōgun i en historisk ramme.",
         "action": "Bruk FX-tidslinjen som kort introduksjon før Himeji og Osaka.",
         "placeIds": [
@@ -561,7 +561,7 @@
       },
       {
         "id": "history-modern",
-        "title": "Fra Meiji til moderne Japan",
+        "title": "Meiji-tiden – Japan blir et moderne industriland",
         "why": "Moderniseringen fra 1800-tallet forklarer mye av kontrasten mellom templer, keisertid, storby, teknologi og dagens samfunn.",
         "action": "Les de moderne kapitlene i A Short History of Japan.",
         "placeIds": [

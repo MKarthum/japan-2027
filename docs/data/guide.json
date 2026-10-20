@@ -80,7 +80,7 @@
     {
       "priority": "Kan bestilles",
       "when": "Digitale tidsbilletter åpner normalt 90 dager før",
-      "why": "Tidsbillett er særlig nyttig i sakura-perioden når besøket kan være travelt.",
+      "why": "Tidsbillett er særlig nyttig i perioden med kirsebærblomstring når besøket kan være travelt.",
       "checked": "2026-10-03",
       "placeId": "himeji"
     }
@@ -229,6 +229,36 @@
       "meaning": "Japans høyhastighetstog – «bullet train».",
       "japanese": "新幹線",
       "speech": "しんかんせん"
+    },
+    {
+      "term": "hanami",
+      "meaning": "Å nyte blomstringen om våren, særlig kirsebærblomster (sakura), ofte med tur eller piknik under trærne.",
+      "japanese": "花見",
+      "speech": "はなみ"
+    },
+    {
+      "term": "sakura",
+      "meaning": "Japansk for kirsebærblomster; symbol på den korte og vakre vårblomstringen.",
+      "japanese": "桜",
+      "speech": "さくら"
+    },
+    {
+      "term": "matcha",
+      "meaning": "Finmalt pulver av grønn te, brukt blant annet i japansk teseremoni og desserter.",
+      "japanese": "抹茶",
+      "speech": "まっちゃ"
+    },
+    {
+      "term": "shinto",
+      "meaning": "Japansk religion og tradisjoner knyttet til helligdommer, naturen og hellige ånder.",
+      "japanese": "神道",
+      "speech": "しんとう"
+    },
+    {
+      "term": "tatami",
+      "meaning": "Tradisjonell japansk gulvmatte, ofte av vevd igusa-gress.",
+      "japanese": "畳",
+      "speech": "たたみ"
     }
   ],
   "phrases": [

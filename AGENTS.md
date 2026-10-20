@@ -13,6 +13,10 @@ Les `START_HERE.md` først. Denne filen utfyller rehydreringskontrakten der.
 
 Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunnskap. Hovedoversikter skal være skannbare; detaljer ligger ett klikk ned.
 
+## Språk for hele familien
+
+Når et japansk fag- eller kulturord brukes i en overskrift, undertittel eller kort på Steder, Mat, Overnatting eller Dagidéer, skal ordet få en kort, forståelig norsk forklaring i samme visning eller umiddelbar beskrivelse (f.eks. «hanami – å nyte kirsebærblomstringen»). Det er ikke nok at forklaringen ligger i en separat ordliste. Forklar begrepet første gang det brukes i selvstendige deler av nettsiden; unngå gjentakelser i hvert avsnitt. Behold japanske navn når de hjelper brukeren å kjenne dem igjen i Japan.
+
 ## Arbeidsregler
 
 - `docs/day-ideas.html` er en enkel inspirasjonsside. `docs/data/day-ideas.json` eier mulige geografiske dagskombinasjoner, ikke faste reisedager. Et billettanker kan utløse omgruppering senere. Ikke bygg drag-and-drop-kalender, serverdatabase eller bookingstatus.

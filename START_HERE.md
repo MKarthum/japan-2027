@@ -16,6 +16,10 @@ Ved hver ny arbeidsøkt, etter konteksttap eller når arbeidet flyttes til en an
 
 Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man skal undersøke, men skal aldri overstyre siste `main`.
 
+## Språklig tilgjengelighet
+
+Skriv slik at både barn og voksne uten Japan-kunnskap forstår innholdet. Fremmedord i korttitler og undertitler (hanami, onsen, torii osv.) skal forklares kort der de vises, ikke bare i ordboken. Sjekk også treff på andre sider når nye uttrykk legges inn; behold japanske uttrykk sammen med norsk forklaring for læring og gjenkjennelse.
+
 ## Kanoniske dataeiere
 
 - `docs/data/trip.json`: reiselengde og nummererte reisedager, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
