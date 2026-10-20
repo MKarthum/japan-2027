@@ -22,7 +22,7 @@
       "description": "Samme flerbystrategi i motsatt retning. Test dette før du låser rekkefølgen på byene.",
       "setup": "Velg «Flere byer / Multi-city». Legg inn Oslo–Osaka og Tokyo–Oslo med tilsvarende oppholdslengde.",
       "steps": [
-        "Gjenta de samme dato- og passasjervalgenene som i motsatt retning.",
+        "Gjenta de samme dato- og passasjervalgene som i motsatt retning.",
         "Sjekk hvilke flyplasser og ankomsttidspunkter du faktisk får.",
         "Vurder om rekkefølgen påvirker sesongopplevelser, arrangementer eller videre transport.",
         "Sammenlign prisen etter transport til og fra hotell, ikke bare flybilletten."
