@@ -573,6 +573,28 @@ if (!Array.isArray(hotelData.accommodationTypes) || hotelData.accommodationTypes
 for (const type of hotelData.accommodationTypes || []) {
   if (!type.id || !type.label || !type.description) errors.push('hotels.json: overnattingsform mangler id/label/description');
 }
+
+const onsen=hotelData.onsenOptions;
+if(onsen?.baseId!=='hakone'||!onsen?.title||!onsen?.intro||!onsen?.planningNote||
+   !Array.isArray(onsen.options)||onsen.options.length!==4){
+  errors.push('hotels.json: Hakone må ha fire åpne onsenalternativer med felles forklaring');
+}
+uniqueIds(onsen?.options||[],'hotels.json onsenOptions');
+const onsenHotelIds=new Set(hotels.map(x=>x.id));
+const expectedOnsenIds=['hakone-yutowa-private','hakone-tenyu-room-bath','hakone-mikawaya-villa','hakone-yuryo-private'];
+for(const id of expectedOnsenIds)if(!onsen?.options?.some(x=>x.id===id))errors.push(`hotels.json: onsenalternativ ${id} mangler`);
+if((onsen?.options||[]).filter(x=>x.kind==='overnatting').length!==3 ||
+   (onsen?.options||[]).filter(x=>x.kind==='dagbesok').length!==1)errors.push('hotels.json: skille mellom tre overnattinger og ett separat badebesøk mangler');
+for(const x of onsen?.options||[]){
+  if(!['overnatting','dagbesok'].includes(x.kind)||!x.subtitle||!x.description||!x.tradeoff||
+     !x.familyNote||!x.priceNote||!x.checked||!/^https:\/\//.test(x.officialUrl||'')){
+    errors.push(`hotels.json: onsenalternativ ${x.id} mangler fakta, forbehold eller offisiell kilde`);
+  }
+  if(x.hotelId && (!onsenHotelIds.has(x.hotelId)||x.name))errors.push(`hotels.json: ${x.id} skal referere til eksisterende hotell-ID uten duplisert navn`);
+  if(!x.hotelId&&!x.name)errors.push(`hotels.json: onsenalternativ ${x.id} må ha navn eller gyldig hotell-ID`);
+  if(/booket|bestilt|bekreftet som kjøpt/i.test(JSON.stringify(x)))errors.push(`hotels.json: ${x.id} må være et åpent alternativ, ikke en bekreftet bestilling`);
+}
+
 for (const example of hotelData.alternativeExamples || []) {
   if (!routeIds.has(example.baseId)) errors.push(`hotels.json: alternativ ${example.name} har ugyldig baseId ${example.baseId}`);
   if (!accommodationTypeIds.has(example.kind)) errors.push(`hotels.json: alternativ ${example.name} har ukjent kind ${example.kind}`);
@@ -665,6 +687,24 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kartfallback skal opprettes ved reell fatal kartfeil, ikke ligge skjult i HTML');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+const onsenIdea=dayIdeas.ideas?.find(x=>x.id==='hakone-ryokan');
+if(!onsenIdea?.links?.some(x=>x.url==='place.html?id=hakone#place-onsen-options') ||
+   !onsenIdea?.links?.some(x=>x.url==='hotels.html?base=hakone#hakone-onsen-options')){
+  errors.push('Dagidéer: Hakone må lenke tydelig til onsenalternativer både på Steder og Overnatting');
+}
+const dayIdeaRenderer=fs.readFileSync('docs/assets/day-ideas.js','utf8');
+if(!dayIdeaRenderer.includes('idea.links?.length'))errors.push('Dagidéer: valgbare innholdslenker skal rendres');
+const placeDetailHtml=fs.readFileSync('docs/place.html','utf8');
+if(!placeDetailHtml.includes('id="place-onsen-options"')||!app.includes('renderOnsenOptionsHtml(hotelData.onsenOptions')){
+  errors.push('Steder: Hakone må faktisk vise alle onsenalternativer på stedsdetaljen');
+}
+if(!app.includes('renderOnsenOptionsHtml(data.onsenOptions') || !app.includes('id="hakone-onsen-options"')){
+  errors.push('Overnatting: Hakone må vise samme onsenalternativer i baseoversikten');
+}
+if(!style.includes('.onsen-options-grid') || !style.includes('@media(max-width:850px)')){
+  errors.push('Onsen: sammenligningskortene mangler mobilresponsiv styling');
+}
+
 const style = fs.readFileSync('docs/assets/style.css', 'utf8');
 const glossaryJs=fs.readFileSync('docs/assets/glossary.js','utf8');
 const shinjukuDetail=fs.readFileSync('docs/place.html','utf8');
