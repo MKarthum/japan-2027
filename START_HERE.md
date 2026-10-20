@@ -20,6 +20,8 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 Skriv slik at både barn og voksne uten Japan-kunnskap forstår innholdet. Forklar japanske faguttrykk gjennom den **felles klikkbare ordlisten** fremfor gjentatte parentesforklaringer. `docs/data/guide.json` → `placeWords` er autoritativ kilde: term, meaning, valgfri japanese, aliases, og `inline:true` for ord som skal ha stiplet understrek. `showInGuide:false` holder avanserte ord utenfor den kuraterte ordlisten under Praktisk. `docs/assets/glossary.js` er kun én delt visningskomponent (mobil, tastatur, popup, dynamiske sider). Bruk japanske ord naturlig; ikke aktiver for alle stedsnavn eller ordinære ord.
 
+**Gjeldende UX-regel – gjenbrukbare forklaringer:** Når et ord, faguttrykk eller en forkortelse krever en kort forklaring, legg definisjonen i autoritativ JSON-ordliste og gjenbruk stiplet-understreket klikk/tapp-komponent der det passer. Ikke gjenta definisjonen i hver tekst. Ikke fjern det opprinnelige oppslagsordet fra tittel, undertittel eller beskrivelse når forklaringen flyttes til popup. For dynamiske og særskilte visninger (f.eks. `#simple.kicker` på detaljsider), bruk `data-glossary-text` slik at ordet er interaktivt også der. Bekreft faktisk synlig og klikkbar forekomst på både oversikt og detaljside; syntax-/data-QA alene er ikke nok.
+
 ## Kanoniske dataeiere
 
 - `docs/data/trip.json`: reiselengde og nummererte reisedager, hovedrute, budsjett, oversiktskuratering, destinasjonstemaer/farger og `priceParties`. Standard prisvisning er én familie (2 voksne + 2 barn); to-familiescenarioet er 4 + 4.
