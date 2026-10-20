@@ -182,6 +182,27 @@ if(/20(?:26|27)-\\d{2}-\\d{2}/.test(JSON.stringify(trip.route)) || /20(?:26|27)-
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
+// The grouped Places view must map every place into exactly one existing route group.
+const placesByDestination=new Map(trip.route.map(stop=>[stop.id,[]]));
+for (const place of places) {
+  const possible=trip.route.filter(stop=>stop.id===place.id || stop.theme?.areas?.includes(place.area));
+  // Direct route match always wins, including the Himeji pass-through.
+  const direct=trip.route.find(stop=>stop.id===place.id);
+  const matched=direct || trip.route.find(stop=>stop.theme?.areas?.includes(place.area));
+  if(!matched) errors.push(`places.json: ${place.id} has no route destination group`);
+  else placesByDestination.get(matched.id).push(place);
+}
+for (const stop of trip.route) {
+  if(!(placesByDestination.get(stop.id)||[]).length) errors.push(`trip.json: route group ${stop.id} is empty`);
+}
+const tower=placeById.get('tokyo-tower');
+if (!tower || tower.area!=='Tokyo' || tower.type!=='utsiktspunkt' ||
+    !tower.links?.some(x=>x.kind==='official') ||
+    !tower.experienceOptions?.some(x=>x.id==='tokyo-tower-main-deck') ||
+    !tower.experienceOptions?.some(x=>x.id==='tokyo-tower-top-deck')) {
+  errors.push('places.json: Tokyo Tower needs official info and separate outdoor/observation options');
+}
+
 const routeIds = new Set(trip.route.map(x => x.id));
 const themedAreas = new Set();
 
@@ -525,6 +546,7 @@ if (app.includes('renderFlightsResearch')||app.includes('flight-copy-template'))
 if (!app.includes('async function renderRestaurant()') || !app.includes('restaurant.html?id=')) errors.push('app.js mangler generisk restaurantdetalj');
 if (!app.includes('async function renderHotels()') || !app.includes('async function renderHotel()') || !app.includes('hotel.html?id=')) errors.push('app.js mangler overnattingsvisninger');
 if (!app.includes('async function renderPlace()') || !app.includes("json('data/places.json')")) errors.push('app.js mangler kanonisk stedsvisning');
+if (!app.includes('places.filter(p=>destinationId(trip,p)===stop.id)') || !app.includes("sort((a,b)=>a.name.localeCompare(b.name,'nb'))") || !app.includes('place-destination-group')) errors.push('app.js: steder må grupperes etter reiserute og sorteres nøytralt alfabetisk');
 if (!app.includes('async function loadFx()') || !app.includes('providers=ecb')) errors.push('app.js mangler live ECB-kurs');
 const directFxLoads=[...app.matchAll(/json\('data\/fx\.json'\)/g)].length;
 if (directFxLoads !== 1) errors.push('app.js skal bare lese fx.json inne i loadFx()');
