@@ -931,8 +931,8 @@ async function renderPlaces() {
   const list=document.getElementById('places-grid');
   const placeById=new Map(places.map(p=>[p.id,p]));
 
-  const placeCard=(p,base)=>{
-    const areaNote=p.area!==base.area && p.id!==base.id
+  const placeCard=(p,base,{inDayTrip=false}={})=>{
+    const areaNote=!inDayTrip && p.area!==base.area && p.id!==base.id
       ? `<span class="place-list-area-note">${p.area} · dagstur/utflukt</span>`:'';
     return `<article class="place-list-card destination-themed" style="${themeStyle(destinationTheme(trip,p))}">
       ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
@@ -989,7 +989,7 @@ async function renderPlaces() {
                   <h3>${destination.name}</h3>
                 </div>
               </div>
-              <div class="place-destination-items">${items.map(p=>placeCard(p,base)).join('')}</div>
+              <div class="place-destination-items">${items.map(p=>placeCard(p,base,{inDayTrip:true})).join('')}</div>
             </div>`).join('')}
         </section>`;
       }).filter(Boolean);
