@@ -1,3 +1,4 @@
+const reiseDag = (n) => `Dag ${n}`;
 const fmtDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'short' }).format(new Date(`${iso}T12:00:00Z`));
 const fmtLongDate = (iso) => new Intl.DateTimeFormat('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${iso}T12:00:00Z`));
 const fmtNok = (n) => new Intl.NumberFormat('nb-NO', { maximumFractionDigits:0 }).format(Math.round(n)) + ' kr';
@@ -148,7 +149,6 @@ const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs (virkedager)':'Lagret 
 function nav(active='') {
   const items = [
     ['index.html','Oversikt','home'],
-    ['flights.html','Fly','flights'],
     ['route.html','Rute','route'],
     ['places.html','Steder','places'],
     ['food.html','Mat','food'],
@@ -342,166 +342,18 @@ async function renderHome() {
   }).join('<b aria-hidden="true">→</b>');
 }
 
-async function renderFlights() {
+async function renderFlightGuide() {
   await applyPageCopy('flights');
-  nav('flights'); footer();
-  const [data,trip,transport,fx]=await Promise.all([json('data/flights.json'),json('data/trip.json'),json('data/transport.json'),loadFx()]);
-  const dateLabel=(iso)=>new Intl.DateTimeFormat('nb-NO',{weekday:'short',day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(`${iso}T12:00:00Z`));
-  const checkedLabel=(iso)=>fmtLongDate(iso);
-  const shiftDate=(iso,days)=>{ const d=new Date(`${iso}T12:00:00Z`); d.setUTCDate(d.getUTCDate()+days); return d.toISOString().slice(0,10); };
-  const baselineDepart=trip.route?.[0]?.from;
-  const baselineReturn=trip.route?.[trip.route.length-1]?.to;
-  const baselineNights=Math.round((Date.parse(baselineReturn)-Date.parse(baselineDepart))/86400000);
-  const datePairs=Array.from({length:data.planningWindow.flexDays*2+1},(_,i)=>{ const shift=i-data.planningWindow.flexDays; return {shift,depart:shiftDate(baselineDepart,shift),return:shiftDate(baselineReturn,shift),label:shift===0?'Baseline':`${Math.abs(shift)} ${Math.abs(shift)===1?'dag':'dager'} ${shift<0?'tidligere':'senere'}`}; });
-  const weeksUntil=Math.max(0,(Date.parse(baselineDepart)-Date.parse(data.asOf))/604800000);
-  const bookingTiming=`Baseline er ca. ${Math.round(weeksUntil)} uker unna. KAYAKs historikk peker mot rundt ${data.bookingSignals.tokyo.bestWeeksBefore} uker før Oslo–Tokyo og ${data.bookingSignals.osaka.bestWeeksBefore} uker før Oslo–Kansai som gunstige nivåer sammenlignet med siste liten. Det gjør dette til en naturlig periode for aktiv prissjekk.`;
-  const flyBudget=(trip.budget?.items||[]).find(x=>x.label==='Fly')?.rangeNok;
-  const external=(url,label,primary=false)=>`<a class="button${primary?' primary':''}" href="${url}" target="_blank" rel="noopener">${label} ↗</a>`;
-
-  const decision=document.getElementById('flight-decision');
-  decision.innerHTML=`
-    <div class="flight-decision-main">
-      <span class="flight-kicker">Første beslutning</span>
-      <h2>${data.research.title}</h2>
-      <p>${data.planningWindow.summary}</p>
-      <div class="flight-decision-stats">
-        <div><span>Baseline</span><strong>${dateLabel(baselineDepart)} – ${dateLabel(baselineReturn)}</strong></div>
-        <div><span>Fleks</span><strong>±${data.planningWindow.flexDays} dager</strong></div>
-        <div><span>Flybudsjett</span><strong>${Array.isArray(flyBudget)?dualRangeFromNok(flyBudget,fx):'Planramme'}</strong></div>
-      </div>
-      <div class="flight-principles"><strong>Slik velges vinneren</strong><ul>${data.decisionPrinciples.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-    </div>
-    <aside><strong>Søk for standardfamilien</strong><p>${data.research.partyNote}</p><div class="button-row">${data.manualSearches.filter(x=>x.stage==='start').map(x=>external(x.url,x.title)).join('')}</div></aside>`;
-
-  document.getElementById('flight-patterns').innerHTML=data.itineraryPatterns.map(x=>`
-    <article class="flight-pattern-card ${x.status==='Hovedspor'?'preferred':''}">
-      <div class="flight-card-top"><span class="flight-status">${x.status}</span><span>${x.type==='roundtrip'?'Tur/retur':'Inn én by · hjem fra en annen'}</span></div>
-      <h3>${x.label}</h3>
-      <div class="flight-route-pair"><strong>${x.outbound}</strong><strong>${x.inbound}</strong></div>
-      <p class="flight-direction">${x.routeDirection}</p>
-      <p>${x.why}</p>
-      <small>${x.tradeoff}</small>
-      ${x.evidenceUrl?external(x.evidenceUrl,'Se publisert eksempel'):''}
-    </article>`).join('');
-
-  const duration=(min)=>`${Math.floor(min/60)} t ${String(min%60).padStart(2,'0')}`;
-  const stamp=(iso)=>new Intl.DateTimeFormat('nb-NO',{dateStyle:'medium',timeStyle:'short',timeZone:'UTC'}).format(new Date(iso))+' UTC';
-  const money=(nok)=>dualMoneyHtml(fmtNok(nok),fmtJpy(jpyFromNok(nok,fx)));
-  const patterns=new Map(data.itineraryPatterns.map(x=>[x.id,x]));
-  const matchingRun=(pair,pattern)=>data.searchRuns.find(x=>x.patternId===pattern.id && x.departDate===pair.depart && x.returnDate===pair.return);
-  const matrix=document.getElementById('flight-date-pairs');
-  matrix.className='flight-matrix';
-  const drawMatrix=(sort='best')=>{
-    matrix.innerHTML=`<div class="flight-matrix-scroll" role="region" aria-label="Flypriser for datoer og reiseretninger" tabindex="0"><table><caption>${data.research.matrixTitle}</caption><thead><tr><th scope="col">Avreise / hjemreise</th>${data.itineraryPatterns.map(p=>`<th scope="col">${p.label}</th>`).join('')}</tr></thead><tbody>${datePairs.map(pair=>`<tr class="${pair.shift===0?'baseline':''}"><th scope="row">${pair.label}<small>${fmtDate(pair.depart)} – ${fmtDate(pair.return)}</small></th>${data.itineraryPatterns.map(p=>{
-      const run=matchingRun(pair,p),fare=run?.summaries[sort];
-      if(!fare)return '<td>Søk på nytt</td>';
-      const column=data.searchRuns.filter(x=>x.patternId===p.id && x.lengthDeltaDays===0 && datePairs.some(d=>d.depart===x.departDate && d.return===x.returnDate));
-      const lowest=Math.min(...column.map(x=>x.summaries[sort].priceNok));
-      return `<td class="${fare.priceNok===lowest?'flight-lowest':''}"><a href="${run.publicUrl}" target="_blank" rel="noopener" title="FINN · ${stamp(run.checkedAt)}">${money(fare.priceNok)}</a><small>${duration(fare.outboundDurationMin)} / ${duration(fare.inboundDurationMin)}</small>${Math.max(fare.outboundDurationMin,fare.inboundDurationMin)>1440?'<span class="flight-long">Over ett døgn én vei</span>':''}</td>`;
-    }).join('')}</tr>`).join('')}</tbody></table></div>`;
-  };
-  document.getElementById('flight-matrix-controls').innerHTML=`<p>${data.research.matrixNote}</p><label>FINN-sortering <select id="flight-sort"><option value="best">Best</option><option value="cheapest">Billigst</option><option value="fastest">Raskest</option></select></label><p class="small">${data.research.partyNote} Grønt markerer laveste viste pris i hver kolonne.</p>`;
-  drawMatrix();
-  document.getElementById('flight-sort').addEventListener('change',e=>drawMatrix(e.target.value));
-  const candidates=data.candidates;
-  document.getElementById('flight-candidates').innerHTML=`<div class="section-head"><div><h2>${data.research.candidateTitle}</h2><p>${data.research.candidateNote}</p></div></div><div class="flight-fare-grid">${candidates.map(c=>`<article class="flight-fare-card" id="candidate-${c.id}"><div class="flight-card-top"><span>${c.label}</span><span>${c.service}</span></div><h3>${money(c.price.amount)}</h3><strong>${patterns.get(c.patternId).label}</strong><p>${dateLabel(c.departDate)} – ${dateLabel(c.returnDate)}<br>${c.airlines.join(' + ')} · ${c.provider}</p><strong>${duration(c.outbound.durationMin)} ut · ${duration(c.inbound.durationMin)} hjem</strong><p>${c.why}</p><details><summary>Forbindelser og prisgrunnlag</summary><p>${c.outbound.from} → ${c.outbound.transferAirports.join(' → ')} → ${c.outbound.to}<br>${c.inbound.from} → ${c.inbound.transferAirports.join(' → ')} → ${c.inbound.to}</p><p>${c.outbound.stops} stopp ut / ${c.inbound.stops} hjem · lengste transfer ${duration(c.longestTransferMin)}</p><p>${c.baggage.cabinPiecesPerPerson!=null?`Håndbagasje: ${c.baggage.cabinPiecesPerPerson} per person. `:''}${c.baggage.checkedPiecesPerPerson!=null?`Innsjekket: ${c.baggage.checkedPiecesPerPerson} per person. `:''} ${c.baggage.evidence}</p><p>${c.connection.note}</p>${c.operatingAirlines?`<p>Operert av ${c.operatingAirlines.join(' + ')}</p>`:''}<small>${c.price.basis==='family-total'?'Søkt total for 2+2':'Søkt pris per person'} · ${stamp(c.checkedAt)}</small>${external(c.publicUrl,'Gjenta søket')}</details></article>`).join('')}</div>`;
-  const returnLeg=transport.flightReturnComparisons.find(x=>x.id===data.comparison.transportRef);
-  document.getElementById('flight-comparison').innerHTML=`<h2>${data.comparison.title}</h2><div class="flight-signal-grid">${data.comparison.pairs.map(p=>{
-    const left=candidates.find(x=>x.id===p.leftId),right=candidates.find(x=>x.id===p.rightId);
-    return `<article class="flight-signal-card"><h3>${p.title}</h3><p>${left.label}: ${dualFromNok(left.price.amount,fx)}<br>${right.label}: ${dualFromNok(right.price.amount,fx)}</p><p>${p.finding}</p></article>`;
-  }).join('')}<article class="flight-signal-card"><h3>${returnLeg.label}</h3><strong>${dualFromJpy(returnLeg.standardFamilyYen,fx)}</strong><p>${returnLeg.service}. Raskeste publiserte togtid: ${duration(returnLeg.fastestTrainMin)}. Sett av ${returnLeg.planningDoorToDoorHours.join('–')} timer dør til dør.</p><p>${returnLeg.note}</p><small>${checkedLabel(returnLeg.checked)} · <a href="${returnLeg.source}" target="_blank" rel="noopener">prisgrunnlag ↗</a> · <a href="${returnLeg.durationSource}" target="_blank" rel="noopener">togtid ↗</a></small></article></div><p class="small">${data.comparison.note}</p>`;
-  document.getElementById('flight-direct').innerHTML=`<h2>Direkte kontroll hos selskapene</h2><div class="flight-fare-grid">${data.directChecks.map(c=>`<article class="flight-fare-card"><span>${c.service} · ${stamp(c.checkedAt)}</span><h3>${c.price?money(c.price.amount):c.service}</h3>${c.price?`<small>${c.price.basis==='family-total'?'Total for 2+2':'Per person'}</small>`:''}${c.ticketType?`<strong>${c.ticketType}</strong>`:''}<p>${c.finding}</p>${c.baggage?`<p>${c.baggage}</p>`:''}${c.terms?`<p>${c.terms}</p>`:''}${c.termsContext?`<p>${c.termsContext}</p><a href="${c.termsSource}" target="_blank" rel="noopener">Generelle billettvilkår ↗</a>`:''}${external(c.publicUrl,'Søk direkte')}</article>`).join('')}</div>`;
-  document.getElementById('flight-research-limits').innerHTML=data.research.limits.map(x=>`<p class="small"><strong>${x.service} · ${stamp(x.checkedAt)}</strong> ${x.detail}</p>`).join('');
-  document.getElementById('flight-lengths').innerHTML=`<h3>Én dag kortere eller lengre</h3><p>${data.research.lengthNote}</p><div class="flight-matrix-scroll"><table><thead><tr><th>Oppsett</th><th>Datoer</th><th>FINN Best · 2+2</th><th>Ut / hjem</th></tr></thead><tbody>${data.searchRuns.filter(x=>x.lengthDeltaDays!==0).map(x=>`<tr><th>${patterns.get(x.patternId).label}</th><td>${fmtDate(x.departDate)} – ${fmtDate(x.returnDate)}<small>${x.lengthDeltaDays>0?'Én dag lengre':'Én dag kortere'}</small></td><td>${money(x.summaries.best.priceNok)}</td><td>${duration(x.summaries.best.outboundDurationMin)} / ${duration(x.summaries.best.inboundDurationMin)}</td></tr>`).join('')}</tbody></table></div>`;
-
-  document.getElementById('flight-date-signals').innerHTML=data.dateSignals.map(x=>`
-    <article class="flight-signal-card">
-      <span>${x.kind==='historical'?'Historisk mønster':'Observasjon'}</span>
-      <h3>${x.title}</h3><p>${x.finding}</p>
-      <small>Kontrollert ${checkedLabel(x.checked)} · <a href="${x.source}" target="_blank" rel="noopener">kilde ↗</a></small>
-    </article>`).join('');
-
-  const market=document.getElementById('flight-market');
-  market.innerHTML=`
-    <div class="flight-market-main"><span>Marked</span><strong>${data.market.nonstop}</strong><small>${data.market.availability}</small></div>
-    <div class="flight-fastest">${data.market.fastestListed.map(x=>`<div><span>${x.route}</span><strong>${x.time}</strong><small>${x.note}</small></div>`).join('')}</div>
-    <div class="flight-airports">${data.airportNotes.map(x=>`<div><b>${x.code}</b><strong>${x.name}</strong><span>${x.role}</span><small>${x.note}</small></div>`).join('')}</div>
-    <div class="flight-hubs"><div class="flight-hubs-head"><strong>Alle mellomlandingsflyplasser i den kontrollerte ruteoversikten</strong><span>Kompakt referanse – ikke alle er like gode forbindelser.</span></div>${data.oneStopHubs.map(x=>`<div class="flight-hub-row"><b>${x.airport}</b><div>${x.hubs.map(h=>`<span>${h}</span>`).join('')}</div><a href="${x.source}" target="_blank" rel="noopener">rutekilde ↗</a></div>`).join('')}</div>`;
-
-  document.getElementById('flight-carriers').innerHTML=data.carrierOptions.map(x=>`
-    <article class="flight-carrier-card">
-      <div class="flight-card-top"><span>${x.hub}</span><span>${x.fit}</span></div>
-      <h3>${x.airline}</h3>
-      <div class="flight-airport-fit"><span>Tokyo <strong>${x.tokyo}</strong></span><span>Osaka <strong>${x.osaka}</strong></span></div>
-      <p>${x.why}</p>
-      <div class="button-row">${external(x.officialSearch,'Søk hos selskapet',true)}${external(x.routeSource,'Rutegrunnlag')}</div>
-    </article>`).join('');
-
-  document.getElementById('flight-fares').innerHTML=data.fareObservations.map(x=>`
-    <article class="flight-fare-card">
-      <div class="flight-card-top"><span>${x.kind==='published-2027-fare'?'Publisert 2027-fra-pris':x.kind==='indexed-dated-fare'?'Indeksert datert pris':x.kind==='dated-airline-fare'?'Datert publisert fra-pris':x.kind==='current-route-from'?'Aktuell fra-pris':x.kind==='search-engine-from'?'Søkemotor · fra-pris':'Historisk nivå'}</span><span>${x.route}</span></div>
-      <h3>${Number.isFinite(x.priceNok)?money(x.priceNok):'Pris varierer'}</h3>
-      <strong>${x.dates}</strong>
-      <p>${x.basis}</p><small>${x.use}</small>
-      <a href="${x.source}" target="_blank" rel="noopener">Kilde · kontrollert ${checkedLabel(x.checked)} ↗</a>
-    </article>`).join('');
-
-  const safety=data.safety;
-  document.getElementById('flight-safety').innerHTML=`<article class="flight-safety-method"><strong>Hvordan vi bruker «sikkerhet»</strong><p>${safety.approach}</p></article>`+[
-    {label:'EU-kontroll',title:'Air Safety List',body:safety.euList.summary,note:safety.euList.note,url:safety.euList.source,checked:safety.euList.checked},
-    {label:'Sekundær kontekst',title:'Uavhengig rangering',body:safety.independent.summary,note:'Brukes som tillegg, ikke som fasit.',url:safety.independent.source,checked:safety.independent.checked},
-    {label:'Operativt nå',title:'Luftrom må følges',body:safety.airspaceWatch.summary,note:safety.airspaceWatch.recheck,url:safety.airspaceWatch.source,checked:safety.airspaceWatch.checked}
-  ].map(x=>`<article class="flight-safety-card"><span>${x.label}</span><h3>${x.title}</h3><p>${x.body}</p><small>${x.note}</small><a href="${x.url}" target="_blank" rel="noopener">Kilde · ${checkedLabel(x.checked)} ↗</a></article>`).join('');
-
-  document.getElementById('flight-packages').innerHTML=data.packageChecks.map(x=>`
-    <article class="flight-package-card">
-      <div class="flight-card-top"><span>${x.provider}</span><span>${x.kind}</span></div>
-      <h3>${x.dates}</h3>
-      ${Number.isFinite(x.priceNok)?`<strong class="flight-package-price">${money(x.priceNok)} <small>per person · publisert fra-pris</small></strong>`:''}
-      <p>${x.signal}</p><small>${x.compareAs}</small>
-      ${external(x.url,'Åpne hos '+x.provider,true)}
-    </article>`).join('');
-
-  const searches=document.getElementById('flight-searches');
-  searches.id='flight-searches-anchor';
-  const searchStages=[
-    ['start','Start her','Google Flights og FINN først – de gir det raskeste helhetsbildet.'],
-    ['compare','Sammenlign datoer og tur/retur','Bruk disse for å se om dato eller samme-flyplass tur/retur endrer prisbildet mye.'],
-    ['direct','Sjekk vinneren direkte','Gå til flyselskapet først når vi vet hvilke alternativer som faktisk er interessante.'],
-    ['package','Pakkereiser','En separat kontroll på om fly + hotell eller rundreise gir overraskende verdi.']
-  ];
-  let searchIndex=0;
-  searches.innerHTML=searchStages.map(([stage,title,intro])=>{
-    const items=data.manualSearches.filter(x=>x.stage===stage);
-    if(!items.length) return '';
-    return `<section class="flight-search-stage"><div class="flight-search-stage-head"><h3>${title}</h3><p>${intro}</p></div><div class="flight-search-stage-list">${items.map(x=>{
-      searchIndex+=1;
-      return `<article class="flight-search-card">
-        <span class="flight-search-number">${String(searchIndex).padStart(2,'0')}</span>
-        <div><div class="flight-card-top"><span>${x.priority}</span></div><h3>${x.title}</h3><p>${x.instruction}</p>${external(x.url,'Åpne søk',stage==='start')}</div>
-      </article>`;
-    }).join('')}</div></section>`;
-  }).join('');
-
-  const template=[data.capture.title,'',...data.capture.fields.map(x=>`${x}: `)].join('\n');
-  document.getElementById('flight-capture').innerHTML=`
-    <div class="flight-capture-box"><p>${data.capture.instruction}</p>
-      <pre id="flight-capture-template">${template}</pre>
-      <button id="flight-copy-template" class="button primary" type="button">Kopier resultatmal</button>
-      <span id="flight-copy-status" class="small" aria-live="polite"></span>
-    </div>`;
-  document.getElementById('flight-copy-template')?.addEventListener('click',async()=>{
-    const status=document.getElementById('flight-copy-status');
-    try{
-      await navigator.clipboard.writeText(template);
-      if(status) status.textContent='Kopiert – lim den inn i chatten etter søket.';
-    }catch{
-      if(status) status.textContent='Kunne ikke kopiere automatisk. Marker teksten over og kopier manuelt.';
-    }
-  });
-
-  document.getElementById('flight-sources').innerHTML=data.sources.map(x=>`
-    <a class="flight-source-card" href="${x.url}" target="_blank" rel="noopener"><strong>${x.title}</strong><span>${x.use}</span><b>Åpne kilde ↗</b></a>`).join('');
+  nav(); footer();
+  const data=await json('data/flights.json');
+  const examples=document.getElementById('flight-examples');
+  if(examples)examples.innerHTML=data.examples.map(x=>`<article class="card"><h3>${x.title}</h3><p><strong>${x.route}</strong></p><p>${x.description}</p></article>`).join('');
+  const checklist=document.getElementById('flight-checklist');
+  if(checklist)checklist.innerHTML=data.checklist.map(x=>`<article class="card"><h3>${x.title}</h3><p>${x.detail}</p></article>`).join('');
+  const links=document.getElementById('flight-sources');
+  if(links)links.innerHTML=data.sources.map(x=>`<a class="card" href="${x.url}" target="_blank" rel="noopener"><h3>${x.title} ↗</h3><p>${x.description}</p></a>`).join('');
+  const privacy=document.getElementById('flight-privacy-note');
+  if(privacy)privacy.textContent=data.privacy;
 }
 
 async function renderRoute() {
@@ -584,7 +436,7 @@ async function renderRoute() {
   const showStopDetail=(stop,p)=>{
     if(!stop||!p) return;
     const nextLeg=nextLegByRouteId.get(stop.id);
-    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,stop))}"><div class="meta">Rutestopp</div><h3>${p.name}</h3><p><strong>${stop.label}</strong> · ${fmtDate(stop.from)}${stop.nights>0?`–${fmtDate(stop.to)} · ${stop.nights} ${stop.nights===1?'natt':'netter'}`:''}</p><p class="small">${stop.summary}</p>${routeContextLinksHtml(trip,stop,p,food,hotelsData)}${nextLeg?`<button class="route-inline-info" data-detail-leg="${nextLeg.id}">Neste etappe: ${formatMinutes(nextLeg.durationMin)} →</button>`:''}</div>`);
+    setMapDetail(`<div class="route-detail-content route-selected-content destination-themed" style="${themeStyle(destinationTheme(trip,stop))}"><div class="meta">Rutestopp</div><h3>${p.name}</h3><p><strong>${stop.label}</strong> · ${reiseDag(stop.from)}${stop.nights>0?`–${reiseDag(stop.to)} · ${stop.nights} ${stop.nights===1?'natt':'netter'}`:''}</p><p class="small">${stop.summary}</p>${routeContextLinksHtml(trip,stop,p,food,hotelsData)}${nextLeg?`<button class="route-inline-info" data-detail-leg="${nextLeg.id}">Neste etappe: ${formatMinutes(nextLeg.durationMin)} →</button>`:''}</div>`);
   };
 
   document.getElementById('window').textContent = trip.window;
@@ -603,7 +455,7 @@ async function renderRoute() {
       ${img?`<div class="route-thumb-wrap"><a class="route-thumb-link" href="place.html?id=${encodeURIComponent(p.id)}" aria-label="Se ${p.name}"><img class="route-thumb" src="${img.url}" alt="" loading="lazy"></a>${imageCreditHtml(img,'image-credit-overlay image-credit-mini')}</div>`:''}
       <div class="route-item-main">
         <div class="route-item-top">
-          <div class="date">${fmtDate(x.from)}${x.to!==x.from?` – ${fmtDate(x.to)}`:''}</div>
+          <div class="date">${reiseDag(x.from)}${x.to!==x.from?` – ${reiseDag(x.to)}`:''}</div>
           <div class="nights">${x.nights===0?'Stopp':`${x.nights} ${x.nights===1?'natt':'netter'}`}</div>
         </div>
         <a class="route-item-title" href="place.html?id=${x.id}"><strong>${p.name}</strong></a>
