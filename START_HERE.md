@@ -18,7 +18,7 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 
 ## Språklig tilgjengelighet
 
-Skriv slik at både barn og voksne uten Japan-kunnskap forstår innholdet. Fremmedord i korttitler og undertitler (hanami, onsen, torii osv.) skal forklares kort der de vises, ikke bare i ordboken. Sjekk også treff på andre sider når nye uttrykk legges inn; behold japanske uttrykk sammen med norsk forklaring for læring og gjenkjennelse.
+Skriv slik at både barn og voksne uten Japan-kunnskap forstår innholdet. Forklar japanske faguttrykk gjennom den **felles klikkbare ordlisten** fremfor gjentatte parentesforklaringer. `docs/data/guide.json` → `placeWords` er autoritativ kilde: term, meaning, valgfri japanese, aliases, og `inline:true` for ord som skal ha stiplet understrek. `showInGuide:false` holder avanserte ord utenfor den kuraterte ordlisten under Praktisk. `docs/assets/glossary.js` er kun én delt visningskomponent (mobil, tastatur, popup, dynamiske sider). Bruk japanske ord naturlig; ikke aktiver for alle stedsnavn eller ordinære ord.
 
 ## Kanoniske dataeiere
 
