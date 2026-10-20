@@ -12,7 +12,9 @@
       "Asakusa og Sensō-ji",
       "Akihabara",
       "teamLab",
-      "Tokyo Tower ved Zōjō-ji"
+      "Tokyo Tower ved Zōjō-ji",
+      "Shinjuku og Akihabara",
+      "Shinjuku Gyoen hvis sakura passer"
     ],
     "image": {
       "type": "licensed",
@@ -49,7 +51,8 @@
       "note": "Ingen egen inngangsbillett til byen.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/tokyo/"
-    }
+    },
+    "planInterest": "context"
   },
   {
     "id": "shibuya",
@@ -99,7 +102,8 @@
       "note": "Bydelen og Shibuya Crossing kan oppleves uten inngangsbillett.",
       "checked": "2026-10-04",
       "source": "https://www.gotokyo.org/en/destinations/western-tokyo/shibuya/index.html"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "asakusa",
@@ -149,7 +153,8 @@
       "note": "Området kan besøkes uten inngangsbillett; enkelte attraksjoner koster ekstra.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "tokyo-tower",
@@ -275,7 +280,8 @@
         "checked": "2026-10-20",
         "areaLabel": "Tokyo Tower"
       }
-    ]
+    ],
+    "planInterest": "candidate"
   },
   {
     "id": "hakone",
@@ -325,7 +331,8 @@
       "note": "Ingen inngang til selve området. Transport, onsen og attraksjoner prises separat.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/kanagawa/hakone-and-around/"
-    }
+    },
+    "planInterest": "context"
   },
   {
     "id": "kyoto",
@@ -340,7 +347,9 @@
       "Fushimi Inari",
       "Kiyomizu-dera",
       "Kinkaku-ji",
-      "Arashiyama"
+      "Arashiyama",
+      "Maruyama Park ved blomstring",
+      "Familievennlig teseremoni"
     ],
     "image": {
       "type": "licensed",
@@ -377,7 +386,8 @@
       "note": "Ingen inngang til byen. Templer og attraksjoner har egne priser.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/kyoto/"
-    }
+    },
+    "planInterest": "context"
   },
   {
     "id": "gion",
@@ -427,7 +437,8 @@
       "note": "Bydelen kan besøkes uten inngangsbillett.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/kyoto/gion-and-higashiyama/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "fushimi-inari",
@@ -477,7 +488,8 @@
       "note": "Helligdomsområdet kan besøkes uten ordinær inngangsbillett.",
       "checked": "2026-10-04",
       "source": "https://inari.jp/en/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "kiyomizu-dera",
@@ -530,7 +542,8 @@
       "note": "Ordinær inngang. Spesielle visninger kan ha egne priser.",
       "checked": "2026-10-04",
       "source": "https://www.kiyomizudera.or.jp/en/news/2026/sennichi-2026.php"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "kinkakuji",
@@ -581,7 +594,8 @@
       "childRule": "Barneskole og ungdomsskole",
       "checked": "2026-10-04",
       "source": "https://www.shokoku-ji.jp/en/kinkakuji/access/"
-    }
+    },
+    "planInterest": "extra"
   },
   {
     "id": "arashiyama",
@@ -631,7 +645,8 @@
       "note": "Selve Arashiyama-området og den vanlige bambusvandringen har ingen samlet inngang. Templer og særarrangementer kan koste ekstra.",
       "checked": "2026-10-04",
       "source": "https://www.kyoto.travel/en/areas/saga-arashiyama/"
-    }
+    },
+    "planInterest": "candidate"
   },
   {
     "id": "nara",
@@ -682,7 +697,8 @@
       "note": "Byen og Nara Park kan utforskes uten samlet inngang; templer og museer prises separat.",
       "checked": "2026-10-04",
       "source": "https://www.visitnara.jp/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "todaiji",
@@ -734,7 +750,8 @@
       "note": "Daibutsuden. Familieanslaget varierer med skoletrinn.",
       "checked": "2026-10-04",
       "source": "https://www.todaiji.or.jp/information/haikan/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "himeji",
@@ -786,7 +803,8 @@
       "note": "Barn og unge under 18 år er gratis etter gjeldende regel.",
       "checked": "2026-10-04",
       "source": "https://www.himejicastle.jp/en/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "osaka",
@@ -836,7 +854,8 @@
       "note": "Ingen inngang til byen; konkrete attraksjoner prises separat.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/osaka/"
-    }
+    },
+    "planInterest": "context"
   },
   {
     "id": "dotonbori",
@@ -882,7 +901,8 @@
       "note": "Området kan besøkes uten inngangsbillett.",
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/osaka/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "hiroshima",
@@ -937,7 +957,8 @@
       "note": "Ingen inngang til byen eller Peace Memorial Park; museet har egen pris.",
       "checked": "2026-10-04",
       "source": "https://www.city.hiroshima.lg.jp/living/park-green/1005983/1026353/1003127.html"
-    }
+    },
+    "planInterest": "context"
   },
   {
     "id": "miyajima",
@@ -988,7 +1009,8 @@
       "note": "Ingen inngang til selve øya. Ferge og enkelte steder kommer i tillegg.",
       "checked": "2026-10-04",
       "source": "https://www.miyajima.or.jp/english/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "nintendo-museum",
@@ -1041,7 +1063,8 @@
       "note": "Voksen 18+, ungdom 12–17, barn 6–11.",
       "checked": "2026-10-04",
       "source": "https://museum.nintendo.com/en/guide/index.html"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "ghibli-museum",
@@ -1094,7 +1117,8 @@
       "note": "Familieanslaget varierer med alderskategori. Forhåndsreservasjon kreves.",
       "checked": "2026-10-04",
       "source": "https://www.ghibli-museum.jp/en/tickets/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "teamlab",
@@ -1145,7 +1169,8 @@
       "note": "Dynamisk voksenpris. Familieanslaget er et planintervall og avhenger også av alderskategori.",
       "checked": "2026-10-04",
       "source": "https://www.teamlab.art/e/tokyo/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "usj",
@@ -1193,7 +1218,8 @@
       "note": "Studio Pass har dynamisk dato-pris. Komplett familiepris for våren 2027 settes når datoen er i salg.",
       "checked": "2026-10-04",
       "source": "https://www.usjticketing.com/"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "peace-memorial-museum",
@@ -1246,7 +1272,8 @@
       "note": "Ungdomsskolealder og yngre er gratis etter gjeldende besøksinformasjon.",
       "checked": "2026-10-04",
       "source": "https://www.city.hiroshima.lg.jp/www/koho/shimintoshiseir070615/shimintoshisei/special/index.html"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "itsukushima-shrine",
@@ -1293,7 +1320,8 @@
       "childRule": "Barneskole og ungdomsskole",
       "checked": "2026-10-04",
       "source": "https://itsukushimajinja.jp/en/admission.html"
-    }
+    },
+    "planInterest": "strong"
   },
   {
     "id": "osaka-castle",
@@ -1341,7 +1369,8 @@
       "note": "Vanlig inngang til hovedtårnet; ungdomsskolealder og yngre er gratis.",
       "checked": "2026-10-04",
       "source": "https://osakacastle.net/"
-    }
+    },
+    "planInterest": "extra"
   },
   {
     "id": "sumo-osaka",
@@ -1540,6 +1569,291 @@
         "checked": "2026-10-20",
         "areaLabel": "Tokyo – dersom tilgjengelig"
       }
-    ]
+    ],
+    "planInterest": "candidate"
+  },
+  {
+    "id": "akihabara",
+    "name": "Akihabara",
+    "area": "Tokyo",
+    "type": "bydel",
+    "simple": "Retrospill, elektronikk og japansk popkultur",
+    "description": "Akihabara er Tokyos kjente område for elektronikk, dataspill, retrospill, anime og arkader. Det passer fint å utforske butikkene og smågatene til fots. Enkelte arkader og hobbybutikker kan være svært travle.",
+    "why": "Passer familiens interesser bedre enn å legge til enda et klassisk bylandemerke. En halvdag med mulighet for å stikke innom Asakusa før eller etter kan fungere, men gjør ikke alt obligatorisk.",
+    "highlights": [
+      "Retrospill og arkader",
+      "Spill-, anime- og elektronikkbutikker",
+      "Kanda Myojin som mulig avstikker"
+    ],
+    "map": {
+      "lat": 35.69835,
+      "lng": 139.77302,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Akihabara%20Electric%20Town%20Street%20-%2031-5-2026.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Akihabara_Electric_Town_Street_-_31-5-2026.jpg",
+      "credit": "BWard 1997",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "alt": "Gaten i Akihabara med butikker og elektronikkskilt"
+    },
+    "links": [
+      {
+        "label": "GO TOKYO – Akihabara",
+        "url": "https://www.gotokyo.org/en/spot/55/index.html",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Å gå i bydelen er gratis. Shopping, spill og arkader kommer i tillegg.",
+      "source": "https://www.gotokyo.org/en/spot/55/index.html",
+      "checked": "2026-10-20"
+    },
+    "planInterest": "strong"
+  },
+  {
+    "id": "shinjuku",
+    "name": "Shinjuku",
+    "area": "Tokyo",
+    "type": "bydel",
+    "simple": "Høyhus, Godzilla, neonlys og kveldsmat",
+    "description": "Shinjuku har høyhus, travle gater, butikker, restauranter og en kjent Godzilla-figur over kinoen i Kabukichō. Man kan også vurdere det gratis utsiktsdekket i Tokyo Metropolitan Government Building. Shinjuku er praktisk å oppleve på kvelden, særlig hvis man bor her.",
+    "why": "En enkel og sterk storbyopplevelse som ikke krever billett eller en egen heldag. Gir noe konkret å gjøre rundt mulig hotellbase.",
+    "highlights": [
+      "Godzilla-hodet i Kabukichō",
+      "Neon og ramen",
+      "Mulig gratis utsikt fra Tokyo Metropolitan Government Building"
+    ],
+    "map": {
+      "lat": 35.6938,
+      "lng": 139.70155,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20iconic%20Godzilla%20in%20Shinjuku%20area%2C%20Tokyo%2C%20Japan.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:The_iconic_Godzilla_in_Shinjuku_area,_Tokyo,_Japan.jpg",
+      "credit": "Joli Rumi",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Godzilla-figur over kino i Shinjuku"
+    },
+    "links": [
+      {
+        "label": "GO TOKYO – Shinjuku",
+        "url": "https://www.gotokyo.org/en/destinations/western-tokyo/shinjuku/index.html",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Bydelen kan oppleves gratis; enkelte utsiktspunkter, attraksjoner og mat koster ekstra.",
+      "source": "https://www.gotokyo.org/en/destinations/western-tokyo/shinjuku/index.html",
+      "checked": "2026-10-20"
+    },
+    "planInterest": "strong"
+  },
+  {
+    "id": "shinjuku-gyoen",
+    "name": "Shinjuku Gyoen",
+    "area": "Tokyo",
+    "type": "hage",
+    "simple": "Stor park og fleksibel mulighet for hanami",
+    "description": "Shinjuku Gyoen er en stor park med japanske og vestlige hageområder og mange kirsebærtrær. Det er et fint avbrekk fra Tokyo-byen. Blomstring og adgangsregler kan endre seg fra år til år; i 2026 var det tidsreservasjoner enkelte vårdager.",
+    "why": "En god sakurakandidat som kan legges til hvis blomstringen og dagsprogrammet passer. En rolig parkpause kan fungere også uten full blomstring.",
+    "highlights": [
+      "Kirsebærtrær og piknikstemning",
+      "Japansk landskapshage",
+      "Sjekk vårens eventuelle besøksreservasjoner"
+    ],
+    "map": {
+      "lat": 35.6852,
+      "lng": 139.7101,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shinjuku%20Gyoen%20National%20Garden%20-%20sakura.JPG?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Shinjuku_Gyoen_National_Garden_-_sakura.JPG",
+      "credit": "Kakidai",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Kirsebærtrær i Shinjuku Gyoen"
+    },
+    "links": [
+      {
+        "label": "Offisiell besøksinformasjon",
+        "url": "https://fng.or.jp/shinjuku/en/",
+        "kind": "official"
+      },
+      {
+        "label": "GO TOKYO",
+        "url": "https://www.gotokyo.org/en/spot/75/",
+        "kind": "info"
+      }
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        1000,
+        1000
+      ],
+      "adultYen": 500,
+      "childYen": 0,
+      "note": "2 voksne × ¥500, barn til og med ungdomsskolealder gratis. Eventuell forhåndsreservasjon våren 2027 må sjekkes.",
+      "source": "https://fng.or.jp/shinjuku/en/",
+      "checked": "2026-10-20"
+    },
+    "planInterest": "candidate"
+  },
+  {
+    "id": "meiji-jingu",
+    "name": "Meiji Jingū",
+    "area": "Tokyo",
+    "type": "helligdom",
+    "simple": "Skogstur og helligdom ved Harajuku",
+    "description": "Meiji Jingū ligger i et stort skogområde rett ved Harajuku. Brede stier leder inn til en shintohelligdom, og området gir en rolig kontrast til shopping- og storbygaten. Kombineres naturlig med Harajuku, Shibuya eller Yoyogi-parken.",
+    "why": "En enkel kulturell opplevelse som passer inn mellom mer moderne Tokyo-aktiviteter uten å kreve flere timers reise eller inngangsbillett.",
+    "highlights": [
+      "Skog og store torii-porter",
+      "Helligdom med japansk tradisjon",
+      "Rett ved Harajuku og Yoyogi"
+    ],
+    "map": {
+      "lat": 35.6764,
+      "lng": 139.6993,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meiji-Jingu-Shrine-07.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Meiji-Jingu-Shrine-07.jpg",
+      "credit": "Rs1421",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Hovedområdet ved Meiji Jingū"
+    },
+    "links": [
+      {
+        "label": "GO TOKYO – Meiji Jingū",
+        "url": "https://www.gotokyo.org/en/spot/76/index.html",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Hovedområdet og helligdommen er gratis; enkelte særutstillinger/hager kan koste ekstra.",
+      "source": "https://www.gotokyo.org/en/spot/76/index.html",
+      "checked": "2026-10-20"
+    },
+    "planInterest": "candidate"
+  },
+  {
+    "id": "maruyama-park",
+    "name": "Maruyama Park",
+    "area": "Kyoto",
+    "type": "park",
+    "simple": "Hanami og kirsebærtrær ved Gion",
+    "description": "Maruyama Park ligger rett ved Yasaka-helligdommen og Gion/Higashiyama. Den er kjent for kirsebærtrær, særlig et stort hengende tre som ofte lyssettes i sesongen. Parken kan enkelt inngå i en spasertur mellom historiske gater og templer.",
+    "why": "Dette er et naturlig stopp hvis dere ønsker sakura uten å bruke en egen halvdag på blomstring. Den faktiske toppen i 2027 er ikke kjent ennå.",
+    "highlights": [
+      "Hengende kirsebærtre",
+      "Park ved Yasaka-jinja",
+      "Kan kombineres med Kiyomizu-dera og Gion"
+    ],
+    "map": {
+      "lat": 35.0034,
+      "lng": 135.7825,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maruyama%20Park%20(3515276427).jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Maruyama_Park_(3515276427).jpg",
+      "credit": "KimonBerlin",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "alt": "Kirsebærblomstring i Maruyama Park, Kyoto"
+    },
+    "links": [
+      {
+        "label": "Kyoto City – Maruyama Park",
+        "url": "https://kyoto.travel/en/destinations/maruyama-park/",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Parken kan besøkes uten inngangsbillett.",
+      "source": "https://kyoto.travel/en/destinations/maruyama-park/",
+      "checked": "2026-10-20"
+    },
+    "planInterest": "candidate"
+  },
+  {
+    "id": "kyoto-tea-experience",
+    "name": "Teseremoni i Kyoto",
+    "area": "Kyoto",
+    "type": "opplevelse",
+    "simple": "Prøve japansk te-kultur i praksis",
+    "description": "En kort, tilrettelagt teseremoni eller matcha-opplevelse gir mulighet til å prøve en tradisjon selv, i stedet for bare å se templer. Arrangøren bør velges når en relevant Kyoto-dag er klar; noen tilbyr familietilpassede opplegg på engelsk.",
+    "why": "En aktiv kulturopplevelse som kan fungere som kontrast til flere tempelbesøk. Ingen bestemt leverandør, tidspunkt eller reservasjon er valgt.",
+    "highlights": [
+      "Kort innføring i ritualet",
+      "Lage eller smake matcha",
+      "Velg familievennlig arrangør nær dagens øvrige stopp"
+    ],
+    "map": {
+      "lat": 35.0039,
+      "lng": 135.781,
+      "showOnRouteMap": false
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Tea%20Ceremony%20Serving%20Tea.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Japanese_Tea_Ceremony_Serving_Tea.jpg",
+      "credit": "KuboBella",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Demonstrasjon av tradisjonell japansk servering av te"
+    },
+    "links": [
+      {
+        "label": "Kyoto City – kulturaktiviteter",
+        "url": "https://kyoto.travel/en/activities",
+        "kind": "official"
+      },
+      {
+        "label": "JNTO – teseremoni",
+        "url": "https://www.japan.travel/en/experiences-in-japan/1451/",
+        "kind": "info"
+      }
+    ],
+    "price": {
+      "status": "pending",
+      "note": "Ingen arrangør valgt, så pris og familieoppsett fastsettes senere.",
+      "checked": "2026-10-20",
+      "source": "https://kyoto.travel/en/activities"
+    },
+    "planInterest": "candidate"
   }
 ]
