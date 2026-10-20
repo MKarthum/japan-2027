@@ -216,6 +216,49 @@ for(const entry of guide.placeWords){
 }
 if(activated.some(x=>/booking|pnr|kontakt/i.test(x.term)))errors.push('Praktisk: privat bookingbegrep må ikke være interaktivt');
 
+const qualityChecklist={
+  torii:[/port/i,/hellig/i,/overgang|gren[se]/i],
+  ryokan:[/vertshus/i,/madrass|overnatting/i],
+  onsen:[/bad/i,/vann/i,/vasker|før/i],
+  shinto:[/religion/i,/helligdom/i],
+  hanami:[/tradisjon/i,/blomstrende|blomstr/i],
+  maiko:[/lærling/i,/dans|musikk/i],
+  'Studio Pass':[/inngangsbillett/i,/park/i],
+  honbasho:[/offisiell/i,/sumo/i,/rangering|resultat/i],
+  'nikutama-soba':[/Hiroshima/i,/nudler/i],
+  Nozomi:[/høyhastighetstog/i,/Tokyo|Kyoto|Osaka/i]
+};
+for(const entry of activated){
+  const meaning=entry.meaning.trim();
+  // Structural checks help, but editors must still judge whether each popup
+  // stands alone without relying on another specialist term.
+  if(meaning.length<90 || meaning.length>330 || !/[.!?]$/.test(meaning)){
+    errors.push(`Ordliste: ${entry.term} trenger en selvstendig, kort forklaring med avsluttet setning (90–330 tegn)`);
+  }
+}
+for(const [term,tests] of Object.entries(qualityChecklist)){
+  const entry=activated.find(x=>x.term===term);
+  if(!entry || tests.some(re=>!re.test(entry.meaning))){
+    errors.push(`Ordliste: ${term} må være selvstendig og forklare hva begrepet betyr, ikke bare gi eksempler`);
+  }
+}
+const expectedUsedTermFiles={
+  anago:'docs/data/food.json',bento:'docs/data/food.json',tempura:'docs/data/food.json',
+  yakisoba:'docs/data/food.json',negiyaki:'docs/data/food.json','mochi-cheese':'docs/data/food.json',
+  'nikutama-soba':'docs/data/food.json',onigiri:'docs/data/prep.json',
+  gyoza:'docs/data/prep.json',Hikari:'docs/data/transport.json',Mizuho:'docs/data/passes.json'
+};
+for(const [term,filename] of Object.entries(expectedUsedTermFiles)){
+  const entry=activated.find(x=>x.term===term);
+  if(!entry || !fs.readFileSync(filename,'utf8').toLocaleLowerCase('nb').includes(term.toLocaleLowerCase('nb'))){
+    errors.push(`Ordliste: ${term} skal være et faktisk brukt begrep og forklart i datalaget`);
+  }
+}
+if(activated.some(x=>x.term.toLocaleLowerCase('nb')==='soba')){
+  errors.push('Ordliste: ikke annoter soba isolert; nikutama-soba er en annen rett enn bokhvetenudler');
+}
+
+
 
 const interestValues=new Set(['strong','candidate','extra','context']);
 for(const p of places){
