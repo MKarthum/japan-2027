@@ -701,11 +701,12 @@ if(!placeDetailHtml.includes('id="place-onsen-options"')||!app.includes('renderO
 if(!app.includes('renderOnsenOptionsHtml(data.onsenOptions') || !app.includes('id="hakone-onsen-options"')){
   errors.push('Overnatting: Hakone må vise samme onsenalternativer i baseoversikten');
 }
+
+const style = fs.readFileSync('docs/assets/style.css', 'utf8');
 if(!style.includes('.onsen-options-grid') || !style.includes('@media(max-width:850px)')){
   errors.push('Onsen: sammenligningskortene mangler mobilresponsiv styling');
 }
 
-const style = fs.readFileSync('docs/assets/style.css', 'utf8');
 const glossaryJs=fs.readFileSync('docs/assets/glossary.js','utf8');
 const shinjukuDetail=fs.readFileSync('docs/place.html','utf8');
 if(!shinjukuDetail.includes('id="simple" class="kicker" data-glossary-text')||
