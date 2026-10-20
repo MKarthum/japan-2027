@@ -938,7 +938,7 @@ async function renderPlaces() {
       ${entityMediaHtml({img:p.image,alt:p.name,area:p.area,type:p.type,trip,subject:p,variant:'list'})}
       <div class="place-list-copy">
         ${areaNote}
-        <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.name}</h3></a>
+        <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.type==='base'?'Om '+p.name:p.name}</h3></a>
         <strong>${p.simple}</strong>
         ${placePriceSummaryHtml(p,trip,fx)}
         <p>${p.description}</p>
