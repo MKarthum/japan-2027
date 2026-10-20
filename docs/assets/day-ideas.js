@@ -41,7 +41,9 @@ async function renderDayIdeas(){
           <h3>${h(idea.title)}</h3><p>${h(idea.logic)}</p>
           <div class="day-idea-items"><div><strong>Passer naturlig sammen</strong><ul>${idea.corePlaceIds.map(id=>placeItem(id,false)).join('')}</ul></div>
           ${idea.optionalPlaceIds.length?`<div><strong>Mulige tillegg</strong><ul>${idea.optionalPlaceIds.map(id=>placeItem(id,true)).join('')}</ul></div>`:''}</div>
-          <p class="day-idea-caution">${h(idea.watch)}</p></article>`).join('')}</div></section>`;
+          <p class="day-idea-caution">${h(idea.watch)}</p>
+          ${idea.links?.length?`<div class="day-idea-extra-links">${idea.links.map(link=>`<a class="button" href="${h(link.url)}">${h(link.label)} →</a>`).join('')}</div>`:''}
+          </article>`).join('')}</div></section>`;
     }).join('')||'<p>Ingen dagidéer her ennå.</p>';
     sync();
   }
