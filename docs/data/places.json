@@ -1784,12 +1784,12 @@
     },
     "image": {
       "type": "licensed",
-      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cherry%20blossoms%20in%20Chidorigafuchi.jpg?width=1400",
-      "source": "https://commons.wikimedia.org/wiki/File:Cherry_blossoms_in_Chidorigafuchi.jpg",
-      "credit": "Kirin7739",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "alt": "Kirsebærblomstring ved Chidorigafuchi-vollgraven i Tokyo"
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sakura%20and%20boats%20in%20the%20Chidorigafuchi%20Moat%20-%20Tokyo%2C%20Japan%20DSC06083.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_DSC06083.jpg",
+      "credit": "Daderot",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Båter på vollgraven under kirsebærtrærne ved Chidorigafuchi i Tokyo"
     },
     "links": [
       {
@@ -1822,6 +1822,64 @@
       "note": "Gangveien, parken og utsikten mot porten er gratis. Eventuell roddbåt koster ekstra, og åpning/priser varierer med sesongen.",
       "checked": "2026-10-21",
       "source": "https://www.gotokyo.org/en/spot/45/"
+    },
+    "planInterest": "candidate"
+  },
+  {
+    "id": "edo-castle-imperial-palace",
+    "name": "Edo-slottet og keiserpalasset",
+    "area": "Tokyo",
+    "type": "historisk område",
+    "simple": "Slottsruiner, japanske hager og et keiserpalass i bruk",
+    "description": "Dagens keiserpalass ligger på området til Edo-slottet, maktsenteret til Tokugawa-shogunene før keiseren overtok området i 1868. Selve keiserpalasset brukes fortsatt til offisielle formål og er normalt ikke åpent innvendig. De gratis østhagene (Imperial Palace East Gardens) er derimot åpne på bestemte dager. Her kan man gå blant store gamle steinmurer, vakthus, Ninomaru-hagen og fundamentet til slottets tidligere hovedtårn. Fra den sørlige plassdelen kan man dessuten se den berømte Nijūbashi-broen og vakttårnet Fushimi-yagura utenfra. En guidet omvisning på det indre palassområdet er et separat, gratis tilbud der man får se bygningene fra utsiden; det krever registrering og har begrensede plasser.",
+    "why": "Et særlig godt alternativ for historieinteresserte: Her kan man faktisk gå inn på deler av den gamle slottsgrunnen, mens Chidorigafuchi og Hanzōmon først og fremst viser utsiden av forsvarsverkene og vollgraven. Det er samme store historiske område, men ikke alt ligger rett ved hverandre. Østhagene er et eget besøk på 1–2 timer og kan velges som tilleggsstopp hvis tiden tillater det. Nijūbashi er en avstikker på motsatt side av palassområdet, ikke noe man automatisk rekker på den korte Chidorigafuchi-turen.",
+    "highlights": [
+      "East Gardens: gamle slottsmurer, vakthus og fundamentet til Edo-slottets hovedtårn",
+      "Ninomaru-hagen og sesongens blomster i de åpne østhagene",
+      "Nijūbashi-broen og Fushimi-yagura sett fra den offentlige plassen sør for palasset",
+      "Gratis omvisning på det indre palassområdet kan bestilles separat; man går ikke inn i palassbygningen",
+      "Østhagene er normalt stengt mandager og fredager; sjekk kalender og adgang før besøk"
+    ],
+    "map": {
+      "lat": 35.6877,
+      "lng": 139.758,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Imperial%20Palace%20Tokyo%20Nijubashi%20Bridge.JPG?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Imperial_Palace_Tokyo_Nijubashi_Bridge.JPG",
+      "credit": "Chris 73",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Nijūbashi-broen ved Tokyo keiserpalass med palassets historiske vakttårn i bakgrunnen"
+    },
+    "links": [
+      {
+        "label": "Keiserpalassets østhager – Imperial Household Agency",
+        "url": "https://www.kunaicho.go.jp/en/visit/event/higashigyoen/index.html",
+        "kind": "official"
+      },
+      {
+        "label": "Omvisning og adgang – Imperial Household Agency",
+        "url": "https://sankan.kunaicho.go.jp/english/guide/koukyo.html",
+        "kind": "official"
+      },
+      {
+        "label": "Keiserpalasset og området – Travel Japan",
+        "url": "https://www.japan.travel/en/spot/2121/",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Østhagene, Nijūbashi-utsiktspunktet og offentlig palassomvisning er gratis. Omvisning er avhengig av plasser og registrering; palassets innendørsrom kan ikke besøkes.",
+      "checked": "2026-10-21",
+      "source": "https://www.kunaicho.go.jp/en/visit/event/higashigyoen/index.html"
     },
     "planInterest": "candidate"
   },
