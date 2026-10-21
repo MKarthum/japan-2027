@@ -47,14 +47,16 @@
     {
       "id": "tokyo-chidorigafuchi",
       "baseId": "tokyo",
-      "title": "Sakura og samuraihistorie ved Edo-slottet",
-      "effort": "Ca. 1,5–2,5 timer i området",
+      "title": "Edo-slottet, samuraihistorie og mulighet for sakura",
+      "effort": "Chidorigafuchi: 1,5–2,5 timer; østhagene: 1–2 timer ekstra",
       "corePlaceIds": [
         "chidorigafuchi-hanzomon"
       ],
-      "optionalPlaceIds": [],
-      "logic": "En sammenhengende gåtur fra Kudanshita langs Chidorigafuchi Green Way, gjennom Chidorigafuchi-parken til Hanzōmon-porten. Kitanomaru-parken og Tayasumon-porten ligger ved nordenden og kan tas med hvis dere vil gå litt mer. Stoppene ligger nær hverandre. Dette er sentrale Tokyo, ikke samme område som Asakusa. Det kan eventuelt kombineres med Akihabara senere med kollektivtransport, men trenger ikke bli del av Asakusa-dagen.",
-      "watch": "Velg først etter været og hvor langt kirsebærblomstringen har kommet. Alternativ til Shinjuku Gyoen hvis målet er sakura, ikke et fast tillegg til alle Tokyo-dagene. Ved blomstring kan det være kø, og gangretningen kan være regulert. Eventuell båttur må vurderes separat."
+      "optionalPlaceIds": [
+        "edo-castle-imperial-palace"
+      ],
+      "logic": "Chidorigafuchi Green Way, Chidorigafuchi-parken og Hanzōmon-porten utgjør én sammenhengende gåtur på vestsiden av Edo-slottet. Kitanomaru og Tayasumon ligger nær nordenden. Keiserpalassets østhager er et separat, gratis besøk på øst-/nordsiden av det samme gamle slottsområdet, med autentiske ruiner; det krever ekstra gangtid rundt palassmurene. Nijūbashi-broen ligger lenger sør og er en egen, kort fotostoppmulighet. Området er ikke samme bydel som Asakusa. Akihabara kan eventuelt legges etterpå med kollektivtransport.",
+      "watch": "Chidorigafuchi er særlig interessant ved godt vær og sakurablomstring, og kan erstatte et besøk i Shinjuku Gyoen. Østhagene er historisk interessante også uten blomstring, men er normalt stengt mandager og fredager. Ikke regn alle tre delene – Chidorigafuchi, østhagene og Nijūbashi – som én kort tur; velg etter tid og interesse. En palassomvisning er en separat, tidsstyrt aktivitet med registrering og begrensede plasser."
     },
     {
       "id": "tokyo-minato",
