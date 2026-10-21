@@ -390,6 +390,61 @@
     "planInterest": "context"
   },
   {
+    "id": "hikone-castle",
+    "name": "Hikone Castle",
+    "area": "Hikone",
+    "baseId": "kyoto",
+    "type": "slott",
+    "simple": "Et bevart originalslott ved innsjøen Biwa",
+    "description": "Hikone-slottet er et av Japans sjeldne slott med bevart historisk hovedtårn. Det ligger ved innsjøen Biwa og har opprinnelige forsvarsverk, vakttårn og den tradisjonelle Genkyū-en-hagen. Reisen fra Kyoto stasjon tar omtrent 50 minutter med tog, fulgt av rundt 15 minutters gange.",
+    "why": "Et interessant alternativ for en halv til hel dag fra Kyoto, særlig for dem som ønsker å se enda et originalslott. Besøket må prioriteres opp mot Nara og andre opplevelser i Kyoto; det er ikke en fast del av hovedruten.",
+    "highlights": [
+      "Originalt hovedtårn fra tidlig 1600-tall",
+      "Historiske forsvarsverk og vakttårn",
+      "Genkyū-en-hagen er inkludert i slottsbilletten",
+      "Utsikt mot innsjøen Biwa og kirsebærtrær i sesong"
+    ],
+    "map": {
+      "lat": 35.2764,
+      "lng": 136.2519,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hikone%20Castle%20Keep%20Tower%2020170409.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Hikone_Castle_Keep_Tower_20170409.jpg",
+      "credit": "Suicasmo",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Hikone-slottets historiske hovedtårn"
+    },
+    "links": [
+      {
+        "label": "Offisiell besøksinformasjon og priser",
+        "url": "https://hikonecastle.com/information.html",
+        "kind": "official"
+      },
+      {
+        "label": "Japans offisielle turistguide",
+        "url": "https://www.japan.travel/en/spot/1076/",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        2600,
+        2600
+      ],
+      "adultYen": 1000,
+      "primaryAndJuniorHighYen": 300,
+      "note": "Inkluderer Hikone Castle og Genkyū-en. Familieanslag: to ordinære billetter og to grunn-/ungdomsskolebilletter. Sjekk skole- og alderskategori ved kjøp.",
+      "checked": "2026-10-21",
+      "source": "https://hikonecastle.com/information.html"
+    },
+    "planInterest": "candidate"
+  },
+  {
     "id": "gion",
     "name": "Gion",
     "area": "Kyoto",
@@ -759,11 +814,13 @@
     "area": "Himeji",
     "type": "slott",
     "simple": "LEGO-slottet på ekte",
-    "description": "Himeji er et av Japans best bevarte historiske slott og ligger så praktisk på togruten vestover at det kan besøkes som stopp mellom Kyoto og Hiroshima. Inne ser man treverk, trapper og forsvarsdetaljer som gjør byggverket mer konkret enn utsiden alene.",
+    "description": "Himeji er ett av bare tolv japanske slott med et bevart historisk hovedtårn og står på UNESCOs verdensarvliste. Slottet passer som stopp mellom Kyoto og Hiroshima. Veien opp slynger seg gjennom trange porter og murer: en forsvarslabyrint som skulle forsinke angripere. Se etter skyteåpninger for pil og bue eller geværer, luker for å slippe stein på angripere og det hvite pusslaget som også beskytter treverket mot brann.",
     "why": "LEGO-modellen, Assassin’s Creed Shadows og det virkelige slottet gir turens kanskje tydeligste før-og-etter-gjenkjennelse. Det er også en nyttig kontrast til Osaka Castle, der dagens hovedtårn er en rekonstruksjon.",
     "highlights": [
-      "Hovedtårnet",
-      "Forsvarsverk og porter",
+      "Det originale hovedtårnet",
+      "Forsvarslabyrint med bratte passasjer og porter",
+      "Skyteåpninger og luker for å slippe ned stein",
+      "Hvitt, brannbeskyttende puss",
       "Kirsebærtrær i sesong"
     ],
     "map": {
@@ -790,6 +847,11 @@
         "label": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Himeji_Castle",
         "kind": "wiki"
+      },
+      {
+        "label": "Historien og forsvarsverkene – Himeji Castle",
+        "url": "https://www.himejicastle.jp/en/guide/history/",
+        "kind": "official"
       }
     ],
     "price": {
@@ -805,6 +867,60 @@
       "source": "https://www.himejicastle.jp/en/"
     },
     "planInterest": "strong"
+  },
+  {
+    "id": "kokoen-garden",
+    "name": "Kōko-en-hagen",
+    "area": "Himeji",
+    "type": "hage",
+    "simple": "Tradisjonell japansk hage ved Himeji-slottet",
+    "description": "Kōko-en er en samling av ni tradisjonelle japanske hager med dammer, vannfall, små broer og tehus, bare rundt fem minutters gange fra Himeji-slottet. Hagene er utformet i stil med Edo-perioden og gir en roligere kontrast til festningsverkene.",
+    "why": "Et mulig tillegg til slottbesøket dersom dere har tid og lyst på en hagevandring. Sett av rundt 30–60 minutter ekstra. Kombinasjonsbilletten med Himeji koster 2 600 yen per voksen, bare 100 yen mer enn slottet alene. Hagen er ikke nødvendig for å få et godt slottbesøk.",
+    "highlights": [
+      "Ni hager med ulik stil",
+      "Dammer, vannfall og broer",
+      "Tehus og rolig stemning",
+      "Rabattert kombinasjonsbillett med slottet"
+    ],
+    "map": {
+      "lat": 34.837758,
+      "lng": 134.692339,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Himeji%20Koko-en%20Garden%20NIK%200898.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Himeji_Koko-en_Garden_NIK_0898.jpg",
+      "credit": "Netnet1000",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Tradisjonell japansk hage i Kōko-en ved Himeji"
+    },
+    "links": [
+      {
+        "label": "Offisiell besøksguide – Kōko-en",
+        "url": "https://visit-himeji.com/en/sightseeing/koko-en-garden/",
+        "kind": "official"
+      },
+      {
+        "label": "Offisiell kombinasjonsbillett med Himeji",
+        "url": "https://visit-himeji.com/en/travel-info/himeji-castle-koko-en-garden-ticket-set/",
+        "kind": "ticket"
+      }
+    ],
+    "price": {
+      "status": "fixed",
+      "standardFamilyRangeYen": [
+        200,
+        800
+      ],
+      "adultYen": 400,
+      "comboAdultAddOnYen": 100,
+      "note": "For to voksne og to under 18 år: 200 yen ekstra ved kombibillett sammen med Himeji, eller 800 yen for hagen separat. Kombibillett 2 600 yen per voksen totalt (slottet alene 2 500 yen).",
+      "checked": "2026-10-21",
+      "source": "https://visit-himeji.com/en/travel-info/himeji-castle-koko-en-garden-ticket-set/"
+    },
+    "planInterest": "extra"
   },
   {
     "id": "osaka",

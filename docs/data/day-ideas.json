@@ -167,6 +167,18 @@
       "watch": "Dette bruker mesteparten av en dag. Hvis Kyoto blir for tett, er Nara et bevisst valg opp mot flere Kyoto-templer."
     },
     {
+      "id": "kyoto-hikone",
+      "baseId": "kyoto",
+      "title": "Hikone-slottet som alternativ fra Kyoto",
+      "effort": "Omtrent en halv til en hel dag, inkludert transport",
+      "corePlaceIds": [
+        "hikone-castle"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "Besøk Hikone-slottet og Genkyū-en-hagen fra Kyoto. Tog til Hikone tar omkring 50 minutter hver vei, med om lag 15 minutters gange fra stasjonen til slottet. En egen dagidé for den som ønsker mer original slottsarkitektur.",
+      "watch": "Et alternativ til Nara eller andre Kyoto-opplevelser, ikke en ekstra dag som allerede er satt av. Velg etter samlet interesse og tid i Kyoto."
+    },
+    {
       "id": "himeji-castle",
       "baseId": "himeji",
       "title": "Slottstopp på vei vestover",
@@ -174,9 +186,11 @@
       "corePlaceIds": [
         "himeji"
       ],
-      "optionalPlaceIds": [],
-      "logic": "Bruk et togstopp i Himeji for slottet før dere fortsetter vestover. Det er ingen hotellnatt her.",
-      "watch": "Tidsbruk ved billettkø, trappene i slottet og bagasjeoppbevaring avgjør om det passer på reisedagen."
+      "optionalPlaceIds": [
+        "kokoen-garden"
+      ],
+      "logic": "Stopp i Himeji for det originale slottet før dere fortsetter vestover. Kōko-en-hagen ligger fem minutters gange unna og kan besøkes dersom tid og kapasitet tillater det. Det er ingen hotellnatt her.",
+      "watch": "Slottet er hovedprioriteten, og billettkø, bratte trapper og bagasjeoppbevaring avgjør hvor mye som rekker på reisedagen. Ikke anbefalt på dette korte stoppet: Engyōji-tempelet på Shosha-fjellet. Det krever omtrent 30 minutter med buss fra stasjonen, taubane og ytterligere 15–20 minutter til fots før selve tempelet."
     },
     {
       "id": "hiroshima-peace",
