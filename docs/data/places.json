@@ -1764,6 +1764,68 @@
     "planInterest": "candidate"
   },
   {
+    "id": "chidorigafuchi-hanzomon",
+    "name": "Chidorigafuchi og Hanzōmon",
+    "area": "Tokyo",
+    "type": "park",
+    "simple": "Vollgrav, kirsebærtrær og historien om Hattori Hanzō",
+    "description": "En sammenhengende spasertur langs vestsiden av det gamle Edo-slottet, der keiserpalasset ligger i dag. Chidorigafuchi Green Way er en om lag 700 meter lang gangvei langs vollgraven. Videre sørover ligger Chidorigafuchi-parken og Hanzōmon-porten, som er knyttet til Hattori Hanzō og krigere fra Iga. Porten sees utenfra; den er ikke en offentlig inngang til palasset. Kitanomaru-parken og den gamle Tayasumon-porten ligger ved den nordlige enden og kan tas som en kort avstikker.",
+    "why": "Et fleksibelt valg for en dag med fint vær eller kirsebærblomstring. Her får dere både natur og historien om Edo-slottets forsvar uten å krysse byen mellom stoppene. Området ligger i sentrale Tokyo, ikke ved Asakusa: Asakusa handler mer om templer og handelsgater, mens dette er historien om slottet og samuraiene. Vurder turen opp mot Shinjuku Gyoen hvis sakura er hovedmålet; dere trenger ikke begge parkopplevelsene.",
+    "highlights": [
+      "Chidorigafuchi Green Way og vollgraven – særlig flott når kirsebærtrærne blomstrer",
+      "Chidorigafuchi-parken og Hanzōmon-porten langs samme tur",
+      "Kitanomaru-parken og Tayasumon-porten som valgfri avstikker",
+      "Begynn ved Kudanshita eller Hanzōmon stasjon; sjekk eventuell enveistrafikk i blomstringssesongen"
+    ],
+    "map": {
+      "lat": 35.6931,
+      "lng": 139.75,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cherry%20blossoms%20in%20Chidorigafuchi.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Cherry_blossoms_in_Chidorigafuchi.jpg",
+      "credit": "Kirin7739",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "alt": "Kirsebærblomstring ved Chidorigafuchi-vollgraven i Tokyo"
+    },
+    "links": [
+      {
+        "label": "Chidorigafuchi – offisiell Tokyo-guide",
+        "url": "https://www.gotokyo.org/en/spot/45/",
+        "kind": "official"
+      },
+      {
+        "label": "Chidorigafuchi-parken og Kitanomaru – Chiyoda",
+        "url": "https://visit-chiyoda.tokyo/en/sakura/spot/",
+        "kind": "official"
+      },
+      {
+        "label": "Hanzōmon og Hattori Hanzō – Chiyoda",
+        "url": "https://visit-chiyoda.tokyo/app/en/feature/detail/136",
+        "kind": "official"
+      },
+      {
+        "label": "Aktuell tilgang og gangretning i sakurasesongen",
+        "url": "https://visit-chiyoda.tokyo/en/sakura/access/",
+        "kind": "official"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Gangveien, parken og utsikten mot porten er gratis. Eventuell roddbåt koster ekstra, og åpning/priser varierer med sesongen.",
+      "checked": "2026-10-21",
+      "source": "https://www.gotokyo.org/en/spot/45/"
+    },
+    "planInterest": "candidate"
+  },
+  {
     "id": "maruyama-park",
     "name": "Maruyama Park",
     "area": "Kyoto",

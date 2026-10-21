@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "status": "Illustrative kombinasjoner, ikke vedtatte reisedager",
   "intro": "Dette er geografisk logiske forslag. De viser hva som kan kombineres – ikke oppgaver som skal gjennomføres. Ved billetter, vær eller dagsform flyttes forslagene enkelt.",
   "choicePolicy": {
@@ -43,6 +43,18 @@
       "optionalPlaceIds": [],
       "logic": "Asakusa og Akihabara ligger i østre/indre Tokyo med praktisk kollektivforbindelse. Begynn gjerne historisk og avslutt med spilling og butikker.",
       "watch": "Tiden i Akihabara kan lett bli lengre enn planlagt. Sett ikke flere store museer på denne dagen."
+    },
+    {
+      "id": "tokyo-chidorigafuchi",
+      "baseId": "tokyo",
+      "title": "Sakura og samuraihistorie ved Edo-slottet",
+      "effort": "Ca. 1,5–2,5 timer i området",
+      "corePlaceIds": [
+        "chidorigafuchi-hanzomon"
+      ],
+      "optionalPlaceIds": [],
+      "logic": "En sammenhengende gåtur fra Kudanshita langs Chidorigafuchi Green Way, gjennom Chidorigafuchi-parken til Hanzōmon-porten. Kitanomaru-parken og Tayasumon-porten ligger ved nordenden og kan tas med hvis dere vil gå litt mer. Stoppene ligger nær hverandre. Dette er sentrale Tokyo, ikke samme område som Asakusa. Det kan eventuelt kombineres med Akihabara senere med kollektivtransport, men trenger ikke bli del av Asakusa-dagen.",
+      "watch": "Velg først etter været og hvor langt kirsebærblomstringen har kommet. Alternativ til Shinjuku Gyoen hvis målet er sakura, ikke et fast tillegg til alle Tokyo-dagene. Ved blomstring kan det være kø, og gangretningen kan være regulert. Eventuell båttur må vurderes separat."
     },
     {
       "id": "tokyo-minato",
