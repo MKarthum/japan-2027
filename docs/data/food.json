@@ -609,10 +609,9 @@
       ],
       "links": {
         "website": "https://www.katsukura.jp/en/",
-        "menu": "https://www.katsukura.jp/en/",
+        "menu": "https://www.katsukura.jp/en/#menu",
         "booking": null,
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta",
-        "menuIncludesWebsite": true
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta"
       },
       "ratings": {
         "checked": "2026-10-03",
