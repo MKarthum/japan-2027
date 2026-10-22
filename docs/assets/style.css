@@ -2322,3 +2322,12 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
  .site-breadcrumb{margin:-8px 0 22px}
  .choice-summary-grid{grid-template-columns:1fr}
 }
+
+.filter-block-secondary{margin-top:10px}
+.filter-block-secondary .small{margin:5px 0 10px;max-width:65ch}
+.places-choice-help{margin:12px 0 14px}
+.place-taxonomy-tags{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0 8px}
+.place-topic-tag,.place-feature-tag{display:inline-flex;align-items:center;padding:3px 7px;border:1px solid var(--line);border-radius:7px;font-size:.68rem;line-height:1.25;color:var(--muted);background:var(--soft)}
+.place-feature-tag{border-style:dashed;background:var(--paper)}
+.place-list-card .entity-choice-widget{position:relative;z-index:8;isolation:isolate;cursor:default}
+.place-list-card .entity-choice-widget button{position:relative;z-index:9;cursor:pointer;touch-action:manipulation}

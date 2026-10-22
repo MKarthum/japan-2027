@@ -974,6 +974,9 @@ async function renderPlaces() {
   const filters=document.getElementById('filters');
   const list=document.getElementById('places-grid');
   const placeById=new Map(places.map(p=>[p.id,p]));
+  const placeUi=(await pagesPromise).places;
+  const topicLabels=placeUi.topicLabels||{};
+  const featureLabels=placeUi.featureLabels||{};
 
   const placeCard=(p,base,{inDayTrip=false}={})=>{
     const areaNote=!inDayTrip && p.area!==base.area && p.id!==base.id
@@ -985,14 +988,14 @@ async function renderPlaces() {
         <a class="place-list-primary-link" href="place.html?id=${encodeURIComponent(p.id)}"><h3>${p.type==='base'?'Om '+p.name:p.name}</h3></a>
         <strong>${p.simple}</strong>
         ${placePriceSummaryHtml(p,trip,fx)}
-        ${p.planInterest&&p.planInterest!=='context' ? `<span class="place-interest-tag place-interest-${p.planInterest}" title="Redaksjonell vurdering – ikke fast plan">${{strong:'Særlig interessant',candidate:'God kandidat',extra:'Ekstra idé'}[p.planInterest]}</span>` : ''}
+        <div class="place-taxonomy-tags" aria-label="Temaer og praktiske egenskaper">${(p.topics||[]).map(t=>`<span class="place-topic-tag">${topicLabels[t]||t}</span>`).join('')}${(p.features||[]).map(t=>`<span class="place-feature-tag">${featureLabels[t]||t}</span>`).join('')}</div>
         <p>${p.description}</p>
       </div>
       <span class="place-list-arrow" aria-hidden="true">→</span>
     </article>`;
   };
 
-  let activeDestination='all',activeTopic='all';
+  let activeDestination='all',activeTopic='all',activeFeature='all';
   const draw=(destination='all')=>{
     activeDestination=destination;
     // Grupper i reiserutens rekkefølge. Attraksjoner sorteres nøytralt,
@@ -1002,8 +1005,8 @@ async function renderPlaces() {
       .map(stop=>{
         const base=placeById.get(stop.id);
         if(!base)return null;
-        if(activeTopic!=='all' && !places.some(p=>destinationId(trip,p)===stop.id && (p.topics||[]).includes(activeTopic)))return null;
-        const members=places.filter(p=>destinationId(trip,p)===stop.id && (activeTopic==='all'||(p.topics||[]).includes(activeTopic)));
+        if(!places.some(p=>destinationId(trip,p)===stop.id && (activeTopic==='all'||(p.topics||[]).includes(activeTopic)) && (activeFeature==='all'||(p.features||[]).includes(activeFeature))))return null;
+        const members=places.filter(p=>destinationId(trip,p)===stop.id && (activeTopic==='all'||(p.topics||[]).includes(activeTopic)) && (activeFeature==='all'||(p.features||[]).includes(activeFeature)));
         const attractions=members.filter(p=>p.id!==stop.id).sort((a,b)=>a.name.localeCompare(b.name,'nb'));
         // Dagsturer er én samlet utflukt fra basen – alle steder i samme
         // dagstursområde skal vises sammen, ikke flettet inn alfabetisk.
@@ -1050,9 +1053,17 @@ async function renderPlaces() {
     list.innerHTML=groups.length?groups.join(''):'<p>Ingen steder i denne delen av reisen.</p>';
   };
   const initial=setupJourneyFilters(filters,trip,places,places,draw);
-  const topicLabels=(await pagesPromise).places.topicLabels||{};
+  const url=new URL(location.href),legacyTopic=url.searchParams.get('topic');
+  if(['innendors','sakura'].includes(legacyTopic)){
+    if(!url.searchParams.has('feature'))url.searchParams.set('feature',legacyTopic);
+    url.searchParams.delete('topic');history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+  }else if(legacyTopic==='religion'){
+    url.searchParams.set('topic','kultur');history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+  }
   const topicRoot=document.getElementById('topic-filters');
-  if(topicRoot)setupUrlFilters(topicRoot,Object.entries(topicLabels).filter(([key])=>key!=='all').map(([value,label])=>({value,label})),value=>{activeTopic=value;draw(activeDestination);},{param:'topic',allLabel:topicLabels.all||'Alle temaer'});
+  if(topicRoot)activeTopic=setupUrlFilters(topicRoot,Object.entries(topicLabels).filter(([key])=>key!=='all').map(([value,label])=>({value,label})),value=>{activeTopic=value;draw(activeDestination);},{param:'topic',allLabel:topicLabels.all||'Alle temaer'});
+  const featureRoot=document.getElementById('feature-filters');
+  if(featureRoot)activeFeature=setupUrlFilters(featureRoot,Object.entries(featureLabels).filter(([key])=>key!=='all').map(([value,label])=>({value,label})),value=>{activeFeature=value;draw(activeDestination);},{param:'feature',allLabel:featureLabels.all||'Alle forhold'});
   draw(initial);
 }
 async function renderPlace() {
@@ -1446,9 +1457,9 @@ async function renderRestaurant() {
 
   const links=[
     x.links?.googleMaps?`<a class="button primary" href="${x.links.googleMaps}" target="_blank" rel="noopener">Google Maps ↗</a>`:'',
-    x.links?.menu?`<a class="button" href="${x.links.menu}" target="_blank" rel="noopener">Meny ↗</a>`:'',
+    x.links?.menu?`<a class="button" href="${x.links.menu}" target="_blank" rel="noopener">${x.links.menuIncludesWebsite?'Meny og nettsted':'Meny'} ↗</a>`:'',
     x.links?.booking?`<a class="button" href="${x.links.booking}" target="_blank" rel="noopener">Booking ↗</a>`:'',
-    x.links?.website?`<a class="button" href="${x.links.website}" target="_blank" rel="noopener">Nettside ↗</a>`:'',
+    x.links?.website && !x.links.menuIncludesWebsite?`<a class="button" href="${x.links.website}" target="_blank" rel="noopener">Nettside ↗</a>`:'',
     x.ratings?.tripadvisor?.url?`<a class="button" href="${x.ratings.tripadvisor.url}" target="_blank" rel="noopener">Tripadvisor ↗</a>`:''
   ].filter(Boolean);
   document.getElementById('restaurant-links').innerHTML=links.join('');

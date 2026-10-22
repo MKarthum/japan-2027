@@ -70,7 +70,8 @@
         "website": "https://www.kyubey.jp/en/shoplist/ginza/",
         "menu": "https://www.kyubey.jp/en/shoplist/ginza/",
         "booking": "https://restaurant.ikyu.com/107959/",
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Ginza+Kyubey+Ginza+Main+Tokyo"
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Ginza+Kyubey+Ginza+Main+Tokyo",
+        "menuIncludesWebsite": true
       },
       "ratings": {
         "checked": "2026-10-03",
@@ -136,7 +137,7 @@
       ],
       "links": {
         "website": "https://www.uobei.info/",
-        "menu": "https://www.uobei.info/",
+        "menu": null,
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Uobei+Shibuya+Dogenzaka+Tokyo"
       },
@@ -194,7 +195,7 @@
       ],
       "links": {
         "website": "https://www.tsujihan-jp.com/",
-        "menu": "https://www.tsujihan-jp.com/",
+        "menu": null,
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Tsujihan+Nihonbashi+Tokyo"
       },
@@ -253,7 +254,7 @@
       ],
       "links": {
         "website": "https://www.gyukatsu-motomura.com/?stt_lang=en",
-        "menu": "https://www.gyukatsu-motomura.com/?stt_lang=en",
+        "menu": null,
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Gyukatsu+Motomura+Akihabara+Tokyo"
       },
@@ -311,7 +312,7 @@
       ],
       "links": {
         "website": "https://mai-sen.com/restaurant/aoyama/",
-        "menu": "https://mai-sen.com/restaurant/aoyama/",
+        "menu": null,
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Tonkatsu+Maisen+Aoyama+Honten+Tokyo"
       },
@@ -371,7 +372,8 @@
         "website": "https://rokurinsha.com/en/menu/",
         "menu": "https://rokurinsha.com/en/menu/",
         "booking": null,
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Rokurinsha+Tokyo+Station"
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Rokurinsha+Tokyo+Station",
+        "menuIncludesWebsite": true
       },
       "ratings": {
         "checked": "2026-10-03",
@@ -407,7 +409,7 @@
       "priceBasis": "4 x de to rimeligste lunsjkursene (¥16 500–22 000) + 15 % service. Drikke kommer i tillegg.",
       "booking": "Må planlegges og bestilles. Familiekrav og kurs for barn må bekreftes ved booking.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Kikunoi+Honten+Kyoto",
-      "website": "https://kikunoi.jp/restaurant/",
+      "website": "https://kikunoi.jp/en/",
       "source": "https://kikunoi.jp/restaurant/",
       "sourceLabel": "Kikunoi – offisiell meny",
       "note": "Et stort tradisjonelt måltid som kan være turens kaiseki-opplevelse. Det trenger ikke kombineres med flere kostbare fine-dining-måltider.",
@@ -427,10 +429,11 @@
         }
       ],
       "links": {
-        "website": "https://kikunoi.jp/restaurant/",
-        "menu": "https://kikunoi.jp/restaurant/",
+        "website": "https://kikunoi.jp/en/",
+        "menu": "https://kikunoi.jp/en/",
         "booking": "https://myconciergejapan.com/restaurants/kikunoi/",
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Kikunoi+Honten+Kyoto"
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Kikunoi+Honten+Kyoto",
+        "menuIncludesWebsite": true
       },
       "ratings": {
         "checked": "2026-10-03",
@@ -466,7 +469,7 @@
       "priceBasis": "4 x ¥5 500 lunsj + ¥1 650 sitteavgift per person, før drikke.",
       "booking": "Lunsjen kan reserveres. Restaurantens publiserte regler oppgir at barn 6 år og yngre ikke tillates.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Mugesambo+Salon+de+Muge+Kyoto",
-      "website": "https://kikunoi.jp/restaurant/muge",
+      "website": "https://kikunoi.jp/en/",
       "source": "https://kikunoi.jp/en/",
       "sourceLabel": "Kikunoi – offisiell informasjon",
       "note": "Et lettere alternativ til full kaiseki på Kikunoi Honten, både i tid og pris.",
@@ -486,10 +489,11 @@
         }
       ],
       "links": {
-        "website": "https://kikunoi.jp/restaurant/muge",
-        "menu": "https://kikunoi.jp/restaurant/muge",
+        "website": "https://kikunoi.jp/en/",
+        "menu": "https://kikunoi.jp/en/",
         "booking": null,
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Mugesambo+Salon+de+Muge+Kyoto"
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Mugesambo+Salon+de+Muge+Kyoto",
+        "menuIncludesWebsite": true
       },
       "ratings": {
         "checked": "2026-10-03",
@@ -584,7 +588,7 @@
       "priceBasis": "Omtrent fire enkle til mellomstore sett; barnemeny finnes og kan redusere totalen.",
       "booking": "Tar ikke reservasjoner på Porta-filialen.",
       "maps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta",
-      "website": "https://www.katsukura.jp/shops/porta/",
+      "website": "https://www.katsukura.jp/en/",
       "source": "https://www.katsukura.jp/shops/porta/",
       "sourceLabel": "Offisiell filialside",
       "note": "En pålitelig kvalitetsbackup ved Kyoto Station når logistikk og dagsform er viktigere enn et destinasjonsmåltid.",
@@ -604,10 +608,11 @@
         }
       ],
       "links": {
-        "website": "https://www.katsukura.jp/shops/porta/",
-        "menu": "https://www.katsukura.jp/shops/porta/",
+        "website": "https://www.katsukura.jp/en/",
+        "menu": "https://www.katsukura.jp/en/",
         "booking": null,
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta"
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Katsukura+Kyoto+Porta",
+        "menuIncludesWebsite": true
       },
       "ratings": {
         "checked": "2026-10-03",
@@ -839,7 +844,7 @@
       ],
       "links": {
         "website": "https://www.okonomi.co.jp/",
-        "menu": "https://www.okonomi.co.jp/",
+        "menu": "https://www.okonomi.co.jp/menu_english.html",
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Micchan+Sohonten+Hatchobori+Hiroshima"
       },
@@ -1135,7 +1140,8 @@
         "website": "https://takoyaki-wanaka.com/en/",
         "menu": "https://takoyaki-wanaka.com/en/",
         "booking": null,
-        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Takoyaki+Wanaka+Sennichimae+Honten+Osaka"
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Takoyaki+Wanaka+Sennichimae+Honten+Osaka",
+        "menuIncludesWebsite": true
       },
       "ratings": {
         "checked": "2026-10-03",
@@ -1192,7 +1198,7 @@
       ],
       "links": {
         "website": "https://www.kushikatu-daruma.com/location/doutonbori",
-        "menu": "https://www.kushikatu-daruma.com/location/doutonbori",
+        "menu": null,
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Kushikatsu+Daruma+Dotonbori+Osaka"
       },
@@ -1251,7 +1257,7 @@
       ],
       "links": {
         "website": "https://www.endo-sushi.com/",
-        "menu": "https://www.endo-sushi.com/",
+        "menu": null,
         "booking": null,
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Chuo+Ichiba+Endo+Sushi+Osaka"
       },
@@ -1310,7 +1316,7 @@
       ],
       "links": {
         "website": "https://www.harijyu.co.jp/shop-info/category/doutonbori/",
-        "menu": "https://www.harijyu.co.jp/shop-info/category/doutonbori/",
+        "menu": null,
         "booking": "https://mycon-jp.net/reservation/harijyu-honten/en",
         "googleMaps": "https://www.google.com/maps/search/?api=1&query=Harijyu+Dotonbori+Honten+Osaka"
       },

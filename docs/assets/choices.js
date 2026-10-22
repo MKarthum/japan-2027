@@ -55,6 +55,7 @@ function installChoiceWidgets(){
 document.addEventListener('click',event=>{
  const btn=event.target.closest('.entity-choice-widget button[data-choice]');
  if(!btn)return;
+ event.preventDefault();event.stopPropagation();
  const root=btn.closest('[data-choice-type]');
  JapanChoices.set(root.dataset.choiceType,root.dataset.choiceId,btn.dataset.choice);
 });
@@ -102,7 +103,7 @@ async function loadSiteSearchIndex(){
   json('data/places.json'),json('data/food.json'),json('data/hotels.json'),
   json('data/day-ideas.json'),json('data/prep.json'),json('data/guide.json'),json('data/pages.json')
  ]).then(([places,food,hotels,ideas,prep,guide,pages])=>[
-  ...places.map(x=>({type:'Sted',title:x.name,description:x.simple+' '+x.description+' '+(x.topics||[]).join(' '),href:'place.html?id='+encodeURIComponent(x.id)})),
+  ...places.map(x=>({type:'Sted',title:x.name,description:x.simple+' '+x.description+' '+(x.topics||[]).join(' ')+' '+(x.features||[]).join(' '),href:'place.html?id='+encodeURIComponent(x.id)})),
   ...food.restaurants.map(x=>({type:'Restaurant',title:x.name,description:x.dish+' '+x.area+' '+x.why,href:'restaurant.html?id='+encodeURIComponent(x.id)})),
   ...hotels.hotels.map(x=>({type:'Overnatting',title:x.name,description:x.area+' '+x.familyOption,href:'hotel.html?id='+encodeURIComponent(x.id)})),
   ...ideas.ideas.map(x=>({type:'Dagidé',title:x.title,description:x.logic,href:'day-ideas.html?base='+encodeURIComponent(x.baseId)})),

@@ -102,3 +102,9 @@ Lagring, validering og synkronisering av filterparametre går gjennom JapanState
 - Dronepunkter har stabile id-er i drones.json (ikke indeksbaserte avkryssinger).
 
 Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i tillegg til de fire ordinære kontrollene.
+
+## Merking og restaurantlenker (v0.30.14)
+
+- `places.json[].topics` eier tematiske interesser; `places.json[].features` eier praktiske egenskaper (innendørs og sakura). Begge vises på kort og filtreres separat via `topic` og `feature`, uten å endre reisebase, prisscenario eller personlige valg.
+- `planInterest` er redaksjonell interesse for Dagidéer, ikke et personlig valg. «Aktuell» og «Legg bort» skal virke direkte fra stedskort uten navigasjon gjennom strekte tittellenker.
+- Menylenken vises bare når målet inneholder meny/retter. Ved felles menyside og nettsted brukes én samlet lenke. Foretrekk verifisert engelsk side fremfor japansk; generiske forside-lenker er ikke menylenker.

@@ -34,19 +34,25 @@
   "places": {
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
-    "intro": "Stedene følger reiseruten og er samlet per by. Små merker viser redaksjonelle forslag, ikke avgjørelser. På «Dagidéer» kan dere se hvilke steder som kan passe sammen og markere egne valg, uten å fastsette datoer.",
+    "intro": "Stedene følger reiseruten og er samlet per by. Filtrer etter interesser og praktiske hensyn, og marker steder som aktuelle eller legg dem bort direkte i oversikten. Mulige dagkombinasjoner finner dere under Dagidéer.",
     "filterLabel": "Vis steder fra",
-    "topicFilterTitle": "Se opplevelser etter tema",
+    "topicFilterTitle": "Hva interesserer dere?",
     "topicLabels": {
       "all": "Alle temaer",
       "historie": "Historie",
+      "kultur": "Kultur og tradisjon",
       "natur": "Natur og hager",
       "popkultur": "Spill og popkultur",
-      "religion": "Templer og tradisjon",
-      "byliv": "Byliv",
+      "byliv": "Byliv"
+    },
+    "featureFilterTitle": "Vær og sesong",
+    "featureFilterIntro": "Praktiske egenskaper, ikke egne temaer. Innendørs gjelder hovedopplevelsen, ikke bare at deler av stedet ligger under tak.",
+    "featureLabels": {
+      "all": "Alle forhold",
       "innendors": "Innendørs",
-      "sakura": "Sakura"
-    }
+      "sakura": "Kirsebærblomstring"
+    },
+    "choiceHelp": "Merk steder som aktuelle eller legg dem bort herfra. Dine valg lagres bare i denne nettleseren."
   },
   "food": {
     "eyebrow": "Mat",

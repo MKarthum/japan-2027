@@ -264,6 +264,16 @@ if(activated.some(x=>x.term.toLocaleLowerCase('nb')==='soba')){
 
 
 
+const placeTopics=new Set(Object.keys(pages.places.topicLabels).filter(x=>x!=='all'));
+const placeFeatures=new Set(Object.keys(pages.places.featureLabels).filter(x=>x!=='all'));
+for(const p of places){
+  if(!Array.isArray(p.topics)||!p.topics.length||p.topics.some(x=>!placeTopics.has(x))) errors.push(`places.json: ${p.id} har ugyldig temamerking`);
+  if(!Array.isArray(p.features)||p.features.some(x=>!placeFeatures.has(x))) errors.push(`places.json: ${p.id} har ugyldig praktisk merking`);
+}
+for(const r of food){
+  if(r.links?.menu && !/^https:\/\//.test(r.links.menu)) errors.push(`food.json: ${r.id} har ugyldig menylenke`);
+  if(r.links?.menuIncludesWebsite && r.links.menu!==r.links.website) errors.push(`food.json: ${r.id} markerer samme nettsted feil`);
+}
 const interestValues=new Set(['strong','candidate','extra','context']);
 for(const p of places){
   if(!interestValues.has(p.planInterest)) errors.push(`places.json: ${p.id} mangler gyldig redaksjonell interessekategori`);
@@ -557,7 +567,7 @@ for (const item of food.filter(x => x.status === 'active')) {
   if (!item.factsChecked) errors.push(`food.json: ${item.id} mangler factsChecked`);
   if (!Array.isArray(item.orderRecommendations) || item.orderRecommendations.length === 0) errors.push(`food.json: ${item.id} mangler bestillingsforslag`);
   if (!item.links?.googleMaps) errors.push(`food.json: ${item.id} mangler Google Maps-lenke`);
-  if (!item.links?.menu) errors.push(`food.json: ${item.id} mangler menylenke`);
+  if (item.links?.menu && !/^https:\/\//.test(item.links.menu)) errors.push(`food.json: ${item.id} har ugyldig menylenke`);
   if (!item.ratings?.checked) errors.push(`food.json: ${item.id} mangler dato for ratingkontroll`);
   if (!item.ratings?.google?.url || !Number.isFinite(item.ratings?.google?.score)) errors.push(`food.json: ${item.id} mangler verifisert Google-rating`);
   if (!item.ratings?.tripadvisor?.url || !Number.isFinite(item.ratings?.tripadvisor?.score)) errors.push(`food.json: ${item.id} mangler verifisert Tripadvisor-rating`);
@@ -736,7 +746,7 @@ const ideaHtml=fs.readFileSync('docs/day-ideas.html','utf8');
 for(const token of ['renderDayIdeas()','id="day-ideas-list"','id="idea-choices-summary"','id="idea-copy-choices"','data-copy=','day-ideas.js?v=']){
   if(!ideaHtml.includes(token))errors.push(`day-ideas.html: mangler ${token}`);
 }
-if(!pages.navigation?.sections?.some(g=>g.items?.some(x=>x.key==='dayIdeas')) || !app.includes('place-interest-tag') || !app.includes('day-ideas.html?base=')){
+if(!pages.navigation?.sections?.some(g=>g.items?.some(x=>x.key==='dayIdeas')) || !app.includes('place-taxonomy-tags') || !app.includes('day-ideas.html?base=')){
   errors.push('app.js: Steder og navigasjon peker ikke til Dagidéer');
 }
 if(!ideaJs.includes("JapanChoices.set('place',id,button.dataset.setChoice)") || !ideaJs.includes('idea-copy-choices') || !ideaJs.includes("button.dataset.setChoice")){

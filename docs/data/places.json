@@ -55,7 +55,8 @@
     "planInterest": "context",
     "topics": [
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "shibuya",
@@ -110,7 +111,8 @@
     "topics": [
       "popkultur",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "asakusa",
@@ -164,9 +166,10 @@
     "planInterest": "candidate",
     "topics": [
       "historie",
-      "religion",
+      "kultur",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "tokyo-tower",
@@ -296,7 +299,8 @@
     "planInterest": "candidate",
     "topics": [
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "hakone",
@@ -350,7 +354,8 @@
     "planInterest": "context",
     "topics": [
       "natur"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "kyoto",
@@ -408,7 +413,8 @@
     "planInterest": "context",
     "topics": [
       "historie"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "hikone-castle",
@@ -466,7 +472,8 @@
     "planInterest": "candidate",
     "topics": [
       "historie"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "gion",
@@ -520,9 +527,10 @@
     "planInterest": "candidate",
     "topics": [
       "historie",
-      "religion",
+      "kultur",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "fushimi-inari",
@@ -575,8 +583,9 @@
     },
     "planInterest": "strong",
     "topics": [
-      "religion"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "kiyomizu-dera",
@@ -632,8 +641,9 @@
     },
     "planInterest": "strong",
     "topics": [
-      "religion"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "kinkakuji",
@@ -688,8 +698,9 @@
     "planInterest": "extra",
     "topics": [
       "natur",
-      "religion"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "arashiyama",
@@ -743,7 +754,8 @@
     "planInterest": "candidate",
     "topics": [
       "natur"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "nara",
@@ -796,7 +808,12 @@
       "source": "https://www.visitnara.jp/"
     },
     "planInterest": "strong",
-    "topics": []
+    "topics": [
+      "historie",
+      "kultur",
+      "natur"
+    ],
+    "features": []
   },
   {
     "id": "todaiji",
@@ -852,8 +869,9 @@
     "planInterest": "candidate",
     "topics": [
       "historie",
-      "religion"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "himeji",
@@ -916,7 +934,8 @@
     "planInterest": "strong",
     "topics": [
       "historie"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "kokoen-garden",
@@ -973,7 +992,9 @@
     "planInterest": "extra",
     "topics": [
       "historie",
-      "natur",
+      "natur"
+    ],
+    "features": [
       "sakura"
     ]
   },
@@ -1030,7 +1051,8 @@
     "topics": [
       "popkultur",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "dotonbori",
@@ -1080,7 +1102,8 @@
     "planInterest": "strong",
     "topics": [
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "hiroshima",
@@ -1140,7 +1163,8 @@
     "topics": [
       "historie",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "miyajima",
@@ -1195,8 +1219,9 @@
     "planInterest": "strong",
     "topics": [
       "natur",
-      "religion"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "nintendo-museum",
@@ -1252,7 +1277,9 @@
     },
     "planInterest": "candidate",
     "topics": [
-      "popkultur",
+      "popkultur"
+    ],
+    "features": [
       "innendors"
     ]
   },
@@ -1310,7 +1337,9 @@
     },
     "planInterest": "strong",
     "topics": [
-      "popkultur",
+      "popkultur"
+    ],
+    "features": [
       "innendors"
     ]
   },
@@ -1366,7 +1395,9 @@
     },
     "planInterest": "strong",
     "topics": [
-      "popkultur",
+      "popkultur"
+    ],
+    "features": [
       "innendors"
     ]
   },
@@ -1420,7 +1451,8 @@
     "planInterest": "strong",
     "topics": [
       "popkultur"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "peace-memorial-museum",
@@ -1476,7 +1508,9 @@
     },
     "planInterest": "strong",
     "topics": [
-      "historie",
+      "historie"
+    ],
+    "features": [
       "innendors"
     ]
   },
@@ -1529,8 +1563,9 @@
     "planInterest": "candidate",
     "topics": [
       "natur",
-      "religion"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "osaka-castle",
@@ -1582,7 +1617,8 @@
     "planInterest": "extra",
     "topics": [
       "historie"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "sumo-osaka",
@@ -1784,8 +1820,9 @@
     ],
     "planInterest": "candidate",
     "topics": [
-      "historie"
-    ]
+      "kultur"
+    ],
+    "features": []
   },
   {
     "id": "akihabara",
@@ -1835,7 +1872,8 @@
     "topics": [
       "popkultur",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "shinjuku",
@@ -1885,7 +1923,8 @@
     "topics": [
       "popkultur",
       "byliv"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "shinjuku-gyoen",
@@ -1940,7 +1979,9 @@
     },
     "planInterest": "candidate",
     "topics": [
-      "natur",
+      "natur"
+    ],
+    "features": [
       "sakura"
     ]
   },
@@ -1991,7 +2032,9 @@
     "planInterest": "candidate",
     "topics": [
       "natur",
-      "religion",
+      "kultur"
+    ],
+    "features": [
       "sakura"
     ]
   },
@@ -2058,7 +2101,9 @@
     "planInterest": "candidate",
     "topics": [
       "historie",
-      "natur",
+      "natur"
+    ],
+    "features": [
       "sakura"
     ]
   },
@@ -2121,7 +2166,8 @@
     "planInterest": "candidate",
     "topics": [
       "historie"
-    ]
+    ],
+    "features": []
   },
   {
     "id": "maruyama-park",
@@ -2169,7 +2215,9 @@
     },
     "planInterest": "candidate",
     "topics": [
-      "natur",
+      "natur"
+    ],
+    "features": [
       "sakura"
     ]
   },
@@ -2220,7 +2268,9 @@
     },
     "planInterest": "extra",
     "topics": [
-      "historie",
+      "kultur"
+    ],
+    "features": [
       "innendors"
     ]
   }
