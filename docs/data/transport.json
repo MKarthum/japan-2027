@@ -230,5 +230,26 @@
       "source": "https://ekitan.com/en/planner/shinkansen/section/hiroshima/shin-osaka"
     }
   ],
-  "stationNote": "Kartet viser utvalgte stopp på representative forbindelser. Tidene er omtrentlige reisetider fra starten av hver etappe."
+  "stationNote": "Stasjonene er et utvalg langs de planlagte etappene. Store markører viser hvor vi planlegger å gå på, av eller bytte tog; mindre markører viser alternative knutepunkter og stasjoner underveis. Listen er ikke en fullstendig stoppplan. Hvilke stasjoner toget faktisk stopper ved, avhenger av avgang og togtype.",
+  "stationRoles": {
+    "Shinjuku": "used",
+    "Hakone-Yumoto": "used",
+    "Odawara": "used",
+    "Kyoto": "used",
+    "Himeji": "used",
+    "Hiroshima": "used",
+    "Shin-Osaka": "used",
+    "Osaka Station": "used",
+    "Nagoya": "alternative",
+    "Shin-Kobe": "alternative",
+    "Okayama": "alternative",
+    "Gifu-Hashima": "intermediate",
+    "Maibara": "intermediate",
+    "Fukuyama": "intermediate"
+  },
+  "stationRoleLabels": {
+    "used": "Planlagt knutepunkt",
+    "alternative": "Mulig alternativ",
+    "intermediate": "Underveis"
+  }
 }

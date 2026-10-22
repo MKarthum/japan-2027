@@ -162,3 +162,11 @@ Ved brukersynlige endringer bumpes `docs/data/site.json`. Når CSS eller JavaScr
 - Sted, restaurant og hotell skal alle ha kart og samme kategorifiltre. Felles funksjon `renderDetailContextMap` i `docs/assets/map-shared.js` tar kanoniske `places.json`, `food.json`, `hotels.json` og `transport.json`, markerer valgt objekt med siktemerke og bruker samme ikoner, destinasjonsfarger, popup-lenker og lagrede kartlag. Ikke kopier kartlogikk per detaljside.
 - Hotell- og restaurantoversikten må inneholde **ett grid-/listekort per objekt**. Kortet skal ha en egen intern `<a>` for navigasjon og `Min vurdering` som søskenelement **inni** samme `<article>`; legg aldri kontrollen som søsken direkte under gridet. Interaktive knapper må ikke plasseres inne i `<a>`. `choices.js` installerer kortets widget, og persisteringsnøkkelen beholdes.
 - Tester: `node scripts/check-detail-views.mjs`, `node scripts/check-map-ux.mjs`, øvrige data- og state-tester. Kontroller mobil og desktop ved UI-endringer.
+
+## Kart-hierarki og togstasjoner (v0.30.18)
+
+- trip.json.route eier nummererte reisemål. Disse er mørke, nummererte og synlige ruteetiketter, ikke vanlige attraksjoner. Bybaser og dagsturområder skal ikke få generiske attraksjonsstjerner fra places.json på detaljkart.
+- transport.json.stationRoles er eneste klassifisering av navngitte stasjoner: used (planlagt på/av/bytte, full diamant), alternative (mulig alternativt knutepunkt, mindre), intermediate (stasjon underveis, diskret). Ikke utled rolle tilfeldig fra antall forekomster. Klassene brukes også på detaljkart via mapStationRole.
+- Rutesidens #journey-stops viser en utvidbar beskrivelse av registrerte stasjoner per etappe fra transport.json. Dette er ikke en komplett eller bekreftet stoppplan; vi vil ikke produsere fullstendige stoppmonstre for et tog for eksakt togavgang er valgt.
+- Rutelinjene registreres med en felles klikkhandler som velger kun en etappe i detaljpanelet. Et klikk på en MapLibre-markor skal aldri samtidig velge linjer under markoren, eller lage en ekstra rutepopup.
+- node scripts/check-route-hierarchy.mjs verifiserer klassifikasjonen, en linjeseleksjon og at stasjonslisten er tydelig merket som forelopig. Reisefarger og kartlagenes lagring forblir de samme.

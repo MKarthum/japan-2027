@@ -38,9 +38,12 @@ function mapPoiElement(trip,subject,kind){
  el.title=`${JAPAN_MAP_LAYER_INFO[kind].label}: ${subject.name}`;
  return el;
 }
-function mapStationElement(name,colors=[]){
+function mapStationRole(transport,name){
+ return transport?.stationRoles?.[name]||'intermediate';
+}
+function mapStationElement(name,colors=[],role='used'){
  const el=document.createElement('button');
- el.type='button';el.className='map-station-dot';
+ el.type='button';el.className=`map-station-dot ${['used','alternative','intermediate'].includes(role)?role:'intermediate'}`;
  const unique=[...new Set(colors.filter(Boolean))];
  if(unique.length===1)el.style.setProperty('--station-fill',unique[0]);
  if(unique.length>1){
@@ -48,8 +51,9 @@ function mapStationElement(name,colors=[]){
   el.style.setProperty('--station-fill',`conic-gradient(${unique.map((c,i)=>`${c} ${Math.round(i*arc)}deg ${Math.round((i+1)*arc)}deg`).join(',')})`);
  }
  el.innerHTML=mapSymbolHtml('stations');
- el.setAttribute('aria-label',`Knutepunkt: ${name}`);
- el.title=`Knutepunkt: ${name}`;
+ const roleText={used:'Planlagt knutepunkt',alternative:'Mulig alternativ',intermediate:'Stasjon underveis'}[role]||'Stasjon underveis';
+ el.setAttribute('aria-label',`${roleText}: ${name}`);
+ el.title=`${roleText}: ${name}`;
  return el;
 }
 function mapCurrentPlaceElement(trip,subject){
@@ -105,14 +109,18 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
   });
   map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-left');
  }catch{fallback('Kartet kunne ikke startes.');return null;}
- const selected=mapCurrentPlaceElement(trip,current);
- const selectedMeta=({experience:'Opplevelse',food:'Restaurant',hotel:'Overnatting'})[currentKind];
- const selectedPopup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(
-  `<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,current))}"><div class="meta">${selectedMeta} · ${escapeSiteHtml(current.area||'')}</div><h3>${escapeSiteHtml(current.name)}</h3><p class="small">Du ser på dette stedet.</p></div>`
- );
- const currentMarker=new maplibregl.Marker({element:selected,anchor:'center'})
-  .setLngLat(position).setPopup(selectedPopup);
- watchMapMarker(currentMarker,selectedPopup).addTo(map);
+ // A city or day-trip area is not an exact physical attraction.
+ // In this case the map is an overview, with no misleading arbitrary pin at its centre.
+ if(!(currentKind==='experience'&&['base','dagstur'].includes(current.type))){
+  const selected=mapCurrentPlaceElement(trip,current);
+  const selectedMeta=({experience:'Opplevelse',food:'Restaurant',hotel:'Overnatting'})[currentKind];
+  const selectedPopup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(
+   `<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,current))}"><div class="meta">${selectedMeta} · ${escapeSiteHtml(current.area||'')}</div><h3>${escapeSiteHtml(current.name)}</h3><p class="small">Du ser på dette stedet.</p></div>`
+  );
+  const currentMarker=new maplibregl.Marker({element:selected,anchor:'center'})
+   .setLngLat(position).setPopup(selectedPopup);
+  watchMapMarker(currentMarker,selectedPopup).addTo(map);
+ }
 
  const state=readMapLayers();
  const groups={experience:[],food:[],hotel:[],stations:[]};
@@ -127,7 +135,10 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
   groups[kind].push(marker);
   if(state[kind])marker.addTo(map);
  };
- for(const x of places)add(x,'experience',`${x.type} · ${x.area}`,`place.html?id=${encodeURIComponent(x.id)}`);
+ for(const x of places){
+  if(['base','dagstur'].includes(x.type))continue; // Regions belong to the numbered itinerary, not the POI category.
+  add(x,'experience',`${x.type} · ${x.area}`,`place.html?id=${encodeURIComponent(x.id)}`);
+ }
  for(const x of food)add(x,'food',`${x.role} · ${x.area}`,`restaurant.html?id=${encodeURIComponent(x.id)}`);
  for(const x of hotels)add(x,'hotel',`${x.tier} · ${x.area}`,`hotel.html?id=${encodeURIComponent(x.id)}`);
 
@@ -139,7 +150,7 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
   stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId));
  }
  for(const {station,colors} of stationGroups.values()){
-  const el=mapStationElement(station.name,colors);
+  const el=mapStationElement(station.name,colors,mapStationRole(transport,station.name));
   const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'})
    .setHTML(sharedMapPopupHtml(trip,'Knutepunkt',station.name,null,'transport-guide.html','Transport og pass'));
   const marker=new maplibregl.Marker({element:el,anchor:'center'})

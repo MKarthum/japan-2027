@@ -586,7 +586,7 @@ async function renderRoute() {
   const routeLogic=document.getElementById('route-transport-logic');
   if(routeLogic) routeLogic.textContent=transport.strategy||'';
   const stationNote=document.getElementById('station-note');
-  if(stationNote) stationNote.textContent=`${transport.stationNote} Stoppmønsteret kan variere med konkret togavgang og fastsettes først når toget velges.`;
+  if(stationNote) stationNote.textContent=transport.stationNote;
   document.getElementById('route-list').innerHTML = trip.route.map(x=>{
     const p=places.find(p=>p.id===x.id)||x;
     const img=p.image;
@@ -605,6 +605,30 @@ async function renderRoute() {
       </div>
     </article>`;
   }).join('');
+  const journeyStops=document.getElementById('journey-stops');
+  if(journeyStops){
+    const roleLabel=transport.stationRoleLabels||{};
+    journeyStops.innerHTML=transport.legs.map((leg,i)=>{
+      const nodes=(leg.stations||[]).map((station,j)=>{
+        const role=mapStationRole(transport,station.name);
+        const specificRole=role==='used'&&(j===0||j===leg.stations.length-1)
+          ? (j===0?'Avreise / ombordstigning':'Ankomst / avstigning')
+          : (roleLabel[role]||'Underveis');
+        return `<li class="journey-station ${role}">
+          <span class="journey-station-node" aria-hidden="true"></span>
+          <div class="journey-station-info"><strong>${escapeSiteHtml(station.name)}</strong><small>${escapeSiteHtml(specificRole)}</small></div>
+          <span class="journey-station-time">${station.elapsedMin===0?'Start':`ca. ${formatMinutes(station.elapsedMin)} fra start`}</span>
+        </li>`;
+      }).join('');
+      const otherCount=Math.max(0,(leg.stations?.length||0)-2);
+      return `<details class="journey-leg" ${i===0?'open':''}>
+       <summary><span><strong>${escapeSiteHtml(leg.from)} → ${escapeSiteHtml(leg.to)}</strong><small>${escapeSiteHtml(leg.service)} · ca. ${formatMinutes(leg.durationMin)}</small></span><span class="journey-leg-count">${otherCount} ${otherCount===1?'stasjon':'stasjoner'} mellom endepunktene</span></summary>
+       <ol class="journey-station-list">${nodes}</ol>
+       <p class="small journey-leg-note">Utvalgte stasjoner langs strekningen – ikke en bekreftet stopp- eller avgangsliste. Faktisk stoppmønster bestemmes av valgt tog.</p>
+      </details>`;
+    }).join('');
+  }
+
   document.getElementById('route-list').addEventListener('click',e=>{
     const btn=e.target.closest('[data-leg]');
     if(btn) showLegDetail(legById.get(btn.dataset.leg));
@@ -715,12 +739,15 @@ async function renderRoute() {
   }
   const fitRoute=()=>map.fitBounds(routeBounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:500});
 
-  const popupForLeg=(leg,lngLat) => {
-    showLegDetail(leg);
-    new maplibregl.Popup({offset:10,maxWidth:'280px'})
-      .setLngLat(lngLat)
-      .setHTML(mapSelectionPopupHtml('Reiseetappe',`${leg.from} → ${leg.to}`,leg.toRouteId,'','Se reisetid og pris'))
-      .addTo(map);
+  // A single click handler, not one per overlapping segment: selecting a line updates
+  // the existing detail panel without placing a second popup above a route marker.
+  const routeHitLayerIds=[];
+  const selectRouteLine=(event)=>{
+    if(event.originalEvent?.target?.closest?.('.maplibregl-marker'))return;
+    if(!routeHitLayerIds.length)return;
+    const hits=map.queryRenderedFeatures(event.point,{layers:routeHitLayerIds});
+    const first=hits.find(x=>legById.has(x.properties?.journeyId));
+    if(first)showLegDetail(legById.get(first.properties.journeyId));
   };
 
   const addRoutePart = (segment,index) => {
@@ -747,12 +774,12 @@ async function renderRoute() {
       layout:{'line-join':'round','line-cap':'round'},
       paint:{'line-color':'rgba(0,0,0,0)','line-width':18,'line-offset':segment.offset||0}
     });
+    routeHitLayerIds.push(`${sourceId}-hit`);
     map.addLayer({
       id:`${sourceId}-arrows`,type:'symbol',source:sourceId,
       layout:{'symbol-placement':'line','symbol-spacing':95,'text-field':'›','text-size':18,'text-rotation-alignment':'map','text-keep-upright':false,'text-allow-overlap':true},
       paint:{'text-color':color,'text-halo-color':'#fff','text-halo-width':1.2}
     });
-    map.on('click',`${sourceId}-hit`,e=>{ if(leg) popupForLeg(leg,e.lngLat); });
     map.on('mouseenter',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='pointer');
     map.on('mouseleave',`${sourceId}-hit`,()=>map.getCanvas().style.cursor='');
   };
@@ -784,11 +811,13 @@ async function renderRoute() {
       }
     }
     for(const s of grouped.values()){
-      const el=mapStationElement(s.name,s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)));
+      const role=mapStationRole(transport,s.name);
+      const el=mapStationElement(s.name,s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)),role);
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
-      const popup=new maplibregl.Popup({offset:12,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml('Knutepunkt',s.name,null,'','Se stasjonsinformasjon'));
-      popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
+      const category=transport.stationRoleLabels?.[role]||'Stasjon underveis';
+      const popup=new maplibregl.Popup({offset:12,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(category,s.name,null,'','Se stasjonsinformasjon'));
+      popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">${category}</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       watchMapMarker(marker,popup);
       markerGroups.stations.push(marker);
@@ -878,6 +907,7 @@ async function renderRoute() {
     }
 
     routeGeometry.parts.forEach(addRoutePart);
+    map.on('click',selectRouteLine);
 
     const journeyMap=new Map();
     for(const part of routeGeometry.parts){
@@ -905,7 +935,8 @@ async function renderRoute() {
       el.type='button';
       el.className='map-stop destination-themed';
       el.style.setProperty('--area-color',destinationColor(trip,x));
-      el.setAttribute('aria-label',`${i+1}. ${p.name}`);
+      el.setAttribute('aria-label',`Reiserutens stopp ${i+1}: ${p.name}`);
+      el.title=`Reiserutens stopp ${i+1} · ${p.name}`;
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
       const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
       const popup=new maplibregl.Popup({offset:24,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x,`place.html?id=${encodeURIComponent(p.id)}`,'Utforsk byen'));

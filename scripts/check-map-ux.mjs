@@ -32,7 +32,7 @@ for(const k of ['experience','food','hotel']){
 const single=a.mapStationElement('Shinjuku',['#123456']);
 assert.equal(single.tag,'button');assert(single.innerHTML.includes('map-station-face'));
 assert.equal(single.style.props['--station-fill'],'#123456');
-assert.equal(single.attributes['aria-label'],'Knutepunkt: Shinjuku');
+assert.equal(single.attributes['aria-label'],'Planlagt knutepunkt: Shinjuku');
 const sharedStation=a.mapStationElement('Osaka',['#123456','#abcdef','#123456']);
 assert(sharedStation.style.props['--station-fill'].startsWith('conic-gradient('));
 assert(sharedStation.style.props['--station-fill'].includes('#abcdef'));
@@ -57,7 +57,7 @@ assert(css.includes('width:26px;height:26px'),'Station needs a visibly larger di
 assert(css.includes('transform:rotate(45deg)'),'Stations must be visually diamond-shaped');
 assert(css.includes('.map-layer-toggle .map-category-icon'),'Toolbar icons must match map markers');
 assert(app.includes('mapStationElement(s.name,s.memberships.map('));
-assert(shared.includes('mapStationElement(station.name,colors)'));
+assert(shared.includes('mapStationElement(station.name,colors,mapStationRole(transport,station.name))'));
 assert(shared.includes('mapCurrentPlaceElement(trip,current)'));
 assert(shared.includes('watchMapMarker(marker,popup)') && app.includes('watchMapMarker(marker,popup)'));
 assert(!app.includes("className='map-station-dot'"),'Map station rendering should only live in map-shared');
