@@ -104,7 +104,10 @@
     "eyebrow": "Personvern",
     "title": "En offentlig plan uten private reisedetaljer",
     "intro": "Siden inneholder generell planleggingsinformasjon om rute, steder, mat, priser og aktiviteter. Opplysninger som kan identifisere eller lokalisere reisende hører ikke hjemme her.",
-    "publicTitle": "Hva kan være offentlig?"
+    "publicTitle": "Hva kan være offentlig?",
+    "localTitle": "Hva nettleseren husker",
+    "localIntro": "Nettleseren kan huske valgt reiseområde, prisgruppe, kartlag, interessevalg og avkryssing i drone-sjekklisten. Opplysningene lagres lokalt på enheten, ikke i reiserepoet eller på en egen konto.",
+    "localLinks": "Noen filtre gjenspeiles også i nettadressen, slik at en bestemt visning kan bokmerkes eller deles. Ikke legg private opplysninger i slike lenker. Valgene forsvinner dersom nettleserdata slettes."
   },
   "phrases": {
     "eyebrow": "Språk",

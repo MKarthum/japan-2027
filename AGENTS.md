@@ -16,6 +16,14 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 
 **Felles reisebasefilter:** Valg av Tokyo, Kyoto, Hiroshima eller annen reisebase på Steder, Mat, Overnatting eller Dagidéer skal følge brukeren mellom disse fire oversiktene. Én datadrevet state i nettleserens `localStorage` (`japan-2027-selected-base-v1`) eier siste aktive base. `?base=<routeId>` overstyrer lagret state og blir nytt aktivt valg; eksplisitt «Alle» lagres også. Dersom en kategori ikke har noe for valgt base (f.eks. et rent dagsstopp uten overnatting), viser akkurat den oversikten «Alle», uten å overskrive det lagrede valget. Emnefilter, hotelltype, kartlag, prisgruppe og personlig interesse er egne dimensjoner og må **ikke** koples til eller nullstilles av basefilteret.
 
+## Kontrakt for state og navigasjon (v0.30.13)
+
+- assets/state.js er eneste autoritet for lagring/URL-synkronisering og lastes før app.js/map-shared.js/choices.js. Ikke opprett nye ad-hoc-nøkler eller egen URL-filterlogikk per side.
+- URL viser delbar kontekst: id for detaljside, base for felles reisebase på Steder/Mat/Overnatting/Dagidéer, party for prisgruppe, topic bare på Steder, type bare på Overnatting. Endring oppdaterer kun sitt parameter, bevarer øvrige parametre og fragmenter. Gyldig URL-valg har forrang over lagret valg; ugyldige URL-verdier ignoreres; Alle fjerner kun sitt parameter.
+- Varig lokal state: base og party lagres på tvers av relevante sider. Kartlag, interessevalg og drone-sjekkliste har separate lagringsnøkler. Tema og hotelltype er URL-/side-spesifikke og lagres ikke på tvers. Drone-sjekkliste bruker stabile id-er og migrerer tidligere indeksbasert lagring én gang. Lagret kart-/interessevalg beholdes.
+- Meny, søkedialog/-tekst, aktivt kartobjekt, aktive galleri-/mediakontroller og andre flyktige UI-valg er ikke persistente. Å åpne detaljside endrer ikke valgt base. Lokasjon lagres aldri.
+- Kjør fire etablerte QA-script, check-state-consistency.mjs og navigasjonstest av kombinasjonene base/party/topic/type, lagret kart/valg og drone-migrering.
+
 ## Fast informasjonsarkitektur, kart og lokal tilstand (v0.30.11)
 
 - Meny og navigasjonsgrupper eies av `docs/data/pages.json` under `navigation.sections`. Seks innganger: Oversikt, Rute, Opplevelser, Planlegg reisen, Bli kjent med Japan, På reisen. Bruk klikkbare navigasjonsstier og mobilmeny; ikke gjeninnfør flat sideveis skrollbar meny.

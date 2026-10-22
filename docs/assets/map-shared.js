@@ -1,5 +1,5 @@
 // Shared, browser-local cartographic preferences. No user account or server writes.
-const JAPAN_MAP_LAYER_KEY='japan-2027-map-layers-v1';
+const JAPAN_MAP_LAYER_KEY=JapanState.keys.map;
 const JAPAN_MAP_LAYER_DEFAULTS=Object.freeze({experience:true,food:true,hotel:true,stations:true});
 const JAPAN_MAP_LAYER_INFO=Object.freeze({
  experience:{label:'Opplevelser',symbol:'★'},
@@ -8,11 +8,11 @@ const JAPAN_MAP_LAYER_INFO=Object.freeze({
  stations:{label:'Knutepunkter',symbol:'●'}
 });
 function readMapLayers(){
- let stored={};try{stored=JSON.parse(localStorage.getItem(JAPAN_MAP_LAYER_KEY)||'{}')||{};}catch{}
+ let stored={};try{stored=JapanState.readJson(JAPAN_MAP_LAYER_KEY,{})||{};}catch{}
  return Object.fromEntries(Object.entries(JAPAN_MAP_LAYER_DEFAULTS).map(([k,def])=>[k,typeof stored[k]==='boolean'?stored[k]:def]));
 }
 function storeMapLayers(state){
- try{localStorage.setItem(JAPAN_MAP_LAYER_KEY,JSON.stringify(Object.fromEntries(Object.keys(JAPAN_MAP_LAYER_DEFAULTS).map(k=>[k,!!state[k]]))));}catch{}
+ JapanState.writeLocal(JAPAN_MAP_LAYER_KEY,JSON.stringify(Object.fromEntries(Object.keys(JAPAN_MAP_LAYER_DEFAULTS).map(k=>[k,!!state[k]]))));
  window.dispatchEvent(new CustomEvent('japan-map-layers-change',{detail:readMapLayers()}));
 }
 function mapPoiElement(trip,subject,kind){

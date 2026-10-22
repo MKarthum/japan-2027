@@ -87,3 +87,18 @@ Hver publisert endring på `main` skal ha ny versjon i `docs/data/site.json`. Al
 ## Oppdatere
 
 Kjør `node scripts/check-public-content.mjs`, `node scripts/check-data-integrity.mjs`, `node scripts/check-content-style.mjs` og `node scripts/check-release-discipline.mjs` før publisering. GitHub Actions kjører de samme kontrollene automatisk.
+
+
+## Nettlesertilstand og URL-kontrakt
+
+Alle ordinære visninger laster docs/assets/state.js før øvrige klientskript.
+Lagring, validering og synkronisering av filterparametre går gjennom JapanState.
+- base og party: delbar URL og vedvarende nettleservalg, uavhengig av hverandre.
+- topic (kun Steder) og type (kun Overnatting): URL og sidefilter, ingen tverrside-lagring.
+- Kartlag, aktuelle/lagte-bort objekter og drone-sjekkliste: separate lokale nøkler, uten privat serverlagring. Eksisterende lagringsnøkler og migrering beholdes.
+- id og fragment: side-/objektnavigasjon, ikke brukerpreferanse.
+- Søk, modal, menyer og valgt kartmarkør: kortvarig state uten lagring.
+- Eksplisitt gyldig URL har forrang. Endringer berører kun relevant parameter og bevarer andre.
+- Dronepunkter har stabile id-er i drones.json (ikke indeksbaserte avkryssinger).
+
+Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i tillegg til de fire ordinære kontrollene.

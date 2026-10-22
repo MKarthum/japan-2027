@@ -669,6 +669,7 @@ for (const name of htmlFiles) {
   if (!/<meta name="viewport"/.test(html)) errors.push(`${file}: mangler viewport`);
   if (copyDrivenPages.has(name) && !html.includes('data-copy=')) errors.push(`${file}: sidebudskap skal komme fra pages.json via data-copy`);
   const assetVersions=[...html.matchAll(/assets\/(?:style\.css|app\.js)\?v=([0-9.]+)/g)].map(m=>m[1]);
+  if(name!=='phrases.html' && (!html.includes('<script src="assets/state.js?v='+site.version+'"></script>') || html.indexOf('assets/state.js')>html.indexOf('assets/app.js'))) errors.push(file+': state.js må lastes før app.js');
   if(name!=='phrases.html' && !html.includes(`<script src="assets/glossary.js?v=${site.version}"></script>`))errors.push(`${file}: felles ordlistekomponent mangler eller har feil versjon`);
   if(name!=='phrases.html' && !html.includes(`<script src="assets/choices.js?v=${site.version}"></script>`))errors.push(`${file}: felles interessevalg og søk mangler eller har feil versjon`);
 
@@ -684,7 +685,7 @@ for (const name of htmlFiles) {
 }
 
 if (fs.existsSync('docs/data/map-pois.json')) errors.push('docs/data/map-pois.json skal ikke finnes');
-for (const required of ['docs/language.html','docs/transport-guide.html','docs/tickets.html','docs/my-choices.html','docs/assets/choices.js','docs/assets/map-shared.js','docs/day-ideas.html','docs/data/day-ideas.json','docs/assets/day-ideas.js','docs/flights.html','docs/data/flights.json','docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
+for (const required of ['docs/language.html','docs/transport-guide.html','docs/tickets.html','docs/my-choices.html','docs/assets/choices.js','docs/assets/map-shared.js','docs/assets/state.js','docs/day-ideas.html','docs/data/day-ideas.json','docs/assets/day-ideas.js','docs/flights.html','docs/data/flights.json','docs/place.html','docs/restaurant.html','docs/hotels.html','docs/hotel.html','docs/phrases.html','docs/prep-item.html','docs/data/pages.json','docs/data/passes.json']) {
   if (!fs.existsSync(required)) errors.push(`${required} mangler`);
 }
 const placeHtml=fs.readFileSync('docs/place.html','utf8');
@@ -819,8 +820,8 @@ if (!app.includes('setupJourneyFilters')) errors.push('app.js mangler felles fil
 if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=') || !app.includes('food.html?base=') || !app.includes('hotels.html?base=')) {
   errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
 }
-if (!app.includes('params.has(param)') || !app.includes('params.get(param)')) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
-if (!app.includes("const JOURNEY_BASE_KEY='japan-2027-selected-base-v1'") || !app.includes('selectJourneyBase(trip,value,{param})') || !app.includes('selectedJourneyBase(trip,{param})'))errors.push('app.js: reisebasefilter må følge brukeren mellom oversikter og støtte eksplisitt ?base=');
+if (!fs.readFileSync('docs/assets/state.js','utf8').includes('params.has(param)')) errors.push('State: URL må kunne overstyre lagret valg');
+if (!app.includes('selectJourneyBase(trip,value,{param})') || !app.includes('selectedJourneyBase(trip,{param})') || !app.includes('JapanState.keys.base'))errors.push('app.js: reisebasefilter må følge brukeren mellom oversikter og støtte eksplisitt ?base=');
 if (!ideaJs.includes('selectedJourneyBase(trip)') || !ideaJs.includes('selectJourneyBase(trip,value)'))errors.push('Dagidéer: mangler felles reisebasefilter');
 if (!style.includes('/* Canonical place-list component */') || !style.includes('grid-template-columns:112px minmax(0,1fr) 26px') || !style.includes('.place-list-primary-link::after')) {
   errors.push('style.css: mobil stedsrad mangler kanonisk kompakt grid/klikkflate');
@@ -842,9 +843,9 @@ const choicesShared=fs.readFileSync('docs/assets/choices.js','utf8');
 for(const [name,code] of [['map-shared.js',mapShared],['choices.js',choicesShared]]){
  try{new Script(code,{filename:name});}catch(error){errors.push(name+': syntaksfeil '+error.message);}
 }
-if(!mapShared.includes('experience:true,food:true,hotel:true,stations:true')||!mapShared.includes('localStorage.setItem(JAPAN_MAP_LAYER_KEY')||!app.includes('readMapLayers()'))errors.push('Kart: alle lag må starte aktivert og brukerens valg må deles mellom kart');
+if(!mapShared.includes('experience:true,food:true,hotel:true,stations:true')||!mapShared.includes('JapanState.writeLocal(JAPAN_MAP_LAYER_KEY')||!app.includes('readMapLayers()'))errors.push('Kart: alle lag må starte aktivert og brukerens valg må deles mellom kart');
 if(!app.includes('mapPoiElement(trip,')||!app.includes('sharedMapPopupHtml(trip,')||!placeHtml.includes('id="place-map-layers"'))errors.push('Kart: rutekart og stedskart skal dele markører, popup og lagkontroller');
-if(!choicesShared.includes("const key='japan-2027-choices-v2'")||!choicesShared.includes('japan-2027-idea-choices-v1')||!ideaJs.includes("JapanChoices.set('place'"))errors.push('Mine valg: lokalt, delt valg med migrering fra dagidéer mangler');
+if(!choicesShared.includes('const key=JapanState.keys.choices')||!choicesShared.includes('japan-2027-idea-choices-v1')||!ideaJs.includes("JapanChoices.set('place'"))errors.push('Mine valg: lokalt, delt valg med migrering fra dagidéer mangler');
 if(!choicesShared.includes('async function renderMyChoices()')||!choicesShared.includes('async function openSiteSearch()'))errors.push('Mine valg eller felles søk mangler');
 if (!app.includes("json('data/pages.json')") || !app.includes('applyPageCopy')) errors.push('app.js: mangler sentral sidecopy fra pages.json');
 if (!app.includes("json('data/passes.json')") || !app.includes('pass-watchlist')) errors.push('app.js: passvurdering hentes ikke fra passes.json');

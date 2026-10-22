@@ -1,10 +1,10 @@
 // Shared local-only interest state, including migration of earlier dagidéer preferences.
 const JapanChoices=(()=>{
- const key='japan-2027-choices-v2',legacy='japan-2027-idea-choices-v1',allowed=new Set(['interested','dismissed']);
+ const key=JapanState.keys.choices,legacy='japan-2027-idea-choices-v1',allowed=new Set(['interested','dismissed']);
  const storage=()=>{try{
-   const current=JSON.parse(localStorage.getItem(key)||'null');
+   const current=JSON.parse(JapanState.readLocal(key,'null'));
    if(current&&typeof current==='object'&&!Array.isArray(current))return Object.fromEntries(Object.entries(current).filter(([k,v])=>/^(place|food|hotel):[a-z0-9-]+$/.test(k)&&allowed.has(v)));
-   const old=JSON.parse(localStorage.getItem(legacy)||'{}');
+   const old=JSON.parse(JapanState.readLocal(legacy,'{}'));
    return Object.fromEntries(Object.entries(old||{}).filter(([id,v])=>allowed.has(v)).map(([id,v])=>['place:'+id,v]));
   }catch{return {};}};
  const get=(type,id)=>storage()[type+':'+id]||'none';
@@ -13,7 +13,7 @@ const JapanChoices=(()=>{
   if(!['place','food','hotel'].includes(type)||!/^[a-z0-9-]+$/.test(id)||!allowed.has(value))return;
   const data=storage(),idKey=type+':'+id;
   if(data[idKey]===value)delete data[idKey];else data[idKey]=value;
-  try{localStorage.setItem(key,JSON.stringify(data));}catch{}
+  JapanState.writeLocal(key,JSON.stringify(data));
   window.dispatchEvent(new Event('japan-choices-change'));
  };
  return {get,set,all};

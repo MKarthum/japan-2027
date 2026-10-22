@@ -183,12 +183,30 @@
     }
   ],
   "takeoff": [
-    "Japansk registrering, ID-merking og kompatibel aktiv Remote ID er på plass.",
-    "GSI-sonelag, DID, flyplass, Drone Act og nødluftrom er kontrollert for posisjonen.",
-    "Eventuell MLIT-godkjenning, separat Drone Act-samtykke/melding og flyplan gjelder akkurat denne flygingen.",
-    "Grunneier, park/kommune, skilt og natur-/kulturvern er sjekket.",
-    "Flygingen følger dagslys, VLOS, høyde og avstandskrav; FPV/BVLOS er særskilt avklart.",
-    "Vær, vind, GNSS, batteri, lufttrafikk, mennesker, dyr og nødlanding er vurdert."
+    {
+      "id": "registration",
+      "label": "Japansk registrering, ID-merking og kompatibel aktiv Remote ID er på plass."
+    },
+    {
+      "id": "airspace",
+      "label": "GSI-sonelag, DID, flyplass, Drone Act og nødluftrom er kontrollert for posisjonen."
+    },
+    {
+      "id": "permission",
+      "label": "Eventuell MLIT-godkjenning, separat Drone Act-samtykke/melding og flyplan gjelder akkurat denne flygingen."
+    },
+    {
+      "id": "land-and-parks",
+      "label": "Grunneier, park/kommune, skilt og natur-/kulturvern er sjekket."
+    },
+    {
+      "id": "flight-rules",
+      "label": "Flygingen følger dagslys, VLOS, høyde og avstandskrav; FPV/BVLOS er særskilt avklart."
+    },
+    {
+      "id": "flight-conditions",
+      "label": "Vær, vind, GNSS, batteri, lufttrafikk, mennesker, dyr og nødlanding er vurdert."
+    }
   ],
   "special": [
     {

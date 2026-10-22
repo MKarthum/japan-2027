@@ -14,16 +14,12 @@ const standardFamily = (trip) => trip.priceParties?.standardFamily || {adults:2,
 const priceScenarios = (trip) => trip.priceParties?.scenarios || [{id:'one-family',label:'1 familie',families:1}];
 const selectedPriceScenario = (trip) => {
   const scenarios=priceScenarios(trip);
-  const requested=new URLSearchParams(location.search).get('party');
-  if(requested && scenarios.some(x=>x.id===requested)){
-    try{localStorage.setItem('japan2027-price-party',requested);}catch{}
-    return scenarios.find(x=>x.id===requested);
-  }
-  let stored='';
-  try{stored=localStorage.getItem('japan2027-price-party')||'';}catch{}
-  return scenarios.find(x=>x.id===stored)
-    || scenarios.find(x=>x.id===trip.priceParties?.defaultScenarioId)
-    || scenarios[0];
+  const preferred=JapanState.getSelection({
+    param:'party',values:scenarios.map(x=>x.id),
+    defaultValue:trip.priceParties?.defaultScenarioId||scenarios[0].id,
+    storageKey:JapanState.keys.party
+  });
+  return scenarios.find(x=>x.id===preferred) || scenarios[0];
 };
 const partyMultiplier = (trip) => selectedPriceScenario(trip)?.families || 1;
 const planningPartyLabel = (trip) => {
@@ -76,10 +72,11 @@ function renderPricePartySelector(trip) {
   root.addEventListener('click',e=>{
     const btn=e.target.closest('[data-party]');
     if(!btn || btn.dataset.party===selected.id) return;
-    try{localStorage.setItem('japan2027-price-party',btn.dataset.party);}catch{}
-    const url=new URL(location.href);
-    url.searchParams.set('party',btn.dataset.party);
-    location.href=url.toString();
+    JapanState.setSelection({
+      param:'party',value:btn.dataset.party,values:config.scenarios.map(x=>x.id),
+      defaultValue:config.defaultScenarioId||'one-family',
+      storageKey:JapanState.keys.party,navigate:true
+    });
   });
   const main=document.querySelector('main');
   const detailHero=main?.querySelector('.detail-hero,.restaurant-detail-hero,.hotel-detail-hero');
@@ -322,44 +319,39 @@ function setupChoiceFilters(root,options,onChange,{allLabel='Alle',initialValue=
   const valid=new Set(['all',...options.map(x=>x.value)]);
   const selected=valid.has(initialValue)?initialValue:'all';
   const all=[{value:'all',label:allLabel},...options];
-  root.innerHTML=all.map(x=>`<button class="${x.value===selected?'active':''} ${x.theme?'destination-filter':''}" ${x.theme?`style="${themeStyle(x.theme)}"`:''} data-filter-value="${x.value}">${x.label}</button>`).join('');
+  root.innerHTML=all.map(x=>`<button class="${x.value===selected?'active':''} ${x.theme?'destination-filter':''}" ${x.theme?`style="${themeStyle(x.theme)}"`:''} data-filter-value="${x.value}" type="button" aria-pressed="${String(x.value===selected)}">${x.label}</button>`).join('');
   root.addEventListener('click',e=>{
     const btn=e.target.closest('button[data-filter-value]');
     if(!btn) return;
-    [...root.querySelectorAll('button')].forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
+    [...root.querySelectorAll('button')].forEach(b=>{
+      b.classList.toggle('active',b===btn);
+      b.setAttribute('aria-pressed',String(b===btn));
+    });
     onChange(btn.dataset.filterValue);
   });
   return selected;
 }
 
-// Shared geographical context for the planning catalogues. Explicit ?base= wins.
-const JOURNEY_BASE_KEY='japan-2027-selected-base-v1';
-function rememberJourneyBase(trip,value) {
-  if(value!=='all' && !trip.route.some(stop=>stop.id===value))return;
-  try{localStorage.setItem(JOURNEY_BASE_KEY,value);}catch{}
+// Shared travel base context, but page-specific filters are URL-only.
+function selectedJourneyBase(trip,{param='base'}={}) {
+  return JapanState.getSelection({
+    param,values:['all',...trip.route.map(stop=>stop.id)],
+    storageKey:JapanState.keys.base
+  });
 }
 function selectJourneyBase(trip,value,{param='base'}={}) {
-  rememberJourneyBase(trip,value);
-  // Keep the deep link in sync with the visible filter, including an explicit "Alle".
-  const url=new URL(location.href);
-  if(value==='all')url.searchParams.delete(param);
-  else url.searchParams.set(param,value);
-  history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+  return JapanState.setSelection({
+    param,value,values:['all',...trip.route.map(stop=>stop.id)],
+    storageKey:JapanState.keys.base
+  });
 }
-function selectedJourneyBase(trip,{param='base'}={}) {
-  const valid=new Set(['all',...trip.route.map(stop=>stop.id)]);
-  const params=new URLSearchParams(location.search);
-  if(params.has(param)){
-    const requested=params.get(param);
-    if(valid.has(requested)){
-      rememberJourneyBase(trip,requested);
-      return requested;
-    }
-  }
-  let stored='all';
-  try{stored=localStorage.getItem(JOURNEY_BASE_KEY)||'all';}catch{}
-  return valid.has(stored)?stored:'all';
+function setupUrlFilters(root,options,onChange,{param,allLabel='Alle',defaultValue='all'}={}) {
+  const values=[defaultValue,...options.map(x=>x.value)];
+  const initial=JapanState.getSelection({param,values,defaultValue});
+  return setupChoiceFilters(root,options,value=>{
+    JapanState.setSelection({param,value,values,defaultValue});
+    onChange(value);
+  },{allLabel,initialValue:initial});
 }
 
 function setupJourneyFilters(root,trip,places,subjects,onChange,{overnightOnly=false,param='base'}={}) {
@@ -1060,7 +1052,7 @@ async function renderPlaces() {
   const initial=setupJourneyFilters(filters,trip,places,places,draw);
   const topicLabels=(await pagesPromise).places.topicLabels||{};
   const topicRoot=document.getElementById('topic-filters');
-  if(topicRoot)setupChoiceFilters(topicRoot,Object.entries(topicLabels).filter(([key])=>key!=='all').map(([value,label])=>({value,label})),value=>{activeTopic=value;draw(activeDestination);},{allLabel:topicLabels.all||'Alle temaer',initialValue:new URLSearchParams(location.search).get('topic')||'all'});
+  if(topicRoot)setupUrlFilters(topicRoot,Object.entries(topicLabels).filter(([key])=>key!=='all').map(([value,label])=>({value,label})),value=>{activeTopic=value;draw(activeDestination);},{param:'topic',allLabel:topicLabels.all||'Alle temaer'});
   draw(initial);
 }
 async function renderPlace() {
@@ -1539,8 +1531,7 @@ async function renderHotels() {
 
   activeBase=setupJourneyFilters(document.getElementById('stay-base-filters'),trip,places,hotels,value=>{activeBase=value;draw();},{overnightOnly:true,param:'base'});
   const availableKinds=(data.accommodationTypes||[]).filter(t=>hotels.some(h=>h.kind===t.id)).map(t=>({value:t.id,label:t.label}));
-  const requestedKind=new URLSearchParams(location.search).get('type')||'all';
-  activeKind=setupChoiceFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();},{initialValue:requestedKind});
+  activeKind=setupUrlFilters(document.getElementById('stay-kind-filters'),availableKinds,value=>{activeKind=value;draw();},{param:'type'});
 
   document.getElementById('stay-types').innerHTML=(data.accommodationTypes||[]).map(t=>`<article class="stay-type-card"><span>${hotels.filter(h=>h.kind===t.id).length||'—'} ${hotels.some(h=>h.kind===t.id)?'kandidater':'sammenligningsspor'}</span><h3>${t.label}</h3><p>${t.description}</p>${t.source?`<a href="${t.source}" target="_blank" rel="noopener">Regelgrunnlag ↗</a>`:''}</article>`).join('');
   document.getElementById('stay-party-note').textContent=`Prisvisning: ${planningPartyLabel(trip)}. ${data.partyBasis||''} ${partyMultiplier(trip)>1?(trip.priceParties?.note||''):''}`.trim();
@@ -1735,20 +1726,28 @@ async function renderDrones(){
   byId('drone-laws').innerHTML=data.laws.map(x=>'<article class="card"><h3>'+droneEsc(x.title)+'</h3><p>'+droneEsc(x.body)+'</p>'+droneLink(x.url,'Offisiell kilde')+'</article>').join('');
   byId('drone-special').innerHTML=data.special.map(x=>'<article class="card"><h3>'+droneEsc(x.title)+'</h3><p>'+droneEsc(x.body)+'</p></article>').join('');
   byId('drone-sources').innerHTML=data.sources.map(x=>'<a href="'+droneEsc(x.url)+'" target="_blank" rel="noopener noreferrer">'+droneEsc(x.label)+' ↗</a>').join('');
-  byId('drone-takeoff').innerHTML=data.takeoff.map((x,i)=>{
-    let checked=false;
-    try{checked=localStorage.getItem('japan2027-drone-check-'+i)==='1';}catch{}
-    return '<label class="drone-check"><input type="checkbox" data-drone-check="'+i+'" '+(checked?'checked':'')+'><span>'+droneEsc(x)+'</span></label>';
-  }).join('');
+  const checklistKey=JapanState.keys.drone;
+  const knownChecks=new Set(data.takeoff.map(x=>x.id));
+  const saved=JapanState.readJson(checklistKey,null);
+  const migrated=saved===null;
+  const checklist=(saved && typeof saved==='object' && !Array.isArray(saved))
+    ? Object.fromEntries(Object.entries(saved).filter(([id,on])=>knownChecks.has(id)&&on===true))
+    : Object.fromEntries(data.takeoff.filter((x,i)=>JapanState.readLocal('japan2027-drone-check-'+i)==='1').map(x=>[x.id,true]));
+  if(migrated && JapanState.writeLocal(checklistKey,JSON.stringify(checklist)))
+    data.takeoff.forEach((x,i)=>JapanState.removeLocal('japan2027-drone-check-'+i));
+  byId('drone-takeoff').innerHTML=data.takeoff.map(x=>
+    '<label class="drone-check"><input type="checkbox" data-drone-check="'+x.id+'" '+(checklist[x.id]?'checked':'')+'><span>'+droneEsc(x.label)+'</span></label>'
+  ).join('');
   byId('drone-takeoff').addEventListener('change',event=>{
     const el=event.target.closest('[data-drone-check]');
-    if(!el)return;
-    try{localStorage.setItem('japan2027-drone-check-'+el.dataset.droneCheck,el.checked?'1':'0');}catch{}
+    if(!el||!knownChecks.has(el.dataset.droneCheck))return;
+    if(el.checked)checklist[el.dataset.droneCheck]=true;
+    else delete checklist[el.dataset.droneCheck];
+    JapanState.writeLocal(checklistKey,JSON.stringify(checklist));
   });
   byId('drone-reset').addEventListener('click',()=>{
-    byId('drone-takeoff').querySelectorAll('input').forEach(el=>{
-      el.checked=false;
-      try{localStorage.removeItem('japan2027-drone-check-'+el.dataset.droneCheck);}catch{}
-    });
+    byId('drone-takeoff').querySelectorAll('input').forEach(el=>{el.checked=false;});
+    for(const id of Object.keys(checklist))delete checklist[id];
+    JapanState.writeLocal(checklistKey,JSON.stringify(checklist));
   });
 }
