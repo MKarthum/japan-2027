@@ -2,9 +2,8 @@ async function renderDayIdeas(){
   await applyPageCopy('dayIdeas');nav('dayIdeas');footer();
   const [data,places,trip]=await Promise.all([json('data/day-ideas.json'),json('data/places.json'),json('data/trip.json')]);
   const byId=new Map(places.map(p=>[p.id,p]));
-  const root=document.getElementById('day-ideas-list'),summary=document.getElementById('idea-choices-summary'),status=document.getElementById('idea-copy-status'),key='japan-2027-idea-choices-v1';
-  let decisions={};
-  try{const v=JSON.parse(localStorage.getItem(key)||'{}');if(v&&typeof v==='object'&&!Array.isArray(v))decisions=Object.fromEntries(Object.entries(v).filter(([id,state])=>byId.has(id)&&['interested','dismissed'].includes(state)));}catch{}
+  const root=document.getElementById('day-ideas-list'),summary=document.getElementById('idea-choices-summary'),status=document.getElementById('idea-copy-status');
+  let decisions=JapanChoices.all('place');
   const h=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const placeItem=(id,optional)=>{
     const p=byId.get(id);if(!p)return '';
@@ -54,8 +53,8 @@ async function renderDayIdeas(){
     const button=e.target.closest('button[data-set-choice]');if(!button)return;
     const id=button.closest('[data-idea-place]')?.dataset.ideaPlace;
     if(!byId.has(id)||!['interested','dismissed'].includes(button.dataset.setChoice))return;
-    if(decisions[id]===button.dataset.setChoice)delete decisions[id];else decisions[id]=button.dataset.setChoice;
-    try{localStorage.setItem(key,JSON.stringify(decisions));}catch{}
+    JapanChoices.set('place',id,button.dataset.setChoice);
+    decisions=JapanChoices.all('place');
     sync();
   });
   document.getElementById('idea-copy-choices').addEventListener('click',async()=>{
@@ -64,6 +63,7 @@ async function renderDayIdeas(){
     const text='Japan 2027 – foreløpige ønsker\n'+selected.map(p=>(decisions[p.id]==='interested'?'Aktuell: ':'Lagt bort: ')+p.name).join('\n')+'\nIngen datoer eller bestillinger er fastsatt her.';
     try{if(!navigator.clipboard?.writeText)throw Error('Clipboard unavailable');await navigator.clipboard.writeText(text);status.textContent='Kopiert. Kan limes inn i samtalen.';}catch{status.textContent='Kunne ikke kopiere automatisk.';}
   });
+  window.addEventListener('japan-choices-change',()=>{decisions=JapanChoices.all('place');sync();});
   draw(initial);
   document.getElementById('idea-storage-note').textContent=data.choicePolicy.note;
 }

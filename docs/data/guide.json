@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-10-22",
   "bookingRadar": [
     {
       "priority": "Vurder senere",
@@ -832,6 +832,27 @@
           "no": "Hjelp meg, vær så snill."
         }
       ]
+    }
+  ],
+  "onTrip": [
+    {
+      "title": "Finn frem",
+      "body": "Finn oppdaterte råd om tog, buss og transport mellom byene.",
+      "href": "transport-guide.html",
+      "label": "Transport og pass"
+    },
+    {
+      "title": "Språk når det trengs",
+      "body": "Nyttige japanske fraser og vanlige ord kan leses opp direkte fra språkoversikten.",
+      "href": "language.html",
+      "label": "Språk og fraser"
+    },
+    {
+      "title": "Reisehjelp",
+      "body": "Offisiell turistinformasjon om sikkerhet, praktiske forhold og hjelp under reisen.",
+      "href": "https://www.japan.travel/en/plan/",
+      "label": "Offisiell reiseinformasjon",
+      "external": true
     }
   ]
 }

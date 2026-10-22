@@ -52,7 +52,10 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/tokyo/"
     },
-    "planInterest": "context"
+    "planInterest": "context",
+    "topics": [
+      "byliv"
+    ]
   },
   {
     "id": "shibuya",
@@ -103,7 +106,11 @@
       "checked": "2026-10-04",
       "source": "https://www.gotokyo.org/en/destinations/western-tokyo/shibuya/index.html"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "popkultur",
+      "byliv"
+    ]
   },
   {
     "id": "asakusa",
@@ -154,7 +161,12 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie",
+      "religion",
+      "byliv"
+    ]
   },
   {
     "id": "tokyo-tower",
@@ -281,7 +293,10 @@
         "areaLabel": "Tokyo Tower"
       }
     ],
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "byliv"
+    ]
   },
   {
     "id": "hakone",
@@ -332,7 +347,10 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kanto/kanagawa/hakone-and-around/"
     },
-    "planInterest": "context"
+    "planInterest": "context",
+    "topics": [
+      "natur"
+    ]
   },
   {
     "id": "kyoto",
@@ -387,7 +405,10 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/kyoto/"
     },
-    "planInterest": "context"
+    "planInterest": "context",
+    "topics": [
+      "historie"
+    ]
   },
   {
     "id": "hikone-castle",
@@ -442,7 +463,10 @@
       "checked": "2026-10-21",
       "source": "https://hikonecastle.com/information.html"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie"
+    ]
   },
   {
     "id": "gion",
@@ -493,7 +517,12 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/kyoto/gion-and-higashiyama/"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie",
+      "religion",
+      "byliv"
+    ]
   },
   {
     "id": "fushimi-inari",
@@ -544,7 +573,10 @@
       "checked": "2026-10-04",
       "source": "https://inari.jp/en/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "religion"
+    ]
   },
   {
     "id": "kiyomizu-dera",
@@ -598,7 +630,10 @@
       "checked": "2026-10-04",
       "source": "https://www.kiyomizudera.or.jp/en/news/2026/sennichi-2026.php"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "religion"
+    ]
   },
   {
     "id": "kinkakuji",
@@ -650,7 +685,11 @@
       "checked": "2026-10-04",
       "source": "https://www.shokoku-ji.jp/en/kinkakuji/access/"
     },
-    "planInterest": "extra"
+    "planInterest": "extra",
+    "topics": [
+      "natur",
+      "religion"
+    ]
   },
   {
     "id": "arashiyama",
@@ -701,7 +740,10 @@
       "checked": "2026-10-04",
       "source": "https://www.kyoto.travel/en/areas/saga-arashiyama/"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "natur"
+    ]
   },
   {
     "id": "nara",
@@ -753,7 +795,8 @@
       "checked": "2026-10-04",
       "source": "https://www.visitnara.jp/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": []
   },
   {
     "id": "todaiji",
@@ -806,7 +849,11 @@
       "checked": "2026-10-04",
       "source": "https://www.todaiji.or.jp/information/haikan/"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie",
+      "religion"
+    ]
   },
   {
     "id": "himeji",
@@ -866,7 +913,10 @@
       "checked": "2026-10-04",
       "source": "https://www.himejicastle.jp/en/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "historie"
+    ]
   },
   {
     "id": "kokoen-garden",
@@ -920,7 +970,12 @@
       "checked": "2026-10-21",
       "source": "https://visit-himeji.com/en/travel-info/himeji-castle-koko-en-garden-ticket-set/"
     },
-    "planInterest": "extra"
+    "planInterest": "extra",
+    "topics": [
+      "historie",
+      "natur",
+      "sakura"
+    ]
   },
   {
     "id": "osaka",
@@ -971,7 +1026,11 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/osaka/"
     },
-    "planInterest": "context"
+    "planInterest": "context",
+    "topics": [
+      "popkultur",
+      "byliv"
+    ]
   },
   {
     "id": "dotonbori",
@@ -1018,7 +1077,10 @@
       "checked": "2026-10-04",
       "source": "https://www.japan.travel/en/destinations/kansai/osaka/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "byliv"
+    ]
   },
   {
     "id": "hiroshima",
@@ -1074,7 +1136,11 @@
       "checked": "2026-10-04",
       "source": "https://www.city.hiroshima.lg.jp/living/park-green/1005983/1026353/1003127.html"
     },
-    "planInterest": "context"
+    "planInterest": "context",
+    "topics": [
+      "historie",
+      "byliv"
+    ]
   },
   {
     "id": "miyajima",
@@ -1126,7 +1192,11 @@
       "checked": "2026-10-04",
       "source": "https://www.miyajima.or.jp/english/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "natur",
+      "religion"
+    ]
   },
   {
     "id": "nintendo-museum",
@@ -1180,7 +1250,11 @@
       "checked": "2026-10-04",
       "source": "https://museum.nintendo.com/en/guide/index.html"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "popkultur",
+      "innendors"
+    ]
   },
   {
     "id": "ghibli-museum",
@@ -1234,7 +1308,11 @@
       "checked": "2026-10-04",
       "source": "https://www.ghibli-museum.jp/en/tickets/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "popkultur",
+      "innendors"
+    ]
   },
   {
     "id": "teamlab",
@@ -1286,7 +1364,11 @@
       "checked": "2026-10-04",
       "source": "https://www.teamlab.art/e/tokyo/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "popkultur",
+      "innendors"
+    ]
   },
   {
     "id": "usj",
@@ -1335,7 +1417,10 @@
       "checked": "2026-10-04",
       "source": "https://www.usjticketing.com/"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "popkultur"
+    ]
   },
   {
     "id": "peace-memorial-museum",
@@ -1389,7 +1474,11 @@
       "checked": "2026-10-04",
       "source": "https://www.city.hiroshima.lg.jp/www/koho/shimintoshiseir070615/shimintoshisei/special/index.html"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "historie",
+      "innendors"
+    ]
   },
   {
     "id": "itsukushima-shrine",
@@ -1437,7 +1526,11 @@
       "checked": "2026-10-04",
       "source": "https://itsukushimajinja.jp/en/admission.html"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "natur",
+      "religion"
+    ]
   },
   {
     "id": "osaka-castle",
@@ -1486,7 +1579,10 @@
       "checked": "2026-10-04",
       "source": "https://osakacastle.net/"
     },
-    "planInterest": "extra"
+    "planInterest": "extra",
+    "topics": [
+      "historie"
+    ]
   },
   {
     "id": "sumo-osaka",
@@ -1686,7 +1782,10 @@
         "areaLabel": "Tokyo – dersom tilgjengelig"
       }
     ],
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie"
+    ]
   },
   {
     "id": "akihabara",
@@ -1732,7 +1831,11 @@
       "source": "https://www.gotokyo.org/en/spot/55/index.html",
       "checked": "2026-10-20"
     },
-    "planInterest": "strong"
+    "planInterest": "strong",
+    "topics": [
+      "popkultur",
+      "byliv"
+    ]
   },
   {
     "id": "shinjuku",
@@ -1778,7 +1881,11 @@
       "source": "https://www.gotokyo.org/en/destinations/western-tokyo/shinjuku/index.html",
       "checked": "2026-10-20"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "popkultur",
+      "byliv"
+    ]
   },
   {
     "id": "shinjuku-gyoen",
@@ -1831,7 +1938,11 @@
       "source": "https://fng.or.jp/shinjuku/en/",
       "checked": "2026-10-20"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "natur",
+      "sakura"
+    ]
   },
   {
     "id": "meiji-jingu",
@@ -1877,7 +1988,12 @@
       "source": "https://www.gotokyo.org/en/spot/76/index.html",
       "checked": "2026-10-20"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "natur",
+      "religion",
+      "sakura"
+    ]
   },
   {
     "id": "chidorigafuchi-hanzomon",
@@ -1939,7 +2055,12 @@
       "checked": "2026-10-21",
       "source": "https://www.gotokyo.org/en/spot/45/"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie",
+      "natur",
+      "sakura"
+    ]
   },
   {
     "id": "edo-castle-imperial-palace",
@@ -1997,7 +2118,10 @@
       "checked": "2026-10-21",
       "source": "https://www.kunaicho.go.jp/en/visit/event/higashigyoen/index.html"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "historie"
+    ]
   },
   {
     "id": "maruyama-park",
@@ -2043,7 +2167,11 @@
       "source": "https://kyoto.travel/en/destinations/maruyama-park/",
       "checked": "2026-10-20"
     },
-    "planInterest": "candidate"
+    "planInterest": "candidate",
+    "topics": [
+      "natur",
+      "sakura"
+    ]
   },
   {
     "id": "kyoto-tea-experience",
@@ -2090,6 +2218,10 @@
       "checked": "2026-10-20",
       "source": "https://kyoto.travel/en/activities"
     },
-    "planInterest": "extra"
+    "planInterest": "extra",
+    "topics": [
+      "historie",
+      "innendors"
+    ]
   }
 ]

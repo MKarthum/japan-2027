@@ -18,8 +18,8 @@ Hovednavigasjonen holdes bevisst liten:
 - Steder
 - Mat
 - Overnatting
-- Før turen
-- Praktisk
+- Bli kjent med Japan: spill, film, bøker, historie og mat
+- Språk og fraser: ordliste, uttale, stedsnavn\n- Planlegg reisen: transport/pass, billetter, flysøk, overnatting og budsjett\n- På reisen: praktiske råd og droneregler\n- Mine valg: lokale interesser med kobling til dagidéer
 - Droner
 - Budsjett
 
@@ -63,7 +63,7 @@ På `docs/places.html` grupperes attraksjonene under reisebasene i ruterekkeføl
 
 ## Pass og pakkeløsninger
 
-Pass vurderes samlet under Praktisk. Siden viser bare kandidatstatus, kort begrunnelse og når den bør sjekkes igjen. Detaljert katalogmatch ligger i `passes.json`, slik at vi kan huske vurderingen uten å gjøre hvert sted til et pass-regnestykke.
+Pass vurderes samlet under Transport og pass. Siden viser bare kandidatstatus, kort begrunnelse og når den bør sjekkes igjen. Detaljert katalogmatch ligger i `passes.json`, slik at vi kan huske vurderingen uten å gjøre hvert sted til et pass-regnestykke.
 
 ## Visningsarkitektur
 

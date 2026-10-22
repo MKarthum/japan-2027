@@ -9,11 +9,15 @@
     "navPlaces": "Bydeler, templer, slott, museer og dagsturer.",
     "navFood": "Restauranter, regionale retter og måltider det kan være verdt å planlegge.",
     "navHotels": "Hotell, leilighetshotell, ryokan og feriebolig.",
-    "navPrep": "Film, serier, spill, bøker, mat og små forberedelser.",
-    "navPractical": "Transport, booking, språk og skikk og bruk.",
+    "navPrep": "Film, spill, historie, mat og bøker.",
+    "navPractical": "Skikk og bruk og hjelp på reisen.",
     "navBudget": "Planramme, kostnadsfordeling og usikkerhet.",
     "navFlights": "Fire flysøkoppsett, søkematrise og kontrollpunkter du kan bruke selv.",
-    "navDrones": "Droner, japanske flyregler, registrering og flysoner."
+    "navDrones": "Droner, japanske flyregler, registrering og flysoner.",
+    "navLanguage": "Ord, fraser og uttale på japansk.",
+    "navTransport": "Tog, lokaltrafikk og vurdering av pass.",
+    "navTickets": "Billettfrister og attraksjoner som bør planlegges.",
+    "navMyChoices": "Samle foreløpige interessevalg per by."
   },
   "route": {
     "eyebrow": "Rute",
@@ -31,7 +35,18 @@
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
     "intro": "Stedene følger reiseruten og er samlet per by. Små merker viser redaksjonelle forslag, ikke avgjørelser. På «Dagidéer» kan dere se hvilke steder som kan passe sammen og markere egne valg, uten å fastsette datoer.",
-    "filterLabel": "Vis steder fra"
+    "filterLabel": "Vis steder fra",
+    "topicFilterTitle": "Se opplevelser etter tema",
+    "topicLabels": {
+      "all": "Alle temaer",
+      "historie": "Historie",
+      "natur": "Natur og hager",
+      "popkultur": "Spill og popkultur",
+      "religion": "Templer og tradisjon",
+      "byliv": "Byliv",
+      "innendors": "Innendørs",
+      "sakura": "Sakura"
+    }
   },
   "food": {
     "eyebrow": "Mat",
@@ -59,39 +74,19 @@
     "onsenShortcut": "Se fire muligheter for privat onsen i Hakone →"
   },
   "prep": {
-    "eyebrow": "Før turen",
-    "title": "Gjør Japan litt kjent på forhånd",
-    "intro": "Film, serier, spill, bøker, historie, mat og små oppdrag kan gjøre Japan mer gjenkjennelig før avreise. Noe er for hele familien, mens vokseninnhold er tydelig merket.",
+    "eyebrow": "Bli kjent med Japan",
+    "title": "Opplev Japan før du reiser",
+    "intro": "Film, spill, bøker, historie, mat og familieaktiviteter gjør steder og kultur mer gjenkjennelige når du kommer dit. Utforsk temaene som interesserer deg.",
     "audienceEyebrow": "Målgruppe",
     "audienceTitle": "Hvem passer forslagene for?",
     "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen."
   },
   "practical": {
-    "eyebrow": "Praktisk",
-    "title": "Praktisk før og under reisen",
-    "intro": "Transport, billetter, noen nyttige ord og skikker som gjør det enklere å planlegge og være på reise.",
-    "transportEyebrow": "Transport",
-    "transportTitle": "Slik kommer vi oss rundt",
-    "bookingEyebrow": "Booking",
-    "bookingTitle": "Opplevelser med salgsvinduer",
-    "phrasesEyebrow": "Språk",
-    "phrasesTitle": "Noen ord som er nyttige å kjenne",
-    "namesEyebrow": "Stedsnavn",
-    "namesTitle": "Hva betyr noen av navnene?",
-    "etiquetteEyebrow": "Skikk og bruk",
-    "etiquetteTitle": "Seks ting det er verdt å vite",
-    "transportIntro": "Tog er hovedregelen. Taxi og bagasjefrakt brukes når det gjør en reisedag enklere.",
-    "bookingIntro": "Salgstidspunkt og regler kan endre seg. Hvert punkt viser kontrollgrunnlaget og bør bekreftes mot offisiell side før bestilling.",
-    "phrasesIntro": "Noen vanlige stedsord og korte fraser dekker mye av det praktiske.",
-    "placeWordsTitle": "Ord du ser ofte",
-    "phrasesListTitle": "Nyttige fraser",
-    "namesIntro": "Noen navn kan oversettes ganske direkte. Der opprinnelsen er usikker, markeres det i stedet for å forenkle for mye.",
-    "etiquetteIntro": "Et lite sett vaner og regler dekker mye av det praktiske i hverdagen.",
-    "passesEyebrow": "Pass og pakkeløsninger",
-    "passesTitle": "Kandidater vi skal huske på",
-    "passesIntro": "Noen pass kan passe ruten svært godt, men vi velger dem først når de sparer penger på planen vi faktisk ønsker – ikke fordi de gir oss flere ting å fylle dagene med.",
-    "morePhrasesLink": "Flere nyttige fraser →",
-    "audioNote": "Trykk på høyttaleren for å høre japansk uttale med stemmen som er installert på enheten."
+    "eyebrow": "På reisen",
+    "title": "Praktiske råd i Japan",
+    "intro": "Raske svar om hverdagen under reisen. Transport, billetter og språk har egne sider.",
+    "etiquetteTitle": "Skikk og bruk",
+    "etiquetteIntro": "Noen enkle vaner gjør reisen smidigere."
   },
   "budget": {
     "eyebrow": "Budsjett",
@@ -170,5 +165,142 @@
     "principle": "Start med det som faktisk krever billett, for eksempel Ghibli eller Nintendo Museum. Når en dato er kjent, kan dere vurdere hvilke nærliggende opplevelser som passer rundt den. Ingen kombinasjoner er bundet til kalenderdager.",
     "flexibility": "«Særlig interessant», «God kandidat» og «Ekstra idé» er våre foreløpige forslag. Trykk «Aktuell» eller «Legg bort» på steder dere diskuterer; trykk igjen for å angre. Dagidéene endrer ikke reisen automatisk.",
     "filterLabel": "Se dagidéer for"
+  },
+  "navigation": {
+    "sections": [
+      {
+        "label": "Oversikt",
+        "href": "index.html",
+        "key": "home"
+      },
+      {
+        "label": "Rute",
+        "href": "route.html",
+        "key": "route"
+      },
+      {
+        "label": "Opplevelser",
+        "items": [
+          {
+            "label": "Steder",
+            "href": "places.html",
+            "key": "places"
+          },
+          {
+            "label": "Dagidéer",
+            "href": "day-ideas.html",
+            "key": "dayIdeas"
+          },
+          {
+            "label": "Mat og restauranter",
+            "href": "food.html",
+            "key": "food"
+          }
+        ]
+      },
+      {
+        "label": "Planlegg reisen",
+        "items": [
+          {
+            "label": "Flysøk",
+            "href": "flights.html",
+            "key": "flights"
+          },
+          {
+            "label": "Overnatting",
+            "href": "hotels.html",
+            "key": "hotels"
+          },
+          {
+            "label": "Transport og pass",
+            "href": "transport-guide.html",
+            "key": "transport"
+          },
+          {
+            "label": "Billetter og frister",
+            "href": "tickets.html",
+            "key": "tickets"
+          },
+          {
+            "label": "Budsjett",
+            "href": "budget.html",
+            "key": "budget"
+          },
+          {
+            "label": "Mine valg",
+            "href": "my-choices.html",
+            "key": "myChoices"
+          }
+        ]
+      },
+      {
+        "label": "Bli kjent med Japan",
+        "items": [
+          {
+            "label": "Film, spill, bøker og kultur",
+            "href": "prep.html",
+            "key": "prep"
+          },
+          {
+            "label": "Språk og fraser",
+            "href": "language.html",
+            "key": "language"
+          }
+        ]
+      },
+      {
+        "label": "På reisen",
+        "items": [
+          {
+            "label": "Praktisk på reisen",
+            "href": "practical.html",
+            "key": "practical"
+          },
+          {
+            "label": "Droner i Japan",
+            "href": "drones.html",
+            "key": "drones"
+          }
+        ]
+      }
+    ],
+    "searchLabel": "Søk i reiseguiden",
+    "mobileLabel": "Meny"
+  },
+  "language": {
+    "eyebrow": "Språk og fraser",
+    "title": "Litt japansk kommer man langt med",
+    "intro": "Lær noen nyttige ord før reisen, eller finn et uttrykk når du trenger det. Uttalen kan spilles av.",
+    "basicsTitle": "De viktigste frasene",
+    "basicsIntro": "Begynn med korte ord du får bruk for ofte.",
+    "wordsTitle": "Ord du møter i Japan",
+    "wordsIntro": "Stedsord og uttrykk som gjør skilt, menyer og tradisjoner lettere å forstå.",
+    "namesTitle": "Hva betyr stedsnavnene?",
+    "namesIntro": "Et utvalg navn langs ruten og hva de betyr.",
+    "extraTitle": "Flere fraser etter situasjon",
+    "audioNote": "Uttalen spilles av med en japansk tekst-til-tale-stemme på telefonen, nettbrettet eller datamaskinen. Stemmekvaliteten kan variere litt mellom enheter."
+  },
+  "transport": {
+    "eyebrow": "Planlegg reisen",
+    "title": "Transport og pass",
+    "intro": "Slik kommer du rundt i Japan, samt pass som kan gjøre den planlagte ruten enklere eller rimeligere.",
+    "transportTitle": "Slik kommer vi oss rundt",
+    "transportIntro": "Tog er hovedtransporten, men taxi og bagasjefrakt kan gjøre enkelte dager enklere.",
+    "passesTitle": "Pass og pakkeløsninger",
+    "passesIntro": "Pass bør vurderes etter planen, ikke omvendt."
+  },
+  "tickets": {
+    "eyebrow": "Planlegg reisen",
+    "title": "Billetter og frister",
+    "intro": "Opplevelser som krever planlegging før besøk. Kontroller salgsvinduer og vilkår hos arrangøren.",
+    "bookingTitle": "Opplevelser med salgsvinduer",
+    "bookingIntro": "En samlet oversikt over det som kan være klokt å undersøke tidlig."
+  },
+  "myChoices": {
+    "eyebrow": "Mine valg",
+    "title": "Det du vurderer å oppleve",
+    "intro": "Samle steder, restauranter og overnatting uten å binde reisedager eller bestille noe.",
+    "storageNote": "Valgene lagres bare i denne nettleseren, ikke på server eller andre enheter. De forsvinner hvis lokale nettleserdata slettes.",
+    "choicesIntro": "Disse vurderingene er dine egne og må ikke forveksles med forslagene i guiden."
   }
 }

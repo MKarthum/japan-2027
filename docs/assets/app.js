@@ -146,21 +146,66 @@ async function loadFx() {
 
 const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs (virkedager)':'Lagret ECB-fallback';
 
+const escapeSiteHtml=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
 function nav(active='') {
-  const items = [
-    ['index.html','Oversikt','home'],
-    ['flights.html','Flysøk','flights'],
-    ['route.html','Rute','route'],
-    ['places.html','Steder','places'],
-    ['day-ideas.html','Dagidéer','dayIdeas'],
-    ['food.html','Mat','food'],
-    ['hotels.html','Overnatting','hotels'],
-    ['prep.html','Før turen','prep'],
-    ['practical.html','Praktisk','practical'],
-    ['drones.html','Droner','drones'],
-    ['budget.html','Budsjett','budget']
-  ];
-  document.querySelector('header').innerHTML = `<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a><nav>${items.map(([href,label,key])=>`<a href="${href}" ${active===key?'aria-current="page"':''}>${label}</a>`).join('')}</nav></div>`;
+  const mount=async()=>{
+    pagesPromise ||= json('data/pages.json');
+    const pages=await pagesPromise;
+    const config=pages.navigation;
+    if(!config) return;
+    const header=document.querySelector('header');
+    const sectionHtml=section=>{
+      if(section.href) return `<a class="nav-direct" href="${section.href}" ${active===section.key?'aria-current="page"':''}>${section.label}</a>`;
+      const selected=section.items.some(x=>x.key===active);
+      return `<details class="nav-group" ${selected?'data-selected="true"':''}><summary>${section.label}<span aria-hidden="true">⌄</span></summary><div class="nav-menu">${section.items.map(x=>`<a href="${x.href}" ${active===x.key?'aria-current="page"':''}>${x.label}</a>`).join('')}</div></details>`;
+    };
+    header.innerHTML=`<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a><button type="button" class="mobile-nav-toggle" aria-expanded="false" aria-controls="site-navigation">☰ Meny</button><nav class="site-navigation" id="site-navigation" aria-label="Hovednavigasjon">${config.sections.map(sectionHtml).join('')}</nav><button class="site-search-button" type="button" aria-label="Søk i Japan 2027">⌕ Søk</button></div>`;
+    const mobile=header.querySelector('.mobile-nav-toggle'),menu=header.querySelector('#site-navigation');
+    mobile.addEventListener('click',()=>{
+      const opening=mobile.getAttribute('aria-expanded')!=='true';
+      mobile.setAttribute('aria-expanded',String(opening));menu.classList.toggle('expanded',opening);
+    });
+    header.querySelectorAll('.nav-group').forEach(group=>{
+      group.addEventListener('toggle',()=>{if(group.open) header.querySelectorAll('.nav-group').forEach(other=>{if(other!==group)other.open=false;});});
+    });
+    header.querySelector('.site-search-button').addEventListener('click',()=>openSiteSearch());
+    document.addEventListener('keydown',e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openSiteSearch();}
+      if(e.key==='Escape'){header.querySelectorAll('.nav-group').forEach(g=>g.open=false);menu.classList.remove('expanded');mobile.setAttribute('aria-expanded','false');}
+    });
+    document.addEventListener('click',e=>{if(!header.contains(e.target))header.querySelectorAll('.nav-group').forEach(g=>g.open=false);});
+    const pageName=location.pathname.split('/').pop()||'index.html';
+    const links=[{label:'Japan 2027',href:'index.html'}];
+    const group=config.sections.find(g=>g.items?.some(x=>x.key===active));
+    if(group) links.push({label:group.label,href:null});
+    const candidate=config.sections.flatMap(g=>g.items||[g]).find(x=>x.key===active);
+    if(candidate && active!=='home')links.push({label:candidate.label,href:candidate.href});
+    const params=new URLSearchParams(location.search);
+    const type=pageName==='place.html'?'place':pageName==='restaurant.html'?'restaurant':pageName==='hotel.html'?'hotel':null;
+    if(type&&params.get('id')){
+      const src=type==='place'?'data/places.json':type==='restaurant'?'data/food.json':'data/hotels.json';
+      try{
+        const data=await json(src),items=type==='place'?data:type==='restaurant'?data.restaurants:data.hotels;
+        const record=items.find(x=>x.id===params.get('id'));
+        if(record){
+          try{
+            const [route,allPlaces]=await Promise.all([json('data/trip.json'),type==='place'?Promise.resolve(items):json('data/places.json')]);
+            const baseId=type==='hotel'?record.baseId:destinationId(route,record);
+            const base=allPlaces.find(x=>x.id===baseId);
+            if(base&&base.id!==record.id)links.push({label:base.name,href:'place.html?id='+encodeURIComponent(base.id)});
+          }catch{}
+          links.push({label:record.name,href:null});
+        }
+      }catch{}
+    }
+    const existing=document.querySelector('.site-breadcrumb');if(existing)existing.remove();
+    if(links.length>1){
+      const breadcrumbs=document.createElement('nav');breadcrumbs.className='site-breadcrumb';breadcrumbs.setAttribute('aria-label','Navigasjonssti');
+      breadcrumbs.innerHTML=links.map((x,i)=>`${i?'<span aria-hidden="true">›</span>':''}${i===links.length-1?`<strong aria-current="page">${escapeSiteHtml(x.label)}</strong>`:`<a href="${x.href||candidate?.href||'index.html'}">${escapeSiteHtml(x.label)}</a>`}`).join('');
+      document.querySelector('main')?.prepend(breadcrumbs);
+    }
+  };
+  mount().catch(err=>console.warn('Navigasjon kunne ikke lastes',err));
 }
 
 function footer() {
@@ -442,7 +487,7 @@ async function renderRoute() {
   const food=foodData.restaurants||[];
   renderPricePartySelector(trip);
 
-  const mapSelectionPopupHtml=(meta,title,subject=null)=>`<div class="map-popup map-popup-selection ${subject?'destination-themed':''}" ${subject?`style="${themeStyle(destinationTheme(trip,subject))}"`:''}><div class="meta">${meta}</div><h3>${title}</h3><a href="#route-detail">Detaljer under kartet ↓</a></div>`;
+  const mapSelectionPopupHtml=(meta,title,subject=null,href='',label='')=>sharedMapPopupHtml(trip,meta,title,subject,href,label);
 
   const formatMinutes = (mins) => {
     if (mins < 60) return `${mins} min`;
@@ -650,7 +695,7 @@ async function renderRoute() {
     showLegDetail(leg);
     new maplibregl.Popup({offset:10,maxWidth:'280px'})
       .setLngLat(lngLat)
-      .setHTML(mapSelectionPopupHtml('Reiseetappe',`${leg.from} → ${leg.to}`,leg.toRouteId))
+      .setHTML(mapSelectionPopupHtml('Reiseetappe',`${leg.from} → ${leg.to}`,leg.toRouteId,'','Se reisetid og pris'))
       .addTo(map);
   };
 
@@ -689,11 +734,11 @@ async function renderRoute() {
   };
 
   const markerGroups={stations:[],experience:[],food:[],hotel:[]};
-  const layerState={stations:false,experience:true,food:false,hotel:false};
+  const layerState=readMapLayers();
   const routeContextIds=new Set([...trip.route.map(x=>x.id),...(trip.dayTrips||[]).map(x=>x.id)]);
-  const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && p.map?.showOnRouteMap!==false && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
-  const mappableFood=food.filter(x=>x.status==='active' && x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
-  const mappableHotels=hotelsData.hotels.filter(x=>x.map?.showOnRouteMap!==false && Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
+  const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
+  const mappableFood=food.filter(x=>Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
+  const mappableHotels=hotelsData.hotels.filter(x=>Number.isFinite(x.map?.lat) && Number.isFinite(x.map?.lng));
 
   const setMarkerVisibility=(category,on)=>{
     layerState[category]=on;
@@ -702,6 +747,7 @@ async function renderRoute() {
     }
     const btn=document.querySelector(`[data-map-layer="${category}"]`);
     if(btn) btn.setAttribute('aria-pressed',String(on));
+    storeMapLayers(layerState);
   };
 
   const addStationMarkers=()=>{
@@ -727,7 +773,7 @@ async function renderRoute() {
       el.setAttribute('aria-label',`${s.name} stasjon`);
       const rows=s.memberships.map(m=>`<div class="station-time"><span>Fra ${m.leg.from}</span><strong>ca. ${formatMinutes(m.elapsedMin)}</strong></div>`).join('');
       const services=[...new Set(s.memberships.map(m=>m.leg.service))].join(' / ');
-      const popup=new maplibregl.Popup({offset:12,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml('Knutepunkt',s.name));
+      const popup=new maplibregl.Popup({offset:12,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml('Knutepunkt',s.name,null,'','Se stasjonsinformasjon'));
       popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">Knutepunkt</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       markerGroups.stations.push(marker);
@@ -749,13 +795,8 @@ async function renderRoute() {
 
   const addPoiMarkers=()=>{
     for(const p of mappablePlaces){
-      const el=document.createElement('button');
-      el.type='button';
-      el.className='map-poi-dot experience';
-      el.style.setProperty('--area-color',destinationColor(trip,p));
-      el.textContent=categoryMeta.experience.symbol;
-      el.setAttribute('aria-label',p.name);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${p.type} · ${p.area}`,p.name,p));
+      const el=mapPoiElement(trip,p,'experience');
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${p.type} · ${p.area}`,p.name,p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet'));
       popup.on('open',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       markerGroups.experience.push(marker);
@@ -763,14 +804,9 @@ async function renderRoute() {
     }
 
     for(const x of mappableFood){
-      const el=document.createElement('button');
-      el.type='button';
-      el.className='map-poi-dot food';
-      el.style.setProperty('--area-color',destinationColor(trip,x));
-      el.textContent=categoryMeta.food.symbol;
-      el.setAttribute('aria-label',x.name);
+      const el=mapPoiElement(trip,x,'food');
       const family=familyFoodPrice(x);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.role} · ${x.area}`,x.name,x));
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.role} · ${x.area}`,x.name,x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten'));
       popup.on('open',()=>showFoodDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.food.push(marker);
@@ -787,14 +823,9 @@ async function renderRoute() {
 
   const addHotelMarkers=()=>{
     for(const x of mappableHotels){
-      const el=document.createElement('button');
-      el.type='button';
-      el.className='map-poi-dot hotel';
-      el.style.setProperty('--area-color',destinationColor(trip,x.baseId));
-      el.textContent=categoryMeta.hotel.symbol;
-      el.setAttribute('aria-label',x.name);
+      const el=mapPoiElement(trip,x,'hotel');
       const price=hotelFamilyPrice(x);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}`,x.name,x.baseId));
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}`,x.name,x.baseId,`hotel.html?id=${encodeURIComponent(x.id)}`,'Se overnattingen'));
       popup.on('open',()=>showHotelDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       markerGroups.hotel.push(marker);
@@ -811,20 +842,8 @@ async function renderRoute() {
       food:mappableFood.length,
       hotel:mappableHotels.length
     };
-    toolbar.innerHTML=`
-      <span class="map-layer-title">Vis på kartet</span>
-      <button class="map-layer-toggle experience" data-map-layer="experience" aria-pressed="true">Opplevelser <b>${counts.experience}</b></button>
-      <button class="map-layer-toggle food" data-map-layer="food" aria-pressed="false">Mat <b>${counts.food}</b></button>
-      <button class="map-layer-toggle hotel" data-map-layer="hotel" aria-pressed="false">Overnatting <b>${counts.hotel}</b></button>
-      <button class="map-layer-toggle stations" data-map-layer="stations" aria-pressed="false">Knutepunkter <b>${counts.stations}</b></button>
-      <button class="map-layer-fit" id="fit-route" type="button">Hele ruten</button>
-      <button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>`;
-    toolbar.addEventListener('click',e=>{
-      const btn=e.target.closest('[data-map-layer]');
-      if(btn && !btn.disabled){
-        const category=btn.dataset.mapLayer;
-        setMarkerVisibility(category,!layerState[category]);
-      }
+    wireMapLayerToolbar(toolbar,{counts,state:layerState,onToggle:setMarkerVisibility,
+      extra:'<button class="map-layer-fit" id="fit-route" type="button">Hele ruten</button><button class="map-layer-location" id="my-location" type="button" title="Zoom inn til min posisjon">◎ Min posisjon</button>'
     });
     document.getElementById('fit-route')?.addEventListener('click',fitRoute);
     document.getElementById('my-location')?.addEventListener('click',focusUserLocation);
@@ -877,7 +896,7 @@ async function renderRoute() {
       el.setAttribute('aria-label',`${i+1}. ${p.name}`);
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
       const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
-      const popup=new maplibregl.Popup({offset:24,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x));
+      const popup=new maplibregl.Popup({offset:24,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x,`place.html?id=${encodeURIComponent(p.id)}`,'Utforsk byen'));
       popup.on('open',()=>showStopDetail(x,p));
       new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup).addTo(map);
     });
@@ -892,7 +911,7 @@ async function renderRoute() {
       el.style.setProperty('--area-color',destinationColor(trip,x));
       el.setAttribute('aria-label',p.name);
       el.innerHTML=`<span class="map-pin"></span><span class="map-place-label">${p.name}</span>`;
-      const popup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Dagstur fra ${base?.name||x.baseId}`,p.name,p));
+      const popup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Dagstur fra ${base?.name||x.baseId}`,p.name,p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet'));
       popup.on('open',()=>showPlaceDetail(p));
       new maplibregl.Marker({element:el,anchor:'center'})
         .setLngLat([p.map.lng,p.map.lat])
@@ -949,7 +968,9 @@ async function renderPlaces() {
     </article>`;
   };
 
+  let activeDestination='all',activeTopic='all';
   const draw=(destination='all')=>{
+    activeDestination=destination;
     // Grupper i reiserutens rekkefølge. Attraksjoner sorteres nøytralt,
     // og dagsturer arver riktig reisebase via destinationId().
     const groups=trip.route
@@ -957,7 +978,8 @@ async function renderPlaces() {
       .map(stop=>{
         const base=placeById.get(stop.id);
         if(!base)return null;
-        const members=places.filter(p=>destinationId(trip,p)===stop.id);
+        if(activeTopic!=='all' && !places.some(p=>destinationId(trip,p)===stop.id && (p.topics||[]).includes(activeTopic)))return null;
+        const members=places.filter(p=>destinationId(trip,p)===stop.id && (activeTopic==='all'||(p.topics||[]).includes(activeTopic)));
         const attractions=members.filter(p=>p.id!==stop.id).sort((a,b)=>a.name.localeCompare(b.name,'nb'));
         // Dagsturer er én samlet utflukt fra basen – alle steder i samme
         // dagstursområde skal vises sammen, ikke flettet inn alfabetisk.
@@ -1004,11 +1026,14 @@ async function renderPlaces() {
     list.innerHTML=groups.length?groups.join(''):'<p>Ingen steder i denne delen av reisen.</p>';
   };
   const initial=setupJourneyFilters(filters,trip,places,places,draw);
+  const topicLabels=(await pagesPromise).places.topicLabels||{};
+  const topicRoot=document.getElementById('topic-filters');
+  if(topicRoot)setupChoiceFilters(topicRoot,Object.entries(topicLabels).filter(([key])=>key!=='all').map(([value,label])=>({value,label})),value=>{activeTopic=value;draw(activeDestination);},{allLabel:topicLabels.all||'Alle temaer',initialValue:new URLSearchParams(location.search).get('topic')||'all'});
   draw(initial);
 }
 async function renderPlace() {
   nav('places'); footer();
-  const [places,foodData,trip,prepData,hotelData,fx] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json'),json('data/hotels.json'),loadFx()]);
+  const [places,foodData,trip,prepData,hotelData,fx,transport,dayIdeas] = await Promise.all([json('data/places.json'),json('data/food.json'),json('data/trip.json'),json('data/prep.json'),json('data/hotels.json'),loadFx(),json('data/transport.json'),json('data/day-ideas.json')]);
   const food=foodData.restaurants||[];
   const id = new URLSearchParams(location.search).get('id');
   const p = places.find(x=>x.id===id);
@@ -1088,6 +1113,47 @@ async function renderPlace() {
         .setLngLat([p.map.lng,p.map.lat])
         .setPopup(new maplibregl.Popup({offset:18,maxWidth:'250px'}).setHTML(`<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3></div>`))
         .addTo(map);
+      const mapLayers=readMapLayers();
+      const groups={experience:[],food:[],hotel:[],stations:[]};
+      const addPoi=(subject,kind,meta,href)=>{
+        if(!Number.isFinite(subject?.map?.lng)||!Number.isFinite(subject?.map?.lat))return;
+        if(kind==='experience'&&subject.id===p.id)return;
+        const el=mapPoiElement(trip,subject,kind);
+        const popup=new maplibregl.Popup({offset:14,maxWidth:'250px'}).setHTML(sharedMapPopupHtml(trip,meta,subject.name,subject,href,'Se detaljer'));
+        const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([subject.map.lng,subject.map.lat]).setPopup(popup);
+        groups[kind].push(marker);
+        if(mapLayers[kind])marker.addTo(map);
+      };
+      for(const other of places)addPoi(other,'experience',other.type+' · '+other.area,'place.html?id='+encodeURIComponent(other.id));
+      for(const other of food.filter(x=>Number.isFinite(x.map?.lng)))addPoi(other,'food',other.role+' · '+other.area,'restaurant.html?id='+encodeURIComponent(other.id));
+      for(const other of hotelData.hotels)addPoi(other,'hotel',other.tier+' · '+other.area,'hotel.html?id='+encodeURIComponent(other.id));
+      const usedStations=new Set();
+      for(const leg of transport.legs)for(const station of leg.stations){
+        const key=[station.name,station.lng.toFixed(4),station.lat.toFixed(4)].join('|');
+        if(usedStations.has(key))continue;usedStations.add(key);
+        const el=document.createElement('button');el.type='button';el.className='map-station-dot';
+        el.setAttribute('aria-label',station.name+' stasjon');
+        const popup=new maplibregl.Popup({offset:12,maxWidth:'250px'}).setHTML(sharedMapPopupHtml(trip,'Knutepunkt',station.name,null,'transport-guide.html','Transport og pass'));
+        const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([station.lng,station.lat]).setPopup(popup);
+        groups.stations.push(marker);if(mapLayers.stations)marker.addTo(map);
+      }
+      const toolbar=document.getElementById('place-map-layers');
+      if(toolbar){
+        const onToggle=(key,on)=>{
+          mapLayers[key]=on;
+          for(const marker of groups[key]){if(on)marker.addTo(map);else marker.remove();}
+          toolbar.querySelector('[data-map-layer="'+key+'"]')?.setAttribute('aria-pressed',String(on));
+          storeMapLayers(mapLayers);
+        };
+        const counts=Object.fromEntries(Object.entries(groups).map(([key,arr])=>[key,arr.length]));
+        wireMapLayerToolbar(toolbar,{counts,state:mapLayers,onToggle});
+      }
+      const suggested=(dayIdeas.ideas||[]).filter(x=>[...(x.corePlaceIds||[]),...(x.optionalPlaceIds||[])].includes(p.id));
+      if(suggested.length){
+        const dayLink=document.createElement('p');dayLink.className='small';
+        dayLink.innerHTML='<a href="day-ideas.html?base='+encodeURIComponent(destinationId(trip,p)||suggested[0].baseId)+'">Se dagidéer som inkluderer dette stedet →</a>';
+        document.getElementById('place-map')?.insertAdjacentElement('afterend',dayLink);
+      }
       installMapLoadFallback(map,{
         onFatal:()=>{
           let fallback=document.getElementById('place-map-fallback');
@@ -1179,7 +1245,10 @@ async function renderPrep() {
   if(guide){
     guide.innerHTML=audienceOrder.filter(id=>audienceById.has(id)).map(id=>prepAudienceHtml({...audienceById.get(id),note:null},{compact:true})).join('');
   }
-  document.getElementById('prep-grid').innerHTML=prep.map(group=>`<section class="section prep-group"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`
+  const prepLinks=document.createElement('nav');prepLinks.className='quick-links prep-shortcuts';prepLinks.setAttribute('aria-label','Gå til emne');
+  prepLinks.innerHTML=prep.map((group,i)=>'<a href="#prep-group-'+i+'">'+escapeSiteHtml(group.category)+'</a>').join('');
+  document.getElementById('prep-grid').insertAdjacentElement('beforebegin',prepLinks);
+  document.getElementById('prep-grid').innerHTML=prep.map((group,i)=>`<section class="section prep-group" id="prep-group-${i}"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`
     <article class="card prep-card audience-card-${x.audience?.id||'family'}">
       ${prepAudienceHtml(x.audience)}
       <h3>${x.title}</h3>
@@ -1507,52 +1576,41 @@ async function renderHotel() {
 }
 
 
-async function renderPractical() {
-  await applyPageCopy('practical');
-  nav('practical'); footer();
-  const [guide,places,passes]=await Promise.all([json('data/guide.json'),json('data/places.json'),json('data/passes.json')]);
+async function renderTransportGuide() {
+  await applyPageCopy('transport');nav('transport');footer();
+  const [guide,passes]=await Promise.all([json('data/guide.json'),json('data/passes.json')]);
   document.getElementById('transport-grid').innerHTML=guide.transport.map(x=>`<article class="card transport-card"><div class="transport-icon">${x.icon}</div><h3>${x.title}</h3><strong>${x.short}</strong><p>${x.body}</p><div class="button-row">${x.links.map(l=>`<a class="button" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join('')}</div></article>`).join('');
-  const statusClass=(status)=>({strong:'strong',watch:'watch',low:'low',review:'review'}[status]||'watch');
-  document.getElementById('pass-watchlist').innerHTML=passes.options.map(x=>`
-    <article class="pass-row">
-      <div class="pass-row-main">
-        <div class="pass-row-top"><span class="pass-status ${statusClass(x.status)}">${x.statusLabel}</span><span class="meta">${x.kind}</span></div>
-        <h3>${x.name}</h3>
-        <p>${x.short}</p>
-        <small>${x.when}</small>
-      </div>
-      <div class="pass-row-aside">
-        <span>${x.current}</span>
-        <a href="${x.sourceUrl}" target="_blank" rel="noopener">Offisiell info ↗</a>
-      </div>
-    </article>`).join('');
+  const statusClass=status=>({strong:'strong',watch:'watch',low:'low',review:'review'}[status]||'watch');
+  document.getElementById('pass-watchlist').innerHTML=passes.options.map(x=>`<article class="pass-row"><div class="pass-row-main"><div class="pass-row-top"><span class="pass-status ${statusClass(x.status)}">${x.statusLabel}</span><span class="meta">${x.kind}</span></div><h3>${x.name}</h3><p>${x.short}</p><small>${x.when}</small></div><div class="pass-row-aside"><span>${x.current}</span><a href="${x.sourceUrl}" target="_blank" rel="noopener">Offisiell informasjon ↗</a></div></article>`).join('');
+}
+async function renderTickets() {
+  await applyPageCopy('tickets');nav('tickets');footer();
+  const [guide,places]=await Promise.all([json('data/guide.json'),json('data/places.json')]);
   document.getElementById('booking-radar').innerHTML=guide.bookingRadar.map(x=>{
     const p=places.find(p=>p.id===x.placeId);
-    const opt=x.optionId ? p?.experienceOptions?.find(o=>o.id===x.optionId) : null;
-    const link=opt?.links?.[0] || placePrimaryLink(p);
-    const title=opt ? opt.name : (p?.name||x.placeId);
-    const local=opt ? `place.html?id=${encodeURIComponent(p.id)}#experience-${encodeURIComponent(opt.id)}` : null;
-    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${title}</strong><span>${opt?.areaLabel||p?.area||''} · ${x.when}</span><p>${x.why}</p>${local?`<a href="${local}">Se alternativet →</a>`:''}</div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
+    const option=x.optionId?p?.experienceOptions?.find(o=>o.id===x.optionId):null;
+    const link=option?.links?.[0]||placePrimaryLink(p);
+    const title=option?.name||p?.name||x.placeId;
+    const local=`place.html?id=${encodeURIComponent(x.placeId)}${option?'#experience-'+encodeURIComponent(option.id):''}`;
+    return `<article class="booking-row">${priorityBadge(x.priority)}<div><strong>${title}</strong><span>${option?.areaLabel||p?.area||''} · ${x.when}</span><p>${x.why}</p><a href="${local}">Se opplevelsen →</a></div>${link?`<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`:''}</article>`;
   }).join('');
-  document.getElementById('place-words').innerHTML=guide.placeWords.filter(x=>x.showInGuide!==false).map(languageRowHtml).join('');
-  document.getElementById('phrases').innerHTML=guide.phrases.map(languageRowHtml).join('');
-  document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
-  document.getElementById('etiquette').innerHTML=guide.etiquette.map(x=>`<article class="mini-card"><h3>${x.title}</h3><p>${x.body}</p></article>`).join('');
-  bindJapaneseSpeech(document.querySelector('main'));
 }
-
-
-async function renderPhraseGuide() {
-  await applyPageCopy('phrases');
-  nav('practical'); footer();
+async function renderLanguage() {
+  await applyPageCopy('language');nav('language');footer();
   const guide=await json('data/guide.json');
   document.getElementById('phrase-basics').innerHTML=guide.phrases.map(languageRowHtml).join('');
-  document.getElementById('phrase-guide-groups').innerHTML=(guide.morePhrases||[]).map(group=>`
-    <section class="section phrase-group">
-      <div class="section-head"><div><div class="eyebrow">Språk</div><h2>${group.category}</h2></div><p>${group.intro||''}</p></div>
-      <div class="glossary">${group.items.map(languageRowHtml).join('')}</div>
-    </section>`).join('');
+  document.getElementById('place-words').innerHTML=guide.placeWords.filter(x=>x.showInGuide!==false).map(languageRowHtml).join('');
+  document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
+  document.getElementById('phrase-guide-groups').innerHTML=(guide.morePhrases||[]).map(group=>`<section class="section phrase-group"><div class="section-head"><div><h3>${group.category}</h3></div><p>${group.intro||''}</p></div><div class="glossary">${group.items.map(languageRowHtml).join('')}</div></section>`).join('');
   bindJapaneseSpeech(document.querySelector('main'));
+}
+async function renderPractical() {
+  const legacy={'#transport':'transport-guide.html#transport','#pass':'transport-guide.html#pass','#booking':'tickets.html#booking','#ord':'language.html#ord','#navn':'language.html#navn'};
+  if(legacy[location.hash]){location.replace(legacy[location.hash]);return;}
+  await applyPageCopy('practical');nav('practical');footer();
+  const guide=await json('data/guide.json');
+  document.getElementById('on-trip-help').innerHTML=(guide.onTrip||[]).map(x=>`<article class="card"><h2>${x.title}</h2><p>${x.body}</p><a href="${x.href}" ${x.external?'target="_blank" rel="noopener"':''}>${x.label} →</a></article>`).join('');
+  document.getElementById('etiquette').innerHTML=guide.etiquette.map(x=>`<article class="mini-card"><h3>${x.title}</h3><p>${x.body}</p></article>`).join('');
 }
 
 async function renderPrepItem() {
