@@ -871,7 +871,7 @@ if (!mapShared.includes('Knutepunkter') || !transport.stationNote) errors.push('
 const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>mapShared.indexOf(x));
 if(toolbarOrder.some(x=>x<0)||toolbarOrder.some((x,i)=>i>0&&x<=toolbarOrder[i-1]))errors.push('Kart: kartlagene har feil rekkefølge');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
-if (!app.includes('stationColors') || !app.includes('destinationColor(trip,m.leg.toRouteId)')) errors.push('stasjonsmarkører følger ikke destinasjonsfargene');
+if (!app.includes('mapStationElement(s.name,s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)))') || !app.includes('stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId))')) errors.push('stasjonsmarkører på rute- og detaljkart følger ikke destinasjonsfargene');
 if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
 if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.js refererer fortsatt til avledet map-pois-data');
 for (const dataFile of ['food.json','places.json','hotels.json']) {

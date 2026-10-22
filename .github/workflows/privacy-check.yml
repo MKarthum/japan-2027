@@ -17,4 +17,6 @@ jobs:
       - run: node scripts/check-public-content.mjs
       - run: node scripts/check-data-integrity.mjs
       - run: node scripts/check-content-style.mjs
+      - run: node scripts/check-state-consistency.mjs
+      - run: node scripts/check-map-ux.mjs
       - run: node scripts/check-release-discipline.mjs
