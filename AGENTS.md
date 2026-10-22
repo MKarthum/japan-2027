@@ -14,6 +14,8 @@ Les `START_HERE.md` først. Denne filen utfyller rehydreringskontrakten der.
 Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunnskap. Hovedoversikter skal være skannbare; detaljer ligger ett klikk ned.
 
 
+**Felles reisebasefilter:** Valg av Tokyo, Kyoto, Hiroshima eller annen reisebase på Steder, Mat, Overnatting eller Dagidéer skal følge brukeren mellom disse fire oversiktene. Én datadrevet state i nettleserens `localStorage` (`japan-2027-selected-base-v1`) eier siste aktive base. `?base=<routeId>` overstyrer lagret state og blir nytt aktivt valg; eksplisitt «Alle» lagres også. Dersom en kategori ikke har noe for valgt base (f.eks. et rent dagsstopp uten overnatting), viser akkurat den oversikten «Alle», uten å overskrive det lagrede valget. Emnefilter, hotelltype, kartlag, prisgruppe og personlig interesse er egne dimensjoner og må **ikke** koples til eller nullstilles av basefilteret.
+
 ## Fast informasjonsarkitektur, kart og lokal tilstand (v0.30.11)
 
 - Meny og navigasjonsgrupper eies av `docs/data/pages.json` under `navigation.sections`. Seks innganger: Oversikt, Rute, Opplevelser, Planlegg reisen, Bli kjent med Japan, På reisen. Bruk klikkbare navigasjonsstier og mobilmeny; ikke gjeninnfør flat sideveis skrollbar meny.

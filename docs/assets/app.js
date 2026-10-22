@@ -333,18 +333,50 @@ function setupChoiceFilters(root,options,onChange,{allLabel='Alle',initialValue=
   return selected;
 }
 
+// Shared geographical context for the planning catalogues. Explicit ?base= wins.
+const JOURNEY_BASE_KEY='japan-2027-selected-base-v1';
+function rememberJourneyBase(trip,value) {
+  if(value!=='all' && !trip.route.some(stop=>stop.id===value))return;
+  try{localStorage.setItem(JOURNEY_BASE_KEY,value);}catch{}
+}
+function selectJourneyBase(trip,value,{param='base'}={}) {
+  rememberJourneyBase(trip,value);
+  // Keep the deep link in sync with the visible filter, including an explicit "Alle".
+  const url=new URL(location.href);
+  if(value==='all')url.searchParams.delete(param);
+  else url.searchParams.set(param,value);
+  history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+}
+function selectedJourneyBase(trip,{param='base'}={}) {
+  const valid=new Set(['all',...trip.route.map(stop=>stop.id)]);
+  const params=new URLSearchParams(location.search);
+  if(params.has(param)){
+    const requested=params.get(param);
+    if(valid.has(requested)){
+      rememberJourneyBase(trip,requested);
+      return requested;
+    }
+  }
+  let stored='all';
+  try{stored=localStorage.getItem(JOURNEY_BASE_KEY)||'all';}catch{}
+  return valid.has(stored)?stored:'all';
+}
+
 function setupJourneyFilters(root,trip,places,subjects,onChange,{overnightOnly=false,param='base'}={}) {
   const placeById=new Map(places.map(p=>[p.id,p]));
   const stops=trip.route.filter(stop=>{
     if(overnightOnly && stop.nights<=0) return false;
     return subjects.some(subject=>destinationId(trip,subject)===stop.id);
   });
-  const requested=new URLSearchParams(location.search).get(param)||'all';
+  const requested=selectedJourneyBase(trip,{param});
   return setupChoiceFilters(root,stops.map(stop=>({
     value:stop.id,
     label:stop.filterLabel||placeById.get(stop.id)?.name||stop.id,
     theme:stop.theme
-  })),onChange,{initialValue:requested});
+  })),value=>{
+    selectJourneyBase(trip,value,{param});
+    onChange(value);
+  },{initialValue:requested});
 }
 
 const routeContextLinksHtml=(trip,stop,place,food,hotelsData)=>{

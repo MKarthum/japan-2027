@@ -819,7 +819,9 @@ if (!app.includes('setupJourneyFilters')) errors.push('app.js mangler felles fil
 if (!app.includes('routeContextLinksHtml') || !app.includes('places.html?base=') || !app.includes('food.html?base=') || !app.includes('hotels.html?base=')) {
   errors.push('app.js: rutesiden mangler kontekstnavigasjon videre til steder, mat eller overnatting');
 }
-if (!app.includes("new URLSearchParams(location.search).get(param)")) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
+if (!app.includes('params.has(param)') || !app.includes('params.get(param)')) errors.push('app.js: reise-/basefilter kan ikke åpnes direkte fra URL');
+if (!app.includes("const JOURNEY_BASE_KEY='japan-2027-selected-base-v1'") || !app.includes('selectJourneyBase(trip,value,{param})') || !app.includes('selectedJourneyBase(trip,{param})'))errors.push('app.js: reisebasefilter må følge brukeren mellom oversikter og støtte eksplisitt ?base=');
+if (!ideaJs.includes('selectedJourneyBase(trip)') || !ideaJs.includes('selectJourneyBase(trip,value)'))errors.push('Dagidéer: mangler felles reisebasefilter');
 if (!style.includes('/* Canonical place-list component */') || !style.includes('grid-template-columns:112px minmax(0,1fr) 26px') || !style.includes('.place-list-primary-link::after')) {
   errors.push('style.css: mobil stedsrad mangler kanonisk kompakt grid/klikkflate');
 }

@@ -48,7 +48,8 @@ async function renderDayIdeas(){
   }
   const initial=setupChoiceFilters(document.getElementById('idea-filters'),
     trip.route.map(stop=>({value:stop.id,label:stop.filterLabel||byId.get(stop.id)?.name||stop.id,theme:stop.theme})),
-    draw,{initialValue:new URLSearchParams(location.search).get('base')||'all'});
+    value=>{selectJourneyBase(trip,value);draw(value);},
+    {initialValue:selectedJourneyBase(trip)});
   root.addEventListener('click',e=>{
     const button=e.target.closest('button[data-set-choice]');if(!button)return;
     const id=button.closest('[data-idea-place]')?.dataset.ideaPlace;
