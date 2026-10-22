@@ -2340,3 +2340,38 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
 .place-feature-tag{border-style:dashed;background:var(--paper)}
 .place-list-card .entity-choice-widget{position:relative;z-index:8;isolation:isolate;cursor:default}
 .place-list-card .entity-choice-widget button{position:relative;z-index:9;cursor:pointer;touch-action:manipulation}
+
+.hotel-index-content{
+ display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;
+ color:inherit;text-decoration:none;
+}
+.hotel-index-content:hover h3,.hotel-index-content:focus-visible h3{text-decoration:underline;text-underline-offset:3px}
+.hotel-index-card .entity-choice-widget{
+ width:100%;box-sizing:border-box;display:flex;justify-content:flex-end;
+ margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--line);
+ position:relative;z-index:2;
+}
+.hotel-index-card .entity-choice-widget button{min-height:34px}
+.hotel-grid>.entity-choice-widget{display:none}
+.food-index-item{min-width:0;display:flex;flex-direction:column;border-radius:14px}
+.food-index-item>.food-index-row{width:100%;box-sizing:border-box}
+.food-index-item>.entity-choice-widget{
+ display:flex;justify-content:flex-end;align-self:stretch;box-sizing:border-box;
+ margin:0;padding:5px 12px 9px;border:1px solid var(--line);border-top:0;
+ border-radius:0 0 12px 12px;background:var(--paper);
+}
+.food-index-item .food-index-row{border-radius:14px 14px 0 0}
+.food-index-item:hover .food-index-row{background:#fff}
+#place-map,#restaurant-map,#hotel-map{
+ width:100%;min-height:360px;height:min(52vh,520px);
+ border:1px solid var(--line);border-radius:18px;overflow:hidden;
+ background:#e7e3db;box-shadow:var(--shadow-sm);position:relative;
+}
+.entity-map-section{min-width:0}
+.entity-map-section .section-head p{max-width:480px}
+@media(max-width:620px){
+ #place-map,#restaurant-map,#hotel-map{min-height:300px;height:42vh}
+ .hotel-index-card{padding:15px}
+ .hotel-index-card .entity-choice-widget{gap:4px}
+ .hotel-index-card .entity-choice-widget .choice-caption{flex:1}
+}

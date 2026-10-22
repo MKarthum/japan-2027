@@ -806,9 +806,6 @@ if (/\\b(?:renderFlightsResearch|flight-copy-template|flight-r-matrix)\\b/.test(
   errors.push('Spor fra historiske flysøkegrensesnitt er fortsatt i aktiv kode');
 }
 
-if (!app.includes("fallback.id='place-map-fallback'") || !app.includes("document.getElementById('place-map-fallback')?.remove()")) {
-  errors.push('app.js: stedskartets fallback må opprettes ved fatal feil og fjernes når kartet blir brukbart');
-}
 if (!style.includes('.map-error[hidden]{display:none}')) errors.push('style.css: skjulte kartfeil må forbli skjult selv om .map-error setter display');
 if (!app.includes('async function renderFlightGuide()') || !app.includes("json('data/flights.json')")) errors.push('app.js mangler åpen flysøksguide');
 if (!pages.navigation?.sections?.some(g=>g.items?.some(x=>x.key==='flights')) || !app.includes('data-pattern-id')) errors.push('app.js mangler synlig navigasjon eller interaktive flysøkoppsett');
@@ -849,6 +846,9 @@ if (!app.includes('showPlaceDetail') || !app.includes('showFoodDetail') || !app.
 const popupSyncCount=[...app.matchAll(/popup\.on\('open'/g)].length;
 if (popupSyncCount < 5) errors.push('app.js: detaljpanelet må bindes til faktisk åpnet kart-popup, ikke separate klikkhendelser');
 const mapShared=fs.readFileSync('docs/assets/map-shared.js','utf8');
+if (!mapShared.includes("function renderDetailContextMap(") || !mapShared.includes("onFatal:()=>") || !mapShared.includes("onReady:()=>root.querySelector('.map-error')?.remove()")) {
+  errors.push('map-shared.js: felles detaljkart skal ha håndtering av fatal feil og opprydding når det blir brukbart');
+}
 const choicesShared=fs.readFileSync('docs/assets/choices.js','utf8');
 for(const [name,code] of [['map-shared.js',mapShared],['choices.js',choicesShared]]){
  try{new Script(code,{filename:name});}catch(error){errors.push(name+': syntaksfeil '+error.message);}
@@ -871,7 +871,7 @@ if (!mapShared.includes('Knutepunkter') || !transport.stationNote) errors.push('
 const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>mapShared.indexOf(x));
 if(toolbarOrder.some(x=>x<0)||toolbarOrder.some((x,i)=>i>0&&x<=toolbarOrder[i-1]))errors.push('Kart: kartlagene har feil rekkefølge');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
-if (!app.includes('mapStationElement(s.name,s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)))') || !app.includes('stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId))')) errors.push('stasjonsmarkører på rute- og detaljkart følger ikke destinasjonsfargene');
+if (!app.includes('mapStationElement(s.name,s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)))') || !mapShared.includes('stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId))')) errors.push('stasjonsmarkører på rute- og detaljkart følger ikke destinasjonsfargene');
 if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
 if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.js refererer fortsatt til avledet map-pois-data');
 for (const dataFile of ['food.json','places.json','hotels.json']) {

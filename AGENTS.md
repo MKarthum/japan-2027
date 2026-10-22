@@ -156,3 +156,9 @@ Ved brukersynlige endringer bumpes `docs/data/site.json`. Når CSS eller JavaScr
 - Farge kommer fortsatt utelukkende fra reisebasen i `trip.json`; kategori vises med form og piktogram: stjerne = opplevelse, sekskant med bestikk = mat, hus = overnatting, diamant med tog = knutepunkt. Nummererte sirkler er reiserutens stopp; markør for gjeldende sted på detaljkart er et siktemerke.
 - `docs/assets/map-shared.js` er eneste autoritet for kartsymbolene, knappetekstene og lagerte kartlagsvalg. Rutekartet og detaljkartet skal kalle de samme konstruktørene; stasjon med flere tilhørigheter må beholde flerfarget markør. Ikke innfør lokale, lignende ikoner i `app.js`.
 - Markørknapper skal ha lesbare navn, omtrent 42 px trykkflate og tydelig valgt/fokusert tilstand; på mobil skal alle fire kategoriknappene være synlige uten horisontal scrolling. Kjør `node scripts/check-map-ux.mjs` ved kartendringer.
+
+## Felles detaljkart og integrerte valghandlinger (v0.30.17)
+
+- Sted, restaurant og hotell skal alle ha kart og samme kategorifiltre. Felles funksjon `renderDetailContextMap` i `docs/assets/map-shared.js` tar kanoniske `places.json`, `food.json`, `hotels.json` og `transport.json`, markerer valgt objekt med siktemerke og bruker samme ikoner, destinasjonsfarger, popup-lenker og lagrede kartlag. Ikke kopier kartlogikk per detaljside.
+- Hotell- og restaurantoversikten må inneholde **ett grid-/listekort per objekt**. Kortet skal ha en egen intern `<a>` for navigasjon og `Min vurdering` som søskenelement **inni** samme `<article>`; legg aldri kontrollen som søsken direkte under gridet. Interaktive knapper må ikke plasseres inne i `<a>`. `choices.js` installerer kortets widget, og persisteringsnøkkelen beholdes.
+- Tester: `node scripts/check-detail-views.mjs`, `node scripts/check-map-ux.mjs`, øvrige data- og state-tester. Kontroller mobil og desktop ved UI-endringer.

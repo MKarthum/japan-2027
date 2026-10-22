@@ -1114,84 +1114,12 @@ async function renderPlace() {
 
   document.getElementById('external-links').innerHTML = [...(p.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
 
-  const mapRoot=document.getElementById('place-map');
-  if(mapRoot && p.map && Number.isFinite(p.map.lat) && Number.isFinite(p.map.lng)){
-    if(typeof maplibregl==='undefined'){
-      mapRoot.innerHTML=`<div class="map-error"><strong>Kartet kunne ikke lastes.</strong><br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.area+' Japan')}" target="_blank" rel="noopener">Åpne i Google Maps ↗</a></div>`;
-    } else {
-      const map=new maplibregl.Map({
-        container:'place-map',
-        style:'https://tiles.openfreemap.org/styles/liberty',
-        center:[p.map.lng,p.map.lat],
-        zoom:p.type==='base'||p.type==='dagstur'?11.5:13.5,
-        attributionControl:true
-      });
-      map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-left');
-      const el=mapCurrentPlaceElement(trip,p);
-      const activePopup=new maplibregl.Popup({offset:18,maxWidth:'250px'}).setHTML(`<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,p))}"><div class="meta">${p.type} · ${p.area}</div><h3>${p.name}</h3></div>`);
-      const activeMarker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(activePopup);
-      watchMapMarker(activeMarker,activePopup).addTo(map);
-      const mapLayers=readMapLayers();
-      const groups={experience:[],food:[],hotel:[],stations:[]};
-      const addPoi=(subject,kind,meta,href)=>{
-        if(!Number.isFinite(subject?.map?.lng)||!Number.isFinite(subject?.map?.lat))return;
-        if(kind==='experience'&&subject.id===p.id)return;
-        const el=mapPoiElement(trip,subject,kind);
-        const popup=new maplibregl.Popup({offset:14,maxWidth:'250px'}).setHTML(sharedMapPopupHtml(trip,meta,subject.name,subject,href,'Se detaljer'));
-        const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([subject.map.lng,subject.map.lat]).setPopup(popup);
-        watchMapMarker(marker,popup);
-        groups[kind].push(marker);
-        if(mapLayers[kind])marker.addTo(map);
-      };
-      for(const other of places)addPoi(other,'experience',other.type+' · '+other.area,'place.html?id='+encodeURIComponent(other.id));
-      for(const other of food.filter(x=>Number.isFinite(x.map?.lng)))addPoi(other,'food',other.role+' · '+other.area,'restaurant.html?id='+encodeURIComponent(other.id));
-      for(const other of hotelData.hotels)addPoi(other,'hotel',other.tier+' · '+other.area,'hotel.html?id='+encodeURIComponent(other.id));
-      const stationGroups=new Map();
-      for(const leg of transport.legs)for(const station of leg.stations){
-        const key=[station.name,station.lng.toFixed(4),station.lat.toFixed(4)].join('|');
-        if(!stationGroups.has(key))stationGroups.set(key,{station,colors:[]});
-        stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId));
-      }
-      for(const {station,colors} of stationGroups.values()){
-        const el=mapStationElement(station.name,colors);
-        const popup=new maplibregl.Popup({offset:14,maxWidth:'250px'}).setHTML(sharedMapPopupHtml(trip,'Knutepunkt',station.name,null,'transport-guide.html','Transport og pass'));
-        const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([station.lng,station.lat]).setPopup(popup);
-        watchMapMarker(marker,popup);
-        groups.stations.push(marker);if(mapLayers.stations)marker.addTo(map);
-      }
-      const toolbar=document.getElementById('place-map-layers');
-      if(toolbar){
-        const onToggle=(key,on)=>{
-          mapLayers[key]=on;
-          for(const marker of groups[key]){if(on)marker.addTo(map);else marker.remove();}
-          toolbar.querySelector('[data-map-layer="'+key+'"]')?.setAttribute('aria-pressed',String(on));
-          storeMapLayers(mapLayers);
-        };
-        const counts=Object.fromEntries(Object.entries(groups).map(([key,arr])=>[key,arr.length]));
-        wireMapLayerToolbar(toolbar,{counts,state:mapLayers,onToggle});
-      }
-      const suggested=(dayIdeas.ideas||[]).filter(x=>[...(x.corePlaceIds||[]),...(x.optionalPlaceIds||[])].includes(p.id));
-      if(suggested.length){
-        const dayLink=document.createElement('p');dayLink.className='small';
-        dayLink.innerHTML='<a href="day-ideas.html?base='+encodeURIComponent(destinationId(trip,p)||suggested[0].baseId)+'">Se dagidéer som inkluderer dette stedet →</a>';
-        document.getElementById('place-map')?.insertAdjacentElement('afterend',dayLink);
-      }
-      installMapLoadFallback(map,{
-        onFatal:()=>{
-          let fallback=document.getElementById('place-map-fallback');
-          if(!fallback){
-            fallback=document.createElement('div');
-            fallback.id='place-map-fallback';
-            fallback.className='map-error place-map-fallback';
-            fallback.textContent='Kartet kunne ikke lastes. Bruk Kart-lenken øverst for å åpne stedet i Google Maps.';
-            mapRoot.insertAdjacentElement('afterend',fallback);
-          }
-        },
-        onReady:()=>document.getElementById('place-map-fallback')?.remove()
-      });
-    }
-  } else if(mapRoot){
-    mapRoot.innerHTML='<div class="map-error"><strong>Kartposisjon mangler.</strong></div>';
+  renderDetailContextMap({containerId:'place-map',toolbarId:'place-map-layers',trip,current:p,currentKind:'experience',places,food,hotels:hotelData.hotels,transport});
+  const suggested=(dayIdeas.ideas||[]).filter(x=>[...(x.corePlaceIds||[]),...(x.optionalPlaceIds||[])].includes(p.id));
+  if(suggested.length){
+    const dayLink=document.createElement('p');dayLink.className='small';
+    dayLink.innerHTML='<a href="day-ideas.html?base='+encodeURIComponent(destinationId(trip,p)||suggested[0].baseId)+'">Se dagidéer som inkluderer dette stedet →</a>';
+    document.getElementById('place-map')?.insertAdjacentElement('afterend',dayLink);
   }
 
   const activeFood=food.filter(x=>x.status==='active');
@@ -1310,7 +1238,8 @@ async function renderFood() {
     return bits.join('');
   };
 
-  const row=(x)=>`<a class="food-index-row destination-themed" style="${themeStyle(destinationTheme(trip,x))}" href="restaurant.html?id=${encodeURIComponent(x.id)}">
+  const row=(x)=>`<article class="food-index-item destination-themed" style="${themeStyle(destinationTheme(trip,x))}">
+    <a class="food-index-row" href="restaurant.html?id=${encodeURIComponent(x.id)}">
     <div class="food-index-main">
       <div class="food-index-badges">${priorityBadge(x.priority)}<span class="food-role">${x.role}</span></div>
       <h3>${x.name}</h3>
@@ -1320,7 +1249,8 @@ async function renderFood() {
     <div class="food-index-rating">${ratingSummary(x)}</div>
     <div class="food-index-price"><span>${x.priceClass}</span><strong>${familyPrice(x)}</strong></div>
     <span class="food-index-arrow" aria-hidden="true">→</span>
-  </a>`;
+    </a>
+  </article>`;
 
   const draw=(destination='all')=>{
     const visible=active.filter(x=>destination==='all'||destinationId(trip,x)===destination);
@@ -1371,7 +1301,7 @@ async function renderFood() {
 
 async function renderRestaurant() {
   nav('food'); footer();
-  const [foodData,fx,trip]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json')]);
+  const [foodData,fx,trip,places,hotelData,transport]=await Promise.all([json('data/food.json'),loadFx(),json('data/trip.json'),json('data/places.json'),json('data/hotels.json'),json('data/transport.json')]);
   const food=foodData.restaurants||[];
   const id=new URLSearchParams(location.search).get('id');
   const x=food.find(item=>item.id===id);
@@ -1451,6 +1381,7 @@ async function renderRestaurant() {
   ].filter(Boolean);
   document.getElementById('restaurant-links').innerHTML=links.join('');
 
+  renderDetailContextMap({containerId:'restaurant-map',toolbarId:'restaurant-map-layers',trip,current:x,currentKind:'food',places,food,hotels:hotelData.hotels,transport});
   const alternatives=food.filter(item=>item.status==='active'&&item.id!==x.id&&item.area===x.area).slice(0,4);
   document.getElementById('restaurant-alternatives').innerHTML=alternatives.length
     ? alternatives.map(item=>relatedEntityCardHtml({href:`restaurant.html?id=${encodeURIComponent(item.id)}`,meta:item.role,title:item.name,subtitle:item.dish,trip,subject:item})).join('')
@@ -1505,14 +1436,16 @@ async function renderHotels() {
     const nights=plannedNights(x), [lo,hi]=scalePartyRange(x.standardFamilyNightYen,trip);
     return `${fmtJpy(lo*nights)}–${fmtJpy(hi*nights)} · ca. ${fmtNok(nokFromJpy(lo*nights,fx))}–${fmtNok(nokFromJpy(hi*nights,fx))}`;
   };
-  const card=(x)=>`<a class="hotel-index-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}" href="hotel.html?id=${encodeURIComponent(x.id)}">
+  const card=(x)=>`<article class="hotel-index-card destination-themed" style="${themeStyle(destinationTheme(trip,x.baseId))}">
+    <a class="hotel-index-content" href="hotel.html?id=${encodeURIComponent(x.id)}" aria-label="Se detaljer om ${escapeSiteHtml(x.name)}">
     <div class="hotel-index-top"><div><span class="hotel-tier">${x.tier}</span><span class="stay-kind">${typeById.get(x.kind)?.label||x.kind}</span></div><span class="hotel-rating">${x.rating?.score?`${x.rating.platform} ${x.rating.score.toFixed(1)}`:''}</span></div>
     <h3>${x.name}</h3>
     <p class="hotel-family">${x.familyOption}</p>
     <div class="hotel-index-price"><span>${planningPartyLabel(trip)}</span>${price(x)}</div>
     <p class="hotel-logistics">${x.logistics}</p>
     <div class="hotel-total"><span>${plannedNights(x)} ${plannedNights(x)===1?'natt':'netter'} i planen</span><strong>${totalPrice(x)}</strong></div>
-  </a>`;
+    </a>
+  </article>`;
 
   const draw=()=>{
     const root=document.getElementById('hotel-bases');
@@ -1551,7 +1484,7 @@ async function renderHotels() {
 
 async function renderHotel() {
   nav('hotels'); footer();
-  const [data,trip,fx]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),loadFx()]);
+  const [data,trip,fx,places,foodData,transport]=await Promise.all([json('data/hotels.json'),json('data/trip.json'),loadFx(),json('data/places.json'),json('data/food.json'),json('data/transport.json')]);
   const id=new URLSearchParams(location.search).get('id');
   const x=data.hotels.find(h=>h.id===id);
   if(!x){
@@ -1592,6 +1525,7 @@ async function renderHotel() {
     x.links?.googleMaps?`<a class="button" href="${x.links.googleMaps}" target="_blank" rel="noopener">Google Maps ↗</a>`:''
   ].filter(Boolean);
   document.getElementById('hotel-links').innerHTML=links.join('');
+  renderDetailContextMap({containerId:'hotel-map',toolbarId:'hotel-map-layers',trip,current:x,currentKind:'hotel',places,food:foodData.restaurants,hotels:data.hotels,transport});
   const alternatives=data.hotels.filter(h=>h.baseId===x.baseId&&h.id!==x.id);
   document.getElementById('hotel-alternatives').innerHTML=alternatives.map(h=>relatedEntityCardHtml({href:`hotel.html?id=${encodeURIComponent(h.id)}`,meta:h.tier,title:h.name,subtitle:h.familyOption,trip,subject:h.baseId})).join('');
 }

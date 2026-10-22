@@ -81,3 +81,89 @@ function wireMapLayerToolbar(toolbar,{counts,onToggle,state,extra=''}) {
   if(e.target.closest('[data-map-reset]'))Object.keys(JAPAN_MAP_LAYER_DEFAULTS).forEach(k=>onToggle(k,true));
  });
 }
+
+
+// Single context-map implementation for place, restaurant and hotel detail pages.
+// Canonical data is passed in; marker art, URL-local layer state and popups are shared.
+function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,places,food,hotels,transport}){
+ const root=document.getElementById(containerId),toolbar=document.getElementById(toolbarId);
+ if(!root)return null;
+ const valid=x=>Number.isFinite(x?.map?.lng)&&Number.isFinite(x?.map?.lat);
+ const mapsHref=current.links?.googleMaps||`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(current.name+' '+(current.area||'')+' Japan')}`;
+ const fallback=(message)=>{
+  root.innerHTML=`<div class="map-error"><strong>${escapeSiteHtml(message)}</strong><p><a href="${mapsHref}" target="_blank" rel="noopener">Åpne i Google Maps ↗</a></p></div>`;
+ };
+ if(!valid(current)){fallback('Ingen kartposisjon registrert for dette stedet.');return null;}
+ if(typeof maplibregl==='undefined'){fallback('Kartet kunne ikke lastes.');return null;}
+ const position=[current.map.lng,current.map.lat];
+ let map;
+ try{
+  map=new maplibregl.Map({
+   container:containerId,style:'https://tiles.openfreemap.org/styles/liberty',
+   center:position,zoom:current.type==='base'||current.type==='dagstur'?11.5:13.5,
+   attributionControl:true
+  });
+  map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-left');
+ }catch{fallback('Kartet kunne ikke startes.');return null;}
+ const selected=mapCurrentPlaceElement(trip,current);
+ const selectedMeta=({experience:'Opplevelse',food:'Restaurant',hotel:'Overnatting'})[currentKind];
+ const selectedPopup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(
+  `<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,current))}"><div class="meta">${selectedMeta} · ${escapeSiteHtml(current.area||'')}</div><h3>${escapeSiteHtml(current.name)}</h3><p class="small">Du ser på dette stedet.</p></div>`
+ );
+ const currentMarker=new maplibregl.Marker({element:selected,anchor:'center'})
+  .setLngLat(position).setPopup(selectedPopup);
+ watchMapMarker(currentMarker,selectedPopup).addTo(map);
+
+ const state=readMapLayers();
+ const groups={experience:[],food:[],hotel:[],stations:[]};
+ const add=(subject,kind,label,href)=>{
+  if(!valid(subject)||(kind===currentKind&&subject.id===current.id))return;
+  const el=mapPoiElement(trip,subject,kind);
+  const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'})
+   .setHTML(sharedMapPopupHtml(trip,label,subject.name,subject,href,'Se detaljer'));
+  const marker=new maplibregl.Marker({element:el,anchor:'center'})
+   .setLngLat([subject.map.lng,subject.map.lat]).setPopup(popup);
+  watchMapMarker(marker,popup);
+  groups[kind].push(marker);
+  if(state[kind])marker.addTo(map);
+ };
+ for(const x of places)add(x,'experience',`${x.type} · ${x.area}`,`place.html?id=${encodeURIComponent(x.id)}`);
+ for(const x of food)add(x,'food',`${x.role} · ${x.area}`,`restaurant.html?id=${encodeURIComponent(x.id)}`);
+ for(const x of hotels)add(x,'hotel',`${x.tier} · ${x.area}`,`hotel.html?id=${encodeURIComponent(x.id)}`);
+
+ const stationGroups=new Map();
+ for(const leg of transport.legs||[])for(const station of leg.stations||[]){
+  if(!Number.isFinite(station.lng)||!Number.isFinite(station.lat))continue;
+  const key=[station.name,station.lng.toFixed(4),station.lat.toFixed(4)].join('|');
+  if(!stationGroups.has(key))stationGroups.set(key,{station,colors:[]});
+  stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId));
+ }
+ for(const {station,colors} of stationGroups.values()){
+  const el=mapStationElement(station.name,colors);
+  const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'})
+   .setHTML(sharedMapPopupHtml(trip,'Knutepunkt',station.name,null,'transport-guide.html','Transport og pass'));
+  const marker=new maplibregl.Marker({element:el,anchor:'center'})
+   .setLngLat([station.lng,station.lat]).setPopup(popup);
+  watchMapMarker(marker,popup);
+  groups.stations.push(marker);
+  if(state.stations)marker.addTo(map);
+ }
+ if(toolbar){
+  const counts=Object.fromEntries(Object.entries(groups).map(([key,list])=>[key,list.length]));
+  const toggle=(kind,on)=>{
+   state[kind]=on;
+   for(const marker of groups[kind]){if(on)marker.addTo(map);else marker.remove();}
+   toolbar.querySelector(`[data-map-layer="${kind}"]`)?.setAttribute('aria-pressed',String(on));
+   storeMapLayers(state);
+  };
+  wireMapLayerToolbar(toolbar,{counts,state,onToggle:toggle,
+   extra:'<button type="button" class="map-layer-fit" data-map-focus="true">Til stedet ◎</button>'
+  });
+  toolbar.querySelector('[data-map-focus]')?.addEventListener('click',()=>map.easeTo({center:position,zoom:13.5,duration:450}));
+ }
+ installMapLoadFallback(map,{
+  onFatal:()=>{if(!root.querySelector('.map-error'))fallback('Kartet kunne ikke lastes.');},
+  onReady:()=>root.querySelector('.map-error')?.remove()
+ });
+ return map;
+}

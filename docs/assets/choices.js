@@ -43,11 +43,14 @@ function installChoiceWidgets(){
   for(const anchor of document.querySelectorAll(selector)){
    const entityId=new URL(anchor.href).searchParams.get('id');
    if(!entityId)continue;
-   const wrapper=anchor.closest('article.place-list-card')?.querySelector('.place-list-copy') || (anchor.classList.contains('place-destination-heading-link')?null:anchor);
+   const wrapper=anchor.closest('article.place-list-card')?.querySelector('.place-list-copy')
+      || anchor.closest('article.food-index-item, article.hotel-index-card')
+      || (anchor.classList.contains('place-destination-heading-link')?null:anchor);
    if(!wrapper||wrapper.dataset.choiceAttached)continue;
    wrapper.dataset.choiceAttached='true';
    const w=choiceWidget(t,entityId);
-   if(wrapper===anchor)anchor.insertAdjacentElement('afterend',w);else wrapper.append(w);
+   if(wrapper===anchor)anchor.insertAdjacentElement('afterend',w);
+   else wrapper.append(w);
   }
  }
  syncChoiceWidgets();

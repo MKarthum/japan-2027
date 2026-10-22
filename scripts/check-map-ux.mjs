@@ -57,9 +57,9 @@ assert(css.includes('width:26px;height:26px'),'Station needs a visibly larger di
 assert(css.includes('transform:rotate(45deg)'),'Stations must be visually diamond-shaped');
 assert(css.includes('.map-layer-toggle .map-category-icon'),'Toolbar icons must match map markers');
 assert(app.includes('mapStationElement(s.name,s.memberships.map('));
-assert(app.includes('mapStationElement(station.name,colors)'));
-assert(app.includes('mapCurrentPlaceElement(trip,p)'));
-assert(app.includes('watchMapMarker(marker,popup)'));
+assert(shared.includes('mapStationElement(station.name,colors)'));
+assert(shared.includes('mapCurrentPlaceElement(trip,current)'));
+assert(shared.includes('watchMapMarker(marker,popup)') && app.includes('watchMapMarker(marker,popup)'));
 assert(!app.includes("className='map-station-dot'"),'Map station rendering should only live in map-shared');
 const route=fs.readFileSync('docs/route.html','utf8');
 const place=fs.readFileSync('docs/place.html','utf8');
