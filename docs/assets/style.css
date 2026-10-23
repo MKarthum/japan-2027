@@ -183,15 +183,22 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   width:42px;height:42px;padding:3px;margin:0;border:0;background:transparent;
   display:grid;place-items:center;cursor:pointer;touch-action:manipulation;color:#fff;
 }
-/* Soft translucent backplate behind category silhouette, with strong symbol outlines. */
-.map-poi-dot:not(.is-current)::before{
- content:'';position:absolute;inset:5px;z-index:0;pointer-events:none;
- border:1px solid rgba(255,255,255,.76);border-radius:11px;
- background:rgba(255,255,255,.28);
- -webkit-backdrop-filter:blur(8px) saturate(140%);
- backdrop-filter:blur(8px) saturate(140%);
- box-shadow:0 1px 5px rgba(22,32,40,.15),inset 0 1px 0 rgba(255,255,255,.65);
+/* Glass exists *inside* each category silhouette, never in a square behind it.
+   The clipping path is taken from the same canonical SVG outline in map-shared.js.
+   Without path() support the SVG fill remains translucent, with no extra backing. */
+@supports (clip-path:path("M0 0 L1 0 L1 1 Z")){
+ .map-poi-dot::before{
+  content:'';position:absolute;left:50%;top:50%;z-index:0;pointer-events:none;
+  width:36px;height:36px;
+  transform:translate(-50%,-50%) scale(var(--map-glass-scale,.9167));
+  -webkit-clip-path:var(--map-glass-clip);
+  clip-path:var(--map-glass-clip);
+  background:linear-gradient(145deg,rgba(255,255,255,.38),rgba(255,255,255,.05) 66%);
+  -webkit-backdrop-filter:blur(5px) saturate(135%);
+  backdrop-filter:blur(5px) saturate(135%);
+ }
 }
+.map-poi-dot.is-current{--map-glass-scale:1.028}
 .map-category-icon{
  position:relative;z-index:1;
  display:block;width:33px;height:33px;overflow:visible;
@@ -199,7 +206,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 }
 .map-symbol-surface{
  fill:var(--area-color,#5f6b73);
- fill:color-mix(in srgb,var(--area-color,#5f6b73) 88%,transparent);
+ fill:color-mix(in srgb,var(--area-color,#5f6b73) 64%,transparent);
  stroke:rgba(255,255,255,.97);stroke-width:2.6;stroke-linejoin:round;
 }
 .map-symbol-detail{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -210,8 +217,22 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
   transform:rotate(45deg);box-shadow:0 2px 9px rgba(22,32,40,.34);
 }
 /* Subtle glass on stations; preserve multi-base gradients without flattening colors. */
-.map-station-dot .map-station-face{opacity:.89;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
-.map-station-dot:is(:hover,:focus-visible,.is-selected) .map-station-face{opacity:1}
+/* The station diamond itself is the glass: the original base-colour or
+   multicolour gradient is layered *within* its bounds, not behind a new frame. */
+.map-station-dot .map-station-face{
+ position:relative;opacity:1;background:rgba(255,255,255,.16);
+ -webkit-backdrop-filter:blur(5px) saturate(135%);
+ backdrop-filter:blur(5px) saturate(135%);
+}
+.map-station-dot .map-station-face::before{
+ content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+ background:var(--station-fill,var(--area-color,#385b79));opacity:.67;
+}
+.map-station-dot .map-station-face::after{
+ content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+ background:linear-gradient(145deg,rgba(255,255,255,.39),transparent 67%);
+}
+.map-station-dot:is(:hover,:focus-visible,.is-selected) .map-station-face::before{opacity:.79}
 .map-station-face>.map-category-icon{width:22px;height:22px;transform:rotate(-45deg);filter:none}
 .map-poi-dot:hover .map-category-icon,.map-poi-dot:focus-visible .map-category-icon,
 .map-station-dot:hover .map-station-face,.map-station-dot:focus-visible .map-station-face{
@@ -2524,11 +2545,16 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
 
 /* The map's glass skin is optional; increased contrast must take precedence. */
 @media (prefers-reduced-transparency:reduce),(prefers-contrast:more){
- .map-poi-dot:not(.is-current)::before{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+ .map-poi-dot::before{content:none;-webkit-backdrop-filter:none;backdrop-filter:none}
  .map-poi-dot.is-current,.map-current-label,.maplibregl-popup-content,
  .map-stop .map-place-label{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
  .map-symbol-surface{fill:var(--area-color,#5f6b73);stroke:#fff}
- .map-station-dot .map-station-face{opacity:1;-webkit-backdrop-filter:none;backdrop-filter:none}
+ .map-station-dot .map-station-face{
+  opacity:1;background:var(--station-fill,var(--area-color,#385b79));
+  -webkit-backdrop-filter:none;backdrop-filter:none
+ }
+ .map-station-dot .map-station-face::before,
+ .map-station-dot .map-station-face::after{content:none}
 }
 .map-poi-dot{z-index:4}
 .map-station-dot{z-index:6}

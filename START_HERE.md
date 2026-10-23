@@ -200,3 +200,9 @@ Dersom gjenbruksretten er uklar, skal bildet ikke brukes.
 - Kartmarkørene for mat, attraksjoner og hotell beholder hver sin distinkte silhuett og reisebasefarge. Et diskret halvtransparent baklag med lett bakgrunnsuskarphet gir glasspreg, men må ikke gjøre ikonene like. Togsymboler bruker lett transparens selv med flerfargede knutepunktmarkører.
 - Den valgte attraksjonen, restauranten eller hotellet beholder sitt kategorisymbol og får en synlig ring. Tekstetiketten under ikonet skal vise **stedsnavnet** (HTML-sikret), aldri generisk «Dette stedet». Et langt navn kan forkortes visuelt på mobil, men fullt navn må fortsatt være tilgjengelig i tittel/tilgjengelighetsetikett.
 - Kartets popup-bokser og navnelapper kan være forsiktig halvtransparente, med mørk fullt ugjennomsiktig tekst og tydelige kanter. Ved prefers-reduced-transparency eller prefers-contrast:more skal glasstransparens fjernes. Kontroller dette i scripts/check-map-ux.mjs. Ikke endre kartets tilstand eller lagring som ledd i ren stilendring.
+
+## Glass direkte i kartsymboler (v0.30.21)
+
+- Glassbehandlingen til opplevelser, restauranter og overnatting skal ligge **inne i symbolsilhuetten**, aldri i en ekstra firkant eller ramme bak. SVG-fyllingen skal være gjennomskinnelig, og CSS-clippath for bakgrunnsuskarphet utledes direkte fra samme SVG-bane i `map-shared.js` (én geometri-autoritet).
+- Knutepunktenes eksisterende diamant er den eneste glassflaten for tog, og beholder destinasjonsfarger og flerfargede knutepunktmarkører. Reisestopp og tilhørende navnebokser beholder sitt nåværende diskrete glassuttrykk.
+- Prioriter lesbarhet: tydelig hvit kontur, hvite piktogramstreker, lesbare bokstaver og fullt opake flater ved økt kontrast eller redusert transparens. Uten støtte for clip-path får man halvtransparent SVG, ikke en rektangulær reservebakgrunn.

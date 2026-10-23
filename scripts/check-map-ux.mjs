@@ -29,6 +29,7 @@ for(const k of ['experience','food','hotel']){
  assert(el.innerHTML.includes('<svg'));
  assert(el.attributes['aria-label'].includes('Teststed'));
  assert.equal(el.style.props['--area-color'],'#b6473d');
+ assert(el.style.props['--map-glass-clip']?.startsWith('path("M'),'Clipping must match the shape for '+k);
 }
 const single=a.mapStationElement('Shinjuku',['#123456']);
 assert.equal(single.tag,'button');assert(single.innerHTML.includes('map-station-face'));
@@ -72,8 +73,12 @@ assert(shared.includes('mapStationElement(station.name,colors,mapStationRole(tra
 assert(shared.includes('mapCurrentPlaceElement(trip,current,currentKind)'));
 assert(css.includes('.map-poi-dot.is-current{'));
 assert(css.includes('.map-current-label{'));
-assert(css.includes('.map-poi-dot:not(.is-current)::before{'),'Ordinary POI symbols must have glass backplates');
-assert(css.includes('.map-station-dot .map-station-face{opacity:.89'),'Train symbols must be lightly translucent');
+assert(!css.includes('.map-poi-dot:not(.is-current)::before{'),'Glass must not be another box around the symbol');
+assert(css.includes('.map-poi-dot::before{')&&css.includes('clip-path:var(--map-glass-clip)'),'Glass must be clipped to the icon silhouette');
+assert(css.includes('64%,transparent'),'Actual SVG fills must show the map through them');
+assert(js.includes('JAPAN_MAP_ICON_PATHS[kind].match('),'Clip silhouette comes from the canonical SVG, not a duplicate shape');
+assert(css.includes('.map-station-dot .map-station-face::before{'),'Train symbols must put transparency inside their diamonds');
+assert(css.includes('opacity:.67'),'Station color must be translucent inside the diamond');
 assert(css.includes('background:rgba(255,253,249,.87)'),'Popups must be lightly translucent');
 assert(css.includes('background:rgba(255,255,255,.79)'),'Current place name should be glass, not opaque');
 assert(css.includes('max-width:min(240px,calc(100vw - 46px))'),'Long current names should fit on mobile');

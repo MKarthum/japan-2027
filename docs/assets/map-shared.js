@@ -33,6 +33,9 @@ function mapPoiElement(trip,subject,kind){
  const el=document.createElement('button');
  el.type='button';el.className=`map-poi-dot ${kind}`;
  el.style.setProperty('--area-color',destinationColor(trip,subject));
+ // One outline source drives both the SVG silhouette and its clipped glass.
+ const outline=JAPAN_MAP_ICON_PATHS[kind].match(/<path class="map-symbol-surface" d="([^"]+)"/)?.[1];
+ if(outline)el.style.setProperty('--map-glass-clip',`path("${outline}")`);
  el.innerHTML=mapSymbolHtml(kind);
  el.setAttribute('aria-label',`${JAPAN_MAP_LAYER_INFO[kind].label}: ${subject.name}`);
  el.title=`${JAPAN_MAP_LAYER_INFO[kind].label}: ${subject.name}`;
