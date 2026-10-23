@@ -60,9 +60,9 @@ function mapCurrentPlaceElement(trip,subject,kind='experience'){
  // Selected objects use their normal category silhouette: ring and label indicate selection.
  const el=mapPoiElement(trip,subject,kind);
  el.classList.add('is-current');
- el.innerHTML+='<span class="map-current-label">Dette stedet</span>';
- el.setAttribute('aria-label',`Dette stedet · ${JAPAN_MAP_LAYER_INFO[kind].label}: ${subject.name}`);
- el.title=`Dette stedet: ${subject.name}`;
+ el.innerHTML+=`<span class="map-current-label">${escapeSiteHtml(subject.name)}</span>`;
+ el.setAttribute('aria-label',`Valgt på kartet · ${JAPAN_MAP_LAYER_INFO[kind].label}: ${subject.name}`);
+ el.title=subject.name;
  return el;
 }
 function watchMapMarker(marker,popup){
@@ -116,7 +116,7 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
   const selected=mapCurrentPlaceElement(trip,current,currentKind);
   const selectedMeta=({experience:'Opplevelse',food:'Restaurant',hotel:'Overnatting'})[currentKind];
   const selectedPopup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(
-   `<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,current))}"><div class="meta">${selectedMeta} · ${escapeSiteHtml(current.area||'')}</div><h3>${escapeSiteHtml(current.name)}</h3><p class="small">Du ser på dette stedet.</p></div>`
+   `<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,current))}"><div class="meta">${selectedMeta} · ${escapeSiteHtml(current.area||'')}</div><h3>${escapeSiteHtml(current.name)}</h3></div>`
   );
   const currentMarker=new maplibregl.Marker({element:selected,anchor:'center'})
    .setLngLat(position).setPopup(selectedPopup);

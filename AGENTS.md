@@ -177,3 +177,9 @@ Ved brukersynlige endringer bumpes `docs/data/site.json`. Når CSS eller JavaScr
 - Den nummererte reiseruten bruker kompakte, halvtransparente markører med beholdt trykkflate. Ved nasjonal kartzoom skjules navnelapper fram til valg / fokus; ved regional zoom vises flere detaljer. På mobil er de synlige rutetallene bare 24 px i oversikten. Dagsturmarkørene er enda mer diskrete. Bevar fargeringen rundt tallet og lesbarheten ved redusert transparens.
 - Et valgt konkret objekt på detaljkartet **skal bruke samme kategorisymbol** (attraksjonsstjerne, matikon eller hotellsymbol) som de øvrige. Skill det ut med ring og teksten «Dette stedet». Ikke bruk eget siktemerkeikon. Hele byer og områder har fortsatt ingen vilkårlig sentrumspin.
 - Sjekk `node scripts/check-map-ux.mjs`, `node scripts/check-route-hierarchy.mjs` og `node scripts/check-detail-views.mjs`.
+
+## Glassuttrykk i kartet (v0.30.20)
+
+- Kartmarkørene for mat, attraksjoner og hotell beholder hver sin distinkte silhuett og reisebasefarge. Et diskret halvtransparent baklag med lett bakgrunnsuskarphet gir glasspreg, men må ikke gjøre ikonene like. Togsymboler bruker lett transparens selv med flerfargede knutepunktmarkører.
+- Den valgte attraksjonen, restauranten eller hotellet beholder sitt kategorisymbol og får en synlig ring. Tekstetiketten under ikonet skal vise **stedsnavnet** (HTML-sikret), aldri generisk «Dette stedet». Et langt navn kan forkortes visuelt på mobil, men fullt navn må fortsatt være tilgjengelig i tittel/tilgjengelighetsetikett.
+- Kartets popup-bokser og navnelapper kan være forsiktig halvtransparente, med mørk fullt ugjennomsiktig tekst og tydelige kanter. Ved prefers-reduced-transparency eller prefers-contrast:more skal glasstransparens fjernes. Kontroller dette i scripts/check-map-ux.mjs. Ikke endre kartets tilstand eller lagring som ledd i ren stilendring.

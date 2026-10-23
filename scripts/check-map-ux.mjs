@@ -12,6 +12,7 @@ class Element {
 const ctx={
  JapanState:{keys:{map:'japan-2027-map-layers-v1'},readJson:()=>({food:false}),writeLocal:()=>{}},
  destinationColor:()=> '#b6473d',
+ escapeSiteHtml:s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'),
  document:{createElement:tag=>new Element(tag)},
  window:{dispatchEvent:()=>{}},
  CustomEvent:class {constructor(type,{detail}){this.type=type;this.detail=detail}},
@@ -38,12 +39,16 @@ assert(sharedStation.style.props['--station-fill'].startsWith('conic-gradient(')
 assert(sharedStation.style.props['--station-fill'].includes('#abcdef'));
 const active=a.mapCurrentPlaceElement({}, {name:'Hakone'});
 assert.equal(active.tag,'button');
-assert(active.innerHTML.includes(a.mapSymbolSvg('experience'))&&active.innerHTML.includes('Dette stedet'),'Selected experience must keep its category icon and a clear label');
+assert(active.innerHTML.includes(a.mapSymbolSvg('experience'))&&active.innerHTML.includes('>Hakone</span>'),'Selected experience must keep its category icon and show its actual name');
+assert(!active.innerHTML.includes('Dette stedet'));
+assert.equal(active.title,'Hakone');
+const escaped=a.mapCurrentPlaceElement({}, {name:'En test <onload=foo> & venner'},'experience');
+assert(escaped.innerHTML.includes('En test &lt;onload=foo&gt; &amp; venner'),'Escape labels in generated HTML');
 for(const kind of ['food','hotel']){
  const chosen=a.mapCurrentPlaceElement({}, {name:'Teststed'},kind);
  assert(chosen.innerHTML.includes(a.mapSymbolSvg(kind)),'Selected '+kind+' must keep its silhouette');
- assert(chosen.innerHTML.includes('map-current-label'));
- assert(chosen.attributes['aria-label'].includes('Dette stedet'));
+ assert(chosen.innerHTML.includes('map-current-label')&&chosen.innerHTML.includes('>Teststed</span>'));
+ assert(chosen.attributes['aria-label'].includes('Valgt på kartet'));
 }
 let hooks={};
 const marker={getElement:()=>active};
@@ -67,6 +72,12 @@ assert(shared.includes('mapStationElement(station.name,colors,mapStationRole(tra
 assert(shared.includes('mapCurrentPlaceElement(trip,current,currentKind)'));
 assert(css.includes('.map-poi-dot.is-current{'));
 assert(css.includes('.map-current-label{'));
+assert(css.includes('.map-poi-dot:not(.is-current)::before{'),'Ordinary POI symbols must have glass backplates');
+assert(css.includes('.map-station-dot .map-station-face{opacity:.89'),'Train symbols must be lightly translucent');
+assert(css.includes('background:rgba(255,253,249,.87)'),'Popups must be lightly translucent');
+assert(css.includes('background:rgba(255,255,255,.79)'),'Current place name should be glass, not opaque');
+assert(css.includes('max-width:min(240px,calc(100vw - 46px))'),'Long current names should fit on mobile');
+assert(css.includes('(prefers-contrast:more)'),'Honor high-contrast preferences');
 assert.equal((app.match(/new maplibregl\.Map\(/g)||[]).length,1,'Only one route map implementation is supported');
 assert.equal((shared.match(/new maplibregl\.Map\(/g)||[]).length,1,'Only one detail map implementation is supported');
 assert(shared.includes('watchMapMarker(marker,popup)') && app.includes('watchMapMarker(marker,popup)'));
