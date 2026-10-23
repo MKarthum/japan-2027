@@ -51,7 +51,15 @@ assert.deepEqual(selection,[firstLeg.id],'Multiple line hits may only select one
 selector({point:{x:1,y:1},originalEvent:{target:{closest:()=>({className:'maplibregl-marker'})}}});
 assert.deepEqual(selection,[firstLeg.id],'A route marker may not select underlying lines');
 
-assert(css.includes('.map-stop:not(.daytrip){width:44px;height:44px;z-index:16'));
+assert(css.includes('.map-stop:not(.daytrip){') && css.includes('width:42px;height:42px;display:grid;place-items:center'));
+assert(app.includes('const updateRouteMarkerScale=()=>'));
+assert(app.includes("map.on('zoom',updateRouteMarkerScale)"));
+assert(app.includes("map.getZoom()>=9?'detail':'overview'"));
+assert(css.includes('#map[data-route-zoom="overview"] .map-stop:not(.daytrip) .map-place-label'));
+assert(css.includes('width:24px;height:24px;border-radius:8px;font-size:.73rem'));
+assert(css.includes('width:42px;height:42px;display:grid;place-items:center'));
+assert(css.includes('backdrop-filter:blur(12px) saturate(155%)'));
+assert(css.includes('@media(prefers-reduced-transparency:reduce)'));
 assert(css.includes('.map-station-dot.alternative .map-station-face'));
 assert(css.includes('.map-station-dot.intermediate .map-station-face'));
 assert(shared.includes("if(['base','dagstur'].includes(x.type))continue"));

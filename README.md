@@ -128,3 +128,10 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - Rutesidens #journey-stops viser en utvidbar beskrivelse av registrerte stasjoner per etappe fra transport.json. Dette er ikke en komplett eller bekreftet stoppplan; vi vil ikke produsere fullstendige stoppmonstre for et tog for eksakt togavgang er valgt.
 - Rutelinjene registreres med en felles klikkhandler som velger kun en etappe i detaljpanelet. Et klikk på en MapLibre-markor skal aldri samtidig velge linjer under markoren, eller lage en ekstra rutepopup.
 - node scripts/check-route-hierarchy.mjs verifiserer klassifikasjonen, en linjeseleksjon og at stasjonslisten er tydelig merket som forelopig. Reisefarger og kartlagenes lagring forblir de samme.
+
+## Kartskalering og markør for valgt objekt (v0.30.19)
+
+- Det finnes akkurat to kartimplementasjoner: rutekartet i app.js og felles detaljkart i map-shared.js. Detaljkartet brukes av steder, restauranter og hoteller; ikke legg inn tredje eller fjerde MapLibre-konstruktør.
+- Den nummererte reiseruten bruker kompakte, halvtransparente markører med beholdt trykkflate. Ved nasjonal kartzoom skjules navnelapper fram til valg / fokus; ved regional zoom vises flere detaljer. På mobil er de synlige rutetallene bare 24 px i oversikten. Dagsturmarkørene er enda mer diskrete. Bevar fargeringen rundt tallet og lesbarheten ved redusert transparens.
+- Et valgt konkret objekt på detaljkartet **skal bruke samme kategorisymbol** (attraksjonsstjerne, matikon eller hotellsymbol) som de øvrige. Skill det ut med ring og teksten «Dette stedet». Ikke bruk eget siktemerkeikon. Hele byer og områder har fortsatt ingen vilkårlig sentrumspin.
+- Sjekk `node scripts/check-map-ux.mjs`, `node scripts/check-route-hierarchy.mjs` og `node scripts/check-detail-views.mjs`.

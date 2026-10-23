@@ -56,12 +56,13 @@ function mapStationElement(name,colors=[],role='used'){
  el.title=`${roleText}: ${name}`;
  return el;
 }
-function mapCurrentPlaceElement(trip,subject){
- const el=document.createElement('button');
- el.type='button';el.className='place-detail-marker';
- el.style.setProperty('--area-color',destinationColor(trip,subject));
- el.innerHTML='<svg viewBox="0 0 36 36" aria-hidden="true" focusable="false"><circle cx="18" cy="18" r="13" fill="var(--area-color)" stroke="#fff" stroke-width="3"/><path d="M18 7v7m0 8v7M7 18h7m8 0h7" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="18" r="2.5" fill="#fff"/></svg>';
- el.setAttribute('aria-label',`Dette stedet: ${subject.name}`);
+function mapCurrentPlaceElement(trip,subject,kind='experience'){
+ // Selected objects use their normal category silhouette: ring and label indicate selection.
+ const el=mapPoiElement(trip,subject,kind);
+ el.classList.add('is-current');
+ el.innerHTML+='<span class="map-current-label">Dette stedet</span>';
+ el.setAttribute('aria-label',`Dette stedet · ${JAPAN_MAP_LAYER_INFO[kind].label}: ${subject.name}`);
+ el.title=`Dette stedet: ${subject.name}`;
  return el;
 }
 function watchMapMarker(marker,popup){
@@ -112,7 +113,7 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
  // A city or day-trip area is not an exact physical attraction.
  // In this case the map is an overview, with no misleading arbitrary pin at its centre.
  if(!(currentKind==='experience'&&['base','dagstur'].includes(current.type))){
-  const selected=mapCurrentPlaceElement(trip,current);
+  const selected=mapCurrentPlaceElement(trip,current,currentKind);
   const selectedMeta=({experience:'Opplevelse',food:'Restaurant',hotel:'Overnatting'})[currentKind];
   const selectedPopup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(
    `<div class="map-popup map-popup-selection destination-themed" style="${themeStyle(destinationTheme(trip,current))}"><div class="meta">${selectedMeta} · ${escapeSiteHtml(current.area||'')}</div><h3>${escapeSiteHtml(current.name)}</h3><p class="small">Du ser på dette stedet.</p></div>`

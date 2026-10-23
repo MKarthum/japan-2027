@@ -38,13 +38,19 @@ assert(sharedStation.style.props['--station-fill'].startsWith('conic-gradient(')
 assert(sharedStation.style.props['--station-fill'].includes('#abcdef'));
 const active=a.mapCurrentPlaceElement({}, {name:'Hakone'});
 assert.equal(active.tag,'button');
-assert(active.innerHTML.includes('<circle')&&active.innerHTML.includes('<path'));
+assert(active.innerHTML.includes(a.mapSymbolSvg('experience'))&&active.innerHTML.includes('Dette stedet'),'Selected experience must keep its category icon and a clear label');
+for(const kind of ['food','hotel']){
+ const chosen=a.mapCurrentPlaceElement({}, {name:'Teststed'},kind);
+ assert(chosen.innerHTML.includes(a.mapSymbolSvg(kind)),'Selected '+kind+' must keep its silhouette');
+ assert(chosen.innerHTML.includes('map-current-label'));
+ assert(chosen.attributes['aria-label'].includes('Dette stedet'));
+}
 let hooks={};
 const marker={getElement:()=>active};
 const popup={on:(name,fn)=>{hooks[name]=fn}};
 assert.equal(a.watchMapMarker(marker,popup),marker);
 hooks.open();hooks.close();
-assert.deepEqual(active.classList.added,['is-selected']);
+assert.deepEqual(active.classList.added,['is-current','is-selected']);
 assert.deepEqual(active.classList.removed,['is-selected']);
 const layerHtml=a.mapLayerToggleHtml({experience:31,food:22,hotel:15,stations:11},{experience:true,food:false,hotel:true,stations:true});
 assert.equal((layerHtml.match(/data-map-layer=/g)||[]).length,4);
@@ -58,7 +64,11 @@ assert(css.includes('transform:rotate(45deg)'),'Stations must be visually diamon
 assert(css.includes('.map-layer-toggle .map-category-icon'),'Toolbar icons must match map markers');
 assert(app.includes('mapStationElement(s.name,s.memberships.map('));
 assert(shared.includes('mapStationElement(station.name,colors,mapStationRole(transport,station.name))'));
-assert(shared.includes('mapCurrentPlaceElement(trip,current)'));
+assert(shared.includes('mapCurrentPlaceElement(trip,current,currentKind)'));
+assert(css.includes('.map-poi-dot.is-current{'));
+assert(css.includes('.map-current-label{'));
+assert.equal((app.match(/new maplibregl\.Map\(/g)||[]).length,1,'Only one route map implementation is supported');
+assert.equal((shared.match(/new maplibregl\.Map\(/g)||[]).length,1,'Only one detail map implementation is supported');
 assert(shared.includes('watchMapMarker(marker,popup)') && app.includes('watchMapMarker(marker,popup)'));
 assert(!app.includes("className='map-station-dot'"),'Map station rendering should only live in map-shared');
 const route=fs.readFileSync('docs/route.html','utf8');

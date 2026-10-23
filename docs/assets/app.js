@@ -660,6 +660,14 @@ async function renderRoute() {
   });
   map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-left');
 
+  // Cross-country and street-level maps need different marker density.
+  const routeMapRoot=document.getElementById('map');
+  const updateRouteMarkerScale=()=>{
+    if(routeMapRoot)routeMapRoot.dataset.routeZoom=map.getZoom()>=9?'detail':'overview';
+  };
+  map.on('zoom',updateRouteMarkerScale);
+  updateRouteMarkerScale();
+
   let userMarker=null;
   let userLngLat=null;
   let userWatchId=null;
@@ -939,7 +947,7 @@ async function renderRoute() {
       el.title=`Reiserutens stopp ${i+1} · ${p.name}`;
       el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
       const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
-      const popup=new maplibregl.Popup({offset:24,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x,`place.html?id=${encodeURIComponent(p.id)}`,'Utforsk byen'));
+      const popup=new maplibregl.Popup({offset:16,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x,`place.html?id=${encodeURIComponent(p.id)}`,'Utforsk byen'));
       popup.on('open',()=>showStopDetail(x,p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup);
       watchMapMarker(marker,popup).addTo(map);
