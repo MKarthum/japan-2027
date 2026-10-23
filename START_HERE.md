@@ -206,3 +206,10 @@ Dersom gjenbruksretten er uklar, skal bildet ikke brukes.
 - Glassbehandlingen til opplevelser, restauranter og overnatting skal ligge **inne i symbolsilhuetten**, aldri i en ekstra firkant eller ramme bak. SVG-fyllingen skal være gjennomskinnelig, og CSS-clippath for bakgrunnsuskarphet utledes direkte fra samme SVG-bane i `map-shared.js` (én geometri-autoritet).
 - Knutepunktenes eksisterende diamant er den eneste glassflaten for tog, og beholder destinasjonsfarger og flerfargede knutepunktmarkører. Reisestopp og tilhørende navnebokser beholder sitt nåværende diskrete glassuttrykk.
 - Prioriter lesbarhet: tydelig hvit kontur, hvite piktogramstreker, lesbare bokstaver og fullt opake flater ved økt kontrast eller redusert transparens. Uten støtte for clip-path får man halvtransparent SVG, ikke en rektangulær reservebakgrunn.
+
+## Kontrollerte kartetiketter og popup-dialog (v0.30.22)
+
+- Detaljkart for steder, mat og hoteller bruker fortsatt én felles `renderDetailContextMap` i `map-shared.js`. Markørene er interaktive popup-utløsere, **ikke** direktelenker. Første trykk viser kategori/sted, en kort tekst utledet fra det kanoniske innholdet og en separat «Se detaljer»-lenke. Ingen navigasjon uten eksplisitt lenkeklikk.
+- Det valgte objektets navn (`map-current-label`) er alltid synlig med kategorisymbol og ring; det må aldri fjernes av kollisjonslogikken. Øvrige `map-poi-name` tegnes gradvis ved zoom (opplevelser før mat før overnatting), med plasskontroll mot andre markører og etiketter, og maksimalt 5 på små kartflater / 10 på større. Ved åpnet popup er navnet til akkurat dette objektet eneste kandidat til ekstra etikett.
+- Ingen stasjonsnavn som permanente kartetiketter på dette nivået. Stasjonene beholder rollehierarkiet og kan åpnes i popup som før. Alle etiketter er passive (`pointer-events:none`), slik at de ikke skjuler egne trykkbare symboler eller navigerer utilsiktet.
+- Ny test `node scripts/check-map-labels.mjs` verifiserer prioritet, valgte etiketter, kollisjon, terskler, kortfattet popup-tekst, sikker escaping og skillet mellom karttrykk og navigasjon. En ny kartimplementasjon må ikke innføres.

@@ -846,7 +846,7 @@ if (!app.includes('showPlaceDetail') || !app.includes('showFoodDetail') || !app.
 const popupSyncCount=[...app.matchAll(/popup\.on\('open'/g)].length;
 if (popupSyncCount < 5) errors.push('app.js: detaljpanelet må bindes til faktisk åpnet kart-popup, ikke separate klikkhendelser');
 const mapShared=fs.readFileSync('docs/assets/map-shared.js','utf8');
-if (!mapShared.includes("function renderDetailContextMap(") || !mapShared.includes("onFatal:()=>") || !mapShared.includes("onReady:()=>root.querySelector('.map-error')?.remove()")) {
+if (!mapShared.includes("function renderDetailContextMap(") || !mapShared.includes("onFatal:()=>") || !mapShared.includes("root.querySelector('.map-error')?.remove()")) {
   errors.push('map-shared.js: felles detaljkart skal ha håndtering av fatal feil og opprydding når det blir brukbart');
 }
 const choicesShared=fs.readFileSync('docs/assets/choices.js','utf8');

@@ -2616,3 +2616,29 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
  .journey-station{gap:8px}
  .journey-station-time{font-size:.68rem;white-space:normal}
 }
+
+.map-poi-dot .map-poi-name{
+ position:absolute;top:calc(100% + 5px);left:50%;z-index:2;
+ transform:translateX(-50%);
+ display:block;box-sizing:border-box;max-width:min(185px,calc(100vw - 45px));
+ width:max-content;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+ padding:4px 8px;border:1px solid rgba(255,255,255,.92);
+ border-left:3px solid var(--area-color,#5f6b73);
+ border-radius:10px;background:rgba(255,255,255,.81);color:#23313b;
+ -webkit-backdrop-filter:blur(11px) saturate(145%);
+ backdrop-filter:blur(11px) saturate(145%);
+ box-shadow:0 3px 11px rgba(22,32,40,.2);
+ font:800 .72rem/1.35 Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;
+ pointer-events:none;visibility:hidden;opacity:0;
+ transition:opacity .15s ease;
+}
+.map-poi-dot.is-label-visible .map-poi-name{visibility:visible;opacity:1}
+.map-poi-dot.is-popup-open{z-index:53}
+.map-poi-dot.is-current,.map-poi-dot.is-current.is-popup-open{z-index:62}
+.map-popup-micro{font-size:.8rem;line-height:1.45;color:#344552;max-width:29ch;margin:5px 0 10px}
+@media(prefers-reduced-motion:reduce){
+ .map-poi-dot .map-poi-name{transition:none}
+}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){
+ .map-poi-dot .map-poi-name{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
+}

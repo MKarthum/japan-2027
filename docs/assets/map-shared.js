@@ -74,9 +74,33 @@ function watchMapMarker(marker,popup){
  popup.on('close',()=>el.classList.remove('is-selected'));
  return marker;
 }
-function sharedMapPopupHtml(trip,meta,title,subject,href,label){
+function mapMicroText(subject,kind){
+ const raw=kind==='experience'?subject.description:subject.why||subject.description;
+ const text=String(raw||'').replace(/\s+/g,' ').trim();
+ if(!text)return '';
+ const sentence=text.match(/^.{1,150}?[.!?](?=\s|$)/)?.[0];
+ if(sentence)return sentence;
+ if(text.length<=140)return text;
+ return text.slice(0,140).replace(/\s+\S*$/,'').trimEnd()+'…';
+}
+function sharedMapPopupHtml(trip,meta,title,subject,href,label,micro=''){
  const theme=subject?`destination-themed" style="${themeStyle(destinationTheme(trip,subject))}`:'';
- return `<div class="map-popup map-popup-selection ${theme}"><div class="meta">${escapeSiteHtml(meta)}</div><h3>${escapeSiteHtml(title)}</h3>${href?`<a href="${href}">${label||'Se detaljer'} →</a>`:`<a href="#route-detail">${label||'Se detaljer under kartet'} ↓</a>`}</div>`;
+ return `<div class="map-popup map-popup-selection ${theme}"><div class="meta">${escapeSiteHtml(meta)}</div><h3>${escapeSiteHtml(title)}</h3>${micro?`<p class="map-popup-micro">${escapeSiteHtml(micro)}</p>`:''}${href?`<a href="${href}">${label||'Se detaljer'} →</a>`:`<a href="#route-detail">${label||'Se detaljer under kartet'} ↓</a>`}</div>`;
+}
+// Pure label collision selection, independent of the mapping library.
+function mapLabelBoxesOverlap(a,b,gap=5){
+ return a.left<b.right+gap && a.right+gap>b.left
+  && a.top<b.bottom+gap && a.bottom+gap>b.top;
+}
+function mapSelectNonOverlappingLabels(candidates,obstacles,limit){
+ const chosen=[],occupied=[...obstacles];
+ for(const candidate of [...candidates].sort((a,b)=>b.priority-a.priority||a.centerDistance-b.centerDistance)){
+  if(chosen.length>=limit)break;
+  if(occupied.some(item=>item.owner!==candidate.owner&&mapLabelBoxesOverlap(candidate.box,item.box)))continue;
+  chosen.push(candidate);
+  occupied.push({owner:candidate.owner,box:candidate.box});
+ }
+ return chosen.map(item=>item.owner);
 }
 function mapLayerToggleHtml(counts,state){
  return `<span class="map-layer-title" title="Farge viser reisebase, form viser type">Kartnøkkel</span>${Object.entries(JAPAN_MAP_LAYER_INFO).map(([k,x])=>`<button type="button" class="map-layer-toggle ${k}" data-map-layer="${k}" aria-pressed="${String(state[k])}">${mapSymbolHtml(k)}<span>${x.label}</span><b>${counts[k]||0}</b></button>`).join('')}<button type="button" class="map-layer-reset" data-map-reset="true" title="Slå på alle kartlag">Vis alle</button>`;
@@ -128,14 +152,69 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
 
  const state=readMapLayers();
  const groups={experience:[],food:[],hotel:[],stations:[]};
+ const labels=[];
+ let labelFramePending=false;
+ const refreshLabels=()=>{
+  labelFramePending=false;
+  const zoom=map.getZoom(),mobile=root.clientWidth<540;
+  const viewport=root.getBoundingClientRect();
+  const currentLabel=root.querySelector('.map-current-label');
+  const obstacles=[];
+  if(currentLabel){
+   const box=currentLabel.getBoundingClientRect();
+   if(box.width&&box.height)obstacles.push({owner:'current-label',box});
+  }
+  const currentIcon=root.querySelector('.map-poi-dot.is-current');
+  if(currentIcon){
+   const box=currentIcon.getBoundingClientRect();
+   if(box.width&&box.height)obstacles.push({owner:'current-icon',box});
+  }
+  for(const marker of Object.values(groups).flat()){
+   if(!marker.getElement().isConnected)continue;
+   const box=marker.getElement().getBoundingClientRect();
+   if(box.width&&box.height)obstacles.push({owner:marker.getElement(),box});
+  }
+  const candidates=[];
+  const openLabel=labels.find(entry=>entry.element.classList.contains('is-popup-open'));
+  for(const entry of labels){
+   const {marker,element,label,kind,interest}=entry;
+   element.classList.remove('is-label-visible');
+   if(!element.isConnected||!marker.getElement().isConnected)continue;
+   if(openLabel&&entry!==openLabel)continue; // One active explanation at a time.
+   const open=element.classList.contains('is-popup-open');
+   if(!open&&zoom<({experience:13.2,food:14.1,hotel:14.8}[kind]||99))continue;
+   const box=label.getBoundingClientRect();
+   if(!box.width||!box.height)continue;
+   if(box.left<viewport.left+8||box.right>viewport.right-8
+     ||box.top<viewport.top+9||box.bottom>viewport.bottom-9)continue;
+   const centerDistance=Math.hypot((box.left+box.right)/2-(viewport.left+viewport.width/2),(box.top+box.bottom)/2-(viewport.top+viewport.height/2));
+   const priority=({experience:300,food:200,hotel:100}[kind]||0)
+     +(interest==='strong'?25:interest==='candidate'?12:0)+(open?1000:0);
+   candidates.push({owner:element,box,priority,centerDistance});
+  }
+  const visible=new Set(mapSelectNonOverlappingLabels(candidates,obstacles,mobile?5:10));
+  for(const {element} of labels)element.classList.toggle('is-label-visible',visible.has(element));
+ };
+ const requestLabels=()=>{
+  if(labelFramePending)return;
+  labelFramePending=true;
+  requestAnimationFrame(refreshLabels);
+ };
  const add=(subject,kind,label,href)=>{
   if(!valid(subject)||(kind===currentKind&&subject.id===current.id))return;
   const el=mapPoiElement(trip,subject,kind);
+  const name=document.createElement('span');
+  name.className='map-poi-name';
+  name.textContent=subject.name;
+  el.append(name);
   const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'})
-   .setHTML(sharedMapPopupHtml(trip,label,subject.name,subject,href,'Se detaljer'));
+   .setHTML(sharedMapPopupHtml(trip,label,subject.name,subject,href,'Se detaljer',mapMicroText(subject,kind)));
   const marker=new maplibregl.Marker({element:el,anchor:'center'})
    .setLngLat([subject.map.lng,subject.map.lat]).setPopup(popup);
   watchMapMarker(marker,popup);
+  popup.on('open',()=>{el.classList.add('is-popup-open');requestLabels()});
+  popup.on('close',()=>{el.classList.remove('is-popup-open');requestLabels()});
+  labels.push({marker,element:el,label:name,kind,interest:subject.planInterest});
   groups[kind].push(marker);
   if(state[kind])marker.addTo(map);
  };
@@ -169,16 +248,20 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
    state[kind]=on;
    for(const marker of groups[kind]){if(on)marker.addTo(map);else marker.remove();}
    toolbar.querySelector(`[data-map-layer="${kind}"]`)?.setAttribute('aria-pressed',String(on));
-   storeMapLayers(state);
+   storeMapLayers(state);requestLabels();
   };
   wireMapLayerToolbar(toolbar,{counts,state,onToggle:toggle,
    extra:'<button type="button" class="map-layer-fit" data-map-focus="true">Til stedet ◎</button>'
   });
   toolbar.querySelector('[data-map-focus]')?.addEventListener('click',()=>map.easeTo({center:position,zoom:13.5,duration:450}));
  }
+ map.on('load',requestLabels);
+ map.on('moveend',requestLabels);
+ map.on('zoomend',requestLabels);
+ map.on('resize',requestLabels);
  installMapLoadFallback(map,{
   onFatal:()=>{if(!root.querySelector('.map-error'))fallback('Kartet kunne ikke lastes.');},
-  onReady:()=>root.querySelector('.map-error')?.remove()
+  onReady:()=>{root.querySelector('.map-error')?.remove();requestLabels()}
  });
  return map;
 }

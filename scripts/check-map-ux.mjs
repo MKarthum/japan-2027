@@ -76,7 +76,7 @@ assert(css.includes('.map-current-label{'));
 assert(!css.includes('.map-poi-dot:not(.is-current)::before{'),'Glass must not be another box around the symbol');
 assert(css.includes('.map-poi-dot::before{')&&css.includes('clip-path:var(--map-glass-clip)'),'Glass must be clipped to the icon silhouette');
 assert(css.includes('64%,transparent'),'Actual SVG fills must show the map through them');
-assert(js.includes('JAPAN_MAP_ICON_PATHS[kind].match('),'Clip silhouette comes from the canonical SVG, not a duplicate shape');
+assert(shared.includes('JAPAN_MAP_ICON_PATHS[kind].match('),'Clip silhouette comes from the canonical SVG, not a duplicate shape');
 assert(css.includes('.map-station-dot .map-station-face::before{'),'Train symbols must put transparency inside their diamonds');
 assert(css.includes('opacity:.67'),'Station color must be translucent inside the diamond');
 assert(css.includes('background:rgba(255,253,249,.87)'),'Popups must be lightly translucent');
