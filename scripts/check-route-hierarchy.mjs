@@ -53,9 +53,12 @@ assert.deepEqual(selection,[firstLeg.id],'A route marker may not select underlyi
 
 assert(css.includes('.map-stop:not(.daytrip){') && css.includes('width:42px;height:42px;display:grid;place-items:center'));
 assert(app.includes('const updateRouteMarkerScale=()=>'));
+assert(app.includes('mapRouteStopElement(trip,p,{number:i+1})'));
+assert(app.includes('mapRouteStopElement(trip,p,{dayTrip:true})'));
+assert(shared.includes('function mapRouteStopElement('));
 assert(app.includes("map.on('zoom',updateRouteMarkerScale)"));
 assert(app.includes("map.getZoom()>=9?'detail':'overview'"));
-assert(css.includes('#map[data-route-zoom="overview"] .map-stop:not(.daytrip) .map-place-label'));
+assert(css.includes('.map-object-label{')&&shared.includes('routeStop:{minZoom:8.8,priority:600}'));
 assert(css.includes('width:24px;height:24px;border-radius:8px;font-size:.73rem'));
 assert(css.includes('width:42px;height:42px;display:grid;place-items:center'));
 assert(css.includes('backdrop-filter:blur(12px) saturate(155%)'));

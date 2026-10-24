@@ -511,7 +511,7 @@ async function renderRoute() {
   const food=foodData.restaurants||[];
   renderPricePartySelector(trip);
 
-  const mapSelectionPopupHtml=(meta,title,subject=null,href='',label='')=>sharedMapPopupHtml(trip,meta,title,subject,href,label);
+  const mapSelectionPopupHtml=(meta,title,subject=null,href='',label='',micro='')=>sharedMapPopupHtml(trip,meta,title,subject,href,label,micro);
 
   const formatMinutes = (mins) => {
     if (mins < 60) return `${mins} min`;
@@ -793,6 +793,7 @@ async function renderRoute() {
   };
 
   const markerGroups={stations:[],experience:[],food:[],hotel:[]};
+  const labels=createMapLabelController({map,root:routeMapRoot,context:'route'});
   const layerState=readMapLayers();
   const routeContextIds=new Set([...trip.route.map(x=>x.id),...(trip.dayTrips||[]).map(x=>x.id)]);
   const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
@@ -807,6 +808,7 @@ async function renderRoute() {
     const btn=document.querySelector(`[data-map-layer="${category}"]`);
     if(btn) btn.setAttribute('aria-pressed',String(on));
     storeMapLayers(layerState);
+    labels.request();
   };
 
   const addStationMarkers=()=>{
@@ -828,6 +830,7 @@ async function renderRoute() {
       popup.on('open',()=>setMapDetail(`<div class="route-detail-content route-selected-content"><div class="meta">${category}</div><h3>${s.name}</h3>${rows}<p class="small">${services}</p></div>`));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([s.lng,s.lat]).setPopup(popup);
       watchMapMarker(marker,popup);
+      labels.register({marker,popup,element:el,kind:'stations',name:s.name});
       markerGroups.stations.push(marker);
       if(layerState.stations) marker.addTo(map);
     }
@@ -842,10 +845,11 @@ async function renderRoute() {
   const addPoiMarkers=()=>{
     for(const p of mappablePlaces){
       const el=mapPoiElement(trip,p,'experience');
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${p.type} · ${p.area}`,p.name,p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet'));
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${p.type} · ${p.area}`,p.name,p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet',mapMicroText(p,'experience')));
       popup.on('open',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       watchMapMarker(marker,popup);
+      labels.register({marker,popup,element:el,kind:'experience',name:p.name,interest:p.planInterest});
       markerGroups.experience.push(marker);
       if(layerState.experience) marker.addTo(map);
     }
@@ -853,10 +857,11 @@ async function renderRoute() {
     for(const x of mappableFood){
       const el=mapPoiElement(trip,x,'food');
       const family=familyFoodPrice(x);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.role} · ${x.area}`,x.name,x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten'));
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.role} · ${x.area}`,x.name,x,`restaurant.html?id=${encodeURIComponent(x.id)}`,'Se restauranten',mapMicroText(x,'food')));
       popup.on('open',()=>showFoodDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       watchMapMarker(marker,popup);
+      labels.register({marker,popup,element:el,kind:'food',name:x.name,interest:x.planInterest});
       markerGroups.food.push(marker);
       if(layerState.food) marker.addTo(map);
     }
@@ -873,10 +878,11 @@ async function renderRoute() {
     for(const x of mappableHotels){
       const el=mapPoiElement(trip,x,'hotel');
       const price=hotelFamilyPrice(x);
-      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}`,x.name,x.baseId,`hotel.html?id=${encodeURIComponent(x.id)}`,'Se overnattingen'));
+      const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`${x.tier} · ${hotelsData.bases.find(b=>b.baseId===x.baseId)?.label||x.area}`,x.name,x,`hotel.html?id=${encodeURIComponent(x.id)}`,'Se overnattingen',mapMicroText(x,'hotel')));
       popup.on('open',()=>showHotelDetail(x));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([x.map.lng,x.map.lat]).setPopup(popup);
       watchMapMarker(marker,popup);
+      labels.register({marker,popup,element:el,kind:'hotel',name:x.name,interest:x.planInterest});
       markerGroups.hotel.push(marker);
       if(layerState.hotel) marker.addTo(map);
     }
@@ -939,34 +945,25 @@ async function renderRoute() {
     trip.route.forEach((x,i)=>{
       const p=places.find(p=>p.id===x.id);
       if(!p) return;
-      const el=document.createElement('button');
-      el.type='button';
-      el.className='map-stop destination-themed';
-      el.style.setProperty('--area-color',destinationColor(trip,x));
-      el.setAttribute('aria-label',`Reiserutens stopp ${i+1}: ${p.name}`);
-      el.title=`Reiserutens stopp ${i+1} · ${p.name}`;
-      el.innerHTML=`<span class="map-pin">${i+1}</span><span class="map-place-label">${p.name}</span>`;
+      const el=mapRouteStopElement(trip,p,{number:i+1});
       const anchor=routeGeometry.stops?.[x.id]||[p.map.lng,p.map.lat];
       const popup=new maplibregl.Popup({offset:16,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Stopp ${i+1}`,p.name,x,`place.html?id=${encodeURIComponent(p.id)}`,'Utforsk byen'));
       popup.on('open',()=>showStopDetail(x,p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup);
       watchMapMarker(marker,popup).addTo(map);
+      labels.register({marker,popup,element:el,kind:'routeStop',name:p.name});
     });
 
     trip.dayTrips.forEach(x=>{
       const p=places.find(p=>p.id===x.id);
       const base=places.find(p=>p.id===x.baseId);
       if(!p?.map) return;
-      const el=document.createElement('button');
-      el.type='button';
-      el.className='map-stop daytrip destination-themed';
-      el.style.setProperty('--area-color',destinationColor(trip,x));
-      el.setAttribute('aria-label',p.name);
-      el.innerHTML=`<span class="map-pin" aria-hidden="true">↗</span><span class="map-place-label">${p.name}</span>`;
+      const el=mapRouteStopElement(trip,p,{dayTrip:true});
       const popup=new maplibregl.Popup({offset:18,maxWidth:'260px'}).setHTML(mapSelectionPopupHtml(`Dagstur fra ${base?.name||x.baseId}`,p.name,p,`place.html?id=${encodeURIComponent(p.id)}`,'Se stedet'));
       popup.on('open',()=>showPlaceDetail(p));
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([p.map.lng,p.map.lat]).setPopup(popup);
       watchMapMarker(marker,popup).addTo(map);
+      labels.register({marker,popup,element:el,kind:'dayTrip',name:p.name});
     });
 
     addStationMarkers();

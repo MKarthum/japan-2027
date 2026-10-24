@@ -115,6 +115,112 @@ function wireMapLayerToolbar(toolbar,{counts,onToggle,state,extra=''}) {
 }
 
 
+
+/* One controller for labels, priorities, zoom and collision across all maps. */
+const JAPAN_MAP_LABEL_POLICY=Object.freeze({
+ routeStop:{minZoom:8.8,priority:600},
+ dayTrip:{minZoom:10.5,priority:500},
+ experience:{minZoom:13.2,priority:300},
+ food:{minZoom:14.1,priority:200},
+ hotel:{minZoom:14.8,priority:100},
+ stations:{minZoom:15.5,priority:50}
+});
+function appendMapMarkerLabel(element,name){
+ const label=document.createElement('span');
+ label.className='map-object-label';
+ label.textContent=String(name||'');
+ element.append(label);
+ return label;
+}
+function mapRouteStopElement(trip,subject,{number,dayTrip=false}={}){
+ const el=document.createElement('button');
+ el.type='button';
+ el.className=dayTrip?'map-stop daytrip destination-themed':'map-stop destination-themed';
+ el.style.setProperty('--area-color',destinationColor(trip,subject));
+ const pin=document.createElement('span');
+ pin.className='map-pin';
+ pin.textContent=dayTrip?'↗':String(number);
+ if(dayTrip)pin.setAttribute('aria-hidden','true');
+ el.append(pin);
+ el.setAttribute('aria-label',dayTrip?'Dagstur: '+subject.name:'Reiserutens stopp '+number+': '+subject.name);
+ el.title=(dayTrip?'Dagstur':'Stopp '+number)+' · '+subject.name;
+ return el;
+}
+function createMapLabelController({map,root,context='detail'}){
+ const entries=[];
+ let pending=false;
+ const request=()=>{
+  if(pending)return;
+  pending=true;
+  requestAnimationFrame(refresh);
+ };
+ const refresh=()=>{
+  pending=false;
+  if(!root?.isConnected)return;
+  const viewport=root.getBoundingClientRect();
+  const mobile=root.clientWidth<540,zoom=map.getZoom(),obstacles=[];
+  const reserve=(owner,element)=>{
+   if(!element)return;
+   const box=element.getBoundingClientRect();
+   if(box.width&&box.height)obstacles.push({owner,box});
+  };
+  reserve('current-label',root.querySelector('.map-current-label'));
+  reserve('current-icon',root.querySelector('.map-poi-dot.is-current'));
+  for(const {marker,element} of entries){
+   element.classList.remove('is-label-visible');
+   if(element.isConnected&&marker.getElement().isConnected)reserve(element,element);
+  }
+  const inViewport=box=>box.left>=viewport.left+8&&box.right<=viewport.right-8
+    &&box.top>=viewport.top+9&&box.bottom<=viewport.bottom-9;
+  const openEntry=entries.find(({element})=>element.classList.contains('is-popup-open')&&element.isConnected);
+  let selectedCount=0;
+  if(openEntry){
+   const box=openEntry.label.getBoundingClientRect();
+   // Selected labels always win, even below a zoom threshold or near other markers.
+   if(box.width&&box.height){
+    openEntry.element.classList.add('is-label-visible');
+    obstacles.push({owner:openEntry.element,box});
+    selectedCount=1;
+   }
+  }
+  const candidates=[];
+  for(const entry of entries){
+   const {marker,element,label,kind,interest}=entry;
+   if(entry===openEntry||!element.isConnected||!marker.getElement().isConnected)continue;
+   // Detail maps deliberately do not permanently label stations.
+   if(context==='detail'&&kind==='stations')continue;
+   if(context==='detail'&&openEntry)continue;
+   const policy=JAPAN_MAP_LABEL_POLICY[kind];
+   if(!policy||zoom<policy.minZoom)continue;
+   const box=label.getBoundingClientRect();
+   if(!box.width||!box.height||!inViewport(box))continue;
+   const priority=policy.priority+(interest==='strong'?25:interest==='candidate'?12:0);
+   const centerDistance=Math.hypot((box.left+box.right)/2-(viewport.left+viewport.width/2),
+       (box.top+box.bottom)/2-(viewport.top+viewport.height/2));
+   candidates.push({owner:element,box,priority,centerDistance});
+  }
+  const limit=Math.max(0,(mobile?5:10)-selectedCount);
+  const visible=new Set(mapSelectNonOverlappingLabels(candidates,obstacles,limit));
+  for(const {element} of entries)if(visible.has(element))element.classList.add('is-label-visible');
+ };
+ const register=({marker,popup,element=marker.getElement(),kind,name,interest}={})=>{
+  if(!JAPAN_MAP_LABEL_POLICY[kind])throw new Error('Ukjent type for kartetikett: '+kind);
+  const label=appendMapMarkerLabel(element,name);
+  const entry={marker,popup,element,label,kind,interest};
+  entries.push(entry);
+  if(popup){
+   popup.on('open',()=>{element.classList.add('is-popup-open');request()});
+   popup.on('close',()=>{element.classList.remove('is-popup-open');request()});
+  }
+  element.addEventListener('focus',request);
+  element.addEventListener('blur',request);
+  request();
+  return entry;
+ };
+ for(const event of ['load','moveend','zoomend','resize'])map.on(event,request);
+ return {register,request,refresh};
+}
+
 // Single context-map implementation for place, restaurant and hotel detail pages.
 // Canonical data is passed in; marker art, URL-local layer state and popups are shared.
 function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,places,food,hotels,transport}){
@@ -152,69 +258,16 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
 
  const state=readMapLayers();
  const groups={experience:[],food:[],hotel:[],stations:[]};
- const labels=[];
- let labelFramePending=false;
- const refreshLabels=()=>{
-  labelFramePending=false;
-  const zoom=map.getZoom(),mobile=root.clientWidth<540;
-  const viewport=root.getBoundingClientRect();
-  const currentLabel=root.querySelector('.map-current-label');
-  const obstacles=[];
-  if(currentLabel){
-   const box=currentLabel.getBoundingClientRect();
-   if(box.width&&box.height)obstacles.push({owner:'current-label',box});
-  }
-  const currentIcon=root.querySelector('.map-poi-dot.is-current');
-  if(currentIcon){
-   const box=currentIcon.getBoundingClientRect();
-   if(box.width&&box.height)obstacles.push({owner:'current-icon',box});
-  }
-  for(const marker of Object.values(groups).flat()){
-   if(!marker.getElement().isConnected)continue;
-   const box=marker.getElement().getBoundingClientRect();
-   if(box.width&&box.height)obstacles.push({owner:marker.getElement(),box});
-  }
-  const candidates=[];
-  const openLabel=labels.find(entry=>entry.element.classList.contains('is-popup-open'));
-  for(const entry of labels){
-   const {marker,element,label,kind,interest}=entry;
-   element.classList.remove('is-label-visible');
-   if(!element.isConnected||!marker.getElement().isConnected)continue;
-   if(openLabel&&entry!==openLabel)continue; // One active explanation at a time.
-   const open=element.classList.contains('is-popup-open');
-   if(!open&&zoom<({experience:13.2,food:14.1,hotel:14.8}[kind]||99))continue;
-   const box=label.getBoundingClientRect();
-   if(!box.width||!box.height)continue;
-   if(box.left<viewport.left+8||box.right>viewport.right-8
-     ||box.top<viewport.top+9||box.bottom>viewport.bottom-9)continue;
-   const centerDistance=Math.hypot((box.left+box.right)/2-(viewport.left+viewport.width/2),(box.top+box.bottom)/2-(viewport.top+viewport.height/2));
-   const priority=({experience:300,food:200,hotel:100}[kind]||0)
-     +(interest==='strong'?25:interest==='candidate'?12:0)+(open?1000:0);
-   candidates.push({owner:element,box,priority,centerDistance});
-  }
-  const visible=new Set(mapSelectNonOverlappingLabels(candidates,obstacles,mobile?5:10));
-  for(const {element} of labels)element.classList.toggle('is-label-visible',visible.has(element));
- };
- const requestLabels=()=>{
-  if(labelFramePending)return;
-  labelFramePending=true;
-  requestAnimationFrame(refreshLabels);
- };
+ const labels=createMapLabelController({map,root,context:'detail'});
  const add=(subject,kind,label,href)=>{
   if(!valid(subject)||(kind===currentKind&&subject.id===current.id))return;
   const el=mapPoiElement(trip,subject,kind);
-  const name=document.createElement('span');
-  name.className='map-poi-name';
-  name.textContent=subject.name;
-  el.append(name);
   const popup=new maplibregl.Popup({offset:14,maxWidth:'260px'})
    .setHTML(sharedMapPopupHtml(trip,label,subject.name,subject,href,'Se detaljer',mapMicroText(subject,kind)));
   const marker=new maplibregl.Marker({element:el,anchor:'center'})
    .setLngLat([subject.map.lng,subject.map.lat]).setPopup(popup);
   watchMapMarker(marker,popup);
-  popup.on('open',()=>{el.classList.add('is-popup-open');requestLabels()});
-  popup.on('close',()=>{el.classList.remove('is-popup-open');requestLabels()});
-  labels.push({marker,element:el,label:name,kind,interest:subject.planInterest});
+  labels.register({marker,popup,element:el,kind,name:subject.name,interest:subject.planInterest});
   groups[kind].push(marker);
   if(state[kind])marker.addTo(map);
  };
@@ -239,6 +292,7 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
   const marker=new maplibregl.Marker({element:el,anchor:'center'})
    .setLngLat([station.lng,station.lat]).setPopup(popup);
   watchMapMarker(marker,popup);
+  labels.register({marker,popup,element:el,kind:'stations',name:station.name});
   groups.stations.push(marker);
   if(state.stations)marker.addTo(map);
  }
@@ -248,20 +302,16 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
    state[kind]=on;
    for(const marker of groups[kind]){if(on)marker.addTo(map);else marker.remove();}
    toolbar.querySelector(`[data-map-layer="${kind}"]`)?.setAttribute('aria-pressed',String(on));
-   storeMapLayers(state);requestLabels();
+   storeMapLayers(state);labels.request();
   };
   wireMapLayerToolbar(toolbar,{counts,state,onToggle:toggle,
    extra:'<button type="button" class="map-layer-fit" data-map-focus="true">Til stedet ◎</button>'
   });
   toolbar.querySelector('[data-map-focus]')?.addEventListener('click',()=>map.easeTo({center:position,zoom:13.5,duration:450}));
  }
- map.on('load',requestLabels);
- map.on('moveend',requestLabels);
- map.on('zoomend',requestLabels);
- map.on('resize',requestLabels);
  installMapLoadFallback(map,{
   onFatal:()=>{if(!root.querySelector('.map-error'))fallback('Kartet kunne ikke lastes.');},
-  onReady:()=>{root.querySelector('.map-error')?.remove();requestLabels()}
+  onReady:()=>{root.querySelector('.map-error')?.remove();labels.request()}
  });
  return map;
 }
