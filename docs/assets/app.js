@@ -499,6 +499,10 @@ async function renderFlightGuide() {
 async function renderRoute() {
   await applyPageCopy('route');
   nav('route'); footer();
+  // Show the actual map early on compact screens; controls remain one tap away.
+  if(window.matchMedia?.('(max-width:620px)').matches){
+    document.getElementById('route-map-options')?.removeAttribute('open');
+  }
   const [trip,places,routeGeometry,transport,foodData,hotelsData,fx]=await Promise.all([
     json('data/trip.json'),
     json('data/places.json'),

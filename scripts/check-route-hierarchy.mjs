@@ -65,6 +65,15 @@ assert(css.includes('background:rgba(250,252,255,.36)')&&css.includes('backdrop-
 assert(css.includes('@media(prefers-reduced-transparency:reduce)'));
 assert(css.includes('.map-station-dot.alternative .map-station-face'));
 assert(css.includes('.map-station-dot.intermediate .map-station-face'));
+assert(shared.includes('function createMapRouteStopClusters('),'All stop grouping should live in the shared map implementation');
+assert(app.includes('const routeClusters=createMapRouteStopClusters({map,labels})'),'Route uses shared cluster controller');
+assert(css.includes('.map-stop.is-clustered{display:none!important}'),'Underlying numbered pins must not overlap cluster');
+assert(css.includes('.map-stop-cluster{'),'Cluster must have its own reachable touch target');
+assert(routeHtml.includes('id="route-map-options"')&&routeHtml.includes('map-notes-disclosure'),'Mobile first-view must prioritize the map');
+assert(app.includes("document.getElementById('route-map-options')?.removeAttribute('open')"),'Compact mode should close the optional tools');
+assert(app.includes('const compact=routeMapRoot.clientWidth<620'),'Fit bounds should account for map proportions');
+assert(!app.includes('    startLocationWatch();\\n  });'),'Location cannot be watched automatically on map load');
+
 assert(shared.includes("if(['base','dagstur'].includes(x.type))continue"));
 assert(shared.includes("currentKind==='experience'&&['base','dagstur'].includes(current.type)"));
 const context={

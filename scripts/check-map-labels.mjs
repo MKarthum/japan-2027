@@ -11,7 +11,7 @@ const context={
  escapeSiteHtml:s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'),
  themeStyle:()=>'',destinationTheme:()=>({})
 };
-vm.runInNewContext(shared+';globalThis.test={mapMicroText,mapSelectNonOverlappingLabels,mapLabelBoxesOverlap,sharedMapPopupHtml};',context);
+vm.runInNewContext(shared+';globalThis.test={mapMicroText,mapSelectNonOverlappingLabels,mapLabelBoxesOverlap,sharedMapPopupHtml,mapMarkerIsEligible,mapClusterNearbyPoints};',context);
 const {mapMicroText,mapSelectNonOverlappingLabels,mapLabelBoxesOverlap,sharedMapPopupHtml}=context.test;
 const box=(l,t,r,b)=>({left:l,top:t,right:r,bottom:b});
 const make=(owner,priority,l,t,r,b)=>({owner,priority,centerDistance:0,box:box(l,t,r,b)});
@@ -81,4 +81,40 @@ assert(daytrip.className.includes('daytrip'));
 assert.equal(daytrip.children[0].textContent,'↗');
 assert.equal(dom.domTest.JAPAN_MAP_LABEL_POLICY.routeStop.priority,600);
 assert(dom.domTest.JAPAN_MAP_LABEL_POLICY.stations.minZoom>dom.domTest.JAPAN_MAP_LABEL_POLICY.hotel.minZoom);
-console.log('PASS: common label engine, safe labels, route stops, type-based priority, popup-first navigation.');
+
+// National overview must show the itinerary, not a 70px attraction above two stops.
+const eligible=context.test.mapMarkerIsEligible;
+assert.equal(eligible({context:'route',kind:'routeStop',zoom:5,compact:true}),true);
+for(const kind of ['dayTrip','experience','food','hotel','stations']){
+ assert.equal(eligible({context:'route',kind,zoom:5,compact:true}),false,
+  kind+' should not paint a marker at national zoom');
+}
+assert.equal(eligible({context:'route',kind:'experience',zoom:11,compact:false}),true);
+assert.equal(eligible({context:'route',kind:'experience',zoom:11,compact:true}),false,
+ 'Mobile should reveal dense markers a little later');
+assert.equal(eligible({context:'route',kind:'hotel',zoom:11}),false);
+assert.equal(eligible({context:'detail',kind:'experience',zoom:11.5}),true);
+assert.equal(eligible({context:'detail',kind:'food',zoom:13.5}),true);
+assert.equal(eligible({context:'route',kind:'food',zoom:5,selected:true}),true,
+ 'A selected object must remain visible regardless of zoom');
+assert.equal(eligible({context:'route',kind:'routeStop',zoom:8,clustered:true}),false,
+ 'Clustered markers must be hidden until separated');
+const cluster=context.test.mapClusterNearbyPoints;
+const dot=(id,x,y)=>({id,point:{x,y}});
+assert.deepEqual(Array.from(cluster([dot(1,10,10),dot(2,25,11),dot(3,180,100)],40).map(g=>g.map(p=>p.id).join('-'))),['1-2','3'],
+ 'Nearby stops group, distant ones remain separate');
+assert.deepEqual(Array.from(cluster([dot(1,0,0),dot(2,70,0),dot(3,35,0)],40).map(g=>g.length)),[3],
+ 'A point bridging two groups should merge both groups');
+assert(css.includes('.map-stop-cluster{')&&css.includes('.map-expand-control{'));
+assert(css.includes('#map{height:clamp(290px,93vw,390px)}'));
+assert(app.includes('routeClusters.register(marker,i+1,p.name)'));
+assert(app.includes('routeClusters.refresh()'));
+assert(app.includes('installMapExpandControl(map,routeMapRoot)'));
+assert(shared.includes('installMapExpandControl(map,root)'));
+assert(!app.includes('    startLocationWatch();\n  });'),
+ 'Route map must not begin watching location without an explicit user action');
+const routeHtml=fs.readFileSync('docs/route.html','utf8');
+assert(routeHtml.includes('id="route-map-options"')&&routeHtml.includes('map-notes-disclosure'),
+ 'Route notes and filters need compact disclosures');
+
+console.log('PASS: common label engine, adaptive marker density, route clustering and accessible map controls.');

@@ -168,3 +168,10 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - Det valgte objektet får fortsatt en tydelig ring, men den tidligere hvite sirkelflaten på 53 % er redusert til 8 %. Bakgrunnsuskarphet inne i symboler er maks 1 px, slik at gater og bygg ikke viskes ut. Glassrefleksen er også vesentlig svakere.
 - Rutestopp, dagsturer og togstasjoner har tilsvarende gjennomskinnelige flater. Navnelapper beholder opak tekst over en mer gjennomsiktig flate. Bruk aldri `opacity` på hele markøren for å oppnå effekten, da forsvinner også symbolkontur og tekst.
 - Ved `prefers-reduced-transparency` eller `prefers-contrast:more` brukes opake flater, ikke glass. Foreldede `.map-place-label`-regler er fjernet. `node scripts/check-map-ux.mjs` og `node scripts/check-route-hierarchy.mjs` verifiserer de sentrale garantiene.
+
+## Karttilpasning for mobil og nasjonal oversikt (v0.30.26)
+
+- Felles `JAPAN_MAP_MARKER_MIN_ZOOM` styrer **når selve symbolene** vises, ikke bare navnelappene. På landsnivå viser rutekartet først og fremst nummererte reisestopp og ruten; regionale og lokale objekter kommer gradvis inn ved zoom. På detaljkartene gjelder tilsvarende kontekstuell reduksjon. Et valgt objekt forblir synlig. Kartlagenes lagrede av/på-valg bevares.
+- `createMapRouteStopClusters` grupperer automatisk nummererte stopp som overlapper i skjermkoordinater, blant annet på smale skjermer. Grupper viser stoppnumrene og zoomer inn ved trykk. Grupperingen er basert på avstand i piksler og gjøres om ved zoom og vindusstørrelse; ingen byer får hardkodede unntak, og faktiske koordinater flyttes ikke.
+- Kartene har én felles kontroll for større/mindre kart. På mobil er ruteoversikten lavere og mer proporsjonal med bredden, med mulighet til å utvide for utforsking. Kartinnstillinger og lengre forklaringer på rutesiden er tilgjengelige i egne disclosure-seksjoner. Posisjonsdeling startes kun etter at brukeren trykker «Min posisjon».
+- Sjekk `scripts/check-map-labels.mjs`, `scripts/check-map-ux.mjs`, `scripts/check-route-hierarchy.mjs` og alle øvrige CI-kontroller. Ikke innfør en separat klynge-, zoom- eller kartimplementasjon for enkeltsteder.

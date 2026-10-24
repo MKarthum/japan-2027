@@ -125,6 +125,88 @@ const JAPAN_MAP_LABEL_POLICY=Object.freeze({
  hotel:{minZoom:14.8,priority:100},
  stations:{minZoom:15.5,priority:50}
 });
+/* Separate icon visibility from text visibility: labels alone cannot declutter a map. */
+const JAPAN_MAP_MARKER_MIN_ZOOM=Object.freeze({
+ route:Object.freeze({routeStop:0,dayTrip:8.2,stations:10.1,experience:10.7,hotel:12,food:12.2}),
+ detail:Object.freeze({routeStop:0,dayTrip:0,stations:12.5,experience:11.1,hotel:12,food:12})
+});
+function mapMarkerIsEligible({context,kind,zoom,compact=false,selected=false,clustered=false}){
+ if(clustered)return false;
+ if(selected)return true;
+ const threshold=JAPAN_MAP_MARKER_MIN_ZOOM[context]?.[kind]??0;
+ return zoom>=threshold+(compact&&threshold>0?.35:0);
+}
+/* Pure screen-space grouping prevents nearby route stops hiding each other on phones. */
+function mapClusterNearbyPoints(points,minDistance=44){
+ const groups=[];
+ for(const point of points){
+  const matches=groups.filter(group=>group.some(item=>Math.hypot(item.point.x-point.point.x,item.point.y-point.point.y)<minDistance));
+  if(!matches.length){groups.push([point]);continue;}
+  const primary=matches[0];
+  primary.push(point);
+  for(const group of matches.slice(1)){primary.push(...group);groups.splice(groups.indexOf(group),1);}
+ }
+ return groups;
+}
+function createMapRouteStopClusters({map,labels}){
+ const stops=[],clusters=new Map();
+ const register=(marker,number,name)=>{
+  stops.push({marker,number,name,element:marker.getElement()});
+ };
+ const refresh=()=>{
+  if(!stops.length)return;
+  for(const stop of stops)stop.element.classList.remove('is-clustered');
+  const eligible=stops.filter(stop=>stop.element.isConnected&&!stop.element.classList.contains('is-popup-open'));
+  const minDistance=map.getContainer().clientWidth<540?48:42;
+  const groups=mapClusterNearbyPoints(eligible.map(stop=>({...stop,point:map.project(stop.marker.getLngLat())})),minDistance);
+  const current=new Set();
+  for(const group of groups.filter(g=>g.length>1)){
+   group.sort((a,b)=>a.number-b.number);
+   const key=group.map(stop=>stop.number).join('-');
+   current.add(key);
+   for(const stop of group)stop.element.classList.add('is-clustered');
+   let cluster=clusters.get(key);
+   if(!cluster){
+    const button=document.createElement('button');
+    button.type='button';button.className='map-stop-cluster';
+    cluster=new maplibregl.Marker({element:button,anchor:'center'});
+    clusters.set(key,cluster);
+   }
+   const button=cluster.getElement();
+   const names=group.map(stop=>stop.name).join(', ');
+   button.textContent=group.length<=3?group.map(stop=>stop.number).join(' · '):group.length+' stopp';
+   button.setAttribute('aria-label',group.length+' rutestopp samlet: '+names+'. Trykk for å zoome inn.');
+   button.title=names+' · Zoom inn';
+   button.onclick=()=>{
+    const bounds=new maplibregl.LngLatBounds();
+    for(const stop of group)bounds.extend(stop.marker.getLngLat());
+    map.fitBounds(bounds,{padding:Math.max(35,Math.min(85,Math.round(map.getContainer().clientWidth*.13))),maxZoom:12,duration:450});
+   };
+   const lngs=group.map(stop=>stop.marker.getLngLat());
+   cluster.setLngLat([lngs.reduce((n,p)=>n+p.lng,0)/lngs.length,lngs.reduce((n,p)=>n+p.lat,0)/lngs.length]).addTo(map);
+  }
+  for(const [key,marker] of clusters)if(!current.has(key)){marker.remove();clusters.delete(key);}
+  labels.request();
+ };
+ for(const event of ['moveend','zoomend','resize'])map.on(event,refresh);
+ return {register,refresh};
+}
+function installMapExpandControl(map,root){
+ const button=document.createElement('button');
+ button.type='button';button.className='map-expand-control';
+ const update=()=>{
+  const expanded=root.classList.contains('is-map-expanded');
+  button.textContent=expanded?'↙ Mindre kart':'⤢ Større kart';
+  button.setAttribute('aria-pressed',String(expanded));
+  button.setAttribute('aria-label',expanded?'Vis vanlig kartstørrelse':'Utvid kartet');
+ };
+ button.addEventListener('click',()=>{
+  root.classList.toggle('is-map-expanded');
+  update();map.resize();
+ });
+ update();root.append(button);
+ return button;
+}
 function appendMapMarkerLabel(element,name){
  const label=document.createElement('span');
  label.className='map-object-label';
@@ -166,13 +248,17 @@ function createMapLabelController({map,root,context='detail'}){
   };
   reserve('current-label',root.querySelector('.map-current-label'));
   reserve('current-icon',root.querySelector('.map-poi-dot.is-current'));
-  for(const {marker,element} of entries){
+  for(const {marker,element,kind} of entries){
    element.classList.remove('is-label-visible');
-   if(element.isConnected&&marker.getElement().isConnected)reserve(element,element);
+   const eligible=mapMarkerIsEligible({context,kind,zoom,compact:mobile,
+     selected:element.classList.contains('is-popup-open'),
+     clustered:element.classList.contains('is-clustered')});
+   element.style.display=eligible?'':'none';
+   if(eligible&&element.isConnected&&marker.getElement().isConnected)reserve(element,element);
   }
   const inViewport=box=>box.left>=viewport.left+8&&box.right<=viewport.right-8
     &&box.top>=viewport.top+9&&box.bottom<=viewport.bottom-9;
-  const openEntry=entries.find(({element})=>element.classList.contains('is-popup-open')&&element.isConnected);
+  const openEntry=entries.find(({element})=>element.classList.contains('is-popup-open')&&element.isConnected&&element.style.display!=='none');
   let selectedCount=0;
   if(openEntry){
    const box=openEntry.label.getBoundingClientRect();
@@ -186,7 +272,7 @@ function createMapLabelController({map,root,context='detail'}){
   const candidates=[];
   for(const entry of entries){
    const {marker,element,label,kind,interest}=entry;
-   if(entry===openEntry||!element.isConnected||!marker.getElement().isConnected)continue;
+   if(entry===openEntry||!element.isConnected||!marker.getElement().isConnected||element.style.display==='none')continue;
    // Detail maps deliberately do not permanently label stations.
    if(context==='detail'&&kind==='stations')continue;
    if(context==='detail'&&openEntry)continue;
@@ -242,6 +328,7 @@ function renderDetailContextMap({containerId,toolbarId,trip,current,currentKind,
    attributionControl:true
   });
   map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-left');
+  installMapExpandControl(map,root);
  }catch{fallback('Kartet kunne ikke startes.');return null;}
  // A city or day-trip area is not an exact physical attraction.
  // In this case the map is an overview, with no misleading arbitrary pin at its centre.
