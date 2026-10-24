@@ -46,7 +46,7 @@ assert(shared.includes("reserve('current-label',root.querySelector('.map-current
 assert(shared.includes("reserve('current-icon',root.querySelector('.map-poi-dot.is-current'))"));
 assert(shared.includes("interest==='strong'?25"),'Editorial interest only breaks ties within a category');
 assert(shared.includes('mobile?5:10'));
-assert(shared.includes('experience:{minZoom:13.2')&&shared.includes('food:{minZoom:14.1')&&shared.includes('hotel:{minZoom:14.8'),'Gradual disclosure');
+assert(shared.includes('experience:{minZoom:10.5')&&shared.includes('food:{minZoom:11.5')&&shared.includes('hotel:{minZoom:11.3'),'Labels appear during regional exploration, then collide safely');
 assert(shared.includes("for(const event of ['load','moveend','zoomend','resize'])map.on(event,request)"));
 assert(shared.includes("const openEntry=entries.find("));
 assert(shared.includes("if(context==='detail'&&openEntry)continue"));
@@ -89,12 +89,21 @@ for(const kind of ['dayTrip','experience','food','hotel','stations']){
  assert.equal(eligible({context:'route',kind,zoom:5,compact:true}),false,
   kind+' should not paint a marker at national zoom');
 }
-assert.equal(eligible({context:'route',kind:'experience',zoom:11,compact:false}),true);
-assert.equal(eligible({context:'route',kind:'experience',zoom:11,compact:true}),false,
- 'Mobile should reveal dense markers a little later');
-assert.equal(eligible({context:'route',kind:'hotel',zoom:11}),false);
-assert.equal(eligible({context:'detail',kind:'experience',zoom:11.5}),true);
-assert.equal(eligible({context:'detail',kind:'food',zoom:13.5}),true);
+assert.equal(eligible({context:'route',kind:'experience',zoom:9,compact:false}),false);
+assert.equal(eligible({context:'route',kind:'experience',zoom:9.2,compact:false}),true,
+ 'Experiences should already appear at regional zoom');
+assert.equal(eligible({context:'route',kind:'experience',zoom:9.15,compact:true}),false);
+assert.equal(eligible({context:'route',kind:'experience',zoom:9.25,compact:true}),true,
+ 'Mobile only has a small offset; visible markers are instead collision filtered');
+assert.equal(eligible({context:'route',kind:'hotel',zoom:9.6}),false);
+assert.equal(eligible({context:'route',kind:'hotel',zoom:10}),true,
+ 'Hotels should be discoverable before street-level zoom');
+assert.equal(eligible({context:'route',kind:'stations',zoom:9}),true,
+ 'Rail connections should already appear in regional overview');
+assert.equal(eligible({context:'route',kind:'food',zoom:10}),true);
+assert.equal(eligible({context:'detail',kind:'experience',zoom:9.5}),true);
+assert.equal(eligible({context:'detail',kind:'food',zoom:10}),true);
+assert.equal(eligible({context:'detail',kind:'stations',zoom:10}),true);
 assert.equal(eligible({context:'route',kind:'food',zoom:5,selected:true}),true,
  'A selected object must remain visible regardless of zoom');
 assert.equal(eligible({context:'route',kind:'routeStop',zoom:8,clustered:true}),false,
@@ -105,6 +114,19 @@ assert.deepEqual(Array.from(cluster([dot(1,10,10),dot(2,25,11),dot(3,180,100)],4
  'Nearby stops group, distant ones remain separate');
 assert.deepEqual(Array.from(cluster([dot(1,0,0),dot(2,70,0),dot(3,35,0)],40).map(g=>g.length)),[3],
  'A point bridging two groups should merge both groups');
+// The same screen-space selector that protects labels now controls low-zoom symbols.
+const collisionCandidates=[
+ {owner:'food',priority:200,centerDistance:10,box:box(100,100,140,140)},
+ {owner:'experience',priority:300,centerDistance:20,box:box(102,102,142,142)},
+ {owner:'hotel',priority:100,centerDistance:5,box:box(200,200,240,240)}
+];
+assert.deepEqual(Array.from(mapSelectNonOverlappingLabels(collisionCandidates,[],3)),['experience','hotel'],
+ 'At regional zoom keep the higher priority icon and a non-overlapping hotel');
+assert.deepEqual(Array.from(mapSelectNonOverlappingLabels(collisionCandidates,[{owner:'routeStop',box:box(95,95,150,150)}],3)),['hotel'],
+ 'Itinerary pins must remain unobstructed by lower priority objects');
+assert(shared.includes('const iconCandidates=[],alwaysVisible=[]')&&shared.includes('zoom>=13.5'),
+ 'Marker density control should render all icons again at street-level zoom');
+assert(shared.includes("const iconSelection=zoom>=13.5"), 'Zoom-controlled icon collision is shared');
 assert(css.includes('.map-stop-cluster{')&&css.includes('.map-expand-control{'));
 assert(css.includes('#map{height:clamp(290px,93vw,390px)}'));
 assert(app.includes('routeClusters.register(marker,i+1,p.name)'));

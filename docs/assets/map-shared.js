@@ -119,22 +119,24 @@ function wireMapLayerToolbar(toolbar,{counts,onToggle,state,extra=''}) {
 /* One controller for labels, priorities, zoom and collision across all maps. */
 const JAPAN_MAP_LABEL_POLICY=Object.freeze({
  routeStop:{minZoom:8.8,priority:600},
- dayTrip:{minZoom:10.5,priority:500},
- experience:{minZoom:13.2,priority:300},
- food:{minZoom:14.1,priority:200},
- hotel:{minZoom:14.8,priority:100},
- stations:{minZoom:15.5,priority:50}
+ dayTrip:{minZoom:9,priority:500},
+ experience:{minZoom:10.5,priority:300},
+ food:{minZoom:11.5,priority:200},
+ hotel:{minZoom:11.3,priority:100},
+ stations:{minZoom:12,priority:50}
 });
-/* Separate icon visibility from text visibility: labels alone cannot declutter a map. */
+/* At country scale show the route; at regional scale reveal representative POIs.
+   Screen-space collision selection below avoids the dense-city clutter that previously
+   forced very high zoom thresholds. Nothing is hardcoded for a particular city. */
 const JAPAN_MAP_MARKER_MIN_ZOOM=Object.freeze({
- route:Object.freeze({routeStop:0,dayTrip:8.2,stations:10.1,experience:10.7,hotel:12,food:12.2}),
- detail:Object.freeze({routeStop:0,dayTrip:0,stations:12.5,experience:11.1,hotel:12,food:12})
+ route:Object.freeze({routeStop:0,dayTrip:7.7,stations:8.9,experience:9.1,hotel:9.8,food:9.8}),
+ detail:Object.freeze({routeStop:0,dayTrip:0,stations:9.8,experience:9.3,hotel:9.8,food:9.8})
 });
 function mapMarkerIsEligible({context,kind,zoom,compact=false,selected=false,clustered=false}){
  if(clustered)return false;
  if(selected)return true;
  const threshold=JAPAN_MAP_MARKER_MIN_ZOOM[context]?.[kind]??0;
- return zoom>=threshold+(compact&&threshold>0?.35:0);
+ return zoom>=threshold+(compact&&threshold>0?.1:0);
 }
 /* Pure screen-space grouping prevents nearby route stops hiding each other on phones. */
 function mapClusterNearbyPoints(points,minDistance=44){
@@ -248,13 +250,41 @@ function createMapLabelController({map,root,context='detail'}){
   };
   reserve('current-label',root.querySelector('.map-current-label'));
   reserve('current-icon',root.querySelector('.map-poi-dot.is-current'));
-  for(const {marker,element,kind} of entries){
+  // First determine threshold eligibility, then show as many icons as will fit.
+  // Keep the itinerary, the selected object and the selected popup visible.
+  const iconCandidates=[],alwaysVisible=[];
+  for(const entry of entries){
+   const {marker,element,kind,interest}=entry;
    element.classList.remove('is-label-visible');
-   const eligible=mapMarkerIsEligible({context,kind,zoom,compact:mobile,
-     selected:element.classList.contains('is-popup-open'),
+   const selected=element.classList.contains('is-popup-open');
+   const eligible=mapMarkerIsEligible({context,kind,zoom,compact:mobile,selected,
      clustered:element.classList.contains('is-clustered')});
    element.style.display=eligible?'':'none';
-   if(eligible&&element.isConnected&&marker.getElement().isConnected)reserve(element,element);
+   if(!eligible||!element.isConnected||!marker.getElement().isConnected)continue;
+   if(kind==='routeStop'||selected){
+    alwaysVisible.push(entry);
+    reserve(element,element);
+    continue;
+   }
+   // Get measurements with the icon temporarily shown; hiding the outer
+   // marker instead of moving its coordinate keeps map geography truthful.
+   const box=element.getBoundingClientRect();
+   if(!box.width||!box.height)continue;
+   const policy=JAPAN_MAP_LABEL_POLICY[kind];
+   const priority=policy.priority+(interest==='strong'?25:interest==='candidate'?12:0);
+   const centerDistance=Math.hypot((box.left+box.right)/2-(viewport.left+viewport.width/2),
+     (box.top+box.bottom)/2-(viewport.top+viewport.height/2));
+   iconCandidates.push({owner:element,box,priority,centerDistance});
+  }
+  // At street scale all icons can be explored; at regional scale they are
+  // progressively revealed according to actual pixel separation.
+  const iconSelection=zoom>=13.5
+    ? new Set(iconCandidates.map(item=>item.owner))
+    : new Set(mapSelectNonOverlappingLabels(iconCandidates,obstacles,iconCandidates.length));
+  for(const candidate of iconCandidates){
+   const visible=iconSelection.has(candidate.owner);
+   candidate.owner.style.display=visible?'':'none';
+   if(visible)obstacles.push({owner:candidate.owner,box:candidate.box});
   }
   const inViewport=box=>box.left>=viewport.left+8&&box.right<=viewport.right-8
     &&box.top>=viewport.top+9&&box.bottom<=viewport.bottom-9;

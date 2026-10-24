@@ -180,3 +180,9 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 
 - Sikrer at `renderRoute` faktisk kaller den felles grupperingen av rutestopp og kontrollen for større kart. Tester skal sjekke at modulen er **koblet til runtime**, ikke bare finnes i kildekoden.
 - Mobiltilpasset utsnitt og kartstørrelse aktiveres fra rutekartet, og automatisk posisjonsovervåking starter ikke når kartet åpnes.
+
+## Kartmarkører vises tidligere ved regional zoom (v0.30.28)
+
+- Felles `JAPAN_MAP_MARKER_MIN_ZOOM` og `JAPAN_MAP_LABEL_POLICY` er justert slik at opplevelser, knutepunkter, hotell og mat blir synlige på et naturlig regionalt kartutsnitt, i stedet for først ved gatenivå. For mobiler er ekstra zoomkrav redusert til 0,1 zoomtrinn.
+- For å unngå at dette gjenskaper tidligere markørstøy, prioriterer `createMapLabelController` allerede synlige hovedstopp, åpne objekter og valgte objekter. Andre symboler velges med den eksisterende pikselbaserte kollisjonsmotoren. Objektene flyttes aldri, og alle kan bli synlige igjen ved zoom minst 13,5.
+- Merkeskilter/navnelapper kommer inn etter symbolene, med uendret maksantall og kollisjonsunngåelse. Ingen stedsnavn eller koordinater har egne terskler. Tester i `scripts/check-map-labels.mjs` dekker oversikt, regional oppdagbarhet, mobil, symboloverlapp og valgte objekter.
