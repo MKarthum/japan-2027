@@ -175,3 +175,8 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - `createMapRouteStopClusters` grupperer automatisk nummererte stopp som overlapper i skjermkoordinater, blant annet på smale skjermer. Grupper viser stoppnumrene og zoomer inn ved trykk. Grupperingen er basert på avstand i piksler og gjøres om ved zoom og vindusstørrelse; ingen byer får hardkodede unntak, og faktiske koordinater flyttes ikke.
 - Kartene har én felles kontroll for større/mindre kart. På mobil er ruteoversikten lavere og mer proporsjonal med bredden, med mulighet til å utvide for utforsking. Kartinnstillinger og lengre forklaringer på rutesiden er tilgjengelige i egne disclosure-seksjoner. Posisjonsdeling startes kun etter at brukeren trykker «Min posisjon».
 - Sjekk `scripts/check-map-labels.mjs`, `scripts/check-map-ux.mjs`, `scripts/check-route-hierarchy.mjs` og alle øvrige CI-kontroller. Ikke innfør en separat klynge-, zoom- eller kartimplementasjon for enkeltsteder.
+
+## Integrasjonssjekk for rutekart (v0.30.27)
+
+- Sikrer at `renderRoute` faktisk kaller den felles grupperingen av rutestopp og kontrollen for større kart. Tester skal sjekke at modulen er **koblet til runtime**, ikke bare finnes i kildekoden.
+- Mobiltilpasset utsnitt og kartstørrelse aktiveres fra rutekartet, og automatisk posisjonsovervåking starter ikke når kartet åpnes.

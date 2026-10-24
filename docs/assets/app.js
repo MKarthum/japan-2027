@@ -671,6 +671,7 @@ async function renderRoute() {
   };
   map.on('zoom',updateRouteMarkerScale);
   updateRouteMarkerScale();
+  installMapExpandControl(map,routeMapRoot);
 
   let userMarker=null;
   let userLngLat=null;
@@ -749,7 +750,14 @@ async function renderRoute() {
     const p=places.find(p=>p.id===x.id);
     if(p?.map) routeBounds.extend([p.map.lng,p.map.lat]);
   }
-  const fitRoute=()=>map.fitBounds(routeBounds,{padding:{top:55,right:80,bottom:55,left:55},maxZoom:7,duration:500});
+  const fitRoute=()=>{
+    const compact=routeMapRoot.clientWidth<620;
+    const height=routeMapRoot.clientHeight;
+    const padding=compact
+      ? {top:Math.round(height*.13),bottom:Math.round(height*.13),left:20,right:20}
+      : {top:55,right:80,bottom:55,left:55};
+    map.fitBounds(routeBounds,{padding,maxZoom:7,duration:500});
+  };
 
   // A single click handler, not one per overlapping segment: selecting a line updates
   // the existing detail panel without placing a second popup above a route marker.
@@ -798,6 +806,7 @@ async function renderRoute() {
 
   const markerGroups={stations:[],experience:[],food:[],hotel:[]};
   const labels=createMapLabelController({map,root:routeMapRoot,context:'route'});
+  const routeClusters=createMapRouteStopClusters({map,labels});
   const layerState=readMapLayers();
   const routeContextIds=new Set([...trip.route.map(x=>x.id),...(trip.dayTrips||[]).map(x=>x.id)]);
   const mappablePlaces=places.filter(p=>!routeContextIds.has(p.id) && Number.isFinite(p.map?.lat) && Number.isFinite(p.map?.lng));
@@ -956,6 +965,7 @@ async function renderRoute() {
       const marker=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(anchor).setPopup(popup);
       watchMapMarker(marker,popup).addTo(map);
       labels.register({marker,popup,element:el,kind:'routeStop',name:p.name});
+      routeClusters.register(marker,i+1,p.name);
     });
 
     trip.dayTrips.forEach(x=>{
@@ -975,11 +985,11 @@ async function renderRoute() {
     addHotelMarkers();
     renderLayerToolbar();
     fitRoute();
-    startLocationWatch();
+    routeClusters.refresh();
   });
 
   detail.hidden=false;
-  detail.innerHTML=`<div class="route-detail-placeholder"><strong>Velg noe på kartet.</strong><span>Stopp, opplevelser, mat, overnatting og knutepunkter viser valgt innhold her. Velger du en rutelinje eller etappe, vises reisetid og pris.</span><small>${transport.childNote}</small></div>`;
+  detail.innerHTML=`<div class="route-detail-placeholder"><strong>Utforsk ruten</strong><span>Trykk på et rutestopp, en markør eller en etappe for informasjon. Samlede stopp kan åpnes med ett trykk for å zoome inn.</span></div>`;
 
   installMapLoadFallback(map,{
     onFatal:()=>{
