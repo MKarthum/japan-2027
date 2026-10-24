@@ -186,3 +186,9 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - Felles `JAPAN_MAP_MARKER_MIN_ZOOM` og `JAPAN_MAP_LABEL_POLICY` er justert slik at opplevelser, knutepunkter, hotell og mat blir synlige på et naturlig regionalt kartutsnitt, i stedet for først ved gatenivå. For mobiler er ekstra zoomkrav redusert til 0,1 zoomtrinn.
 - For å unngå at dette gjenskaper tidligere markørstøy, prioriterer `createMapLabelController` allerede synlige hovedstopp, åpne objekter og valgte objekter. Andre symboler velges med den eksisterende pikselbaserte kollisjonsmotoren. Objektene flyttes aldri, og alle kan bli synlige igjen ved zoom minst 13,5.
 - Merkeskilter/navnelapper kommer inn etter symbolene, med uendret maksantall og kollisjonsunngåelse. Ingen stedsnavn eller koordinater har egne terskler. Tester i `scripts/check-map-labels.mjs` dekker oversikt, regional oppdagbarhet, mobil, symboloverlapp og valgte objekter.
+
+## Forutsigbar synlighet i alle kart (v0.30.29)
+
+- Ikke bruk pikselbasert kollisjonsunngåelse til å skjule selve markørene for opplevelser, mat, hotell eller togstasjoner. Ikonene ble tidligere undertrykt av andre ikoner ved regional zoom. **Bare** faste zoomgrenser per kategori, kartlag, valgte objekter og eksplisitte grupper av nummererte rutestopp styrer synligheten.
+- `JAPAN_MAP_MARKER_MIN_ZOOM` har lavere grenser, likt for mobil og desktop. Ved samme zoomnivå forblir et ikon synlig ved panorering. `JAPAN_MAP_LABEL_POLICY` viser etikettene litt senere; bare navnene kollisjonsfiltreres.
+- `check-map-labels.mjs` beskytter dette skillet. Ikke gjeninnfør `iconCandidates`, `iconSelection` eller mobil-spesifikke zoomstraffer.
