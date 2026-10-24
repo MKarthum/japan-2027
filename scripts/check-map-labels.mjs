@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 const shared=fs.readFileSync('docs/assets/map-shared.js','utf8');
 const css=fs.readFileSync('docs/assets/style.css','utf8');
+const app=fs.readFileSync('docs/assets/app.js','utf8');
 const htmlFiles=['docs/place.html','docs/restaurant.html','docs/hotel.html'];
 const context={
  JapanState:{keys:{map:'map-test'},readJson:()=>({}),writeLocal:()=>{}},

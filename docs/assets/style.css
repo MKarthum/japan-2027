@@ -2603,3 +2603,5 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
  .map-object-label{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
 }
 
+
+.map-popup-micro{font-size:.8rem;line-height:1.45;color:#344552;max-width:29ch;margin:5px 0 10px}
