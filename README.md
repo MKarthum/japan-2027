@@ -161,3 +161,10 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - `JAPAN_MAP_LABEL_POLICY` er sentral konfigurasjon for zoomgrenser og typeprioritet. `mapRouteStopElement` beholder nummererte reisestopp og et mer diskret dagstursymbol, mens `.map-object-label` gir alle typer samme glassetikett **under** markøren.
 - Valgt objekt viser alltid navnet uavhengig av zoom eller kollisjoner. Andre etiketter fordeles etter type, interesserangering og tilgjengelig plass, med en begrensning på 5 ved smalt kart / 10 ved større kart. Skjulte kartlag skal ikke blokkere etiketter. Alle markørtyper, inkludert togstasjoner, kan vises på rutekartet; detaljkartene beholder den tidligere beslutningen om ingen permanente stasjonsnavn.
 - Markøren åpner først popup og, på rutekartet, tilhørende detaljpanel. Navigasjon krever eksplisitt lenkeklikk. Støtte for redusert transparens, høy kontrast og redusert animasjon beholdes. Kjør `node scripts/check-map-labels.mjs`, `node scripts/check-map-ux.mjs`, `node scripts/check-route-hierarchy.mjs`.
+
+## Kart som faktisk er gjennomsiktige (v0.30.25)
+
+- Fargen i opplevelses-, mat- og overnattingssymboler bruker nå SVG `fill-opacity` (standard 0,48, via `--map-symbol-alpha`). Dette viser kartet gjennom selve formen også i nettlesere uten støtte for `color-mix`; hvite konturer og piktogrammer forblir tydelige.
+- Det valgte objektet får fortsatt en tydelig ring, men den tidligere hvite sirkelflaten på 53 % er redusert til 8 %. Bakgrunnsuskarphet inne i symboler er maks 1 px, slik at gater og bygg ikke viskes ut. Glassrefleksen er også vesentlig svakere.
+- Rutestopp, dagsturer og togstasjoner har tilsvarende gjennomskinnelige flater. Navnelapper beholder opak tekst over en mer gjennomsiktig flate. Bruk aldri `opacity` på hele markøren for å oppnå effekten, da forsvinner også symbolkontur og tekst.
+- Ved `prefers-reduced-transparency` eller `prefers-contrast:more` brukes opake flater, ikke glass. Foreldede `.map-place-label`-regler er fjernet. `node scripts/check-map-ux.mjs` og `node scripts/check-route-hierarchy.mjs` verifiserer de sentrale garantiene.

@@ -61,7 +61,7 @@ assert(app.includes("map.getZoom()>=9?'detail':'overview'"));
 assert(css.includes('.map-object-label{')&&shared.includes('routeStop:{minZoom:8.8,priority:600}'));
 assert(css.includes('width:24px;height:24px;border-radius:8px;font-size:.73rem'));
 assert(css.includes('width:42px;height:42px;display:grid;place-items:center'));
-assert(css.includes('backdrop-filter:blur(12px) saturate(155%)'));
+assert(css.includes('background:rgba(250,252,255,.36)')&&css.includes('backdrop-filter:blur(1px) saturate(110%)'),'Route markers should reveal map details, not fog the basemap');
 assert(css.includes('@media(prefers-reduced-transparency:reduce)'));
 assert(css.includes('.map-station-dot.alternative .map-station-face'));
 assert(css.includes('.map-station-dot.intermediate .map-station-face'));
