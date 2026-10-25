@@ -47,7 +47,8 @@
           "label": "Hele familien"
         }
       }
-    ]
+    ],
+    "teaser": "Oppdag steder og stemninger gjennom spill før dere ser dem på reisen."
   },
   {
     "category": "Film",
@@ -210,7 +211,8 @@
           "label": "Tenåringer + voksne"
         }
       }
-    ]
+    ],
+    "teaser": "Fortellinger som gjør Japan litt mer gjenkjennelig før avreise."
   },
   {
     "category": "TV og serier",
@@ -437,7 +439,8 @@
           "note": "Netflix merker serien 13+."
         }
       }
-    ]
+    ],
+    "teaser": "Bli kjent med japansk hverdagsliv, mat, historie og kultur."
   },
   {
     "category": "Bøker",
@@ -538,7 +541,8 @@
           "label": "Voksne"
         }
       }
-    ]
+    ],
+    "teaser": "Les dere inn i historien, hverdagen og de moderne kontrastene."
   },
   {
     "category": "Historie",
@@ -606,7 +610,8 @@
           "label": "Tenåringer + voksne"
         }
       }
-    ]
+    ],
+    "teaser": "Fire nedslag som gir mer mening til slott, templer og byene underveis."
   },
   {
     "category": "Mat",
@@ -706,7 +711,9 @@
           "label": "Hele familien"
         }
       }
-    ]
+    ],
+    "teaser": "Lag noe godt hjemme og bli kjent med rettene dere kan se etter i Japan.",
+    "featured": true
   },
   {
     "category": "Små mål",
@@ -831,6 +838,7 @@
           "label": "Hele familien"
         }
       }
-    ]
+    ],
+    "teaser": "Små, morsomme oppgaver som kan gjøres sammen før og under turen."
   }
 ]

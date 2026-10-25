@@ -1242,20 +1242,64 @@ async function renderPrep() {
   const audienceOrder=['family','older-kids','teens','adults'];
   const audienceById=new Map(all.filter(x=>x.audience?.id).map(x=>[x.audience.id,x.audience]));
   const guide=document.getElementById('prep-audience-guide');
-  if(guide){
-    guide.innerHTML=audienceOrder.filter(id=>audienceById.has(id)).map(id=>prepAudienceHtml({...audienceById.get(id),note:null},{compact:true})).join('');
+  if(guide) guide.innerHTML=audienceOrder.filter(id=>audienceById.has(id)).map(id=>prepAudienceHtml({...audienceById.get(id),note:null},{compact:true})).join('');
+
+  const topics=document.getElementById('prep-topics');
+  const grid=document.getElementById('prep-grid');
+  const featuredIndex=Math.max(0,prep.findIndex(group=>group.featured===true));
+  const topicOrder=prep.map((group,index)=>({group,index}))
+    .sort((a,b)=>Number(Boolean(b.group.featured))-Number(Boolean(a.group.featured)) || a.index-b.index);
+  topics.innerHTML=topicOrder.map(({group,index})=>`<button type="button" class="prep-topic-button" data-prep-index="${index}" aria-controls="prep-group-${index}" aria-pressed="false">
+    <strong>${escapeSiteHtml(group.category)}</strong><small>${group.items.length} forslag</small>
+  </button>`).join('');
+
+  grid.innerHTML=prep.map((group,i)=>`<section class="section prep-group" id="prep-group-${i}" data-prep-group="${i}" hidden>
+    <div class="section-head"><div><div class="eyebrow">Før turen</div><h2 tabindex="-1">${escapeSiteHtml(group.category)}</h2><p>${escapeSiteHtml(group.teaser||'')}</p></div></div>
+    <div class="grid">${group.items.map(x=>`
+      <article class="card prep-card audience-card-${x.audience?.id||'family'}">
+        ${prepAudienceHtml(x.audience)}
+        <h3>${escapeSiteHtml(x.title)}</h3>
+        <p>${escapeSiteHtml(x.why)}</p>
+        <strong class="prep-action">${escapeSiteHtml(x.action)}</strong>
+        ${prepLinksHtml(x)}
+      </article>`).join('')}</div>
+  </section>`).join('');
+
+  const indexFromHash=()=>{
+    const match=/^#prep-group-(\d+)$/.exec(location.hash);
+    const index=match?Number(match[1]):-1;
+    return Number.isInteger(index)&&index>=0&&index<prep.length?index:featuredIndex;
+  };
+  const showTopic=(index,{focus=false}={})=>{
+    if(!Number.isInteger(index)||index<0||index>=prep.length)return;
+    topics.querySelectorAll('[data-prep-index]').forEach(button=>{
+      const selected=Number(button.dataset.prepIndex)===index;
+      button.setAttribute('aria-pressed',String(selected));
+    });
+    grid.querySelectorAll('[data-prep-group]').forEach(section=>{
+      section.hidden=Number(section.dataset.prepGroup)!==index;
+    });
+    if(focus){
+      const section=document.getElementById(`prep-group-${index}`);
+      section.querySelector('h2')?.focus({preventScroll:true});
+      section.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    }
+  };
+  topics.addEventListener('click',event=>{
+    const button=event.target.closest('[data-prep-index]');
+    if(!button||!topics.contains(button))return;
+    const index=Number(button.dataset.prepIndex);
+    if(!Number.isInteger(index))return;
+    if(location.hash!==`#prep-group-${index}`)history.pushState(null,'',`#prep-group-${index}`);
+    showTopic(index,{focus:true});
+  });
+  const syncFromUrl=()=>showTopic(indexFromHash());
+  window.addEventListener('popstate',syncFromUrl);
+  window.addEventListener('hashchange',syncFromUrl);
+  showTopic(indexFromHash());
+  if(/^#prep-group-\d+$/.test(location.hash)){
+    requestAnimationFrame(()=>document.getElementById(`prep-group-${indexFromHash()}`)?.scrollIntoView({block:'start'}));
   }
-  const prepLinks=document.createElement('nav');prepLinks.className='quick-links prep-shortcuts';prepLinks.setAttribute('aria-label','Gå til emne');
-  prepLinks.innerHTML=prep.map((group,i)=>'<a href="#prep-group-'+i+'">'+escapeSiteHtml(group.category)+'</a>').join('');
-  document.getElementById('prep-grid').insertAdjacentElement('beforebegin',prepLinks);
-  document.getElementById('prep-grid').innerHTML=prep.map((group,i)=>`<section class="section prep-group" id="prep-group-${i}"><div class="section-head"><div><div class="eyebrow">Før turen</div><h2>${group.category}</h2></div></div><div class="grid">${group.items.map(x=>`
-    <article class="card prep-card audience-card-${x.audience?.id||'family'}">
-      ${prepAudienceHtml(x.audience)}
-      <h3>${x.title}</h3>
-      <p>${x.why}</p>
-      <strong class="prep-action">${x.action}</strong>
-      ${prepLinksHtml(x)}
-    </article>`).join('')}</div></section>`).join('');
 }
 
 async function renderFood() {

@@ -485,6 +485,8 @@ if (!Array.isArray(guide.morePhrases) || guide.morePhrases.length < 4) {
   }
 }
 
+if (prep.filter(group=>group.featured===true).length!==1) errors.push('prep.json: akkurat ett tema skal være featured på Før turen');
+if (prep.some(group=>!group.teaser?.trim())) errors.push('prep.json: alle temaer trenger en kort innledning');
 const prepIds=new Set();
 let adultPrepCount=0;
 let historyPrepCount=0;
@@ -867,6 +869,11 @@ if (!app.includes("json('data/prep.json')")) errors.push('app.js henter ikke kan
 if (!app.includes('renderLanguage') || !app.includes('speechSynthesis') || !app.includes('renderPrepItem')) errors.push('app.js: språklyd, utvidet fraseliste eller detaljside for små mål mangler');
 if (!app.includes('prepAudienceHtml') || !app.includes("link.kind==='stream'") || !app.includes('target="_blank" rel="noopener"')) errors.push('app.js: tydelig målgruppevisning eller sikker ekstern strømmenavigasjon mangler');
 if (app.includes('bindPrepStreamLinks') || app.includes('data-stream-app-url')) errors.push('app.js: custom-scheme strømmenavigasjon skal ikke brukes');
+const prepLandingHtml=fs.readFileSync('docs/prep.html','utf8');
+if (!prepLandingHtml.includes('id="prep-topics"') || !prepLandingHtml.includes('id="prep-grid"') ||
+    !app.includes('data-prep-index') || !app.includes('indexFromHash') || !app.includes('section.hidden=')) {
+  errors.push('Før turen: kompakt temavelger med delbare temalenker mangler');
+}
 if (!mapShared.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>mapShared.indexOf(x));
 if(toolbarOrder.some(x=>x<0)||toolbarOrder.some((x,i)=>i>0&&x<=toolbarOrder[i-1]))errors.push('Kart: kartlagene har feil rekkefølge');
