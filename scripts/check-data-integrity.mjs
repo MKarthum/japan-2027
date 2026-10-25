@@ -888,6 +888,7 @@ const languageSlugs=(guide.morePhrases||[]).map(group=>group.slug);
 if (!languageLandingHtml.includes('id="language-home"') ||
     !languageLandingHtml.includes('id="language-focus"') ||
     !languageLandingHtml.includes('id="language-topic-cards"') ||
+    languageLandingHtml.indexOf('id="language-topic-cards"')>languageLandingHtml.indexOf('id="phrase-basics"') ||
     new Set(languageSlugs).size!==languageSlugs.length ||
     languageSlugs.some(slug=>!slug||!/^[a-z0-9-]+$/.test(slug)) ||
     !guide.morePhrases.some(group=>group.slug==='norge'&&group.items.length>=5) ||
