@@ -150,13 +150,23 @@ function nav(active='') {
     const pages=await pagesPromise;
     const config=pages.navigation;
     if(!config) return;
+    // The menu gets its topic links from prep.json, the only owner of these categories.
+    const sections=await Promise.all(config.sections.map(async section=>{
+      if(section.source!=='prep')return section;
+      const categories=await json('data/prep.json');
+      return {...section,items:[...(section.items||[]),...categories.map(group=>({
+        label:group.navLabel||group.category,
+        href:'prep.html?topic='+encodeURIComponent(group.slug),
+        key:'prep-'+group.slug
+      }))]};
+    }));
     const header=document.querySelector('header');
     const sectionHtml=section=>{
       if(section.href) return `<a class="nav-direct" href="${section.href}" ${active===section.key?'aria-current="page"':''}>${section.label}</a>`;
       const selected=section.items.some(x=>x.key===active);
       return `<details class="nav-group" ${selected?'data-selected="true"':''}><summary>${section.label}<span aria-hidden="true">⌄</span></summary><div class="nav-menu">${section.items.map(x=>`<a href="${x.href}" ${active===x.key?'aria-current="page"':''}>${x.label}</a>`).join('')}</div></details>`;
     };
-    header.innerHTML=`<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a><button type="button" class="mobile-nav-toggle" aria-expanded="false" aria-controls="site-navigation">☰ Meny</button><nav class="site-navigation" id="site-navigation" aria-label="Hovednavigasjon">${config.sections.map(sectionHtml).join('')}</nav><button class="site-search-button" type="button" aria-label="Søk i Japan 2027">⌕ Søk</button></div>`;
+    header.innerHTML=`<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a><button type="button" class="mobile-nav-toggle" aria-expanded="false" aria-controls="site-navigation">☰ Meny</button><nav class="site-navigation" id="site-navigation" aria-label="Hovednavigasjon">${sections.map(sectionHtml).join('')}</nav><button class="site-search-button" type="button" aria-label="Søk i Japan 2027">⌕ Søk</button></div>`;
     const mobile=header.querySelector('.mobile-nav-toggle'),menu=header.querySelector('#site-navigation');
     mobile.addEventListener('click',()=>{
       const opening=mobile.getAttribute('aria-expanded')!=='true';
@@ -173,9 +183,9 @@ function nav(active='') {
     document.addEventListener('click',e=>{if(!header.contains(e.target))header.querySelectorAll('.nav-group').forEach(g=>g.open=false);});
     const pageName=location.pathname.split('/').pop()||'index.html';
     const links=[{label:'Japan 2027',href:'index.html'}];
-    const group=config.sections.find(g=>g.items?.some(x=>x.key===active));
+    const group=sections.find(g=>g.items?.some(x=>x.key===active));
     if(group) links.push({label:group.label,href:null});
-    const candidate=config.sections.flatMap(g=>g.items||[g]).find(x=>x.key===active);
+    const candidate=sections.flatMap(g=>g.items||[g]).find(x=>x.key===active);
     if(candidate && active!=='home')links.push({label:candidate.label,href:candidate.href});
     const params=new URLSearchParams(location.search);
     const type=pageName==='place.html'?'place':pageName==='restaurant.html'?'restaurant':pageName==='hotel.html'?'hotel':null;
@@ -1187,7 +1197,7 @@ function speechButtonHtml(text,label='japansk uttale') {
 function languageRowHtml(x) {
   const roman=x.jp||x.term||'';
   const meaning=x.no||x.meaning||'';
-  return `<div class="glossary-row language-row"><div class="language-term"><strong>${roman}</strong>${x.japanese?`<span class="language-japanese" lang="ja">${x.japanese}</span>`:''}</div><span class="language-meaning">${meaning}</span>${speechButtonHtml(x.speech||x.japanese,roman)}</div>`;
+  return `<div class="glossary-row language-row"><div class="language-term"><strong>${escapeSiteHtml(roman)}</strong>${x.japanese?`<span class="language-japanese" lang="ja">${escapeSiteHtml(x.japanese)}</span>`:''}</div><span class="language-meaning">${escapeSiteHtml(meaning)}${x.note?`<small class="language-phrase-note">${escapeSiteHtml(x.note)}</small>`:''}</span>${speechButtonHtml(x.speech||x.japanese,escapeSiteHtml(roman))}</div>`;
 }
 function bindJapaneseSpeech(root=document) {
   if(!root || root.dataset?.speechBound==='true') return;
@@ -1235,70 +1245,57 @@ function prepLinksHtml(item,{includeDetail=true}={}) {
 }
 
 async function renderPrep() {
-  await applyPageCopy('prep');
-  nav('prep'); footer();
+  const copy=await applyPageCopy('prep');
+  footer();
   const prep=await json('data/prep.json');
+  const slug=new URLSearchParams(location.search).get('topic');
+  const oldAnchor=/^#prep-group-(\d+)$/.exec(location.hash);
+  const oldGroup=oldAnchor?prep[Number(oldAnchor[1])]:null;
+  const selected=prep.find(group=>group.slug===slug)||(slug?null:oldGroup);
+  if(oldGroup&&!slug) {
+    // Preserve previously shared #prep-group-N links while using stable slugs going forward.
+    history.replaceState(null,'','prep.html?topic='+encodeURIComponent(oldGroup.slug));
+  }
+  if(slug&&!selected)history.replaceState(null,'','prep.html');
+  const overview=document.getElementById('prep-home');
+  const detail=document.getElementById('prep-topic-content');
+  const topicCards=document.getElementById('prep-topic-cards');
+  const topicGrid=document.getElementById('prep-grid');
+  const guide=document.getElementById('prep-audience-guide');
+  const ordered=[...prep].sort((a,b)=>Number(Boolean(b.featured))-Number(Boolean(a.featured)));
   const all=prep.flatMap(group=>group.items);
   const audienceOrder=['family','older-kids','teens','adults'];
   const audienceById=new Map(all.filter(x=>x.audience?.id).map(x=>[x.audience.id,x.audience]));
-  const guide=document.getElementById('prep-audience-guide');
-  if(guide) guide.innerHTML=audienceOrder.filter(id=>audienceById.has(id)).map(id=>prepAudienceHtml({...audienceById.get(id),note:null},{compact:true})).join('');
+  if(guide)guide.innerHTML=audienceOrder.filter(id=>audienceById.has(id)).map(id=>prepAudienceHtml({...audienceById.get(id),note:null},{compact:true})).join('');
 
-  const topics=document.getElementById('prep-topics');
-  const grid=document.getElementById('prep-grid');
-  const featuredIndex=Math.max(0,prep.findIndex(group=>group.featured===true));
-  const topicOrder=prep.map((group,index)=>({group,index}))
-    .sort((a,b)=>Number(Boolean(b.group.featured))-Number(Boolean(a.group.featured)) || a.index-b.index);
-  topics.innerHTML=topicOrder.map(({group,index})=>`<button type="button" class="prep-topic-button" data-prep-index="${index}" aria-controls="prep-group-${index}" aria-pressed="false">
-    <strong>${escapeSiteHtml(group.category)}</strong><small>${group.items.length} forslag</small>
-  </button>`).join('');
+  topicCards.innerHTML=ordered.map(group=>`<a class="prep-topic-link" href="prep.html?topic=${encodeURIComponent(group.slug)}">
+    <span class="prep-topic-link-label">${escapeSiteHtml(group.navLabel||group.category)}</span>
+    <span class="prep-topic-link-summary">${escapeSiteHtml(group.teaser)}</span>
+    <span class="prep-topic-link-count">${group.items.length} forslag <span aria-hidden="true">→</span></span>
+  </a>`).join('');
 
-  grid.innerHTML=prep.map((group,i)=>`<section class="section prep-group" id="prep-group-${i}" data-prep-group="${i}" hidden>
-    <div class="section-head"><div><div class="eyebrow">Før turen</div><h2 tabindex="-1">${escapeSiteHtml(group.category)}</h2><p>${escapeSiteHtml(group.teaser||'')}</p></div></div>
-    <div class="grid">${group.items.map(x=>`
+  const title=document.querySelector('main h1[data-copy]');
+  const intro=document.querySelector('main .lede[data-copy]');
+  overview.hidden=Boolean(selected);
+  detail.hidden=!selected;
+  if(selected){
+    title.textContent=selected.navLabel||selected.category;
+    intro.textContent=selected.teaser;
+    document.title=`${selected.navLabel||selected.category} · Japan 2027`;
+    nav('prep-'+selected.slug);
+    topicGrid.innerHTML=`<div class="grid">${selected.items.map(x=>`
       <article class="card prep-card audience-card-${x.audience?.id||'family'}">
         ${prepAudienceHtml(x.audience)}
-        <h3>${escapeSiteHtml(x.title)}</h3>
+        <h2 class="prep-card-title">${escapeSiteHtml(x.title)}</h2>
         <p>${escapeSiteHtml(x.why)}</p>
         <strong class="prep-action">${escapeSiteHtml(x.action)}</strong>
         ${prepLinksHtml(x)}
-      </article>`).join('')}</div>
-  </section>`).join('');
-
-  const indexFromHash=()=>{
-    const match=/^#prep-group-(\d+)$/.exec(location.hash);
-    const index=match?Number(match[1]):-1;
-    return Number.isInteger(index)&&index>=0&&index<prep.length?index:featuredIndex;
-  };
-  const showTopic=(index,{focus=false}={})=>{
-    if(!Number.isInteger(index)||index<0||index>=prep.length)return;
-    topics.querySelectorAll('[data-prep-index]').forEach(button=>{
-      const selected=Number(button.dataset.prepIndex)===index;
-      button.setAttribute('aria-pressed',String(selected));
-    });
-    grid.querySelectorAll('[data-prep-group]').forEach(section=>{
-      section.hidden=Number(section.dataset.prepGroup)!==index;
-    });
-    if(focus){
-      const section=document.getElementById(`prep-group-${index}`);
-      section.querySelector('h2')?.focus({preventScroll:true});
-      section.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-    }
-  };
-  topics.addEventListener('click',event=>{
-    const button=event.target.closest('[data-prep-index]');
-    if(!button||!topics.contains(button))return;
-    const index=Number(button.dataset.prepIndex);
-    if(!Number.isInteger(index))return;
-    if(location.hash!==`#prep-group-${index}`)history.pushState(null,'',`#prep-group-${index}`);
-    showTopic(index,{focus:true});
-  });
-  const syncFromUrl=()=>showTopic(indexFromHash());
-  window.addEventListener('popstate',syncFromUrl);
-  window.addEventListener('hashchange',syncFromUrl);
-  showTopic(indexFromHash());
-  if(/^#prep-group-\d+$/.test(location.hash)){
-    requestAnimationFrame(()=>document.getElementById(`prep-group-${indexFromHash()}`)?.scrollIntoView({block:'start'}));
+      </article>`).join('')}</div>`;
+  }else{
+    title.textContent=copy.title;
+    intro.textContent=copy.intro;
+    nav('prep');
+    topicGrid.innerHTML='';
   }
 }
 
@@ -1645,14 +1642,57 @@ async function renderTickets() {
   }).join('');
 }
 async function renderLanguage() {
-  await applyPageCopy('language');nav('language');footer();
+  const copy=await applyPageCopy('language');
+  nav('language');footer();
   const guide=await json('data/guide.json');
+  const groups=[...(guide.morePhrases||[])].sort((a,b)=>Number(Boolean(b.featured))-Number(Boolean(a.featured)));
+  const topics=[
+    ...groups.map(group=>({slug:group.slug,title:group.category,intro:group.intro,count:group.items.length,group})),
+    {slug:'ord',title:copy.wordsTitle,intro:copy.wordsIntro,count:guide.placeWords.filter(x=>x.showInGuide!==false).length,kind:'words'},
+    {slug:'navn',title:copy.namesTitle,intro:copy.namesIntro,count:guide.nameNotes.length,kind:'names'}
+  ];
+  const topic=new URLSearchParams(location.search).get('topic');
+  const legacyHash={'#ord':'ord','#navn':'navn','#flere':'hilsener','#fraser':null}[location.hash];
+  if(!topic && typeof legacyHash==='string'){
+    history.replaceState(null,'','language.html?topic='+encodeURIComponent(legacyHash));
+  }
+  const selected=topics.find(x=>x.slug===(topic||legacyHash));
+  const home=document.getElementById('language-home');
+  const focus=document.getElementById('language-focus');
+  const title=document.querySelector('main h1[data-copy]');
+  const intro=document.querySelector('main .lede[data-copy]');
   document.getElementById('phrase-basics').innerHTML=guide.phrases.map(languageRowHtml).join('');
-  document.getElementById('place-words').innerHTML=guide.placeWords.filter(x=>x.showInGuide!==false).map(languageRowHtml).join('');
-  document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
-  document.getElementById('phrase-guide-groups').innerHTML=(guide.morePhrases||[]).map(group=>`<section class="section phrase-group"><div class="section-head"><div><h3>${group.category}</h3></div><p>${group.intro||''}</p></div><div class="glossary">${group.items.map(languageRowHtml).join('')}</div></section>`).join('');
+  document.getElementById('language-topic-cards').innerHTML=topics.map(t=>`<a class="language-topic-link" href="language.html?topic=${encodeURIComponent(t.slug)}">
+    <strong>${escapeSiteHtml(t.title)}</strong>
+    <span>${escapeSiteHtml(t.intro)}</span>
+    <small>${t.count} ${t.kind==='names'?'stedsnavn':t.kind==='words'?'ord':'fraser'} <span aria-hidden="true">→</span></small>
+  </a>`).join('');
+  home.hidden=Boolean(selected); focus.hidden=!selected;
+  if(selected){
+    title.textContent=selected.title;
+    intro.textContent=selected.intro;
+    document.title=`${selected.title} · Japansk · Japan 2027`;
+    document.getElementById('language-focus-title').textContent=selected.title;
+    document.getElementById('language-focus-title').hidden=true;
+    document.getElementById('language-focus-intro').hidden=true;
+    const note=document.getElementById('language-focus-note');
+    note.hidden=!selected.group?.note;
+    note.textContent=selected.group?.note||'';
+    const content=document.getElementById('language-focus-content');
+    if(selected.kind==='names'){
+      content.innerHTML=`<div class="grid">${guide.nameNotes.map(x=>`<article class="mini-card"><h3>${escapeSiteHtml(x.name)}</h3><p>${escapeSiteHtml(x.note)}</p></article>`).join('')}</div>`;
+    }else{
+      const items=selected.kind==='words'?guide.placeWords.filter(x=>x.showInGuide!==false):selected.group.items;
+      content.innerHTML=`<div class="glossary">${items.map(languageRowHtml).join('')}</div>`;
+    }
+  }else{
+    title.textContent=copy.title;
+    intro.textContent=copy.intro;
+    document.getElementById('language-focus-content').innerHTML='';
+  }
   bindJapaneseSpeech(document.querySelector('main'));
 }
+
 async function renderPractical() {
   const legacy={'#transport':'transport-guide.html#transport','#pass':'transport-guide.html#pass','#booking':'tickets.html#booking','#ord':'language.html#ord','#navn':'language.html#navn'};
   if(legacy[location.hash]){location.replace(legacy[location.hash]);return;}
@@ -1666,7 +1706,7 @@ async function renderPrepItem() {
   nav('prep'); footer();
   const [prep,places,trip]=await Promise.all([json('data/prep.json'),json('data/places.json'),json('data/trip.json')]);
   const id=new URLSearchParams(location.search).get('id');
-  const all=prep.flatMap(group=>group.items.map(item=>({...item,category:group.category})));
+  const all=prep.flatMap(group=>group.items.map(item=>({...item,category:group.category,categorySlug:group.slug})));
   const x=all.find(item=>item.id===id);
   if(!x || !x.detail){
     document.title='Forberedelse ikke funnet · Japan 2027';
@@ -1674,6 +1714,8 @@ async function renderPrepItem() {
     return;
   }
   document.title=`${x.title} · Japan 2027`;
+  const back=document.querySelector('.detail-back a');
+  if(back)back.href='prep.html?topic='+encodeURIComponent(x.categorySlug);
   document.getElementById('prep-detail-category').textContent=x.category;
   document.getElementById('prep-detail-audience').innerHTML=prepAudienceHtml(x.audience);
   document.getElementById('prep-detail-title').textContent=x.title;

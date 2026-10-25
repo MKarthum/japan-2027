@@ -80,14 +80,15 @@
     "onsenShortcut": "Se fire muligheter for privat onsen i Hakone →"
   },
   "prep": {
-    "eyebrow": "Bli kjent med Japan",
-    "title": "Opplev Japan før du reiser",
-    "intro": "Velg det dere har lyst til å utforske: lag japansk mat, se film, spill eller få litt historie på kjøpet. Ett tema om gangen.",
+    "eyebrow": "Før turen",
+    "title": "Bli kjent med Japan",
+    "intro": "Små og store smakebiter av Japan før avreise. Velg ett tema: matlaging, film, serier, spill, bøker, historie eller en familieaktivitet.",
     "audienceEyebrow": "Målgruppe",
     "audienceTitle": "Hvem passer forslagene for?",
     "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen.",
     "topicsEyebrow": "Utforsk",
-    "topicsTitle": "Hva frister før turen?"
+    "topicsTitle": "Utforsk et tema",
+    "languageLink": "Lyst til å lære noen japanske ord og fraser?"
   },
   "practical": {
     "eyebrow": "På reisen",
@@ -245,19 +246,20 @@
         ]
       },
       {
-        "label": "Bli kjent med Japan",
+        "label": "Før turen",
         "items": [
           {
-            "label": "Film, spill, bøker og kultur",
+            "label": "Se alle temaer",
             "href": "prep.html",
             "key": "prep"
-          },
-          {
-            "label": "Språk og fraser",
-            "href": "language.html",
-            "key": "language"
           }
-        ]
+        ],
+        "source": "prep"
+      },
+      {
+        "label": "Språk og fraser",
+        "href": "language.html",
+        "key": "language"
       },
       {
         "label": "På reisen",
@@ -280,16 +282,22 @@
   },
   "language": {
     "eyebrow": "Språk og fraser",
-    "title": "Litt japansk kommer man langt med",
-    "intro": "Lær noen nyttige ord før reisen, eller finn et uttrykk når du trenger det. Uttalen kan spilles av.",
-    "basicsTitle": "De viktigste frasene",
-    "basicsIntro": "Begynn med korte ord du får bruk for ofte.",
+    "title": "Japansk du faktisk får bruk for",
+    "intro": "Start med noen få fraser, og gå videre til situasjoner du møter på reisen – eller prøv en norsk vikingvits.",
+    "basicsTitle": "Ti fraser å begynne med",
+    "basicsIntro": "De mest nyttige ordene først. Trykk på høyttaleren for å høre japansk uttale.",
     "wordsTitle": "Ord du møter i Japan",
     "wordsIntro": "Stedsord og uttrykk som gjør skilt, menyer og tradisjoner lettere å forstå.",
     "namesTitle": "Hva betyr stedsnavnene?",
     "namesIntro": "Et utvalg navn langs ruten og hva de betyr.",
     "extraTitle": "Flere fraser etter situasjon",
-    "audioNote": "Uttalen spilles av med en japansk tekst-til-tale-stemme på telefonen, nettbrettet eller datamaskinen. Stemmekvaliteten kan variere litt mellom enheter."
+    "audioNote": "Uttalen spilles av med en japansk tekst-til-tale-stemme på telefonen, nettbrettet eller datamaskinen. Stemmekvaliteten kan variere litt mellom enheter.",
+    "topicsTitle": "Velg en situasjon",
+    "topicsIntro": "Hver samling kan åpnes alene. Du får norsk betydning, japansk skrift, uttale og korte merknader.",
+    "backLabel": "Til alle språktemaer",
+    "moreTopicsTitle": "Flere nyttige ord",
+    "topicWordsIntro": "Stedsord og uttrykk som gjør skilt, menyer og tradisjoner lettere å forstå.",
+    "topicNamesIntro": "Et utvalg navn langs ruten og hva de betyr."
   },
   "transport": {
     "eyebrow": "Planlegg reisen",
