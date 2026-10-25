@@ -18,8 +18,8 @@ Hovednavigasjonen holdes bevisst liten:
 - Steder
 - Mat
 - Overnatting
-- Bli kjent med Japan: spill, film, bøker, historie og mat
-- Språk og fraser: ordliste, uttale, stedsnavn\n- Planlegg reisen: transport/pass, billetter, flysøk, overnatting og budsjett\n- På reisen: praktiske råd og droneregler\n- Mine valg: lokale interesser med kobling til dagidéer
+- Før turen: eget undermenypunkt for matlaging, film, TV, spill, bøker, historie og små aktiviteter
+- Språk og fraser (hovedside): grunnfraser, situasjonssamlinger, Norge og moro, uttale, ordliste og stedsnavn\n- Planlegg reisen: transport/pass, billetter, flysøk, overnatting og budsjett\n- På reisen: praktiske råd og droneregler\n- Mine valg: lokale interesser med kobling til dagidéer
 - Droner
 - Budsjett
 
@@ -192,3 +192,9 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - Ikke bruk pikselbasert kollisjonsunngåelse til å skjule selve markørene for opplevelser, mat, hotell eller togstasjoner. Ikonene ble tidligere undertrykt av andre ikoner ved regional zoom. **Bare** faste zoomgrenser per kategori, kartlag, valgte objekter og eksplisitte grupper av nummererte rutestopp styrer synligheten.
 - `JAPAN_MAP_MARKER_MIN_ZOOM` har lavere grenser, likt for mobil og desktop. Ved samme zoomnivå forblir et ikon synlig ved panorering. `JAPAN_MAP_LABEL_POLICY` viser etikettene litt senere; bare navnene kollisjonsfiltreres.
 - `check-map-labels.mjs` beskytter dette skillet. Ikke gjeninnfør `iconCandidates`, `iconSelection` eller mobil-spesifikke zoomstraffer.
+
+## Før turen og språk – egen informasjonshierarki
+
+- `docs/prep.html` er en kort temainngang. Undersider bruker `?topic=<slug>` fra `docs/data/prep.json`, og menypunktene dannes fra de samme dataene. Gamle `#prep-group-N` skal fortsatt virke.
+- `docs/language.html` er en hovedside med grunnfraser og egne `?topic=<slug>`-visninger. `guide.json.morePhrases` er én kilde for frasegruppene, mens ordliste og stedsnavn fortsatt kommer fra eksisterende felt i guide.json. Nettleserens japanske talesyntese brukes på alle frasekort.
+- Norge og moro er tydelig merket som underholdning. `バイキング` kan bety både viking og buffet; konteksten forklares.
