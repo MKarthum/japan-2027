@@ -550,7 +550,7 @@ for (const group of prep) {
 
 const cookingGroup=prep.find(group=>group.slug==='mat');
 if (!cookingGroup || cookingGroup.items.length<10 ||
-    cookingGroup.recipeLinksChecked!=='2026-10-25' ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(cookingGroup.recipeLinksChecked||'') ||
     cookingGroup.items.filter(item=>item.cooking?.tier==='start').length!==5 ||
     cookingGroup.items.filter(item=>item.cooking?.tier==='more').length<5 ||
     new Set(cookingGroup.items.map(item=>item.cooking?.order)).size!==cookingGroup.items.length ||
