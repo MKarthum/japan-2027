@@ -678,6 +678,59 @@
   ],
   "morePhrases": [
     {
+      "slug": "norge",
+      "category": "Norge og moro",
+      "featured": true,
+      "intro": "Litt unyttig, men morsomt: fortell hvor du kommer fra, spør om norsk – og prøv en vikingvits.",
+      "note": "«Baikingu» betyr også buffet eller matservering i Japan. «Jeg er viking» er derfor en morsom replikk, ikke en nyttig standardfrase.",
+      "sourceUrl": "https://kotobank.jp/word/%E3%81%B0%E3%81%84%E3%81%8D%E3%82%93%E3%81%90-3164019",
+      "items": [
+        {
+          "jp": "Noruwējin desu",
+          "japanese": "ノルウェー人です。",
+          "speech": "ノルウェー人です",
+          "no": "Jeg er norsk."
+        },
+        {
+          "jp": "Noruwē kara kimashita",
+          "japanese": "ノルウェーから来ました。",
+          "speech": "ノルウェーから来ました",
+          "no": "Jeg kommer fra Norge."
+        },
+        {
+          "jp": "Noruwēgo o hanasemasu ka?",
+          "japanese": "ノルウェー語を話せますか？",
+          "speech": "ノルウェー語を話せますか",
+          "no": "Snakker du norsk?"
+        },
+        {
+          "jp": "Watashi wa baikingu desu",
+          "japanese": "私はバイキングです。",
+          "speech": "私はバイキングです",
+          "no": "Jeg er viking!",
+          "note": "Bare på tull: «baikingu» brukes også om buffet på japansk."
+        },
+        {
+          "jp": "Nihon wa hajimete desu",
+          "japanese": "日本は初めてです。",
+          "speech": "日本は初めてです",
+          "no": "Dette er første gang jeg er i Japan."
+        },
+        {
+          "jp": "Nihon ga daisuki desu",
+          "japanese": "日本が大好きです。",
+          "speech": "日本が大好きです",
+          "no": "Jeg er veldig glad i Japan."
+        },
+        {
+          "jp": "Kanpai!",
+          "japanese": "乾杯！",
+          "speech": "乾杯！",
+          "no": "Skål!"
+        }
+      ]
+    },
+    {
       "category": "Hilsener",
       "intro": "Nok til å komme høflig i gang uten å lære et helt høflighetssystem.",
       "items": [
@@ -705,7 +758,8 @@
           "speech": "はじめまして",
           "no": "Hyggelig å møte deg – brukes ved første møte."
         }
-      ]
+      ],
+      "slug": "hilsener"
     },
     {
       "category": "Restaurant og kafé",
@@ -741,7 +795,8 @@
           "speech": "おかんじょう おねがいします",
           "no": "Regningen, takk."
         }
-      ]
+      ],
+      "slug": "restaurant"
     },
     {
       "category": "Transport og vei",
@@ -771,7 +826,8 @@
           "speech": "このでんしゃで だいじょうぶですか",
           "no": "Er dette riktig tog?"
         }
-      ]
+      ],
+      "slug": "transport"
     },
     {
       "category": "Butikk og betaling",
@@ -801,7 +857,8 @@
           "speech": "ふくろはいりません",
           "no": "Jeg trenger ikke pose."
         }
-      ]
+      ],
+      "slug": "butikk"
     },
     {
       "category": "Når samtalen går for fort",
@@ -830,6 +887,134 @@
           "japanese": "助けてください",
           "speech": "たすけてください",
           "no": "Hjelp meg, vær så snill."
+        }
+      ],
+      "slug": "forstaelse"
+    },
+    {
+      "slug": "hotell",
+      "category": "Hotell og bagasje",
+      "intro": "Sjekk inn, finn rommet og spør hvor du kan sette bagasjen.",
+      "items": [
+        {
+          "jp": "Yoyaku shite imasu",
+          "japanese": "予約しています。",
+          "speech": "予約しています",
+          "no": "Jeg har en reservasjon."
+        },
+        {
+          "jp": "Chekku-in o onegaishimasu",
+          "japanese": "チェックインをお願いします。",
+          "speech": "チェックインをお願いします",
+          "no": "Jeg vil gjerne sjekke inn."
+        },
+        {
+          "jp": "Nimotsu o azukatte moraemasu ka?",
+          "japanese": "荷物を預かってもらえますか？",
+          "speech": "荷物を預かってもらえますか",
+          "no": "Kan dere oppbevare bagasjen?"
+        },
+        {
+          "jp": "Wi-Fi no pasuwādo wa nan desu ka?",
+          "japanese": "Wi-Fiのパスワードは何ですか？",
+          "speech": "Wi-Fiのパスワードは何ですか",
+          "no": "Hva er Wi-Fi-passordet?"
+        }
+      ]
+    },
+    {
+      "slug": "matbehov",
+      "category": "Matallergier og spesialkost",
+      "intro": "Få frem at noe er viktig med maten, og be personalet kontrollere innholdet.",
+      "note": "Ved alvorlig allergi er dette bare en hjelp til å starte samtalen. Bruk et presist oversatt allergikort og få ingredienser og krysskontakt bekreftet før du spiser.",
+      "items": [
+        {
+          "jp": "Arerugī ga arimasu",
+          "japanese": "アレルギーがあります。",
+          "speech": "アレルギーがあります",
+          "no": "Jeg har en allergi."
+        },
+        {
+          "jp": "Nattsu arerugī ga arimasu",
+          "japanese": "ナッツアレルギーがあります。",
+          "speech": "ナッツアレルギーがあります",
+          "no": "Jeg er allergisk mot nøtter."
+        },
+        {
+          "jp": "Kore ni nattsu wa haitte imasu ka?",
+          "japanese": "これにナッツは入っていますか？",
+          "speech": "これにナッツは入っていますか",
+          "no": "Inneholder dette nøtter?"
+        },
+        {
+          "jp": "Tamago wa haitte imasu ka?",
+          "japanese": "卵は入っていますか？",
+          "speech": "卵は入っていますか",
+          "no": "Er det egg i dette?"
+        }
+      ]
+    },
+    {
+      "slug": "hjelp",
+      "category": "Når du trenger hjelp",
+      "intro": "Fraser for å finne frem, be om hjelp eller forklare et problem.",
+      "note": "Ved akutt fare: Ring 110 (politi) eller 119 (ambulanse og brann). Se også praktisk informasjon på reisen.",
+      "sourceUrl": "https://faq.japan-travel.jnto.go.jp/en/plan/hotline/",
+      "items": [
+        {
+          "jp": "Michi ni mayoimashita",
+          "japanese": "道に迷いました。",
+          "speech": "道に迷いました",
+          "no": "Jeg har gått meg bort."
+        },
+        {
+          "jp": "Yakkyoku wa doko desu ka?",
+          "japanese": "薬局はどこですか？",
+          "speech": "薬局はどこですか",
+          "no": "Hvor er apoteket?"
+        },
+        {
+          "jp": "Kore o kaite itadakemasu ka?",
+          "japanese": "これを書いていただけますか？",
+          "speech": "これを書いていただけますか",
+          "no": "Kan du skrive dette ned?"
+        },
+        {
+          "jp": "Dareka tasukete kudasai",
+          "japanese": "誰か助けてください。",
+          "speech": "誰か助けてください",
+          "no": "Kan noen hjelpe meg?"
+        }
+      ]
+    },
+    {
+      "slug": "smaaprat",
+      "category": "Småprat og opplevelser",
+      "intro": "Noen lette replikker som fungerer i hyggelige møter og når dere prøver noe nytt.",
+      "items": [
+        {
+          "jp": "Tanoshii desu!",
+          "japanese": "楽しいです！",
+          "speech": "楽しいです！",
+          "no": "Dette er gøy!"
+        },
+        {
+          "jp": "Sugoi!",
+          "japanese": "すごい！",
+          "speech": "すごい！",
+          "no": "Wow! / Imponerende!"
+        },
+        {
+          "jp": "Kirei desu ne",
+          "japanese": "きれいですね。",
+          "speech": "きれいですね",
+          "no": "Så fint det er her!"
+        },
+        {
+          "jp": "Shashin o totte mo ii desu ka?",
+          "japanese": "写真を撮ってもいいですか？",
+          "speech": "写真を撮ってもいいですか",
+          "no": "Er det lov å ta bilde?"
         }
       ]
     }
