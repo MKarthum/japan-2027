@@ -84,9 +84,9 @@ const requiredPageCopy={
   dayIdeas:['eyebrow','title','intro','principle','flexibility','filterLabel'],
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
   hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],
-  prep:['eyebrow','title','intro','audienceEyebrow','audienceTitle','audienceIntro'],
+  prep:['eyebrow','title','intro','audienceEyebrow','audienceTitle','audienceIntro','languageLink','topicsTitle'],
   practical:['eyebrow','title','intro','etiquetteTitle'],
-  language:['eyebrow','title','intro','basicsTitle','wordsTitle','namesTitle','audioNote'],
+  language:['eyebrow','title','intro','basicsTitle','basicsIntro','wordsTitle','namesTitle','audioNote','topicsTitle','topicsIntro','backLabel'],
   transport:['eyebrow','title','intro','transportTitle','passesTitle'],
   tickets:['eyebrow','title','intro','bookingTitle'],
   myChoices:['eyebrow','title','intro','storageNote'],
@@ -870,9 +870,30 @@ if (!app.includes('renderLanguage') || !app.includes('speechSynthesis') || !app.
 if (!app.includes('prepAudienceHtml') || !app.includes("link.kind==='stream'") || !app.includes('target="_blank" rel="noopener"')) errors.push('app.js: tydelig målgruppevisning eller sikker ekstern strømmenavigasjon mangler');
 if (app.includes('bindPrepStreamLinks') || app.includes('data-stream-app-url')) errors.push('app.js: custom-scheme strømmenavigasjon skal ikke brukes');
 const prepLandingHtml=fs.readFileSync('docs/prep.html','utf8');
-if (!prepLandingHtml.includes('id="prep-topics"') || !prepLandingHtml.includes('id="prep-grid"') ||
-    !app.includes('data-prep-index') || !app.includes('indexFromHash') || !app.includes('section.hidden=')) {
-  errors.push('Før turen: kompakt temavelger med delbare temalenker mangler');
+const languageLandingHtml=fs.readFileSync('docs/language.html','utf8');
+const prepNav=pages.navigation.sections.find(section=>section.source==='prep');
+const languageNav=pages.navigation.sections.filter(section=>section.href==='language.html'&&section.key==='language');
+const prepSlugs=prep.map(group=>group.slug);
+if (!prepNav?.items?.some(item=>item.href==='prep.html') || languageNav.length!==1 ||
+    new Set(prepSlugs).size!==prep.length || prepSlugs.some(slug=>!slug||!/^[a-z0-9-]+$/.test(slug))) {
+  errors.push('Før turen/Språk: top-level navigation, prep sourcing or stable slugs missing');
+}
+if (prep.some(group=>!group.navLabel||!group.teaser) ||
+    !prepLandingHtml.includes('id="prep-topic-cards"') ||
+    !prepLandingHtml.includes('id="prep-topic-content"') ||
+    !app.includes('prep.html?topic=') || !app.includes('oldAnchor=')) {
+  errors.push('Før turen: separate topic views, return links or backward compatibility missing');
+}
+const languageSlugs=(guide.morePhrases||[]).map(group=>group.slug);
+if (!languageLandingHtml.includes('id="language-home"') ||
+    !languageLandingHtml.includes('id="language-focus"') ||
+    !languageLandingHtml.includes('id="language-topic-cards"') ||
+    new Set(languageSlugs).size!==languageSlugs.length ||
+    languageSlugs.some(slug=>!slug||!/^[a-z0-9-]+$/.test(slug)) ||
+    !guide.morePhrases.some(group=>group.slug==='norge'&&group.items.length>=5) ||
+    !guide.morePhrases.some(group=>group.slug==='matbehov') ||
+    !app.includes('language.html?topic=')) {
+  errors.push('Språk: situasjonssider, unike slugs eller norske morsomme fraser mangler');
 }
 if (!mapShared.includes('Knutepunkter') || !transport.stationNote) errors.push('rutekartet forklarer ikke at stasjonene er utvalgte knutepunkter');
 const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>mapShared.indexOf(x));
