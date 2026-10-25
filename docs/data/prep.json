@@ -808,13 +808,19 @@
           "time": "60–90 min",
           "kids": "Fordel fyll på ris, rull sammen med hjelp og velg topping.",
           "spot": "Sushirestauranter, supermarkeder og ferdigmatdisker.",
-          "note": "MatPrat bruker laks i oppskriften. For en enkel familiekveld kan dere velge grønnsaker eller varmebehandlet fyll; rå fisk krever særlig god hygiene og egnet råvare."
+          "note": "MatPrats oppskrift bruker rå laks. For en enkel familiekveld kan dere velge grønnsaker eller varmebehandlet fyll. Skal dere bruke rå fisk, les Mattilsynets råd om kjøling, hygiene og egnet fisk først."
         },
         "links": [
           {
             "label": "Norsk oppskrift · MatPrat",
             "kind": "recipe",
             "url": "https://www.matprat.no/oppskrifter/gjester/maki-med-laks/",
+            "lang": "nb"
+          },
+          {
+            "label": "Trygg sushi · Mattilsynet",
+            "kind": "safety",
+            "url": "https://www.mattilsynet.no/mat-og-drikke/forbrukere/slik-lager-du-sushi-som-er-trygg-a-spise",
             "lang": "nb"
           }
         ],
