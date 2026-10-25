@@ -1249,7 +1249,7 @@ async function renderPrep() {
   footer();
   const prep=await json('data/prep.json');
   const slug=new URLSearchParams(location.search).get('topic');
-  const oldAnchor=/^#prep-group-(\\d+)$/.exec(location.hash);
+  const oldAnchor=/^#prep-group-(\d+)$/.exec(location.hash);
   const oldGroup=oldAnchor?prep[Number(oldAnchor[1])]:null;
   const selected=prep.find(group=>group.slug===slug)||(slug?null:oldGroup);
   if(oldGroup&&!slug) {
@@ -1706,7 +1706,7 @@ async function renderPrepItem() {
   nav('prep'); footer();
   const [prep,places,trip]=await Promise.all([json('data/prep.json'),json('data/places.json'),json('data/trip.json')]);
   const id=new URLSearchParams(location.search).get('id');
-  const all=prep.flatMap(group=>group.items.map(item=>({...item,category:group.category})));
+  const all=prep.flatMap(group=>group.items.map(item=>({...item,category:group.category,categorySlug:group.slug})));
   const x=all.find(item=>item.id===id);
   if(!x || !x.detail){
     document.title='Forberedelse ikke funnet · Japan 2027';
@@ -1714,6 +1714,8 @@ async function renderPrepItem() {
     return;
   }
   document.title=`${x.title} · Japan 2027`;
+  const back=document.querySelector('.detail-back a');
+  if(back)back.href='prep.html?topic='+encodeURIComponent(x.categorySlug);
   document.getElementById('prep-detail-category').textContent=x.category;
   document.getElementById('prep-detail-audience').innerHTML=prepAudienceHtml(x.audience);
   document.getElementById('prep-detail-title').textContent=x.title;
