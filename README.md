@@ -193,8 +193,11 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 - `JAPAN_MAP_MARKER_MIN_ZOOM` har lavere grenser, likt for mobil og desktop. Ved samme zoomnivå forblir et ikon synlig ved panorering. `JAPAN_MAP_LABEL_POLICY` viser etikettene litt senere; bare navnene kollisjonsfiltreres.
 - `check-map-labels.mjs` beskytter dette skillet. Ikke gjeninnfør `iconCandidates`, `iconSelection` eller mobil-spesifikke zoomstraffer.
 
-## Før turen og språk – egen informasjonshierarki
+## Før turen og språk – datadrevet navigasjon
 
 - `docs/prep.html` er en kort temainngang. Undersider bruker `?topic=<slug>` fra `docs/data/prep.json`, og menypunktene dannes fra de samme dataene. Gamle `#prep-group-N` skal fortsatt virke.
-- `docs/language.html` er en hovedside med grunnfraser og egne `?topic=<slug>`-visninger. `guide.json.morePhrases` er én kilde for frasegruppene, mens ordliste og stedsnavn fortsatt kommer fra eksisterende felt i guide.json. Nettleserens japanske talesyntese brukes på alle frasekort.
+- `docs/language.html` er en hovedside med datadrevet undermeny, grunnfraser og egne `?topic=<slug>`-visninger. `guide.json.morePhrases` er én kilde for frasegruppene, mens ordliste og stedsnavn fortsatt kommer fra eksisterende felt i guide.json. Nettleserens japanske talesyntese brukes på alle frasekort.
 - Norge og moro er tydelig merket som underholdning. `バイキング` kan bety både viking og buffet; konteksten forklares.
+
+- `docs/data/pages.json.navigation.sections` er deklarativ navigasjon. `source: prep` og `source: language` bruker den samme ekspansjons- og menykomponenten i `app.js`, og menypunktene utledes fra `prep.json`, `guide.json.morePhrases` og `pages.json.language`. Ingen vedlikeholdt dobbeltliste. Undermenyer lastes ved behov, og aktive kilder kan gjenbrukes.
+- Navigasjonsstier følger oversikt → valgt tema → detalj og bygger faktisk klikkbare foreldre når en landingsside finnes. Utvid kontraktstesten ved nye datakilder eller temaer.
