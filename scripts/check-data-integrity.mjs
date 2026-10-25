@@ -739,6 +739,20 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kartfallback skal opprettes ved reell fatal kartfeil, ikke ligge skjult i HTML');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+const cookCss=fs.readFileSync('docs/assets/style.css','utf8');
+const cardStart=app.indexOf('function prepCookingCardHtml(item,copy)');
+const cardEnd=app.indexOf('async function renderPrep()',cardStart);
+const cardHtml=app.slice(cardStart,cardEnd);
+if (!cardHtml.includes('<article class="prep-cook-card">') ||
+    !cardHtml.includes('<div class="prep-cook-body">') ||
+    !cardHtml.includes('<h3>') ||
+    cardHtml.indexOf('<h3>')>cardHtml.indexOf('class="prep-cook-meta"') ||
+    !cookCss.includes('.prep-cook-body{') ||
+    !cookCss.includes('border:1px solid var(--line)') ||
+    !cookCss.includes('overflow:hidden') ||
+    !cookCss.includes('.prep-cooking-grid{')) {
+  errors.push('Matkort: bilde, tittel, metadata og lenker må være samlet i rammede selvstendige kort');
+}
 if (!app.includes('imageCreditHtml(image,') || !app.includes('prep-cook-media') || !app.includes('loading="lazy"') ||
     !app.includes('object-position') && !fs.readFileSync('docs/assets/style.css','utf8').includes('object-position:center')) {
   errors.push('Matkort: bilde, felles bilde-kreditering, lazy loading eller sentrert utsnitt mangler');
