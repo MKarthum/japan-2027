@@ -634,7 +634,7 @@
         "placeIds": [],
         "links": [
           {
-            "label": "Norsk oppskrift",
+            "label": "Norsk oppskrift · Marc Winer",
             "kind": "recipe",
             "url": "https://marcwiner.com/no/onigiri/",
             "lang": "nb"
@@ -667,7 +667,7 @@
         "placeIds": [],
         "links": [
           {
-            "label": "Norsk oppskrift",
+            "label": "Norsk oppskrift · MatPrat",
             "kind": "recipe",
             "url": "https://www.matprat.no/oppskrifter/kos/gyoza-med-svinekjott/",
             "lang": "nb"
@@ -702,7 +702,7 @@
         ],
         "links": [
           {
-            "label": "Norsk oppskrift",
+            "label": "Norsk oppskrift · MatPrat",
             "kind": "recipe",
             "url": "https://www.matprat.no/oppskrifter/sunn/kyllingramen/",
             "lang": "nb"
@@ -735,7 +735,7 @@
         "placeIds": [],
         "links": [
           {
-            "label": "Norsk oppskrift",
+            "label": "Norsk oppskrift · Alt Asiatisk",
             "kind": "recipe",
             "url": "https://www.altasiatisk.no/oppskrifter/japansk-kylling-curry",
             "lang": "nb"
@@ -771,7 +771,7 @@
         ],
         "links": [
           {
-            "label": "Norsk oppskrift",
+            "label": "Norsk oppskrift · MatPrat",
             "kind": "recipe",
             "url": "https://www.matprat.no/oppskrifter/kos/okonomiyaki/",
             "lang": "nb"
