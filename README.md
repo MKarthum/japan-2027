@@ -33,7 +33,7 @@ Kilder og personvern ligger i bunnteksten.
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
 - `docs/data/route-geometry.json` – fysisk rutegeometri og spor-offsets; ingen egne destinasjonsfarger
-- `docs/data/prep.json` – spill, film/TV, bøker, historie, mat og små oppgaver før turen, med tydelig målgruppe
+- `docs/data/prep.json` – spill, film/TV, bøker, historie, mat og små oppgaver før turen, med tydelig målgruppe; mat har 5 synlige førsteforslag + flere sammenleggbare retter, med lenker til åpne norske oppskrifter, gode japanske alternativer og familieaktiviteter
 - `docs/data/guide.json` – bookingradar, praktiske råd og kanonisk ordbok (`placeWords` med `inline`, `aliases`, `meaning`, valgfri `showInGuide`); stedsspesifikk info refereres med ID
 - `docs/assets/glossary.js` – én gjenbrukbar frontend-funksjon som understreker ord diskret og viser små klikkbare forklaringsbokser på mobil og desktop; ingen definisjoner hardkodes her
 - `docs/data/passes.json` – kompakt beslutningslogg for togpass, aktivitets-/transportpass og kombipakker
