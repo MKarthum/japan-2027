@@ -80,14 +80,15 @@
     "onsenShortcut": "Se fire muligheter for privat onsen i Hakone →"
   },
   "prep": {
-    "eyebrow": "Bli kjent med Japan",
-    "title": "Opplev Japan før du reiser",
-    "intro": "Velg det dere har lyst til å utforske: lag japansk mat, se film, spill eller få litt historie på kjøpet. Ett tema om gangen.",
+    "eyebrow": "Før turen",
+    "title": "Bli kjent med Japan",
+    "intro": "Små og store smakebiter av Japan før avreise. Velg ett tema: matlaging, film, serier, spill, bøker, historie eller en familieaktivitet.",
     "audienceEyebrow": "Målgruppe",
     "audienceTitle": "Hvem passer forslagene for?",
     "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen.",
     "topicsEyebrow": "Utforsk",
-    "topicsTitle": "Hva frister før turen?"
+    "topicsTitle": "Utforsk et tema",
+    "languageLink": "Lyst til å lære noen japanske ord og fraser?"
   },
   "practical": {
     "eyebrow": "På reisen",
@@ -245,19 +246,20 @@
         ]
       },
       {
-        "label": "Bli kjent med Japan",
+        "label": "Før turen",
         "items": [
           {
-            "label": "Film, spill, bøker og kultur",
+            "label": "Se alle temaer",
             "href": "prep.html",
             "key": "prep"
-          },
-          {
-            "label": "Språk og fraser",
-            "href": "language.html",
-            "key": "language"
           }
-        ]
+        ],
+        "source": "prep"
+      },
+      {
+        "label": "Språk og fraser",
+        "href": "language.html",
+        "key": "language"
       },
       {
         "label": "På reisen",
