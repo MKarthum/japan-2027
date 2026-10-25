@@ -1324,7 +1324,15 @@ function prepLinksHtml(item,{includeDetail=true}={}) {
 
 function prepCookingCardHtml(item,copy){
   const cooking=item.cooking;
+  const image=item.image;
+  // Reuse the site's universal image-credit renderer; all image facts live in prep.json.
+  const media=image?.url?`<figure class="prep-cook-media">
+    <span class="prep-cook-image-fallback" aria-hidden="true">${escapeSiteHtml(item.title)}</span>
+    <img src="${escapeSiteHtml(image.url)}" alt="${escapeSiteHtml(image.alt)}" loading="lazy" decoding="async" width="900" height="600" onerror="this.closest('.prep-cook-media').classList.add('is-fallback');this.remove()">
+    ${imageCreditHtml(image,'image-credit-overlay image-credit-mini')}
+  </figure>`:'';
   return `<article class="card prep-cook-card">
+    ${media}
     <div class="prep-cook-meta"><span class="prep-cook-time">${escapeSiteHtml(copy.cookingTimeLabel)}: ${escapeSiteHtml(cooking.time)}</span></div>
     <h3>${escapeSiteHtml(item.title)}</h3>
     <p class="prep-cook-why">${escapeSiteHtml(item.why)}</p>

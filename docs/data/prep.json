@@ -657,6 +657,15 @@
           "kids": "Form lunken ris med våte hender, legg i ferdig fyll og pakk på nori.",
           "spot": "Konbini (kiosker) og matbutikker, særlig som enkel lunsj på farten.",
           "note": "Den norske oppskriften viser flere fyll; start med tunfisk og majones, stekt laks eller bare sesam. Oppbevar ris og fisk forsvarlig kjølig."
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese_rice_balls_(onigiri).jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Japanese_rice_balls_(onigiri).jpg",
+          "credit": "tednmiki",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "alt": "Hjemmelagde trekantede onigiri av ris pakket i nori"
         }
       },
       {
@@ -690,6 +699,15 @@
           "kids": "Fordel fyllet og brett gyoza. Voksne tar ansvar for steking og damping.",
           "spot": "Som smårett, ofte sammen med ramen.",
           "note": "MatPrats versjon lager deigen selv og er mer krevende. Ferdige gyoza-ark fra asiatisk matbutikk gjør familieprosjektet enklere."
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese_pan_fried_gyoza.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Japanese_pan_fried_gyoza.jpg",
+          "credit": "Adryan R. Villanueva",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "alt": "Sprøstekte japanske gyoza servert med topping"
         }
       },
       {
@@ -725,6 +743,15 @@
           "kids": "Kokte egg, grønnsaker og topping: alle kan sette sammen sin egen bolle.",
           "spot": "Ramenbarer i byene; prøv gjerne ulike typer kraft.",
           "note": "MatPrats kyllingramen bruker både chili og chilipaste. Begynn mildt og la sterk topping komme ved siden av."
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bowl_of_miso_ramen.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Bowl_of_miso_ramen.jpg",
+          "credit": "Douglas Perkins",
+          "license": "CC0 1.0",
+          "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "alt": "Skål med miso-ramen, skivet svinekjøtt og halvert egg"
         }
       },
       {
@@ -758,6 +785,15 @@
           "kids": "Skyll risen, mål opp vann og velg grønnsaker. Voksne kutter og steker.",
           "spot": "Curry-restauranter og hverdagsmenyer, ofte også med panert kjøtt.",
           "note": "Bruk mild japansk curryblokk/roux – ikke vanlig indisk eller thailandsk currypaste. Den norske oppskriften bruker dl og gram."
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese_curry_rice.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Japanese_curry_rice.jpg",
+          "credit": "Donghun Kim",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "alt": "Japansk curry med ris på en tallerken"
         }
       },
       {
@@ -794,6 +830,15 @@
           "kids": "Snitt eller bland kål med hjelp, og pynt den ferdigstekte pannekaken.",
           "spot": "Osaka: sammenblandet røre. Hiroshima: mer lagvis, ofte med nudler.",
           "note": "MatPrats oppskrift er bevisst norsktilpasset med rotgrønnsaker og svinefilet. Den japanske lenken viser en mer klassisk Osaka-variant."
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/FOOD_Okonomiyaki.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:FOOD_Okonomiyaki.jpg",
+          "credit": "Grueslayer",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "alt": "Osaka-stil okonomiyaki med saus og japansk majones"
         }
       },
       {
@@ -827,6 +872,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Makizushi.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Makizushi.jpg",
+          "credit": "Till Krech",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "alt": "Oppskåret maki-sushi med ris og fyll rullet i nori"
         }
       },
       {
@@ -854,6 +908,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yakitori_001.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Yakitori_001.jpg",
+          "credit": "Ocdp",
+          "license": "CC0 1.0",
+          "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "alt": "Yakitori av grillet kylling og vårløk på trespyd"
         }
       },
       {
@@ -881,6 +944,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tamagoyaki_(3099935773).jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Tamagoyaki_(3099935773).jpg",
+          "credit": "Jessica Spengler",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "alt": "Japansk tamagoyaki, omelett rullet og skåret i stykker"
         }
       },
       {
@@ -908,6 +980,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Teriyaki_salmon.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Teriyaki_salmon.jpg",
+          "credit": "JIP",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "alt": "Laks med teriyakisaus servert med tilbehør"
         }
       },
       {
@@ -935,6 +1016,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dorayaki_004.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Dorayaki_004.jpg",
+          "credit": "Ocdp",
+          "license": "CC0 1.0",
+          "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "alt": "Dorayaki, to japanske småpannekaker med søtt fyll"
         }
       },
       {
@@ -962,6 +1052,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsudon_001.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Katsudon_001.jpg",
+          "credit": "Ocdp",
+          "license": "CC0 1.0",
+          "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "alt": "Katsudon med sprøstekt svinekjøtt og egg over ris"
         }
       },
       {
@@ -991,6 +1090,15 @@
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "image": {
+          "type": "licensed",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki_in_Osaka.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Takoyaki_in_Osaka.jpg",
+          "credit": "ZhengZhou",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "alt": "Japanske takoyaki-boller servert med saus i Osaka"
         }
       }
     ],
