@@ -205,3 +205,7 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 ### Matbilder (v0.30.34)
 
 Hver av de 12 rettene under `prep.json` sin Mat-kategori eier ett lisensiert fotografi med Commons-kilde, lisens, fotograf og konkret alternativtekst. Visningen er en 16:10-medierute per kort og gjenbruker nettstedets `imageCreditHtml()` for kreditering over bildet, med lazy loading og fallback. Bildefilene leveres som nedskalerte Commons-varianter via `Special:FilePath?width=900`; ingen duplisert kilde- eller bildekonfigurasjon i JS/CSS. Rettigheter er kontrollert manuelt og valideres av `scripts/check-data-integrity.mjs`.
+
+### Matkort: kvalitetsgjennomgang (v0.30.35)
+
+Før turen → Lag japansk mat samler hvert bilde, rettnavn, kort forklaring, tilberedningstid, aktiviteter og oppskriftslenker i én innrammet, responsiv kortflate. Styling er samlet i de eksisterende `prep-cook-*`-klassene i `docs/assets/style.css` og bruker nettstedets farge- og skyggetokens. Ingen kopiering av matdata eller egen bilderenderer. Fotoene til laks teriyaki, tamagoyaki, okonomiyaki og japansk curry er manuelt byttet ut etter kontroll av motiv, utsnitt, Commons-filside og lisens; eksisterende bilder på øvrige åtte retter er beholdt.

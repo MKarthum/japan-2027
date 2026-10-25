@@ -788,12 +788,12 @@
         },
         "image": {
           "type": "licensed",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese_curry_rice.jpg?width=900",
-          "source": "https://commons.wikimedia.org/wiki/File:Japanese_curry_rice.jpg",
-          "credit": "Donghun Kim",
-          "license": "CC BY 2.0",
-          "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-          "alt": "Japansk curry med ris på en tallerken"
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tonkatsu_Curry.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Tonkatsu_Curry.jpg",
+          "credit": "Minseong Kim",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "alt": "Japansk curry med ris og sprøtt panert kjøtt på et lyst serveringsfat"
         }
       },
       {
@@ -833,12 +833,12 @@
         },
         "image": {
           "type": "licensed",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/FOOD_Okonomiyaki.jpg?width=900",
-          "source": "https://commons.wikimedia.org/wiki/File:FOOD_Okonomiyaki.jpg",
-          "credit": "Grueslayer",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Okonomiyaki_in_Osaka.JPG?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Okonomiyaki_in_Osaka.JPG",
+          "credit": "Zheng Zhou",
           "license": "CC BY-SA 4.0",
           "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-          "alt": "Osaka-stil okonomiyaki med saus og japansk majones"
+          "alt": "Nystekt okonomiyaki i Osaka med mørk saus, majones og lyse bonitoflak"
         }
       },
       {
@@ -947,12 +947,12 @@
         },
         "image": {
           "type": "licensed",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tamagoyaki_(3099935773).jpg?width=900",
-          "source": "https://commons.wikimedia.org/wiki/File:Tamagoyaki_(3099935773).jpg",
-          "credit": "Jessica Spengler",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/%E9%B3%A5%E7%84%BC%E3%81%8D%E5%B1%85%E9%85%92%E5%B1%8B_(39394233682).jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:%E9%B3%A5%E7%84%BC%E3%81%8D%E5%B1%85%E9%85%92%E5%B1%8B_(39394233682).jpg",
+          "credit": "極地狐",
           "license": "CC BY 2.0",
           "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-          "alt": "Japansk tamagoyaki, omelett rullet og skåret i stykker"
+          "alt": "Tre tydelige, gule skiver rullet tamagoyaki-omelett på et japansk serveringsfat"
         }
       },
       {
@@ -983,12 +983,12 @@
         },
         "image": {
           "type": "licensed",
-          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Teriyaki_salmon.jpg?width=900",
-          "source": "https://commons.wikimedia.org/wiki/File:Teriyaki_salmon.jpg",
-          "credit": "JIP",
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liat_Portal_for_Foodie_Disorder_-_Oven-baked_teriyaki_salmon_with_vegetables.jpg?width=900",
+          "source": "https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Oven-baked_teriyaki_salmon_with_vegetables.jpg",
+          "credit": "HaJunkiyada",
           "license": "CC BY-SA 4.0",
           "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-          "alt": "Laks med teriyakisaus servert med tilbehør"
+          "alt": "Ovnsbakt laks med teriyakiglasur, gulrot, brokkoli og grønnsaker på en hvit tallerken"
         }
       },
       {
