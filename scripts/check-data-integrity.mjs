@@ -549,6 +549,19 @@ for (const group of prep) {
 }
 
 const cookingGroup=prep.find(group=>group.slug==='mat');
+const foodPhotoUrls=new Set();
+for(const item of cookingGroup?.items||[]){
+  validateImage(item.image,'prep.json: mat '+item.id);
+  if(!item.image?.url?.startsWith('https://commons.wikimedia.org/wiki/Special:FilePath/'))
+    errors.push('prep.json: mat '+item.id+' mangler korrekt bilde-URL fra dokumentert Commons-kilde');
+  if(item.image?.type==='licensed' && !item.image.source.includes('commons.wikimedia.org/wiki/File:'))
+    errors.push('prep.json: mat '+item.id+' peker ikke til en eksplisitt dokumentert bildefil');
+  if(foodPhotoUrls.has(item.image?.url)) errors.push('prep.json: flere matretter deler samme bilde');
+  else foodPhotoUrls.add(item.image?.url);
+  if(!item.image?.alt?.trim() || item.image.alt===item.title)
+    errors.push('prep.json: mat '+item.id+' har ikke beskrivende alternativtekst');
+}
+
 if (!cookingGroup || cookingGroup.items.length<10 ||
     !/^\d{4}-\d{2}-\d{2}$/.test(cookingGroup.recipeLinksChecked||'') ||
     cookingGroup.items.filter(item=>item.cooking?.tier==='start').length!==5 ||
@@ -726,6 +739,10 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kartfallback skal opprettes ved reell fatal kartfeil, ikke ligge skjult i HTML');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+if (!app.includes('imageCreditHtml(image,') || !app.includes('prep-cook-media') || !app.includes('loading="lazy"') ||
+    !app.includes('object-position') && !fs.readFileSync('docs/assets/style.css','utf8').includes('object-position:center')) {
+  errors.push('Matkort: bilde, felles bilde-kreditering, lazy loading eller sentrert utsnitt mangler');
+}
 if (!app.includes("if(selected.slug==='mat')") || !app.includes('prepCookingCardHtml') ||
     !app.includes('class="prep-cooking-more"') || !app.includes('cooking.kids') || !app.includes('cooking.spot')) {
   errors.push('Matlaging: barneoppgaver, reisegjenkjenning eller sammenleggbar oppskriftsvisning mangler');
