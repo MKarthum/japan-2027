@@ -1559,6 +1559,7 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .prep-group .section-head h2{margin:2px 0 5px}
 .prep-group .section-head p{max-width:700px}
 .prep-group h2:focus{outline:none}
+.prep-group h2:focus-visible{outline:2px solid var(--ink);outline-offset:5px;border-radius:4px}
 .prep-audience-explainer summary{font-weight:750;cursor:pointer;font-size:.9rem}
 .prep-audience-explainer[open] summary{margin-bottom:9px}
 @media(max-width:620px){
