@@ -1536,41 +1536,8 @@ footer .inner{max-width:1220px;margin:0 auto;display:flex;justify-content:space-
 .map-popup-selection h3{margin:.18rem 0 .45rem}
 .map-popup-selection a{font-size:.78rem;font-weight:800}
 
-/* Før turen: one topic at a time, with all themes within immediate reach. */
-.prep-topic-intro{margin:26px 0 8px}
-.prep-topic-intro h2{margin:3px 0;font-size:1.3rem}
-.prep-topic-nav{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 0}
-.prep-topic-button{
-  display:flex;align-items:center;gap:9px;text-align:left;cursor:pointer;
-  border:1px solid var(--line);border-radius:12px;
-  padding:11px 14px;background:#fffdf8;color:var(--ink);
-  font:inherit;transition:background .15s,border-color .15s,box-shadow .15s
-}
-.prep-topic-button strong{font-size:.9rem;line-height:1.25}
-.prep-topic-button small{font-size:.7rem;color:var(--muted);white-space:nowrap}
-.prep-topic-button[aria-pressed="true"]{
-  background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 2px 9px #1e282019
-}
-.prep-topic-button[aria-pressed="true"] small{color:#e4e8e1}
-.prep-topic-button:focus-visible{outline:3px solid #e7aa53;outline-offset:3px}
-.prep-group{margin-top:24px;scroll-margin-top:28px}
-.prep-group[hidden]{display:none}
-.prep-group .section-head{margin-bottom:16px}
-.prep-group .section-head h2{margin:2px 0 5px}
-.prep-group .section-head p{max-width:700px}
-.prep-group h2:focus{outline:none}
-.prep-group h2:focus-visible{outline:2px solid var(--ink);outline-offset:5px;border-radius:4px}
 .prep-audience-explainer summary{font-weight:750;cursor:pointer;font-size:.9rem}
 .prep-audience-explainer[open] summary{margin-bottom:9px}
-@media(max-width:620px){
- .prep-topic-nav{gap:7px}
- .prep-topic-button{padding:9px 11px;gap:6px}
- .prep-topic-button strong{font-size:.8rem}
- .prep-topic-button small{font-size:.65rem}
- .prep-topic-intro{margin-top:18px}
- .prep-group{margin-top:18px}
-}
-
 .prep-audience-guide{
   display:flex;
   flex-wrap:wrap;
