@@ -88,7 +88,17 @@
     "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen.",
     "topicsEyebrow": "Utforsk",
     "topicsTitle": "Utforsk et tema",
-    "languageLink": "Lyst til å lære noen japanske ord og fraser?"
+    "languageLink": "Lyst til å lære noen japanske ord og fraser?",
+    "cookingStartTitle": "Start med disse fem",
+    "cookingStartIntro": "Fem matprosjekter som er morsomme å gjøre sammen – og som dere vil kjenne igjen på reisen.",
+    "cookingMoreTitle": "Flere retter å prøve",
+    "cookingMoreIntro": "Fra sushiruller til søte japanske pannekaker. Åpne når dere vil ha mer inspirasjon.",
+    "cookingTimeLabel": "Omtrent tid",
+    "cookingKidsLabel": "Dette kan barna gjøre",
+    "cookingSpotLabel": "Se etter i Japan",
+    "cookingRecipeNoteLabel": "Før dere starter",
+    "cookingSafety": "Barn kan hjelpe med å måle, blande, forme og pynte. En voksen tar ansvar for skarpe kniver, rå fisk, rått kjøtt, varm olje og stekepanner. Følg den lenkede oppskriften for mengder og trygg tilberedning.",
+    "cookingLinksNote": "Velg helst den norske oppskriften for gram og desiliter. Japansk oppskrift er med når det er nyttig å se en mer tradisjonell variant."
   },
   "practical": {
     "eyebrow": "På reisen",
