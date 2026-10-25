@@ -1197,7 +1197,7 @@ function speechButtonHtml(text,label='japansk uttale') {
 function languageRowHtml(x) {
   const roman=x.jp||x.term||'';
   const meaning=x.no||x.meaning||'';
-  return `<div class="glossary-row language-row"><div class="language-term"><strong>${roman}</strong>${x.japanese?`<span class="language-japanese" lang="ja">${x.japanese}</span>`:''}</div><span class="language-meaning">${meaning}</span>${speechButtonHtml(x.speech||x.japanese,roman)}</div>`;
+  return `<div class="glossary-row language-row"><div class="language-term"><strong>${escapeSiteHtml(roman)}</strong>${x.japanese?`<span class="language-japanese" lang="ja">${escapeSiteHtml(x.japanese)}</span>`:''}</div><span class="language-meaning">${escapeSiteHtml(meaning)}${x.note?`<small class="language-phrase-note">${escapeSiteHtml(x.note)}</small>`:''}</span>${speechButtonHtml(x.speech||x.japanese,escapeSiteHtml(roman))}</div>`;
 }
 function bindJapaneseSpeech(root=document) {
   if(!root || root.dataset?.speechBound==='true') return;
@@ -1642,14 +1642,57 @@ async function renderTickets() {
   }).join('');
 }
 async function renderLanguage() {
-  await applyPageCopy('language');nav('language');footer();
+  const copy=await applyPageCopy('language');
+  nav('language');footer();
   const guide=await json('data/guide.json');
+  const groups=[...(guide.morePhrases||[])].sort((a,b)=>Number(Boolean(b.featured))-Number(Boolean(a.featured)));
+  const topics=[
+    ...groups.map(group=>({slug:group.slug,title:group.category,intro:group.intro,count:group.items.length,group})),
+    {slug:'ord',title:copy.wordsTitle,intro:copy.wordsIntro,count:guide.placeWords.filter(x=>x.showInGuide!==false).length,kind:'words'},
+    {slug:'navn',title:copy.namesTitle,intro:copy.namesIntro,count:guide.nameNotes.length,kind:'names'}
+  ];
+  const topic=new URLSearchParams(location.search).get('topic');
+  const legacyHash={'#ord':'ord','#navn':'navn','#flere':'hilsener','#fraser':null}[location.hash];
+  if(!topic && typeof legacyHash==='string'){
+    history.replaceState(null,'','language.html?topic='+encodeURIComponent(legacyHash));
+  }
+  const selected=topics.find(x=>x.slug===(topic||legacyHash));
+  const home=document.getElementById('language-home');
+  const focus=document.getElementById('language-focus');
+  const title=document.querySelector('main h1[data-copy]');
+  const intro=document.querySelector('main .lede[data-copy]');
   document.getElementById('phrase-basics').innerHTML=guide.phrases.map(languageRowHtml).join('');
-  document.getElementById('place-words').innerHTML=guide.placeWords.filter(x=>x.showInGuide!==false).map(languageRowHtml).join('');
-  document.getElementById('name-notes').innerHTML=guide.nameNotes.map(x=>`<article class="mini-card"><h3>${x.name}</h3><p>${x.note}</p></article>`).join('');
-  document.getElementById('phrase-guide-groups').innerHTML=(guide.morePhrases||[]).map(group=>`<section class="section phrase-group"><div class="section-head"><div><h3>${group.category}</h3></div><p>${group.intro||''}</p></div><div class="glossary">${group.items.map(languageRowHtml).join('')}</div></section>`).join('');
+  document.getElementById('language-topic-cards').innerHTML=topics.map(t=>`<a class="language-topic-link" href="language.html?topic=${encodeURIComponent(t.slug)}">
+    <strong>${escapeSiteHtml(t.title)}</strong>
+    <span>${escapeSiteHtml(t.intro)}</span>
+    <small>${t.count} ${t.kind==='names'?'stedsnavn':t.kind==='words'?'ord':'fraser'} <span aria-hidden="true">→</span></small>
+  </a>`).join('');
+  home.hidden=Boolean(selected); focus.hidden=!selected;
+  if(selected){
+    title.textContent=selected.title;
+    intro.textContent=selected.intro;
+    document.title=`${selected.title} · Japansk · Japan 2027`;
+    document.getElementById('language-focus-title').textContent=selected.title;
+    document.getElementById('language-focus-title').hidden=true;
+    document.getElementById('language-focus-intro').hidden=true;
+    const note=document.getElementById('language-focus-note');
+    note.hidden=!selected.group?.note;
+    note.textContent=selected.group?.note||'';
+    const content=document.getElementById('language-focus-content');
+    if(selected.kind==='names'){
+      content.innerHTML=`<div class="grid">${guide.nameNotes.map(x=>`<article class="mini-card"><h3>${escapeSiteHtml(x.name)}</h3><p>${escapeSiteHtml(x.note)}</p></article>`).join('')}</div>`;
+    }else{
+      const items=selected.kind==='words'?guide.placeWords.filter(x=>x.showInGuide!==false):selected.group.items;
+      content.innerHTML=`<div class="glossary">${items.map(languageRowHtml).join('')}</div>`;
+    }
+  }else{
+    title.textContent=copy.title;
+    intro.textContent=copy.intro;
+    document.getElementById('language-focus-content').innerHTML='';
+  }
   bindJapaneseSpeech(document.querySelector('main'));
 }
+
 async function renderPractical() {
   const legacy={'#transport':'transport-guide.html#transport','#pass':'transport-guide.html#pass','#booking':'tickets.html#booking','#ord':'language.html#ord','#navn':'language.html#navn'};
   if(legacy[location.hash]){location.replace(legacy[location.hash]);return;}
