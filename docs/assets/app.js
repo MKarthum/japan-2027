@@ -1336,13 +1336,13 @@ function prepCookingCardHtml(item,copy){
     <div class="prep-cook-body">
       <h3>${escapeSiteHtml(item.title)}</h3>
       <div class="prep-cook-meta"><span class="prep-cook-time">${escapeSiteHtml(copy.cookingTimeLabel)}: ${escapeSiteHtml(cooking.time)}</span></div>
-    <p class="prep-cook-why">${escapeSiteHtml(item.why)}</p>
-    <p class="prep-cook-action">${escapeSiteHtml(item.action)}</p>
-    <div class="prep-cook-context">
-      <p><strong>${escapeSiteHtml(copy.cookingKidsLabel)}</strong>${escapeSiteHtml(cooking.kids)}</p>
-      <p><strong>${escapeSiteHtml(copy.cookingSpotLabel)}</strong>${escapeSiteHtml(cooking.spot)}</p>
-    </div>
-    ${prepLinksHtml(item)}
+      <p class="prep-cook-why">${escapeSiteHtml(item.why)}</p>
+      <p class="prep-cook-action">${escapeSiteHtml(item.action)}</p>
+      <div class="prep-cook-context">
+        <p><strong>${escapeSiteHtml(copy.cookingKidsLabel)}</strong>${escapeSiteHtml(cooking.kids)}</p>
+        <p><strong>${escapeSiteHtml(copy.cookingSpotLabel)}</strong>${escapeSiteHtml(cooking.spot)}</p>
+      </div>
+      ${prepLinksHtml(item)}
       ${cooking.note?`<details class="prep-cook-note"><summary>${escapeSiteHtml(copy.cookingRecipeNoteLabel)}</summary><p>${escapeSiteHtml(cooking.note)}</p></details>`:''}
     </div>
   </article>`;
