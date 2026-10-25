@@ -627,47 +627,143 @@
     "category": "Mat",
     "items": [
       {
+        "title": "Onigiri",
+        "why": "Små ris-trekanter med fyll og tangpapir. Onigiri er en perfekt første mataktivitet og en klassiker i japanske kiosker.",
+        "action": "Lag ris-trekanter med to forskjellige fyll. La alle gi sin variant et navn.",
+        "id": "prep-13",
+        "placeIds": [],
+        "links": [
+          {
+            "label": "Norsk oppskrift · Marc Winer",
+            "kind": "recipe",
+            "url": "https://marcwiner.com/no/onigiri/",
+            "lang": "nb"
+          },
+          {
+            "label": "Japansk oppskrift (engelsk)",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/onigiri-rice-balls/",
+            "lang": "en"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        },
+        "cooking": {
+          "tier": "start",
+          "order": 1,
+          "time": "Ca. 60 min",
+          "kids": "Form lunken ris med våte hender, legg i ferdig fyll og pakk på nori.",
+          "spot": "Konbini (kiosker) og matbutikker, særlig som enkel lunsj på farten.",
+          "note": "Den norske oppskriften viser flere fyll; start med tunfisk og majones, stekt laks eller bare sesam. Oppbevar ris og fisk forsvarlig kjølig."
+        }
+      },
+      {
+        "title": "Gyoza",
+        "why": "Små pakker med fyll som stekes og dampes. Gyoza er ekstra morsomt når alle hjelper til med å brette.",
+        "action": "Arranger brettekonkurranse: lag både perfekte og rare gyoza, og smak på dippen.",
+        "id": "prep-10",
+        "placeIds": [],
+        "links": [
+          {
+            "label": "Norsk oppskrift · MatPrat",
+            "kind": "recipe",
+            "url": "https://www.matprat.no/oppskrifter/kos/gyoza-med-svinekjott/",
+            "lang": "nb"
+          },
+          {
+            "label": "Japansk oppskrift (engelsk)",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/gyoza/",
+            "lang": "en"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        },
+        "cooking": {
+          "tier": "start",
+          "order": 2,
+          "time": "45–75 min",
+          "kids": "Fordel fyllet og brett gyoza. Voksne tar ansvar for steking og damping.",
+          "spot": "Som smårett, ofte sammen med ramen.",
+          "note": "MatPrats versjon lager deigen selv og er mer krevende. Ferdige gyoza-ark fra asiatisk matbutikk gjør familieprosjektet enklere."
+        }
+      },
+      {
         "title": "Ramen",
-        "why": "Ramen er en japansk hverdagsklassiker med store regionale og personlige variasjoner. Å prøve én variant hjemme gjør det enklere å forstå hva som faktisk er annerledes når vi spiser ramen i Japan.",
-        "action": "Lag en enkel bolle hjemme og ranger kraft, nudler og topping. Poenget er å ha et sammenligningspunkt, ikke å mestre retten.",
+        "why": "En varm skål nudler, kraft og deilig topping. Ramen finnes i mange smaker, så det er morsomt å finne sin egen favoritt før reisen.",
+        "action": "Lag en liten ramen-bar: alle bygger sin egen bolle med egg, grønnsaker og nudler.",
         "id": "prep-9",
         "placeIds": [
           "tokyo"
         ],
         "links": [
           {
-            "label": "Oppskrift",
+            "label": "Norsk oppskrift · MatPrat",
             "kind": "recipe",
-            "url": "https://www.justonecookbook.com/homemade-chashu-miso-ramen/"
+            "url": "https://www.matprat.no/oppskrifter/sunn/kyllingramen/",
+            "lang": "nb"
+          },
+          {
+            "label": "Japansk oppskrift (engelsk)",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/homemade-chashu-miso-ramen/",
+            "lang": "en"
           }
         ],
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "cooking": {
+          "tier": "start",
+          "order": 3,
+          "time": "30–45 min",
+          "kids": "Kokte egg, grønnsaker og topping: alle kan sette sammen sin egen bolle.",
+          "spot": "Ramenbarer i byene; prøv gjerne ulike typer kraft.",
+          "note": "MatPrats kyllingramen bruker både chili og chilipaste. Begynn mildt og la sterk topping komme ved siden av."
         }
       },
       {
-        "title": "Gyoza",
-        "why": "Gyoza er små stekte dumplings som ofte deles som siderett. De er en lav terskel inn i japansk mat og en morsom rett å lage sammen.",
-        "action": "Lag dem hjemme én gang og la alle prøve å brette noen selv.",
-        "id": "prep-10",
+        "title": "Japansk curry",
+        "why": "Mild japansk karri med potet, gulrot og ris. Enkel å variere, og en god hverdagsrett å lære før Japan.",
+        "action": "Lag en mild karrigryte sammen og test hva som smaker best med ris.",
+        "id": "prep-12",
         "placeIds": [],
         "links": [
           {
-            "label": "Oppskrift",
+            "label": "Norsk oppskrift · Alt Asiatisk",
             "kind": "recipe",
-            "url": "https://www.justonecookbook.com/gyoza/"
+            "url": "https://www.altasiatisk.no/oppskrifter/japansk-kylling-curry",
+            "lang": "nb"
+          },
+          {
+            "label": "Japansk oppskrift (engelsk)",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/simple-chicken-curry/",
+            "lang": "en"
           }
         ],
         "audience": {
           "id": "family",
           "label": "Hele familien"
+        },
+        "cooking": {
+          "tier": "start",
+          "order": 4,
+          "time": "Ca. 30 min",
+          "kids": "Skyll risen, mål opp vann og velg grønnsaker. Voksne kutter og steker.",
+          "spot": "Curry-restauranter og hverdagsmenyer, ofte også med panert kjøtt.",
+          "note": "Bruk mild japansk curryblokk/roux – ikke vanlig indisk eller thailandsk currypaste. Den norske oppskriften bruker dl og gram."
         }
       },
       {
         "title": "Okonomiyaki",
-        "why": "Okonomiyaki er en stekt, salt pannekakerett med kål og topping, og både Osaka og Hiroshima har tydelige egne stiler. Den blir ekstra interessant på turen hvis vi allerede kjenner grunnideen.",
-        "action": "Lag Osaka-stil hjemme først. I Japan kan vi sammenligne den med Hiroshima-varianten med lag og nudler.",
+        "why": "Japans salte kålpannekake. I Osaka og Hiroshima lager de den forskjellig, og det gjør sammenligningen på turen ekstra gøy.",
+        "action": "Lag Osaka-varianten med kål, og la alle velge sin egen topping. Sammenlign med Hiroshima på reisen.",
         "id": "prep-11",
         "placeIds": [
           "hiroshima",
@@ -675,9 +771,57 @@
         ],
         "links": [
           {
-            "label": "Oppskrift",
+            "label": "Norsk oppskrift · MatPrat",
             "kind": "recipe",
-            "url": "https://www.justonecookbook.com/okonomiyaki/"
+            "url": "https://www.matprat.no/oppskrifter/kos/okonomiyaki/",
+            "lang": "nb"
+          },
+          {
+            "label": "Japansk oppskrift (engelsk)",
+            "kind": "recipe",
+            "url": "https://www.justonecookbook.com/okonomiyaki/",
+            "lang": "en"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        },
+        "cooking": {
+          "tier": "start",
+          "order": 5,
+          "time": "45–75 min",
+          "kids": "Snitt eller bland kål med hjelp, og pynt den ferdigstekte pannekaken.",
+          "spot": "Osaka: sammenblandet røre. Hiroshima: mer lagvis, ofte med nudler.",
+          "note": "MatPrats oppskrift er bevisst norsktilpasset med rotgrønnsaker og svinefilet. Den japanske lenken viser en mer klassisk Osaka-variant."
+        }
+      },
+      {
+        "id": "prep-37",
+        "title": "Lag maki-sushi",
+        "why": "Sushiruller er morsomme å lage på samlebånd. Prøv først med agurk, omelett eller ferdig tilberedte ingredienser.",
+        "action": "Dekk bordet som en liten sushibar og la hver person rulle én variant.",
+        "placeIds": [],
+        "cooking": {
+          "tier": "more",
+          "order": 6,
+          "time": "60–90 min",
+          "kids": "Fordel fyll på ris, rull sammen med hjelp og velg topping.",
+          "spot": "Sushirestauranter, supermarkeder og ferdigmatdisker.",
+          "note": "MatPrats oppskrift bruker rå laks. For en enkel familiekveld kan dere velge grønnsaker eller varmebehandlet fyll. Skal dere bruke rå fisk, les Mattilsynets råd om kjøling, hygiene og egnet fisk først."
+        },
+        "links": [
+          {
+            "label": "Norsk oppskrift · MatPrat",
+            "kind": "recipe",
+            "url": "https://www.matprat.no/oppskrifter/gjester/maki-med-laks/",
+            "lang": "nb"
+          },
+          {
+            "label": "Trygg sushi · Mattilsynet",
+            "kind": "safety",
+            "url": "https://www.mattilsynet.no/mat-og-drikke/forbrukere/slik-lager-du-sushi-som-er-trygg-a-spise",
+            "lang": "nb"
           }
         ],
         "audience": {
@@ -686,16 +830,25 @@
         }
       },
       {
-        "title": "Japansk curry",
-        "why": "Japansk curry er tykkere, mildere og søtere enn mange indiske og thailandske curryretter og er vanlig japansk hverdagsmat. Den er også et trygt referansepunkt for barn.",
-        "action": "Lag en enkel curry med ris hjemme og se hvor mild eller sterk familien liker den.",
-        "id": "prep-12",
+        "id": "prep-38",
+        "title": "Yakitori – kylling på spyd",
+        "why": "Små grillede kyllingspyd er en japansk klassiker. Alle kan lage sitt eget spyd med passende biter.",
+        "action": "Lag små spyd, pensle med saus og prøv dem med ris.",
         "placeIds": [],
+        "cooking": {
+          "tier": "more",
+          "order": 7,
+          "time": "Ca. 30 min",
+          "kids": "Sett ferdig oppdelte biter på spyd og bland/pensle saus. Voksne steker.",
+          "spot": "Yakitori-steder og izakaya-restauranter med småretter.",
+          "note": "Kikkoman viser en enkel, norsk oppskrift med ferdig teriyakisaus. Dette er en lettvint variant, ikke en tradisjonell hjemmelaget yakitori-tare."
+        },
         "links": [
           {
-            "label": "Oppskrift",
+            "label": "Norsk oppskrift · Kikkoman",
             "kind": "recipe",
-            "url": "https://www.justonecookbook.com/simple-chicken-curry/"
+            "url": "https://www.kikkoman.no/oppskrifter/detail/yakitori-med-kylling-og-roeykfylt-honning",
+            "lang": "nb"
           }
         ],
         "audience": {
@@ -704,16 +857,135 @@
         }
       },
       {
-        "title": "Onigiri",
-        "why": "Onigiri er risboller eller -trekanter med fyll, ofte pakket i nori. De finnes overalt i japanske kiosker og blir sannsynligvis en praktisk snack på reisedager.",
-        "action": "Lag noen med to–tre ulike fyll og finn ut hvilke varianter vi vil se etter i konbini.",
-        "id": "prep-13",
+        "id": "prep-39",
+        "title": "Tamagoyaki – rullet omelett",
+        "why": "En omelett som blir til en liten rull, lag på lag. Enkle råvarer, litt morsom teknikk og en fin utfordring.",
+        "action": "Se hvor pen omelettrull dere klarer å lage, og skjær den i skiver.",
         "placeIds": [],
+        "cooking": {
+          "tier": "more",
+          "order": 8,
+          "time": "20–30 min",
+          "kids": "Visp egg, mål opp smakstilsetninger og hjelp med å telle lag.",
+          "spot": "Frokostretter, bentobokser og noen typer sushi.",
+          "note": "Vanlig liten stekepanne fungerer; firkantet tamagoyaki-panne er ikke nødvendig. Voksne ruller ved varm panne."
+        },
         "links": [
           {
-            "label": "Oppskrift",
+            "label": "Norsk oppskrift · Nortura",
             "kind": "recipe",
-            "url": "https://www.justonecookbook.com/onigiri-rice-balls/"
+            "url": "https://www.norturaproff.no/oppskrifter/tamagoyaki-japansk-rullet-omelett",
+            "lang": "nb"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
+      },
+      {
+        "id": "prep-40",
+        "title": "Laks teriyaki",
+        "why": "En rask norsk hverdagsmiddag med en japansk saus dere kommer til å kjenne igjen på smaken.",
+        "action": "La barna lage saus eller pynt og server fisken med ris og grønnsaker.",
+        "placeIds": [],
+        "cooking": {
+          "tier": "more",
+          "order": 9,
+          "time": "20–40 min",
+          "kids": "Mål opp saus, legg opp grønnsaker og strø sesam på ferdig fisk.",
+          "spot": "Smaken av teriyaki i forskjellige retter, selv om akkurat denne laksevarianten er norsktilpasset.",
+          "note": "MatPrats versjon bruker blant annet appelsin, brokkolini og byggris. Bruk vanlig ris om dere vil nærmere en japansk servering."
+        },
+        "links": [
+          {
+            "label": "Norsk oppskrift · MatPrat",
+            "kind": "recipe",
+            "url": "https://www.matprat.no/oppskrifter/familien/laks-teriyaki/",
+            "lang": "nb"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
+      },
+      {
+        "id": "prep-41",
+        "title": "Dorayaki – søte pannekakesandwicher",
+        "why": "To små, luftige pannekaker med søtt fyll imellom. Dette er kanskje den hyggeligste desserten å lage sammen.",
+        "action": "Lag små pannekaker og fyll dem med søt bønnepasta – eller sjokoladepålegg første gang.",
+        "placeIds": [],
+        "cooking": {
+          "tier": "more",
+          "order": 10,
+          "time": "Ca. 45 min",
+          "kids": "Visp røren, legg på fyll og sett sammen to og to pannekaker.",
+          "spot": "Kaféer, bakerier og søtsakbutikker.",
+          "note": "Klassisk japansk fyll er anko (søt bønnepasta). Den norskspråklige oppskriften nevner også alternative fyll."
+        },
+        "links": [
+          {
+            "label": "Norsk oppskrift · Marc Winer",
+            "kind": "recipe",
+            "url": "https://marcwiner.com/no/autentiske-japanske-dorayaki-no/",
+            "lang": "nb"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
+      },
+      {
+        "id": "prep-42",
+        "title": "Katsudon – sprø schnitzel på ris",
+        "why": "Sprøtt, panert kjøtt med ris og egg er skikkelig japansk kosemat. Passer godt til en litt lengre matlagingskveld.",
+        "action": "Lag paneringsstasjon med mel, egg og panko. Server over ris.",
+        "placeIds": [],
+        "cooking": {
+          "tier": "more",
+          "order": 11,
+          "time": "40–60 min",
+          "kids": "Klargjør paneringsskåler, vend råvare med voksenhjelp og legg opp ris.",
+          "spot": "Donburi-restauranter og spisesteder med risboller.",
+          "note": "MatPrat bruker frityrolje; en voksen må håndtere varm olje. Et enklere alternativ er å bruke ferdig panert kylling eller svin som gjennomstekes."
+        },
+        "links": [
+          {
+            "label": "Norsk oppskrift · MatPrat",
+            "kind": "recipe",
+            "url": "https://www.matprat.no/oppskrifter/kos/katsudon/",
+            "lang": "nb"
+          }
+        ],
+        "audience": {
+          "id": "family",
+          "label": "Hele familien"
+        }
+      },
+      {
+        "id": "prep-43",
+        "title": "Takoyaki – små Osaka-boller",
+        "why": "Små stekte boller med fyll som snus rundt i en spesialpanne. Morsomt å kjenne igjen på gatene i Osaka.",
+        "action": "Har dere takoyaki-panne, lag én runde sammen. Hvis ikke: sett retten på «må smake i Osaka»-listen.",
+        "placeIds": [
+          "osaka"
+        ],
+        "cooking": {
+          "tier": "more",
+          "order": 12,
+          "time": "30–60 min",
+          "kids": "Visp røren og velg topping. Voksne tar seg av den svært varme spesialpannen.",
+          "spot": "Matboder og gatemat i Osaka, særlig rundt travle handelsgater.",
+          "note": "Dette krever vanligvis en egen takoyaki-panne og blekksprut eller alternativt fyll. Det er helt greit å heller prøve ekte takoyaki i Japan."
+        },
+        "links": [
+          {
+            "label": "Norsk oppskrift · Neo Tokyo",
+            "kind": "recipe",
+            "url": "https://www.neo-tokyo.no/2023/09/11/takoyaki/",
+            "lang": "nb"
           }
         ],
         "audience": {
@@ -722,10 +994,11 @@
         }
       }
     ],
-    "teaser": "Lag noe godt hjemme og bli kjent med rettene dere kan se etter i Japan.",
+    "teaser": "Lag maten dere vil kjenne igjen på turen: små rispakker, gyoza, ramen og ekte Osaka-smaker. Norske oppskrifter først.",
     "featured": true,
     "slug": "mat",
-    "navLabel": "Lag japansk mat"
+    "navLabel": "Lag japansk mat",
+    "recipeLinksChecked": "2026-10-25"
   },
   {
     "category": "Små mål",

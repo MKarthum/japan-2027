@@ -534,11 +534,32 @@ for (const group of prep) {
         }
       }
     }
-    if (group.category==='Mat' && !(item.links||[]).some(x=>x.kind==='recipe')) errors.push(`prep.json: ${item.id} mangler oppskriftslenke`);
+    if (group.category==='Mat') {
+      const cooking=item.cooking;
+      if (!['start','more'].includes(cooking?.tier) ||
+          !Number.isInteger(cooking?.order) || !cooking.time?.trim() ||
+          !cooking.kids?.trim() || !cooking.spot?.trim() || !cooking.note?.trim())
+        errors.push(`prep.json: ${item.id} mangler komplett familieaktivitet (tid, barneoppgaver, reise, merknad)`);
+      const links=(item.links||[]).filter(x=>x.kind==='recipe');
+      if (!links.some(x=>x.lang==='nb'&&x.label.startsWith('Norsk oppskrift · ')&&!/[?&](?:session|token|user)=/i.test(x.url||'')))
+        errors.push(`prep.json: ${item.id} mangler lesbar, norsk oppskriftslenke med opphav`);
+    }
     if (group.category==='Små mål' && (!item.detail?.summary || !Array.isArray(item.detail?.steps) || item.detail.steps.length < 3)) errors.push(`prep.json: ${item.id} mangler detaljert gjennomføring`);
   }
 }
 
+const cookingGroup=prep.find(group=>group.slug==='mat');
+if (!cookingGroup || cookingGroup.items.length<10 ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(cookingGroup.recipeLinksChecked||'') ||
+    cookingGroup.items.filter(item=>item.cooking?.tier==='start').length!==5 ||
+    cookingGroup.items.filter(item=>item.cooking?.tier==='more').length<5 ||
+    new Set(cookingGroup.items.map(item=>item.cooking?.order)).size!==cookingGroup.items.length ||
+    cookingGroup.items.filter(item=>(item.links||[]).some(link=>link.url?.includes('matprat.no')&&link.lang==='nb')).length<6) {
+  errors.push('Matlaging: minst ti reelle familieprosjekter, norsk kilde, fem lett tilgjengelige startere og unike prioriteringer kreves');
+}
+for (const key of ['cookingStartTitle','cookingStartIntro','cookingMoreTitle','cookingMoreIntro','cookingTimeLabel','cookingKidsLabel','cookingSpotLabel','cookingRecipeNoteLabel','cookingSafety','cookingLinksNote']) {
+  if (!pages.prep?.[key])errors.push('pages.json: prep.'+key+' mangler på matlagingssiden');
+}
 if (adultPrepCount < 4) errors.push('prep.json: vokseninnhold er for svakt representert');
 if (historyPrepCount < 4) errors.push('prep.json: Historie skal ha en reell læringssti');
 
@@ -705,6 +726,12 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kartfallback skal opprettes ved reell fatal kartfeil, ikke ligge skjult i HTML');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+if (!app.includes("if(selected.slug==='mat')") || !app.includes('prepCookingCardHtml') ||
+    !app.includes('class="prep-cooking-more"') || !app.includes('cooking.kids') || !app.includes('cooking.spot')) {
+  errors.push('Matlaging: barneoppgaver, reisegjenkjenning eller sammenleggbar oppskriftsvisning mangler');
+}
+
+
 const onsenIdea=dayIdeas.ideas?.find(x=>x.id==='hakone-ryokan');
 if(!onsenIdea?.links?.some(x=>x.url==='place.html?id=hakone#place-onsen-options') ||
    !onsenIdea?.links?.some(x=>x.url==='hotels.html?base=hakone#hakone-onsen-options')){
