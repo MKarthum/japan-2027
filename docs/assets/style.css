@@ -2340,9 +2340,11 @@ nav.site-navigation{margin-left:auto;gap:13px;min-width:0}
 .nav-group>summary::-webkit-details-marker{display:none}
 .nav-group>summary span{font-size:.8rem;color:var(--accent2)}
 .nav-group[data-selected="true"]>summary,.nav-group[open]>summary{color:var(--ink)}
-.nav-menu{position:absolute;top:100%;left:0;min-width:220px;display:grid;gap:2px;padding:9px;background:var(--paper);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);z-index:1002}
+.nav-menu{position:absolute;top:100%;left:0;min-width:230px;max-height:min(68vh,520px);overflow-y:auto;overscroll-behavior:contain;display:grid;gap:2px;padding:9px;background:var(--paper);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);z-index:1002}
 nav.site-navigation .nav-menu a{display:block;border-radius:7px;border:0!important;padding:9px 11px;white-space:normal}
 nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-current="page"]{background:var(--soft)}
+.nav-menu-loading{display:block;padding:9px 11px;font-size:.78rem;color:var(--muted)}
+.nav-group[aria-busy="true"]>summary span{opacity:.55}
 .site-search-button,.mobile-nav-toggle{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--ink);cursor:pointer;white-space:nowrap}
 .mobile-nav-toggle{display:none}
 .site-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:-12px 0 29px;font-size:.78rem;line-height:1.4;color:var(--muted)}
@@ -2378,7 +2380,7 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
  nav.site-navigation.expanded{display:flex!important}
  .nav-group>summary{padding:12px 7px;font-size:.94rem}
  nav.site-navigation .nav-direct{padding:10px 7px}
- .nav-menu{position:static;min-width:0;box-shadow:none;margin:3px 0 10px 10px;padding:4px 7px}
+ .nav-menu{position:static;min-width:0;max-height:none;overflow:visible;box-shadow:none;margin:3px 0 10px 10px;padding:4px 7px}
 }
 @media(max-width:620px){
  .nav{padding:10px 15px;gap:7px}

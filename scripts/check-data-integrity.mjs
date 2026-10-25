@@ -872,11 +872,34 @@ if (app.includes('bindPrepStreamLinks') || app.includes('data-stream-app-url')) 
 const prepLandingHtml=fs.readFileSync('docs/prep.html','utf8');
 const languageLandingHtml=fs.readFileSync('docs/language.html','utf8');
 const prepNav=pages.navigation.sections.find(section=>section.source==='prep');
-const languageNav=pages.navigation.sections.filter(section=>section.href==='language.html'&&section.key==='language');
+const languageNav=pages.navigation.sections.find(section=>section.source==='language');
 const prepSlugs=prep.map(group=>group.slug);
-if (!prepNav?.items?.some(item=>item.href==='prep.html') || languageNav.length!==1 ||
-    new Set(prepSlugs).size!==prep.length || prepSlugs.some(slug=>!slug||!/^[a-z0-9-]+$/.test(slug))) {
-  errors.push('Før turen/Språk: top-level navigation, prep sourcing or stable slugs missing');
+const languageSlugs=(guide.morePhrases||[]).map(group=>group.slug);
+const topicSlugs=[...languageSlugs,'ord','navn'];
+const navSources=pages.navigation.sections.filter(section=>section.source);
+const staticKeys=pages.navigation.sections.flatMap(section=>section.items||[]).map(item=>item.key);
+const dynamicKeys=[...prepSlugs.map(slug=>'prep-'+slug),...topicSlugs.map(slug=>'language-'+slug)];
+if (!prepNav?.items?.some(item=>item.href==='prep.html'&&item.key==='prep') ||
+    !languageNav?.items?.some(item=>item.href==='language.html'&&item.key==='language') ||
+    prepNav.landingHref!=='prep.html'||languageNav.landingHref!=='language.html' ||
+    pages.navigation.sections.filter(section=>section.source==='language').length!==1 ||
+    navSources.some(section=>!['prep','language'].includes(section.source)) ||
+    new Set(prepSlugs).size!==prep.length ||
+    new Set(topicSlugs).size!==topicSlugs.length ||
+    [...prepSlugs,...topicSlugs].some(slug=>!slug||!/^[a-z0-9-]+$/.test(slug)) ||
+    new Set([...staticKeys,...dynamicKeys]).size!==staticKeys.length+dynamicKeys.length) {
+  errors.push('Navigasjon: ugyldig datakilde, duplisert rute, manglende oversikt eller ustabil topic-slug');
+}
+if (!app.includes('function languageTopics(guide,copy)') ||
+    !app.includes('const topics=languageTopics(guide,copy)') ||
+    !app.includes('languageTopics(data,pages.language)') ||
+    !app.includes("path:'data/guide.json'") ||
+    !app.includes("path:'data/prep.json'") ||
+    !app.includes("group.setAttribute('aria-busy','true')") ||
+    !app.includes('const onLanding=') ||
+    !app.includes('navLink=item=>') ||
+    !app.includes('if(leaf?.label)')) {
+  errors.push('Navigasjon: dynamisk felles temakilde, behovsstyrt lasting eller korrekte navigasjonsstier mangler');
 }
 if (prep.some(group=>!group.navLabel||!group.teaser) ||
     !prepLandingHtml.includes('id="prep-topic-cards"') ||
@@ -884,7 +907,6 @@ if (prep.some(group=>!group.navLabel||!group.teaser) ||
     !app.includes('prep.html?topic=') || !app.includes('oldAnchor=')) {
   errors.push('Før turen: separate topic views, return links or backward compatibility missing');
 }
-const languageSlugs=(guide.morePhrases||[]).map(group=>group.slug);
 if (!languageLandingHtml.includes('id="language-home"') ||
     !languageLandingHtml.includes('id="language-focus"') ||
     !languageLandingHtml.includes('id="language-topic-cards"') ||

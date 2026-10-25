@@ -144,49 +144,119 @@ async function loadFx() {
 const fxStatusText=(fx)=>fx.live?'Siste ECB-referansekurs (virkedager)':'Lagret ECB-fallback';
 
 const escapeSiteHtml=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
-function nav(active='') {
+/* The same topic metadata feeds page cards and the global menu. */
+function languageTopics(guide,copy) {
+  const groups=[...(guide.morePhrases||[])].sort((a,b)=>Number(Boolean(b.featured))-Number(Boolean(a.featured)));
+  return [
+    ...groups.map(group=>({slug:group.slug,title:group.category,intro:group.intro,count:group.items.length,group})),
+    {slug:'ord',title:copy.wordsTitle,intro:copy.wordsIntro,count:guide.placeWords.filter(x=>x.showInGuide!==false).length,kind:'words'},
+    {slug:'navn',title:copy.namesTitle,intro:copy.namesIntro,count:guide.nameNotes.length,kind:'names'}
+  ];
+}
+
+function nav(active='', sources={}, leaf=null) {
   const mount=async()=>{
     pagesPromise ||= json('data/pages.json');
     const pages=await pagesPromise;
     const config=pages.navigation;
-    if(!config) return;
-    // The menu gets its topic links from prep.json, the only owner of these categories.
-    const sections=await Promise.all(config.sections.map(async section=>{
-      if(section.source!=='prep')return section;
-      const categories=await json('data/prep.json');
-      return {...section,items:[...(section.items||[]),...categories.map(group=>({
-        label:group.navLabel||group.category,
-        href:'prep.html?topic='+encodeURIComponent(group.slug),
-        key:'prep-'+group.slug
-      }))]};
-    }));
-    const header=document.querySelector('header');
-    const sectionHtml=section=>{
-      if(section.href) return `<a class="nav-direct" href="${section.href}" ${active===section.key?'aria-current="page"':''}>${section.label}</a>`;
-      const selected=section.items.some(x=>x.key===active);
-      return `<details class="nav-group" ${selected?'data-selected="true"':''}><summary>${section.label}<span aria-hidden="true">⌄</span></summary><div class="nav-menu">${section.items.map(x=>`<a href="${x.href}" ${active===x.key?'aria-current="page"':''}>${x.label}</a>`).join('')}</div></details>`;
+    if(!config)return;
+    const sections=config.sections.map(section=>({...section,items:[...(section.items||[])]}));
+    /* Adapters describe data shapes, never individual menu entries.
+       Only the active section is prefetched; other menus load on first opening. */
+    const adapters={
+      prep:{
+        path:'data/prep.json',
+        entries:data=>data.map(group=>({
+          label:group.navLabel||group.category,
+          href:'prep.html?topic='+encodeURIComponent(group.slug),
+          key:'prep-'+group.slug
+        }))
+      },
+      language:{
+        path:'data/guide.json',
+        entries:data=>languageTopics(data,pages.language).map(topic=>({
+          label:topic.title,
+          href:'language.html?topic='+encodeURIComponent(topic.slug),
+          key:'language-'+topic.slug
+        }))
+      }
     };
-    header.innerHTML=`<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a><button type="button" class="mobile-nav-toggle" aria-expanded="false" aria-controls="site-navigation">☰ Meny</button><nav class="site-navigation" id="site-navigation" aria-label="Hovednavigasjon">${sections.map(sectionHtml).join('')}</nav><button class="site-search-button" type="button" aria-label="Søk i Japan 2027">⌕ Søk</button></div>`;
+    const expand=async section=>{
+      if(!section.source||section.expanded)return;
+      const adapter=adapters[section.source];
+      if(!adapter)throw new Error('Ukjent menykilde: '+section.source);
+      const data=sources[section.source]||await json(adapter.path);
+      section.items.push(...adapter.entries(data));
+      section.expanded=true;
+    };
+    const activeSource=sections.find(section=>section.source &&
+      (active===section.source || active.startsWith(section.source+'-')));
+    if(activeSource&&sources[activeSource.source])await expand(activeSource);
+    const header=document.querySelector('header');
+    const navLink=item=>'<a href="'+escapeSiteHtml(item.href)+'"'+
+      (active===item.key?' aria-current="page"':'')+'>'+escapeSiteHtml(item.label)+'</a>';
+    const groupItems=section=>section.items.map(navLink).join('');
+    const sectionHtml=(section,index)=>{
+      if(section.href)return '<a class="nav-direct" href="'+escapeSiteHtml(section.href)+'"'+
+        (active===section.key?' aria-current="page"':'')+'>'+escapeSiteHtml(section.label)+'</a>';
+      const selected=section.items.some(item=>item.key===active);
+      return '<details class="nav-group" data-section-index="'+index+'"'+
+        (selected?' data-selected="true"':'')+
+        '><summary>'+escapeSiteHtml(section.label)+'<span aria-hidden="true">⌄</span></summary>'+
+        '<div class="nav-menu">'+groupItems(section)+'</div></details>';
+    };
+    header.innerHTML='<div class="nav"><a class="brand" href="index.html"><span class="brand-mark">日</span> Japan 2027</a>'+
+      '<button type="button" class="mobile-nav-toggle" aria-expanded="false" aria-controls="site-navigation">☰ Meny</button>'+
+      '<nav class="site-navigation" id="site-navigation" aria-label="Hovednavigasjon">'+sections.map(sectionHtml).join('')+'</nav>'+
+      '<button class="site-search-button" type="button" aria-label="Søk i Japan 2027">⌕ Søk</button></div>';
     const mobile=header.querySelector('.mobile-nav-toggle'),menu=header.querySelector('#site-navigation');
     mobile.addEventListener('click',()=>{
       const opening=mobile.getAttribute('aria-expanded')!=='true';
       mobile.setAttribute('aria-expanded',String(opening));menu.classList.toggle('expanded',opening);
     });
     header.querySelectorAll('.nav-group').forEach(group=>{
-      group.addEventListener('toggle',()=>{if(group.open) header.querySelectorAll('.nav-group').forEach(other=>{if(other!==group)other.open=false;});});
+      group.addEventListener('toggle',async()=>{
+        if(!group.open)return;
+        header.querySelectorAll('.nav-group').forEach(other=>{if(other!==group)other.open=false;});
+        const section=sections[Number(group.dataset.sectionIndex)];
+        if(!section?.source||section.expanded)return;
+        const root=group.querySelector('.nav-menu');
+        group.setAttribute('aria-busy','true');
+        try{
+          await expand(section);
+          if(!group.isConnected)return;
+          root.innerHTML=groupItems(section);
+        }catch(err){
+          console.warn('Undermeny kunne ikke lastes',err);
+          if(group.isConnected)root.insertAdjacentHTML('beforeend','<span class="nav-menu-loading">Temaene kunne ikke lastes.</span>');
+        }finally{
+          if(group.isConnected)group.removeAttribute('aria-busy');
+        }
+      });
     });
     header.querySelector('.site-search-button').addEventListener('click',()=>openSiteSearch());
     document.addEventListener('keydown',e=>{
       if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openSiteSearch();}
-      if(e.key==='Escape'){header.querySelectorAll('.nav-group').forEach(g=>g.open=false);menu.classList.remove('expanded');mobile.setAttribute('aria-expanded','false');}
+      if(e.key==='Escape'){
+        header.querySelectorAll('.nav-group').forEach(g=>g.open=false);
+        menu.classList.remove('expanded');mobile.setAttribute('aria-expanded','false');
+      }
     });
-    document.addEventListener('click',e=>{if(!header.contains(e.target))header.querySelectorAll('.nav-group').forEach(g=>g.open=false);});
+    document.addEventListener('click',e=>{
+      if(!header.contains(e.target))header.querySelectorAll('.nav-group').forEach(g=>g.open=false);
+    });
     const pageName=location.pathname.split('/').pop()||'index.html';
     const links=[{label:'Japan 2027',href:'index.html'}];
-    const group=sections.find(g=>g.items?.some(x=>x.key===active));
-    if(group) links.push({label:group.label,href:null});
-    const candidate=sections.flatMap(g=>g.items||[g]).find(x=>x.key===active);
-    if(candidate && active!=='home')links.push({label:candidate.label,href:candidate.href});
+    const group=sections.find(section=>section.items?.some(item=>item.key===active));
+    const candidate=group?.items.find(item=>item.key===active)||
+      sections.find(section=>section.key===active && section.href);
+    if(group){
+      const onLanding=Boolean(group.landingHref && candidate?.href===group.landingHref);
+      links.push({label:group.label,href:onLanding?null:group.landingHref||null});
+      if(!onLanding&&candidate)links.push({label:candidate.label,href:candidate.href});
+    }else if(candidate&&active!=='home'){
+      links.push({label:candidate.label,href:candidate.href});
+    }
     const params=new URLSearchParams(location.search);
     const type=pageName==='place.html'?'place':pageName==='restaurant.html'?'restaurant':pageName==='hotel.html'?'hotel':null;
     if(type&&params.get('id')){
@@ -205,10 +275,17 @@ function nav(active='') {
         }
       }catch{}
     }
+    if(leaf?.label)links.push({label:leaf.label,href:null});
     const existing=document.querySelector('.site-breadcrumb');if(existing)existing.remove();
     if(links.length>1){
-      const breadcrumbs=document.createElement('nav');breadcrumbs.className='site-breadcrumb';breadcrumbs.setAttribute('aria-label','Navigasjonssti');
-      breadcrumbs.innerHTML=links.map((x,i)=>`${i?'<span aria-hidden="true">›</span>':''}${i===links.length-1?`<strong aria-current="page">${escapeSiteHtml(x.label)}</strong>`:`<a href="${x.href||candidate?.href||'index.html'}">${escapeSiteHtml(x.label)}</a>`}`).join('');
+      const breadcrumbs=document.createElement('nav');
+      breadcrumbs.className='site-breadcrumb';breadcrumbs.setAttribute('aria-label','Navigasjonssti');
+      breadcrumbs.innerHTML=links.map((item,index)=>{
+        const prefix=index?'<span aria-hidden="true">›</span>':'';
+        if(index===links.length-1)return prefix+'<strong aria-current="page">'+escapeSiteHtml(item.label)+'</strong>';
+        return prefix+(item.href?'<a href="'+escapeSiteHtml(item.href)+'">'+escapeSiteHtml(item.label)+'</a>':
+          '<span>'+escapeSiteHtml(item.label)+'</span>');
+      }).join('');
       document.querySelector('main')?.prepend(breadcrumbs);
     }
   };
@@ -1282,7 +1359,7 @@ async function renderPrep() {
     title.textContent=selected.navLabel||selected.category;
     intro.textContent=selected.teaser;
     document.title=`${selected.navLabel||selected.category} · Japan 2027`;
-    nav('prep-'+selected.slug);
+    nav('prep-'+selected.slug,{prep});
     topicGrid.innerHTML=`<div class="grid">${selected.items.map(x=>`
       <article class="card prep-card audience-card-${x.audience?.id||'family'}">
         ${prepAudienceHtml(x.audience)}
@@ -1294,7 +1371,7 @@ async function renderPrep() {
   }else{
     title.textContent=copy.title;
     intro.textContent=copy.intro;
-    nav('prep');
+    nav('prep',{prep});
     topicGrid.innerHTML='';
   }
 }
@@ -1643,20 +1720,16 @@ async function renderTickets() {
 }
 async function renderLanguage() {
   const copy=await applyPageCopy('language');
-  nav('language');footer();
+  footer();
   const guide=await json('data/guide.json');
-  const groups=[...(guide.morePhrases||[])].sort((a,b)=>Number(Boolean(b.featured))-Number(Boolean(a.featured)));
-  const topics=[
-    ...groups.map(group=>({slug:group.slug,title:group.category,intro:group.intro,count:group.items.length,group})),
-    {slug:'ord',title:copy.wordsTitle,intro:copy.wordsIntro,count:guide.placeWords.filter(x=>x.showInGuide!==false).length,kind:'words'},
-    {slug:'navn',title:copy.namesTitle,intro:copy.namesIntro,count:guide.nameNotes.length,kind:'names'}
-  ];
+  const topics=languageTopics(guide,copy);
   const topic=new URLSearchParams(location.search).get('topic');
   const legacyHash={'#ord':'ord','#navn':'navn','#flere':'hilsener','#fraser':null}[location.hash];
   if(!topic && typeof legacyHash==='string'){
     history.replaceState(null,'','language.html?topic='+encodeURIComponent(legacyHash));
   }
   const selected=topics.find(x=>x.slug===(topic||legacyHash));
+  nav(selected?'language-'+selected.slug:'language',{language:guide});
   const home=document.getElementById('language-home');
   const focus=document.getElementById('language-focus');
   const title=document.querySelector('main h1[data-copy]');
@@ -1703,16 +1776,18 @@ async function renderPractical() {
 }
 
 async function renderPrepItem() {
-  nav('prep'); footer();
+  footer();
   const [prep,places,trip]=await Promise.all([json('data/prep.json'),json('data/places.json'),json('data/trip.json')]);
   const id=new URLSearchParams(location.search).get('id');
   const all=prep.flatMap(group=>group.items.map(item=>({...item,category:group.category,categorySlug:group.slug})));
   const x=all.find(item=>item.id===id);
   if(!x || !x.detail){
+    nav('prep',{prep});
     document.title='Forberedelse ikke funnet · Japan 2027';
     document.querySelector('main').innerHTML='<div class="eyebrow">Før turen</div><h1>Detaljene ble ikke funnet</h1><p><a href="prep.html">← Tilbake til Før turen</a></p>';
     return;
   }
+  nav('prep-'+x.categorySlug,{prep},{label:x.title});
   document.title=`${x.title} · Japan 2027`;
   const back=document.querySelector('.detail-back a');
   if(back)back.href='prep.html?topic='+encodeURIComponent(x.categorySlug);
