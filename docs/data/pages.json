@@ -254,12 +254,21 @@
             "key": "prep"
           }
         ],
-        "source": "prep"
+        "source": "prep",
+        "landingHref": "prep.html"
       },
       {
         "label": "Språk og fraser",
-        "href": "language.html",
-        "key": "language"
+        "key": "language",
+        "source": "language",
+        "landingHref": "language.html",
+        "items": [
+          {
+            "label": "Oversikt og grunnfraser",
+            "href": "language.html",
+            "key": "language"
+          }
+        ]
       },
       {
         "label": "På reisen",
