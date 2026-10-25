@@ -1321,6 +1321,23 @@ function prepLinksHtml(item,{includeDetail=true}={}) {
   }).join('')}</div>`;
 }
 
+
+function prepCookingCardHtml(item,copy){
+  const cooking=item.cooking;
+  return `<article class="card prep-cook-card">
+    <div class="prep-cook-meta"><span class="prep-cook-time">${escapeSiteHtml(copy.cookingTimeLabel)}: ${escapeSiteHtml(cooking.time)}</span></div>
+    <h3>${escapeSiteHtml(item.title)}</h3>
+    <p class="prep-cook-why">${escapeSiteHtml(item.why)}</p>
+    <p class="prep-cook-action">${escapeSiteHtml(item.action)}</p>
+    <div class="prep-cook-context">
+      <p><strong>${escapeSiteHtml(copy.cookingKidsLabel)}</strong>${escapeSiteHtml(cooking.kids)}</p>
+      <p><strong>${escapeSiteHtml(copy.cookingSpotLabel)}</strong>${escapeSiteHtml(cooking.spot)}</p>
+    </div>
+    ${prepLinksHtml(item)}
+    ${cooking.note?`<details class="prep-cook-note"><summary>${escapeSiteHtml(copy.cookingRecipeNoteLabel)}</summary><p>${escapeSiteHtml(cooking.note)}</p></details>`:''}
+  </article>`;
+}
+
 async function renderPrep() {
   const copy=await applyPageCopy('prep');
   footer();
@@ -1360,14 +1377,30 @@ async function renderPrep() {
     intro.textContent=selected.teaser;
     document.title=`${selected.navLabel||selected.category} · Japan 2027`;
     nav('prep-'+selected.slug,{prep});
-    topicGrid.innerHTML=`<div class="grid">${selected.items.map(x=>`
-      <article class="card prep-card audience-card-${x.audience?.id||'family'}">
-        ${prepAudienceHtml(x.audience)}
-        <h2 class="prep-card-title">${escapeSiteHtml(x.title)}</h2>
-        <p>${escapeSiteHtml(x.why)}</p>
-        <strong class="prep-action">${escapeSiteHtml(x.action)}</strong>
-        ${prepLinksHtml(x)}
-      </article>`).join('')}</div>`;
+    if(selected.slug==='mat'){
+      const start=selected.items.filter(item=>item.cooking?.tier==='start');
+      const more=selected.items.filter(item=>item.cooking?.tier==='more');
+      topicGrid.innerHTML=`<section class="prep-cooking-section" aria-label="${escapeSiteHtml(copy.cookingStartTitle)}">
+        <div class="prep-cooking-intro"><h2>${escapeSiteHtml(copy.cookingStartTitle)}</h2><p>${escapeSiteHtml(copy.cookingStartIntro)}</p></div>
+        <div class="prep-cooking-grid">${start.map(item=>prepCookingCardHtml(item,copy)).join('')}</div>
+        <details class="prep-cooking-more">
+          <summary><span>${escapeSiteHtml(copy.cookingMoreTitle)} <small>(${more.length})</small></span><span aria-hidden="true">⌄</span></summary>
+          <p>${escapeSiteHtml(copy.cookingMoreIntro)}</p>
+          <div class="prep-cooking-grid">${more.map(item=>prepCookingCardHtml(item,copy)).join('')}</div>
+        </details>
+        <p class="prep-cooking-guide">${escapeSiteHtml(copy.cookingLinksNote)}</p>
+        <p class="prep-cooking-safety">${escapeSiteHtml(copy.cookingSafety)}</p>
+      </section>`;
+    }else{
+      topicGrid.innerHTML=`<div class="grid">${selected.items.map(x=>`
+        <article class="card prep-card audience-card-${x.audience?.id||'family'}">
+          ${prepAudienceHtml(x.audience)}
+          <h2 class="prep-card-title">${escapeSiteHtml(x.title)}</h2>
+          <p>${escapeSiteHtml(x.why)}</p>
+          <strong class="prep-action">${escapeSiteHtml(x.action)}</strong>
+          ${prepLinksHtml(x)}
+        </article>`).join('')}</div>`;
+    }
   }else{
     title.textContent=copy.title;
     intro.textContent=copy.intro;
