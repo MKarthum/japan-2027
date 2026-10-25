@@ -201,3 +201,7 @@ Test tilstand og URL-semantikk med node scripts/check-state-consistency.mjs i ti
 
 - `docs/data/pages.json.navigation.sections` er deklarativ navigasjon. `source: prep` og `source: language` bruker den samme ekspansjons- og menykomponenten i `app.js`, og menypunktene utledes fra `prep.json`, `guide.json.morePhrases` og `pages.json.language`. Ingen vedlikeholdt dobbeltliste. Undermenyer lastes ved behov, og aktive kilder kan gjenbrukes.
 - Navigasjonsstier følger oversikt → valgt tema → detalj og bygger faktisk klikkbare foreldre når en landingsside finnes. Utvid kontraktstesten ved nye datakilder eller temaer.
+
+### Matbilder (v0.30.34)
+
+Hver av de 12 rettene under `prep.json` sin Mat-kategori eier ett lisensiert fotografi med Commons-kilde, lisens, fotograf og konkret alternativtekst. Visningen er en 16:10-medierute per kort og gjenbruker nettstedets `imageCreditHtml()` for kreditering over bildet, med lazy loading og fallback. Bildefilene leveres som nedskalerte Commons-varianter via `Special:FilePath?width=900`; ingen duplisert kilde- eller bildekonfigurasjon i JS/CSS. Rettigheter er kontrollert manuelt og valideres av `scripts/check-data-integrity.mjs`.
