@@ -82,10 +82,12 @@
   "prep": {
     "eyebrow": "Bli kjent med Japan",
     "title": "Opplev Japan før du reiser",
-    "intro": "Film, spill, bøker, historie, mat og familieaktiviteter gjør steder og kultur mer gjenkjennelige når du kommer dit. Utforsk temaene som interesserer deg.",
+    "intro": "Velg det dere har lyst til å utforske: lag japansk mat, se film, spill eller få litt historie på kjøpet. Ett tema om gangen.",
     "audienceEyebrow": "Målgruppe",
     "audienceTitle": "Hvem passer forslagene for?",
-    "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen."
+    "audienceIntro": "Målgruppen vises likt på alle kort. Eventuelle aldersgrenser eller innholdsmerknader står separat, slik at «voksne» ikke blandes sammen med selve advarselen.",
+    "topicsEyebrow": "Utforsk",
+    "topicsTitle": "Hva frister før turen?"
   },
   "practical": {
     "eyebrow": "På reisen",
