@@ -548,6 +548,29 @@ for (const group of prep) {
   }
 }
 
+
+/* Non-food preparation items borrow safe, licensed place photos without duplicating rights data. */
+const prepImagePlaces=new Map(places.map(place=>[place.id,place]));
+for(const group of prep.filter(group=>group.slug!=='mat')){
+  const usedPhotos=new Set();
+  for(const item of group.items){
+    const place=prepImagePlaces.get(item.imagePlaceId);
+    if(!place?.image?.url || !['licensed','ai'].includes(place.image.type) ||
+       !place.image.alt || !item.imagePlaceId) {
+      errors.push('Før turen: '+item.id+' mangler gyldig stemningsbilde fra stedskatalogen');
+      continue;
+    }
+    if(item.image || /(?:blood|gore|dismember|brutal|violence|murder|dead-body)/i.test(place.image.url)) {
+      errors.push('Før turen: '+item.id+' må bruke familievennlig stedsfoto – aldri kommersiell/voldelig medieillustrasjon');
+    }
+    if(usedPhotos.has(item.imagePlaceId))errors.push('Før turen: '+group.slug+' gjenbruker samme stedbilde flere ganger');
+    usedPhotos.add(item.imagePlaceId);
+  }
+}
+if (!pages.prep?.visualImagesNote?.includes('ikke offisielle')) {
+  errors.push('Før turen: det må fremgå at fotoene ikke er offisielle mediebilder');
+}
+
 const cookingGroup=prep.find(group=>group.slug==='mat');
 const foodPhotoUrls=new Set();
 for(const item of cookingGroup?.items||[]){
@@ -739,6 +762,18 @@ if (!placeHtml.includes('id="place-map"') || !placeHtml.includes('maplibre-gl.js
 if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kartfallback skal opprettes ved reell fatal kartfeil, ikke ligge skjult i HTML');
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
+const prepItemHtml=fs.readFileSync('docs/prep-item.html','utf8');
+if (!app.includes('function prepSafeMediaHtml(item,placeById)') ||
+    !app.includes('prepVisualCardHtml(item,prepPlaceById)') ||
+    !app.includes("imageCreditHtml(img,'image-credit-overlay image-credit-mini')") ||
+    !app.includes('Motiv fra Japan') ||
+    !app.includes("await json('data/places.json')") ||
+    !app.includes('prepSafeMediaHtml(cover,prepPlaceById)') ||
+    !app.includes('prepSafeMediaHtml(x,new Map(places.map(') ||
+    !prepItemHtml.includes('id="prep-detail-media"')) {
+  errors.push('Før turen: delte bilder, kreditering, forsidemotiver eller bilder på detaljsidene mangler');
+}
+
 const cookCss=fs.readFileSync('docs/assets/style.css','utf8');
 const cardStart=app.indexOf('function prepCookingCardHtml(item,copy)');
 const cardEnd=app.indexOf('async function renderPrep()',cardStart);

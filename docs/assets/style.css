@@ -2767,3 +2767,51 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
   .prep-cooking-grid{grid-template-columns:1fr;gap:18px}
   .prep-cook-body{padding:16px 17px 18px}
 }
+
+/* Pre-trip visual cards use the existing cooking media, tokens and credits. */
+.prep-visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.prep-visual-card,.prep-topic-card{
+  min-width:0;display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  box-shadow:var(--shadow-sm);
+}
+.prep-visual-card:hover,.prep-visual-card:focus-within,
+.prep-topic-card:hover,.prep-topic-card:focus-within{border-color:#cbbfae;box-shadow:var(--shadow)}
+.prep-visual-body{min-width:0;flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 18px 19px}
+.prep-visual-body .prep-card-title{font-size:1.16rem;line-height:1.3;margin:0;color:var(--ink)}
+.prep-visual-body p{color:var(--muted);font-size:.86rem;line-height:1.55;margin:0}
+.prep-visual-body .prep-action{font-size:.83rem;line-height:1.55}
+.prep-visual-body .prep-actions{margin-top:auto;padding-top:10px}
+.prep-visual-body .prep-actions .button{font-size:.78rem}
+.prep-safe-media{margin:0}
+.prep-safe-media .prep-photo-context{
+  position:absolute;z-index:2;top:9px;left:9px;padding:3px 7px;
+  background:rgba(16,22,28,.7);color:#fff;font-size:.61rem;font-weight:700;
+  line-height:1.25;border-radius:6px;backdrop-filter:blur(5px)
+}
+.prep-safe-media.is-fallback .image-credit-overlay{display:none}
+.prep-media-notice{font-size:.78rem;color:var(--muted);line-height:1.55;margin:8px 0 18px}
+.prep-topic-card .prep-safe-media{aspect-ratio:16 / 9}
+.prep-topic-card-body{display:flex;flex-direction:column;gap:9px;flex:1;padding:15px 17px 18px}
+.prep-topic-card .prep-topic-link-label{font-size:1.05rem;font-weight:850;color:var(--ink);text-decoration:none}
+.prep-topic-card .prep-topic-link-label:hover{text-decoration:underline}
+.prep-topic-card .prep-topic-link-summary{font-size:.83rem;line-height:1.5;flex:1}
+.prep-topic-card .prep-topic-link-count{align-self:flex-start;font-size:.77rem;text-decoration:none}
+.prep-topic-card .prep-topic-link-count:hover{text-decoration:underline}
+.prep-detail-media{max-width:740px;margin:22px 0 0}
+.prep-detail-media:empty{display:none}
+.prep-detail-media .prep-safe-media{aspect-ratio:16 / 9;border-radius:16px;border:1px solid var(--line)}
+@media(max-width:850px){.prep-visual-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+@media(max-width:620px){
+  .prep-visual-grid{grid-template-columns:1fr;gap:16px}
+  .prep-visual-card .prep-safe-media{aspect-ratio:16 / 9}
+  .prep-visual-body{padding:15px 17px 18px}
+  .prep-topic-cards{grid-template-columns:1fr 1fr;gap:10px}
+  .prep-topic-card-body{padding:12px 13px 14px}
+  .prep-topic-card .prep-topic-link-label{font-size:.93rem}
+  .prep-topic-card .prep-topic-link-summary{font-size:.75rem}
+}
+@media(max-width:390px){.prep-topic-cards{grid-template-columns:1fr}}
+
+/* Previous anchor-based topic tiles had inset padding; illustrations now occupy the full card. */
+.prep-topic-card{padding:0;min-height:0;gap:0}

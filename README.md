@@ -209,3 +209,7 @@ Hver av de 12 rettene under `prep.json` sin Mat-kategori eier ett lisensiert fot
 ### Matkort: kvalitetsgjennomgang (v0.30.35)
 
 Før turen → Lag japansk mat samler hvert bilde, rettnavn, kort forklaring, tilberedningstid, aktiviteter og oppskriftslenker i én innrammet, responsiv kortflate. Styling er samlet i de eksisterende `prep-cook-*`-klassene i `docs/assets/style.css` og bruker nettstedets farge- og skyggetokens. Ingen kopiering av matdata eller egen bilderenderer. Fotoene til laks teriyaki, tamagoyaki, okonomiyaki og japansk curry er manuelt byttet ut etter kontroll av motiv, utsnitt, Commons-filside og lisens; eksisterende bilder på øvrige åtte retter er beholdt.
+
+### Trygge bilder i hele «Før turen» (v0.30.36)
+
+Alle 31 forberedelseskort utenfor matlagingsdelen bruker nå et kuratert `imagePlaceId` til en allerede eksisterende plass i `docs/data/places.json`. Originalbildet, opphav, lisens og kreditering eies fortsatt av `places.json`; presentasjonen gjenbruker `prepSafeMediaHtml()` og de felles fotokrediteringsklassene. Medieprogrammer og bøker vises med Japan-motiver – ikke med rettighetsbeskyttede plakater, kommersielle coverbilder eller voldelige scener. Det gjelder også voksentitteler som Assassin’s Creed Shadows og Shōgun. Oversikten har bildestøttede temakort, hvert tema har innrammede kort, og aktivitetssider gjenbruker samme bilde. Barn og voksne ser derfor bare familievennlige motiver i oversikter og på undersider.
