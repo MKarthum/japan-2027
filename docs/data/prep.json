@@ -48,7 +48,9 @@
         }
       }
     ],
-    "teaser": "Oppdag steder og stemninger gjennom spill før dere ser dem på reisen."
+    "teaser": "Oppdag steder og stemninger gjennom spill før dere ser dem på reisen.",
+    "slug": "spill",
+    "navLabel": "Spill"
   },
   {
     "category": "Film",
@@ -212,7 +214,9 @@
         }
       }
     ],
-    "teaser": "Fortellinger som gjør Japan litt mer gjenkjennelig før avreise."
+    "teaser": "Fortellinger som gjør Japan litt mer gjenkjennelig før avreise.",
+    "slug": "film",
+    "navLabel": "Film"
   },
   {
     "category": "TV og serier",
@@ -440,7 +444,9 @@
         }
       }
     ],
-    "teaser": "Bli kjent med japansk hverdagsliv, mat, historie og kultur."
+    "teaser": "Bli kjent med japansk hverdagsliv, mat, historie og kultur.",
+    "slug": "serier",
+    "navLabel": "TV og serier"
   },
   {
     "category": "Bøker",
@@ -542,7 +548,9 @@
         }
       }
     ],
-    "teaser": "Les dere inn i historien, hverdagen og de moderne kontrastene."
+    "teaser": "Les dere inn i historien, hverdagen og de moderne kontrastene.",
+    "slug": "boker",
+    "navLabel": "Bøker"
   },
   {
     "category": "Historie",
@@ -611,7 +619,9 @@
         }
       }
     ],
-    "teaser": "Fire nedslag som gir mer mening til slott, templer og byene underveis."
+    "teaser": "Fire nedslag som gir mer mening til slott, templer og byene underveis.",
+    "slug": "historie",
+    "navLabel": "Historie"
   },
   {
     "category": "Mat",
@@ -713,7 +723,9 @@
       }
     ],
     "teaser": "Lag noe godt hjemme og bli kjent med rettene dere kan se etter i Japan.",
-    "featured": true
+    "featured": true,
+    "slug": "mat",
+    "navLabel": "Lag japansk mat"
   },
   {
     "category": "Små mål",
@@ -839,6 +851,8 @@
         }
       }
     ],
-    "teaser": "Små, morsomme oppgaver som kan gjøres sammen før og under turen."
+    "teaser": "Små, morsomme oppgaver som kan gjøres sammen før og under turen.",
+    "slug": "sma-mal",
+    "navLabel": "Små aktiviteter"
   }
 ]
