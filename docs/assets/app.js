@@ -1331,10 +1331,11 @@ function prepCookingCardHtml(item,copy){
     <img src="${escapeSiteHtml(image.url)}" alt="${escapeSiteHtml(image.alt)}" loading="lazy" decoding="async" width="900" height="600" onerror="this.closest('.prep-cook-media').classList.add('is-fallback');this.remove()">
     ${imageCreditHtml(image,'image-credit-overlay image-credit-mini')}
   </figure>`:'';
-  return `<article class="card prep-cook-card">
+  return `<article class="prep-cook-card">
     ${media}
-    <div class="prep-cook-meta"><span class="prep-cook-time">${escapeSiteHtml(copy.cookingTimeLabel)}: ${escapeSiteHtml(cooking.time)}</span></div>
-    <h3>${escapeSiteHtml(item.title)}</h3>
+    <div class="prep-cook-body">
+      <h3>${escapeSiteHtml(item.title)}</h3>
+      <div class="prep-cook-meta"><span class="prep-cook-time">${escapeSiteHtml(copy.cookingTimeLabel)}: ${escapeSiteHtml(cooking.time)}</span></div>
     <p class="prep-cook-why">${escapeSiteHtml(item.why)}</p>
     <p class="prep-cook-action">${escapeSiteHtml(item.action)}</p>
     <div class="prep-cook-context">
@@ -1342,7 +1343,8 @@ function prepCookingCardHtml(item,copy){
       <p><strong>${escapeSiteHtml(copy.cookingSpotLabel)}</strong>${escapeSiteHtml(cooking.spot)}</p>
     </div>
     ${prepLinksHtml(item)}
-    ${cooking.note?`<details class="prep-cook-note"><summary>${escapeSiteHtml(copy.cookingRecipeNoteLabel)}</summary><p>${escapeSiteHtml(cooking.note)}</p></details>`:''}
+      ${cooking.note?`<details class="prep-cook-note"><summary>${escapeSiteHtml(copy.cookingRecipeNoteLabel)}</summary><p>${escapeSiteHtml(cooking.note)}</p></details>`:''}
+    </div>
   </article>`;
 }
 
