@@ -2812,3 +2812,6 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
   .prep-topic-card .prep-topic-link-summary{font-size:.75rem}
 }
 @media(max-width:390px){.prep-topic-cards{grid-template-columns:1fr}}
+
+/* Previous anchor-based topic tiles had inset padding; illustrations now occupy the full card. */
+.prep-topic-card{padding:0;min-height:0;gap:0}
