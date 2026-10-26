@@ -2815,3 +2815,15 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
 
 /* Previous anchor-based topic tiles had inset padding; illustrations now occupy the full card. */
 .prep-topic-card{padding:0;min-height:0;gap:0}
+
+/* Persistent required attribution on every AI-generated visual, including small previews. */
+.image-credit-overlay.ai-media-label{
+  top:9px;right:9px;bottom:auto;left:auto;z-index:6;
+  max-width:calc(100% - 18px);white-space:normal;
+  background:rgba(255,253,248,.96);color:#173f45;
+  font-weight:850;font-size:.75rem;line-height:1.2;letter-spacing:.004em;
+  padding:6px 9px;opacity:1;border:1px solid rgba(26,87,92,.45);
+  box-shadow:0 1px 8px rgba(10,30,37,.21);
+}
+.prep-topic-card .image-credit-overlay.ai-media-label{font-size:.68rem;padding:5px 7px}
+@media(max-width:620px){.image-credit-overlay.ai-media-label{font-size:.67rem;padding:5px 7px;top:7px;right:7px}}

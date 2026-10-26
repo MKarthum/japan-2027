@@ -549,26 +549,55 @@ for (const group of prep) {
 }
 
 
-/* Non-food preparation items borrow safe, licensed place photos without duplicating rights data. */
+/* Authentic directly relevant photography where usable; otherwise marked local AI SVGs.
+   No unrelated destination-photo substitutes for media, games, films or books. */
 const prepImagePlaces=new Map(places.map(place=>[place.id,place]));
+const aiPrepItems=new Set();
+const realPrepItems=new Set();
+const artworkUrls=new Set();
 for(const group of prep.filter(group=>group.slug!=='mat')){
-  const usedPhotos=new Set();
   for(const item of group.items){
-    const place=prepImagePlaces.get(item.imagePlaceId);
-    if(!place?.image?.url || !['licensed','ai'].includes(place.image.type) ||
-       !place.image.alt || !item.imagePlaceId) {
-      errors.push('Før turen: '+item.id+' mangler gyldig stemningsbilde fra stedskatalogen');
-      continue;
+    const art=item.image;
+    if(art){
+      validateImage(art,'prep.json: '+item.id);
+      if(art.type!=='ai' || art.mustLabel!==true ||
+         item.imagePlaceId || !/^assets\/prep-illustrations\/[a-z0-9-]+\.svg$/.test(art.url||'') ||
+         !art.url.endsWith('/'+item.id+'.svg') ||
+         !art.alt?.trim() || art.alt===item.title) {
+        errors.push('Før turen: '+item.id+' må ha egen, tydelig KI-merket, lokal og relevant illustrasjon');
+      }
+      if(artworkUrls.has(art.url))errors.push('Før turen: AI-illustrasjon gjenbrukes i flere anbefalinger');
+      artworkUrls.add(art.url);
+      const artFile=path.resolve('docs',art.url||'');
+      if(fs.existsSync(artFile)){
+        const xml=fs.readFileSync(artFile,'utf8');
+        if(!xml.startsWith('<svg ') || !xml.includes('xmlns="http://www.w3.org/2000/svg"') ||
+           !xml.includes('</svg>') || /<image\b|<script\b|foreignObject|https?:\/\//i.test(xml.replace('http://www.w3.org/2000/svg',''))) {
+          errors.push('Før turen: SVG-filen til '+item.id+' er ikke selvstendig eller bruker ekstern kode/bilder');
+        }
+      }
+      aiPrepItems.add(item.id);
+    }else{
+      const place=prepImagePlaces.get(item.imagePlaceId);
+      if(!place?.image?.url || place.image.type!=='licensed' || !place.image.alt?.trim() ||
+         !['historie','sma-mal'].includes(group.slug)) {
+        errors.push('Før turen: '+item.id+' har ikke relevant ekte foto eller lovlig bildedata');
+      }
+      realPrepItems.add(item.id);
     }
-    if(item.image || /(?:blood|gore|dismember|brutal|violence|murder|dead-body)/i.test(place.image.url)) {
-      errors.push('Før turen: '+item.id+' må bruke familievennlig stedsfoto – aldri kommersiell/voldelig medieillustrasjon');
+    if(/(?:blood|gore|dismember|graphic-violence|dead-body)/i.test(art?.url||'')){
+      errors.push('Før turen: uegnet bilde til '+item.id);
     }
-    if(usedPhotos.has(item.imagePlaceId))errors.push('Før turen: '+group.slug+' gjenbruker samme stedbilde flere ganger');
-    usedPhotos.add(item.imagePlaceId);
   }
 }
-if (!pages.prep?.visualImagesNote?.includes('ikke offisielle')) {
-  errors.push('Før turen: det må fremgå at fotoene ikke er offisielle mediebilder');
+if (aiPrepItems.size!==26 || realPrepItems.size!==5 ||
+    !['prep-1','shogun-tv','pokemon-concierge'].every(id=>aiPrepItems.has(id)) ||
+    !['history-sengoku','history-modern','history-hiroshima','history-postwar','prep-16'].every(id=>realPrepItems.has(id))) {
+  errors.push('Før turen: kontroller eksplisitt skillet mellom 26 motivtilpassede KI-illustrasjoner og fem ekte bilder');
+}
+if (!pages.prep?.visualImagesNote?.includes('KI-genererte') ||
+    !pages.prep.visualImagesNote.includes('ekte foto')) {
+  errors.push('Før turen: bildeprinsippet må være forståelig og skille ekte og KI-bilder');
 }
 
 const cookingGroup=prep.find(group=>group.slug==='mat');
@@ -766,7 +795,7 @@ const prepItemHtml=fs.readFileSync('docs/prep-item.html','utf8');
 if (!app.includes('function prepSafeMediaHtml(item,placeById)') ||
     !app.includes('prepVisualCardHtml(item,prepPlaceById)') ||
     !app.includes("imageCreditHtml(img,'image-credit-overlay image-credit-mini')") ||
-    !app.includes('Motiv fra Japan') ||
+    !app.includes('Ekte foto fra Japan') ||
     !app.includes("await json('data/places.json')") ||
     !app.includes('prepSafeMediaHtml(cover,prepPlaceById)') ||
     !app.includes('prepSafeMediaHtml(x,new Map(places.map(') ||
@@ -1016,7 +1045,11 @@ const toolbarOrder=['Opplevelser','Mat','Overnatting','Knutepunkter'].map(x=>map
 if(toolbarOrder.some(x=>x<0)||toolbarOrder.some((x,i)=>i>0&&x<=toolbarOrder[i-1]))errors.push('Kart: kartlagene har feil rekkefølge');
 if (app.includes('guide.images') || app.includes('guide.placeExtras') || app.includes('areaImageKey(')) errors.push('app.js har gammel parallell stedsdata');
 if (!app.includes('mapStationElement(s.name,s.memberships.map(m=>destinationColor(trip,m.leg.toRouteId)),role)') || !mapShared.includes('stationGroups.get(key).colors.push(destinationColor(trip,leg.toRouteId))') || !mapShared.includes('mapStationRole(transport,station.name)')) errors.push('stasjonsmarkører på rute- og detaljkart følger ikke destinasjonsfargene');
-if (!app.includes("img.type==='ai'")) errors.push('app.js mangler tydelig AI-bildemerking');
+if (!app.includes("img.type==='ai'") || !app.includes('KI-generert illustrasjon') ||
+    !app.includes('ai-media-label') ||
+    !fs.readFileSync('docs/assets/style.css','utf8').includes('.image-credit-overlay.ai-media-label')) {
+  errors.push('KI-bildemerking skal alltid vises tydelig på bildet, også på mobil');
+}
 if (app.includes('map-pois.json') || app.includes('mapPois')) errors.push('app.js refererer fortsatt til avledet map-pois-data');
 for (const dataFile of ['food.json','places.json','hotels.json']) {
   if (!app.includes(`json('data/${dataFile}')`)) errors.push(`app.js henter ikke data/${dataFile}`);
