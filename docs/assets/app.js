@@ -358,6 +358,9 @@ const imageCreditHtml=(img,cls='image-credit-overlay')=>{
   if(img.type==='ai'){
     return `<span class="${cls} ai-media-label" role="note">KI-generert illustrasjon</span>`;
   }
+  if(img.mediaKind==='official'){
+    return `<span class="${cls}">Stillbilde: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · <a href="${img.permissionUrl}" target="_blank" rel="noopener">Bruksvilkår</a></span>`;
+  }
   return `<span class="${cls}">Foto: <a href="${img.source}" target="_blank" rel="noopener">${img.credit}</a> · ${imageLicenseHtml(img)}</span>`;
 };
 const entityMediaHtml=({img,alt,area='',type='',trip,subject,compact=false,variant='visual'})=>{
@@ -1333,7 +1336,7 @@ function prepSafeMediaHtml(item,placeById){
   return '<figure class="prep-cook-media prep-safe-media">'+
     '<span class="prep-cook-image-fallback" aria-hidden="true">'+escapeSiteHtml(place?.name||item.title)+'</span>'+
     '<img src="'+escapeSiteHtml(img.url)+'" alt="'+escapeSiteHtml(caption)+'" loading="lazy" decoding="async" width="900" height="563" onerror="this.closest(\'.prep-safe-media\').classList.add(\'is-fallback\');this.remove()">'+
-    (place?'<span class="prep-photo-context">Ekte foto fra Japan</span>':'')+
+    (place?'<span class="prep-photo-context">Ekte foto fra Japan</span>':(img.mediaKind==='official'?'<span class="prep-photo-context">Offisielt stillbilde</span>':''))+
     imageCreditHtml(img,'image-credit-overlay image-credit-mini')+'</figure>';
 }
 function prepVisualCardHtml(item,placeById){

@@ -18,11 +18,17 @@
           "note": "Hvis barna bare ser på: reduser voldseffektene i spillet."
         },
         "image": {
-          "type": "ai",
-          "url": "assets/prep-illustrations/prep-1.svg",
-          "generatedAt": "2026-10-26",
-          "mustLabel": true,
-          "alt": "Original tegnet scene fra 1500-tallets Japan, med en historisk borg, fjell og en fredelig samuraifigur sett bakfra"
+          "type": "licensed",
+          "mediaKind": "official",
+          "url": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/Oj8BHBwI2INkit8VYjf5c/32add49fc733fe940b2e48ac1a2725bf/NAOE.jpg",
+          "source": "https://www.ubisoft.com/en-gb/game/assassins-creed/news/2AtxRarkZhmDZGogGtzG4A/assassins-creed-shadows-fan-kit",
+          "credit": "© Ubisoft",
+          "license": "Offisielt fanmateriell – ikke-kommersiell omtale",
+          "licenseUrl": "https://www.ubisoft.com/en-us/help/connectivity-and-performance/article/posting-copyrighted-ubisoft-material/000062649",
+          "permissionUrl": "https://www.ubisoft.com/en-us/help/connectivity-and-performance/article/posting-copyrighted-ubisoft-material/000062649",
+          "rightsNote": "Ubisoft tilbyr eksplisitt fan-kit med karakterbilder, og egne retningslinjer tillater faninnhold på ikke-kommersielle fansider. Bare redaksjonell omtale av selve spillet, ikke separat distribusjon.",
+          "reviewedAt": "2026-10-26",
+          "alt": "Offisielt karakterbilde av Naoe, den japanske shinobi-hovedpersonen i Assassin’s Creed Shadows, uten blod eller vold"
         }
       },
       {
@@ -102,11 +108,17 @@
           "label": "Hele familien"
         },
         "image": {
-          "type": "ai",
-          "url": "assets/prep-illustrations/prep-4.svg",
-          "generatedAt": "2026-10-26",
-          "mustLabel": true,
-          "alt": "Magisk og fredelig japansk skogslandskap med store trær og grønt løvverk"
+          "type": "licensed",
+          "mediaKind": "official",
+          "url": "https://www.ghibli.jp/gallery/totoro032.jpg",
+          "source": "https://www.ghibli.jp/works/totoro/",
+          "credit": "© 1988 Hayao Miyazaki/Studio Ghibli",
+          "license": "Offisielle stillbilder – bruk innen rimelige rammer",
+          "licenseUrl": "https://www.ghibli.jp/works/totoro/",
+          "permissionUrl": "https://www.ghibli.jp/works/totoro/",
+          "rightsNote": "Studio Ghibli oppgir på den offisielle filmens stillbildeside at bildene kan brukes innenfor rimelige rammer. Brukes bare for omtale av filmen.",
+          "reviewedAt": "2026-10-26",
+          "alt": "Offisielt stillbilde fra Min nabo Totoro: Totoro holder paraply ved siden av Satsuki og Mei."
         }
       },
       {
@@ -136,11 +148,17 @@
           "note": "Netflix merker filmen 10+."
         },
         "image": {
-          "type": "ai",
-          "url": "assets/prep-illustrations/prep-5.svg",
-          "generatedAt": "2026-10-26",
-          "mustLabel": true,
-          "alt": "Eventyrlig japansk badehus ved vannet i kveldslys, uten karakterer fra filmen"
+          "type": "licensed",
+          "mediaKind": "official",
+          "url": "https://www.ghibli.jp/gallery/chihiro045.jpg",
+          "source": "https://www.ghibli.jp/works/chihiro/",
+          "credit": "© 2001 Hayao Miyazaki/Studio Ghibli, NDDTM",
+          "license": "Offisielle stillbilder – bruk innen rimelige rammer",
+          "licenseUrl": "https://www.ghibli.jp/works/chihiro/",
+          "permissionUrl": "https://www.ghibli.jp/works/chihiro/",
+          "rightsNote": "Offisiell stillbildeside sier bildene kan brukes innenfor rimelige rammer. Bildet er et ufarlig motiv fra filmen.",
+          "reviewedAt": "2026-10-26",
+          "alt": "Offisielt stillbilde fra Chihiro og heksene: Chihiro står ved siden av dragen Haku under en blå kveldshimmel."
         }
       },
       {
@@ -169,11 +187,17 @@
           "label": "Hele familien"
         },
         "image": {
-          "type": "ai",
-          "url": "assets/prep-illustrations/prep-6.svg",
-          "generatedAt": "2026-10-26",
-          "mustLabel": true,
-          "alt": "Fantasiillustrasjon av en luftbåren pakkelevering over en japansk by"
+          "type": "licensed",
+          "mediaKind": "official",
+          "url": "https://www.ghibli.jp/gallery/majo036.jpg",
+          "source": "https://www.ghibli.jp/works/majo/",
+          "credit": "© 1989 Eiko Kadono/Hayao Miyazaki/Studio Ghibli, N",
+          "license": "Offisielle stillbilder – bruk innen rimelige rammer",
+          "licenseUrl": "https://www.ghibli.jp/works/majo/",
+          "permissionUrl": "https://www.ghibli.jp/works/majo/",
+          "rightsNote": "Studio Ghibli oppgir tillatelse til bruk av de offisielle stillbildene innen rimelige rammer; brukes i anbefaling av filmen.",
+          "reviewedAt": "2026-10-26",
+          "alt": "Offisielt stillbilde fra Kikis budservice: Kiki med rød sløyfe og en brun pakke i en japanskinspirert by."
         }
       },
       {

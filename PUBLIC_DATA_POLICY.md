@@ -38,3 +38,7 @@ Den automatiske kontrollen i `scripts/check-public-content.mjs` er kun et ekstra
 ## AI og automatisering
 
 De samme reglene gjelder for AI-generert innhold. En agent skal aldri hente private reisedetaljer fra samtaler, minne, e-post eller andre kilder og skrive dem til dette offentlige repoet. Bare informasjon som er nødvendig for den offentlige planleggingsopplevelsen skal publiseres.
+
+## Rettighetsbeskyttet mediemateriale
+
+Offisielle spill- og filmstillbilder brukes bare ved konkret ikke-kommersiell omtale når utgiver har offentliggjort tydelige rammer for slik bruk. Kildefilene forblir hos rettighetshaver og er **ikke dekket av prosjektets øvrige lisens**. Hver bildereferanse krever nøyaktig kilde, opphavsrett, lenke til tillatelse/retningslinje, dokumentert kontrolltidspunkt og relevant familievennlig motiv. Tilgang til en fil eller et «press kit» alene er ikke generell brukstillatelse. Der dette er uklart, behold en egen tydelig merket KI-illustrasjon.

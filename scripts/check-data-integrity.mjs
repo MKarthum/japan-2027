@@ -549,31 +549,53 @@ for (const group of prep) {
 }
 
 
-/* Authentic directly relevant photography where usable; otherwise marked local AI SVGs.
-   No unrelated destination-photo substitutes for media, games, films or books. */
+/* Pre-trip image rights: directly relevant licensed photos, explicitly
+   permitted official stills, otherwise KI-labeled local illustrations. */
 const prepImagePlaces=new Map(places.map(place=>[place.id,place]));
 const aiPrepItems=new Set();
 const realPrepItems=new Set();
+const officialPrepItems=new Set();
 const artworkUrls=new Set();
+const officialRules={
+  "prep-1":{domain:"staticctf.ubisoft.com",permission:"www.ubisoft.com",source:"www.ubisoft.com"},
+  "prep-4":{domain:"www.ghibli.jp",permission:"www.ghibli.jp",source:"www.ghibli.jp"},
+  "prep-5":{domain:"www.ghibli.jp",permission:"www.ghibli.jp",source:"www.ghibli.jp"},
+  "prep-6":{domain:"www.ghibli.jp",permission:"www.ghibli.jp",source:"www.ghibli.jp"}
+};
 for(const group of prep.filter(group=>group.slug!=='mat')){
   for(const item of group.items){
     const art=item.image;
-    if(art){
+    if(art?.mediaKind==='official'){
+      validateImage(art,'prep.json: '+item.id);
+      try{
+        const rule=officialRules[item.id];
+        const urls=[new URL(art.url),new URL(art.permissionUrl),new URL(art.source)];
+        if(!rule || art.type!=='licensed' || item.imagePlaceId || !art.alt?.trim() ||
+           !art.rightsNote?.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(art.reviewedAt||'') ||
+           urls[0].hostname!==rule.domain || urls[1].hostname!==rule.permission ||
+           urls[2].hostname!==rule.source) {
+          errors.push('Før turen: mangelfull offisiell bildekilde eller tillatelse: '+item.id);
+        }
+      }catch{
+        errors.push('Før turen: feil offisiell bilde-/kilde-URL: '+item.id);
+      }
+      officialPrepItems.add(item.id);
+    }else if(art){
       validateImage(art,'prep.json: '+item.id);
       if(art.type!=='ai' || art.mustLabel!==true ||
          item.imagePlaceId || !/^assets\/prep-illustrations\/[a-z0-9-]+\.svg$/.test(art.url||'') ||
          !art.url.endsWith('/'+item.id+'.svg') ||
          !art.alt?.trim() || art.alt===item.title) {
-        errors.push('Før turen: '+item.id+' må ha egen, tydelig KI-merket, lokal og relevant illustrasjon');
+        errors.push('Før turen: '+item.id+' mangler lokal KI-illustrasjon med påkrevd merking');
       }
-      if(artworkUrls.has(art.url))errors.push('Før turen: AI-illustrasjon gjenbrukes i flere anbefalinger');
+      if(artworkUrls.has(art.url))errors.push('Før turen: samme KI-illustrasjon brukt flere steder');
       artworkUrls.add(art.url);
       const artFile=path.resolve('docs',art.url||'');
       if(fs.existsSync(artFile)){
         const xml=fs.readFileSync(artFile,'utf8');
         if(!xml.startsWith('<svg ') || !xml.includes('xmlns="http://www.w3.org/2000/svg"') ||
            !xml.includes('</svg>') || /<image\b|<script\b|foreignObject|https?:\/\//i.test(xml.replace('http://www.w3.org/2000/svg',''))) {
-          errors.push('Før turen: SVG-filen til '+item.id+' er ikke selvstendig eller bruker ekstern kode/bilder');
+          errors.push('Før turen: SVG har eksterne ressurser eller ugyldig innhold: '+item.id);
         }
       }
       aiPrepItems.add(item.id);
@@ -581,23 +603,24 @@ for(const group of prep.filter(group=>group.slug!=='mat')){
       const place=prepImagePlaces.get(item.imagePlaceId);
       if(!place?.image?.url || place.image.type!=='licensed' || !place.image.alt?.trim() ||
          !['historie','sma-mal'].includes(group.slug)) {
-        errors.push('Før turen: '+item.id+' har ikke relevant ekte foto eller lovlig bildedata');
+        errors.push('Før turen: '+item.id+' mangler relevant og gjenbrukbart stedsfoto');
       }
       realPrepItems.add(item.id);
     }
     if(/(?:blood|gore|dismember|graphic-violence|dead-body)/i.test(art?.url||'')){
-      errors.push('Før turen: uegnet bilde til '+item.id);
+      errors.push('Før turen: uegnet grafisk bilde: '+item.id);
     }
   }
 }
-if (aiPrepItems.size!==26 || realPrepItems.size!==5 ||
-    !['prep-1','shogun-tv','pokemon-concierge'].every(id=>aiPrepItems.has(id)) ||
-    !['history-sengoku','history-modern','history-hiroshima','history-postwar','prep-16'].every(id=>realPrepItems.has(id))) {
-  errors.push('Før turen: kontroller eksplisitt skillet mellom 26 motivtilpassede KI-illustrasjoner og fem ekte bilder');
+if(aiPrepItems.size!==22 || realPrepItems.size!==5 || officialPrepItems.size!==4 ||
+   !['prep-1','prep-4','prep-5','prep-6'].every(id=>officialPrepItems.has(id)) ||
+   !['shogun-tv','pokemon-concierge'].every(id=>aiPrepItems.has(id)) ||
+   !['history-sengoku','history-modern','history-hiroshima','history-postwar','prep-16'].every(id=>realPrepItems.has(id))){
+   errors.push('Før turen: forventet 22 KI-illustrasjoner, fire offisielle stillbilder og fem relevante stedsfotografier');
 }
-if (!pages.prep?.visualImagesNote?.includes('KI-genererte') ||
-    !pages.prep.visualImagesNote.includes('ekte foto')) {
-  errors.push('Før turen: bildeprinsippet må være forståelig og skille ekte og KI-bilder');
+if(!pages.prep?.visualImagesNote?.includes('KI-genererte') ||
+   !pages.prep.visualImagesNote.includes('ekte foto')){
+   errors.push('Før turen: forklart skille mellom KI-illustrasjon og reelt bilde mangler');
 }
 
 const cookingGroup=prep.find(group=>group.slug==='mat');
@@ -792,6 +815,10 @@ if (placeHtml.includes('id="place-map-fallback"')) errors.push('place.html: kart
 
 const app = fs.readFileSync('docs/assets/app.js', 'utf8');
 const prepItemHtml=fs.readFileSync('docs/prep-item.html','utf8');
+if (!app.includes("img.mediaKind==='official'") ||
+    !app.includes('Stillbilde:') || !app.includes('Offisielt stillbilde')) {
+  errors.push('Offisielle stillbilder må merkes og kobles til rettighetshaver og bruksvilkår');
+}
 if (!app.includes('function prepSafeMediaHtml(item,placeById)') ||
     !app.includes('prepVisualCardHtml(item,prepPlaceById)') ||
     !app.includes("imageCreditHtml(img,'image-credit-overlay image-credit-mini')") ||
