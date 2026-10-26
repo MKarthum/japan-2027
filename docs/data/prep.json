@@ -17,7 +17,13 @@
           "label": "Voksne",
           "note": "Hvis barna bare ser på: reduser voldseffektene i spillet."
         },
-        "imagePlaceId": "himeji"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-1.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Original tegnet scene fra 1500-tallets Japan, med en historisk borg, fjell og en fredelig samuraifigur sett bakfra"
+        }
       },
       {
         "title": "Mario Kart 8 Deluxe",
@@ -32,7 +38,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "usj"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-2.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Lekent KI-tegnet kappløp med to fargerike gokarter på en svingete bane, uten offisielle spillfigurer"
+        }
       },
       {
         "title": "Tokaido",
@@ -48,7 +60,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "hakone"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-3.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Illustrert brettspillinspirert reiserute med brikker og en japansk torii-port"
+        }
       }
     ],
     "teaser": "Oppdag steder og stemninger gjennom spill før dere ser dem på reisen.",
@@ -83,7 +101,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "ghibli-museum"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-4.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Magisk og fredelig japansk skogslandskap med store trær og grønt løvverk"
+        }
       },
       {
         "title": "Chihiro og heksene",
@@ -111,7 +135,13 @@
           "label": "Eldre barn + voksne",
           "note": "Netflix merker filmen 10+."
         },
-        "imagePlaceId": "kiyomizu-dera"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-5.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Eventyrlig japansk badehus ved vannet i kveldslys, uten karakterer fra filmen"
+        }
       },
       {
         "title": "Kikis budservice",
@@ -138,7 +168,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "gion"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-6.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Fantasiillustrasjon av en luftbåren pakkelevering over en japansk by"
+        }
       },
       {
         "title": "Your Name",
@@ -165,7 +201,13 @@
           "id": "older-kids",
           "label": "Eldre barn + voksne"
         },
-        "imagePlaceId": "tokyo-tower"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-7.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Opplyst japansk storby, passerende tog og et lysende meteorstreif på nattehimmelen"
+        }
       },
       {
         "title": "Suzume",
@@ -192,7 +234,13 @@
           "id": "older-kids",
           "label": "Eldre barn + voksne"
         },
-        "imagePlaceId": "tokyo"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-8.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "En frittstående åpen dør mot det blå i et japansk fjellandskap"
+        }
       },
       {
         "id": "perfect-days",
@@ -220,7 +268,13 @@
           "id": "teens",
           "label": "Tenåringer + voksne"
         },
-        "imagePlaceId": "shibuya"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/perfect-days.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Rolig japansk bymiljø med et enkelt offentlig bygg, trær og en enslig forbipasserende"
+        }
       }
     ],
     "teaser": "Fortellinger som gjør Japan litt mer gjenkjennelig før avreise.",
@@ -257,7 +311,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "dotonbori"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/team-bachstad-japan.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "En liten bil på en fjellvei gjennom Japan, illustrert som en uhøytidelig reise"
+        }
       },
       {
         "id": "sivilisasjonane-som-fall-japan",
@@ -286,7 +346,13 @@
           "label": "Eldre barn + voksne",
           "note": "Telia Play oppgir 9+."
         },
-        "imagePlaceId": "edo-castle-imperial-palace"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/sivilisasjonane-som-fall-japan.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Illustrert havn i 1800-tallets Japan med to vestlige seilskip og mørke fjell"
+        }
       },
       {
         "id": "nye-billedbrev-japan",
@@ -316,7 +382,13 @@
           "label": "Hele familien",
           "note": "Telia Play oppgir 0+. Innholdet bør leses som et tidsbilde fra 1980-tallet."
         },
-        "imagePlaceId": "kyoto"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/nye-billedbrev-japan.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Retro videokamera foran en japansk storby, som et nostalgisk reiseprogram fra 1980-tallet"
+        }
       },
       {
         "id": "folk-felefrelst",
@@ -343,7 +415,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "tokyo"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/folk-felefrelst.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "En norsk hardingfelelignende fiolin fremstilt foran et moderne japansk bymiljø"
+        }
       },
       {
         "id": "joanna-lumley-japan",
@@ -372,7 +450,13 @@
           "label": "Eldre barn + voksne",
           "note": "Telia Play oppgir 9+."
         },
-        "imagePlaceId": "hakone"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/joanna-lumley-japan.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Reisekoffert foran et mangfoldig japansk fjellandskap"
+        }
       },
       {
         "id": "pokemon-concierge",
@@ -397,7 +481,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "akihabara"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/pokemon-concierge.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Fantasifull tropisk strandresort med parasoll og to abstrakte, vennlige fantasidyr uten kjente figurer"
+        }
       },
       {
         "id": "shogun-tv",
@@ -429,7 +519,13 @@
           "label": "Voksne",
           "note": "Tydelig vold og voksent innhold."
         },
-        "imagePlaceId": "osaka-castle"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/shogun-tv.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Stemningsillustrasjon av en japansk borg og en fredelig krigerfigur sett bakfra"
+        }
       },
       {
         "id": "makanai",
@@ -458,7 +554,13 @@
           "label": "Tenåringer + voksne",
           "note": "Netflix merker serien 13+."
         },
-        "imagePlaceId": "gion"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/makanai.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Tradisjonelt Kyoto-hus og små japanske matretter i et innbydende kjøkkenmiljø"
+        }
       }
     ],
     "teaser": "Bli kjent med japansk hverdagsliv, mat, historie og kultur.",
@@ -485,7 +587,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "miyajima"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/dk-japan.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Åpen illustrert reiseguide foran japanske fjell og torii-port"
+        }
       },
       {
         "id": "short-history-japan",
@@ -504,7 +612,13 @@
           "id": "adults",
           "label": "Voksne"
         },
-        "imagePlaceId": "hikone-castle"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/short-history-japan.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Historisk papirrull med enkel tidslinje foran et japansk fjellandskap"
+        }
       },
       {
         "id": "history-japan-manga",
@@ -521,7 +635,13 @@
           "id": "older-kids",
           "label": "Eldre barn + voksne"
         },
-        "imagePlaceId": "himeji"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/history-japan-manga.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Tre illustrerte historievinduer med tre, torii-port og moderne transport"
+        }
       },
       {
         "id": "pure-invention",
@@ -538,7 +658,13 @@
           "id": "teens",
           "label": "Tenåringer + voksne"
         },
-        "imagePlaceId": "nintendo-museum"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/pure-invention.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Gamle og nye japanske spillkonsoller og elektroniske dingser i retrofarger"
+        }
       },
       {
         "id": "convenience-store-woman",
@@ -553,7 +679,13 @@
           "id": "teens",
           "label": "Tenåringer + voksne"
         },
-        "imagePlaceId": "shibuya"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/convenience-store-woman.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Lyst og ryddig japansk nærbutikkmiljø med hyller og fargerike varepakker"
+        }
       },
       {
         "id": "pachinko",
@@ -568,7 +700,13 @@
           "id": "adults",
           "label": "Voksne"
         },
-        "imagePlaceId": "dotonbori"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/pachinko.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Illustrert japansk pachinko-maskin med metallkuler og fargerikt lys"
+        }
       }
     ],
     "teaser": "Les dere inn i historien, hverdagen og de moderne kontrastene.",
@@ -1167,7 +1305,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "asakusa"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-14.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "To snakkebobler med nyttige japanske hilsener skrevet med japanske tegn"
+        }
       },
       {
         "title": "Japan-bingo",
@@ -1207,7 +1351,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "nara"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/prep-15.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Illustrert Japan-bingobrett med ni felter og små reisesymboler"
+        }
       },
       {
         "title": "Spillbilde → ekte sted",
@@ -1260,7 +1410,13 @@
           "id": "family",
           "label": "Hele familien"
         },
-        "imagePlaceId": "chidorigafuchi-hanzomon"
+        "image": {
+          "type": "ai",
+          "url": "assets/prep-illustrations/travel-journal.svg",
+          "generatedAt": "2026-10-26",
+          "mustLabel": true,
+          "alt": "Åpen reisedagbok med japanske reisestempler og fjellmotiver"
+        }
       }
     ],
     "teaser": "Små, morsomme oppgaver som kan gjøres sammen før og under turen.",
