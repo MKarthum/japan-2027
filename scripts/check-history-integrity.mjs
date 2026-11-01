@@ -37,12 +37,23 @@ const checkPlaces=(x,label)=>{
 };
 for(const c of data.chapters||[]){
   if(!c.period||!c.title||!c.lead||!c.insight||!Array.isArray(c.body)||c.body.length<3||c.body.some(p=>p.length<40)||wordCount(c.body.join(' '))<110)errors.push('Kapittel mangler en lesbar utvikling med flere avsnitt: '+c.id);
+  if(!Array.isArray(c.wikipediaLinks)||!c.wikipediaLinks.length||c.wikipediaLinks.length>3){
+    errors.push('Kapittel '+c.id+' skal ha et kuratert utvalg Wikipedia-artikler');
+  }
+  for(const link of c.wikipediaLinks||[]){
+    if(!link.title||!/^https:\/\/en\.wikipedia\.org\/wiki\/[A-Za-z0-9_%()-]+$/.test(link.url||'')){
+      errors.push('Kapittel '+c.id+' har ugyldig Wikipedia-lenke');
+    }
+  }
   checkSources(c,'kapittel '+c.id);
   checkPlaces(c,'kapittel '+c.id);
   for(const id of c.people||[])if(!peopleIds.has(id))errors.push('Kapittel '+c.id+' har ukjent person '+id);
 }
 for(const p of data.people||[]){
   if(!p.name||!p.role||!p.text||wordCount(p.text)<35||!chapterIds.has(p.chapterId))errors.push('Persontekst må forklare handling og betydning: '+p.id);
+  if(!/^https:\/\/en\.wikipedia\.org\/wiki\/[A-Za-z0-9_%()-]+$/.test(p.wikipediaUrl||'')){
+    errors.push('Person '+p.id+' mangler gyldig Wikipedia-lenke');
+  }
   checkSources(p,'person '+p.id);
 }
 for(const t of data.themes||[]){
@@ -67,13 +78,28 @@ for(const year of ['1582','1590','1598','1600','1603']){
 if((unification?.body||[]).length<5||wordCount(sengokuText)<300){
   errors.push('Rikssamlingskapitlet skal forklare årsaker, rivalisering, handlinger og konsekvenser, ikke bare liste navn');
 }
+const hanzo=(data.people||[]).find(p=>p.id==='hanzo');
+const sengoku=(data.chapters||[]).find(c=>c.id==='sengoku');
+const edo=(data.chapters||[]).find(c=>c.id==='edo');
+if(!hanzo||!hanzo.text.includes('legende')||
+ !hanzo.sourceIds.includes('hanzo-iga-museum')||
+ !sengoku?.people.includes('hanzo')||
+ !sengoku?.placeIds.includes('chidorigafuchi-hanzomon')||
+ !edo?.placeIds.includes('chidorigafuchi-hanzomon')){
+  errors.push('Hattori Hanzō må ha kildebelagt og nyansert skille mellom historie og legende, knyttet til Sengoku og Hanzōmon');
+}
 if(!(data.chapters||[]).some(c=>c.placeIds.length===0))errors.push('Historien skal også dekke stoff utenfor reiseruten');
 if(!data.framing?.includes('overlapper'))errors.push('Omtrentlig og overlappende kronologi skal forklares');
 if(!/1931/.test(JSON.stringify(data.chapters.find(c=>c.id==='war')))||!/1947/.test(JSON.stringify(data.chapters.find(c=>c.id==='occupation'))))errors.push('Viktige historiske vendepunkter er falt ut');
-if(!pages.history?.title||!pages.navigation?.sections?.some(x=>x.key==='history'&&x.href==='history.html'))errors.push('Historie mangler hovednavigasjon eller sidetekst');
+const prepNav=pages.navigation?.sections?.find(x=>x.source==='prep');
+if(!pages.history?.title||!prepNav?.items?.some(x=>x.key==='history'&&x.href==='history.html')||
+  pages.navigation.sections.some(x=>x.key==='history')){
+  errors.push('Historie skal være en underside under Før turen, ikke eget hovedmenypunkt');
+}
 const historyHtml=read('docs/history.html');
 const placeHtml=read('docs/place.html');
 const homeHtml=read('docs/index.html');
+const prepHtml=read('docs/prep.html');
 const foodHtml=read('docs/food.html');
 const prepScript=read('docs/assets/app.js');
 const historyJs=read('docs/assets/history.js');
@@ -88,12 +114,18 @@ for(const [file,content,regex] of [
  ['history.html',historyHtml,/renderHistory\(\)/],
  ['place.html',placeHtml,/id="place-history"/],
  ['place.html',placeHtml,/assets\/history\.js/],
- ['index.html',homeHtml,/href="history\.html"/],
+ ['prep.html',prepHtml,/href="history\.html"/],
  ['food.html',foodHtml,/href="history\.html#theme-mat"/],
  ['app.js',prepScript,/renderPlaceHistory\(p\.id\)/],
  ['app.js',prepScript,/selected\.slug==='historie'/],
  ['history.js',historyJs,/history\.html#chapter-/]
 ])if(!regex.test(content))errors.push(file+' mangler historiekobling '+regex);
+if(!historyJs.includes('history-wiki-links')||!historyJs.includes('history-person-links')){
+  errors.push('Historievisningen skal tilby Wikipedia fra kapitler og personkort');
+}
+if(homeHtml.includes('<a href="history.html"><strong>Japans historie</strong>')){
+  errors.push('Historie skal ikke vises som primærkort på forsiden');
+}
 try{new Script(historyJs,{filename:'docs/assets/history.js'});}catch(e){errors.push('Ugyldig JavaScript: '+e.message);}
 if(errors.length){console.error('Historiekontroll feilet:\n'+errors.map(x=>'- '+x).join('\n'));process.exit(1);}
 console.log('OK: '+data.chapters.length+' historiekapitler, '+data.people.length+' personer, '+data.themes.length+' temaer, '+data.sources.length+' kilder og alle steds-/sidelenker er gyldige.');
