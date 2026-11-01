@@ -35,8 +35,7 @@
       "insight": "Det er derfor templer og helligdommer ikke er det samme: Buddhismen har templer, mens shinto har helligdommer – selv om tradisjonene har påvirket hverandre.",
       "people": [],
       "placeIds": [
-        "nara",
-        "fushimi-inari"
+        "nara"
       ],
       "sourceIds": [
         "columbia",
@@ -102,9 +101,7 @@
       "people": [
         "yoritomo"
       ],
-      "placeIds": [
-        "edo-castle-imperial-palace"
-      ],
+      "placeIds": [],
       "sourceIds": [
         "columbia",
         "perioder",
@@ -201,7 +198,7 @@
       "body": [
         "Amerikanske krigsskip under Matthew Perry kom til Japan i 1853. Uro og maktkamp fulgte, og i 1868 ble det gamle shōgunstyret avviklet i det vi kaller Meiji-restaurasjonen.",
         "Japan bygde jernbane, industri, nye utdanningsinstitusjoner og en moderne hær. En grunnlov ble kunngjort i 1889. Utviklingen ga store muligheter, men var også knyttet til sterkere statlig kontroll, sosial omveltning og et voksende japansk imperium.",
-        "Meiji Jingū i Tokyo ble bygget etter Meiji-keiserens død til minne om ham og keiserinnen. Helligdommen er altså nyere enn den historiske perioden den viser til."
+        "Meiji Jingū i Tokyo ble oppført i 1920, etter Meiji-keiserens og keiserinnens død, for å minnes dem. Helligdommen er altså nyere enn den historiske perioden den viser til."
       ],
       "insight": "Moderniseringen handlet om å endre samfunnsordningen, ikke bare å importere teknologi fra Europa og USA.",
       "people": [
@@ -215,7 +212,8 @@
       "sourceIds": [
         "columbia",
         "meiji",
-        "perioder"
+        "perioder",
+        "meiji-shrine"
       ]
     },
     {
@@ -224,7 +222,7 @@
       "title": "Byliv, demokratiske strømninger og uro",
       "lead": "Mellom to verdenskriger får Japan nye politiske bevegelser, massemedier og bykultur.",
       "body": [
-        "I Taishō-perioden (1912–1926) vokste partipolitikk, fagbevegelser og pressen i betydning. Samtidig var stemmeretten begrenset og mange mennesker stod utenfor politisk innflytelse.",
+        "I Taishō-perioden (1912–1926) vokste partipolitikk, fagbevegelser og pressen i betydning. I 1925 fikk de fleste voksne menn stemmerett, men kvinner fikk ikke stemmerett da. Samme år kom en lov som begrenset politisk opposisjon.",
         "Storbyene utviklet nye kultur- og forbruksmønstre. Det store Kantō-jordskjelvet i 1923 ødela store deler av Tokyo og Yokohama. Politisk uro og økonomiske kriser gjorde det senere lettere for militaristiske krefter å få makt."
       ],
       "insight": "Det moderne Tokyo har vokst frem gjennom flere runder med ombygging – ikke minst etter jordskjelvet i 1923 og krigsødeleggelsene i 1945.",
@@ -235,7 +233,8 @@
       "sourceIds": [
         "columbia",
         "perioder",
-        "jnto-history"
+        "jnto-history",
+        "taisho-vote"
       ]
     },
     {
@@ -289,7 +288,7 @@
       "lead": "Japan blir en økonomisk stormakt og setter preg på hverdagen verden over.",
       "body": [
         "Etter gjenoppbyggingen kom høy økonomisk vekst. Bilindustri, elektronikk, presisjonsproduksjon og eksport ble viktige. Tōkaidō Shinkansen mellom Tokyo og Osaka åpnet i 1964, samme år som Tokyo arrangerte sommer-OL.",
-        "Momofuku Ando lanserte instant ramen i 1958 og Cup Noodles i 1971. Elektronikk og spillkultur ble senere internasjonale kjennetegn; samtidig har Nintendo en historie som går helt tilbake til spillkort på 1800-tallet.",
+        "Momofuku Ando lanserte instant ramen i 1958 og Cup Noodles i 1971. Elektronikk og spillkultur ble senere internasjonale kjennetegn. Nintendo startet i Kyoto i 1889 med produksjon av japanske hanafuda-spillkort, lenge før dataspillene.",
         "Utviklingen var ikke bare en historie om oppfinnelser: rask vekst førte også til forurensning, endrede levevaner og nye sosiale spenninger."
       ],
       "insight": "Shinkansen, Nintendo og en bolle ramen forteller ulike deler av den samme historien om modernisering og hverdagsliv.",
@@ -307,7 +306,8 @@
         "rail",
         "instant",
         "ramen",
-        "columbia"
+        "columbia",
+        "nintendo"
       ]
     },
     {
@@ -330,7 +330,9 @@
       ],
       "sourceIds": [
         "perioder",
-        "jnto-history"
+        "jnto-history",
+        "jma",
+        "fukushima"
       ]
     }
   ],
@@ -598,7 +600,8 @@
       "sourceIds": [
         "jomon",
         "rail",
-        "instant"
+        "instant",
+        "nintendo"
       ]
     }
   ],
@@ -697,6 +700,31 @@
       "id": "hokusai",
       "title": "The Metropolitan Museum of Art – Hokusai og Edo",
       "url": "https://www.metmuseum.org/art/collection/search/55237"
+    },
+    {
+      "id": "nintendo",
+      "title": "Nintendo – offisiell selskaps- og produkthistorie",
+      "url": "https://www.nintendo.com/us/about/"
+    },
+    {
+      "id": "meiji-shrine",
+      "title": "Meiji Jingū – grunnleggelsen i 1920",
+      "url": "https://www.meijijingu.or.jp/en/about/establishment/"
+    },
+    {
+      "id": "jma",
+      "title": "Japan Meteorological Agency – jordskjelvet 11. mars 2011",
+      "url": "https://www.jma.go.jp/jma/en/2011_Earthquake/Information_on_2011_Earthquake.html"
+    },
+    {
+      "id": "fukushima",
+      "title": "Japan Atomic Energy Agency – Fukushima-ulykken",
+      "url": "https://f-archive.jaea.go.jp/about.php?locale=eng"
+    },
+    {
+      "id": "taisho-vote",
+      "title": "National Diet Library – stemmerettsreformen i 1925",
+      "url": "https://www.ndl.go.jp/modern/e/cha3/description13.html"
     }
   ]
 }
