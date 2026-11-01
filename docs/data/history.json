@@ -1,7 +1,7 @@
 {
   "updated": "2026-11-01",
-  "intro": "En lesbar fortelling om de viktigste epokene i Japans historie. Dette er ikke en fullstendig historiebok og ikke avgrenset til stedene på vår reise. Lenker underveis viser hvor historien blir konkret.",
-  "framing": "Årstall for de eldste periodene er omtrentlige, og noen perioder overlapper. Vi skiller mellom historiske hendelser, senere gjenoppbygde bygninger og moderne tolkninger. Historien om Japan omfatter også regioner, mennesker og perspektiver som ikke dekkes av denne turen.",
+  "intro": "En sammenhengende historie om hvordan samfunn, makt, kultur og teknologi har endret seg på de japanske øyene. Fortellingen følger også mennesker og steder som ikke finnes på vår reiserute.",
+  "framing": "Følg utviklingen fra små samfunn til keiserhoff, samuraistyre, industristat og dagens Japan. Periodene glir delvis over i hverandre, og de eldste årstallene er omtrentlige. Vi skiller mellom dokumenterte hendelser, historiske tolkninger og senere gjenoppbygde bygninger.",
   "chapters": [
     {
       "id": "jomon-yayoi",
@@ -101,7 +101,7 @@
       "body": [
         "Etter flere års borgerkrig slo Minamoto-slekten rivalene fra Taira i 1185. Lederen Minamoto no Yoritomo bygde opp et militært styre med base i Kamakura og fikk tittelen shōgun i 1192. Keiseren og hoffet forsvant ikke, men makt måtte nå deles med en krigerelite som hadde kontroll over jord, soldater og lokale forbindelser.",
         "Samuraiene var ikke bare sverdbærere på slagmarken. De forvaltet landområder, krevde lojalitet og deltok i konflikter om arv, jord og makt. Til gjengjeld måtte ledere belønne sine støttespillere. Når belønningene uteble eller alliansene sviktet, ble styret sårbart.",
-        "I 1274 og 1281 forsøkte mongolskledede styrker under Kublai Khan å invadere Japan. Angrepene ble slått tilbake, blant annet gjennom japansk motstand og vanskelige værforhold. Forsvaret kostet ressurser, men ga ingen ny erobret jord å dele ut som belønning. Belastningen bidro til å svekke det militære styret, som falt i 1333."
+        "I 1274 og 1281 forsøkte mongolske styrker under Kublai Khan å invadere Japan. Angrepene ble slått tilbake, blant annet gjennom japansk motstand og vanskelige værforhold. Forsvaret kostet ressurser, men ga ingen ny erobret jord å dele ut som belønning. Belastningen bidro til å svekke det militære styret, som falt i 1333."
       ],
       "insight": "Ordet samurai rommer et helt politisk system av jord, tjenester, lojalitet og plikter. Det forklarer hvorfor slottene var så viktige senere.",
       "people": [
@@ -364,8 +364,8 @@
       "id": "himiko",
       "name": "Dronning Himiko",
       "time": "200-tallet",
-      "role": "Tidlig hersker kjent fra kinesiske kilder",
-      "text": "Kinesiske krøniker omtaler Himiko som leder for riket Yamatai. Hvor riket lå, er fortsatt omdiskutert.",
+      "role": "Den tidligste navngitte herskeren vi kjenner fra skriftlige kilder",
+      "text": "På 200-tallet beskrev kinesiske utsendinger en kvinne som ledet riket Yamatai. Himiko skal ha utøvd både religiøs og politisk autoritet. Vi vet ikke sikkert hvor riket lå, og mye av beretningen kommer fra utenlandske observatører. Nettopp derfor viser hun hvor stor forskjell det er på tidlig historie og senere legender.",
       "chapterId": "jomon-yayoi",
       "sourceIds": [
         "jnto-history"
@@ -375,8 +375,8 @@
       "id": "murasaki",
       "name": "Murasaki Shikibu",
       "time": "ca. år 1000",
-      "role": "Forfatter og hoffdame",
-      "text": "Skrev Fortellingen om Genji, et hovedverk i japansk litteratur. Her er det hoffliv og menneskelige relasjoner – ikke samuraikrig – som står i sentrum.",
+      "role": "Hoffdamen som skrev om makt og kjærlighet",
+      "text": "Murasaki Shikibu levde i Kyotos hoffmiljø rundt år 1000. I Fortellingen om Genji skrev hun om en adelsmanns kjærlighet, ambisjoner og tap. Historien forteller hvordan folk ved hoffet tenkte om status og følelser – og viser at kvinnelige forfattere skapte noen av periodens mest varige kulturuttrykk.",
       "chapterId": "heian",
       "sourceIds": [
         "genji"
@@ -386,8 +386,8 @@
       "id": "yoritomo",
       "name": "Minamoto no Yoritomo",
       "time": "slutten av 1100-tallet",
-      "role": "Leder bak Kamakura-shōgunatet",
-      "text": "Hans militære styre markerte overgangen fra hoffdominans til et langvarig system med samurai-politisk makt.",
+      "role": "Krigslederen som ga samuraiene et styre",
+      "text": "Etter krigen mellom Minamoto- og Taira-slektene bygde Yoritomo makt fra Kamakura, langt fra hoffet i Kyoto. Han fikk tittelen shōgun i 1192, men hans viktigste arbeid var å organisere lojalitet, jord og militær kontroll. Slik endret han hvem som faktisk styrte landet.",
       "chapterId": "kamakura",
       "sourceIds": [
         "columbia"
@@ -397,8 +397,8 @@
       "id": "yoshimitsu",
       "name": "Ashikaga Yoshimitsu",
       "time": "slutten av 1300-tallet",
-      "role": "Shōgun og kunstmesén",
-      "text": "Knyttes til Gullpaviljongen i Kyoto og Muromachi-periodens hoflige og religiøse kunstliv.",
+      "role": "Shōgunen som brukte kunst til å vise makt",
+      "text": "Ashikaga Yoshimitsu var både militær leder og en viktig støtte for kultur og religion på slutten av 1300-tallet. Han knyttes til residensanlegget som senere ble Kinkaku-ji, Gullpaviljongen. Historien hans viser at samuraienes herskere også formet det vi i dag tenker på som klassisk japansk skjønnhet.",
       "chapterId": "muromachi",
       "sourceIds": [
         "perioder"
@@ -408,42 +408,47 @@
       "id": "nobunaga",
       "name": "Oda Nobunaga",
       "time": "1500-tallet",
-      "role": "Krigsherre",
-      "text": "Brøt makten til flere rivaler og la mye av grunnlaget for Japans politiske samling.",
+      "role": "Krigsherren som brøt opp den gamle ordenen",
+      "text": "Oda Nobunaga gikk fra å være en regional hersker til å bli en av landets mektigste. Etter seieren ved Okehazama i 1560 utfordret han rivaler og religiøse militærmakter og tok kontroll over Kyoto. Han brukte både allianser og brutal makt. Da en egen general angrep ham i 1582, var landet fortsatt ikke samlet – og veien lå åpen for en ny maktkamp.",
       "chapterId": "sengoku",
       "sourceIds": [
-        "columbia"
+        "columbia",
+        "nps-sengoku",
+        "nps-sekigahara"
       ]
     },
     {
       "id": "hideyoshi",
       "name": "Toyotomi Hideyoshi",
       "time": "1500-tallet",
-      "role": "Leder og rikssamler",
-      "text": "Fortsatte samlingen etter Nobunaga og lot bygge det opprinnelige Osaka Castle. Hans felttog mot Korea på 1590-tallet førte også til store lidelser.",
+      "role": "Generalens etterfølger – og mannen som samlet landet",
+      "text": "Toyotomi Hideyoshi steg i gradene fra en mindre privilegert bakgrunn og ble en av Nobunagas viktigste generaler. Etter Nobunagas død grep han initiativet, slo rivalene og fullførte samlingen i 1590. Han organiserte landmåling og strengere klasseskiller, bygde Osaka-slottet og ledet katastrofale invasjoner av Korea. Da han døde, var arvingen et barn, og maktspillet begynte igjen.",
       "chapterId": "sengoku",
       "sourceIds": [
         "columbia",
-        "jnto-history"
+        "nps-sengoku",
+        "nps-sekigahara"
       ]
     },
     {
       "id": "ieyasu",
       "name": "Tokugawa Ieyasu",
       "time": "1600-tallets begynnelse",
-      "role": "Grunnlegger av Tokugawa-shōgunatet",
-      "text": "Seieren ved Sekigahara i 1600 banet vei for militærstyret fra Edo fra 1603.",
+      "role": "Rivalen som gjorde seieren til et varig styre",
+      "text": "Tokugawa Ieyasu overlevde skiftende allianser og konkurransen med Nobunaga og Hideyoshi. Etter Hideyoshis død samlet han støtte, vant slaget ved Sekigahara i 1600 og ble shōgun i 1603. Han og etterfølgerne bygde et kontrollsystem rundt regionale herskere. Det la grunnlaget for mer enn 250 år med Tokugawa-styre, selv om Toyotomi-familien først ble endelig beseiret i 1615.",
       "chapterId": "sengoku",
       "sourceIds": [
-        "columbia"
+        "columbia",
+        "nps-sengoku",
+        "nps-sekigahara"
       ]
     },
     {
       "id": "rikyu",
       "name": "Sen no Rikyū",
       "time": "1500-tallet",
-      "role": "Mester i teseremoni",
-      "text": "Bidro sterkt til idealene om enkelhet, respekt og ro i japansk tekultur.",
+      "role": "Temesteren som gav enkelhet stor politisk betydning",
+      "text": "Sen no Rikyū var en fremtredende temester på 1500-tallet og virket nær både Nobunaga og Hideyoshi. Han videreutviklet en tekultur der små rom, enkle redskaper og oppmerksomhet kunne stå i kontrast til herskernes enorme slott. Teseremonien var samtidig et sted for status, nettverk og politiske møter.",
       "chapterId": "sengoku",
       "sourceIds": [
         "tea"
@@ -453,8 +458,8 @@
       "id": "hokusai",
       "name": "Katsushika Hokusai",
       "time": "1760–1849",
-      "role": "Tresnittkunstner",
-      "text": "Kjent for landskaper og bilder av Fuji og Edo. Kunstverkene hans viser også hvordan storbyliv og trykkekunst nådde et bredere publikum.",
+      "role": "Kunstneren som gjorde Fuji til et verdenskjent motiv",
+      "text": "Hokusai levde i Edo-tiden og laget tresnitt som kunne trykkes i mange eksemplarer. Hans bølge- og Fuji-motiver viser både natur og hverdagsliv, og ble senere kjent langt utenfor Japan. Han minner oss om at Edo ikke bare handlet om samurai og regler, men også om et stort publikum for kunst.",
       "chapterId": "edo",
       "sourceIds": [
         "hokusai"
@@ -464,8 +469,8 @@
       "id": "meiji-emperor",
       "name": "Keiser Meiji",
       "time": "regjerte 1867–1912",
-      "role": "Keiser i moderniseringstiden",
-      "text": "Meiji-restaurasjonen bar hans æranavn. Omstillingene var et resultat av mange politiske aktører, ikke én keisers personlige oppfinnelse.",
+      "role": "Keiseren som ble symbol for en omveltning",
+      "text": "Meiji-keiseren var ung da shōgunatet ble avviklet i 1868. Den nye staten ble bygget i hans navn, men reformene ble utformet og gjennomført av en bredere krets av politiske og militære ledere. Å forstå denne forskjellen gjør det lettere å se både keiserens symbolske rolle og den reelle maktpolitikken bak moderniseringen.",
       "chapterId": "meiji",
       "sourceIds": [
         "meiji"
@@ -475,8 +480,8 @@
       "id": "ando",
       "name": "Momofuku Ando",
       "time": "1900-tallet",
-      "role": "Matinnovatør",
-      "text": "Kjent for instant ramen i 1958 og Cup Noodles i 1971 – en oppfinnelse som endret hverdagsmat langt utenfor Japan.",
+      "role": "Oppfinneren som gjorde nudler til hverdagsmat verden over",
+      "text": "Momofuku Ando utviklet en metode for instant ramen som kom på markedet i 1958. Cup Noodles fulgte i 1971. Produktene hans gjorde det mulig å lage et varmt måltid raskt, uten et stort kjøkken. Historien passer inn i Japans etterkrigsvekst: industriell oppfinnsomhet ble til varer som endret hverdagen.",
       "chapterId": "growth",
       "sourceIds": [
         "instant"
@@ -487,8 +492,8 @@
     {
       "id": "tro",
       "title": "Templer, helligdommer og religion",
-      "lead": "Buddhismen kom utenfra, shinto vokste frem lokalt – men i praksis har religiøse tradisjoner påvirket hverandre gjennom århundrer.",
-      "body": "Når vi møter et tempel som Sensō-ji eller Tōdai-ji, er det buddhistisk. Fushimi Inari og Itsukushima er shinto-helligdommer. Torii-portene markerer hellige områder. Et konkret bygg kan være nyere enn tradisjonen det representerer.",
+      "lead": "Hvorfor ligger et buddhistisk tempel ved siden av en shinto-helligdom? Fordi Japans religiøse historie ikke følger én rett linje.",
+      "body": "Buddhismen kom til hoffet gjennom forbindelser med det asiatiske fastlandet på 500-tallet. Den møtte lokale tradisjoner knyttet til natur, steder og guddommer, som i dag ofte omtales som shinto. Trosformene påvirket hverandre i århundrer. Sensō-ji og Tōdai-ji er buddhistiske templer; Fushimi Inari og Itsukushima er shinto-helligdommer. Skillet ble sterkere i enkelte historiske perioder, særlig da staten omorganiserte religionen etter 1868. Når vi ser en torii-port, får vi derfor øye på en lang historie om både blanding og avgrensning.",
       "chapterIds": [
         "yamato-asuka",
         "nara",
@@ -509,8 +514,8 @@
     {
       "id": "mat",
       "title": "Fra ris og te til sushi og ramen",
-      "lead": "Mat er en snarvei inn i samfunnshistorien: jordbruk, handel, byliv og industri finnes i det vi spiser.",
-      "body": "Risdyrking endret de tidlige samfunnene. Tekulturen utviklet seg blant annet ved templer og hos eliter, før Sen no Rikyū påvirket teseremonien. Nigiri-sushi ble urban hurtigmat i Edo. Ramen har forbindelser til kinesiske nuddeltradisjoner, mens instant ramen er en etterkrigsinnovasjon.",
+      "lead": "Et måltid kan fortelle om jordbruk, storbyliv, handel og moderne industri – alt på én gang.",
+      "body": "Ris endret de tidlige jordbrukssamfunnene og ble tett knyttet til arbeid og makt. Te kom gjennom kontakt med Kina og utviklet seg etter hvert til en egen kultur rundt templer og elite, videreformet av blant andre Sen no Rikyū. I Edo vokste et travelt byliv der sushi kunne serveres raskt til folk på farten. Ramen har røtter i kinesiske nudelretter og ble utbredt i moderne Japan. Da Momofuku Ando lanserte instant ramen i 1958, ble en del av denne matkulturen industrialisert og eksportert. Slik knyttes det vi spiser til hvem som bodde hvor, og hvordan de levde.",
       "chapterIds": [
         "jomon-yayoi",
         "sengoku",
@@ -542,8 +547,8 @@
     {
       "id": "makt",
       "title": "Keiser, shōgun og samurai",
-      "lead": "Japan har hatt en keiser gjennom mange epoker, men det betyr ikke at keiseren alltid styrte landet.",
-      "body": "Hoffet satt i Kyoto i lange perioder, mens militære regjeringer ledet av shōguner hadde betydelig makt i Kamakura, Kyoto og Edo. Slott og krigerklasser var del av politisk organisering – ikke bare kampkunst.",
+      "lead": "Det er lett å tro at keiseren alltid styrte Japan. I lange perioder var det helt andre som avgjorde hvem som eide land og hadde soldater.",
+      "body": "Hoffet i Kyoto gav den keiserlige linjen historisk kontinuitet, men i middelalderen vokste samuraienes makt. Shōgunene styrte gjennom regionale krigerherrer og avtaler om jord og lojalitet. Da dette systemet brøt sammen, fulgte Sengoku-periodens kriger. Nobunaga, Hideyoshi og Ieyasu forsøkte å skape orden, men med svært ulike resultater. Store slott var derfor både militære anlegg og offentlige maktsymboler. I dag har keiseren en symbolsk rolle etter grunnloven av 1947; det er en helt annen politisk virkelighet.",
       "chapterIds": [
         "kamakura",
         "sengoku",
@@ -564,8 +569,8 @@
     {
       "id": "kunst",
       "title": "Historier, bilder og popkultur",
-      "lead": "Japanske fortellinger startet ikke med manga og dataspill.",
-      "body": "Hofflitteratur fra Heian, illustrerte ruller og tresnitt fra Edo var store uttrykksformer lenge før anime, manga og dataspill. Moderne populærkultur er ny, men den har eldre forteller- og billedtradisjoner å spille på.",
+      "lead": "Fra hoffdamen Murasaki Shikibu til manga og Nintendo: Japan har hatt sterke fortellertradisjoner lenge før skjermene kom.",
+      "body": "Ved hoffet i Heian-tiden skrev kvinner om kjærlighet, status og politikk. I Edo kunne tresnitt og populærfortellinger spres til et større bypublikum, slik Hokusais arbeider viser. Trykkekunst, teater, maleri og senere film fikk hver sine uttrykk i nye sosiale miljøer. Moderne anime og spill er derfor ikke bare en direkte fortsettelse av gamle kunstformer, men de står i en kultur der bilder, figurer og historier lenge har vært viktige. Nintendo Museum og Ghibli Museum viser nyere kapitler av denne historien, ikke hele historien.",
       "chapterIds": [
         "heian",
         "edo",
@@ -591,8 +596,8 @@
     {
       "id": "mangfold",
       "title": "Japan har aldri vært én kultur",
-      "lead": "Fortellingen fra Kyoto og Edo er viktig, men forklarer ikke hele øyriket.",
-      "body": "Ainu er urfolk med egne språk og tradisjoner, særlig i nord. Ryukyu-riket i sør hadde en egen historie og handelsforbindelser til flere land før Okinawa ble innlemmet i Japan i 1879. Disse samfunnene ble påvirket av både handel, maktutøvelse og modernisering. De fortjener plass i historien selv om vår rute ikke går gjennom Hokkaido eller Okinawa.",
+      "lead": "Kyoto og Tokyo forteller mye om Japan, men ikke alt. Øyriket består av ulike samfunn med egne historier.",
+      "body": "Ainu er urfolk med eget språk og kultur, særlig knyttet til Hokkaido og områdene lenger nord. I sør var Ryukyu et selvstendig kongerike med handelsforbindelser til blant annet Kina og Japan før Okinawa ble innlemmet i den japanske staten i 1879. Makten fra de sentrale myndighetene påvirket språk, jord og hverdagsliv i begge regioner. Det er viktig å ta dem med i historiefortellingen nettopp fordi vår reiserute ikke går dit. Japan er ikke én ubrutt fortelling om Kyoto, samuraier og dagens Tokyo.",
       "chapterIds": [
         "yamato-asuka",
         "edo",
@@ -608,8 +613,8 @@
     {
       "id": "oppfinnelser",
       "title": "Teknologi og oppfinnelser",
-      "lead": "Fra tidlig keramikk til lyntog: Japans utvikling har både egne ideer og impulser utenfra.",
-      "body": "Jōmon-keramikk er svært gammel. Senere utviklet japanere særegne metoder for trykk, arkitektur og håndverk. Moderne industri skapte blant annet Shinkansen fra 1964 og instant ramen fra 1958. Ikke alle kjente produkter eller oppfinnelser ble funnet opp i Japan; ofte ligger innovasjonen i videreutvikling og ny anvendelse.",
+      "lead": "Noe av Japans teknologi er gammel. Annet kom gjennom kontakt med omverdenen – og ble videreutviklet på nye måter.",
+      "body": "Jōmon-samfunnene laget keramikk lenge før den moderne staten fantes. Senere kom skrift, metaller, nye byggemetoder og mattradisjoner gjennom kontakt med andre samfunn. I Edo utviklet byene trykk, handel og håndverk, mens industrireformene på 1800-tallet skapte grunnlag for moderne produksjon. Etter andre verdenskrig kom ny vekst: Shinkansen åpnet i 1964, og instant ramen ble en internasjonal hverdagssuksess. Nintendo gikk fra spillkort til dataspill. Det er denne kombinasjonen av impulser, eksperimentering og organisering vi bør se etter når vi møter Japan som teknologiland.",
       "chapterIds": [
         "jomon-yayoi",
         "edo",
