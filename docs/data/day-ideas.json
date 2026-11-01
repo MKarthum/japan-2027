@@ -18,7 +18,7 @@
     {
       "id": "tokyo-west",
       "baseId": "tokyo",
-      "title": "Vestlige Tokyo – storby og grønt",
+      "title": "Shibuya Crossing, helligdom og storby",
       "effort": "Halv til hel dag",
       "corePlaceIds": [
         "shibuya",
@@ -28,20 +28,20 @@
         "shinjuku-gyoen",
         "shinjuku"
       ],
-      "logic": "Meiji Jingū, Harajuku og Shibuya ligger i samme vestlige korridor. Shinjuku passer som kveld hvis det er energi igjen.",
+      "logic": "Begynn gjerne ved Meiji Jingū, gå videre mot Harajuku og opplev Shibuya Crossing i Shibuya. Her er krysset én severdighet i bydelen, mens helligdommen er et eget stopp.",
       "watch": "Parkbesøk kan byttes inn når kirsebærblomstringen og været passer. Shinjuku er også en enkel kveld nær mulig hotellbase."
     },
     {
       "id": "tokyo-east",
       "baseId": "tokyo",
-      "title": "Gamle gater og spillkultur",
+      "title": "Sensō-ji i Asakusa og spill i Akihabara",
       "effort": "Ca. 4–7 timer",
       "corePlaceIds": [
         "asakusa",
         "akihabara"
       ],
       "optionalPlaceIds": [],
-      "logic": "Asakusa og Akihabara ligger i østre/indre Tokyo med praktisk kollektivforbindelse. Begynn gjerne historisk og avslutt med spilling og butikker.",
+      "logic": "I Asakusa går dere gjennom Kaminarimon-porten og Nakamise-gaten til Sensō-ji-tempelet. Dette er én gåtur. Ta deretter kollektivtransport til Akihabara for spill og butikker.",
       "watch": "Tiden i Akihabara kan lett bli lengre enn planlagt. Sett ikke flere store museer på denne dagen."
     },
     {
@@ -111,7 +111,7 @@
     {
       "id": "kyoto-higashiyama",
       "baseId": "kyoto",
-      "title": "Gamle Kyoto til fots",
+      "title": "Kiyomizu-dera og de gamle gatene i Gion",
       "effort": "Ca. 4–7 timer",
       "corePlaceIds": [
         "kiyomizu-dera",
@@ -127,7 +127,7 @@
     {
       "id": "kyoto-south-uji",
       "baseId": "kyoto",
-      "title": "Røde porter og Nintendo",
+      "title": "Fushimi Inari-portene og Nintendo Museum",
       "effort": "Ca. 4–7 timer",
       "corePlaceIds": [
         "fushimi-inari"
@@ -142,7 +142,7 @@
     {
       "id": "kyoto-arashiyama",
       "baseId": "kyoto",
-      "title": "Grønnere Kyoto eller et ekstra tempel",
+      "title": "Bambusskogen i Arashiyama",
       "effort": "Ca. 3–6 timer",
       "corePlaceIds": [
         "arashiyama"
@@ -150,20 +150,20 @@
       "optionalPlaceIds": [
         "kinkakuji"
       ],
-      "logic": "Arashiyama kan fylle en rolig halvdag med bambus, hager og elv. Kinkaku-ji ligger ikke rett ved og er bare et tillegg med ekstra transport.",
+      "logic": "Arashiyama er området, bambusskogen er den kjente stien. Kombiner gjerne med Tenryū-ji eller elven. Kinkaku-ji (Gullpaviljongen) ligger ikke rett ved og krever ekstra transport.",
       "watch": "Med få hele Kyoto-dager kan denne ideen måtte vike for Nintendo, Nara eller Higashiyama."
     },
     {
       "id": "kyoto-nara",
       "baseId": "kyoto",
-      "title": "Én samlet dagstur til Nara",
+      "title": "Nara Park (hjorteparken) og Tōdai-ji",
       "effort": "Ca. 5–7 timer inkludert transport",
       "corePlaceIds": [
         "nara",
         "todaiji"
       ],
       "optionalPlaceIds": [],
-      "logic": "Hjorteparken, byen og Tōdai-ji er del av samme utflukt fra Kyoto, ikke to separate dagsturer.",
+      "logic": "Nara er byen, Nara Park er parken med hjortene, og Tōdai-ji er tempelet med den store Buddhaen. Alle kan besøkes på én og samme dagstur fra Kyoto.",
       "watch": "Dette bruker mesteparten av en dag. Hvis Kyoto blir for tett, er Nara et bevisst valg opp mot flere Kyoto-templer."
     },
     {
@@ -195,40 +195,39 @@
     {
       "id": "hiroshima-peace",
       "baseId": "hiroshima",
-      "title": "Historie og samtaler",
+      "title": "Fredsparken, Atombombekuppelen og museet",
       "effort": "Ca. 3–5 timer",
       "corePlaceIds": [
+        "hiroshima-peace-park-dome",
         "peace-memorial-museum"
       ],
-      "optionalPlaceIds": [
-        "hiroshima"
-      ],
-      "logic": "Fredsparken, Atomic Bomb Dome og museet hører naturlig sammen. Selve museet og samtaler underveis krever en roligere rytme.",
+      "optionalPlaceIds": [],
+      "logic": "Fredsparken og Atombombekuppelen er utendørsminnene. Fredsmuseet (Hiroshima Peace Memorial Museum) er det separate innendørsbesøket med sterkere innhold. De ligger i samme område og kan ses samlet.",
       "watch": "Med Himeji-stopp på ankomstdagen må dere kontrollere museumsåpning før dere antar at besøket kan skje samme ettermiddag."
     },
     {
       "id": "hiroshima-miyajima",
       "baseId": "hiroshima",
-      "title": "Én samlet øydag",
+      "title": "Miyajima: øya og Itsukushima-helligdommen",
       "effort": "Ca. 5–7 timer inkludert ferge og transport",
       "corePlaceIds": [
         "miyajima",
         "itsukushima-shrine"
       ],
       "optionalPlaceIds": [],
-      "logic": "Miyajima, helligdommen og røde torii-porten er én tur. Sett av tid til tidevann, mat og litt utforsking i stedet for flere separate punkter.",
+      "logic": "Miyajima er øya, Itsukushima Shrine er helligdommen, og den store røde torii-porten står i sjøen utenfor. Dette er én felles dagstur, ikke flere utflukter.",
       "watch": "Sjekk tidevannstidene når besøksdagen er kjent. Ikke planlegg enda en stor sightseeingdag samme dag."
     },
     {
       "id": "osaka-usj",
       "baseId": "osaka",
-      "title": "Én stor parkdag",
+      "title": "Universal Studios Japan med Super Nintendo World",
       "effort": "Heldag, gjerne 8–11 timer",
       "corePlaceIds": [
         "usj"
       ],
       "optionalPlaceIds": [],
-      "logic": "Super Nintendo World og resten av Universal Studios Japan er best som én hovedopplevelse. Det er ingen grunn til å presse inn mer den dagen.",
+      "logic": "Super Nintendo World er ett område inne i Universal Studios Japan, ikke en egen fornøyelsespark. Legg av hele dagen til parken hvis dere velger å dra.",
       "bookingAnchorId": "usj",
       "watch": "Studio Pass og eventuell tidsstyrt områdeadgang bør styre denne dagen. Legg Dōtonbori til en annen kveld."
     },

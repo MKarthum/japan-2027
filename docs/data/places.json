@@ -8,12 +8,12 @@
     "description": "Japans største storby er første base og den tydeligste introduksjonen til kontrastene i landet: høyhus, tog og popkultur side om side med templer, små gater og hverdagsliv. Fire netter gir tre hele dager, så det lønner seg å samle opplevelser geografisk og reservere de mest populære på forhånd.",
     "why": "Tokyo gir reisen en moderne start og gjør forskjellen til Kyoto, Hakone og Hiroshima mye tydeligere. Det er også den beste basen for å la alle finne minst én egen interesse – spill, mat, kunst, byliv eller tradisjonelle bydeler.",
     "highlights": [
-      "Shibuya",
-      "Asakusa og Sensō-ji",
+      "Sensō-ji-tempelet i Asakusa",
+      "Shibuya Crossing",
       "Akihabara",
-      "teamLab",
+      "teamLab Borderless",
       "Tokyo Tower ved Zōjō-ji",
-      "Shinjuku og Akihabara",
+      "Meiji Jingū",
       "Shinjuku Gyoen hvis kirsebærtrærne blomstrer"
     ],
     "image": {
@@ -60,16 +60,17 @@
   },
   {
     "id": "shibuya",
-    "name": "Shibuya",
+    "name": "Shibuya Crossing og Shibuya",
     "area": "Tokyo",
     "type": "bydel",
-    "simple": "Neonlys og verdens mest kjente fotgjengerkryss",
-    "description": "Shibuya er et av Tokyos mest intense byområder, med det store fotgjengerkrysset, Hachikō, butikker, skjermer og utsiktspunkter samlet rundt en svært travel stasjon. Opplevelsen handler like mye om tempoet og folkelivet som om ett bestemt severdighetspunkt.",
+    "simple": "Det berømte fotgjengerkrysset i Tokyos travle bydel",
+    "description": "Shibuya Crossing er selve fotgjengerkrysset der folk går i alle retninger samtidig. Shibuya er den større bydelen rundt, med Hachikō-statuen ved stasjonen, neonlys, butikker og utsiktspunkter. Man besøker krysset som del av en tur i bydelen, ikke som en separat aktivitet.",
     "why": "Dette er et konsentrert møte med det moderne Tokyo mange kjenner fra film og bilder. Sammen med Asakusa viser det hvor forskjellig byen kan føles innenfor samme dag.",
     "highlights": [
-      "Shibuya Crossing",
-      "Hachikō",
-      "Utsikt over krysset"
+      "Shibuya Crossing – det ikoniske fotgjengerkrysset",
+      "Hachikō-statuen ved stasjonen",
+      "Utsikt over krysset",
+      "Butikkgatene rundt stasjonen"
     ],
     "map": {
       "lat": 35.65949,
@@ -87,7 +88,12 @@
     },
     "links": [
       {
-        "label": "GO TOKYO",
+        "label": "Shibuya Crossing – Travel Japan",
+        "url": "https://www.japan.travel/en/spot/2177/",
+        "kind": "info"
+      },
+      {
+        "label": "Shibuya – GO TOKYO",
         "url": "https://www.gotokyo.org/en/destinations/western-tokyo/shibuya/index.html",
         "kind": "info"
       },
@@ -116,16 +122,17 @@
   },
   {
     "id": "asakusa",
-    "name": "Asakusa",
+    "name": "Sensō-ji og Asakusa",
     "area": "Tokyo",
-    "type": "bydel",
-    "simple": "Gammelt Tokyo",
-    "description": "Asakusa er den mest tilgjengelige inngangen til et eldre Tokyo, bygget rundt Sensō-ji, Kaminarimon-porten og handelsgaten Nakamise. Her får vi tempelområde, småbutikker og tradisjonelt gatepreg uten å forlate storbyen.",
-    "why": "Asakusa gir klassisk Japan i Tokyo og balanserer områder som Shibuya og Akihabara. Det er valgt fordi mye kan oppleves til fots uten at dagen må bygges rundt én billett eller reservasjon.",
+    "type": "område",
+    "simple": "Tokyos eldste tempel og den historiske bydelen rundt",
+    "description": "Sensō-ji er det berømte buddhistiske tempelet, mens Asakusa er bydelen rundt. Gå gjennom Kaminarimon-porten med den store røde lykten, følg handlegaten Nakamise og kom frem til tempelhallen og den femetasjes pagoden. Dette er én sammenhengende tur til fots, ikke tre separate attraksjoner.",
+    "why": "Sensō-ji er et av Tokyos viktigste historiske landemerker. Turen gjennom Asakusa gir både tempel, japansk tradisjon, gatemat og småbutikker, og er en tydelig kontrast til neonlysene i Shibuya og Akihabara.",
     "highlights": [
-      "Sensō-ji",
-      "Kaminarimon-porten",
-      "Nakamise-gaten"
+      "Sensō-ji – Tokyos eldste buddhistiske tempel",
+      "Kaminarimon-porten med den store røde lykten",
+      "Nakamise-gaten fra porten mot tempelet",
+      "Den femetasjes pagoden ved tempelet"
     ],
     "map": {
       "lat": 35.714444,
@@ -139,11 +146,16 @@
       "credit": "Felix Filnkössl",
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "alt": "Asakusa"
+      "alt": "Sensō-ji-tempelet i Asakusa"
     },
     "links": [
       {
-        "label": "Travel Japan",
+        "label": "Sensō-ji – Travel Japan",
+        "url": "https://www.japan.travel/en/spot/1691/",
+        "kind": "info"
+      },
+      {
+        "label": "Asakusa – Travel Japan",
         "url": "https://www.japan.travel/en/destinations/kanto/tokyo/asakusa-and-around/",
         "kind": "info"
       },
@@ -366,11 +378,11 @@
     "description": "Kyoto er hovedbasen for historisk Japan på turen, med templer, helligdommer, hager og tradisjonelle bydeler spredt over byen. Fire netter gir tid til både de store ikonene og roligere kvelder, samtidig som byen fungerer som base for Nara og Uji.",
     "why": "Ingen annen base i planen samler så mange tydelige møter med eldre japansk arkitektur og kultur. Poenget er ikke å krysse av flest mulig templer, men å velge noen som er forskjellige nok til at hvert stopp tilfører noe eget.",
     "highlights": [
-      "Gion",
-      "Fushimi Inari",
+      "Gion og gamle Higashiyama",
+      "Fushimi Inari Taisha med torii-portene",
       "Kiyomizu-dera",
-      "Kinkaku-ji",
-      "Arashiyama",
+      "Kinkaku-ji (Gullpaviljongen)",
+      "Bambusskogen i Arashiyama",
       "Maruyama Park ved blomstring",
       "Familievennlig teseremoni"
     ],
@@ -534,10 +546,10 @@
   },
   {
     "id": "fushimi-inari",
-    "name": "Fushimi Inari",
+    "name": "Fushimi Inari Taisha",
     "area": "Kyoto",
     "type": "helligdom",
-    "simple": "Tusenvis av røde porter opp fjellsiden",
+    "simple": "Helligdommen med tusenvis av røde torii-porter",
     "description": "Fushimi Inari er en stor helligdom i shinto-tradisjonen. Tusenvis av røde torii-porter danner lange passasjer oppover den skogkledde fjellsiden. Man kan gå en kort del av ruten eller gjøre turen til en lengre vandring.",
     "why": "Dette er et av Japans mest gjenkjennelige motiver, men også en fysisk opplevelse der landskap, porter og stier henger sammen. Det skiller seg tydelig fra Kyotos buddhistiske templer og egner seg godt tidlig på dagen.",
     "highlights": [
@@ -647,10 +659,10 @@
   },
   {
     "id": "kinkakuji",
-    "name": "Kinkaku-ji",
+    "name": "Kinkaku-ji – Gullpaviljongen",
     "area": "Kyoto",
     "type": "tempel",
-    "simple": "Gullpaviljongen",
+    "simple": "Det gullkledde tempelet som speiler seg i en dam",
     "description": "Kinkaku-ji, Gullpaviljongen, er en gullkledd tempelbygning som speiler seg i en dam omgitt av hage. Besøket er relativt kompakt og handler først og fremst om det svært karakteristiske motivet og hageanlegget rundt.",
     "why": "Dette er et høyt visuelt utbytte på kort tid og et motiv som er lett å kjenne igjen før og etter reisen. Det er ikke tenkt som en halv dag alene, men som ett tydelig Kyoto-ikon dersom ruten gjennom byen passer.",
     "highlights": [
@@ -704,16 +716,16 @@
   },
   {
     "id": "arashiyama",
-    "name": "Arashiyama",
+    "name": "Bambusskogen i Arashiyama",
     "area": "Kyoto",
     "type": "område",
-    "simple": "Bambus og roligere Kyoto",
-    "description": "Arashiyama er et helt område vest i Kyoto, ikke bare bambusskogen. Bambus, Tenryū-ji, elven og fjellene gjør at en halvdag kan veksle mellom natur, tempel og byliv uten mange separate transporter.",
-    "why": "Det gir en grønnere og roligere side av Kyoto enn Higashiyama og sentrum. Stedet er mest verdt tiden hvis vi bruker området som en helhet, ikke hvis vi reiser tvers gjennom byen bare for ett bilde i bambusskogen.",
+    "simple": "Den berømte bambusstien i et grønt område vest i Kyoto",
+    "description": "Bambusskogen (Arashiyama Bamboo Grove) er den korte, kjente stien mellom høye bambusstammer. Arashiyama er hele området vest i Kyoto, med tempelet Tenryū-ji, elven, broen Togetsukyō og fjellene. Sett av tid til å se mer enn bare bambusstien når dere først reiser hit.",
+    "why": "Bambusskogen er en av Kyotos mest kjente naturopplevelser. Arashiyama gir en grønnere side av byen, men er mest verdt reisen hvis vi også rekker en rusletur ved elven eller et tempel i nærheten.",
     "highlights": [
-      "Bambusskogen",
-      "Tenryū-ji",
-      "Elveområdet"
+      "Arashiyama Bamboo Grove – selve bambusstien",
+      "Tenryū-ji-tempelet ved skogen",
+      "Togetsukyō-broen og elveområdet"
     ],
     "map": {
       "lat": 35.01701,
@@ -731,7 +743,12 @@
     },
     "links": [
       {
-        "label": "Travel Japan",
+        "label": "Bambusskogen – Travel Japan",
+        "url": "https://www.japan.travel/en/spot/1141/",
+        "kind": "info"
+      },
+      {
+        "label": "Arashiyama – Travel Japan",
         "url": "https://www.japan.travel/en/spot/1142/",
         "kind": "info"
       },
@@ -759,17 +776,17 @@
   },
   {
     "id": "nara",
-    "name": "Nara",
+    "name": "Nara og hjorteparken (Nara Park)",
     "area": "Nara",
     "type": "dagstur",
-    "simple": "Hjort, gammel hovedstad og enorm Buddha",
-    "description": "Nara er en kompakt historisk by sør for Kyoto der park, frittgående hjort og flere store tempelområder ligger innenfor samme dagsutflukt. Tōdai-ji og den enorme Buddhaen gir besøket et tydelig historisk tyngdepunkt utover hjortene.",
-    "why": "Dagsturen kombinerer historie med noe umiddelbart og barnevennlig, og den er enkel å forstå uten mye forkunnskap. Den gir også et tydelig miljøskifte fra Kyoto uten å kreve ny overnatting.",
+    "simple": "Historisk by med frittgående hjort og den store Buddhaen",
+    "description": "Nara er byen vi kan besøke på dagstur fra Kyoto. Nara Park er det store parkområdet med frittgående hjort, mens Tōdai-ji er et eget tempel i nærheten med en enorm Buddha-statue. Parken og tempelet er to ulike opplevelser innenfor den samme dagsturen.",
+    "why": "Dere får både nærkontakt med hjort og et historisk tempel uten å bytte overnattingssted. Vi besøker parken og Tōdai-ji på én samlet tur, ikke to separate utflukter.",
     "highlights": [
-      "Nara Park",
-      "Tōdai-ji",
-      "Kasuga Taisha",
-      "Kōfuku-ji"
+      "Nara Park – hjorteparken",
+      "Tōdai-ji-tempelet med den store Buddhaen",
+      "Kasuga Taisha-helligdommen som mulig tillegg",
+      "Kōfuku-ji-tempelet hvis det passer"
     ],
     "image": {
       "type": "licensed",
@@ -875,10 +892,10 @@
   },
   {
     "id": "himeji",
-    "name": "Himeji Castle",
+    "name": "Himeji Castle (Himeji-slottet)",
     "area": "Himeji",
     "type": "slott",
-    "simple": "LEGO-slottet på ekte",
+    "simple": "Originalt samuraislott – LEGO-slottet på ekte",
     "description": "Himeji er ett av bare tolv japanske slott med et bevart historisk hovedtårn og står på UNESCOs verdensarvliste. Slottet passer som stopp mellom Kyoto og Hiroshima. Veien opp slynger seg gjennom trange porter og murer: en forsvarslabyrint som skulle forsinke angripere. Se etter skyteåpninger for pil og bue eller geværer, luker for å slippe stein på angripere og det hvite pusslaget som også beskytter treverket mot brann.",
     "why": "LEGO-modellen, Assassin’s Creed Shadows og det virkelige slottet gir turens kanskje tydeligste før-og-etter-gjenkjennelse. Det er også en nyttig kontrast til Osaka Castle, der dagens hovedtårn er en rekonstruksjon.",
     "highlights": [
@@ -1008,7 +1025,7 @@
     "why": "Etter Kyoto og Hiroshima gir Osaka en bevisst lettere finale med lav terskel og mye som fungerer spontant. Namba er samtidig praktisk for avreise videre til Kansai-flyplassen.",
     "highlights": [
       "Dōtonbori",
-      "Super Nintendo World",
+      "Super Nintendo World i Universal Studios Japan",
       "Osaka Castle"
     ],
     "image": {
@@ -1059,7 +1076,7 @@
     "name": "Dōtonbori",
     "area": "Osaka",
     "type": "bydel",
-    "simple": "Neonlys møter matmarked",
+    "simple": "Matgater, kanal og neonlys i Osaka",
     "description": "Dōtonbori er et tett restaurant- og underholdningsområde langs kanalen i Namba, fullt av lysreklamer, store skilt og mat som kan spises på farten. Det er mer en kveld å gå rundt i enn en severdighet med et bestemt start- og sluttpunkt.",
     "why": "Området gir en umiddelbar Osaka-kveld uten reservasjon eller tung planlegging. Her kan vi prøve småretter, se neonlysene og la dagsformen bestemme hvor lenge vi blir.",
     "highlights": [
@@ -1111,12 +1128,12 @@
     "area": "Hiroshima",
     "type": "base",
     "simple": "Den alvorlige historiedagen",
-    "description": "Hiroshima er både et moderne bystopp og rammene rundt turens viktigste møte med krigshistorien. Peace Memorial Park, Atomic Bomb Dome og museet ligger samlet, mens byen også fungerer som base for Miyajima.",
+    "description": "Hiroshima er både en moderne by og rammene rundt turens viktigste møte med krigshistorien. Fredsparken er det åpne minneområdet, Atombombekuppelen er den bevarte ruinen etter bomben i 1945, og Peace Memorial Museum er det separate innendørsmuseet. Alle ligger i samme del av byen. Hiroshima er også base for en mulig øydag på Miyajima.",
     "why": "Stoppet gir reisen historisk tyngde, men planen lar ikke hele oppholdet reduseres til 1945. Kombinasjonen av minnesteder, byliv og øydag gjør Hiroshima-delen mer balansert.",
     "highlights": [
-      "Peace Memorial Park",
-      "Atomic Bomb Dome",
-      "Peace Memorial Museum"
+      "Fredsparken (Peace Memorial Park)",
+      "Atombombekuppelen (Atomic Bomb Dome)",
+      "Fredsmuseet (Peace Memorial Museum)"
     ],
     "image": {
       "type": "licensed",
@@ -1403,10 +1420,10 @@
   },
   {
     "id": "usj",
-    "name": "Universal Studios Japan / Super Nintendo World",
+    "name": "Universal Studios Japan – Super Nintendo World",
     "area": "Osaka",
     "type": "fornøyelsespark",
-    "simple": "Mario-verdenen på ekte",
+    "simple": "Nintendo-området ligger inne i fornøyelsesparken",
     "description": "Universal Studios Japan er en stor fornøyelsespark i Osaka, og Super Nintendo World er området der Mario-universet blir fysisk med attraksjoner, kulisser og interaktive Power-Up Band-aktiviteter. Dette er i praksis en heldag, ikke et lite stopp.",
     "why": "Hvis Mario-oppladningen hjemme treffer, kan dette bli en av turens største familieopplevelser. Samtidig koster den både tid og penger, så den ligger i planen som et bevisst valg fremfor noe som automatisk må presses inn.",
     "highlights": [
@@ -1455,11 +1472,63 @@
     "features": []
   },
   {
+    "id": "hiroshima-peace-park-dome",
+    "name": "Fredsparken og Atombombekuppelen",
+    "area": "Hiroshima",
+    "type": "historisk område",
+    "simple": "Utendørs minnested med den bevarte ruinen fra 1945",
+    "description": "Fredsparken (Hiroshima Peace Memorial Park) er et åpent minneområde med monumenter for ofrene for atombomben 6. august 1945. Atombombekuppelen (Atomic Bomb Dome / Genbaku Dome) er den bevarte ruinen som står ved parken. Fredsmuseet ligger også her, men er et eget innendørs besøk med billett.",
+    "why": "Dette er utendørsdelen av besøket i Hiroshima. Atombombekuppelen og minnesmerkene gjør historien konkret, mens museet gir en grundigere og sterkere fortelling. De bør ses som én sammenhengende historisk opplevelse, med tid til samtaler underveis.",
+    "highlights": [
+      "Atombombekuppelen (Atomic Bomb Dome / Genbaku Dome)",
+      "Fredsparken (Peace Memorial Park) og minnesmerkene",
+      "Barnas fredsmonument med papirtraner",
+      "Fredsmuseet som eget stopp i samme område"
+    ],
+    "map": {
+      "lat": 34.395672,
+      "lng": 132.454056,
+      "showOnRouteMap": true
+    },
+    "image": {
+      "type": "licensed",
+      "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Atomic%20Bomb%20Dome%20Hiroshima.jpg?width=1400",
+      "source": "https://commons.wikimedia.org/wiki/File:Atomic_Bomb_Dome_Hiroshima.jpg",
+      "credit": "SRP1998",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Atombombekuppelen i Hiroshima, sett mellom trær"
+    },
+    "links": [
+      {
+        "label": "Hiroshima Peace Memorial – Travel Japan",
+        "url": "https://www.japan.travel/en/world-heritage/hiroshima-peace-memorial/",
+        "kind": "info"
+      }
+    ],
+    "price": {
+      "status": "free",
+      "standardFamilyRangeYen": [
+        0,
+        0
+      ],
+      "note": "Fredsparken og Atombombekuppelen kan oppleves gratis. Fredsmuseet har egen billett.",
+      "checked": "2026-11-01",
+      "source": "https://www.japan.travel/en/world-heritage/hiroshima-peace-memorial/"
+    },
+    "planInterest": "strong",
+    "topics": [
+      "historie",
+      "kultur"
+    ],
+    "features": []
+  },
+  {
     "id": "peace-memorial-museum",
     "name": "Hiroshima Peace Memorial Museum",
     "area": "Hiroshima",
     "type": "museum",
-    "simple": "Historien om atombomben og menneskene som ble rammet",
+    "simple": "Fredsmuseet om atombomben og menneskene som ble rammet",
     "description": "Hiroshima Peace Memorial Museum forteller om atombomben 6. august 1945 gjennom historisk kontekst, personlige gjenstander, fotografier og vitnesbyrd fra mennesker som ble rammet. Innholdet kan være sterkt, og besøket bør få tid uten at neste aktivitet ligger tett på.",
     "why": "Dette er kjernen i Hiroshima-oppholdet og den delen som gir resten av Peace Memorial Park mening. For en familiereise er det også et sted som bør forberedes litt på forhånd, slik at man kan snakke om det man møter der.",
     "highlights": [
@@ -1572,7 +1641,7 @@
     "name": "Osaka Castle",
     "area": "Osaka",
     "type": "slott",
-    "simple": "Samuraislott midt i den moderne storbyen",
+    "simple": "Rekonstruert slottstårn og slottspark fra samuraitiden",
     "description": "Osaka Castle er et historisk slottsområde med voller, murer og park midt i den moderne byen. Dagens hovedtårn er en rekonstruksjon med museum, så opplevelsen er annerledes enn det bevarte Himeji Castle.",
     "why": "Slottet gir Osaka en historisk dimensjon og gjør det mulig å sammenligne to svært forskjellige måter å møte japansk slotthistorie på. Hvis tiden blir knapp, kan park og eksteriør fortsatt gi mye uten et langt museumsbesøk.",
     "highlights": [
