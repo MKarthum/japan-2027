@@ -1,7 +1,7 @@
 {
   "updated": "2026-11-01",
   "intro": "En sammenhengende historie om hvordan samfunn, makt, kultur og teknologi har endret seg på de japanske øyene. Fortellingen følger også mennesker og steder som ikke finnes på vår reiserute.",
-  "framing": "Følg utviklingen fra små samfunn til keiserhoff, samuraistyre, industristat og dagens Japan. Periodene glir delvis over i hverandre, og de eldste årstallene er omtrentlige. Vi skiller mellom dokumenterte hendelser, historiske tolkninger og senere gjenoppbygde bygninger.",
+  "framing": "Følg utviklingen fra små samfunn til keiserhoff, samuraistyre, industristat og dagens Japan. Periodene overlapper delvis, og de eldste årstallene er omtrentlige. Vi skiller mellom dokumenterte hendelser, historiske tolkninger og senere gjenoppbygde bygninger.",
   "chapters": [
     {
       "id": "jomon-yayoi",
@@ -242,7 +242,7 @@
       "body": [
         "På begynnelsen av 1900-tallet ble Japan en stadig mer urban industrinasjon. Flere krevde innflytelse over politikken, og partier og fagorganisasjoner fikk større plass. I byene oppstod nye forbruksvaner, massemedier og kulturformer. Perioden etter 1912 blir ofte kalt Taishō-demokratiet, men demokratiet omfattet ikke alle.",
         "I 1923 rammet et voldsomt jordskjelv Tokyo- og Yokohama-området. Bygninger kollapset, branner spredte seg, og gjenoppbyggingen forandret bybildet. Katastrofen viser også hvorfor store deler av Tokyo ikke har de gamle trehusene mange forventer av en historisk hovedstad.",
-        "I 1925 fikk voksne menn allmenn stemmerett, mens kvinner fortsatt var utestengt. Samme år vedtok staten en lov som ga myndighetene sterkere virkemidler mot politiske ideer som ble ansett som farlige. Økonomiske problemer, konflikter om Japans plass i Asia og økende militær innflytelse gjorde det vanskeligere å forsvare det åpne politiske rommet. Det var ikke ett øyeblikk da demokratiet bare 'forsvant', men en utvikling gjennom flere år."
+        "I 1925 ble stemmeretten utvidet til menn over 25 år, mens kvinner fortsatt var utestengt. Samme år vedtok staten en lov som ga myndighetene sterkere virkemidler mot politiske ideer som ble ansett som farlige. Økonomiske problemer, konflikter om Japans plass i Asia og økende militær innflytelse gjorde det vanskeligere å forsvare det åpne politiske rommet. Det var ikke ett øyeblikk da demokratiet bare 'forsvant', men en utvikling gjennom flere år."
       ],
       "insight": "Når vi ser dagens Tokyo, ser vi også en by som måtte bygges om etter jordskjelvet i 1923 – før den igjen ble ødelagt i krig.",
       "people": [],
@@ -365,7 +365,7 @@
       "name": "Dronning Himiko",
       "time": "200-tallet",
       "role": "Den tidligste navngitte herskeren vi kjenner fra skriftlige kilder",
-      "text": "På 200-tallet beskrev kinesiske utsendinger en kvinne som ledet riket Yamatai. Himiko skal ha utøvd både religiøs og politisk autoritet. Vi vet ikke sikkert hvor riket lå, og mye av beretningen kommer fra utenlandske observatører. Nettopp derfor viser hun hvor stor forskjell det er på tidlig historie og senere legender.",
+      "text": "På 200-tallet beskrev kinesiske utsendinger en kvinne som ledet riket Yamatai. Himiko skal ha utøvd både religiøs og politisk autoritet. Vi vet ikke sikkert hvor riket lå, og mye av beretningen kommer fra utenlandske observatører. Derfor viser hun hvor stor forskjell det er på tidlig historie og senere legender.",
       "chapterId": "jomon-yayoi",
       "sourceIds": [
         "jnto-history"
@@ -597,7 +597,7 @@
       "id": "mangfold",
       "title": "Japan har aldri vært én kultur",
       "lead": "Kyoto og Tokyo forteller mye om Japan, men ikke alt. Øyriket består av ulike samfunn med egne historier.",
-      "body": "Ainu er urfolk med eget språk og kultur, særlig knyttet til Hokkaido og områdene lenger nord. I sør var Ryukyu et selvstendig kongerike med handelsforbindelser til blant annet Kina og Japan før Okinawa ble innlemmet i den japanske staten i 1879. Makten fra de sentrale myndighetene påvirket språk, jord og hverdagsliv i begge regioner. Det er viktig å ta dem med i historiefortellingen nettopp fordi vår reiserute ikke går dit. Japan er ikke én ubrutt fortelling om Kyoto, samuraier og dagens Tokyo.",
+      "body": "Ainu er urfolk med eget språk og kultur, særlig knyttet til Hokkaido og områdene lenger nord. I sør var Ryukyu et selvstendig kongerike med handelsforbindelser til blant annet Kina og Japan før Okinawa ble innlemmet i den japanske staten i 1879. Makten fra de sentrale myndighetene påvirket språk, jord og hverdagsliv i begge regioner. Det er viktig å ta dem med i historiefortellingen også når vår reiserute ikke går dit. Japan er ikke én ubrutt fortelling om Kyoto, samuraier og dagens Tokyo.",
       "chapterIds": [
         "yamato-asuka",
         "edo",
