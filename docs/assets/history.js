@@ -4,7 +4,7 @@ const historyPlaceLink = p => '<a href="place.html?id='+encodeURIComponent(p.id)
 const historySourceLink = s => '<a href="'+historyEsc(s.url)+'" target="_blank" rel="noopener noreferrer">'+historyEsc(s.title)+' <span aria-hidden="true">↗</span></a>';
 const historyRefs = (ids, bySource) => (ids||[]).map(id=>bySource.get(id)).filter(Boolean);
 
-function historyContextCard(chapter, sourceById, placesById) {
+function historyContextCard(chapter, sourceById, placesById, peopleById) {
   const linked=(chapter.placeIds||[]).map(id=>placesById.get(id)).filter(Boolean);
   return '<article class="history-chapter" id="chapter-'+historyEsc(chapter.id)+'" tabindex="-1">'+
     '<div class="history-chapter-header"><span class="history-period">'+historyEsc(chapter.period)+'</span>'+
@@ -12,6 +12,8 @@ function historyContextCard(chapter, sourceById, placesById) {
     '<div class="history-chapter-body">'+(chapter.body||[]).map(p=>'<p>'+historyEsc(p)+'</p>').join('')+'</div>'+
     '<p class="history-chapter-insight"><strong>Dette hjelper oss å forstå</strong> '+historyEsc(chapter.insight)+'</p>'+
     (linked.length?'<div class="history-related"><span class="meta">Se sammenhengen i guiden</span><div class="history-related-links">'+linked.map(historyPlaceLink).join('')+'</div></div>':'')+
+    ((chapter.people||[]).length?'<div class="history-chapter-people"><span class="meta">Menneskene i fortellingen</span><div class="history-related-links">'+chapter.people.map(id=>peopleById.get(id)).filter(Boolean).map(p=>'<a href="#person-'+historyEsc(p.id)+'">'+historyEsc(p.name)+'</a>').join('')+'</div></div>':'')+
+    ((chapter.wikipediaLinks||[]).length?'<div class="history-wiki-links"><span class="meta">Les mer på Wikipedia (engelsk)</span><div class="history-related-links">'+chapter.wikipediaLinks.map(link=>'<a href="'+historyEsc(link.url)+'" target="_blank" rel="noopener noreferrer">'+historyEsc(link.title)+' ↗</a>').join('')+'</div></div>':'')+
     '<details class="history-chapter-sources"><summary>Kilder til dette kapitlet</summary><ul>'+
     historyRefs(chapter.sourceIds,sourceById).map(s=>'<li>'+historySourceLink(s)+'</li>').join('')+'</ul></details>'+
     '</article>';
@@ -22,16 +24,18 @@ async function renderHistory(){
   const [history,places]=await Promise.all([json('data/history.json'),json('data/places.json'),applyPageCopy('history')]).then(([data,p])=>[data,p]);
   const pById=new Map(places.map(p=>[p.id,p]));
   const cById=new Map(history.chapters.map(c=>[c.id,c]));
+  const peopleById=new Map(history.people.map(p=>[p.id,p]));
   const sById=new Map(history.sources.map(s=>[s.id,s]));
   document.getElementById('history-framing').textContent=history.framing;
   document.getElementById('history-jump-list').innerHTML=history.chapters.map((c,i)=>
     '<a href="#chapter-'+historyEsc(c.id)+'"><span class="history-jump-index">'+String(i+1).padStart(2,'0')+'</span>'+
     '<span>'+historyEsc(c.title)+'</span></a>').join('');
-  document.getElementById('history-chapters').innerHTML=history.chapters.map(c=>historyContextCard(c,sById,pById)).join('');
+  document.getElementById('history-chapters').innerHTML=history.chapters.map(c=>historyContextCard(c,sById,pById,peopleById)).join('');
   document.getElementById('history-people-grid').innerHTML=history.people.map(person=>
-    '<article class="history-person"><span class="meta">'+historyEsc(person.time)+'</span><h3>'+historyEsc(person.name)+'</h3>'+
+    '<article class="history-person" id="person-'+historyEsc(person.id)+'"><span class="meta">'+historyEsc(person.time)+'</span><h3>'+historyEsc(person.name)+'</h3>'+
     '<strong>'+historyEsc(person.role)+'</strong><p>'+historyEsc(person.text)+'</p>'+
-    '<a href="#chapter-'+historyEsc(person.chapterId)+'">Finn epoken: '+historyEsc(cById.get(person.chapterId)?.title||'')+' →</a></article>').join('');
+    '<div class="history-person-links"><a href="#chapter-'+historyEsc(person.chapterId)+'">Finn epoken →</a>'+
+    (person.wikipediaUrl?'<a href="'+historyEsc(person.wikipediaUrl)+'" target="_blank" rel="noopener noreferrer">Wikipedia (engelsk) ↗</a>':'')+'</div></article>').join('');
   document.getElementById('history-themes-grid').innerHTML=history.themes.map(t=>{
     const linked=t.placeIds.map(id=>pById.get(id)).filter(Boolean);
     return '<article class="history-theme" id="theme-'+historyEsc(t.id)+'" tabindex="-1"><h3>'+historyEsc(t.title)+'</h3>'+
