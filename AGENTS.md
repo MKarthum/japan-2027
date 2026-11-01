@@ -57,6 +57,8 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - `history.json` har sjekkbare kilder per kapittel, person og tema. Kontroller både hendelsesdatoer og usikkerhet (omtrentlig eller overlappende epoke), også for bygg som er restaurert. Ingen udokumenterte historiske anekdoter eller illustrasjoner uten bruksrettigheter.
 - Stedsdetaljer skal kobles begge veier gjennom `renderPlaceHistory` og `history.html#chapter-<id>`. Mat og forberedelser kan lenke til relevante temaer. Endringer må verifiseres med `scripts/check-history-integrity.mjs` og øvrig CI.
 - Historie skal være lesbar uten Japan-kunnskap, ikke en omfattende Wikipedia-erstatning. Bruk korte kapitler, tydelige overskrifter og kilder som kan åpnes ved behov.
+- **Redaksjonell historiefortelling:** Start et kapittel med et begripelig spørsmål eller en konflikt. Før inn hver viktig person med en forklaring på hvem vedkommende var, hva vedkommende ønsket eller stod overfor, hva vedkommende faktisk gjorde og hvordan det endret det neste. Bygg avsnittene som årsak → handling → konsekvens → bro til neste epoke. En liste av navn, datoer og steder uten relasjoner er ikke en historiefortelling. Bruk konkrete vendepunkter, men ikke oppdiktede replikker, motiver eller dramatiserte detaljer.
+- **Kvalitet før lengde:** Hvert kapittel skal kunne leses som en selvstendig kort fortelling med 3–6 avsnitt; historiske personer skal få meningsbærende beskrivelser, ikke énlinjers etiketter. Ikke forleng kapitler ved å legge til flere fakta som ikke driver forklaringen videre. Bruk særskilte kilder til omstridte forhold, ikke fremstille én tolkning som sikker kunnskap. Hold også temaseksjonene forklarende og koblet til de kronologiske fortellingene.
 
 ## Språk for hele familien
 
