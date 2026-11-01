@@ -188,6 +188,39 @@ if(/20(?:26|27)-\\d{2}-\\d{2}/.test(JSON.stringify(trip.route)) || /20(?:26|27)-
 
 const placeIds = new Set(places.map(x => x.id));
 const placeById = new Map(places.map(x => [x.id,x]));
+ 
+// Kjente landemerker skal ikke skjules bak navnene på bydelene.
+const visibleLandmarks={
+  asakusa:/sensō-ji/i,
+  shibuya:/shibuya crossing/i,
+  arashiyama:/bambusskogen/i,
+  nara:/nara park/i,
+  kinkakuji:/gullpaviljongen/i
+};
+for(const [id,pattern] of Object.entries(visibleLandmarks)){
+  const item=placeById.get(id);
+  if(!item||!pattern.test(item.name)||!item.description||!item.simple){
+    errors.push('Landemerke '+id+' må vises i kortnavnet og forklares tydelig');
+  }
+}
+const hiroshimaOutdoor=placeById.get('hiroshima-peace-park-dome');
+const hiroshimaIdea=(dayIdeas.ideas||[]).find(x=>x.id==='hiroshima-peace');
+if(!hiroshimaOutdoor||!hiroshimaIdea?.corePlaceIds?.includes('hiroshima-peace-park-dome')||
+   !hiroshimaIdea.corePlaceIds.includes('peace-memorial-museum')){
+  errors.push('Hiroshima: Fredsparken, Atombombekuppelen og museet må vises sammen i dagideen');
+}
+const visibleDayIdeas={
+  'tokyo-west':/shibuya crossing/i,
+  'tokyo-east':/sensō-ji/i,
+  'kyoto-arashiyama':/bambusskogen/i,
+  'kyoto-nara':/nara park/i,
+  'hiroshima-peace':/atombombekuppelen/i
+};
+for(const [id,pattern] of Object.entries(visibleDayIdeas)){
+  const item=(dayIdeas.ideas||[]).find(x=>x.id===id);
+  if(!item||!pattern.test(item.title))errors.push('Dagidé '+id+' skjuler det kjente landemerket i tittelen');
+}
+
 
 const familyGlossaryTerms=['hanami','sakura','matcha','shinto','tatami','ryokan','onsen','torii','shinkansen'];
 for (const term of familyGlossaryTerms) {

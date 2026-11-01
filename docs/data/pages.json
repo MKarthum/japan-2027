@@ -34,7 +34,7 @@
   "places": {
     "eyebrow": "Steder",
     "title": "Steder langs reisen",
-    "intro": "Stedene følger reiseruten og er samlet per by. Filtrer etter interesser og praktiske hensyn, og marker steder som aktuelle eller legg dem bort direkte i oversikten. Mulige dagkombinasjoner finner dere under Dagidéer.",
+    "intro": "Stedene følger reiseruten og er samlet per by. På kortene står både det kjente severdighetsnavnet og området rundt: For eksempel er Sensō-ji et tempel i bydelen Asakusa, mens Shibuya Crossing er et kryss i Shibuya. Ett kort kan derfor dekke flere ting dere opplever på samme gåtur. Filtrer etter interesser, merk det som er aktuelt, og se mulige dagkombinasjoner under Dagidéer.",
     "filterLabel": "Vis steder fra",
     "topicFilterTitle": "Hva interesserer dere?",
     "topicLabels": {
@@ -184,7 +184,7 @@
   "dayIdeas": {
     "eyebrow": "Planlegg uten å låse",
     "title": "Hva kan passe sammen på en dag?",
-    "intro": "En idébank med geografisk naturlige kombinasjoner, tidsanslag og mulige tillegg. Dette er flere alternativer enn dere rekker – poenget er å kunne velge og ombestemme seg.",
+    "intro": "Dette er forslag til hva som passer geografisk sammen, ikke en fast dagsplan. Noen navn er bydeler eller byer, andre er konkrete templer, parker eller opplevelser. Se stedskortene for å forstå hva som hører sammen før dere velger.",
     "principle": "Start med det som faktisk krever billett, for eksempel Ghibli eller Nintendo Museum. Når en dato er kjent, kan dere vurdere hvilke nærliggende opplevelser som passer rundt den. Ingen kombinasjoner er bundet til kalenderdager.",
     "flexibility": "«Særlig interessant», «God kandidat» og «Ekstra idé» er våre foreløpige forslag. Trykk «Aktuell» eller «Legg bort» på steder dere diskuterer; trykk igjen for å angre. Dagidéene endrer ikke reisen automatisk.",
     "filterLabel": "Se dagidéer for"

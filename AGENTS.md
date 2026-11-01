@@ -43,6 +43,13 @@ Siden skal være en familievennlig reiseplan som er lett å forstå uten forkunn
 - `places.json[].topics` eier tematiske emneknagger, som brukes i filtrering og søk. Kart gir geografisk kontekst; `day-ideas.json` gir kuraterte forslag om hva som passer sammen. De skal lenkes, men ikke blandes sammen eller gjøre automatiske bookingvalg.
 - Søk på tvers skal bruke åpne, kanoniske JSON-data i nettleseren, uten backend. Nye endringer må valideres med de fire eksisterende QA-testene, samt nettlesertest av mobil, navigasjon, valg og kartlag.
 
+## Synlige landemerker og forståelige stedsnavn (v0.30.39)
+
+- Et kjent tempel, slott, museum, fotgjengerkryss eller naturmål skal være gjenkjennelig direkte i `places.json[].name` og i tittelen på tilhørende dagidé, selv når oppføringen også dekker en bydel eller et større område. Forklar tydelig hva som er området og hva som er den konkrete severdigheten.
+- Behold ett stedskort når attraksjonen og nærområdet hører naturlig sammen på samme gåtur, som Sensō-ji/Asakusa, Shibuya Crossing/Shibuya, bambusskogen/Arashiyama eller Nara Park/Nara. Separate kort er for egne besøk, som Fredsparken/Atombombekuppelen og Fredsmuseet.
+- Behold etablerte `id`-er ved navneendringer slik at lenker, kart, dagidéer og lokale valg fortsatt fungerer. Vis både norsk forklaring og gjenkjennelige internasjonale navn når det er nyttig for førstegangsreisende. Oppdater dagsforslag og basehøydepunkter samtidig.
+- Nye konkrete steder skal ha riktig kartposisjon og eget rettighetsklarert bilde, ikke gjenbruke et bybilde.
+
 ## Språk for hele familien
 
 Japanske fag-/kulturord får én gjenbrukbar forklaring via klikk/tapp på stiplet understreket ord. All **betydning, japansk skrivemåte, synonymer og aktivering** tilhører `docs/data/guide.json` → `placeWords`, ikke frontend eller kopiert innhold i kort. `inline:true` gjør ordet interaktivt, mens `showInGuide:false` skjuler detaljerte ord fra den korte ordlistevisningen under Språk og fraser. `docs/assets/glossary.js` har bare generisk DOM-, posisjonering- og tastatur-/mobilfunksjonalitet. Unngå repeterende parentesforklaringer; forklar kun med vanlig prosa der det tilfører noe ut over definisjonen. Ikke gjør vanlige ord og alle stedsnavn interaktive. Behold japanske uttrykk for gjenkjenning i Japan.
