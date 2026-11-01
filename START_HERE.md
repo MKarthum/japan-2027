@@ -46,6 +46,7 @@ Stedskort og dagidéer skal vise den kjente attraksjonen i tittelen, også når 
 - `docs/data/history.json` er én autoritativ kilde for den lesbare historiefortellingen: kronologiske kapitler, personer, gjennomgående temaer, kilderegister og lenker til `places.json` via stabile ID-er. Ingen parallell historietidslinje i JavaScript, `pages.json` eller `prep.json`.
 - `docs/history.html` og `docs/assets/history.js` viser historien som en selvstendig hovedseksjon uten filter på reiseruten. Kapitler uten `placeIds` skal beholdes. `renderPlaceHistory` gjenbruker de samme faktaene på stedsdetaljer; `prep.html?topic=historie` peker mot hovedfortellingen og beholder eksisterende bok-/filmtips.
 - Bruk tydelig kildegrunnlag per kapittel i sammenleggbare kildelister, men unngå referanse etter hver setning. Historiske fakta må støtte seg på kontrollerbare institusjoner/forskning, ikke spill, film eller påstander om nøyaktige datoer for usikre forhistoriske overganger. Rydd forskjellen mellom originalbygg og senere gjenoppbygging.
+- Redaksjonell regel: Ikke skriv historiekapitler som kronologiske faktalister. Introduser aktørene, forklar hva de forsøkte å oppnå, vis hendelsene som endret maktbalansen og følg konsekvensene videre. Bruk 3–6 lesbare avsnitt per epoke og sammenhengende forklaring også i person- og temakort. Se AGENTS.md og den styrkede historiekontrollen.
 - Kjør `node scripts/check-history-integrity.mjs` og resten av CI før release. Endringer i `history.json` må sjekke krysslenker, navngitte perioder og kildene.
 
 ## Språklig tilgjengelighet
