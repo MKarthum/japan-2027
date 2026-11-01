@@ -104,8 +104,8 @@ async function loadSiteSearchIndex(){
  if(siteSearchIndexPromise)return siteSearchIndexPromise;
  siteSearchIndexPromise=Promise.all([
   json('data/places.json'),json('data/food.json'),json('data/hotels.json'),
-  json('data/day-ideas.json'),json('data/prep.json'),json('data/guide.json'),json('data/pages.json')
- ]).then(([places,food,hotels,ideas,prep,guide,pages])=>[
+  json('data/day-ideas.json'),json('data/prep.json'),json('data/guide.json'),json('data/pages.json'),json('data/history.json')
+ ]).then(([places,food,hotels,ideas,prep,guide,pages,history])=>[
   ...places.map(x=>({type:'Sted',title:x.name,description:x.simple+' '+x.description+' '+(x.topics||[]).join(' ')+' '+(x.features||[]).join(' '),href:'place.html?id='+encodeURIComponent(x.id)})),
   ...food.restaurants.map(x=>({type:'Restaurant',title:x.name,description:x.dish+' '+x.area+' '+x.why,href:'restaurant.html?id='+encodeURIComponent(x.id)})),
   ...hotels.hotels.map(x=>({type:'Overnatting',title:x.name,description:x.area+' '+x.familyOption,href:'hotel.html?id='+encodeURIComponent(x.id)})),
@@ -113,6 +113,9 @@ async function loadSiteSearchIndex(){
   ...prep.flatMap(g=>g.items.map(x=>({type:g.category,title:x.title,description:x.why,href:'prep.html'}))),
   ...guide.placeWords.map(x=>({type:'Japansk ord',title:x.term,description:x.meaning+' '+(x.aliases||[]).join(' '),href:'language.html#ord'})),
   ...guide.phrases.map(x=>({type:'Språk',title:x.jp||x.term||x.japanese,description:x.no||x.meaning,href:'language.html#fraser'})),
+  ...history.chapters.map(x=>({type:'Historie · epoke',title:x.title,description:x.period+' '+x.lead+' '+x.body.join(' '),href:'history.html#chapter-'+encodeURIComponent(x.id)})),
+  ...history.people.map(x=>({type:'Historie · person',title:x.name,description:x.role+' '+x.text,href:'history.html#chapter-'+encodeURIComponent(x.chapterId)})),
+  ...history.themes.map(x=>({type:'Historie · tema',title:x.title,description:x.lead+' '+x.body,href:'history.html#theme-'+encodeURIComponent(x.id)})),
   ...pages.navigation.sections.flatMap(g=>(g.items||[g]).map(x=>({type:'Side',title:x.label,description:g.label,href:x.href})))
  ]);
  return siteSearchIndexPromise;
