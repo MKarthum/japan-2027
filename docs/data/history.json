@@ -139,6 +139,7 @@
       "lead": "Regionale herskere kjemper om makten, mens tre ledere gradvis samler landet.",
       "body": [
         "Sengoku betyr omtrent «de krigende staters tid». Oda Nobunaga, Toyotomi Hideyoshi og Tokugawa Ieyasu er de tre navnene man oftest møter i fortellingen om samlingen. De gjorde dette på ulike måter, gjennom krig, allianser og politisk organisering.",
+        "Europeiske handelsfolk kom til Japan fra 1543, og jesuittmisjonæren Frans Xavier kom i 1549. Våpen, handel, kristendom og nye impulser ble del av en periode som allerede var preget av store politiske endringer.",
         "Hideyoshi begynte byggingen av Osaka Castle i 1583. Sen no Rikyū gjorde på 1500-tallet teseremonien til en høyt utviklet kunstform. Slaget ved Sekigahara i 1600 ble avgjørende for Ieyasus videre makt.",
         "Slottene var festninger, boliger og symboler på kontroll. Himeji-slottets bevarte hovedanlegg stammer særlig fra de første årene på 1600-tallet; det er derfor ikke en urørt middelalderborg."
       ],
@@ -159,7 +160,8 @@
         "columbia",
         "perioder",
         "himeji",
-        "tea"
+        "tea",
+        "foreign-contact"
       ]
     },
     {
@@ -197,7 +199,7 @@
       "lead": "Utenlandsk press og indre konflikter fører til rask modernisering og et nytt politisk system.",
       "body": [
         "Amerikanske krigsskip under Matthew Perry kom til Japan i 1853. Uro og maktkamp fulgte, og i 1868 ble det gamle shōgunstyret avviklet i det vi kaller Meiji-restaurasjonen.",
-        "Japan bygde jernbane, industri, nye utdanningsinstitusjoner og en moderne hær. En grunnlov ble kunngjort i 1889. Utviklingen ga store muligheter, men var også knyttet til sterkere statlig kontroll, sosial omveltning og et voksende japansk imperium.",
+        "Japan bygde jernbane, industri, nye utdanningsinstitusjoner og en moderne hær. En grunnlov ble kunngjort i 1889. Utviklingen ga store muligheter, men var også knyttet til sosial omveltning og et voksende imperium. Japan tok Taiwan etter krigen mot Kina i 1895 og annekterte Korea i 1910, mot koreansk motstand.",
         "Meiji Jingū i Tokyo ble oppført i 1920, etter Meiji-keiserens og keiserinnens død, for å minnes dem. Helligdommen er altså nyere enn den historiske perioden den viser til."
       ],
       "insight": "Moderniseringen handlet om å endre samfunnsordningen, ikke bare å importere teknologi fra Europa og USA.",
@@ -213,7 +215,8 @@
         "columbia",
         "meiji",
         "perioder",
-        "meiji-shrine"
+        "meiji-shrine",
+        "korea-colony"
       ]
     },
     {
@@ -725,6 +728,16 @@
       "id": "taisho-vote",
       "title": "National Diet Library – stemmerettsreformen i 1925",
       "url": "https://www.ndl.go.jp/modern/e/cha3/description13.html"
+    },
+    {
+      "id": "foreign-contact",
+      "title": "The Metropolitan Museum of Art – Japan 1400–1600 og europeisk kontakt",
+      "url": "https://82nd-and-fifth.metmuseum.org/toah/ht/08/eaj.html"
+    },
+    {
+      "id": "korea-colony",
+      "title": "Columbia University – japansk imperialisme og Korea 1910",
+      "url": "https://afe.easia.columbia.edu/main_pop/kpct/kp_1750-1919.htm"
     }
   ]
 }
