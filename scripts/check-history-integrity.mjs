@@ -1,0 +1,76 @@
+import fs from 'node:fs';
+import {Script} from 'node:vm';
+
+const read=(p)=>fs.readFileSync(p,'utf8');
+const data=JSON.parse(read('docs/data/history.json'));
+const places=JSON.parse(read('docs/data/places.json'));
+const pages=JSON.parse(read('docs/data/pages.json'));
+const errors=[];
+const unique=(xs,label)=>{
+  const set=new Set();
+  for(const x of xs){
+    if(!x.id||set.has(x.id))errors.push(label+': ugyldig eller duplisert ID '+x.id);
+    set.add(x.id);
+  }
+  return set;
+};
+const chapterIds=unique(data.chapters||[],'kapitler');
+const peopleIds=unique(data.people||[],'personer');
+const themeIds=unique(data.themes||[],'temaer');
+const sourceIds=unique(data.sources||[],'kilder');
+const placeIds=new Set(places.map(p=>p.id));
+const requiredChapters=['jomon-yayoi','yamato-asuka','nara','heian','kamakura','muromachi','sengoku','edo','meiji','taisho','war','occupation','growth','today'];
+for(const id of requiredChapters)if(!chapterIds.has(id))errors.push('Mangler historisk kapittel '+id);
+if((data.chapters||[]).length<14||(data.people||[]).length<8||(data.themes||[]).length<5||(data.sources||[]).length<12){
+  errors.push('Historiefortellingen er ufullstendig');
+}
+for(const source of data.sources||[]){
+  if(!source.title||!/^https:\/\//.test(source.url||''))errors.push('Kilde mangler HTTPS-lenke: '+source.id);
+}
+const checkSources=(x,label)=>{
+  if(!Array.isArray(x.sourceIds)||x.sourceIds.length===0)errors.push(label+' mangler kilder');
+  for(const id of x.sourceIds||[])if(!sourceIds.has(id))errors.push(label+' viser til ukjent kilde '+id);
+};
+const checkPlaces=(x,label)=>{
+  for(const id of x.placeIds||[])if(!placeIds.has(id))errors.push(label+' viser til ukjent sted '+id);
+};
+for(const c of data.chapters||[]){
+  if(!c.period||!c.title||!c.lead||!c.insight||!Array.isArray(c.body)||c.body.length<2||c.body.some(p=>p.length<40))errors.push('Kapittel er for kort: '+c.id);
+  checkSources(c,'kapittel '+c.id);
+  checkPlaces(c,'kapittel '+c.id);
+  for(const id of c.people||[])if(!peopleIds.has(id))errors.push('Kapittel '+c.id+' har ukjent person '+id);
+}
+for(const p of data.people||[]){
+  if(!p.name||!p.role||!p.text||!chapterIds.has(p.chapterId))errors.push('Ufullstendig person '+p.id);
+  checkSources(p,'person '+p.id);
+}
+for(const t of data.themes||[]){
+  if(!t.title||!t.lead||!t.body||!Array.isArray(t.chapterIds)||!t.chapterIds.length)errors.push('Ufullstendig tema '+t.id);
+  for(const id of t.chapterIds||[])if(!chapterIds.has(id))errors.push('Tema '+t.id+' har ukjent kapittel '+id);
+  for(const l of t.links||[])if(!l.title||!/^(?:food|prep|places|history|language)\.html(?:[?#].*)?$/.test(l.href||''))errors.push('Tema har ugyldig lokal lenke '+l.href);
+  checkPlaces(t,'tema '+t.id);
+  checkSources(t,'tema '+t.id);
+}
+if(!(data.chapters||[]).some(c=>c.placeIds.length===0))errors.push('Historien skal også dekke stoff utenfor reiseruten');
+if(!data.framing?.includes('overlapper'))errors.push('Omtrentlig og overlappende kronologi skal forklares');
+if(!/1931/.test(JSON.stringify(data.chapters.find(c=>c.id==='war')))||!/1947/.test(JSON.stringify(data.chapters.find(c=>c.id==='occupation'))))errors.push('Viktige historiske vendepunkter er falt ut');
+if(!pages.history?.title||!pages.navigation?.sections?.some(x=>x.key==='history'&&x.href==='history.html'))errors.push('Historie mangler hovednavigasjon eller sidetekst');
+const historyHtml=read('docs/history.html');
+const placeHtml=read('docs/place.html');
+const homeHtml=read('docs/index.html');
+const foodHtml=read('docs/food.html');
+const prepScript=read('docs/assets/app.js');
+const historyJs=read('docs/assets/history.js');
+for(const [file,content,regex] of [
+ ['history.html',historyHtml,/renderHistory\(\)/],
+ ['place.html',placeHtml,/id="place-history"/],
+ ['place.html',placeHtml,/assets\/history\.js/],
+ ['index.html',homeHtml,/href="history\.html"/],
+ ['food.html',foodHtml,/href="history\.html#theme-mat"/],
+ ['app.js',prepScript,/renderPlaceHistory\(p\.id\)/],
+ ['app.js',prepScript,/selected\.slug==='historie'/],
+ ['history.js',historyJs,/history\.html#chapter-/]
+])if(!regex.test(content))errors.push(file+' mangler historiekobling '+regex);
+try{new Script(historyJs,{filename:'docs/assets/history.js'});}catch(e){errors.push('Ugyldig JavaScript: '+e.message);}
+if(errors.length){console.error('Historiekontroll feilet:\n'+errors.map(x=>'- '+x).join('\n'));process.exit(1);}
+console.log('OK: '+data.chapters.length+' historiekapitler, '+data.people.length+' personer, '+data.themes.length+' temaer, '+data.sources.length+' kilder og alle steds-/sidelenker er gyldige.');
