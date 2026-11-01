@@ -10,16 +10,15 @@ Offentlig planleggingsrepo for en mulig Japan-tur våren 2027. Nettsiden er en e
 
 GitHub Pages publiserer fra repoet, og rotens `index.html` sender videre til `/docs/`.
 
-Hovednavigasjonen holdes bevisst liten. En egen historieseksjon forklarer Japans viktigste epoker, personer, kultur og teknologi og viser relevante forbindelser til stedene på reisen:
+Hovednavigasjonen holdes bevisst liten. Historiesiden ligger under «Før turen» og forteller om epoker, personer, kultur og teknologi, med lenker tilbake fra relevante steder:
 
 - Oversikt
 - Rute
-- Japans historie – kort, kildebasert fortelling med tematiske koblinger til steder, mat og forberedelser
 - Dagidéer – geografisk logiske, uforpliktende kombinasjoner med lokale vurderingsvalg
 - Steder
 - Mat
 - Overnatting
-- Før turen: eget undermenypunkt for matlaging, film, TV, spill, bøker, historie og små aktiviteter
+- Før turen: historiens hovedfortelling, bøker og bakgrunnsstoff, matlaging, film, TV, spill og små aktiviteter
 - Språk og fraser (hovedside): grunnfraser, situasjonssamlinger, Norge og moro, uttale, ordliste og stedsnavn\n- Planlegg reisen: transport/pass, billetter, flysøk, overnatting og budsjett\n- På reisen: praktiske råd og droneregler\n- Mine valg: lokale interesser med kobling til dagidéer
 - Droner
 - Budsjett
