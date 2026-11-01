@@ -2901,3 +2901,12 @@ nav.site-navigation .nav-menu a:hover,nav.site-navigation .nav-menu a[aria-curre
 .history-section .section-head{display:block}
 }
 @media(prefers-reduced-motion:reduce){.history-page{scroll-behavior:auto}}
+
+/* Historisk videre lesning: tilgjengelig uten å forstyrre hovedfortellingen. */
+.history-chapter-people,.history-wiki-links{margin-top:15px}
+.history-chapter-people .meta,.history-wiki-links .meta{display:block;margin-bottom:8px}
+.history-wiki-links .history-related-links a{background:transparent;border-style:dashed}
+.history-person{scroll-margin-top:100px}
+.history-person-links{display:flex;flex-wrap:wrap;gap:7px 14px;align-items:center;margin-top:8px}
+.history-person-links a{font-size:.81rem}
+.prep-history-start{margin:4px 0 10px;font-weight:700}
