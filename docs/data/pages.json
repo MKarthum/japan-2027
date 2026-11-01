@@ -17,7 +17,8 @@
     "navLanguage": "Ord, fraser og uttale på japansk.",
     "navTransport": "Tog, lokaltrafikk og vurdering av pass.",
     "navTickets": "Billettfrister og attraksjoner som bør planlegges.",
-    "navMyChoices": "Samle foreløpige interessevalg per by."
+    "navMyChoices": "Samle foreløpige interessevalg per by.",
+    "navHistory": "En sammenhengende fortelling om epoker, personer og det vi møter på turen."
   },
   "route": {
     "eyebrow": "Rute",
@@ -61,7 +62,9 @@
     "filterLabel": "Del av reisen",
     "watchEyebrow": "Følg med",
     "watchTitle": "Aktuelle steder som ikke er låst",
-    "watchIntro": "Disse kan bli aktuelle hvis lokasjon, åpningstid eller andre viktige forhold passer reiseplanen."
+    "watchIntro": "Disse kan bli aktuelle hvis lokasjon, åpningstid eller andre viktige forhold passer reiseplanen.",
+    "historyTitle": "Hvor kommer maten fra?",
+    "historyIntro": "Matkulturen har sin egen historie: risdyrking, teseremoni, Edo-tidens sushi og etterkrigstidens ramen. Historien forteller hvorfor rettene ble en del av hverdagen."
   },
   "hotels": {
     "eyebrow": "Overnatting",
@@ -99,7 +102,9 @@
     "cookingRecipeNoteLabel": "Før dere starter",
     "cookingSafety": "Barn kan hjelpe med å måle, blande, forme og pynte. En voksen tar ansvar for skarpe kniver, rå fisk, rått kjøtt, varm olje og stekepanner. Følg den lenkede oppskriften for mengder og trygg tilberedning.",
     "cookingLinksNote": "Velg helst den norske oppskriften for gram og desiliter. Japansk oppskrift er med når det er nyttig å se en mer tradisjonell variant.",
-    "visualImagesNote": "Vi bruker ekte foto og offisielle stillbilder der bruken er tillatt. Øvrige kort har KI-genererte illustrasjoner med tydelig merking. Vi er ikke tilknyttet utgiverne."
+    "visualImagesNote": "Vi bruker ekte foto og offisielle stillbilder der bruken er tillatt. Øvrige kort har KI-genererte illustrasjoner med tydelig merking. Vi er ikke tilknyttet utgiverne.",
+    "historyGuideTitle": "Start med den store historien",
+    "historyGuideIntro": "Les vår korte, kildebaserte gjennomgang av Japans epoker og personer. Bøker, filmer og andre forslag nedenfor er tillegg, ikke erstatning for historisk dokumentasjon."
   },
   "practical": {
     "eyebrow": "På reisen",
@@ -200,6 +205,11 @@
         "label": "Rute",
         "href": "route.html",
         "key": "route"
+      },
+      {
+        "label": "Historie",
+        "href": "history.html",
+        "key": "history"
       },
       {
         "label": "Opplevelser",
@@ -341,5 +351,20 @@
     "intro": "Samle steder, restauranter og overnatting uten å binde reisedager eller bestille noe.",
     "storageNote": "Valgene lagres bare i denne nettleseren, ikke på server eller andre enheter. De forsvinner hvis lokale nettleserdata slettes.",
     "choicesIntro": "Disse vurderingene er dine egne og må ikke forveksles med forslagene i guiden."
+  },
+  "history": {
+    "eyebrow": "Bli kjent med Japan",
+    "title": "Japans historie – den korte, store fortellingen",
+    "intro": "Fra de første bosetningene til dagens Japan: Hvordan vokste landet frem, hvem hadde makt, og hva betyr historien for stedene og kulturen vi møter? Les kronologisk, eller hopp rett til en epoke.",
+    "timelineTitle": "Historien i 14 kapitler",
+    "peopleEyebrow": "Menneskene",
+    "peopleTitle": "Personer det er verdt å kjenne",
+    "peopleIntro": "Noen få skikkelser som dukker opp igjen i templer, slottsfortellinger, litteratur og teknologi.",
+    "themesEyebrow": "På tvers",
+    "themesTitle": "Seks temaer som binder historien sammen",
+    "themesIntro": "Makt, tro, mat og innovasjon har røtter i flere epoker. Her møtes historien og resten av reiseguiden.",
+    "sourcesEyebrow": "Faktagrunnlag",
+    "sourcesTitle": "Kilder og avgrensninger",
+    "sourcesIntro": "Et utvalg anerkjente kilder brukt til å kontrollere epoker, hendelser og sammenhenger. Åpne kildeoversikten på hvert kapittel ved behov."
   }
 }
