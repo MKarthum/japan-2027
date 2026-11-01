@@ -17,8 +17,7 @@
     "navLanguage": "Ord, fraser og uttale på japansk.",
     "navTransport": "Tog, lokaltrafikk og vurdering av pass.",
     "navTickets": "Billettfrister og attraksjoner som bør planlegges.",
-    "navMyChoices": "Samle foreløpige interessevalg per by.",
-    "navHistory": "En sammenhengende fortelling om epoker, personer og det vi møter på turen."
+    "navMyChoices": "Samle foreløpige interessevalg per by."
   },
   "route": {
     "eyebrow": "Rute",
@@ -104,7 +103,8 @@
     "cookingLinksNote": "Velg helst den norske oppskriften for gram og desiliter. Japansk oppskrift er med når det er nyttig å se en mer tradisjonell variant.",
     "visualImagesNote": "Vi bruker ekte foto og offisielle stillbilder der bruken er tillatt. Øvrige kort har KI-genererte illustrasjoner med tydelig merking. Vi er ikke tilknyttet utgiverne.",
     "historyGuideTitle": "Start med den store historien",
-    "historyGuideIntro": "Les vår korte, kildebaserte gjennomgang av Japans epoker og personer. Bøker, filmer og andre forslag nedenfor er tillegg, ikke erstatning for historisk dokumentasjon."
+    "historyGuideIntro": "Les vår korte, kildebaserte gjennomgang av Japans epoker og personer. Bøker, filmer og andre forslag nedenfor er tillegg, ikke erstatning for historisk dokumentasjon.",
+    "historyStartLink": "Les Japans historie"
   },
   "practical": {
     "eyebrow": "På reisen",
