@@ -61,6 +61,13 @@ const homeHtml=read('docs/index.html');
 const foodHtml=read('docs/food.html');
 const prepScript=read('docs/assets/app.js');
 const historyJs=read('docs/assets/history.js');
+const searchJs=read('docs/assets/choices.js');
+if(!searchJs.includes("json('data/history.json')")||
+ !searchJs.includes("history.chapters.map")||
+ !searchJs.includes("history.people.map")||
+ !searchJs.includes("history.themes.map")){
+  errors.push('Det felles søket mangler historiske kapitler, personer eller temaer');
+}
 for(const [file,content,regex] of [
  ['history.html',historyHtml,/renderHistory\(\)/],
  ['place.html',placeHtml,/id="place-history"/],
