@@ -22,6 +22,16 @@
         "jomon",
         "perioder",
         "columbia"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Jōmon-perioden",
+          "url": "https://en.wikipedia.org/wiki/J%C5%8Dmon_period"
+        },
+        {
+          "title": "Yayoi-perioden",
+          "url": "https://en.wikipedia.org/wiki/Yayoi_period"
+        }
       ]
     },
     {
@@ -43,6 +53,12 @@
         "columbia",
         "perioder",
         "jnto-history"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Kofun-perioden",
+          "url": "https://en.wikipedia.org/wiki/Kofun_period"
+        }
       ]
     },
     {
@@ -66,6 +82,16 @@
         "perioder",
         "jnto-history",
         "todaiji-official"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Nara-perioden",
+          "url": "https://en.wikipedia.org/wiki/Nara_period"
+        },
+        {
+          "title": "Tōdai-ji",
+          "url": "https://en.wikipedia.org/wiki/T%C5%8Ddai-ji"
+        }
       ]
     },
     {
@@ -92,6 +118,12 @@
         "genji",
         "perioder",
         "met-heian"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Fortellingen om Genji",
+          "url": "https://en.wikipedia.org/wiki/The_Tale_of_Genji"
+        }
       ]
     },
     {
@@ -113,6 +145,16 @@
         "columbia",
         "perioder",
         "jnto-history"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Genpei-krigen",
+          "url": "https://en.wikipedia.org/wiki/Genpei_War"
+        },
+        {
+          "title": "Mongolinvasjonene",
+          "url": "https://en.wikipedia.org/wiki/Mongol_invasions_of_Japan"
+        }
       ]
     },
     {
@@ -139,6 +181,12 @@
         "perioder",
         "jnto-history",
         "kyoto-kinkaku-official"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Ōnin-krigen",
+          "url": "https://en.wikipedia.org/wiki/%C5%8Cnin_War"
+        }
       ]
     },
     {
@@ -150,6 +198,7 @@
         "På 1500-tallet var Japan delt mellom regionale herrer, daimyō, som kjempet om land, skatt, handelsveier og lojalitet. Shōgunen i Kyoto hadde ikke lenger styrke til å kontrollere dem. Allianser kunne skifte raskt. Det fantes ikke én samlet hær som bare kunne rykke ut og stoppe krigene.",
         "Oda Nobunaga var først en lokal krigsherre fra området ved dagens Nagoya. I 1560 beseiret han en større invasjonsstyrke ved Okehazama, og seieren gjorde ham til en leder andre måtte ta alvorlig. Han fortsatte med erobringer, allianser og hardhendte oppgjør med motstandere, også væpnede religiøse grupper. Han tok i bruk skytevåpen i større militære organisasjoner. I 1568 rykket han inn i Kyoto. Målet hans var ikke bare å vinne slag, men å samle nok makt til å bestemme over andre herskere.",
         "Så kom vendepunktet: I 1582 ble Nobunaga angrepet av sin egen general Akechi Mitsuhide ved Honnō-ji i Kyoto og døde. Prosjektet hans kunne ha falt fra hverandre. I stedet handlet en av generalene raskt. Toyotomi Hideyoshi beseiret Mitsuhide og manøvrerte seg forbi rivalene. Hideyoshi hadde steget i gradene fra en langt mindre privilegert bakgrunn enn mange av krigsherrene. Nå overtok han Nobunagas arbeid og fullførte den militære samlingen av landet i 1590.",
+        "Nobunagas død satte også Tokugawa Ieyasu i fare. Han befant seg langt fra sitt eget maktområde og måtte komme seg hjem gjennom usikkert terreng. Hattori Hanzō, en samuraileder med forbindelser til folk fra Iga, knyttes i senere historiske beretninger til flukten gjennom Iga i 1582. Nøyaktig hvem som gjorde hva underveis, er omdiskutert. Det viktige for den videre historien er at Ieyasu kom seg i sikkerhet. Dermed overlevde en av mennene som senere skulle avgjøre hvem som styrte Japan.",
         "Hideyoshi ville også gjøre en ny krigstid vanskeligere. Han lot kartlegge jord og avkastning, styrket kontrollen over samfunnsklassene og forsøkte å skille krigere fra bønder, blant annet gjennom innsamling av våpen. Osaka-slottet, som han begynte å bygge i 1583, skulle vise hvem som satt med makten. Men hans styre hadde en mørk side: Invasjonene av Korea fra 1592 til 1598 medførte omfattende ødeleggelser og lidelser.",
         "Da Hideyoshi døde i 1598, var arvingen hans fortsatt et barn. Den erfarne Tokugawa Ieyasu var blant de sterkeste lederne som skulle ivareta riket. I stedet vokste en ny kamp om makten frem. Ieyasu vant det avgjørende slaget ved Sekigahara i 1600 og fikk tittelen shōgun i 1603. Først etter at Tokugawa-siden knuste Toyotomi-familiens siste maktbase i Osaka i 1615, var rivaliseringen endelig avgjort.",
         "De tre lederne gjorde altså ulike ting: Nobunaga brøt opp den gamle maktbalansen, Hideyoshi gjennomførte samlingen og bygde opp kontrollen, mens Ieyasu sikret et arvelig militærstyre som skulle vare i over 250 år. Samtidig levde kunst og kultur videre midt i krigene: Teseremonimesteren Sen no Rikyū utviklet sine idealer i en tid da herskerne brukte te både som kunst og politisk møteplass."
@@ -159,13 +208,15 @@
         "nobunaga",
         "hideyoshi",
         "ieyasu",
-        "rikyu"
+        "rikyu",
+        "hanzo"
       ],
       "placeIds": [
         "osaka-castle",
         "himeji",
         "hikone-castle",
-        "kyoto-tea-experience"
+        "kyoto-tea-experience",
+        "chidorigafuchi-hanzomon"
       ],
       "sourceIds": [
         "columbia",
@@ -175,7 +226,23 @@
         "foreign-contact",
         "nps-sengoku",
         "nps-sekigahara",
-        "japan-society-unifiers"
+        "japan-society-unifiers",
+        "hanzo-samurai-museum",
+        "hanzo-iga-museum"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Angrepet ved Honnō-ji",
+          "url": "https://en.wikipedia.org/wiki/Honn%C5%8D-ji_Incident"
+        },
+        {
+          "title": "Slaget ved Sekigahara",
+          "url": "https://en.wikipedia.org/wiki/Battle_of_Sekigahara"
+        },
+        {
+          "title": "Beleiringen av Osaka",
+          "url": "https://en.wikipedia.org/wiki/Siege_of_Osaka"
+        }
       ]
     },
     {
@@ -185,6 +252,7 @@
       "lead": "Etter generasjoner med krig ville Tokugawa-styret ha ro. Det fikk Japan – men fred krevde kontroll, og kontrollen forandret også hverdagslivet.",
       "body": [
         "Da Tokugawa Ieyasu fikk tittelen shōgun i 1603, valgte han Edo som sentrum for sitt styre. Keiseren ble fortsatt værende i Kyoto. Ieyasu og etterfølgerne hans lot de regionale herrene beholde sine landområder, men innførte regler som begrenset muligheten til å utfordre regjeringen.",
+        "Også sporene etter menneskene rundt Ieyasu er synlige i Tokyo. Navnet Hanzōmon, porten ved det gamle Edo-slottet, kommer fra Hattori Hanzō og familien hans, som var knyttet til vaktholdet der. Hattori Hanzō er blitt en kjent ninjafigur i populærkulturen, men den historiske Hanzō var først og fremst en samuraileder i Tokugawas tjeneste.",
         "Ett av de viktigste grepene var at mange herrer måtte oppholde seg regelmessig i Edo og holde familier eller hushold der. Det kostet penger, bandt lederne til hovedstaden og gjorde opprør vanskeligere. Samtidig fikk reisene uventede følger: Veier, vertshus, handel og transport vokste. Edo ble en av verdens største byer.",
         "For håndverkere og handelsfolk vokste en egen bykultur frem. Folk gikk i teateret, leste illustrerte fortellinger og kjøpte tresnitt. Hokusais berømte bilder av Fuji ble laget for et marked der kunst kunne spres i mange trykte eksemplarer. Langs travle gater utviklet også små matboder nye måter å servere rask mat på; nigiri-sushi ble kjent som en Edo-spesialitet.",
         "Japan stengte ikke all kontakt med verden, selv om utenrikshandel og reiser var strengt regulert. Kinesiske og nederlandske kjøpmenn handlet gjennom Nagasaki, og andre forbindelser gikk via Korea, Ryukyu og nordlige områder. I 1850-årene skulle presset fra utenlandske makter likevel utfordre selve grunnlaget for styret."
@@ -198,14 +266,27 @@
         "edo-castle-imperial-palace",
         "sumo-osaka",
         "hikone-castle",
-        "himeji"
+        "himeji",
+        "chidorigafuchi-hanzomon"
       ],
       "sourceIds": [
         "columbia",
         "sushi",
         "hokusai",
         "jnto-history",
-        "manchester-edo"
+        "manchester-edo",
+        "hanzo-iga-museum",
+        "hanzo-samurai-museum"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Edo-perioden",
+          "url": "https://en.wikipedia.org/wiki/Edo_period"
+        },
+        {
+          "title": "Japans handelsrestriksjoner (sakoku)",
+          "url": "https://en.wikipedia.org/wiki/Sakoku"
+        }
       ]
     },
     {
@@ -234,6 +315,12 @@
         "perioder",
         "meiji-shrine",
         "korea-colony"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Meiji-restaurasjonen",
+          "url": "https://en.wikipedia.org/wiki/Meiji_Restoration"
+        }
       ]
     },
     {
@@ -256,6 +343,12 @@
         "perioder",
         "jnto-history",
         "taisho-vote"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Det store Kantō-jordskjelvet",
+          "url": "https://en.wikipedia.org/wiki/Great_Kant%C5%8D_Earthquake"
+        }
       ]
     },
     {
@@ -280,6 +373,16 @@
         "ushmm",
         "un",
         "constitution"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Krigen mellom Japan og Kina",
+          "url": "https://en.wikipedia.org/wiki/Second_Sino-Japanese_War"
+        },
+        {
+          "title": "Atombombene i 1945",
+          "url": "https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki"
+        }
       ]
     },
     {
@@ -302,6 +405,12 @@
       "sourceIds": [
         "constitution",
         "columbia"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Japans grunnlov",
+          "url": "https://en.wikipedia.org/wiki/Constitution_of_Japan"
+        }
       ]
     },
     {
@@ -332,6 +441,12 @@
         "ramen",
         "columbia",
         "nintendo"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Japans økonomiske vekst etter krigen",
+          "url": "https://en.wikipedia.org/wiki/Japanese_economic_miracle"
+        }
       ]
     },
     {
@@ -358,6 +473,12 @@
         "jnto-history",
         "jma",
         "fukushima"
+      ],
+      "wikipediaLinks": [
+        {
+          "title": "Jordskjelvet og tsunamien i 2011",
+          "url": "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami"
+        }
       ]
     }
   ],
@@ -371,7 +492,8 @@
       "chapterId": "jomon-yayoi",
       "sourceIds": [
         "jnto-history"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Himiko"
     },
     {
       "id": "murasaki",
@@ -382,7 +504,8 @@
       "chapterId": "heian",
       "sourceIds": [
         "genji"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Murasaki_Shikibu"
     },
     {
       "id": "yoritomo",
@@ -393,7 +516,8 @@
       "chapterId": "kamakura",
       "sourceIds": [
         "columbia"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Minamoto_no_Yoritomo"
     },
     {
       "id": "yoshimitsu",
@@ -404,7 +528,8 @@
       "chapterId": "muromachi",
       "sourceIds": [
         "perioder"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Ashikaga_Yoshimitsu"
     },
     {
       "id": "nobunaga",
@@ -417,7 +542,8 @@
         "columbia",
         "nps-sengoku",
         "nps-sekigahara"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Oda_Nobunaga"
     },
     {
       "id": "hideyoshi",
@@ -430,7 +556,8 @@
         "columbia",
         "nps-sengoku",
         "nps-sekigahara"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Toyotomi_Hideyoshi"
     },
     {
       "id": "ieyasu",
@@ -443,7 +570,21 @@
         "columbia",
         "nps-sengoku",
         "nps-sekigahara"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Tokugawa_Ieyasu"
+    },
+    {
+      "id": "hanzo",
+      "name": "Hattori Hanzō (Masanari)",
+      "time": "1500-tallet (ca. 1542–1596)",
+      "role": "Samuraileder og Tokugawa Ieyasus støttespiller",
+      "text": "Da Nobunaga ble drept i 1582, var Tokugawa Ieyasu langt hjemmefra og måtte komme seg i sikkerhet. Hattori Hanzō var en av hans betrodde samuraier og hadde forbindelser til krigere fra Iga. Senere beretninger knytter ham til den farefulle hjemreisen, men detaljene er ikke sikre. Hanzō ble senere forbundet med vaktholdet ved Edo-slottet. Den mystiske superninjaen fra spill og filmer er i stor grad en legende som vokste frem etter hans levetid.",
+      "chapterId": "sengoku",
+      "sourceIds": [
+        "hanzo-samurai-museum",
+        "hanzo-iga-museum"
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Hattori_Hanz%C5%8D"
     },
     {
       "id": "rikyu",
@@ -454,7 +595,8 @@
       "chapterId": "sengoku",
       "sourceIds": [
         "tea"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Sen_no_Riky%C5%AB"
     },
     {
       "id": "hokusai",
@@ -465,7 +607,8 @@
       "chapterId": "edo",
       "sourceIds": [
         "hokusai"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Hokusai"
     },
     {
       "id": "meiji-emperor",
@@ -476,7 +619,8 @@
       "chapterId": "meiji",
       "sourceIds": [
         "meiji"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Emperor_Meiji"
     },
     {
       "id": "ando",
@@ -487,7 +631,8 @@
       "chapterId": "growth",
       "sourceIds": [
         "instant"
-      ]
+      ],
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Momofuku_Ando"
     }
   ],
   "themes": [
@@ -800,6 +945,16 @@
       "id": "kyoto-kinkaku-official",
       "title": "Kyoto City Tourism Association – Gullpaviljongens historie",
       "url": "https://kyoto.travel/en/destinations/kinkakuji-temple-the-golden-pavilion/"
+    },
+    {
+      "id": "hanzo-samurai-museum",
+      "title": "Samurai Museum Berlin – Hattori Hanzō: historisk person og senere ninjalegende",
+      "url": "https://samuraimuseum.de/en/learn/hattori-hanzo/"
+    },
+    {
+      "id": "hanzo-iga-museum",
+      "title": "Ninja Museum of Igaryu – Hanzōmon-porten og Hattori-familiens vakthold",
+      "url": "https://www.iganinja.jp/en/place/spot/post-17.html"
     }
   ]
 }
