@@ -64,7 +64,8 @@
       "sourceIds": [
         "columbia",
         "perioder",
-        "jnto-history"
+        "jnto-history",
+        "todaiji-official"
       ]
     },
     {
@@ -136,7 +137,8 @@
       "sourceIds": [
         "columbia",
         "perioder",
-        "jnto-history"
+        "jnto-history",
+        "kyoto-kinkaku-official"
       ]
     },
     {
@@ -788,6 +790,16 @@
       "id": "manchester-edo",
       "title": "University of Manchester – forbindelser med omverdenen i Tokugawa-Japan",
       "url": "https://www.digitalexhibitions.manchester.ac.uk/s/travels-in-japan/page/bridges-to-the-outside-world"
+    },
+    {
+      "id": "todaiji-official",
+      "title": "Tōdai-ji – templets egen historie og innvielsen i 752",
+      "url": "https://www.todaiji.or.jp/en/history/"
+    },
+    {
+      "id": "kyoto-kinkaku-official",
+      "title": "Kyoto City Tourism Association – Gullpaviljongens historie",
+      "url": "https://kyoto.travel/en/destinations/kinkakuji-temple-the-golden-pavilion/"
     }
   ]
 }
