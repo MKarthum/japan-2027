@@ -81,6 +81,7 @@ const requiredPageCopy={
   flights:['eyebrow','title','intro','patternsEyebrow','patternsTitle','patternsIntro','methodEyebrow','methodTitle','methodIntro','flexEyebrow','flexTitle','flexIntro','hubsEyebrow','hubsTitle','hubsIntro','checksEyebrow','checksTitle','checksIntro','sourcesEyebrow','sourcesTitle','sourcesIntro','privacyTitle','privacyIntro'],
   route:['eyebrow','listEyebrow','listTitle','listIntro','transportTitle','mapNote'],
   places:['eyebrow','title','intro','filterLabel'],
+  history:['eyebrow','title','intro','timelineTitle','peopleTitle','themesTitle','sourcesTitle'],
   dayIdeas:['eyebrow','title','intro','principle','flexibility','filterLabel'],
   food:['eyebrow','title','intro','filterLabel','watchTitle'],
   hotels:['eyebrow','title','intro','typesTitle','baseFilterLabel','typeFilterLabel'],

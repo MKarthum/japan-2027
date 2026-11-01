@@ -1,0 +1,743 @@
+{
+  "updated": "2026-11-01",
+  "intro": "En lesbar fortelling om de viktigste epokene i Japans historie. Dette er ikke en fullstendig historiebok og ikke avgrenset til stedene på vår reise. Lenker underveis viser hvor historien blir konkret.",
+  "framing": "Årstall for de eldste periodene er omtrentlige, og noen perioder overlapper. Vi skiller mellom historiske hendelser, senere gjenoppbygde bygninger og moderne tolkninger. Historien om Japan omfatter også regioner, mennesker og perspektiver som ikke dekkes av denne turen.",
+  "chapters": [
+    {
+      "id": "jomon-yayoi",
+      "period": "ca. 13 000 f.Kr.–200-tallet e.Kr.",
+      "title": "Før templene og samuraiene",
+      "lead": "Japan hadde bosetninger, keramikk og handel i tusenvis av år før de kjente dynastiene.",
+      "body": [
+        "Jōmon-kulturene levde lenge av jakt, fiske og sanking. De etterlot seg svært tidlig keramikk og spor etter faste bosetninger. Det var ikke én samlet stat eller ett folk med helt lik kultur.",
+        "I den senere Yayoi-tiden spredte risdyrking i vannfylte åkre, metaller og nye samfunnsformer seg gradvis fra det asiatiske fastlandet. Endringene var ulike fra region til region; overgangen har ingen helt skarp dato."
+      ],
+      "insight": "Ris var ikke bare mat. Jordbruk, arbeidsdeling og kontroll over ressurser endret hvordan samfunnene ble organisert.",
+      "people": [
+        "himiko"
+      ],
+      "placeIds": [],
+      "sourceIds": [
+        "jomon",
+        "perioder",
+        "columbia"
+      ]
+    },
+    {
+      "id": "yamato-asuka",
+      "period": "ca. 250–710",
+      "title": "Høvdinger, keisermakt og buddhisme",
+      "lead": "Store gravhauger og maktsentra vokste frem, mens ideer og teknologi kom via Korea og Kina.",
+      "body": [
+        "Kofun-perioden har fått navn etter store gravhauger for eliten. Yamato-maktsenteret i området rundt dagens Nara ble stadig viktigere, men dagens Japan fantes ennå ikke som en moderne nasjonalstat.",
+        "På 500-tallet fikk buddhismen fotfeste fra det asiatiske fastlandet. Skriftsystem, lærdom, statsforvaltning og religiøse tradisjoner ble videreutviklet gjennom langvarig kontakt med nabolandene. Shinto-praksiser eksisterte også, og de to trosretningene levde ofte side om side."
+      ],
+      "insight": "Det er derfor templer og helligdommer ikke er det samme: Buddhismen har templer, mens shinto har helligdommer – selv om tradisjonene har påvirket hverandre.",
+      "people": [],
+      "placeIds": [
+        "nara"
+      ],
+      "sourceIds": [
+        "columbia",
+        "perioder",
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "nara",
+      "period": "710–794",
+      "title": "Nara blir hovedstad",
+      "lead": "Staten samler makt og bruker religion, lovverk og arkitektur til å markere sin plass.",
+      "body": [
+        "I 710 ble hovedstaden flyttet til Heijō-kyō, i dagens Nara. Hoffet hentet impulser fra Tang-Kina, og buddhistiske institusjoner ble viktige for staten.",
+        "Den store bronse-Buddhaen i Tōdai-ji ble innviet i 752. Tempelet uttrykker hvor store ressurser staten kunne samle, men også hvilke religiøse og politiske ambisjoner som preget perioden."
+      ],
+      "insight": "Når vi ser Buddha-hallen i Tōdai-ji, ser vi et uttrykk for statsmakten på 700-tallet – selv om mange av dagens bygninger er fra senere gjenoppbygginger.",
+      "people": [],
+      "placeIds": [
+        "nara",
+        "todaiji"
+      ],
+      "sourceIds": [
+        "columbia",
+        "perioder",
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "heian",
+      "period": "794–1185",
+      "title": "Kyoto og hoffets storhetstid",
+      "lead": "En ny hovedstad blir sentrum for litteratur, kunst og en særegen japansk hoffkultur.",
+      "body": [
+        "I 794 ble Heian-kyō, dagens Kyoto, hovedstad. Hoffadelens seremonier, poesi og estetikk fikk stor betydning, samtidig som regionale maktforhold var i endring.",
+        "Rundt år 1000 skrev Murasaki Shikibu fortellingen om prins Genji. Verket er et av verdens mest kjente tidlige romankomplekser, og viser hvor viktig kvinner ved hoffet var for japansk litteratur."
+      ],
+      "insight": "Gion, gamle gater og templer i Kyoto gir følelsen av en tidligere hovedstad, men vi må skille mellom byens lange historie og alderen på bygningene vi faktisk ser.",
+      "people": [
+        "murasaki"
+      ],
+      "placeIds": [
+        "kyoto",
+        "gion",
+        "kiyomizu-dera"
+      ],
+      "sourceIds": [
+        "columbia",
+        "genji",
+        "perioder"
+      ]
+    },
+    {
+      "id": "kamakura",
+      "period": "1185–1333",
+      "title": "Samuraiene får politisk makt",
+      "lead": "Krigerslekter blir Japans reelle makthavere, mens keiseren fortsetter å ha en sentral symbolsk rolle.",
+      "body": [
+        "Etter maktkamp mellom krigerslekter bygde Minamoto no Yoritomo opp et militært styre med base i Kamakura. Dette ble grunnlaget for shōgunatet: makten lå i stor grad hos en militær leder og hans nettverk, ikke hos hoffet alene.",
+        "På slutten av 1200-tallet forsøkte mongolske styrker ledet av Kublai Khan å invadere Japan to ganger. Angrepene mislyktes. Perioden er også viktig for utviklingen av nye buddhistiske retninger og samuraikulturen."
+      ],
+      "insight": "Samurai betyr ikke bare sverd og dueller. Samuraiene var også del av et system for jord, lojalitet, rettigheter og styring.",
+      "people": [
+        "yoritomo"
+      ],
+      "placeIds": [],
+      "sourceIds": [
+        "columbia",
+        "perioder",
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "muromachi",
+      "period": "1336–1573",
+      "title": "Kunst, zen og en svakere sentralmakt",
+      "lead": "Shōgunene i Kyoto preger kunsten, men klarer etter hvert ikke å holde landet samlet.",
+      "body": [
+        "Ashikaga-shōgunatet styrte fra Kyoto-området. Kunstformer som tusjmaling, hagekunst og tepraksiser utviklet seg gjennom samspill mellom hoff, krigerelite, handelsfolk og zen-buddhisme.",
+        "Kinkaku-ji, Gullpaviljongen, knyttes til shōgun Ashikaga Yoshimitsu på slutten av 1300-tallet. Ōnin-krigen som begynte i 1467 er et viktig vendepunkt mot en lang periode med regionale konflikter."
+      ],
+      "insight": "En fredelig hage eller gullkledd paviljong kan ha blitt formet av det samme maktsystemet som førte til omfattende kriger.",
+      "people": [
+        "yoshimitsu"
+      ],
+      "placeIds": [
+        "kinkakuji",
+        "kyoto",
+        "gion"
+      ],
+      "sourceIds": [
+        "columbia",
+        "perioder",
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "sengoku",
+      "period": "ca. 1467–1600",
+      "title": "Krigende stater og samlingen av Japan",
+      "lead": "Regionale herskere kjemper om makten, mens tre ledere gradvis samler landet.",
+      "body": [
+        "Sengoku betyr omtrent «de krigende staters tid». Oda Nobunaga, Toyotomi Hideyoshi og Tokugawa Ieyasu er de tre navnene man oftest møter i fortellingen om samlingen. De gjorde dette på ulike måter, gjennom krig, allianser og politisk organisering.",
+        "Europeiske handelsfolk kom til Japan fra 1543, og jesuittmisjonæren Frans Xavier kom i 1549. Våpen, handel, kristendom og nye impulser ble del av en periode som allerede var preget av store politiske endringer.",
+        "Hideyoshi begynte byggingen av Osaka Castle i 1583. Sen no Rikyū gjorde på 1500-tallet teseremonien til en høyt utviklet kunstform. Slaget ved Sekigahara i 1600 ble avgjørende for Ieyasus videre makt.",
+        "Slottene var festninger, boliger og symboler på kontroll. Himeji-slottets bevarte hovedanlegg stammer særlig fra de første årene på 1600-tallet; det er derfor ikke en urørt middelalderborg."
+      ],
+      "insight": "Assassin’s Creed Shadows foregår i denne urolige tiden. Spill og dramatisering kan gi stemning, men er ikke kilder til hva personer faktisk sa eller gjorde.",
+      "people": [
+        "nobunaga",
+        "hideyoshi",
+        "ieyasu",
+        "rikyu"
+      ],
+      "placeIds": [
+        "osaka-castle",
+        "himeji",
+        "hikone-castle",
+        "kyoto-tea-experience"
+      ],
+      "sourceIds": [
+        "columbia",
+        "perioder",
+        "himeji",
+        "tea",
+        "foreign-contact"
+      ]
+    },
+    {
+      "id": "edo",
+      "period": "1603–1868",
+      "title": "Edo: fred, byliv og sterke regler",
+      "lead": "Et stabilt shōgunat bygger et helt nytt hverdags-Japan – og Tokyo begynner som Edo.",
+      "body": [
+        "I 1603 ble Tokugawa Ieyasu shōgun. I mer enn 250 år hadde Japan relativt få landsdekkende kriger. Daimyōene – regionale herskere – ble kontrollert gjennom omfattende regler. Keiseren og hoffet ble værende i Kyoto; den militære regjeringen satt i Edo.",
+        "Dette var ikke et land uten kontakt med omverdenen. Utenrikshandel og reiser ble strengt regulert, men forbindelser til blant annet nederlendere, kinesere, koreanere og Ryukyu fantes fortsatt.",
+        "Storbyen Edo fikk teater, populærlitteratur, tresnitt, sumo og et levende matmiljø. Den formen for nigiri-sushi vi kjenner i dag, utviklet seg som hurtigmat i Edo. Kunstnere som Hokusai laget tresnitt som senere fikk stor internasjonal innflytelse."
+      ],
+      "insight": "Sensō-ji, Asakusa og de gamle slottsmurene i Tokyo gir mening når vi vet at det moderne Tokyo vokste frem rundt Edo.",
+      "people": [
+        "hokusai"
+      ],
+      "placeIds": [
+        "asakusa",
+        "edo-castle-imperial-palace",
+        "sumo-osaka",
+        "hikone-castle",
+        "himeji"
+      ],
+      "sourceIds": [
+        "columbia",
+        "sushi",
+        "hokusai",
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "meiji",
+      "period": "1853–1912",
+      "title": "Fra shōgunat til industristat",
+      "lead": "Utenlandsk press og indre konflikter fører til rask modernisering og et nytt politisk system.",
+      "body": [
+        "Amerikanske krigsskip under Matthew Perry kom til Japan i 1853. Uro og maktkamp fulgte, og i 1868 ble det gamle shōgunstyret avviklet i det vi kaller Meiji-restaurasjonen.",
+        "Japan bygde jernbane, industri, nye utdanningsinstitusjoner og en moderne hær. En grunnlov ble kunngjort i 1889. Utviklingen ga store muligheter, men var også knyttet til sosial omveltning og et voksende imperium. Japan tok Taiwan etter krigen mot Kina i 1895 og annekterte Korea i 1910, mot koreansk motstand.",
+        "Meiji Jingū i Tokyo ble oppført i 1920, etter Meiji-keiserens og keiserinnens død, for å minnes dem. Helligdommen er altså nyere enn den historiske perioden den viser til."
+      ],
+      "insight": "Moderniseringen handlet om å endre samfunnsordningen, ikke bare å importere teknologi fra Europa og USA.",
+      "people": [
+        "meiji-emperor"
+      ],
+      "placeIds": [
+        "tokyo",
+        "meiji-jingu",
+        "edo-castle-imperial-palace"
+      ],
+      "sourceIds": [
+        "columbia",
+        "meiji",
+        "perioder",
+        "meiji-shrine",
+        "korea-colony"
+      ]
+    },
+    {
+      "id": "taisho",
+      "period": "1912–begynnelsen av 1930-årene",
+      "title": "Byliv, demokratiske strømninger og uro",
+      "lead": "Mellom to verdenskriger får Japan nye politiske bevegelser, massemedier og bykultur.",
+      "body": [
+        "I Taishō-perioden (1912–1926) vokste partipolitikk, fagbevegelser og pressen i betydning. I 1925 fikk de fleste voksne menn stemmerett, men kvinner fikk ikke stemmerett da. Samme år kom en lov som begrenset politisk opposisjon.",
+        "Storbyene utviklet nye kultur- og forbruksmønstre. Det store Kantō-jordskjelvet i 1923 ødela store deler av Tokyo og Yokohama. Politisk uro og økonomiske kriser gjorde det senere lettere for militaristiske krefter å få makt."
+      ],
+      "insight": "Det moderne Tokyo har vokst frem gjennom flere runder med ombygging – ikke minst etter jordskjelvet i 1923 og krigsødeleggelsene i 1945.",
+      "people": [],
+      "placeIds": [
+        "tokyo"
+      ],
+      "sourceIds": [
+        "columbia",
+        "perioder",
+        "jnto-history",
+        "taisho-vote"
+      ]
+    },
+    {
+      "id": "war",
+      "period": "1931–1945",
+      "title": "Imperium, krig og atombomber",
+      "lead": "Japans militære ekspansjon rammer store deler av Asia, og krigen ender katastrofalt for millioner.",
+      "body": [
+        "Japan okkuperte Mandsjuria i 1931 og førte fra 1937 full krig mot Kina. Japanske styrker begikk omfattende overgrep i okkuperte områder. I desember 1941 angrep Japan Pearl Harbor og utvidet krigen med USA og andre allierte.",
+        "USA slapp en atombombe over Hiroshima 6. august 1945 og en ny over Nagasaki 9. august. Angrepene tok enorme mengder sivile liv, og mange overlevende fikk langvarige skader. Japan kunngjorde at det ville overgi seg 15. august; den formelle kapitulasjonen ble undertegnet 2. september.",
+        "Hiroshima Peace Memorial Museum forteller om menneskene som ble rammet. Når vi besøker stedet, bør vi også kjenne til Japans egen rolle i krigen og lidelsene i andre asiatiske land."
+      ],
+      "insight": "Hiroshima er et minnested for atomkrigens ofre – men Japans krigshistorie begynner ikke i Hiroshima i 1945.",
+      "people": [],
+      "placeIds": [
+        "hiroshima",
+        "hiroshima-peace-park-dome",
+        "peace-memorial-museum"
+      ],
+      "sourceIds": [
+        "ushmm",
+        "un",
+        "constitution"
+      ]
+    },
+    {
+      "id": "occupation",
+      "period": "1945–1952",
+      "title": "Et nytt politisk Japan",
+      "lead": "Etter nederlaget blir landet okkupert, og grunnleggende lover og institusjoner endres.",
+      "body": [
+        "Japan ble okkupert av de allierte med USA i en ledende rolle. Krigsskader, matmangel og gjenoppbygging preget de første årene.",
+        "Den nye grunnloven trådte i kraft i 1947. Den legger vekt på folkesuverenitet, grunnleggende rettigheter og et keiserdømme med symbolsk rolle. Artikkel 9 avviser krig som suveren rettighet og har vært viktig i Japans politiske debatter siden."
+      ],
+      "insight": "Kontrasten mellom keiser, shōgun og dagens statsstyre er nøkkelen til å forstå de politiske endringene gjennom hundrevis av år.",
+      "people": [],
+      "placeIds": [
+        "hiroshima",
+        "peace-memorial-museum",
+        "tokyo"
+      ],
+      "sourceIds": [
+        "constitution",
+        "columbia"
+      ]
+    },
+    {
+      "id": "growth",
+      "period": "ca. 1950–1989",
+      "title": "Lyntog, industrivekst og nye vaner",
+      "lead": "Japan blir en økonomisk stormakt og setter preg på hverdagen verden over.",
+      "body": [
+        "Etter gjenoppbyggingen kom høy økonomisk vekst. Bilindustri, elektronikk, presisjonsproduksjon og eksport ble viktige. Tōkaidō Shinkansen mellom Tokyo og Osaka åpnet i 1964, samme år som Tokyo arrangerte sommer-OL.",
+        "Momofuku Ando lanserte instant ramen i 1958 og Cup Noodles i 1971. Elektronikk og spillkultur ble senere internasjonale kjennetegn. Nintendo startet i Kyoto i 1889 med produksjon av japanske hanafuda-spillkort, lenge før dataspillene.",
+        "Utviklingen var ikke bare en historie om oppfinnelser: rask vekst førte også til forurensning, endrede levevaner og nye sosiale spenninger."
+      ],
+      "insight": "Shinkansen, Nintendo og en bolle ramen forteller ulike deler av den samme historien om modernisering og hverdagsliv.",
+      "people": [
+        "ando"
+      ],
+      "placeIds": [
+        "tokyo",
+        "akihabara",
+        "nintendo-museum",
+        "osaka",
+        "usj"
+      ],
+      "sourceIds": [
+        "rail",
+        "instant",
+        "ramen",
+        "columbia",
+        "nintendo"
+      ]
+    },
+    {
+      "id": "today",
+      "period": "1990-årene–i dag",
+      "title": "Et moderne land med lange historiske linjer",
+      "lead": "Popkultur, teknologi og sterke tradisjoner eksisterer side om side med store samfunnsutfordringer.",
+      "body": [
+        "Etter at en stor børs- og eiendomsboble sprakk rundt 1990, gikk Japan inn i en lang periode med svakere vekst. Samtidig har landet beholdt internasjonal betydning innen industri, spill, design, film og kultur.",
+        "Jordskjelvet og tsunamien i mars 2011 utløste en alvorlig atomkraftulykke ved Fukushima og satte dype spor. Japan har også utfordringer knyttet til aldrende befolkning og befolkningsnedgang.",
+        "I 2019 begynte Reiwa-perioden da Naruhito ble keiser. Navnet på en moderne keiserperiode er ikke det samme som et historisk tidsskille i samfunnsutviklingen."
+      ],
+      "insight": "Det vi møter på turen – teknologi, service, religiøse steder og historiske minnesmerker – er forskjellige lag i samme samfunn.",
+      "people": [],
+      "placeIds": [
+        "tokyo",
+        "shibuya",
+        "teamlab",
+        "osaka"
+      ],
+      "sourceIds": [
+        "perioder",
+        "jnto-history",
+        "jma",
+        "fukushima"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "himiko",
+      "name": "Dronning Himiko",
+      "time": "200-tallet",
+      "role": "Tidlig hersker kjent fra kinesiske kilder",
+      "text": "Kinesiske krøniker omtaler Himiko som leder for riket Yamatai. Hvor riket lå, er fortsatt omdiskutert.",
+      "chapterId": "jomon-yayoi",
+      "sourceIds": [
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "murasaki",
+      "name": "Murasaki Shikibu",
+      "time": "ca. år 1000",
+      "role": "Forfatter og hoffdame",
+      "text": "Skrev Fortellingen om Genji, et hovedverk i japansk litteratur. Her er det hoffliv og menneskelige relasjoner – ikke samuraikrig – som står i sentrum.",
+      "chapterId": "heian",
+      "sourceIds": [
+        "genji"
+      ]
+    },
+    {
+      "id": "yoritomo",
+      "name": "Minamoto no Yoritomo",
+      "time": "slutten av 1100-tallet",
+      "role": "Leder bak Kamakura-shōgunatet",
+      "text": "Hans militære styre markerte overgangen fra hoffdominans til et langvarig system med samurai-politisk makt.",
+      "chapterId": "kamakura",
+      "sourceIds": [
+        "columbia"
+      ]
+    },
+    {
+      "id": "yoshimitsu",
+      "name": "Ashikaga Yoshimitsu",
+      "time": "slutten av 1300-tallet",
+      "role": "Shōgun og kunstmesén",
+      "text": "Knyttes til Gullpaviljongen i Kyoto og Muromachi-periodens hoflige og religiøse kunstliv.",
+      "chapterId": "muromachi",
+      "sourceIds": [
+        "perioder"
+      ]
+    },
+    {
+      "id": "nobunaga",
+      "name": "Oda Nobunaga",
+      "time": "1500-tallet",
+      "role": "Krigsherre",
+      "text": "Brøt makten til flere rivaler og la mye av grunnlaget for Japans politiske samling.",
+      "chapterId": "sengoku",
+      "sourceIds": [
+        "columbia"
+      ]
+    },
+    {
+      "id": "hideyoshi",
+      "name": "Toyotomi Hideyoshi",
+      "time": "1500-tallet",
+      "role": "Leder og rikssamler",
+      "text": "Fortsatte samlingen etter Nobunaga og lot bygge det opprinnelige Osaka Castle. Hans felttog mot Korea på 1590-tallet førte også til store lidelser.",
+      "chapterId": "sengoku",
+      "sourceIds": [
+        "columbia",
+        "jnto-history"
+      ]
+    },
+    {
+      "id": "ieyasu",
+      "name": "Tokugawa Ieyasu",
+      "time": "1600-tallets begynnelse",
+      "role": "Grunnlegger av Tokugawa-shōgunatet",
+      "text": "Seieren ved Sekigahara i 1600 banet vei for militærstyret fra Edo fra 1603.",
+      "chapterId": "sengoku",
+      "sourceIds": [
+        "columbia"
+      ]
+    },
+    {
+      "id": "rikyu",
+      "name": "Sen no Rikyū",
+      "time": "1500-tallet",
+      "role": "Mester i teseremoni",
+      "text": "Bidro sterkt til idealene om enkelhet, respekt og ro i japansk tekultur.",
+      "chapterId": "sengoku",
+      "sourceIds": [
+        "tea"
+      ]
+    },
+    {
+      "id": "hokusai",
+      "name": "Katsushika Hokusai",
+      "time": "1760–1849",
+      "role": "Tresnittkunstner",
+      "text": "Kjent for landskaper og bilder av Fuji og Edo. Kunstverkene hans viser også hvordan storbyliv og trykkekunst nådde et bredere publikum.",
+      "chapterId": "edo",
+      "sourceIds": [
+        "hokusai"
+      ]
+    },
+    {
+      "id": "meiji-emperor",
+      "name": "Keiser Meiji",
+      "time": "regjerte 1867–1912",
+      "role": "Keiser i moderniseringstiden",
+      "text": "Meiji-restaurasjonen bar hans æranavn. Omstillingene var et resultat av mange politiske aktører, ikke én keisers personlige oppfinnelse.",
+      "chapterId": "meiji",
+      "sourceIds": [
+        "meiji"
+      ]
+    },
+    {
+      "id": "ando",
+      "name": "Momofuku Ando",
+      "time": "1900-tallet",
+      "role": "Matinnovatør",
+      "text": "Kjent for instant ramen i 1958 og Cup Noodles i 1971 – en oppfinnelse som endret hverdagsmat langt utenfor Japan.",
+      "chapterId": "growth",
+      "sourceIds": [
+        "instant"
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "id": "tro",
+      "title": "Templer, helligdommer og religion",
+      "lead": "Buddhismen kom utenfra, shinto vokste frem lokalt – men i praksis har religiøse tradisjoner påvirket hverandre gjennom århundrer.",
+      "body": "Når vi møter et tempel som Sensō-ji eller Tōdai-ji, er det buddhistisk. Fushimi Inari og Itsukushima er shinto-helligdommer. Torii-portene markerer hellige områder. Et konkret bygg kan være nyere enn tradisjonen det representerer.",
+      "chapterIds": [
+        "yamato-asuka",
+        "nara",
+        "muromachi"
+      ],
+      "placeIds": [
+        "asakusa",
+        "todaiji",
+        "fushimi-inari",
+        "itsukushima-shrine",
+        "meiji-jingu"
+      ],
+      "sourceIds": [
+        "jnto-history",
+        "columbia"
+      ]
+    },
+    {
+      "id": "mat",
+      "title": "Fra ris og te til sushi og ramen",
+      "lead": "Mat er en snarvei inn i samfunnshistorien: jordbruk, handel, byliv og industri finnes i det vi spiser.",
+      "body": "Risdyrking endret de tidlige samfunnene. Tekulturen utviklet seg blant annet ved templer og hos eliter, før Sen no Rikyū påvirket teseremonien. Nigiri-sushi ble urban hurtigmat i Edo. Ramen har forbindelser til kinesiske nuddeltradisjoner, mens instant ramen er en etterkrigsinnovasjon.",
+      "chapterIds": [
+        "jomon-yayoi",
+        "sengoku",
+        "edo",
+        "growth"
+      ],
+      "placeIds": [
+        "kyoto-tea-experience",
+        "dotonbori",
+        "nintendo-museum"
+      ],
+      "sourceIds": [
+        "tea",
+        "sushi",
+        "ramen",
+        "instant"
+      ],
+      "links": [
+        {
+          "title": "Mat og restauranter",
+          "href": "food.html"
+        },
+        {
+          "title": "Lag japansk mat hjemme",
+          "href": "prep.html?topic=mat"
+        }
+      ]
+    },
+    {
+      "id": "makt",
+      "title": "Keiser, shōgun og samurai",
+      "lead": "Japan har hatt en keiser gjennom mange epoker, men det betyr ikke at keiseren alltid styrte landet.",
+      "body": "Hoffet satt i Kyoto i lange perioder, mens militære regjeringer ledet av shōguner hadde betydelig makt i Kamakura, Kyoto og Edo. Slott og krigerklasser var del av politisk organisering – ikke bare kampkunst.",
+      "chapterIds": [
+        "kamakura",
+        "sengoku",
+        "edo",
+        "meiji"
+      ],
+      "placeIds": [
+        "edo-castle-imperial-palace",
+        "himeji",
+        "osaka-castle",
+        "hikone-castle"
+      ],
+      "sourceIds": [
+        "columbia",
+        "himeji"
+      ]
+    },
+    {
+      "id": "kunst",
+      "title": "Historier, bilder og popkultur",
+      "lead": "Japanske fortellinger startet ikke med manga og dataspill.",
+      "body": "Hofflitteratur fra Heian, illustrerte ruller og tresnitt fra Edo var store uttrykksformer lenge før anime, manga og dataspill. Moderne populærkultur er ny, men den har eldre forteller- og billedtradisjoner å spille på.",
+      "chapterIds": [
+        "heian",
+        "edo",
+        "growth",
+        "today"
+      ],
+      "placeIds": [
+        "ghibli-museum",
+        "nintendo-museum",
+        "akihabara"
+      ],
+      "sourceIds": [
+        "genji",
+        "hokusai"
+      ],
+      "links": [
+        {
+          "title": "Film, spill og bøker før turen",
+          "href": "prep.html"
+        }
+      ]
+    },
+    {
+      "id": "mangfold",
+      "title": "Japan har aldri vært én kultur",
+      "lead": "Fortellingen fra Kyoto og Edo er viktig, men forklarer ikke hele øyriket.",
+      "body": "Ainu er urfolk med egne språk og tradisjoner, særlig i nord. Ryukyu-riket i sør hadde en egen historie og handelsforbindelser til flere land før Okinawa ble innlemmet i Japan i 1879. Disse samfunnene ble påvirket av både handel, maktutøvelse og modernisering. De fortjener plass i historien selv om vår rute ikke går gjennom Hokkaido eller Okinawa.",
+      "chapterIds": [
+        "yamato-asuka",
+        "edo",
+        "meiji"
+      ],
+      "placeIds": [],
+      "sourceIds": [
+        "ainu",
+        "diversity",
+        "ryukyu"
+      ]
+    },
+    {
+      "id": "oppfinnelser",
+      "title": "Teknologi og oppfinnelser",
+      "lead": "Fra tidlig keramikk til lyntog: Japans utvikling har både egne ideer og impulser utenfra.",
+      "body": "Jōmon-keramikk er svært gammel. Senere utviklet japanere særegne metoder for trykk, arkitektur og håndverk. Moderne industri skapte blant annet Shinkansen fra 1964 og instant ramen fra 1958. Ikke alle kjente produkter eller oppfinnelser ble funnet opp i Japan; ofte ligger innovasjonen i videreutvikling og ny anvendelse.",
+      "chapterIds": [
+        "jomon-yayoi",
+        "edo",
+        "growth"
+      ],
+      "placeIds": [
+        "tokyo",
+        "nintendo-museum",
+        "akihabara"
+      ],
+      "sourceIds": [
+        "jomon",
+        "rail",
+        "instant",
+        "nintendo"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "perioder",
+      "title": "Japan Cultural Expo – tidslinje over japansk historie",
+      "url": "https://japanculturalexpo.ntj.jac.go.jp/en/article/feature/202509_index/"
+    },
+    {
+      "id": "columbia",
+      "title": "Columbia University – historisk tidslinje",
+      "url": "https://afe.easia.columbia.edu/timelines/japan_timeline.htm"
+    },
+    {
+      "id": "jomon",
+      "title": "UNESCO – Jōmon-stedene i Nord-Japan",
+      "url": "https://whc.unesco.org/en/list/1632/"
+    },
+    {
+      "id": "jnto-history",
+      "title": "JNTO – oversikt over Japans historie",
+      "url": "https://www.japan.travel/en/responsible-travel-guide/features/overview-japanese-history/"
+    },
+    {
+      "id": "genji",
+      "title": "The Metropolitan Museum of Art – The Tale of Genji",
+      "url": "https://www.metmuseum.org/exhibitions/listings/2019/tale-of-genji"
+    },
+    {
+      "id": "himeji",
+      "title": "UNESCO – Himeji-slottet",
+      "url": "https://whc.unesco.org/en/list/661/"
+    },
+    {
+      "id": "tea",
+      "title": "JNTO – japansk teseremoni",
+      "url": "https://www.japan.travel/en/guide/tea-ceremony/"
+    },
+    {
+      "id": "sushi",
+      "title": "JNTO – sushiens historie",
+      "url": "https://www.japan.travel/en/guide/sushi-in-japan/"
+    },
+    {
+      "id": "ramen",
+      "title": "JNTO – ramenens historie",
+      "url": "https://www.japan.travel/en/guide/a-guide-to-ramen-in-japan/"
+    },
+    {
+      "id": "ainu",
+      "title": "JNTO – Ainu, Japans urfolk",
+      "url": "https://www.japan.travel/en/sustainable/japans-ainu-indigenous-people/"
+    },
+    {
+      "id": "diversity",
+      "title": "JNTO – Ainu og Ryukyu-kulturene",
+      "url": "https://www.japan.travel/en/responsible-travel-guide/connecting-with-japanese-culture/"
+    },
+    {
+      "id": "ryukyu",
+      "title": "JNTO – Ryukyu-riket og Okinawa",
+      "url": "https://www.japan.travel/en/destinations/okinawa/Okinawa/naha-and-the-main-island/"
+    },
+    {
+      "id": "ushmm",
+      "title": "US Holocaust Memorial Museum – andre verdenskrig i Stillehavet",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/world-war-ii-in-the-pacific"
+    },
+    {
+      "id": "un",
+      "title": "FN – atombombene i 1945",
+      "url": "https://www.un.org/en/observances/end-nuclear-tests-day/history"
+    },
+    {
+      "id": "constitution",
+      "title": "National Diet Library – forfatningshistorien 1945–1947",
+      "url": "https://www.ndl.go.jp/constitution/e/etc/history.html"
+    },
+    {
+      "id": "meiji",
+      "title": "National Diet Library – grunnloven av 1889",
+      "url": "https://www.ndl.go.jp/modern/e/cha2/description07.html"
+    },
+    {
+      "id": "rail",
+      "title": "JR Central – historien om Shinkansen",
+      "url": "https://global.jr-central.co.jp/en/company/about_shinkansen/"
+    },
+    {
+      "id": "instant",
+      "title": "JNTO – instant ramen og Cup Noodles",
+      "url": "https://www.japan.travel/en/sg/story/japan-world/"
+    },
+    {
+      "id": "hokusai",
+      "title": "The Metropolitan Museum of Art – Hokusai og Edo",
+      "url": "https://www.metmuseum.org/art/collection/search/55237"
+    },
+    {
+      "id": "nintendo",
+      "title": "Nintendo – offisiell selskaps- og produkthistorie",
+      "url": "https://www.nintendo.com/us/about/"
+    },
+    {
+      "id": "meiji-shrine",
+      "title": "Meiji Jingū – grunnleggelsen i 1920",
+      "url": "https://www.meijijingu.or.jp/en/about/establishment/"
+    },
+    {
+      "id": "jma",
+      "title": "Japan Meteorological Agency – jordskjelvet 11. mars 2011",
+      "url": "https://www.jma.go.jp/jma/en/2011_Earthquake/Information_on_2011_Earthquake.html"
+    },
+    {
+      "id": "fukushima",
+      "title": "Japan Atomic Energy Agency – Fukushima-ulykken",
+      "url": "https://f-archive.jaea.go.jp/about.php?locale=eng"
+    },
+    {
+      "id": "taisho-vote",
+      "title": "National Diet Library – stemmerettsreformen i 1925",
+      "url": "https://www.ndl.go.jp/modern/e/cha3/description13.html"
+    },
+    {
+      "id": "foreign-contact",
+      "title": "The Metropolitan Museum of Art – Japan 1400–1600 og europeisk kontakt",
+      "url": "https://82nd-and-fifth.metmuseum.org/toah/ht/08/eaj.html"
+    },
+    {
+      "id": "korea-colony",
+      "title": "Columbia University – japansk imperialisme og Korea 1910",
+      "url": "https://afe.easia.columbia.edu/main_pop/kpct/kp_1750-1919.htm"
+    }
+  ]
+}

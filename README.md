@@ -10,10 +10,11 @@ Offentlig planleggingsrepo for en mulig Japan-tur våren 2027. Nettsiden er en e
 
 GitHub Pages publiserer fra repoet, og rotens `index.html` sender videre til `/docs/`.
 
-Hovednavigasjonen holdes bevisst liten:
+Hovednavigasjonen holdes bevisst liten. En egen historieseksjon forklarer Japans viktigste epoker, personer, kultur og teknologi og viser relevante forbindelser til stedene på reisen:
 
 - Oversikt
 - Rute
+- Japans historie – kort, kildebasert fortelling med tematiske koblinger til steder, mat og forberedelser
 - Dagidéer – geografisk logiske, uforpliktende kombinasjoner med lokale vurderingsvalg
 - Steder
 - Mat
@@ -29,6 +30,7 @@ Kilder og personvern ligger i bunnteksten.
 
 - `docs/data/trip.json` – rute med nummererte reisedager, budsjett, oversiktskuratering, destinasjonstemaer/farger og prisscenarier
 - `docs/data/flights.json` – fire klikkbare, illustrative flysøkoppsett, metodikk, datovariasjoner, knutepunkter, sammenligningssjekkliste og åpne søkekilder
+- `docs/data/history.json` – kronologiske historiekapitler, personer, temaer, kildeoversikt og stedsreferanser (uavhengig av reiseruten)
 - `docs/data/places.json` – komplett master for steder: tekst, kartposisjon, bilde/illustrasjon, eksterne lenker og inngangspris
 - `docs/data/food.json` – kanonisk matdomene med restaurantliste, prisbånd, planleggingsnotater, prioritet, pris og kartposisjon
 - `docs/data/hotels.json` – overnattingskandidater og overnattingsformer per base, med familieoppsett, logistikk, planpris og kartposisjon
@@ -86,7 +88,7 @@ Hver publisert endring på `main` skal ha ny versjon i `docs/data/site.json`. Al
 
 ## Oppdatere
 
-Kjør `node scripts/check-public-content.mjs`, `node scripts/check-data-integrity.mjs`, `node scripts/check-content-style.mjs` og `node scripts/check-release-discipline.mjs` før publisering. GitHub Actions kjører de samme kontrollene automatisk.
+Kjør `node scripts/check-public-content.mjs`, `node scripts/check-data-integrity.mjs`, `node scripts/check-history-integrity.mjs`, `node scripts/check-content-style.mjs` og `node scripts/check-release-discipline.mjs` før publisering. GitHub Actions kjører de samme kontrollene automatisk.
 
 
 ## Nettlesertilstand og URL-kontrakt

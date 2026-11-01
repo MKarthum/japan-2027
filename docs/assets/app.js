@@ -1253,6 +1253,7 @@ async function renderPlace() {
   }
 
   document.getElementById('external-links').innerHTML = [...(p.links||[]).map(linkButton),mapsButton(p.name,p.area)].join('');
+  renderPlaceHistory(p.id);
 
   renderDetailContextMap({containerId:'place-map',toolbarId:'place-map-layers',trip,current:p,currentKind:'experience',places,food,hotels:hotelData.hotels,transport});
   const suggested=(dayIdeas.ideas||[]).filter(x=>[...(x.corePlaceIds||[]),...(x.optionalPlaceIds||[])].includes(p.id));
@@ -1444,7 +1445,11 @@ async function renderPrep() {
     }else{
       const note=['spill','film','serier','boker'].includes(selected.slug)
         ?'<p class="prep-media-notice">'+escapeSiteHtml(copy.visualImagesNote)+'</p>':'';
-      topicGrid.innerHTML=note+'<div class="prep-visual-grid">'+
+      const historyGuide=selected.slug==='historie'?
+        '<div class="prep-history-link"><h2>'+escapeSiteHtml(copy.historyGuideTitle)+'</h2>'+
+        '<p>'+escapeSiteHtml(copy.historyGuideIntro)+'</p>'+
+        '<a class="button primary" href="history.html">Les Japans historie →</a></div>':'';
+      topicGrid.innerHTML=historyGuide+note+'<div class="prep-visual-grid">'+
         selected.items.map(item=>prepVisualCardHtml(item,prepPlaceById)).join('')+'</div>';
     }
   }else{
