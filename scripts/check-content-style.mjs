@@ -9,6 +9,7 @@ const publicDataFiles = [
   'docs/data/flights.json',
   'docs/data/food.json',
   'docs/data/places.json',
+  'docs/data/history.json',
   'docs/data/guide.json',
   'docs/data/prep.json',
   'docs/data/transport.json',
