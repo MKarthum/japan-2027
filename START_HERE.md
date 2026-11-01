@@ -37,6 +37,10 @@ Tidligere samtaler, sammendrag og modellminne kan brukes som spor til hva man sk
 - `places.json[].topics` eier tematiske emneknagger, som brukes i filtrering og søk. Kart gir geografisk kontekst; `day-ideas.json` gir kuraterte forslag om hva som passer sammen. De skal lenkes, men ikke blandes sammen eller gjøre automatiske bookingvalg.
 - Søk på tvers skal bruke åpne, kanoniske JSON-data i nettleseren, uten backend. Nye endringer må valideres med de fire eksisterende QA-testene, samt nettlesertest av mobil, navigasjon, valg og kartlag.
 
+## Landemerker som må være synlige (v0.30.39)
+
+Stedskort og dagidéer skal vise den kjente attraksjonen i tittelen, også når oppføringen dekker et område (Sensō-ji i Asakusa, Shibuya Crossing i Shibuya, bambusskogen i Arashiyama, Nara Park i Nara). Beskriv forskjellen på bydel/by, park, tempel og helligdom. Behold ID-er ved navneendring, unngå dupliserte stopp og oppdater både kort og dagsforslag. Se AGENTS.md og regresjonssjekkene i check-data-integrity.mjs.
+
 ## Språklig tilgjengelighet
 
 Skriv slik at både barn og voksne uten Japan-kunnskap forstår innholdet. Forklar japanske faguttrykk gjennom den **felles klikkbare ordlisten** fremfor gjentatte parentesforklaringer. `docs/data/guide.json` → `placeWords` er autoritativ kilde: term, meaning, valgfri japanese, aliases, og `inline:true` for ord som skal ha stiplet understrek. `showInGuide:false` holder avanserte ord utenfor den kuraterte ordlisten under Språk og fraser. `docs/assets/glossary.js` er kun én delt visningskomponent (mobil, tastatur, popup, dynamiske sider). Bruk japanske ord naturlig; ikke aktiver for alle stedsnavn eller ordinære ord.
